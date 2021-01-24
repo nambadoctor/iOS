@@ -22,6 +22,7 @@ class UpcomingAppointmentViewModel: ObservableObject {
 
     private var patientTokenId:String = ""
     private var notifHelper:DocNotifHelpers = DocNotifHelpers()
+    private var docSheetHelper:DoctorSheetHelpers = DoctorSheetHelpers()
 
     private var updateAppointmentStatus:UpdateAppointmentStatusProtocol
     private var doctorAlertHelper:DoctorAlertHelpersProtocol
@@ -116,7 +117,7 @@ class UpcomingAppointmentViewModel: ObservableObject {
     }
 
     func viewPatientInfo() {
-        DoctorSheetHelpers.showPatientInfoSheet(appointment: appointment)
+        docSheetHelper.showPatientInfoSheet(appointment: appointment)
     }
 
     //get patient token id, if not existing, fetch from api and completing parent call

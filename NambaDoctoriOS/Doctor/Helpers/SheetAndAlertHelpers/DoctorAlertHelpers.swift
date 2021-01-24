@@ -26,4 +26,14 @@ class DoctorAlertHelpers: DoctorAlertHelpersProtocol {
         
         CommonDefaultModifiers.showAlert()
     }
+    
+    func askToSavePrescriptionAlert (save: @escaping (Bool) -> ()) {
+        alertTempItem = AlertItem(title: Text("Do you want to save prescription?"), message: Text("You can save this prescription and finish it at your convenience"), primaryButton: Alert.Button.default(Text("Save and go to home"), action: {
+            save(true)
+        }), secondaryButton: Alert.Button.default(Text("Don't save and go to home"), action: {
+            save(false)
+        }))
+
+        CommonDefaultModifiers.showAlert()
+    }
 }

@@ -617,12 +617,13 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		1742527625BDA9A100523B94 /* SheetHelpers */ = {
+		1742527625BDA9A100523B94 /* SheetAndAlertHelpers */ = {
 			isa = PBXGroup;
 			children = (
+				1748011925B9746600C8E3CC /* DoctorAlertHelpers.swift */,
 				1742528225BDA9E100523B94 /* DoctorSheetHelpers.swift */,
 			);
-			path = SheetHelpers;
+			path = SheetAndAlertHelpers;
 			sourceTree = "<group>";
 		};
 		1748005225B8BD7E00C8E3CC /* APICallHelpers */ = {
@@ -770,10 +771,9 @@
 		17B5D16225B75CDB009D6A42 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				1742527625BDA9A100523B94 /* SheetHelpers */,
+				1742527625BDA9A100523B94 /* SheetAndAlertHelpers */,
 				17B5D16325B75CE7009D6A42 /* CheckAppointmentStatus.swift */,
 				1748010A25B8DFC100C8E3CC /* DoctorDefaultModifiers.swift */,
-				1748011925B9746600C8E3CC /* DoctorAlertHelpers.swift */,
 				1742503725BAD94700523B94 /* GetEmptyModelObj.swift */,
 				1742504925BAE39E00523B94 /* GeneralDoctorHelpers.swift */,
 			);

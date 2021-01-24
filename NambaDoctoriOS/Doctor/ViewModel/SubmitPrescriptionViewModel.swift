@@ -37,7 +37,7 @@ class SubmitPrescriptionViewModel: ObservableObject {
         prescriptionVM.prescription.planInfo = prescriptionVM.InvestigationsVM.investigations.joined(separator: ";")
 
         prescriptionVM.prescription.medicine = prescriptionVM.MedicineVM.medicineArr
-        
+
         putPrescription()
         putFollowUp()
         putAllergies()

@@ -28,6 +28,9 @@ class PrescriptionViewModel: ObservableObject {
     private var retrieveFollowUpObjHelper:RetrieveFollowUpFeeObjProtocol
     private var retrieveAllergiesHelper:RetrievePatientAllergiesProtocol
     
+    private var docSheetHelper:DoctorSheetHelpers = DoctorSheetHelpers()
+    private var docAlertHelper:DoctorAlertHelpers = DoctorAlertHelpers()
+    
     init(appointment:Appointment,
          isNewPrescription:Bool,
          retrievePrescriptionHelper:RetrievePrescriptionForAppointmentProtocol = RetrievePrescriptionForAppointmentViewModel(),
@@ -42,7 +45,7 @@ class PrescriptionViewModel: ObservableObject {
         self.retrieveAllergiesHelper = retrieveAllergiesHelper
 
         if isNewPrescription {
-            prescription = GetEmptyModelObj().getFreshPrescription()
+            checkForStoredPrescriptionAndRetreive()
         } else {
             self.retrievePrescription()
         }
@@ -57,23 +60,33 @@ class PrescriptionViewModel: ObservableObject {
             return true
         }
     }
+    
+    func checkForStoredPrescriptionAndRetreive() {
+        let storedPrescription = LocalDecoder.decode(modelType: Prescription.self, from: "prescription:\(self.appointment.id)")
+        
+        if storedPrescription == nil {
+            self.prescription = GetEmptyModelObj().getFreshPrescription()
+        } else {
+            self.mapPrescriptionValues(prescription: storedPrescription!)
+        }
+    }
 
     func retrievePrescription() {
         
-        func mapPrescriptionValues (prescription:Prescription) {
-            self.prescription = prescription
-            self.MedicineVM.medicineArr = self.prescription.medicine ?? [Medicine]()
-            self.InvestigationsVM.parsePlanIntoInvestigationsArr(planInfo: self.prescription.planInfo)
-        }
-        
         retrievePrescriptionHelper.getPrescription(appointmentId: self.appointment.id) { (prescription) in
             if prescription != nil {
-                mapPrescriptionValues(prescription: prescription!)
+                self.mapPrescriptionValues(prescription: prescription!)
             } else {
                 //self.prescription = nil
                 self.errorInRetrievingPrescription = true
             }
         }
+    }
+    
+    func mapPrescriptionValues (prescription:Prescription) {
+        self.prescription = prescription
+        self.MedicineVM.medicineArr = self.prescription.medicine ?? [Medicine]()
+        self.InvestigationsVM.parsePlanIntoInvestigationsArr(planInfo: self.prescription.planInfo)
     }
 
     func retrieveFollowUpFeeForPrescription() {
@@ -89,9 +102,35 @@ class PrescriptionViewModel: ObservableObject {
             self.patientAllergies = allergies
         }
     }
-    
+
     func sendToReviewPrescription() {
         InvestigationsVM.addTempIntoArrayWhenFinished()
         self.navigateToReviewPrescription = true
     }
+
+    func viewPatientInfo() {
+        docSheetHelper.showPatientInfoSheet(appointment: appointment)
+    }
+    
+    func navBarBackPressed (completion: @escaping (_ GoBack:Bool)->()) {
+        
+        func encodePrescriptionLocally () {
+            self.prescription.planInfo = self.InvestigationsVM.investigations.joined(separator: ";")
+
+            self.prescription.medicine = self.MedicineVM.medicineArr
+
+            LocalEncoder.encode(payload: self.prescription, destination: "prescription:\(self.appointment.id)")
+        }
+        
+        docAlertHelper.askToSavePrescriptionAlert() { save in
+            if save {
+                encodePrescriptionLocally()
+                completion(true)
+            } else {
+                completion(true)
+            }
+        }
+    }
+    
+    
 }

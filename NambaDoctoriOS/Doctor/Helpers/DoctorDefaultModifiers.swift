@@ -14,5 +14,4 @@ class DoctorDefaultModifiers {
         NotificationCenter.default.post(name: NSNotification.Name(DocViewStatesK.refreshAppointments.rawValue), object: nil)
     }
     
-    
 }

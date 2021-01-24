@@ -59,6 +59,23 @@ struct WritePrescriptionView: View {
                 }
             }
         }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: navBarLeadingBtn, trailing: navBarTrailingBtn)
+    }
+    
+    private var navBarLeadingBtn : some View {
+        Button(action: {
+            prescriptionVM.navBarBackPressed { GoBack in
+                self.presentationMode.wrappedValue.dismiss()
+            }
+        }, label: {
+            Text("< Back")
+                .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+        })
+    }
+    
+    private var navBarTrailingBtn : some View {
+        Text("Patient Info").onTapGesture() {prescriptionVM.viewPatientInfo()}
     }
     
     private var tabbedHeaders : some View {
