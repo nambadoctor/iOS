@@ -11,6 +11,7 @@ import SwiftUI
 
 class PrescriptionViewModel: ObservableObject {
     var appointment:Appointment
+    var isNewPrescription:Bool
     let loggedInDoctor = LocalDecoder.decode(modelType: Doctor.self, from: LocalEncodingK.userObj.rawValue)!
     
     @Published var prescription:Prescription!
@@ -34,16 +35,19 @@ class PrescriptionViewModel: ObservableObject {
     init(appointment:Appointment,
          isNewPrescription:Bool,
          retrievePrescriptionHelper:RetrievePrescriptionForAppointmentProtocol = RetrievePrescriptionForAppointmentViewModel(),
-         
+
          retrieveFollowUpObjHelper:RetrieveFollowUpFeeObjProtocol = RetrieveFollowUpObjViewModel(),
-         
+
          retrieveAllergiesHelper:RetrievePatientAllergiesProtocol = RetrievePatientAllergiesViewModel()) {
 
         self.appointment = appointment
+        self.isNewPrescription = isNewPrescription
         self.retrievePrescriptionHelper = retrievePrescriptionHelper
         self.retrieveFollowUpObjHelper = retrieveFollowUpObjHelper
         self.retrieveAllergiesHelper = retrieveAllergiesHelper
-
+    }
+    
+    func prescriptionViewOnAppear () {
         if isNewPrescription {
             checkForStoredPrescriptionAndRetreive()
         } else {
@@ -131,6 +135,4 @@ class PrescriptionViewModel: ObservableObject {
             }
         }
     }
-    
-    
 }

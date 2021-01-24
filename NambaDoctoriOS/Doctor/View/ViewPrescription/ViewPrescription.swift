@@ -51,5 +51,6 @@ struct ViewPrescription: View {
             }
 
         }
+        .onAppear() {prescriptionVM.prescriptionViewOnAppear()}
     }
 }

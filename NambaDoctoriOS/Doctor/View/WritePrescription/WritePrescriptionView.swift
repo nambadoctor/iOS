@@ -59,6 +59,7 @@ struct WritePrescriptionView: View {
                 }
             }
         }
+        .onAppear() {prescriptionVM.prescriptionViewOnAppear()}
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: navBarLeadingBtn, trailing: navBarTrailingBtn)
     }
