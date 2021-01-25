@@ -10,6 +10,7 @@ target 'NambaDoctoriOS' do
 pod 'Alamofire', '~> 5.2'
 pod 'Firebase/Auth'
 pod 'Firebase/Messaging'
+pod 'TwilioVideo', '~> 3.7'
 
   target 'NambaDoctoriOSTests' do
     inherit! :search_paths

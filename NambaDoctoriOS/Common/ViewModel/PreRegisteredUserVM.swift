@@ -14,18 +14,18 @@ class PreRegisteredUserVM:ObservableObject {
     @Published var userLoggedIn:Bool = false
 
     private let AuthService:AuthenticateServiceProtocol
-    
+
     init(AuthService: AuthenticateServiceProtocol = AuthenticateService()) {
         self.AuthService = AuthService
-        user = PreRegisteredUser(userNumber: "", countryCode: "+91", verificationId: "")
+        user = PreRegisteredUser(phNumberObj: PhoneNumberObj(), verificationId: "")
     }
 
     var phoneNumber:String {
-        return user.countryCode+user.userNumber
+        return user.phNumberObj.countryCode+user.phNumberObj.number
     }
-    
+
     func checkNumberLength() -> Bool {
-        return AuthService.validatePhoneNumber(user.userNumber)
+        return AuthService.validatePhoneNumber(user.phNumberObj.number)
     }
     
     func validateNumWithFirebase() {

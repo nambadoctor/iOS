@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1728B76D25B38156001D554E /* FindDocOrPatientVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728B76C25B38156001D554E /* FindDocOrPatientVM.swift */; };
-		1728B77525B381D1001D554E /* PreRegisteredPatient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728B77425B381D1001D554E /* PreRegisteredPatient.swift */; };
+		1728B77525B381D1001D554E /* PreRegisteredUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728B77425B381D1001D554E /* PreRegisteredUser.swift */; };
 		1728B77A25B381E7001D554E /* PreRegisteredUserVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728B77925B381E7001D554E /* PreRegisteredUserVM.swift */; };
 		1728B77F25B3838E001D554E /* LoginStatusEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728B77E25B3838E001D554E /* LoginStatusEnum.swift */; };
 		1728B78425B3865C001D554E /* RetrieveAuthTokenId.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728B78325B3865C001D554E /* RetrieveAuthTokenId.swift */; };
@@ -126,6 +126,11 @@
 		1796321C25AEE932002E466C /* CommonDefaultModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796321A25AEE932002E466C /* CommonDefaultModifiers.swift */; };
 		1796322E25AEE9D6002E466C /* GlobalPopupHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796322C25AEE9D6002E466C /* GlobalPopupHelpers.swift */; };
 		1796322F25AEE9D6002E466C /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796322D25AEE9D6002E466C /* AlertItem.swift */; };
+		179F626325BF586A00BA0A73 /* PreRegisteredPatient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179F626225BF586A00BA0A73 /* PreRegisteredPatient.swift */; };
+		179F628225BF58C800BA0A73 /* AddPatientViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179F628125BF58C800BA0A73 /* AddPatientViewModel.swift */; };
+		179F628725BF594D00BA0A73 /* AddPatientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179F628625BF594D00BA0A73 /* AddPatientView.swift */; };
+		179F629C25BF5F8900BA0A73 /* PhoneNumberObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179F629B25BF5F8900BA0A73 /* PhoneNumberObj.swift */; };
+		179F62AD25BF62C900BA0A73 /* AddPreRegisteredViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179F62AC25BF62C900BA0A73 /* AddPreRegisteredViewModel.swift */; };
 		17B5D12325B74BCA009D6A42 /* DoctorHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B5D12225B74BCA009D6A42 /* DoctorHome.swift */; };
 		17B5D12825B755F8009D6A42 /* RetrieveDocObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B5D12725B755F8009D6A42 /* RetrieveDocObj.swift */; };
 		17B5D12D25B75789009D6A42 /* LocalEncodingK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B5D12C25B75789009D6A42 /* LocalEncodingK.swift */; };
@@ -145,6 +150,15 @@
 		17BA0AD025B9B2B600EDE4D1 /* MockAppointmentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BA0ACF25B9B2B600EDE4D1 /* MockAppointmentData.swift */; };
 		17E3640425B7075700791745 /* UpdateFCMToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E3640325B7075700791745 /* UpdateFCMToken.swift */; };
 		17E3640925B7078E00791745 /* ApiPatchCall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E3640825B7078E00791745 /* ApiPatchCall.swift */; };
+		17E3706D25BF123F0004C965 /* TwilioSwiftUIWrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E3706925BF123E0004C965 /* TwilioSwiftUIWrap.swift */; };
+		17E3706E25BF123F0004C965 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E3706A25BF123E0004C965 /* Utils.swift */; };
+		17E3706F25BF123F0004C965 /* TwilioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E3706B25BF123E0004C965 /* TwilioViewController.swift */; };
+		17E3707025BF123F0004C965 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E3706C25BF123F0004C965 /* Settings.swift */; };
+		17E3707525BF12540004C965 /* Twilio.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17E3707425BF12540004C965 /* Twilio.storyboard */; };
+		17E3707D25BF12AF0004C965 /* DoctorTwilioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E3707C25BF12AF0004C965 /* DoctorTwilioViewModel.swift */; };
+		17E3709C25BF17600004C965 /* TwilioStateK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E3709B25BF17600004C965 /* TwilioStateK.swift */; };
+		17E370AD25BF19B40004C965 /* DoctorTwilioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E370AC25BF19B40004C965 /* DoctorTwilioManager.swift */; };
+		17E370BE25BF53AD0004C965 /* TwilioDefaultModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E370BD25BF53AD0004C965 /* TwilioDefaultModifiers.swift */; };
 		17E5185425AED16A001F1A80 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E5185325AED16A001F1A80 /* AppDelegate.swift */; };
 		17E5185625AED16A001F1A80 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E5185525AED16A001F1A80 /* SceneDelegate.swift */; };
 		17E5185825AED16A001F1A80 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E5185725AED16A001F1A80 /* ContentView.swift */; };
@@ -177,7 +191,7 @@
 
 /* Begin PBXFileReference section */
 		1728B76C25B38156001D554E /* FindDocOrPatientVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindDocOrPatientVM.swift; sourceTree = "<group>"; };
-		1728B77425B381D1001D554E /* PreRegisteredPatient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreRegisteredPatient.swift; sourceTree = "<group>"; };
+		1728B77425B381D1001D554E /* PreRegisteredUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreRegisteredUser.swift; sourceTree = "<group>"; };
 		1728B77925B381E7001D554E /* PreRegisteredUserVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreRegisteredUserVM.swift; sourceTree = "<group>"; };
 		1728B77E25B3838E001D554E /* LoginStatusEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStatusEnum.swift; sourceTree = "<group>"; };
 		1728B78325B3865C001D554E /* RetrieveAuthTokenId.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrieveAuthTokenId.swift; sourceTree = "<group>"; };
@@ -296,6 +310,11 @@
 		1796321A25AEE932002E466C /* CommonDefaultModifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonDefaultModifiers.swift; sourceTree = "<group>"; };
 		1796322C25AEE9D6002E466C /* GlobalPopupHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalPopupHelpers.swift; sourceTree = "<group>"; };
 		1796322D25AEE9D6002E466C /* AlertItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
+		179F626225BF586A00BA0A73 /* PreRegisteredPatient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreRegisteredPatient.swift; sourceTree = "<group>"; };
+		179F628125BF58C800BA0A73 /* AddPatientViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPatientViewModel.swift; sourceTree = "<group>"; };
+		179F628625BF594D00BA0A73 /* AddPatientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPatientView.swift; sourceTree = "<group>"; };
+		179F629B25BF5F8900BA0A73 /* PhoneNumberObj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberObj.swift; sourceTree = "<group>"; };
+		179F62AC25BF62C900BA0A73 /* AddPreRegisteredViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPreRegisteredViewModel.swift; sourceTree = "<group>"; };
 		17B5D12225B74BCA009D6A42 /* DoctorHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorHome.swift; sourceTree = "<group>"; };
 		17B5D12725B755F8009D6A42 /* RetrieveDocObj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrieveDocObj.swift; sourceTree = "<group>"; };
 		17B5D12C25B75789009D6A42 /* LocalEncodingK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalEncodingK.swift; sourceTree = "<group>"; };
@@ -315,6 +334,15 @@
 		17BA0ACF25B9B2B600EDE4D1 /* MockAppointmentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAppointmentData.swift; sourceTree = "<group>"; };
 		17E3640325B7075700791745 /* UpdateFCMToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateFCMToken.swift; sourceTree = "<group>"; };
 		17E3640825B7078E00791745 /* ApiPatchCall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiPatchCall.swift; sourceTree = "<group>"; };
+		17E3706925BF123E0004C965 /* TwilioSwiftUIWrap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwilioSwiftUIWrap.swift; sourceTree = "<group>"; };
+		17E3706A25BF123E0004C965 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		17E3706B25BF123E0004C965 /* TwilioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwilioViewController.swift; sourceTree = "<group>"; };
+		17E3706C25BF123F0004C965 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		17E3707425BF12540004C965 /* Twilio.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Twilio.storyboard; sourceTree = "<group>"; };
+		17E3707C25BF12AF0004C965 /* DoctorTwilioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorTwilioViewModel.swift; sourceTree = "<group>"; };
+		17E3709B25BF17600004C965 /* TwilioStateK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwilioStateK.swift; sourceTree = "<group>"; };
+		17E370AC25BF19B40004C965 /* DoctorTwilioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorTwilioManager.swift; sourceTree = "<group>"; };
+		17E370BD25BF53AD0004C965 /* TwilioDefaultModifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwilioDefaultModifiers.swift; sourceTree = "<group>"; };
 		17E5185025AED16A001F1A80 /* NambaDoctoriOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NambaDoctoriOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		17E5185325AED16A001F1A80 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		17E5185525AED16A001F1A80 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -465,6 +493,7 @@
 				1742510D25BC678900523B94 /* PatientFollowUpObj.swift */,
 				1742524725BD998100523B94 /* UploadedDocument.swift */,
 				1742526525BDA6F300523B94 /* DoctorSheetItem.swift */,
+				179F626225BF586A00BA0A73 /* PreRegisteredPatient.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -484,6 +513,9 @@
 				174250CA25BAEF4000523B94 /* MedicineEntryViewModel.swift */,
 				174251E625BCFEBB00523B94 /* SubmitPrescriptionViewModel.swift */,
 				1742523525BD988C00523B94 /* PatientInfoViewModel.swift */,
+				17E3707C25BF12AF0004C965 /* DoctorTwilioViewModel.swift */,
+				179F628125BF58C800BA0A73 /* AddPatientViewModel.swift */,
+				179F62AC25BF62C900BA0A73 /* AddPreRegisteredViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -509,6 +541,7 @@
 		172B851525AEE49E00C6B035 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				17E3709A25BF174A0004C965 /* TwilioHelpers */,
 				1701326125B7490800CAED6E /* JSONHelpers */,
 				1796322B25AEE9D6002E466C /* AlertHelpers */,
 				1796321825AEE932002E466C /* DefaultsModifierHelpers */,
@@ -525,7 +558,8 @@
 			isa = PBXGroup;
 			children = (
 				172B852125AEE65B00C6B035 /* CountryCodes.swift */,
-				1728B77425B381D1001D554E /* PreRegisteredPatient.swift */,
+				1728B77425B381D1001D554E /* PreRegisteredUser.swift */,
+				179F629B25BF5F8900BA0A73 /* PhoneNumberObj.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -737,6 +771,8 @@
 		17B5D11625B74B29009D6A42 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				17E370C225BF55620004C965 /* AddPatient */,
+				17E370A025BF196C0004C965 /* DoctorTwilioManager */,
 				1742523425BD987500523B94 /* PatientInfo */,
 				1742515825BCC4A100523B94 /* ReviewPrescription */,
 				1742514725BCC31300523B94 /* ViewPrescription */,
@@ -850,9 +886,47 @@
 			path = FCMTokenHelpers;
 			sourceTree = "<group>";
 		};
+		17E3706825BF12340004C965 /* TwilioService */ = {
+			isa = PBXGroup;
+			children = (
+				17E3706B25BF123E0004C965 /* TwilioViewController.swift */,
+				17E3707425BF12540004C965 /* Twilio.storyboard */,
+				17E3706C25BF123F0004C965 /* Settings.swift */,
+				17E3706925BF123E0004C965 /* TwilioSwiftUIWrap.swift */,
+				17E3706A25BF123E0004C965 /* Utils.swift */,
+			);
+			path = TwilioService;
+			sourceTree = "<group>";
+		};
+		17E3709A25BF174A0004C965 /* TwilioHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				17E370BD25BF53AD0004C965 /* TwilioDefaultModifiers.swift */,
+				17E3709B25BF17600004C965 /* TwilioStateK.swift */,
+			);
+			path = TwilioHelpers;
+			sourceTree = "<group>";
+		};
+		17E370A025BF196C0004C965 /* DoctorTwilioManager */ = {
+			isa = PBXGroup;
+			children = (
+				17E370AC25BF19B40004C965 /* DoctorTwilioManager.swift */,
+			);
+			path = DoctorTwilioManager;
+			sourceTree = "<group>";
+		};
+		17E370C225BF55620004C965 /* AddPatient */ = {
+			isa = PBXGroup;
+			children = (
+				179F628625BF594D00BA0A73 /* AddPatientView.swift */,
+			);
+			path = AddPatient;
+			sourceTree = "<group>";
+		};
 		17E5184725AED16A001F1A80 = {
 			isa = PBXGroup;
 			children = (
+				17E3706825BF12340004C965 /* TwilioService */,
 				1748006825B8C12D00C8E3CC /* NotificationService */,
 				172B84B825AED36F00C6B035 /* AuthService */,
 				172B848925AED23F00C6B035 /* DataService */,
@@ -1061,6 +1135,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1772338D25B726A6002B814A /* GoogleService-Info.plist in Resources */,
+				17E3707525BF12540004C965 /* Twilio.storyboard in Resources */,
 				17E5186025AED16C001F1A80 /* LaunchScreen.storyboard in Resources */,
 				17E5185D25AED16C001F1A80 /* Preview Assets.xcassets in Resources */,
 				17E5185A25AED16C001F1A80 /* Assets.xcassets in Resources */,
@@ -1196,11 +1271,12 @@
 				17424FAA25BACEF600523B94 /* PrescriptionViewModel.swift in Sources */,
 				172B850F25AEE46700C6B035 /* PhoneNumberEntryView.swift in Sources */,
 				17424FD825BAD0D900523B94 /* BasicDetailsEntryView.swift in Sources */,
+				17E3709C25BF17600004C965 /* TwilioStateK.swift in Sources */,
 				17424FB225BACF3F00523B94 /* Prescription.swift in Sources */,
 				1742504A25BAE39E00523B94 /* GeneralDoctorHelpers.swift in Sources */,
 				1772339825B72FF2002B814A /* CheckLoginStatus.swift in Sources */,
 				1796320525AEE7B5002E466C /* Helpers.swift in Sources */,
-				1728B77525B381D1001D554E /* PreRegisteredPatient.swift in Sources */,
+				1728B77525B381D1001D554E /* PreRegisteredUser.swift in Sources */,
 				17424FB725BACF5100523B94 /* Medicine.swift in Sources */,
 				17E3640925B7078E00791745 /* ApiPatchCall.swift in Sources */,
 				1772336E25B70F99002B814A /* SimpleStateConstants.swift in Sources */,
@@ -1217,13 +1293,16 @@
 				1748011025B8E12500C8E3CC /* DocViewStatesK.swift in Sources */,
 				1748010B25B8DFC100C8E3CC /* DoctorDefaultModifiers.swift in Sources */,
 				174251D825BCFDA900523B94 /* PutPrescriptionViewModelProtocol.swift in Sources */,
+				179F626325BF586A00BA0A73 /* PreRegisteredPatient.swift in Sources */,
 				1742504F25BAE3E700523B94 /* CleanDoubleExtension.swift in Sources */,
+				17E370AD25BF19B40004C965 /* DoctorTwilioManager.swift in Sources */,
 				174250F725BC44BE00523B94 /* GeneralDoctorHelpersProtocol.swift in Sources */,
 				1742512C25BCAF8000523B94 /* RetrievePatientAllergiesProtocol.swift in Sources */,
 				17B5D12325B74BCA009D6A42 /* DoctorHome.swift in Sources */,
 				17424EF025BA065200523B94 /* FinishedAppointmentCard.swift in Sources */,
 				172B84D925AEDE2800C6B035 /* Work.swift in Sources */,
 				172B84C725AEDC6800C6B035 /* ContactDetails.swift in Sources */,
+				179F62AD25BF62C900BA0A73 /* AddPreRegisteredViewModel.swift in Sources */,
 				1748011525B8E21700C8E3CC /* RetrieveTwilioAccessToken.swift in Sources */,
 				174251E225BCFE2D00523B94 /* PutPatientAllergiesViewModelProtocol.swift in Sources */,
 				17B5D13725B75A04009D6A42 /* UpcomingAppointmentsView.swift in Sources */,
@@ -1233,6 +1312,7 @@
 				1728B76D25B38156001D554E /* FindDocOrPatientVM.swift in Sources */,
 				17BA0A9C25B9A7A700EDE4D1 /* BaseURL.swift in Sources */,
 				1742515A25BCC4AA00523B94 /* ReviewPrescriptionView.swift in Sources */,
+				17E3707025BF123F0004C965 /* Settings.swift in Sources */,
 				177233C325B745EB002B814A /* Decoder.swift in Sources */,
 				17424F2625BA138F00523B94 /* DoctorAlertHelperProtocol.swift in Sources */,
 				1742502E25BAD64900523B94 /* RetrievePrescriptionForAppointmentViewModel.swift in Sources */,
@@ -1248,6 +1328,7 @@
 				172B851725AEE4AC00C6B035 /* UIColor.swift in Sources */,
 				1728B78425B3865C001D554E /* RetrieveAuthTokenId.swift in Sources */,
 				174251E725BCFEBB00523B94 /* SubmitPrescriptionViewModel.swift in Sources */,
+				17E370BE25BF53AD0004C965 /* TwilioDefaultModifiers.swift in Sources */,
 				17B5D12825B755F8009D6A42 /* RetrieveDocObj.swift in Sources */,
 				1748006425B8C00300C8E3CC /* UpdateAppointmentStatusViewModel.swift in Sources */,
 				1748003425B8BCA800C8E3CC /* UpcomingAppointmentCard.swift in Sources */,
@@ -1259,7 +1340,10 @@
 				1742505E25BAE59E00523B94 /* InvestigationsViewModel.swift in Sources */,
 				174800A925B8C8E100C8E3CC /* GetReceptientFCMTokenId.swift in Sources */,
 				17E5185425AED16A001F1A80 /* AppDelegate.swift in Sources */,
+				179F629C25BF5F8900BA0A73 /* PhoneNumberObj.swift in Sources */,
+				17E3706F25BF123F0004C965 /* TwilioViewController.swift in Sources */,
 				1742505925BAE58800523B94 /* MedicineViewModel.swift in Sources */,
+				17E3706D25BF123F0004C965 /* TwilioSwiftUIWrap.swift in Sources */,
 				172B851125AEE46700C6B035 /* OTPVerificationView.swift in Sources */,
 				17E5185625AED16A001F1A80 /* SceneDelegate.swift in Sources */,
 				1742526025BD9E9F00523B94 /* PatientInfoView.swift in Sources */,
@@ -1271,6 +1355,7 @@
 				172B84DE25AEDE6B00C6B035 /* Doctor.swift in Sources */,
 				172B84E725AEE39E00C6B035 /* DoctorViewModel.swift in Sources */,
 				172B848B25AED25000C6B035 /* ApiGetCall.swift in Sources */,
+				17E3707D25BF12AF0004C965 /* DoctorTwilioViewModel.swift in Sources */,
 				1742503D25BAE26200523B94 /* InvestigationsView.swift in Sources */,
 				174251D025BCFD1100523B94 /* PutPatientAllergiesViewModel.swift in Sources */,
 				172B851025AEE46700C6B035 /* PhoneVerificationview.swift in Sources */,
@@ -1284,8 +1369,10 @@
 				17B5D16425B75CE7009D6A42 /* CheckAppointmentStatus.swift in Sources */,
 				17424FA225BACEDB00523B94 /* WritePrescriptionView.swift in Sources */,
 				1796321125AEE865002E466C /* KeyboardAdaptive.swift in Sources */,
+				17E3706E25BF123F0004C965 /* Utils.swift in Sources */,
 				1742524325BD990800523B94 /* RetrievePatientInfoProtocol.swift in Sources */,
 				1796322F25AEE9D6002E466C /* AlertItem.swift in Sources */,
+				179F628725BF594D00BA0A73 /* AddPatientView.swift in Sources */,
 				177233B925B7411A002B814A /* ViewOrAmmendConstant.swift in Sources */,
 				17424FDD25BAD14C00523B94 /* DiagnosisTypeK.swift in Sources */,
 				17E5185825AED16A001F1A80 /* ContentView.swift in Sources */,
@@ -1308,6 +1395,7 @@
 				17BA0AC725B9AE6200EDE4D1 /* UpdateAppointmentStatusProtocol.swift in Sources */,
 				1742513125BCAFA800523B94 /* RetrievePatientAllergiesViewModel.swift in Sources */,
 				1796322E25AEE9D6002E466C /* GlobalPopupHelpers.swift in Sources */,
+				179F628225BF58C800BA0A73 /* AddPatientViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

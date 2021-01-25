@@ -21,13 +21,13 @@ struct PhoneVerificationview: View {
                     Text("Reaching the unreachable").font(Font.system(size:13)).foregroundColor(.gray)
 
                     Text("Verify Your Number").font(Font.system(size:25).weight(.bold)).fontWeight(.heavy).padding(.top, 70)
-                    
+
                     Text("Please Enter Your Number To Verify Your Account")
                         .font(Font.system(size:13))
                         .foregroundColor(.gray)
                         .padding(.top, 12)
                     
-                    PhoneNumberEntryView(preRegUser: preRegUser)
+                    PhoneNumberEntryView(numberObj: $preRegUser.user.phNumberObj)
                     
                     Button (action: {
                         if preRegUser.checkNumberLength() {

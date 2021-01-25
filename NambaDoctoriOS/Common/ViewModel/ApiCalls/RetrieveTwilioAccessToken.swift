@@ -7,6 +7,9 @@
 
 import Foundation
 
+//global string because init function with ViewController is buggy
+var TwilioAccessTokenString = ""
+
 class RetrieveTwilioAccessToken : TwilioAccessTokenProtocol {
     func retrieveToken (appointmentId:String,
                                _ completion: @escaping ((_ success:Bool, _ twilioToke:String?)->())) {
@@ -14,7 +17,9 @@ class RetrieveTwilioAccessToken : TwilioAccessTokenProtocol {
         ApiGetCall.get(extensionURL: "videoroom/\(appointmentId)") { (data) in
             do {
                 let tokenMap = try JSONDecoder().decode([String:String].self, from: data)
-                completion(true, tokenMap["accessToken"])
+                let tokenString = tokenMap["accessToken"]
+                TwilioAccessTokenString = tokenString!
+                completion(true, TwilioAccessTokenString)
             } catch {
                 print(error)
                 completion(false, nil)

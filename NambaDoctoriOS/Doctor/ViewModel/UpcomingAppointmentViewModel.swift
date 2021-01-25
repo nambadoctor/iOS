@@ -97,6 +97,8 @@ class UpcomingAppointmentViewModel: ObservableObject {
                         }
                     }
                 }
+            } else {
+                //show failed alert
             }
         }
     }

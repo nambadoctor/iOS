@@ -8,13 +8,11 @@
 import Foundation
 
 struct PreRegisteredUser {
-    internal init(userNumber: String, countryCode: String, verificationId: String) {
-        self.userNumber = userNumber
-        self.countryCode = countryCode
+    internal init(phNumberObj:PhoneNumberObj, verificationId: String) {
+        self.phNumberObj = phNumberObj
         self.verificationId = verificationId
     }
     
-    var userNumber:String
-    var countryCode:String
+    var phNumberObj:PhoneNumberObj
     var verificationId:String
 }

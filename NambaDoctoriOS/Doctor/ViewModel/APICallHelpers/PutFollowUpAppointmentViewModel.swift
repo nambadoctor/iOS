@@ -27,5 +27,25 @@ class PutFollowUpAppointmentViewModel: PutFollowUpAppointmentViewModelProtocol{
             completion(success)
         }
     }
+    
+    func makeFollowUpAppointment (followUpVM:FollowUpAppointmentViewModel, patientId:String, _ completion : @escaping ((_ successfull:Bool)->())) {
+        
+        let loggedInDoctor:Doctor = LocalDecoder.decode(modelType: Doctor.self, from: LocalEncodingK.userObj.rawValue)!
+        
+        let parameters: [String: Any] = [
+            "PatientId": patientId,
+            "appointmentId": "",
+            "doctorId": loggedInDoctor,
+            "nextAppointmentFee": followUpVM.nextFeeHelperString,
+            "validityDays": followUpVM.validDaysHelperString
+        ]
+        
+        print(parameters)
+        
+        ApiPutCall.put(parameters: parameters, extensionURL: "patient/appointment/fee") { (success, data) in
+            print("FOLLOWUP \(success)")
+            completion(success)
+        }
+    }
 
 }

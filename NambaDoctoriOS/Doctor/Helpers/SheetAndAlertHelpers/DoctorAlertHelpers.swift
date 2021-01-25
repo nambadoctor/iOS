@@ -36,4 +36,20 @@ class DoctorAlertHelpers: DoctorAlertHelpersProtocol {
 
         CommonDefaultModifiers.showAlert()
     }
+
+    func endConsultationAlert (endConsultation: @escaping (Bool) -> (), dontShowAgain: @escaping (Bool) -> ()) {
+        alertTempItem = AlertItem(title: Text("*** IMPORTANT ALERT ***"), message: Text("If you are ending consultation, make sure to write prescription"), primaryButton: .destructive(Text("Ok")) {
+            endConsultation(true)
+        }, secondaryButton: .destructive(Text("Don't show again"), action: {
+            dontShowAgain(true)
+        }))
+        
+        CommonDefaultModifiers.showAlert()
+    }
+    
+    func patientAddedAlert () {
+        alertTempItem = AlertItem(title: Text("Patint Added"), message: Text("this patient has been successfully added"), dismissButton: .default(Text("OK")))
+        CommonDefaultModifiers.showAlert()
+    }
+
 }

@@ -46,9 +46,14 @@ class PrescriptionViewModel: ObservableObject {
         self.retrieveFollowUpObjHelper = retrieveFollowUpObjHelper
         self.retrieveAllergiesHelper = retrieveAllergiesHelper
     }
-    
+
+    /*
+     not called as part of init.
+     if its part of init, it will run Get calls for prescription and allergy for every instance
+     this way, only when the write or view prescription view is opened, the values are retrieved
+     */
     func prescriptionViewOnAppear () {
-        if isNewPrescription {
+        if isNewPrescription { //entry from upcoming appointments
             checkForStoredPrescriptionAndRetreive()
         } else {
             self.retrievePrescription()
@@ -56,7 +61,7 @@ class PrescriptionViewModel: ObservableObject {
 
         retrieveAllergiesForPatient()
     }
-    
+
     var hasMedicines:Bool {
         if MedicineVM.medicineArr.isEmpty {
             return false

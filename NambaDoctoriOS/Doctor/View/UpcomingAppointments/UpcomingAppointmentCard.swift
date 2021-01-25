@@ -41,6 +41,11 @@ struct UpcomingAppointmentCard: View {
             NavigationLink("",
                            destination: WritePrescriptionView(appointment: AppointmentVM.appointment, isNewPrescription: true),
                            isActive: $AppointmentVM.takeToWritePrescription)
+            
+            NavigationLink("",
+                           destination: DoctorTwilioManager(appointment: AppointmentVM.appointment),
+                           isActive: $AppointmentVM.takeToTwilioRoom)
+            
         }
         .padding([.leading, .trailing])
         .background(AppointmentVM.cardBackgroundColor)
