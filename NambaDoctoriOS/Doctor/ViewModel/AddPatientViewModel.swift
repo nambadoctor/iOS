@@ -38,6 +38,13 @@ class AddPatientViewModel: ObservableObject {
     }
 
     func emptyValuesCheck() -> Bool {
-        return false
+        if preRegisteredPatient.patientAge.isEmpty ||
+            !preRegisteredPatient.phNumberObj.number.isEmpty ||
+            preRegisteredPatient.patientGender.isEmpty ||
+            preRegisteredPatient.patientName.isEmpty {
+            return false
+        } else {
+            return true
+        }
     }
 }
