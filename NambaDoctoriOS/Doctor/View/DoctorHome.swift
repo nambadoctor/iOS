@@ -22,15 +22,15 @@ struct DoctorHome: View {
                     Text("Upcoming")
                     Text("Appointments")
                 }.tag(1)
-                
+
                 FinishedAppointmentsView(doctor: doctorViewModel).tabItem {
                     //Image("timer")
                     Text("Finished")
                     Text("Appointments")
                 }.tag(2)
             }
-            .navigationBarTitle("")
-            .navigationBarHidden(true)
+            .navigationBarTitle("NambaDoctor")
+            .navigationBarItems(trailing: addPatientButton)
         }.onAppear() {
             showAlertListener()
             showSheetListener()
@@ -42,7 +42,23 @@ struct DoctorHome: View {
             if sheetItem.appointment != nil {
                 PatientInfoView(appointment: sheetItem.appointment!)
             }
+            
+            if sheetItem.showAddPatient != nil {
+                AddPatientView()
+            }
         }
+    }
+
+    var addPatientButton : some View {
+        Button {
+            DoctorSheetHelpers().showAddPatientSheet()
+        } label: {
+            VStack {
+                Text("Add")
+                Text("Patient")
+            }
+        }
+
     }
 }
 

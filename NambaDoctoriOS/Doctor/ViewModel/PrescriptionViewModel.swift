@@ -81,7 +81,6 @@ class PrescriptionViewModel: ObservableObject {
     }
 
     func retrievePrescription() {
-        
         retrievePrescriptionHelper.getPrescription(appointmentId: self.appointment.id) { (prescription) in
             if prescription != nil {
                 self.mapPrescriptionValues(prescription: prescription!)

@@ -26,20 +26,30 @@ class AddPatientViewModel: ObservableObject {
 
         CommonDefaultModifiers.showLoader()
         
-        addPreRegPatient.preRegisterPatient(patientObj: preRegisteredPatient, nextFeeObj: followUpFeeObj) { (success) in
-            if success {
+        addPreRegPatient.preRegisterPatient(patientObj: preRegisteredPatient, nextFeeObj: followUpFeeObj) { (patientId) in
+            if (patientId != nil) {
+                self.setAllergies(patientAllergies: self.preRegisteredPatient.patientAllergies, patientId: patientId!)
+                self.setFollowUp(nextFeeObj: self.followUpFeeObj, patientId: patientId!)
                 DoctorDefaultModifiers.refreshAppointments()
                 self.doctorAlertHelpers.patientAddedAlert()
-                //self.showSheet.toggle()
+                completion(true)
             } else {
                 GlobalPopupHelpers.setErrorAlert()
             }
         }
     }
+    
+    func setAllergies (patientAllergies:String, patientId:String) {
+        PutPatientAllergiesViewModel().putPatientAllergiesForAppointment(patientAllergies: patientAllergies, patientId: patientId, appointmentId: "") { (_) in }
+    }
+
+    func setFollowUp(nextFeeObj:FollowUpAppointmentViewModel, patientId:String) {
+        PutFollowUpAppointmentViewModel().makeFollowUpAppointment(followUpVM: nextFeeObj, patientId: patientId) { _ in }
+    }
 
     func emptyValuesCheck() -> Bool {
         if preRegisteredPatient.patientAge.isEmpty ||
-            !preRegisteredPatient.phNumberObj.number.isEmpty ||
+            preRegisteredPatient.phNumberObj.number.isEmpty ||
             preRegisteredPatient.patientGender.isEmpty ||
             preRegisteredPatient.patientName.isEmpty {
             return false

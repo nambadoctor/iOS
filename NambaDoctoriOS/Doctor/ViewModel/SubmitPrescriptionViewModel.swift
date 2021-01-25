@@ -91,6 +91,7 @@ class SubmitPrescriptionViewModel: ObservableObject {
             toggleToTrue()
             return
         }
+        
         putAllergiesVM.putPatientAllergiesForAppointment(prescriptionVM: prescriptionVM) { (success) in
             if success {
                 toggleToTrue()

@@ -18,8 +18,6 @@ class FollowUpAppointmentViewModel:ObservableObject {
     init(generalDoctorHelpers:GeneralDoctorHelpersProtocol = GeneralDoctorHelpers()) {
         self.generalDoctorHelpers = generalDoctorHelpers
     }
-
-    var followUpObj:PatientFollowUpObj? = nil
     
     var nextFeeDisplay:String {
         return "\(nextFeeHelperString)₹"

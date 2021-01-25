@@ -9,4 +9,6 @@ import Foundation
 
 protocol PutFollowUpAppointmentViewModelProtocol {
     func makeFollowUpAppointment (prescriptionVM:PrescriptionViewModel, _ completion : @escaping ((_ successfull:Bool)->()))
+    
+    func makeFollowUpAppointment (followUpVM:FollowUpAppointmentViewModel, patientId:String, _ completion : @escaping ((_ successfull:Bool)->()))
 }

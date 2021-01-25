@@ -16,5 +16,5 @@ struct DoctorSheetItem:Identifiable {
     var appointment:Appointment?
     
     //to show add pre-reg patient sheet
-    
+    var showAddPatient:Bool?
 }

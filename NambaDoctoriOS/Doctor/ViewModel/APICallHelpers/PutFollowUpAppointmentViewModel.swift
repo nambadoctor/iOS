@@ -35,7 +35,7 @@ class PutFollowUpAppointmentViewModel: PutFollowUpAppointmentViewModelProtocol{
         let parameters: [String: Any] = [
             "PatientId": patientId,
             "appointmentId": "",
-            "doctorId": loggedInDoctor,
+            "doctorId": loggedInDoctor.id,
             "nextAppointmentFee": followUpVM.nextFeeHelperString,
             "validityDays": followUpVM.validDaysHelperString
         ]

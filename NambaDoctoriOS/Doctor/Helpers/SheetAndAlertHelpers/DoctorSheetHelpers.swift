@@ -15,4 +15,12 @@ class DoctorSheetHelpers {
         UserDefaults.standard.set(true, forKey: "\(SimpleStateK.showSheeet)")
         NotificationCenter.default.post(name: NSNotification.Name("\(SimpleStateK.showSheetChange)"), object: nil)
     }
+    
+    func showAddPatientSheet () {
+        let tempSheetItem = DoctorSheetItem(showAddPatient: true)
+        sheetTempItem = tempSheetItem
+        
+        UserDefaults.standard.set(true, forKey: "\(SimpleStateK.showSheeet)")
+        NotificationCenter.default.post(name: NSNotification.Name("\(SimpleStateK.showSheetChange)"), object: nil)
+    }
 }

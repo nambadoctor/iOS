@@ -8,7 +8,7 @@
 import Foundation
 
 class AddPreRegisteredViewModel {
-    func preRegisterPatient(patientObj:PreRegisteredPatient, nextFeeObj:FollowUpAppointmentViewModel, _ completion : @escaping ((_ successfull:Bool)->())) {
+    func preRegisterPatient(patientObj:PreRegisteredPatient, nextFeeObj:FollowUpAppointmentViewModel, _ completion : @escaping ((_ patientId:String?)->())) {
         let parameters: [String: Any] = [
             "age": patientObj.patientAge,
             "deviceTokenId": "",
@@ -23,17 +23,13 @@ class AddPreRegisteredViewModel {
                 if let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any] {
                         // try to read out a string array
                         if let patientId = json["id"] as? String {
-                            self.setFollowUp(nextFeeObj: nextFeeObj, patientId: patientId)
+                            completion(patientId)
                         }
                     }
             } catch {
-                completion(false)
+                completion(nil)
                 print(error)
             }
         }
-    }
-
-    private func setFollowUp(nextFeeObj:FollowUpAppointmentViewModel, patientId:String) {
-        PutFollowUpAppointmentViewModel().makeFollowUpAppointment(followUpVM: nextFeeObj, patientId: patientId) { _ in }
     }
 }

@@ -19,13 +19,14 @@ class PutPatientAllergiesViewModel: PutPatientAllergiesProtocol {
         }
     }
 
-//    func updatePatientAllergies (prescriptionVM:PrescriptionViewModel, _ completion : @escaping ((_ successfull:Bool)->())) {
-//        let parameters: [String: Any] = [
-//            "allergies": prescriptionVM.patientAllergies,
-//            "patientId": prescriptionVM.appointment.requestedBy
-//        ]
-//        ApiPutCall.put(parameters: parameters, extensionURL: "appointment/allergy/\(prescriptionVM.appointment.id)") { (success, data) in
-//            completion(success)
-//        }
-//    }
+    func putPatientAllergiesForAppointment (patientAllergies:String, patientId:String, appointmentId:String, _ completion : @escaping ((_ successfull:Bool)->())) {
+        let parameters: [String: Any] = [
+            "allergies": patientAllergies,
+            "patientId": patientId
+        ]
+        ApiPutCall.put(parameters: parameters, extensionURL: "appointment/allergy/\(appointmentId)") { (success, data) in
+            print("ALLERGIES \(success)")
+            completion(success)
+        }
+    }
 }
