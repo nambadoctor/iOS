@@ -21,6 +21,7 @@ struct DoctorTwilioManager: View {
             switch DoctorTwilioVM.status {
             case .started:
                 TwilioViewHelper(appointmentId: DoctorTwilioVM.appointment.id)
+                    .navigationBarItems(leading: navBarBack, trailing: navBarTrailing)
             case .finished:
                 WritePrescriptionView(appointment: DoctorTwilioVM.appointment, isNewPrescription: true)
             case .disconnected:
@@ -29,6 +30,7 @@ struct DoctorTwilioManager: View {
                 Text("Done").onAppear(){self.killView()}
             }
         }
+        .onAppear(){ twilioStatusChangeListener() }
         .navigationBarBackButtonHidden(true)
     }
     
@@ -59,6 +61,13 @@ struct DoctorTwilioManager: View {
                 Text("End")
                 Text("Consultation")
             }
+        }
+    }
+    
+    var navBarTrailing : some View {
+        HStack {
+            navPatientInfo
+            navEndConsultation
         }
     }
 
