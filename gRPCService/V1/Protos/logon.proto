@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+option csharp_namespace = "NambaDoctor.Proto.v1";
+
+package nambadoctor.v1;
+
+service LogonWorkerV1 {
+  rpc SaveDevice (DeviceMessage) returns (ObjectResponseMessage);
+  rpc Logon (LogonRequestMessage) returns (LogonResponseMessage);
+  rpc GetUserType (LogonRequestUserType) returns (LogonResponseUserType);
+}
+
+message LogonRequestMessage {
+  string authToken = 1;
+  string deviceToken = 2;
+}
+
+message LogonRequestUserType {
+  string userId = 1;
+  string phoneNumber = 2;
+}
+
+message LogonResponseMessage {
+  bool isAuthenticated = 1;
+  bool isTestUser = 2;
+  string userType = 3;
+}
+
+message LogonResponseUserType {
+	string type = 1;
+}

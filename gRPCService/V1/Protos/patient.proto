@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+option csharp_namespace = "NambaDoctor.Proto.v1";
+
+package nambadoctor.v1;
+
+service PatientWorkerV1{
+	rpc GetPatientObject(PatientRequest) returns (PatientObject);
+	rpc GetListOfDoctorsPatients(DoctorsRequest) returns (DoctorsResponse);
+	rpc GetSpecificPatientOfDoctor(PatientRequest) returns (PatientObject);
+	rpc WriteNewPatientObject(PatientObject) returns (PatientRequest);
+}
+
+message PatientObject{
+	string PatientId = 1;
+	string Age = 2;
+	string DeviceTokenId = 3;
+	string FullName = 4;
+	string Language = 5;
+	string PhoneNumber = 6;
+	string PreferredDoctorId = 7;
+	int64 CreatedDateTime = 8;
+	string Gender = 9;
+}
+
+message PatientRequest{
+	string PatientId = 1;
+}
+
+message DoctorsRequest{
+	string DoctorId = 1;
+}
+
+message DoctorsResponse{
+	repeated PatientObject patientObject = 1;
+}

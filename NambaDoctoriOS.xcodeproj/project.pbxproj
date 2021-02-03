@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -29,6 +29,42 @@
 		172B851725AEE4AC00C6B035 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172B851625AEE4AC00C6B035 /* UIColor.swift */; };
 		172B851C25AEE50C00C6B035 /* EndEditing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172B851B25AEE50C00C6B035 /* EndEditing.swift */; };
 		172B852225AEE65B00C6B035 /* CountryCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172B852125AEE65B00C6B035 /* CountryCodes.swift */; };
+		173A22AC25CAF7360086342A /* followup.proto in Sources */ = {isa = PBXBuildFile; fileRef = 173A229E25CAF7300086342A /* followup.proto */; };
+		173A22AD25CAF7360086342A /* payment.proto in Sources */ = {isa = PBXBuildFile; fileRef = 173A229F25CAF7300086342A /* payment.proto */; };
+		173A22AE25CAF7360086342A /* notification.proto in Sources */ = {isa = PBXBuildFile; fileRef = 173A22A325CAF7310086342A /* notification.proto */; };
+		173A22AF25CAF7360086342A /* appointment.proto in Sources */ = {isa = PBXBuildFile; fileRef = 173A22A425CAF7320086342A /* appointment.proto */; };
+		173A22B025CAF7360086342A /* logon.proto in Sources */ = {isa = PBXBuildFile; fileRef = 173A22A525CAF7320086342A /* logon.proto */; };
+		173A22B125CAF7360086342A /* allergy.proto in Sources */ = {isa = PBXBuildFile; fileRef = 173A22A625CAF7330086342A /* allergy.proto */; };
+		173A22B225CAF7360086342A /* doctor.proto in Sources */ = {isa = PBXBuildFile; fileRef = 173A22A725CAF7340086342A /* doctor.proto */; };
+		173A22B325CAF7360086342A /* patient.proto in Sources */ = {isa = PBXBuildFile; fileRef = 173A22A825CAF7340086342A /* patient.proto */; };
+		173A22B425CAF7360086342A /* slot.proto in Sources */ = {isa = PBXBuildFile; fileRef = 173A22A925CAF7350086342A /* slot.proto */; };
+		173A22B525CAF7360086342A /* twilio.proto in Sources */ = {isa = PBXBuildFile; fileRef = 173A22AA25CAF7350086342A /* twilio.proto */; };
+		173A22B625CAF7360086342A /* prescription.proto in Sources */ = {isa = PBXBuildFile; fileRef = 173A22AB25CAF7360086342A /* prescription.proto */; };
+		173A22C825CAF8F50086342A /* allergy.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173A22BD25CAF8EF0086342A /* allergy.grpc.swift */; };
+		173A22C925CAF8F50086342A /* followup.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173A22BE25CAF8F00086342A /* followup.grpc.swift */; };
+		173A22CA25CAF8F50086342A /* prescription.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173A22BF25CAF8F00086342A /* prescription.grpc.swift */; };
+		173A22CB25CAF8F50086342A /* appointment.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173A22C025CAF8F10086342A /* appointment.grpc.swift */; };
+		173A22CC25CAF8F50086342A /* payment.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173A22C125CAF8F10086342A /* payment.grpc.swift */; };
+		173A22CD25CAF8F50086342A /* patient.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173A22C225CAF8F20086342A /* patient.grpc.swift */; };
+		173A22CE25CAF8F50086342A /* twilio.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173A22C325CAF8F20086342A /* twilio.grpc.swift */; };
+		173A22CF25CAF8F50086342A /* notification.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173A22C425CAF8F30086342A /* notification.grpc.swift */; };
+		173A22D025CAF8F50086342A /* logon.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173A22C525CAF8F30086342A /* logon.grpc.swift */; };
+		173A22D125CAF8F50086342A /* slot.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173A22C625CAF8F40086342A /* slot.grpc.swift */; };
+		173A22D225CAF8F50086342A /* doctor.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173A22C725CAF8F50086342A /* doctor.grpc.swift */; };
+		173A22E125CAF9040086342A /* notification.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173A22D625CAF8FF0086342A /* notification.pb.swift */; };
+		173A22E225CAF9040086342A /* logon.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173A22D725CAF8FF0086342A /* logon.pb.swift */; };
+		173A22E325CAF9040086342A /* payment.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173A22D825CAF9000086342A /* payment.pb.swift */; };
+		173A22E425CAF9040086342A /* patient.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173A22D925CAF9000086342A /* patient.pb.swift */; };
+		173A22E525CAF9040086342A /* twilio.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173A22DA25CAF9010086342A /* twilio.pb.swift */; };
+		173A22E625CAF9040086342A /* doctor.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173A22DB25CAF9010086342A /* doctor.pb.swift */; };
+		173A22E725CAF9040086342A /* prescription.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173A22DC25CAF9020086342A /* prescription.pb.swift */; };
+		173A22E825CAF9040086342A /* allergy.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173A22DD25CAF9020086342A /* allergy.pb.swift */; };
+		173A22E925CAF9040086342A /* slot.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173A22DE25CAF9030086342A /* slot.pb.swift */; };
+		173A22EA25CAF9040086342A /* appointment.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173A22DF25CAF9030086342A /* appointment.pb.swift */; };
+		173A22EB25CAF9040086342A /* followup.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173A22E025CAF9040086342A /* followup.pb.swift */; };
+		173A230725CAFA850086342A /* GRPC in Frameworks */ = {isa = PBXBuildFile; productRef = 173A230625CAFA850086342A /* GRPC */; };
+		173A230D25CAFB0F0086342A /* NIO in Frameworks */ = {isa = PBXBuildFile; productRef = 173A230C25CAFB0F0086342A /* NIO */; };
+		173A231225CAFE2B0086342A /* CreateChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173A231125CAFE2B0086342A /* CreateChannel.swift */; };
 		17424EF025BA065200523B94 /* FinishedAppointmentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17424EEF25BA065200523B94 /* FinishedAppointmentCard.swift */; };
 		17424EF825BA065D00523B94 /* FinishedAppointmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17424EF725BA065D00523B94 /* FinishedAppointmentsView.swift */; };
 		17424F1325BA082400523B94 /* FinishedAppointmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17424F1225BA082400523B94 /* FinishedAppointmentViewModel.swift */; };
@@ -213,6 +249,40 @@
 		172B851625AEE4AC00C6B035 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		172B851B25AEE50C00C6B035 /* EndEditing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndEditing.swift; sourceTree = "<group>"; };
 		172B852125AEE65B00C6B035 /* CountryCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCodes.swift; sourceTree = "<group>"; };
+		173A229E25CAF7300086342A /* followup.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = followup.proto; sourceTree = "<group>"; };
+		173A229F25CAF7300086342A /* payment.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = payment.proto; sourceTree = "<group>"; };
+		173A22A325CAF7310086342A /* notification.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = notification.proto; sourceTree = "<group>"; };
+		173A22A425CAF7320086342A /* appointment.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = appointment.proto; sourceTree = "<group>"; };
+		173A22A525CAF7320086342A /* logon.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = logon.proto; sourceTree = "<group>"; };
+		173A22A625CAF7330086342A /* allergy.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = allergy.proto; sourceTree = "<group>"; };
+		173A22A725CAF7340086342A /* doctor.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = doctor.proto; sourceTree = "<group>"; };
+		173A22A825CAF7340086342A /* patient.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = patient.proto; sourceTree = "<group>"; };
+		173A22A925CAF7350086342A /* slot.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = slot.proto; sourceTree = "<group>"; };
+		173A22AA25CAF7350086342A /* twilio.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = twilio.proto; sourceTree = "<group>"; };
+		173A22AB25CAF7360086342A /* prescription.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = prescription.proto; sourceTree = "<group>"; };
+		173A22BD25CAF8EF0086342A /* allergy.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = allergy.grpc.swift; sourceTree = "<group>"; };
+		173A22BE25CAF8F00086342A /* followup.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = followup.grpc.swift; sourceTree = "<group>"; };
+		173A22BF25CAF8F00086342A /* prescription.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = prescription.grpc.swift; sourceTree = "<group>"; };
+		173A22C025CAF8F10086342A /* appointment.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = appointment.grpc.swift; sourceTree = "<group>"; };
+		173A22C125CAF8F10086342A /* payment.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = payment.grpc.swift; sourceTree = "<group>"; };
+		173A22C225CAF8F20086342A /* patient.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = patient.grpc.swift; sourceTree = "<group>"; };
+		173A22C325CAF8F20086342A /* twilio.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = twilio.grpc.swift; sourceTree = "<group>"; };
+		173A22C425CAF8F30086342A /* notification.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = notification.grpc.swift; sourceTree = "<group>"; };
+		173A22C525CAF8F30086342A /* logon.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = logon.grpc.swift; sourceTree = "<group>"; };
+		173A22C625CAF8F40086342A /* slot.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = slot.grpc.swift; sourceTree = "<group>"; };
+		173A22C725CAF8F50086342A /* doctor.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = doctor.grpc.swift; sourceTree = "<group>"; };
+		173A22D625CAF8FF0086342A /* notification.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = notification.pb.swift; sourceTree = "<group>"; };
+		173A22D725CAF8FF0086342A /* logon.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = logon.pb.swift; sourceTree = "<group>"; };
+		173A22D825CAF9000086342A /* payment.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = payment.pb.swift; sourceTree = "<group>"; };
+		173A22D925CAF9000086342A /* patient.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = patient.pb.swift; sourceTree = "<group>"; };
+		173A22DA25CAF9010086342A /* twilio.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = twilio.pb.swift; sourceTree = "<group>"; };
+		173A22DB25CAF9010086342A /* doctor.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = doctor.pb.swift; sourceTree = "<group>"; };
+		173A22DC25CAF9020086342A /* prescription.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = prescription.pb.swift; sourceTree = "<group>"; };
+		173A22DD25CAF9020086342A /* allergy.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = allergy.pb.swift; sourceTree = "<group>"; };
+		173A22DE25CAF9030086342A /* slot.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = slot.pb.swift; sourceTree = "<group>"; };
+		173A22DF25CAF9030086342A /* appointment.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = appointment.pb.swift; sourceTree = "<group>"; };
+		173A22E025CAF9040086342A /* followup.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = followup.pb.swift; sourceTree = "<group>"; };
+		173A231125CAFE2B0086342A /* CreateChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateChannel.swift; sourceTree = "<group>"; };
 		17424EEF25BA065200523B94 /* FinishedAppointmentCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedAppointmentCard.swift; sourceTree = "<group>"; };
 		17424EF725BA065D00523B94 /* FinishedAppointmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedAppointmentsView.swift; sourceTree = "<group>"; };
 		17424F1225BA082400523B94 /* FinishedAppointmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedAppointmentViewModel.swift; sourceTree = "<group>"; };
@@ -373,6 +443,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				173A230D25CAFB0F0086342A /* NIO in Frameworks */,
+				173A230725CAFA850086342A /* GRPC in Frameworks */,
 				95ACD8DA00B7C0B2D7EA224D /* Pods_NambaDoctoriOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -444,6 +516,7 @@
 				1748011E25B99D5F00C8E3CC /* CustomParamEncoding.swift */,
 				17BA0A9B25B9A7A700EDE4D1 /* BaseURL.swift */,
 				17BA0AA025B9A80E00EDE4D1 /* DataServiceProtocols.swift */,
+				173A231125CAFE2B0086342A /* CreateChannel.swift */,
 			);
 			path = DataService;
 			sourceTree = "<group>";
@@ -572,6 +645,78 @@
 				172B850825AEE46600C6B035 /* PhoneNumberEntryView */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		173A229325CAF7150086342A /* gRPCService */ = {
+			isa = PBXGroup;
+			children = (
+				173A22BA25CAF8B30086342A /* V1 */,
+			);
+			path = gRPCService;
+			sourceTree = "<group>";
+		};
+		173A229725CAF7260086342A /* Protos */ = {
+			isa = PBXGroup;
+			children = (
+				173A22A625CAF7330086342A /* allergy.proto */,
+				173A22A425CAF7320086342A /* appointment.proto */,
+				173A22A725CAF7340086342A /* doctor.proto */,
+				173A229E25CAF7300086342A /* followup.proto */,
+				173A22A525CAF7320086342A /* logon.proto */,
+				173A22A325CAF7310086342A /* notification.proto */,
+				173A22A825CAF7340086342A /* patient.proto */,
+				173A229F25CAF7300086342A /* payment.proto */,
+				173A22AB25CAF7360086342A /* prescription.proto */,
+				173A22A925CAF7350086342A /* slot.proto */,
+				173A22AA25CAF7350086342A /* twilio.proto */,
+			);
+			path = Protos;
+			sourceTree = "<group>";
+		};
+		173A22BA25CAF8B30086342A /* V1 */ = {
+			isa = PBXGroup;
+			children = (
+				173A22BC25CAF8C60086342A /* ModelImplementations */,
+				173A22BB25CAF8BC0086342A /* ServiceImplementations */,
+				173A229725CAF7260086342A /* Protos */,
+			);
+			path = V1;
+			sourceTree = "<group>";
+		};
+		173A22BB25CAF8BC0086342A /* ServiceImplementations */ = {
+			isa = PBXGroup;
+			children = (
+				173A22BD25CAF8EF0086342A /* allergy.grpc.swift */,
+				173A22C025CAF8F10086342A /* appointment.grpc.swift */,
+				173A22C725CAF8F50086342A /* doctor.grpc.swift */,
+				173A22BE25CAF8F00086342A /* followup.grpc.swift */,
+				173A22C525CAF8F30086342A /* logon.grpc.swift */,
+				173A22C425CAF8F30086342A /* notification.grpc.swift */,
+				173A22C225CAF8F20086342A /* patient.grpc.swift */,
+				173A22C125CAF8F10086342A /* payment.grpc.swift */,
+				173A22BF25CAF8F00086342A /* prescription.grpc.swift */,
+				173A22C625CAF8F40086342A /* slot.grpc.swift */,
+				173A22C325CAF8F20086342A /* twilio.grpc.swift */,
+			);
+			path = ServiceImplementations;
+			sourceTree = "<group>";
+		};
+		173A22BC25CAF8C60086342A /* ModelImplementations */ = {
+			isa = PBXGroup;
+			children = (
+				173A22DD25CAF9020086342A /* allergy.pb.swift */,
+				173A22DF25CAF9030086342A /* appointment.pb.swift */,
+				173A22DB25CAF9010086342A /* doctor.pb.swift */,
+				173A22E025CAF9040086342A /* followup.pb.swift */,
+				173A22D725CAF8FF0086342A /* logon.pb.swift */,
+				173A22D625CAF8FF0086342A /* notification.pb.swift */,
+				173A22D925CAF9000086342A /* patient.pb.swift */,
+				173A22D825CAF9000086342A /* payment.pb.swift */,
+				173A22DC25CAF9020086342A /* prescription.pb.swift */,
+				173A22DE25CAF9030086342A /* slot.pb.swift */,
+				173A22DA25CAF9010086342A /* twilio.pb.swift */,
+			);
+			path = ModelImplementations;
 			sourceTree = "<group>";
 		};
 		17424FA025BACEBB00523B94 /* WritePrescription */ = {
@@ -926,6 +1071,7 @@
 		17E5184725AED16A001F1A80 = {
 			isa = PBXGroup;
 			children = (
+				173A229325CAF7150086342A /* gRPCService */,
 				17E3706825BF12340004C965 /* TwilioService */,
 				1748006825B8C12D00C8E3CC /* NotificationService */,
 				172B84B825AED36F00C6B035 /* AuthService */,
@@ -1044,6 +1190,10 @@
 			dependencies = (
 			);
 			name = NambaDoctoriOS;
+			packageProductDependencies = (
+				173A230625CAFA850086342A /* GRPC */,
+				173A230C25CAFB0F0086342A /* NIO */,
+			);
 			productName = NambaDoctoriOS;
 			productReference = 17E5185025AED16A001F1A80 /* NambaDoctoriOS.app */;
 			productType = "com.apple.product-type.application";
@@ -1118,6 +1268,10 @@
 				Base,
 			);
 			mainGroup = 17E5184725AED16A001F1A80;
+			packageReferences = (
+				173A230525CAFA850086342A /* XCRemoteSwiftPackageReference "grpc-swift" */,
+				173A230B25CAFB0F0086342A /* XCRemoteSwiftPackageReference "swift-nio" */,
+			);
 			productRefGroup = 17E5185125AED16A001F1A80 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1279,8 +1433,10 @@
 				1728B77525B381D1001D554E /* PreRegisteredUser.swift in Sources */,
 				17424FB725BACF5100523B94 /* Medicine.swift in Sources */,
 				17E3640925B7078E00791745 /* ApiPatchCall.swift in Sources */,
+				173A22AE25CAF7360086342A /* notification.proto in Sources */,
 				1772336E25B70F99002B814A /* SimpleStateConstants.swift in Sources */,
 				1742503325BAD6A800523B94 /* RetrievePrescriptionForAppointmentProtocol.swift in Sources */,
+				173A22CB25CAF8F50086342A /* appointment.grpc.swift in Sources */,
 				17B5D16925B75EE9009D6A42 /* Indicator.swift in Sources */,
 				172B84CF25AEDCA400C6B035 /* Education.swift in Sources */,
 				172B84BA25AED42800C6B035 /* AuthenticateService.swift in Sources */,
@@ -1288,6 +1444,7 @@
 				1742505425BAE48500523B94 /* AddMedicine.swift in Sources */,
 				1748011A25B9746600C8E3CC /* DoctorAlertHelpers.swift in Sources */,
 				17424EF825BA065D00523B94 /* FinishedAppointmentsView.swift in Sources */,
+				173A22E525CAF9040086342A /* twilio.pb.swift in Sources */,
 				174250C625BAEF3500523B94 /* MedicineEntryView.swift in Sources */,
 				1742523625BD988D00523B94 /* PatientInfoViewModel.swift in Sources */,
 				1748011025B8E12500C8E3CC /* DocViewStatesK.swift in Sources */,
@@ -1296,6 +1453,7 @@
 				179F626325BF586A00BA0A73 /* PreRegisteredPatient.swift in Sources */,
 				1742504F25BAE3E700523B94 /* CleanDoubleExtension.swift in Sources */,
 				17E370AD25BF19B40004C965 /* DoctorTwilioManager.swift in Sources */,
+				173A22E725CAF9040086342A /* prescription.pb.swift in Sources */,
 				174250F725BC44BE00523B94 /* GeneralDoctorHelpersProtocol.swift in Sources */,
 				1742512C25BCAF8000523B94 /* RetrievePatientAllergiesProtocol.swift in Sources */,
 				17B5D12325B74BCA009D6A42 /* DoctorHome.swift in Sources */,
@@ -1303,6 +1461,7 @@
 				172B84D925AEDE2800C6B035 /* Work.swift in Sources */,
 				172B84C725AEDC6800C6B035 /* ContactDetails.swift in Sources */,
 				179F62AD25BF62C900BA0A73 /* AddPreRegisteredViewModel.swift in Sources */,
+				173A22AF25CAF7360086342A /* appointment.proto in Sources */,
 				1748011525B8E21700C8E3CC /* RetrieveTwilioAccessToken.swift in Sources */,
 				174251E225BCFE2D00523B94 /* PutPatientAllergiesViewModelProtocol.swift in Sources */,
 				17B5D13725B75A04009D6A42 /* UpcomingAppointmentsView.swift in Sources */,
@@ -1311,13 +1470,19 @@
 				1748011F25B99D5F00C8E3CC /* CustomParamEncoding.swift in Sources */,
 				1728B76D25B38156001D554E /* FindDocOrPatientVM.swift in Sources */,
 				17BA0A9C25B9A7A700EDE4D1 /* BaseURL.swift in Sources */,
+				173A22EA25CAF9040086342A /* appointment.pb.swift in Sources */,
+				173A22B425CAF7360086342A /* slot.proto in Sources */,
 				1742515A25BCC4AA00523B94 /* ReviewPrescriptionView.swift in Sources */,
 				17E3707025BF123F0004C965 /* Settings.swift in Sources */,
 				177233C325B745EB002B814A /* Decoder.swift in Sources */,
+				173A22E625CAF9040086342A /* doctor.pb.swift in Sources */,
 				17424F2625BA138F00523B94 /* DoctorAlertHelperProtocol.swift in Sources */,
 				1742502E25BAD64900523B94 /* RetrievePrescriptionForAppointmentViewModel.swift in Sources */,
 				1742528B25BDADDA00523B94 /* PUTPrescriptionViewModel.swift in Sources */,
+				173A22B525CAF7360086342A /* twilio.proto in Sources */,
 				177233BE25B745C2002B814A /* Encoder.swift in Sources */,
+				173A22EB25CAF9040086342A /* followup.pb.swift in Sources */,
+				173A22E325CAF9040086342A /* payment.pb.swift in Sources */,
 				1748005F25B8BDB000C8E3CC /* UpcomingAppointmentViewModel.swift in Sources */,
 				1742506325BAE5B200523B94 /* FollowUpAppointmentViewModel.swift in Sources */,
 				17E3640425B7075700791745 /* UpdateFCMToken.swift in Sources */,
@@ -1326,34 +1491,47 @@
 				1742515425BCC33200523B94 /* ViewPrescription.swift in Sources */,
 				1748010625B8DF8900C8E3CC /* LoginDefaultMofiers.swift in Sources */,
 				172B851725AEE4AC00C6B035 /* UIColor.swift in Sources */,
+				173A22CC25CAF8F50086342A /* payment.grpc.swift in Sources */,
+				173A22E225CAF9040086342A /* logon.pb.swift in Sources */,
 				1728B78425B3865C001D554E /* RetrieveAuthTokenId.swift in Sources */,
 				174251E725BCFEBB00523B94 /* SubmitPrescriptionViewModel.swift in Sources */,
+				173A22E125CAF9040086342A /* notification.pb.swift in Sources */,
 				17E370BE25BF53AD0004C965 /* TwilioDefaultModifiers.swift in Sources */,
 				17B5D12825B755F8009D6A42 /* RetrieveDocObj.swift in Sources */,
 				1748006425B8C00300C8E3CC /* UpdateAppointmentStatusViewModel.swift in Sources */,
 				1748003425B8BCA800C8E3CC /* UpcomingAppointmentCard.swift in Sources */,
 				17BA0AA125B9A80E00EDE4D1 /* DataServiceProtocols.swift in Sources */,
+				173A22E425CAF9040086342A /* patient.pb.swift in Sources */,
 				17B5D12D25B75789009D6A42 /* LocalEncodingK.swift in Sources */,
 				172B851C25AEE50C00C6B035 /* EndEditing.swift in Sources */,
 				1748007225B8C21D00C8E3CC /* ApiPostCall.swift in Sources */,
 				174251C025BCF9E100523B94 /* ApiPutCall.swift in Sources */,
+				173A22CF25CAF8F50086342A /* notification.grpc.swift in Sources */,
 				1742505E25BAE59E00523B94 /* InvestigationsViewModel.swift in Sources */,
 				174800A925B8C8E100C8E3CC /* GetReceptientFCMTokenId.swift in Sources */,
 				17E5185425AED16A001F1A80 /* AppDelegate.swift in Sources */,
+				173A22AC25CAF7360086342A /* followup.proto in Sources */,
+				173A231225CAFE2B0086342A /* CreateChannel.swift in Sources */,
 				179F629C25BF5F8900BA0A73 /* PhoneNumberObj.swift in Sources */,
 				17E3706F25BF123F0004C965 /* TwilioViewController.swift in Sources */,
 				1742505925BAE58800523B94 /* MedicineViewModel.swift in Sources */,
 				17E3706D25BF123F0004C965 /* TwilioSwiftUIWrap.swift in Sources */,
 				172B851125AEE46700C6B035 /* OTPVerificationView.swift in Sources */,
 				17E5185625AED16A001F1A80 /* SceneDelegate.swift in Sources */,
+				173A22D025CAF8F50086342A /* logon.grpc.swift in Sources */,
 				1742526025BD9E9F00523B94 /* PatientInfoView.swift in Sources */,
 				1748006A25B8C14400C8E3CC /* SendPushNotification.swift in Sources */,
 				1742524F25BD99D000523B94 /* Patient.swift in Sources */,
 				174250CB25BAEF4000523B94 /* MedicineEntryViewModel.swift in Sources */,
 				1796321025AEE865002E466C /* ConsultStateConstants.swift in Sources */,
 				1742511C25BCAB6F00523B94 /* RetrieveFollowUpFeeObjProtocol.swift in Sources */,
+				173A22B225CAF7360086342A /* doctor.proto in Sources */,
+				173A22C925CAF8F50086342A /* followup.grpc.swift in Sources */,
+				173A22B325CAF7360086342A /* patient.proto in Sources */,
+				173A22B625CAF7360086342A /* prescription.proto in Sources */,
 				172B84DE25AEDE6B00C6B035 /* Doctor.swift in Sources */,
 				172B84E725AEE39E00C6B035 /* DoctorViewModel.swift in Sources */,
+				173A22AD25CAF7360086342A /* payment.proto in Sources */,
 				172B848B25AED25000C6B035 /* ApiGetCall.swift in Sources */,
 				17E3707D25BF12AF0004C965 /* DoctorTwilioViewModel.swift in Sources */,
 				1742503D25BAE26200523B94 /* InvestigationsView.swift in Sources */,
@@ -1364,15 +1542,22 @@
 				1742503825BAD94700523B94 /* GetEmptyModelObj.swift in Sources */,
 				1742523E25BD98F400523B94 /* RetrievePatientInfo.swift in Sources */,
 				1742512425BCAB9E00523B94 /* RetrieveFollowUpObjViewModel.swift in Sources */,
+				173A22D125CAF8F50086342A /* slot.grpc.swift in Sources */,
 				1796320F25AEE865002E466C /* KeyboardHeightPublisher.swift in Sources */,
 				17424F7A25BAC62A00523B94 /* TwilioAccessTokenProtocol.swift in Sources */,
+				173A22CA25CAF8F50086342A /* prescription.grpc.swift in Sources */,
+				173A22E925CAF9040086342A /* slot.pb.swift in Sources */,
 				17B5D16425B75CE7009D6A42 /* CheckAppointmentStatus.swift in Sources */,
 				17424FA225BACEDB00523B94 /* WritePrescriptionView.swift in Sources */,
 				1796321125AEE865002E466C /* KeyboardAdaptive.swift in Sources */,
+				173A22CD25CAF8F50086342A /* patient.grpc.swift in Sources */,
 				17E3706E25BF123F0004C965 /* Utils.swift in Sources */,
 				1742524325BD990800523B94 /* RetrievePatientInfoProtocol.swift in Sources */,
 				1796322F25AEE9D6002E466C /* AlertItem.swift in Sources */,
 				179F628725BF594D00BA0A73 /* AddPatientView.swift in Sources */,
+				173A22B125CAF7360086342A /* allergy.proto in Sources */,
+				173A22CE25CAF8F50086342A /* twilio.grpc.swift in Sources */,
+				173A22B025CAF7360086342A /* logon.proto in Sources */,
 				177233B925B7411A002B814A /* ViewOrAmmendConstant.swift in Sources */,
 				17424FDD25BAD14C00523B94 /* DiagnosisTypeK.swift in Sources */,
 				17E5185825AED16A001F1A80 /* ContentView.swift in Sources */,
@@ -1383,15 +1568,18 @@
 				1728B7FA25B6E798001D554E /* TokenRefreshExtension.swift in Sources */,
 				1742510E25BC678900523B94 /* PatientFollowUpObj.swift in Sources */,
 				1728B77A25B381E7001D554E /* PreRegisteredUserVM.swift in Sources */,
+				173A22D225CAF8F50086342A /* doctor.grpc.swift in Sources */,
 				17424FE525BAD1B100523B94 /* SideBySideCheckBox.swift in Sources */,
 				1748007725B8C2B700C8E3CC /* NotificationObj.swift in Sources */,
 				1742528325BDA9E100523B94 /* DoctorSheetHelpers.swift in Sources */,
+				173A22C825CAF8F50086342A /* allergy.grpc.swift in Sources */,
 				17424F1325BA082400523B94 /* FinishedAppointmentViewModel.swift in Sources */,
 				1742524825BD998100523B94 /* UploadedDocument.swift in Sources */,
 				1728B77F25B3838E001D554E /* LoginStatusEnum.swift in Sources */,
 				174251DD25BCFDF600523B94 /* PutFollowUpAppointmentViewModelProtocol.swift in Sources */,
 				1742506825BAE62500523B94 /* MakeFollowUpAppointmentView.swift in Sources */,
 				172B850E25AEE46700C6B035 /* CountryPickerView.swift in Sources */,
+				173A22E825CAF9040086342A /* allergy.pb.swift in Sources */,
 				17BA0AC725B9AE6200EDE4D1 /* UpdateAppointmentStatusProtocol.swift in Sources */,
 				1742513125BCAFA800523B94 /* RetrievePatientAllergiesViewModel.swift in Sources */,
 				1796322E25AEE9D6002E466C /* GlobalPopupHelpers.swift in Sources */,
@@ -1589,7 +1777,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NambaDoctoriOS/NambaDoctoriOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"NambaDoctoriOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 478XDR2NPK;
 				ENABLE_PREVIEWS = YES;
@@ -1598,7 +1786,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = dsconnect.iOS.NambaDoctoriOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1614,7 +1802,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NambaDoctoriOS/NambaDoctoriOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"NambaDoctoriOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 478XDR2NPK;
 				ENABLE_PREVIEWS = YES;
@@ -1623,7 +1811,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = dsconnect.iOS.NambaDoctoriOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -1759,6 +1947,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		173A230525CAFA850086342A /* XCRemoteSwiftPackageReference "grpc-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/grpc/grpc-swift.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		173A230B25CAFB0F0086342A /* XCRemoteSwiftPackageReference "swift-nio" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-nio.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		173A230625CAFA850086342A /* GRPC */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 173A230525CAFA850086342A /* XCRemoteSwiftPackageReference "grpc-swift" */;
+			productName = GRPC;
+		};
+		173A230C25CAFB0F0086342A /* NIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 173A230B25CAFB0F0086342A /* XCRemoteSwiftPackageReference "swift-nio" */;
+			productName = NIO;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 17E5184825AED16A001F1A80 /* Project object */;
 }

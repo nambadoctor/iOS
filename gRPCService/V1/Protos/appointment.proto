@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+option csharp_namespace = "NambaDoctor.Proto.v1";
+
+package nambadoctor.v1;
+
+service AppointmentWorkerV1 {
+	rpc UpsertNewAppointment(AppointmentObject) returns (AppointmentRequest);
+	rpc GetAllPatientAppointments(AppointmentPatientRequest) returns (BulkAppointmentsResponse);
+	rpc GetAllDoctorAppointments(AppointmentDoctorRequest) returns (BulkAppointmentsResponse);
+	rpc GetUniqueAppointment(AppointmentRequest) returns (AppointmentObject);
+}
+
+message AppointmentRequest{
+	string AppointmentId = 1;
+}
+
+message AppointmentDoctorRequest{
+	string DoctorId = 1;
+}
+
+message AppointmentPatientRequest{
+	string PatientId = 1;
+}
+
+message AppointmentObject{
+	string AppointmentId = 1;
+	string PreferredLanguage = 2;
+	string Status = 3;
+	string DoctorId = 4;
+	string DoctorName = 5;
+	string RequestedBy = 6;
+	string PatientName = 7;
+	int32 ConsultationFee = 8;
+	string PaymentStatus = 9;
+	string ProblemDetails = 10;
+	int64 CreatedDateTime = 11;
+	string SlotId = 12;
+	int32 DiscountedConsultationFee = 13;
+}
+
+message BulkAppointmentsResponse{
+	repeated AppointmentObject AppointmentResponse = 1;
+}

@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+option csharp_namespace = "NambaDoctor.Proto.v1";
+
+package nambadoctor.v1;
+
+service FollowUpWorkerV1{
+	rpc GetNextFollowUpWithPatient(FollowUpRequest) returns (FollowUpObject);
+	rpc GetNextFollowUpWithDoctor(FollowUpRequest) returns (FollowUpObject);
+	rpc WriteNewFollowUp(FollowUpObject) returns (FollowUpResponse);
+}
+
+message FollowUpObject{
+	string Id = 1;
+    string PatientId = 2;
+    string DoctorId = 3;
+    int32 DiscountedFee = 4;
+    int32 NofDays = 5;
+    int64 CreatedDateTime = 6;
+}
+
+message FollowUpRequest{
+	string PatientId = 1;
+	string DoctorId = 2;
+}
+
+message FollowUpResponse{
+    string Id = 1;
+}

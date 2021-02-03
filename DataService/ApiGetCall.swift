@@ -14,7 +14,7 @@ class ApiGetCall : ApiGetProtocol {
             "Content-Type": "application/json",
             "AuthenticationToken": "\(AuthTokenId)"
         ]
-        
+
         AF.request("\(baseUrl)\(extensionURL)", method: .get, encoding: JSONEncoding.default, headers: headers)
             .responseData { (response) in
                 switch response.result {

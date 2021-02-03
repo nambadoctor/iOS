@@ -14,7 +14,7 @@ class ApiPostCall : ApiPostProtocol {
             "Content-Type": "application/json",
             "AuthenticationToken": "\(AuthTokenId)"
         ]
-        
+
         AF.request("\(baseUrl)\(extensionURL)", method: .post, parameters: parameters, encoding: CustomParamEncoding(), headers: headers)
             .response { (response) in
                 switch response.result {

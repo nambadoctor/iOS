@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+option csharp_namespace = "NambaDoctor.Proto.v1";
+
+package nambadoctor.v1;
+
+service PaymentWorkerV1{
+	rpc GetPaymentsOfDoctor(PaymentRequest) returns (PaymentList);
+	rpc GetPaymentsOfPatient(PaymentRequest) returns (PaymentList);
+	rpc GetSpecificPayment(PaymentRequest) returns (PaymentObject);
+	rpc WritePayment(PaymentObject) returns (PaymentRequest);
+}
+
+message PaymentRequest{
+	string Id = 1;
+}
+
+message PaymentObject{
+	string Id = 1;
+    int32 Amount = 2; 
+    string Currrency = 3;
+    string AppointmentId = 4;
+    string DoctorId = 5;
+    string PatientId = 6;
+    string Status = 7;
+    int64 CreatedDateTime = 8; 
+}
+
+message PaymentList{
+    repeated PaymentObject paymentObject = 1;
+}
