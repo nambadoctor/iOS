@@ -10,38 +10,28 @@ import GRPC
 import NIO
 
 class ChannelManager {
-    
+
+    static let sharedChannelManager = ChannelManager()
     var channel:ClientConnection?
+
+    //Private init for singleton class. No other caller can initialise this class anymore.
+    private init(){ createChannel() }
     
-    init() {
-        createChannel()
-    }
-    
-    public func getChannel () -> ClientConnection {
+    public func getChannel() -> ClientConnection {
         if channel == nil {
-            return self.createChannel()
+            return createChannel()
         } else {
             return channel!
         }
     }
-    
+
     private func createChannel () -> ClientConnection {
         let group = MultiThreadedEventLoopGroup(numberOfThreads: 1)
 
-        // Make sure the group is shutdown when we're done with it.
-        defer {
-          try! group.syncShutdownGracefully()
-        }
-
         // Configure the channel, we're not using TLS so the connection is `insecure`.
         channel = ClientConnection.insecure(group: group)
-          .connect(host: "http://52.182.227.174/", port: 80)
-        
-        // Close the connection when we're done with it.
-        do {
-          try! channel?.close().wait()
-        }
-        
+            .connect(host: "52.182.227.174", port: 80)
+
         return channel!
     }
 }

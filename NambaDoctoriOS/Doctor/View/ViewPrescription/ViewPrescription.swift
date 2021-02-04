@@ -14,9 +14,9 @@ struct ViewPrescription: View {
     var body: some View {
         Form {
             Section(header: Text("History")) { Text(prescriptionVM.prescription.history) }
-            Section(header: Text("Examination")) { Text(prescriptionVM.prescription.clinicalSummary) }
+            Section(header: Text("Examination")) { Text(prescriptionVM.prescription.examination) }
             Section(header: Text("Diagnosis")) { Text(prescriptionVM.prescription.diagnosis) }
-            Section(header: Text("Advise")) { Text(prescriptionVM.prescription.additionalNotes) }
+            Section(header: Text("Advise")) { Text(prescriptionVM.prescription.advice) }
             Section(header: Text("Patient Allergies")) { Text(prescriptionVM.patientAllergies) }
 
             Section(header: Text("Investigations")) {

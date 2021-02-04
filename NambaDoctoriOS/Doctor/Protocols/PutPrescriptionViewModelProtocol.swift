@@ -9,6 +9,4 @@ import Foundation
 
 protocol PutPrescriptionViewModelProtocol {
     func writePrescriptionToDB(prescriptionViewModel:PrescriptionViewModel, _ completion : @escaping ((_ successfull:Bool)->()))
-    
-    func medicineArrayGen (medicineArr:[Medicine]) -> [Any]
 }

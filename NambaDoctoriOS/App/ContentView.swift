@@ -11,7 +11,6 @@ struct ContentView: View {
     
     @State private var loginStatus:UserLoginStatus = UserLoginStatus.NotSignedIn
     
-    
     var body: some View {
         VStack {
             switch loginStatus {

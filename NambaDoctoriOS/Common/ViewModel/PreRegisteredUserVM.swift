@@ -12,11 +12,14 @@ class PreRegisteredUserVM:ObservableObject {
     @Published var otp:String = ""
     @Published var sendToOTPView:Bool = false
     @Published var userLoggedIn:Bool = false
-
     private let AuthService:AuthenticateServiceProtocol
+    private let findDocOrPatientVM:FindUserTypeViewModelProtocol
 
-    init(AuthService: AuthenticateServiceProtocol = AuthenticateService()) {
+    init(AuthService: AuthenticateServiceProtocol = AuthenticateService(),
+         findDocOrPatientVM:FindUserTypeViewModelProtocol = FindDocOrPatientVM()) {
+
         self.AuthService = AuthService
+        self.findDocOrPatientVM = findDocOrPatientVM
         user = PreRegisteredUser(phNumberObj: PhoneNumberObj(), verificationId: "")
     }
 
@@ -53,7 +56,7 @@ class PreRegisteredUserVM:ObservableObject {
 
     func loginUser () {
         self.userLoggedIn = true
-        FindDocOrPatientVM.getDocOrPatient { (patientOrDoc) in
+        findDocOrPatientVM.getDocOrPatient (phoneNumber: phoneNumber) { (patientOrDoc) in
             CommonDefaultModifiers.hideLoader()
 
             switch patientOrDoc {

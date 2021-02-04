@@ -7,18 +7,18 @@
 
 import Foundation
 import FirebaseAuth
+import GRPC
 
 class AuthenticateService : AuthenticateServiceProtocol {
     
     func verifyNumber (phNumber:String, completion: @escaping (_ userId:String?) -> ()) {
-        
         PhoneAuthProvider.provider().verifyPhoneNumber(phNumber, uiDelegate: nil) { (verificationId, err) in
-            
+
             if let err = err {
                 print(err)
                 completion(nil)
             }
-            
+
             if let verificationId = verificationId {
                 completion(verificationId)
             } else {
@@ -30,7 +30,7 @@ class AuthenticateService : AuthenticateServiceProtocol {
     //verify with otp
     func verifyUser (verificationId:String, otp:String, completion: @escaping (_ userVerified:Bool) -> ()) {
         let credentials = PhoneAuthProvider.provider().credential(withVerificationID: verificationId, verificationCode: otp)
-        
+
         Auth.auth().signIn(with: credentials) { (res, err) in
             if let err = err {
                 print(err.localizedDescription)

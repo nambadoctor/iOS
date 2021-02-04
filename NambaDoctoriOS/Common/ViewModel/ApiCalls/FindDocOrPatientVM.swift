@@ -6,20 +6,31 @@
 //
 
 import Foundation
+import SwiftUI
 
-class FindDocOrPatientVM {
-    static func getDocOrPatient (_ completion : @escaping (_ patientOrDoc:UserLoginStatus)->()) {
-        ApiGetCall.get(extensionURL: "usertype") { data in
-            do {
-                let convertedDict = try JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary
-                
-                let loginStatus = CheckLoginStatus.checkStatus(loggedInStatus: convertedDict!["userType"] as! String)
-                
-                completion(loginStatus)
- 
-            } catch let err {
-                print(err.localizedDescription)
-            }
+class FindDocOrPatientVM : FindUserTypeViewModelProtocol {
+
+    func getDocOrPatient (phoneNumber:String, _ completion : @escaping (_ patientOrDoc:UserLoginStatus)->()) {
+
+        let channel = ChannelManager.sharedChannelManager.getChannel()
+        
+        // Provide the connection to the generated client.
+        let logonClient = Nambadoctor_V1_LogonWorkerV1Client(channel: channel)
+
+        let request = Nambadoctor_V1_LogonRequestUserType.with {
+            $0.phoneNumber = phoneNumber
+            $0.userID = AuthTokenId
         }
-    }
+
+        let getUserType = logonClient.getUserType(request)
+
+        do {
+            let response = try getUserType.response.wait()
+            print("UserTypeClient received: \(response.type)")
+            let userStatus = CheckLoginStatus.checkStatus(loggedInStatus: response.type)
+            completion(userStatus)
+        } catch {
+            print("UserTypeClient failed: \(error)")
+        }
+    } 
 }

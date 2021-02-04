@@ -29,3 +29,19 @@ message LogonResponseMessage {
 message LogonResponseUserType {
 	string type = 1;
 }
+
+message ObjectResponseMessage {
+    string objectId = 1;
+}
+
+message DeviceMessage {
+    string objectId = 1;
+    string deviceId = 2;
+    string userId = 3;
+    string operatingSystem = 4;
+    string operatingSystemVersion = 5;
+    string platform = 6;
+    string manufacturer = 7;
+    string brand = 8;
+    map<string,string> propertyBag = 9;
+}

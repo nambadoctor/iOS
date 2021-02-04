@@ -42,21 +42,23 @@ class GeneralDoctorHelpers : GeneralDoctorHelpersProtocol {
     }
     
     //MARK: GETTING INDEX OF PRESCRIPTION
-     func getMedicineIndex (medicineArr:[Medicine], medicine:Medicine) -> Int {
+     func getMedicineIndex (medicineArr:[Nambadoctor_V1_MedicineObject],
+                            medicine:Nambadoctor_V1_MedicineObject) -> Int {
         var index:Int = 0
+        
         for medArrItem in medicineArr {
-            if medicine.id == medArrItem.id {
-                print("FOUND \(index)")
+            if medicine.medicineName == medArrItem.medicineName {
                 return index
             }
             index += 1
         }
+        
         return index
     }
     
-     func checkIfMedicineExists (medicineArr:[Medicine], medicine:Medicine) -> Bool {
+     func checkIfMedicineExists (medicineArr:[Nambadoctor_V1_MedicineObject], medicine:Nambadoctor_V1_MedicineObject) -> Bool {
         for medArrItem in medicineArr {
-            if medicine.id == medArrItem.id {
+            if medicine.medicineName == medArrItem.medicineName {
                 return true
             }
         }

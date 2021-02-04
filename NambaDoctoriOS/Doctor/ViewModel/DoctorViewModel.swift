@@ -13,7 +13,7 @@ class DoctorViewModel: ObservableObject {
     @Published var finishedAppointments:[Appointment] = [Appointment]()
 
     init() {
-        doctor = LocalDecoder.decode(modelType: Doctor.self, from: LocalEncodingK.userObj.rawValue)!
+        doctor = getLoggedInDoctor()
         self.retrieveAppointments()
     }
 
@@ -39,7 +39,7 @@ class DoctorViewModel: ObservableObject {
     }
 
     func retrieveDocObj() {
-        doctor = LocalDecoder.decode(modelType: Doctor.self, from: LocalEncodingK.userObj.rawValue)!
+        doctor = getLoggedInDoctor()
     }
 
     func retrieveAppointments () {

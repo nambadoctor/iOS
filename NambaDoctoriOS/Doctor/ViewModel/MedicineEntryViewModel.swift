@@ -26,7 +26,7 @@ class MedicineEntryViewModel : ObservableObject {
     @Published var noonTemp = 0.0
     @Published var eveningTemp = 0.0
     @Published var nightTemp = 0.0
-    
+
     var generalDoctorHelpers:GeneralDoctorHelpersProtocol
     
     init(generalDoctorHelpers:GeneralDoctorHelpersProtocol = GeneralDoctorHelpers()) {
@@ -41,14 +41,14 @@ class MedicineEntryViewModel : ObservableObject {
         return "\(morning),\(afternoon),\(evening),\(night)"
     }
 
-    func mapExistingMedicine(medicine:Medicine) {
+    func mapExistingMedicine(medicine:Nambadoctor_V1_MedicineObject) {
         medicineName = medicine.medicineName
         dosage = medicine.dosage
 
-        if medicine.numOfDays == 0 {
+        if medicine.duration == 0 {
             noSpecificDuration = true
         } else {
-            tempNumOfDays = String(medicine.numOfDays)
+            tempNumOfDays = String(medicine.duration)
             timeIndex = 0
         }
 
@@ -60,8 +60,8 @@ class MedicineEntryViewModel : ObservableObject {
         nightTemp = timingDoubleArr[3]
 
         inTakeIndex = medicineInTakeTimings.firstIndex(of: medicine.intake) ?? 0
-        routeOfAdminIndex = routeOfAdmissionArray.firstIndex(of: medicine.routeOfAdmission) ?? 0
-        foodSelectionIndex = foodSelectionArray.firstIndex(of: medicine.splInstructions) ?? 0
+        routeOfAdminIndex = routeOfAdmissionArray.firstIndex(of: medicine.routeOfAdministration) ?? 0
+        foodSelectionIndex = foodSelectionArray.firstIndex(of: medicine.specialInstructions) ?? 0
     }
     
     func clearValues () {

@@ -8,5 +8,5 @@
 import Foundation
 
 protocol RetrievePrescriptionForAppointmentProtocol {
-    func getPrescription (appointmentId:String, _ completion: @escaping ((_ prescription:Prescription?)->()))
+    func getPrescription (appointmentId:String, _ completion: @escaping ((_ prescription:Nambadoctor_V1_PrescriptionObject?)->()))
 }

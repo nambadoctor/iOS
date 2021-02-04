@@ -30,8 +30,8 @@ class PutFollowUpAppointmentViewModel: PutFollowUpAppointmentViewModelProtocol{
     
     func makeFollowUpAppointment (followUpVM:FollowUpAppointmentViewModel, patientId:String, _ completion : @escaping ((_ successfull:Bool)->())) {
         
-        let loggedInDoctor:Doctor = LocalDecoder.decode(modelType: Doctor.self, from: LocalEncodingK.userObj.rawValue)!
-        
+        let loggedInDoctor:Doctor = getLoggedInDoctor()
+
         let parameters: [String: Any] = [
             "PatientId": patientId,
             "appointmentId": "",
@@ -39,7 +39,7 @@ class PutFollowUpAppointmentViewModel: PutFollowUpAppointmentViewModelProtocol{
             "nextAppointmentFee": followUpVM.nextFeeHelperString,
             "validityDays": followUpVM.validDaysHelperString
         ]
-        
+
         print(parameters)
         
         ApiPutCall.put(parameters: parameters, extensionURL: "patient/appointment/fee") { (success, data) in

@@ -34,9 +34,9 @@ class SubmitPrescriptionViewModel: ObservableObject {
     var updateStatusDone:Bool = false
 
     func submitPrescription () {
-        prescriptionVM.prescription.planInfo = prescriptionVM.InvestigationsVM.investigations.joined(separator: ";")
+        prescriptionVM.prescription.advice = prescriptionVM.InvestigationsVM.investigations.joined(separator: ";")
 
-        prescriptionVM.prescription.medicine = prescriptionVM.MedicineVM.medicineArr
+        prescriptionVM.prescription.medicines = prescriptionVM.MedicineVM.medicineArr
 
         putPrescription()
         putFollowUp()

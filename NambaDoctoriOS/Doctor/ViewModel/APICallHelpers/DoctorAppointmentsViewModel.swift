@@ -9,15 +9,11 @@
 import Foundation
 
 class DoctorAppointmentViewModel {
-    static func retrieveDocAppointmentList (_ completion: @escaping ((_ appointmentList:[Appointment])->())) {
+    static func retrieveDocAppointmentList (_ completion: @escaping ((_ appointmentList:[Nambadoctor_V1_AppointmentObject])->())) {
         
-        ApiGetCall.get(extensionURL: "doctor/appointments") { (data) in
-            do {
-                let appointments = try JSONDecoder().decode([Appointment].self, from: data)
-                completion(appointments)
-            } catch {
-                print(error)
-            }
-        }
+        let channel = ChannelManager.sharedChannelManager.getChannel()
+        let appointmentClient = Nambadoctor_V1_AppointmentWorkerV1Client(channel: channel)
+        
+        
     }
 }

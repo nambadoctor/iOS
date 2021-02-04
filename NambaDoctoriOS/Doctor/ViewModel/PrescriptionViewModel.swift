@@ -12,9 +12,9 @@ import SwiftUI
 class PrescriptionViewModel: ObservableObject {
     var appointment:Appointment
     var isNewPrescription:Bool
-    let loggedInDoctor = LocalDecoder.decode(modelType: Doctor.self, from: LocalEncodingK.userObj.rawValue)!
+    let loggedInDoctor = getLoggedInDoctor()
     
-    @Published var prescription:Prescription!
+    @Published var prescription:Nambadoctor_V1_PrescriptionObject!
     @Published var errorInRetrievingPrescription:Bool = false
     @Published var navigateToReviewPrescription:Bool = false
     @Published var dismissAllViews:Bool = false
@@ -31,7 +31,7 @@ class PrescriptionViewModel: ObservableObject {
     
     private var docSheetHelper:DoctorSheetHelpers = DoctorSheetHelpers()
     private var docAlertHelper:DoctorAlertHelpers = DoctorAlertHelpers()
-    
+
     init(appointment:Appointment,
          isNewPrescription:Bool,
          retrievePrescriptionHelper:RetrievePrescriptionForAppointmentProtocol = RetrievePrescriptionForAppointmentViewModel(),
@@ -54,7 +54,8 @@ class PrescriptionViewModel: ObservableObject {
      */
     func prescriptionViewOnAppear () {
         if isNewPrescription { //entry from upcoming appointments
-            checkForStoredPrescriptionAndRetreive()
+            //checkForStoredPrescriptionAndRetreive()
+            self.retrievePrescription()
         } else {
             self.retrievePrescription()
         }
@@ -70,15 +71,15 @@ class PrescriptionViewModel: ObservableObject {
         }
     }
     
-    func checkForStoredPrescriptionAndRetreive() {
-        let storedPrescription = LocalDecoder.decode(modelType: Prescription.self, from: "prescription:\(self.appointment.id)")
-        
-        if storedPrescription == nil {
-            self.prescription = GetEmptyModelObj().getFreshPrescription()
-        } else {
-            self.mapPrescriptionValues(prescription: storedPrescription!)
-        }
-    }
+//    func checkForStoredPrescriptionAndRetreive() {
+//        let storedPrescription = LocalDecoder.decode(modelType: Nambadoctor_V1_PrescriptionObject.self, from: "prescription:\(self.appointment.id)")
+//
+//        if storedPrescription == nil {
+//            self.prescription = Nambadoctor_V1_PrescriptionObject()
+//        } else {
+//            self.mapPrescriptionValues(prescription: storedPrescription!)
+//        }
+//    }
 
     func retrievePrescription() {
         retrievePrescriptionHelper.getPrescription(appointmentId: self.appointment.id) { (prescription) in
@@ -91,14 +92,14 @@ class PrescriptionViewModel: ObservableObject {
         }
     }
     
-    func mapPrescriptionValues (prescription:Prescription) {
+    func mapPrescriptionValues (prescription:Nambadoctor_V1_PrescriptionObject) {
         self.prescription = prescription
-        self.MedicineVM.medicineArr = self.prescription.medicine ?? [Medicine]()
-        self.InvestigationsVM.parsePlanIntoInvestigationsArr(planInfo: self.prescription.planInfo)
+        self.MedicineVM.medicineArr = self.prescription.medicines
+        self.InvestigationsVM.parsePlanIntoInvestigationsArr(planInfo: self.prescription.advice)
     }
 
     func retrieveFollowUpFeeForPrescription() {
-        retrieveFollowUpObjHelper.getNextFee(patientId: appointment.requestedBy) { (FollowUpObj) in
+        retrieveFollowUpObjHelper.getNextFee(doctorId: loggedInDoctor.id, patientId: appointment.requestedBy) { (FollowUpObj) in
             if FollowUpObj != nil {
                 self.FollowUpVM.mapExistingValuesFromFollowUpObj(followUpObj: FollowUpObj!)
             }
@@ -122,21 +123,21 @@ class PrescriptionViewModel: ObservableObject {
     
     func navBarBackPressed (completion: @escaping (_ GoBack:Bool)->()) {
         
-        func encodePrescriptionLocally () {
-            self.prescription.planInfo = self.InvestigationsVM.investigations.joined(separator: ";")
-
-            self.prescription.medicine = self.MedicineVM.medicineArr
-
-            LocalEncoder.encode(payload: self.prescription, destination: "prescription:\(self.appointment.id)")
-        }
+//        func encodePrescriptionLocally () {
+//            self.prescription.advice = self.InvestigationsVM.investigations.joined(separator: ";")
+//
+//            self.prescription.medicines = self.MedicineVM.medicineArr
+//        }
+//
+//        docAlertHelper.askToSavePrescriptionAlert() { save in
+//            if save {
+//                encodePrescriptionLocally()
+//                completion(true)
+//            } else {
+//                completion(true)
+//            }
+//        }
         
-        docAlertHelper.askToSavePrescriptionAlert() { save in
-            if save {
-                encodePrescriptionLocally()
-                completion(true)
-            } else {
-                completion(true)
-            }
-        }
+        completion(true)
     }
 }

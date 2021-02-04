@@ -12,20 +12,20 @@ struct MedicineView: View {
     @ObservedObject var medicineVM:MedicineViewModel
     
     var body: some View {
-        ForEach(medicineVM.medicineArr, id: \.id) { medicine in
+        ForEach(medicineVM.medicineArr, id: \.medicineName) { medicine in
             VStack (alignment: .leading) {
 
                 Text("\(medicine.medicineName) - \(medicine.dosage)")
 
-                Text("\(medicine.numOfDays) days")
+                Text("\(medicine.duration) days")
 
                 Text("\(medicineVM.timingStringForMedDisplay(medicine: medicine))")
 
-                Text("Time to be taken: \(medicine.splInstructions)")
+                Text("Time to be taken: \(medicine.specialInstructions)")
 
                 Text("\(medicine.intake)")
 
-                Text("\(medicine.routeOfAdmission)")
+                Text("\(medicine.routeOfAdministration)")
 
                 HStack {
                     HStack {

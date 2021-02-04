@@ -16,7 +16,7 @@ struct BasicDetailsEntryView: View {
         }
 
         Section(header: Text("Examination")) {
-            TextEditor(text: $prescriptionVM.prescription.clinicalSummary).frame(width: UIScreen.main.bounds.width-60, height: 100)
+            TextEditor(text: $prescriptionVM.prescription.examination).frame(width: UIScreen.main.bounds.width-60, height: 100)
         }
 
         Section(header: Text("Diagnosis")) {

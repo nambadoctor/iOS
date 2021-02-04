@@ -12,7 +12,7 @@ class DocNotifHelpers {
     var currentDocObj:Doctor
     
     init() {
-        currentDocObj = LocalDecoder.decode(modelType: Doctor.self, from: LocalEncodingK.userObj.rawValue)!
+        currentDocObj = getLoggedInDoctor()
     }
     
     func fireCancelNotif (patientToken:String, appointmentTime:String) {

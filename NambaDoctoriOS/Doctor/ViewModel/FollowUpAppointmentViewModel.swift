@@ -35,9 +35,9 @@ class FollowUpAppointmentViewModel:ObservableObject {
         }
     }
 
-    func mapExistingValuesFromFollowUpObj(followUpObj:PatientFollowUpObj) {
+    func mapExistingValuesFromFollowUpObj(followUpObj:Nambadoctor_V1_FollowUpObject) {
         needFollowUp = true
-        nextFeeHelperString = String(followUpObj.nextAppointmentFee)
-        validDaysHelperString = String(followUpObj.validityDays)
+        nextFeeHelperString = String(followUpObj.discountedFee)
+        validDaysHelperString = String(followUpObj.nofDays)
     }
 }

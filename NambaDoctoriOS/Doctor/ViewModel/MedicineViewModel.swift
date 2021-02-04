@@ -8,8 +8,8 @@
 import Foundation
 
 class MedicineViewModel: ObservableObject {
-    @Published var medicineArr:[Medicine] = [Medicine]()
-    @Published var tempMedicine:Medicine = GetEmptyModelObj().medicineObj()
+    @Published var medicineArr:[Nambadoctor_V1_MedicineObject] = [Nambadoctor_V1_MedicineObject]()
+    @Published var tempMedicine:Nambadoctor_V1_MedicineObject = Nambadoctor_V1_MedicineObject()
     @Published var medicineEntryVM:MedicineEntryViewModel = MedicineEntryViewModel()
     
     //global alert will not show when using bottom sheet
@@ -38,18 +38,18 @@ class MedicineViewModel: ObservableObject {
         return generalDoctorHelpers.convertingToFraction(decimal: Double(medicineEntryVM.nightTemp.clean)!)
     }
     
-    func timingStringForMedDisplay (medicine:Medicine) -> String {
+    func timingStringForMedDisplay (medicine:Nambadoctor_V1_MedicineObject) -> String {
         return generalDoctorHelpers.formatTimingToDecimal(timings: medicine.timings)
     }
 
     func addMedicineOnTap () {
         EndEditingHelper.endEditing()
-        tempMedicine = GetEmptyModelObj().medicineObj()
+        tempMedicine = Nambadoctor_V1_MedicineObject()
         medicineEntryVM.isNewMedicine = true
         medicineEntryVM.showAddMedicineSheet.toggle()
     }
 
-    func editMedicineOnTap (medicineToEdit:Medicine) {
+    func editMedicineOnTap (medicineToEdit:Nambadoctor_V1_MedicineObject) {
         tempMedicine = medicineToEdit
         medicineEntryVM.isNewMedicine = false
         medicineEntryVM.mapExistingMedicine(medicine: tempMedicine)
@@ -88,14 +88,14 @@ class MedicineViewModel: ObservableObject {
         tempMedicine.medicineName = medicineEntryVM.medicineName
         tempMedicine.dosage = medicineEntryVM.dosage
         tempMedicine.timings = medicineEntryVM.timingString
-        tempMedicine.splInstructions = medFoodCorrelation
-        tempMedicine.routeOfAdmission = routeOfAdmission
+        tempMedicine.specialInstructions = medFoodCorrelation
+        tempMedicine.routeOfAdministration = routeOfAdmission
         tempMedicine.intake = medInTake
 
         if medicineEntryVM.noSpecificDuration {
-            tempMedicine.numOfDays = 0
+            tempMedicine.duration = 0
         } else {
-            tempMedicine.numOfDays = generalDoctorHelpers.returnNoOfDaysWithIndex(numOfDays: medicineEntryVM.tempNumOfDays, timeIndex: medicineEntryVM.timeIndex)
+            tempMedicine.duration = Int32(generalDoctorHelpers.returnNoOfDaysWithIndex(numOfDays: medicineEntryVM.tempNumOfDays, timeIndex: medicineEntryVM.timeIndex))
         }
     }
 }

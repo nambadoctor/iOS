@@ -17,7 +17,7 @@ struct WritePrescriptionView: View {
          isNewPrescription:Bool) {
         prescriptionVM = PrescriptionViewModel(appointment: appointment, isNewPrescription: isNewPrescription)
     }
-
+    
     var body: some View {
         VStack {
             if prescriptionVM.prescription == nil {
@@ -38,11 +38,11 @@ struct WritePrescriptionView: View {
                             AddMedicine(medicineVM: prescriptionVM.MedicineVM)
                         }
                     } else if tabNavigationIndex == 2 {
-                        
+
                         Section(header: Text("Advise for patient: ")) {
-                            TextEditor(text: $prescriptionVM.prescription.additionalNotes)
+                            TextEditor(text: $prescriptionVM.prescription.advice)
                                 .frame(width: UIScreen.main.bounds.width-60, height: 100) }
-                        
+
                         MakeFollowUpAppointmentView(followUpAppointmentVM: prescriptionVM.FollowUpVM)
                         
                         reviewAndSubmitView

@@ -14,16 +14,25 @@ class RetrieveTwilioAccessToken : TwilioAccessTokenProtocol {
     func retrieveToken (appointmentId:String,
                                _ completion: @escaping ((_ success:Bool, _ twilioToke:String?)->())) {
         
-        ApiGetCall.get(extensionURL: "videoroom/\(appointmentId)") { (data) in
-            do {
-                let tokenMap = try JSONDecoder().decode([String:String].self, from: data)
-                let tokenString = tokenMap["accessToken"]
-                TwilioAccessTokenString = tokenString!
-                completion(true, TwilioAccessTokenString)
-            } catch {
-                print(error)
-                completion(false, nil)
-            }
+        let channel = ChannelManager.sharedChannelManager.getChannel()
+        let twilioClient = Nambadoctor_V1_TwilioWorkerV1Client(channel: channel)
+        
+        let request = Nambadoctor_V1_TwilioRequest.with {
+            $0.uid = AuthTokenId
+            $0.roomID = appointmentId
+        }
+        
+        let getTwilioToken = twilioClient.getTwilioToken(request)
+        
+        do {
+            let response = try getTwilioToken.response.wait()
+            let twilioToken = response.authToken
+            print("TwilioToken received: \(twilioToken)")
+            completion(true, twilioToken)
+            TwilioAccessTokenString = twilioToken
+        } catch {
+            print("TwilioToken failed: \(error)")
+            completion(false, nil)
         }
     }
 }

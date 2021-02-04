@@ -9,11 +9,12 @@ import SwiftUI
 import UIKit
 
 struct DoctorHome: View {
+
     @State private var tabSelection:Int = 0
     @ObservedObject var doctorViewModel:DoctorViewModel
     @State var alertItem : AlertItem?
     @State var sheetItem : DoctorSheetItem?
-    
+
     var body: some View {
         NavigationView {
             TabView (selection: self.$tabSelection) {
