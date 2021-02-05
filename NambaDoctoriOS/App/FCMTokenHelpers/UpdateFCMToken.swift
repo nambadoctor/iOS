@@ -13,6 +13,6 @@ class UpdateFCMToken {
             "deviceTokenId":FCMTokenId
         ]
 
-        ApiPatchCall.patch(parameters: parameters, extensionURL: "doctor") { (success) in }
+        //ApiPatchCall.patch(parameters: parameters, extensionURL: "doctor") { (success) in }
     }
 }

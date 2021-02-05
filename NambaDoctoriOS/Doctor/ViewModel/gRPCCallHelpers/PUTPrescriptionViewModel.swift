@@ -10,6 +10,8 @@ import Foundation
 class PutPrescriptionViewModel: PutPrescriptionViewModelProtocol {
     func writePrescriptionToDB(prescriptionViewModel:PrescriptionViewModel, _ completion : @escaping ((_ successfull:Bool)->())) {
         
+        print(prescriptionViewModel)
+
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let prescriptionClient = Nambadoctor_V1_PrescriptionWorkerV1Client(channel: channel)
 
@@ -22,7 +24,7 @@ class PutPrescriptionViewModel: PutPrescriptionViewModelProtocol {
             print("Prescription Write Client Successfull: \(response.prescriptionID)")
             completion(true)
         } catch {
-            print("Prescription Write Client Failed")
+            print("Prescription Write Client Failed: \(error)")
             completion(false)
         }
     }

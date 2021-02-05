@@ -53,7 +53,7 @@ class RetrievePatientInfo: RetrievePatientInfoProtocol {
         }
     }
 
-    func getUploadedDocumentList(appointmentId: String, _ completion: @escaping (([UploadedDocument]) -> ())) {
+    func getUploadedDocumentList(appointmentId: String, _ completion: @escaping (([Nambadoctor_V1_ReportDownloadObject]) -> ())) {
 //        ApiGetCall.get(extensionURL: "documnet/appointment/\(appointmentId)") { (data) in
 //            do {
 //                let uploadedDocList = try JSONDecoder().decode([UploadedDocument].self, from: data)

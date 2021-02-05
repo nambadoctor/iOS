@@ -47,7 +47,7 @@ struct PatientInfoView: View {
         VStack (alignment: .leading) {
             Text("PATIENT REPORTS").bold()
             if patientInfoVM.UploadedDocumentList != nil {
-                ForEach (patientInfoVM.UploadedDocumentList) { document in
+                ForEach (patientInfoVM.UploadedDocumentList, id: \.id) { document in
                     NavigationLink(destination: Text("patient report view")) {
                         Text("patient report card")
                     }
@@ -55,7 +55,7 @@ struct PatientInfoView: View {
             }
         }
     }
-    
+
     var previousConsultations : some View {
         VStack {
             if patientInfoVM.AppointmentList != nil {

@@ -108,7 +108,7 @@ class SubmitPrescriptionViewModel: ObservableObject {
             checkIfAllWritesDone()
         }
         
-        updateAptStatusVM.updateToFinished(appointmentId: prescriptionVM.appointment.appointmentID) { (success) in
+        updateAptStatusVM.updateToFinished(appointment: &prescriptionVM.appointment) { (success) in
             if success {
                 toggleToTrue()
             } else {

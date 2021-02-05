@@ -11,24 +11,24 @@ struct AddPatientView: View {
     
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var AddPatientVM:AddPatientViewModel = AddPatientViewModel()
-    
+    @State var phoneNumObj:PhoneNumberObj = PhoneNumberObj()
     var body: some View {
         ZStack {
             NavigationView {
                 Form {
                     Section(header: Text("Basic Details")) {
-                        TextField("Patient Name", text: $AddPatientVM.preRegisteredPatient.patientName)
+                        TextField("Patient Name", text: $AddPatientVM.preRegisteredPatient.fullName)
                         
-                        TextField("Patient Age", text: $AddPatientVM.preRegisteredPatient.patientAge)
+                        TextField("Patient Age", text: $AddPatientVM.preRegisteredPatient.age)
                             .keyboardType(.numberPad)
                         
-                        SideBySideCheckBox(isChecked: $AddPatientVM.preRegisteredPatient.patientGender, title1: "male", title2: "female")
+                        SideBySideCheckBox(isChecked: $AddPatientVM.preRegisteredPatient.gender, title1: "male", title2: "female")
                         
-                        PhoneNumberEntryView(numberObj: $AddPatientVM.preRegisteredPatient.phNumberObj)
+                        PhoneNumberEntryView(numberObj: $phoneNumObj)
                     }
                     
                     Section(header: Text("Allergies(optional)")) {
-                        TextField("Enter patient allergies if any", text: $AddPatientVM.preRegisteredPatient.patientAllergies)
+                        TextField("Enter patient allergies if any", text: $AddPatientVM.allergies)
                     }
 
                     MakeFollowUpAppointmentView(followUpAppointmentVM: AddPatientVM.followUpFeeObj)

@@ -14,7 +14,7 @@ protocol RetrievePatientInfoProtocol {
     
     func getPatientAppointmentList (patientId: String, _ completion: @escaping ((_ appointmentList:[Nambadoctor_V1_AppointmentObject])->()))
     
-    func getUploadedDocumentList (appointmentId:String, _ completion: @escaping ((_ docList:[UploadedDocument])->()))
+    func getUploadedDocumentList (appointmentId:String, _ completion: @escaping ((_ docList:[Nambadoctor_V1_ReportDownloadObject])->()))
     
     func getDocImage (docId:String, _ completion: @escaping ((_ docList:UIImage?)->()))
     

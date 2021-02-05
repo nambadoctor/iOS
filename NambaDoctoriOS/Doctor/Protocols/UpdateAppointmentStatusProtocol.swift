@@ -8,13 +8,14 @@
 import Foundation
 
 protocol UpdateAppointmentStatusProtocol {
-    func getParams (appointmentId:String, status:String) -> [String:Any]
+    func makeAppointmentUpdate (appointment:Nambadoctor_V1_AppointmentObject,
+                                completion: @escaping (_ updated:Bool)->())
     
-    func toCancelled (appointmentId:String, completion: @escaping (_ success:Bool) -> ())
+    func toCancelled (appointment:inout Nambadoctor_V1_AppointmentObject, completion: @escaping (_ success:Bool) -> ())
     
-    func updateToStartedConsultation (appointmentId:String, completion: @escaping (_ success:Bool) -> ())
+    func updateToStartedConsultation (appointment:inout Nambadoctor_V1_AppointmentObject, completion: @escaping (_ success:Bool) -> ())
     
-    func updateToFinished (appointmentId:String, completion: @escaping (_ success:Bool) -> ())
+    func updateToFinished (appointment:inout Nambadoctor_V1_AppointmentObject, completion: @escaping (_ success:Bool) -> ())
     
-    func updateToFinishedAppointment (appointmentId:String, completion: @escaping (_ success:Bool) -> ())
+    func updateToFinishedAppointment (appointment:inout Nambadoctor_V1_AppointmentObject, completion: @escaping (_ success:Bool) -> ())
 }

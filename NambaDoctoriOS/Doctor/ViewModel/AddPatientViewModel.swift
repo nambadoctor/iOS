@@ -8,13 +8,14 @@
 import Foundation
 
 class AddPatientViewModel: ObservableObject {
-    @Published var preRegisteredPatient:PreRegisteredPatient
+    @Published var preRegisteredPatient:Nambadoctor_V1_PatientObject
     @Published var followUpFeeObj:FollowUpAppointmentViewModel = FollowUpAppointmentViewModel()
+    var allergies:String = ""
     var addPreRegPatient = AddPreRegisteredViewModel()
     var doctorAlertHelpers = DoctorAlertHelpers()
-    
+
     init() {
-        preRegisteredPatient = PreRegisteredPatient()
+        preRegisteredPatient = Nambadoctor_V1_PatientObject()
     }
     
     func addPatient (completion: @escaping (_ added:Bool)->()) {
@@ -28,7 +29,7 @@ class AddPatientViewModel: ObservableObject {
         
         addPreRegPatient.preRegisterPatient(patientObj: preRegisteredPatient, nextFeeObj: followUpFeeObj) { (patientId) in
             if (patientId != nil) {
-                self.setAllergies(patientAllergies: self.preRegisteredPatient.patientAllergies, patientId: patientId!)
+                self.setAllergies(patientAllergies: self.allergies, patientId: patientId!)
                 self.setFollowUp(nextFeeObj: self.followUpFeeObj, patientId: patientId!)
                 DoctorDefaultModifiers.refreshAppointments()
                 self.doctorAlertHelpers.patientAddedAlert()
@@ -48,10 +49,10 @@ class AddPatientViewModel: ObservableObject {
     }
 
     func emptyValuesCheck() -> Bool {
-        if preRegisteredPatient.patientAge.isEmpty ||
-            preRegisteredPatient.phNumberObj.number.isEmpty ||
-            preRegisteredPatient.patientGender.isEmpty ||
-            preRegisteredPatient.patientName.isEmpty {
+        if preRegisteredPatient.age.isEmpty ||
+            preRegisteredPatient.phoneNumber.isEmpty ||
+            preRegisteredPatient.gender.isEmpty ||
+            preRegisteredPatient.fullName.isEmpty {
             return false
         } else {
             return true

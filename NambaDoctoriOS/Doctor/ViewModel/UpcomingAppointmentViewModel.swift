@@ -72,7 +72,7 @@ class UpcomingAppointmentViewModel: ObservableObject {
     }
     
     func cancelAppointment() {
-        updateAppointmentStatus.toCancelled(appointmentId: appointmentId) { (success) in
+        updateAppointmentStatus.toCancelled(appointment: &appointment) { (success) in
             if success {
                 self.getPatientFCMTokenId { _ in
                     //self.notifHelper.fireCancelNotif(patientToken: self.patientTokenId, appointmentTime: self.appointment.slotDateTime)
@@ -88,7 +88,8 @@ class UpcomingAppointmentViewModel: ObservableObject {
         CommonDefaultModifiers.showLoader()
         twilioAccessTokenHelper.retrieveToken(appointmentId: appointmentId) { (success, token) in
             if success {
-                self.updateAppointmentStatus.updateToStartedConsultation(appointmentId: self.appointmentId) { (success) in
+                self.updateAppointmentStatus.updateToStartedConsultation(appointment: &self.appointment) { (success) in
+                    
                     if success {
                         CommonDefaultModifiers.hideLoader()
                         self.takeToTwilioRoom = true
@@ -107,7 +108,7 @@ class UpcomingAppointmentViewModel: ObservableObject {
         consultationDone = true
         doctorAlertHelper.writePrescriptionAlert(appointmentId: appointmentId, requestedBy: appointment.requestedBy) { (navigate) in
             
-            self.updateAppointmentStatus.updateToFinishedAppointment(appointmentId: self.appointmentId)
+            self.updateAppointmentStatus.updateToFinishedAppointment(appointment: &self.appointment)
                 { _ in }
             
             self.getPatientFCMTokenId { _ in

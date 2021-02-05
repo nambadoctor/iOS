@@ -8,28 +8,21 @@
 import Foundation
 
 class AddPreRegisteredViewModel {
-    func preRegisterPatient(patientObj:PreRegisteredPatient, nextFeeObj:FollowUpAppointmentViewModel, _ completion : @escaping ((_ patientId:String?)->())) {
-        let parameters: [String: Any] = [
-            "age": patientObj.patientAge,
-            "deviceTokenId": "",
-            "fullName": patientObj.patientName,
-            "gender": patientObj.patientGender,
-            "language": "",
-            "phoneNumber": patientObj.phNumberObj.countryCode + patientObj.phNumberObj.number
-        ]
-
-        ApiPutCall.put(parameters: parameters, extensionURL: "patient/preregister") { (success, data) in
-            do {
-                if let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any] {
-                        // try to read out a string array
-                        if let patientId = json["id"] as? String {
-                            completion(patientId)
-                        }
-                    }
-            } catch {
-                completion(nil)
-                print(error)
-            }
+    func preRegisterPatient(patientObj:Nambadoctor_V1_PatientObject, nextFeeObj:FollowUpAppointmentViewModel, _ completion : @escaping ((_ patientId:String?)->())) {
+        
+        let channel = ChannelManager.sharedChannelManager.getChannel()
+        let patientClient = Nambadoctor_V1_PatientWorkerV1Client(channel: channel)
+        
+        let request = patientObj
+        
+        let putPatient = patientClient.writeNewPatientObject(request)
+        
+        do {
+            let response = try putPatient.response.wait()
+            print("Add Pre-Reg Patient Failure \(response.patientID)")
+            completion(response.patientID)
+        } catch {
+            print("Add Pre-Reg Patient Failure")
         }
     }
 }
