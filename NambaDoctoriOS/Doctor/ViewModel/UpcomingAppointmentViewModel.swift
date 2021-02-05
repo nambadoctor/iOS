@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class UpcomingAppointmentViewModel: ObservableObject {
-    @Published var appointment:Appointment
+    @Published var appointment:Nambadoctor_V1_AppointmentObject
 
     @Published var consultationStarted:Bool = false
     @Published var consultationDone:Bool = false
@@ -28,7 +28,7 @@ class UpcomingAppointmentViewModel: ObservableObject {
     private var doctorAlertHelper:DoctorAlertHelpersProtocol
     private var twilioAccessTokenHelper:TwilioAccessTokenProtocol
 
-    init(appointment:Appointment,
+    init(appointment:Nambadoctor_V1_AppointmentObject,
          updateAppointmentStatus:UpdateAppointmentStatusProtocol = UpdateAppointmentStatusViewModel(),
          doctorAlertHelper:DoctorAlertHelpersProtocol = DoctorAlertHelpers(),
          twilioAccessTokenHelper:TwilioAccessTokenProtocol = RetrieveTwilioAccessToken()) {
@@ -44,11 +44,11 @@ class UpcomingAppointmentViewModel: ObservableObject {
     }
 
     var LocalTime:String {
-        return Helpers.utcToLocal(dateStr: self.appointment.slotDateTime)
+        return "Time module not done"
     }
     
     var appointmentId:String {
-        return self.appointment.id
+        return self.appointment.appointmentID
     }
 
     var cardBackgroundColor:Color {
@@ -75,7 +75,7 @@ class UpcomingAppointmentViewModel: ObservableObject {
         updateAppointmentStatus.toCancelled(appointmentId: appointmentId) { (success) in
             if success {
                 self.getPatientFCMTokenId { _ in
-                    self.notifHelper.fireCancelNotif(patientToken: self.patientTokenId, appointmentTime: self.appointment.slotDateTime)
+                    //self.notifHelper.fireCancelNotif(patientToken: self.patientTokenId, appointmentTime: self.appointment.slotDateTime)
                 }
                 DoctorDefaultModifiers.refreshAppointments()
             } else {
@@ -93,7 +93,7 @@ class UpcomingAppointmentViewModel: ObservableObject {
                         CommonDefaultModifiers.hideLoader()
                         self.takeToTwilioRoom = true
                         self.getPatientFCMTokenId { _ in
-                            self.notifHelper.fireStartedConsultationNotif(patientToken: self.patientTokenId, appointmentTime: self.appointment.slotDateTime)
+                            //self.notifHelper.fireStartedConsultationNotif(patientToken: self.patientTokenId, appointmentTime: self.appointment.slotDateTime)
                         }
                     }
                 }

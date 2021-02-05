@@ -26,6 +26,14 @@ class FollowUpAppointmentViewModel:ObservableObject {
     var validityDaysDisplay:String {
         return "\(generalDoctorHelpers.returnNoOfDaysWithIndex(numOfDays: validDaysHelperString, timeIndex: timeIndex)) days"
     }
+    
+    var nextFeeInt:Int32 {
+        return Int32(nextFeeHelperString)!
+    }
+    
+    var validityDaysInt:Int32 {
+        return Int32(validDaysHelperString)!
+    }
 
     func showEntryFields () {
         if !validDaysHelperString.isEmpty || !nextFeeHelperString.isEmpty || needFollowUp {

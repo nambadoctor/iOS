@@ -13,7 +13,7 @@ struct DoctorSheetItem:Identifiable {
     var id = UUID()
     
     //to show patient info sheet
-    var appointment:Appointment?
+    var appointment:Nambadoctor_V1_AppointmentObject?
     
     //to show add pre-reg patient sheet
     var showAddPatient:Bool?

@@ -54,16 +54,19 @@ class MedicineEntryViewModel : ObservableObject {
 
         let timingDoubleArr = generalDoctorHelpers.splitTimingStringIntoDoubleArr(timings: medicine.timings)
         
-        morningTemp = timingDoubleArr[0]
-        noonTemp = timingDoubleArr[1]
-        eveningTemp = timingDoubleArr[2]
-        nightTemp = timingDoubleArr[3]
+        //TODO: CHANGE AFTER UNDERSTANDING THE TIMING STRUCTURE
+        if medicine.intake.split(separator: ",").count > 1 {
+            morningTemp = timingDoubleArr[0]
+            noonTemp = timingDoubleArr[1]
+            eveningTemp = timingDoubleArr[2]
+            nightTemp = timingDoubleArr[3]
+        }
 
         inTakeIndex = medicineInTakeTimings.firstIndex(of: medicine.intake) ?? 0
         routeOfAdminIndex = routeOfAdmissionArray.firstIndex(of: medicine.routeOfAdministration) ?? 0
         foodSelectionIndex = foodSelectionArray.firstIndex(of: medicine.specialInstructions) ?? 0
     }
-    
+
     func clearValues () {
         medicineName = ""
         dosage = ""

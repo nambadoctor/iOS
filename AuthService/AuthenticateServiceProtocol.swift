@@ -13,4 +13,6 @@ protocol AuthenticateServiceProtocol {
     func verifyUser (verificationId:String, otp:String, completion: @escaping (_ userVerified:Bool) -> ())
     
     func validatePhoneNumber (_ phoneNumber:String) -> Bool
+    
+    func getUserId () -> String 
 }

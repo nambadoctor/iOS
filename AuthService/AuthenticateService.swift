@@ -10,7 +10,11 @@ import FirebaseAuth
 import GRPC
 
 class AuthenticateService : AuthenticateServiceProtocol {
-    
+
+    func getUserId () -> String {
+        return Auth.auth().currentUser?.uid ?? "Not not logged in"
+    }
+
     func verifyNumber (phNumber:String, completion: @escaping (_ userId:String?) -> ()) {
         PhoneAuthProvider.provider().verifyPhoneNumber(phNumber, uiDelegate: nil) { (verificationId, err) in
 

@@ -12,7 +12,7 @@ struct DoctorTwilioManager: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var DoctorTwilioVM:DoctorTwilioViewModel
 
-    init(appointment:Appointment) {
+    init(appointment:Nambadoctor_V1_AppointmentObject) {
         DoctorTwilioVM = DoctorTwilioViewModel(appointment: appointment)
     }
 
@@ -20,7 +20,7 @@ struct DoctorTwilioManager: View {
         VStack {
             switch DoctorTwilioVM.status {
             case .started:
-                TwilioViewHelper(appointmentId: DoctorTwilioVM.appointment.id)
+                TwilioViewHelper(appointmentId: DoctorTwilioVM.appointment.appointmentID)
                     .navigationBarItems(leading: navBarBack, trailing: navBarTrailing)
             case .finished:
                 WritePrescriptionView(appointment: DoctorTwilioVM.appointment, isNewPrescription: true)

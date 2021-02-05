@@ -8,20 +8,21 @@
 import Foundation
 
 class FinishedAppointmentViewModel: ObservableObject {
-    @Published var appointment:Appointment
+    @Published var appointment:Nambadoctor_V1_AppointmentObject
     @Published var viewPrescription:Bool = false
     @Published var amendPrescription:Bool = false
     
     private var doctorAlertHelper:DoctorAlertHelpersProtocol
 
-    init(appointment:Appointment,
+    init(appointment:Nambadoctor_V1_AppointmentObject,
          doctorAlertHelper:DoctorAlertHelpersProtocol = DoctorAlertHelpers()) {
         self.appointment = appointment
         self.doctorAlertHelper = doctorAlertHelper
     }
 
     var LocalTime:String {
-        return Helpers.utcToLocal(dateStr: self.appointment.slotDateTime)
+        return "Need to fix time module"
+            //Helpers.utcToLocal(dateStr: self.appointment.slotID)
     }
 
     func takeToViewPrescription () {

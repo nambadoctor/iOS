@@ -9,13 +9,13 @@ import Foundation
 import SwiftUI
 
 class DoctorTwilioViewModel: ObservableObject {
-    var appointment:Appointment
+    var appointment:Nambadoctor_V1_AppointmentObject
     @Published var status:TwilioStateK = .started
     
     private var docAlertHelpers:DoctorAlertHelpersProtocol!
     private var docSheetHelper:DoctorSheetHelpers = DoctorSheetHelpers()
 
-    init(appointment:Appointment) {
+    init(appointment:Nambadoctor_V1_AppointmentObject) {
         self.appointment = appointment
         docAlertHelpers = DoctorAlertHelpers()
     }

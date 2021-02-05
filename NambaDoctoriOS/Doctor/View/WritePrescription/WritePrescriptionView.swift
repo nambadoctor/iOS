@@ -13,7 +13,7 @@ struct WritePrescriptionView: View {
     @ObservedObject private var prescriptionVM:PrescriptionViewModel
     @Environment(\.presentationMode) var presentationMode
     
-    init(appointment:Appointment,
+    init(appointment:Nambadoctor_V1_AppointmentObject,
          isNewPrescription:Bool) {
         prescriptionVM = PrescriptionViewModel(appointment: appointment, isNewPrescription: isNewPrescription)
     }

@@ -8,11 +8,10 @@
 import Foundation
 import SwiftUI
 
-
 class PrescriptionViewModel: ObservableObject {
-    var appointment:Appointment
+    var appointment:Nambadoctor_V1_AppointmentObject
     var isNewPrescription:Bool
-    let loggedInDoctor = getLoggedInDoctor()
+    let loggedInDoctor = GetDocObject.docHelper.getDoctor()
     
     @Published var prescription:Nambadoctor_V1_PrescriptionObject!
     @Published var errorInRetrievingPrescription:Bool = false
@@ -32,7 +31,7 @@ class PrescriptionViewModel: ObservableObject {
     private var docSheetHelper:DoctorSheetHelpers = DoctorSheetHelpers()
     private var docAlertHelper:DoctorAlertHelpers = DoctorAlertHelpers()
 
-    init(appointment:Appointment,
+    init(appointment:Nambadoctor_V1_AppointmentObject,
          isNewPrescription:Bool,
          retrievePrescriptionHelper:RetrievePrescriptionForAppointmentProtocol = RetrievePrescriptionForAppointmentViewModel(),
 
@@ -82,7 +81,7 @@ class PrescriptionViewModel: ObservableObject {
 //    }
 
     func retrievePrescription() {
-        retrievePrescriptionHelper.getPrescription(appointmentId: self.appointment.id) { (prescription) in
+        retrievePrescriptionHelper.getPrescription(appointmentId: self.appointment.appointmentID) { (prescription) in
             if prescription != nil {
                 self.mapPrescriptionValues(prescription: prescription!)
             } else {
@@ -99,7 +98,7 @@ class PrescriptionViewModel: ObservableObject {
     }
 
     func retrieveFollowUpFeeForPrescription() {
-        retrieveFollowUpObjHelper.getNextFee(doctorId: loggedInDoctor.id, patientId: appointment.requestedBy) { (FollowUpObj) in
+        retrieveFollowUpObjHelper.getNextFee(doctorId: loggedInDoctor.doctorID, patientId: appointment.requestedBy) { (FollowUpObj) in
             if FollowUpObj != nil {
                 self.FollowUpVM.mapExistingValuesFromFollowUpObj(followUpObj: FollowUpObj!)
             }

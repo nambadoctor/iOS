@@ -61,9 +61,9 @@ class PreRegisteredUserVM:ObservableObject {
 
             switch patientOrDoc {
             case .Doctor:
-                LoginDefaultModifiers.signInDoctor()
+                LoginDefaultModifiers.signInDoctor(userId: self.AuthService.getUserId())
             case .Patient:
-                LoginDefaultModifiers.signInPatient()
+                LoginDefaultModifiers.signInPatient(userId: self.AuthService.getUserId())
             case .NotSignedIn:
                 return
             }

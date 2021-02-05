@@ -16,7 +16,7 @@ struct FinishedAppointmentsView: View {
                 Indicator()
             } else {
                 ScrollView {
-                    ForEach(doctor.finishedAppointments) { appointment in
+                    ForEach(doctor.finishedAppointments, id: \.appointmentID) { appointment in
                         FinishedAppointmentCard(appointment: appointment)
                     }
                 }

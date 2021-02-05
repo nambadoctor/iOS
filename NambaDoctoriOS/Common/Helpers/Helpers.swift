@@ -42,4 +42,13 @@ class Helpers {
             return nil
         }
     }
+    
+    static func getCurrentTimeStamp () -> TimeInterval {
+        return NSDate().timeIntervalSince1970
+    }
+    
+    static func makeTimeStampToDate (timestamp:Int64) -> NSDate {
+        let myTimeInterval = TimeInterval(timestamp)
+        return NSDate(timeIntervalSince1970: TimeInterval(myTimeInterval))
+    }
 }

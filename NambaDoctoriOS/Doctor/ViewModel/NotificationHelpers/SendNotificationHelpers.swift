@@ -9,10 +9,10 @@ import Foundation
 
 class DocNotifHelpers {
     
-    var currentDocObj:Doctor
+    var currentDocObj:Nambadoctor_V1_DoctorResponse
     
     init() {
-        currentDocObj = getLoggedInDoctor()
+        currentDocObj = GetDocObject.docHelper.getDoctor()
     }
     
     func fireCancelNotif (patientToken:String, appointmentTime:String) {

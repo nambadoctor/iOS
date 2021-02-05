@@ -11,7 +11,7 @@ struct PatientInfoView: View {
     
     @ObservedObject var patientInfoVM:PatientInfoViewModel
     
-    init(appointment:Appointment) {
+    init(appointment:Nambadoctor_V1_AppointmentObject) {
         patientInfoVM = PatientInfoViewModel(appointment: appointment)
     }
     
@@ -59,7 +59,7 @@ struct PatientInfoView: View {
     var previousConsultations : some View {
         VStack {
             if patientInfoVM.AppointmentList != nil {
-                ForEach (patientInfoVM.AppointmentList) { appointment in
+                ForEach (patientInfoVM.AppointmentList, id: \.appointmentID) { appointment in
                     NavigationLink(destination: ViewPrescription(prescriptionVM: patientInfoVM.getPrescriptionVMToNavigate())) {
                         Text("Click Here") //replace with patient info appointment card
                     }

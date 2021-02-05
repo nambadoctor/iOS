@@ -17,21 +17,25 @@ struct DoctorHome: View {
 
     var body: some View {
         NavigationView {
-            TabView (selection: self.$tabSelection) {
-                UpcomingAppointmentsView(doctor: doctorViewModel).tabItem {
-                    //Image("list.dash")
-                    Text("Upcoming")
-                    Text("Appointments")
-                }.tag(1)
+            if !doctorViewModel.doctorLoggedIn {
+                Indicator()
+            } else {
+                TabView (selection: self.$tabSelection) {
+                    UpcomingAppointmentsView(doctor: doctorViewModel).tabItem {
+                        //Image("list.dash")
+                        Text("Upcoming")
+                        Text("Appointments")
+                    }.tag(1)
 
-                FinishedAppointmentsView(doctor: doctorViewModel).tabItem {
-                    //Image("timer")
-                    Text("Finished")
-                    Text("Appointments")
-                }.tag(2)
+                    FinishedAppointmentsView(doctor: doctorViewModel).tabItem {
+                        //Image("timer")
+                        Text("Finished")
+                        Text("Appointments")
+                    }.tag(2)
+                }
+                .navigationBarTitle("NambaDoctor")
+                .navigationBarItems(trailing: addPatientButton)
             }
-            .navigationBarTitle("NambaDoctor")
-            .navigationBarItems(trailing: addPatientButton)
         }.onAppear() {
             showAlertListener()
             showSheetListener()

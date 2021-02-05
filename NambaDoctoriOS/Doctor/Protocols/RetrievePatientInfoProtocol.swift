@@ -10,9 +10,9 @@ import SwiftUI
 
 protocol RetrievePatientInfoProtocol {
     
-    func getPatientProfile (patientId: String, _ completion: @escaping ((_ patientProfile:Patient)->()))
+    func getPatientProfile(patientId: String, _ completion: @escaping ((Nambadoctor_V1_PatientObject) -> ()))
     
-    func getPatientAppointmentList (patientId: String, _ completion: @escaping ((_ appointmentList:[Appointment])->()))
+    func getPatientAppointmentList (patientId: String, _ completion: @escaping ((_ appointmentList:[Nambadoctor_V1_AppointmentObject])->()))
     
     func getUploadedDocumentList (appointmentId:String, _ completion: @escaping ((_ docList:[UploadedDocument])->()))
     

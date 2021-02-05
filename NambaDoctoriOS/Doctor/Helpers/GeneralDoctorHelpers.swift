@@ -68,9 +68,9 @@ class GeneralDoctorHelpers : GeneralDoctorHelpersProtocol {
     
     //MARK: CONVERTING TIMINGS STRING TO FRACTION DISPLAY
      func formatTimingToDecimal (timings:String) -> String {
-        if !timings.isEmpty {
-            let split = timings.components(separatedBy: ",")
-            
+        let split = timings.components(separatedBy: ",")
+        
+        if split.count > 1 {
             let mornAsFraction = convertingToFraction(decimal: Double(split[0]) ?? 0)
             let noonAsFraction = convertingToFraction(decimal: Double(split[1]) ?? 0)
             let eveAsFraction = convertingToFraction(decimal: Double(split[2]) ?? 0)

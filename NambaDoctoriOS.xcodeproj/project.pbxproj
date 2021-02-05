@@ -203,7 +203,7 @@
 		17E5186025AED16C001F1A80 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 17E5185E25AED16C001F1A80 /* LaunchScreen.storyboard */; };
 		17E5186B25AED16D001F1A80 /* NambaDoctoriOSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E5186A25AED16D001F1A80 /* NambaDoctoriOSTests.swift */; };
 		17E5187625AED16D001F1A80 /* NambaDoctoriOSUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E5187525AED16D001F1A80 /* NambaDoctoriOSUITests.swift */; };
-		17E8688225CC74C5000B0952 /* GetSavedLoggedInDoctorObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E8688125CC74C5000B0952 /* GetSavedLoggedInDoctorObj.swift */; };
+		17E8688225CC74C5000B0952 /* GetDocObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E8688125CC74C5000B0952 /* GetDocObject.swift */; };
 		434CDF5DFA0DF425DF44E2A2 /* Pods_NambaDoctoriOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 435C297907080A241A267BB0 /* Pods_NambaDoctoriOSTests.framework */; };
 		95ACD8DA00B7C0B2D7EA224D /* Pods_NambaDoctoriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 421278E51F7A74B868A7EA69 /* Pods_NambaDoctoriOS.framework */; };
 		B6746684516D05CE4C3163B4 /* Pods_NambaDoctoriOS_NambaDoctoriOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276EFB6904AFFC883BD04BA9 /* Pods_NambaDoctoriOS_NambaDoctoriOSUITests.framework */; };
@@ -428,7 +428,7 @@
 		17E5187125AED16D001F1A80 /* NambaDoctoriOSUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NambaDoctoriOSUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		17E5187525AED16D001F1A80 /* NambaDoctoriOSUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NambaDoctoriOSUITests.swift; sourceTree = "<group>"; };
 		17E5187725AED16D001F1A80 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		17E8688125CC74C5000B0952 /* GetSavedLoggedInDoctorObj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSavedLoggedInDoctorObj.swift; sourceTree = "<group>"; };
+		17E8688125CC74C5000B0952 /* GetDocObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDocObject.swift; sourceTree = "<group>"; };
 		276EFB6904AFFC883BD04BA9 /* Pods_NambaDoctoriOS_NambaDoctoriOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NambaDoctoriOS_NambaDoctoriOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C1F9336480062135B79A499 /* Pods-NambaDoctoriOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NambaDoctoriOS.release.xcconfig"; path = "Target Support Files/Pods-NambaDoctoriOS/Pods-NambaDoctoriOS.release.xcconfig"; sourceTree = "<group>"; };
 		421278E51F7A74B868A7EA69 /* Pods_NambaDoctoriOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NambaDoctoriOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -518,7 +518,6 @@
 				1748011E25B99D5F00C8E3CC /* CustomParamEncoding.swift */,
 				17BA0A9B25B9A7A700EDE4D1 /* BaseURL.swift */,
 				17BA0AA025B9A80E00EDE4D1 /* DataServiceProtocols.swift */,
-				173A231125CAFE2B0086342A /* ChannelManager.swift */,
 			);
 			path = DataService;
 			sourceTree = "<group>";
@@ -577,6 +576,7 @@
 		172B84E525AEE38200C6B035 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				17E8688125CC74C5000B0952 /* GetDocObject.swift */,
 				17E8687D25CC6F9C000B0952 /* gRPCCallHelpers */,
 				174800BE25B8DE0300C8E3CC /* NotificationHelpers */,
 				1748005225B8BD7E00C8E3CC /* APICallHelpers */,
@@ -654,6 +654,7 @@
 		173A229325CAF7150086342A /* gRPCService */ = {
 			isa = PBXGroup;
 			children = (
+				173A231125CAFE2B0086342A /* ChannelManager.swift */,
 				173A22BA25CAF8B30086342A /* V1 */,
 			);
 			path = gRPCService;
@@ -821,13 +822,7 @@
 		1748005225B8BD7E00C8E3CC /* APICallHelpers */ = {
 			isa = PBXGroup;
 			children = (
-				17B5D15A25B75B31009D6A42 /* DoctorAppointmentsViewModel.swift */,
-				17B5D12725B755F8009D6A42 /* RetrieveDocObj.swift */,
 				1748006325B8C00300C8E3CC /* UpdateAppointmentStatusViewModel.swift */,
-				1742513025BCAFA800523B94 /* RetrievePatientAllergiesViewModel.swift */,
-				174251CA25BCFC2D00523B94 /* PutFollowUpAppointmentViewModel.swift */,
-				174251CF25BCFD1100523B94 /* PutPatientAllergiesViewModel.swift */,
-				1742523D25BD98F400523B94 /* RetrievePatientInfo.swift */,
 			);
 			path = APICallHelpers;
 			sourceTree = "<group>";
@@ -966,7 +961,6 @@
 				17B5D16325B75CE7009D6A42 /* CheckAppointmentStatus.swift */,
 				1748010A25B8DFC100C8E3CC /* DoctorDefaultModifiers.swift */,
 				1742504925BAE39E00523B94 /* GeneralDoctorHelpers.swift */,
-				17E8688125CC74C5000B0952 /* GetSavedLoggedInDoctorObj.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1164,6 +1158,12 @@
 				1742512325BCAB9E00523B94 /* RetrieveFollowUpObjViewModel.swift */,
 				1742502D25BAD64900523B94 /* RetrievePrescriptionForAppointmentViewModel.swift */,
 				1742528A25BDADDA00523B94 /* PUTPrescriptionViewModel.swift */,
+				17B5D15A25B75B31009D6A42 /* DoctorAppointmentsViewModel.swift */,
+				174251CA25BCFC2D00523B94 /* PutFollowUpAppointmentViewModel.swift */,
+				174251CF25BCFD1100523B94 /* PutPatientAllergiesViewModel.swift */,
+				1742513025BCAFA800523B94 /* RetrievePatientAllergiesViewModel.swift */,
+				1742523D25BD98F400523B94 /* RetrievePatientInfo.swift */,
+				17B5D12725B755F8009D6A42 /* RetrieveDocObj.swift */,
 			);
 			path = gRPCCallHelpers;
 			sourceTree = "<group>";
@@ -1465,7 +1465,7 @@
 				17424EF825BA065D00523B94 /* FinishedAppointmentsView.swift in Sources */,
 				173A22E525CAF9040086342A /* twilio.pb.swift in Sources */,
 				174250C625BAEF3500523B94 /* MedicineEntryView.swift in Sources */,
-				17E8688225CC74C5000B0952 /* GetSavedLoggedInDoctorObj.swift in Sources */,
+				17E8688225CC74C5000B0952 /* GetDocObject.swift in Sources */,
 				1742523625BD988D00523B94 /* PatientInfoViewModel.swift in Sources */,
 				1748011025B8E12500C8E3CC /* DocViewStatesK.swift in Sources */,
 				1748010B25B8DFC100C8E3CC /* DoctorDefaultModifiers.swift in Sources */,

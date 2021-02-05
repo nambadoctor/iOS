@@ -8,13 +8,25 @@
 import Foundation
 
 class DoctorViewModel: ObservableObject {
-    @Published private var doctor:Doctor
-    @Published var upcomingAppointments:[Appointment] = [Appointment]()
-    @Published var finishedAppointments:[Appointment] = [Appointment]()
+    @Published private var doctor:Nambadoctor_V1_DoctorResponse = Nambadoctor_V1_DoctorResponse()
+    @Published var upcomingAppointments:[Nambadoctor_V1_AppointmentObject] = [Nambadoctor_V1_AppointmentObject]()
+    @Published var finishedAppointments:[Nambadoctor_V1_AppointmentObject] = [Nambadoctor_V1_AppointmentObject]()
+    
+    @Published var doctorLoggedIn:Bool = false
+    
+    var authenticateService:AuthenticateServiceProtocol
 
-    init() {
-        doctor = getLoggedInDoctor()
-        self.retrieveAppointments()
+    init(authenticateService:AuthenticateServiceProtocol = AuthenticateService()) {
+        self.authenticateService = authenticateService
+        fetchDoctor()
+        retrieveAppointments()
+    }
+    
+    func fetchDoctor () {
+        GetDocObject.docHelper.fetchDoctor(userId: authenticateService.getUserId()) { (docObj) in
+            self.doctor = docObj
+            self.doctorLoggedIn = true
+        }
     }
 
     var authTokenId:String? {
@@ -34,14 +46,6 @@ class DoctorViewModel: ObservableObject {
         return AuthTokenId
     }
     
-    func storeDocObj() {
-        LocalEncoder.encode(payload: doctor, destination: LocalEncodingK.userObj.rawValue)
-    }
-
-    func retrieveDocObj() {
-        doctor = getLoggedInDoctor()
-    }
-
     func retrieveAppointments () {
         DoctorAppointmentViewModel.retrieveDocAppointmentList { (appointments) in
             for appointment in appointments {

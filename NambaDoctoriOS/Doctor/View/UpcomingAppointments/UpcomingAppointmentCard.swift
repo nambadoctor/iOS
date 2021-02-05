@@ -11,7 +11,7 @@ struct UpcomingAppointmentCard: View {
 
     @ObservedObject private var AppointmentVM:UpcomingAppointmentViewModel
 
-    init(appointment:Appointment) {
+    init(appointment:Nambadoctor_V1_AppointmentObject) {
         AppointmentVM = UpcomingAppointmentViewModel(appointment: appointment)
     }
     

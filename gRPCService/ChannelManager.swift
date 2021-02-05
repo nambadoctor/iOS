@@ -12,7 +12,7 @@ import NIO
 class ChannelManager {
 
     static let sharedChannelManager = ChannelManager()
-    var channel:ClientConnection?
+    private var channel:ClientConnection?
 
     //Private init for singleton class. No other caller can initialise this class anymore.
     private init(){ createChannel() }
