@@ -126,7 +126,7 @@ class UpcomingAppointmentViewModel: ObservableObject {
     //get patient token id, if not existing, fetch from api and completing parent call
     func getPatientFCMTokenId (completion: @escaping (_ retrieved:Bool) -> ()) {
         if patientTokenId.isEmpty {
-            GetReceptientFCMTokenId.getTokenId(patientId: appointment.requestedBy) { (tokenId) in
+            GetReceptientFCMTokenId.getPatientTokenId(patientId: appointment.requestedBy) { (tokenId) in
                 if tokenId != nil {
                     self.patientTokenId = tokenId!
                     completion(true)
