@@ -27,4 +27,8 @@ final class MockAuthenticateService: AuthenticateServiceProtocol {
         
         return true
     }
+    
+    func getUserId () -> String {
+        return "userId"
+    }
 }

@@ -12,15 +12,19 @@ class UpcomingAppointmentsViewModelTests: XCTestCase {
     var appointmentsVM:UpcomingAppointmentViewModel!
     var mockUpdateStatus:MockUpdateAptStatusService!
     var mockTwilioAccessTokenService:MockTwilioTokenAccessService!
-
+    var mockDocNotifHelper:MockDoctorNotifHelper!
+    
     override func setUp() {
         mockUpdateStatus = MockUpdateAptStatusService()
         mockTwilioAccessTokenService = MockTwilioTokenAccessService()
+        mockDocNotifHelper = MockDoctorNotifHelper()
         
         let mockAppointment = MakeMockAppointment.getAppointment()
         appointmentsVM = .init(appointment: mockAppointment,
                                updateAppointmentStatus: mockUpdateStatus,
-                               twilioAccessTokenHelper: mockTwilioAccessTokenService)
+                               twilioAccessTokenHelper: mockTwilioAccessTokenService,
+                               notifHelper: mockDocNotifHelper)
+        
     }
     
     func testShowCancelAppointmentWhenStatusIsConfirmed() {
@@ -63,11 +67,5 @@ class UpcomingAppointmentsViewModelTests: XCTestCase {
         appointmentsVM.writePrescription()
         
         XCTAssertTrue(appointmentsVM.consultationDone)
-    }
-    
-    func testViewPatientInfoTogglesNavigationToTrue() {
-        appointmentsVM.viewPatientInfo()
-
-        XCTAssertTrue(appointmentsVM.takeToViewPatientInfo)
     }
 }

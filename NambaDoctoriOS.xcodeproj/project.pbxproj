@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1728B76D25B38156001D554E /* FindDocOrPatientVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728B76C25B38156001D554E /* FindDocOrPatientVM.swift */; };
+		1728B76D25B38156001D554E /* gRPCCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728B76C25B38156001D554E /* gRPCCalls.swift */; };
 		1728B77525B381D1001D554E /* PreRegisteredUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728B77425B381D1001D554E /* PreRegisteredUser.swift */; };
 		1728B77A25B381E7001D554E /* PreRegisteredUserVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728B77925B381E7001D554E /* PreRegisteredUserVM.swift */; };
 		1728B77F25B3838E001D554E /* LoginStatusEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728B77E25B3838E001D554E /* LoginStatusEnum.swift */; };
@@ -112,7 +112,6 @@
 		1742523625BD988D00523B94 /* PatientInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1742523525BD988C00523B94 /* PatientInfoViewModel.swift */; };
 		1742523E25BD98F400523B94 /* RetrievePatientInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1742523D25BD98F400523B94 /* RetrievePatientInfo.swift */; };
 		1742524325BD990800523B94 /* RetrievePatientInfoProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1742524225BD990800523B94 /* RetrievePatientInfoProtocol.swift */; };
-		1742524F25BD99D000523B94 /* Patient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1742524E25BD99D000523B94 /* Patient.swift */; };
 		1742526025BD9E9F00523B94 /* PatientInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1742525F25BD9E9F00523B94 /* PatientInfoView.swift */; };
 		1742528325BDA9E100523B94 /* DoctorSheetHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1742528225BDA9E100523B94 /* DoctorSheetHelpers.swift */; };
 		1742528B25BDADDA00523B94 /* PUTPrescriptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1742528A25BDADDA00523B94 /* PUTPrescriptionViewModel.swift */; };
@@ -155,9 +154,6 @@
 		17B5D15B25B75B31009D6A42 /* DoctorAppointmentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B5D15A25B75B31009D6A42 /* DoctorAppointmentsViewModel.swift */; };
 		17B5D16425B75CE7009D6A42 /* CheckAppointmentStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B5D16325B75CE7009D6A42 /* CheckAppointmentStatus.swift */; };
 		17B5D16925B75EE9009D6A42 /* Indicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B5D16825B75EE9009D6A42 /* Indicator.swift */; };
-		17BA0AA925B9A84E00EDE4D1 /* MockGetRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BA0AA825B9A84E00EDE4D1 /* MockGetRequest.swift */; };
-		17BA0AAE25B9A89600EDE4D1 /* MockPatchRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BA0AAD25B9A89600EDE4D1 /* MockPatchRequest.swift */; };
-		17BA0AB325B9A8C800EDE4D1 /* MockPostRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BA0AB225B9A8C800EDE4D1 /* MockPostRequest.swift */; };
 		17BA0AB825B9AABD00EDE4D1 /* UpcomingAppointmentsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BA0AB725B9AABD00EDE4D1 /* UpcomingAppointmentsViewModelTests.swift */; };
 		17BA0ABE25B9ADA600EDE4D1 /* MockUpdateAptStatusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BA0ABD25B9ADA600EDE4D1 /* MockUpdateAptStatusService.swift */; };
 		17BA0AC725B9AE6200EDE4D1 /* UpdateAppointmentStatusProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BA0AC625B9AE6200EDE4D1 /* UpdateAppointmentStatusProtocol.swift */; };
@@ -188,6 +184,13 @@
 		17E8696025CDE1A1000B0952 /* report.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E8695F25CDE1A1000B0952 /* report.pb.swift */; };
 		17E8696825CDE1B5000B0952 /* appointment.proto in Sources */ = {isa = PBXBuildFile; fileRef = 17E8696725CDE1B5000B0952 /* appointment.proto */; };
 		17E8696D25CDE1C2000B0952 /* report.proto in Sources */ = {isa = PBXBuildFile; fileRef = 17E8696C25CDE1C2000B0952 /* report.proto */; };
+		17E8698125CE070B000B0952 /* GetDocObjectProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E8698025CE070B000B0952 /* GetDocObjectProtocol.swift */; };
+		17E8698925CE0935000B0952 /* MockGetDoctorObjectService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E8698825CE0935000B0952 /* MockGetDoctorObjectService.swift */; };
+		17E8698E25CE09B1000B0952 /* MockDoctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E8698D25CE09B1000B0952 /* MockDoctor.swift */; };
+		17E8699325CE0A5D000B0952 /* MockSlotObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E8699225CE0A5D000B0952 /* MockSlotObject.swift */; };
+		17E8699E25CE108E000B0952 /* DoctorAppointmentViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E8699D25CE108E000B0952 /* DoctorAppointmentViewModelProtocol.swift */; };
+		17E869A325CE121C000B0952 /* DocNotifHelpersProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E869A225CE121C000B0952 /* DocNotifHelpersProtocol.swift */; };
+		17E869D425CE1593000B0952 /* MockDoctorNotifHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E869D325CE1593000B0952 /* MockDoctorNotifHelper.swift */; };
 		434CDF5DFA0DF425DF44E2A2 /* Pods_NambaDoctoriOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 435C297907080A241A267BB0 /* Pods_NambaDoctoriOSTests.framework */; };
 		95ACD8DA00B7C0B2D7EA224D /* Pods_NambaDoctoriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 421278E51F7A74B868A7EA69 /* Pods_NambaDoctoriOS.framework */; };
 		B6746684516D05CE4C3163B4 /* Pods_NambaDoctoriOS_NambaDoctoriOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276EFB6904AFFC883BD04BA9 /* Pods_NambaDoctoriOS_NambaDoctoriOSUITests.framework */; };
@@ -211,7 +214,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1728B76C25B38156001D554E /* FindDocOrPatientVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindDocOrPatientVM.swift; sourceTree = "<group>"; };
+		1728B76C25B38156001D554E /* gRPCCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gRPCCalls.swift; sourceTree = "<group>"; };
 		1728B77425B381D1001D554E /* PreRegisteredUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreRegisteredUser.swift; sourceTree = "<group>"; };
 		1728B77925B381E7001D554E /* PreRegisteredUserVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreRegisteredUserVM.swift; sourceTree = "<group>"; };
 		1728B77E25B3838E001D554E /* LoginStatusEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStatusEnum.swift; sourceTree = "<group>"; };
@@ -315,7 +318,6 @@
 		1742523525BD988C00523B94 /* PatientInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientInfoViewModel.swift; sourceTree = "<group>"; };
 		1742523D25BD98F400523B94 /* RetrievePatientInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrievePatientInfo.swift; sourceTree = "<group>"; };
 		1742524225BD990800523B94 /* RetrievePatientInfoProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrievePatientInfoProtocol.swift; sourceTree = "<group>"; };
-		1742524E25BD99D000523B94 /* Patient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Patient.swift; sourceTree = "<group>"; };
 		1742525F25BD9E9F00523B94 /* PatientInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientInfoView.swift; sourceTree = "<group>"; };
 		1742528225BDA9E100523B94 /* DoctorSheetHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorSheetHelpers.swift; sourceTree = "<group>"; };
 		1742528A25BDADDA00523B94 /* PUTPrescriptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PUTPrescriptionViewModel.swift; sourceTree = "<group>"; };
@@ -358,9 +360,6 @@
 		17B5D15A25B75B31009D6A42 /* DoctorAppointmentsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoctorAppointmentsViewModel.swift; sourceTree = "<group>"; };
 		17B5D16325B75CE7009D6A42 /* CheckAppointmentStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckAppointmentStatus.swift; sourceTree = "<group>"; };
 		17B5D16825B75EE9009D6A42 /* Indicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Indicator.swift; sourceTree = "<group>"; };
-		17BA0AA825B9A84E00EDE4D1 /* MockGetRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGetRequest.swift; sourceTree = "<group>"; };
-		17BA0AAD25B9A89600EDE4D1 /* MockPatchRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPatchRequest.swift; sourceTree = "<group>"; };
-		17BA0AB225B9A8C800EDE4D1 /* MockPostRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPostRequest.swift; sourceTree = "<group>"; };
 		17BA0AB725B9AABD00EDE4D1 /* UpcomingAppointmentsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingAppointmentsViewModelTests.swift; sourceTree = "<group>"; };
 		17BA0ABD25B9ADA600EDE4D1 /* MockUpdateAptStatusService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpdateAptStatusService.swift; sourceTree = "<group>"; };
 		17BA0AC625B9AE6200EDE4D1 /* UpdateAppointmentStatusProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAppointmentStatusProtocol.swift; sourceTree = "<group>"; };
@@ -397,6 +396,13 @@
 		17E8695F25CDE1A1000B0952 /* report.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = report.pb.swift; path = ../../../../../v1/report.pb.swift; sourceTree = "<group>"; };
 		17E8696725CDE1B5000B0952 /* appointment.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; name = appointment.proto; path = ../../../../../v1/appointment.proto; sourceTree = "<group>"; };
 		17E8696C25CDE1C2000B0952 /* report.proto */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.protobuf; path = report.proto; sourceTree = "<group>"; };
+		17E8698025CE070B000B0952 /* GetDocObjectProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDocObjectProtocol.swift; sourceTree = "<group>"; };
+		17E8698825CE0935000B0952 /* MockGetDoctorObjectService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockGetDoctorObjectService.swift; sourceTree = "<group>"; };
+		17E8698D25CE09B1000B0952 /* MockDoctor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDoctor.swift; sourceTree = "<group>"; };
+		17E8699225CE0A5D000B0952 /* MockSlotObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSlotObject.swift; sourceTree = "<group>"; };
+		17E8699D25CE108E000B0952 /* DoctorAppointmentViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorAppointmentViewModelProtocol.swift; sourceTree = "<group>"; };
+		17E869A225CE121C000B0952 /* DocNotifHelpersProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocNotifHelpersProtocol.swift; sourceTree = "<group>"; };
+		17E869D325CE1593000B0952 /* MockDoctorNotifHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDoctorNotifHelper.swift; sourceTree = "<group>"; };
 		276EFB6904AFFC883BD04BA9 /* Pods_NambaDoctoriOS_NambaDoctoriOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NambaDoctoriOS_NambaDoctoriOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C1F9336480062135B79A499 /* Pods-NambaDoctoriOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NambaDoctoriOS.release.xcconfig"; path = "Target Support Files/Pods-NambaDoctoriOS/Pods-NambaDoctoriOS.release.xcconfig"; sourceTree = "<group>"; };
 		421278E51F7A74B868A7EA69 /* Pods_NambaDoctoriOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NambaDoctoriOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -515,10 +521,10 @@
 		172B84E525AEE38200C6B035 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				17E8688125CC74C5000B0952 /* GetDocObject.swift */,
 				17E8687D25CC6F9C000B0952 /* gRPCCallHelpers */,
 				174800BE25B8DE0300C8E3CC /* NotificationHelpers */,
 				172B84E625AEE39E00C6B035 /* DoctorViewModel.swift */,
+				17E8688125CC74C5000B0952 /* GetDocObject.swift */,
 				1748005E25B8BDB000C8E3CC /* UpcomingAppointmentViewModel.swift */,
 				17424F1225BA082400523B94 /* FinishedAppointmentViewModel.swift */,
 				17424FA925BACEF600523B94 /* PrescriptionViewModel.swift */,
@@ -735,22 +741,6 @@
 			path = PatientInfo;
 			sourceTree = "<group>";
 		};
-		1742524C25BD99BE00523B94 /* Patient */ = {
-			isa = PBXGroup;
-			children = (
-				1742524D25BD99C800523B94 /* Model */,
-			);
-			path = Patient;
-			sourceTree = "<group>";
-		};
-		1742524D25BD99C800523B94 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				1742524E25BD99D000523B94 /* Patient.swift */,
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
 		1742527625BDA9A100523B94 /* SheetAndAlertHelpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -773,7 +763,7 @@
 		174800AE25B8DB6600C8E3CC /* ApiCalls */ = {
 			isa = PBXGroup;
 			children = (
-				1728B76C25B38156001D554E /* FindDocOrPatientVM.swift */,
+				1728B76C25B38156001D554E /* gRPCCalls.swift */,
 				1748011425B8E21700C8E3CC /* RetrieveTwilioAccessToken.swift */,
 			);
 			path = ApiCalls;
@@ -893,16 +883,6 @@
 			name = MockAuthService;
 			sourceTree = "<group>";
 		};
-		17BA0A9725B9A78500EDE4D1 /* MockDataService */ = {
-			isa = PBXGroup;
-			children = (
-				17BA0AA825B9A84E00EDE4D1 /* MockGetRequest.swift */,
-				17BA0AAD25B9A89600EDE4D1 /* MockPatchRequest.swift */,
-				17BA0AB225B9A8C800EDE4D1 /* MockPostRequest.swift */,
-			);
-			path = MockDataService;
-			sourceTree = "<group>";
-		};
 		17BA0ABC25B9AD8400EDE4D1 /* OtherMockServices */ = {
 			isa = PBXGroup;
 			children = (
@@ -913,6 +893,8 @@
 				174250FB25BC483D00523B94 /* MockGeneralDocHelpers.swift */,
 				1742513D25BCBBBC00523B94 /* MockRetrieveFollowUpObjService.swift */,
 				1742514225BCBD4500523B94 /* MockRetrieveAllergiesService.swift */,
+				17E8698825CE0935000B0952 /* MockGetDoctorObjectService.swift */,
+				17E869D325CE1593000B0952 /* MockDoctorNotifHelper.swift */,
 			);
 			name = OtherMockServices;
 			sourceTree = "<group>";
@@ -930,6 +912,9 @@
 				174251DC25BCFDF600523B94 /* PutFollowUpAppointmentViewModelProtocol.swift */,
 				174251E125BCFE2D00523B94 /* PutPatientAllergiesViewModelProtocol.swift */,
 				1742524225BD990800523B94 /* RetrievePatientInfoProtocol.swift */,
+				17E8698025CE070B000B0952 /* GetDocObjectProtocol.swift */,
+				17E8699D25CE108E000B0952 /* DoctorAppointmentViewModelProtocol.swift */,
+				17E869A225CE121C000B0952 /* DocNotifHelpersProtocol.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -941,6 +926,8 @@
 				174250DC25BB6F3000523B94 /* MockPrescriptionData.swift */,
 				174250F125BB7E1E00523B94 /* MockMedicineData.swift */,
 				1742513525BCB08600523B94 /* MockFollowUpAptData.swift */,
+				17E8698D25CE09B1000B0952 /* MockDoctor.swift */,
+				17E8699225CE0A5D000B0952 /* MockSlotObject.swift */,
 			);
 			name = MockData;
 			sourceTree = "<group>";
@@ -1024,7 +1011,6 @@
 				172B847525AED21600C6B035 /* App */,
 				172B84C225AEDBC000C6B035 /* Common */,
 				172B84C125AEDBBA00C6B035 /* Doctor */,
-				1742524C25BD99BE00523B94 /* Patient */,
 				172B847F25AED22700C6B035 /* Resources */,
 				17E5186125AED16C001F1A80 /* Info.plist */,
 				1772338C25B726A6002B814A /* GoogleService-Info.plist */,
@@ -1046,7 +1032,6 @@
 			children = (
 				17BA0ACE25B9B2AC00EDE4D1 /* MockData */,
 				17BA0ABC25B9AD8400EDE4D1 /* OtherMockServices */,
-				17BA0A9725B9A78500EDE4D1 /* MockDataService */,
 				17BA0A8025B9A61400EDE4D1 /* MockAuthService */,
 				1772756425B8A7DB0012B9DE /* LoginViewModelTests.swift */,
 				17424F1D25BA0C2B00523B94 /* FinishedAppointmentsViewModelTests.swift */,
@@ -1408,7 +1393,7 @@
 				17E8695B25CDE19D000B0952 /* report.grpc.swift in Sources */,
 				17E8695125CDE191000B0952 /* appointment.grpc.swift in Sources */,
 				17B5D15B25B75B31009D6A42 /* DoctorAppointmentsViewModel.swift in Sources */,
-				1728B76D25B38156001D554E /* FindDocOrPatientVM.swift in Sources */,
+				1728B76D25B38156001D554E /* gRPCCalls.swift in Sources */,
 				173A22B425CAF7360086342A /* slot.proto in Sources */,
 				1742515A25BCC4AA00523B94 /* ReviewPrescriptionView.swift in Sources */,
 				17E3707025BF123F0004C965 /* Settings.swift in Sources */,
@@ -1422,6 +1407,7 @@
 				177233BE25B745C2002B814A /* Encoder.swift in Sources */,
 				173A22EB25CAF9040086342A /* followup.pb.swift in Sources */,
 				173A22E325CAF9040086342A /* payment.pb.swift in Sources */,
+				17E8698125CE070B000B0952 /* GetDocObjectProtocol.swift in Sources */,
 				1748005F25B8BDB000C8E3CC /* UpcomingAppointmentViewModel.swift in Sources */,
 				1742506325BAE5B200523B94 /* FollowUpAppointmentViewModel.swift in Sources */,
 				17E3640425B7075700791745 /* UpdateFCMToken.swift in Sources */,
@@ -1433,6 +1419,7 @@
 				173A22CC25CAF8F50086342A /* payment.grpc.swift in Sources */,
 				17E8695625CDE196000B0952 /* appointment.pb.swift in Sources */,
 				173A22E225CAF9040086342A /* logon.pb.swift in Sources */,
+				17E8699E25CE108E000B0952 /* DoctorAppointmentViewModelProtocol.swift in Sources */,
 				1728B78425B3865C001D554E /* RetrieveAuthTokenId.swift in Sources */,
 				174251E725BCFEBB00523B94 /* SubmitPrescriptionViewModel.swift in Sources */,
 				173A22E125CAF9040086342A /* notification.pb.swift in Sources */,
@@ -1459,11 +1446,11 @@
 				173A22D025CAF8F50086342A /* logon.grpc.swift in Sources */,
 				1742526025BD9E9F00523B94 /* PatientInfoView.swift in Sources */,
 				1748006A25B8C14400C8E3CC /* SendPushNotification.swift in Sources */,
-				1742524F25BD99D000523B94 /* Patient.swift in Sources */,
 				174250CB25BAEF4000523B94 /* MedicineEntryViewModel.swift in Sources */,
 				1796321025AEE865002E466C /* ConsultStateConstants.swift in Sources */,
 				1742511C25BCAB6F00523B94 /* RetrieveFollowUpFeeObjProtocol.swift in Sources */,
 				173A22B225CAF7360086342A /* doctor.proto in Sources */,
+				17E869A325CE121C000B0952 /* DocNotifHelpersProtocol.swift in Sources */,
 				173A22C925CAF8F50086342A /* followup.grpc.swift in Sources */,
 				173A22B325CAF7360086342A /* patient.proto in Sources */,
 				173A22B625CAF7360086342A /* prescription.proto in Sources */,
@@ -1525,9 +1512,11 @@
 			files = (
 				174250FC25BC483D00523B94 /* MockGeneralDocHelpers.swift in Sources */,
 				1742510125BC5C7100523B94 /* MedicineEntryViewModelTests.swift in Sources */,
+				17E8698925CE0935000B0952 /* MockGetDoctorObjectService.swift in Sources */,
 				17424F1E25BA0C2B00523B94 /* FinishedAppointmentsViewModelTests.swift in Sources */,
 				17BA0ABE25B9ADA600EDE4D1 /* MockUpdateAptStatusService.swift in Sources */,
 				1772756525B8A7DB0012B9DE /* LoginViewModelTests.swift in Sources */,
+				17E8699325CE0A5D000B0952 /* MockSlotObject.swift in Sources */,
 				1772755D25B8A4880012B9DE /* MockAuthenticateService.swift in Sources */,
 				1742514325BCBD4500523B94 /* MockRetrieveAllergiesService.swift in Sources */,
 				174250D025BB6E7500523B94 /* PrescriptionViewModelTests.swift in Sources */,
@@ -1535,17 +1524,16 @@
 				174250F225BB7E1E00523B94 /* MockMedicineData.swift in Sources */,
 				174250D825BB6ECD00523B94 /* MockRetrievePrescriptionService.swift in Sources */,
 				17BA0AD025B9B2B600EDE4D1 /* MockAppointmentData.swift in Sources */,
+				17E8698E25CE09B1000B0952 /* MockDoctor.swift in Sources */,
 				174250EA25BB7C1D00523B94 /* MedicineViewModelTests.swift in Sources */,
 				1742513E25BCBBBC00523B94 /* MockRetrieveFollowUpObjService.swift in Sources */,
-				17BA0AA925B9A84E00EDE4D1 /* MockGetRequest.swift in Sources */,
-				17BA0AAE25B9A89600EDE4D1 /* MockPatchRequest.swift in Sources */,
 				17BA0AB825B9AABD00EDE4D1 /* UpcomingAppointmentsViewModelTests.swift in Sources */,
 				17E5186B25AED16D001F1A80 /* NambaDoctoriOSTests.swift in Sources */,
 				17424F3C25BA3BE400523B94 /* MockDataAlertHelpers.swift in Sources */,
 				1742513625BCB08600523B94 /* MockFollowUpAptData.swift in Sources */,
-				17BA0AB325B9A8C800EDE4D1 /* MockPostRequest.swift in Sources */,
 				174250E225BB7AC800523B94 /* InvestigationViewModelTests.swift in Sources */,
 				17424F7F25BAC6BF00523B94 /* MockTwilioAccessTokenService.swift in Sources */,
+				17E869D425CE1593000B0952 /* MockDoctorNotifHelper.swift in Sources */,
 				174250DD25BB6F3000523B94 /* MockPrescriptionData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

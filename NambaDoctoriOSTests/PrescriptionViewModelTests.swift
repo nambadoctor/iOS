@@ -13,6 +13,7 @@ class PrescriptionViewModelTests: XCTestCase {
     var mockRetrievePrescriptionService:MockRetrievePrescriptionService!
     var mockRetrieveFollowUpService:MockRetrieveFollowUpObjService!
     var mockRetrieveAllergiesService:MockRetrieveAllergiesService!
+    var mockGetDocObjService:MockGetDoctorObjectService!
     
     override func setUp() {
         let mockAppointment = MakeMockAppointment.getAppointment()
@@ -20,9 +21,11 @@ class PrescriptionViewModelTests: XCTestCase {
         mockRetrievePrescriptionService = MockRetrievePrescriptionService()
         mockRetrieveFollowUpService = MockRetrieveFollowUpObjService()
         mockRetrieveAllergiesService = MockRetrieveAllergiesService()
+        mockGetDocObjService = MockGetDoctorObjectService()
         
         prescriptionVM = .init(appointment: mockAppointment,
                                isNewPrescription: true,
+                               docObjectHelper: mockGetDocObjService,
                                retrievePrescriptionHelper: mockRetrievePrescriptionService,
                                retrieveFollowUpObjHelper: mockRetrieveFollowUpService,
                                retrieveAllergiesHelper: mockRetrieveAllergiesService)
@@ -46,8 +49,8 @@ class PrescriptionViewModelTests: XCTestCase {
         mockRetrieveFollowUpService.hasFollowUp = true
         prescriptionVM.retrieveFollowUpFeeForPrescription()
 
-        XCTAssertEqual(prescriptionVM.FollowUpVM.nextFeeHelperString, "500")
-        XCTAssertEqual(prescriptionVM.FollowUpVM.validDaysHelperString, "20")
+        XCTAssertEqual(prescriptionVM.FollowUpVM.nextFeeHelperString, "300")
+        XCTAssertEqual(prescriptionVM.FollowUpVM.validDaysHelperString, "10")
     }
 
     func testRetrieveAllergiesShouldPopulateSuccessfully() {

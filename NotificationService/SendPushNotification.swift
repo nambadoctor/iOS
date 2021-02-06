@@ -8,14 +8,19 @@
 import Foundation
 
 class SendPushNotification {
-    static func sendNotif (notifObj:NotificationObj) {
-        let parameters: [String: Any] = [
-            "token":notifObj.token,
-            "title":notifObj.title,
-            "body":notifObj.body,
-            "id":notifObj.id
-        ]
-
-        ApiPostCall.post(parameters: parameters, extensionURL: "notification/send") { (success, notifResponse) in }
+    func sendNotif (notifObj: Nambadoctor_V1_NotificationRequest) {
+        let channel = ChannelManager.sharedChannelManager.getChannel()
+        let notificiationClient = Nambadoctor_V1_NotificationWorkerV1Client(channel: channel)
+        
+        let request = notifObj
+        
+        let sendNotifTask = notificiationClient.sendNotification(request)
+        
+        do {
+            let response = try sendNotifTask.response.wait()
+            print("Send Notification Client Success")
+        } catch {
+            print("Send Notification Client Failure")
+        }
     }
 }

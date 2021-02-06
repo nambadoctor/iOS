@@ -9,33 +9,30 @@
 
 class MockUpdateAptStatusService: UpdateAppointmentStatusProtocol {
     
+    var makeAppointmentUpdate:Bool = false
     var updateCancelSuccess:Bool = false
     var updateStartConsultationSuccess:Bool = false
     var updateToFinishedSuccess:Bool = false
     var updateToFinishedAppointmentSuccess:Bool = false
     
-    func getParams(appointmentId: String, status: String) -> [String : Any] {
-        let parameters: [String: Any] = [
-            "id":appointmentId,
-            "status":status
-        ]
-
-        return parameters
+    func makeAppointmentUpdate (appointment:Nambadoctor_V1_AppointmentObject,
+                                completion: @escaping (_ updated:Bool)->()) {
+        completion(makeAppointmentUpdate)
     }
     
-    func toCancelled(appointmentId: String, completion: @escaping (Bool) -> ()) {
+    func toCancelled(appointment:inout Nambadoctor_V1_AppointmentObject, completion: @escaping (Bool) -> ()) {
         completion(updateCancelSuccess)
     }
     
-    func updateToStartedConsultation(appointmentId: String, completion: @escaping (Bool) -> ()) {
+    func updateToStartedConsultation(appointment:inout Nambadoctor_V1_AppointmentObject, completion: @escaping (Bool) -> ()) {
         completion(updateStartConsultationSuccess)
     }
     
-    func updateToFinished(appointmentId: String, completion: @escaping (Bool) -> ()) {
+    func updateToFinished(appointment:inout Nambadoctor_V1_AppointmentObject, completion: @escaping (Bool) -> ()) {
         completion(updateToFinishedSuccess)
     }
 
-    func updateToFinishedAppointment(appointmentId: String, completion: @escaping (Bool) -> ()) {
+    func updateToFinishedAppointment(appointment:inout Nambadoctor_V1_AppointmentObject, completion: @escaping (Bool) -> ()) {
         completion(updateToFinishedAppointmentSuccess)
     }
 }

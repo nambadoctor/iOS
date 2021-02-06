@@ -83,8 +83,9 @@ class GeneralDoctorHelpers : GeneralDoctorHelpersProtocol {
     }
     
      func splitTimingStringIntoDoubleArr (timings:String) -> [Double] {
-        if !timings.isEmpty {
-            let timingStringArr = timings.components(separatedBy: ",")
+        let timingStringArr = timings.components(separatedBy: ",")
+        
+        if timingStringArr.count > 1 {
             
             var timingDoubleArr:[Double] = [Double]()
             

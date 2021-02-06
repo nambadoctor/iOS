@@ -55,7 +55,8 @@ class MedicineEntryViewModel : ObservableObject {
         let timingDoubleArr = generalDoctorHelpers.splitTimingStringIntoDoubleArr(timings: medicine.timings)
         
         //TODO: CHANGE AFTER UNDERSTANDING THE TIMING STRUCTURE
-        if medicine.intake.split(separator: ",").count > 1 {
+        if timingDoubleArr.count > 1 {
+            print()
             morningTemp = timingDoubleArr[0]
             noonTemp = timingDoubleArr[1]
             eveningTemp = timingDoubleArr[2]

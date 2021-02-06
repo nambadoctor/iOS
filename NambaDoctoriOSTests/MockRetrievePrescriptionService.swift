@@ -11,7 +11,7 @@ class MockRetrievePrescriptionService : RetrievePrescriptionForAppointmentProtoc
 
     var retrievePrescriptionSuccess:Bool = false
 
-    func getPrescription(appointmentId: String, _ completion: @escaping ((Prescription?) -> ())) {
+    func getPrescription (appointmentId:String, _ completion: @escaping ((_ prescription:Nambadoctor_V1_PrescriptionObject?)->())) {
         if retrievePrescriptionSuccess {
             completion(MakeMockPrescription.getPrescription())
         } else {

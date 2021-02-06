@@ -22,7 +22,7 @@ class MedicineViewModel: ObservableObject {
     }
 
     var medFoodCorrelation:String { return foodSelectionArray[medicineEntryVM.foodSelectionIndex] }
-    var routeOfAdmission:String { return routeOfAdmissionArray[medicineEntryVM.routeOfAdminIndex] }
+    var routeOfAdministration:String { return routeOfAdmissionArray[medicineEntryVM.routeOfAdminIndex] }
     var medInTake:String { return medicineInTakeTimings[medicineEntryVM.inTakeIndex] }
     
     var morningQuanityDisplay:String {
@@ -78,7 +78,7 @@ class MedicineViewModel: ObservableObject {
             medicineArr.append(tempMedicine)
         } else {
             let indexOfmed = generalDoctorHelpers.getMedicineIndex(medicineArr: medicineArr, medicine: tempMedicine)
-            medicineArr[indexOfmed] = tempMedicine
+            medicineArr[indexOfmed-1] = tempMedicine
         }
         
         dismissMedicineEntrySheet()
@@ -89,7 +89,7 @@ class MedicineViewModel: ObservableObject {
         tempMedicine.dosage = medicineEntryVM.dosage
         tempMedicine.timings = medicineEntryVM.timingString
         tempMedicine.specialInstructions = medFoodCorrelation
-        tempMedicine.routeOfAdministration = routeOfAdmission
+        tempMedicine.routeOfAdministration = routeOfAdministration
         tempMedicine.intake = medInTake
 
         if medicineEntryVM.noSpecificDuration {

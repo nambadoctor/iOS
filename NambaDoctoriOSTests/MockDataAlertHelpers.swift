@@ -11,6 +11,9 @@ class MockDoctorAlertHelpers: DoctorAlertHelpersProtocol {
     
     var writePrescription:Bool = false
     var amendPrescription:Bool = false
+    var askToSavePrescriptionPermission:Bool = false
+    var endConsultationPermission:Bool = false
+    var dontShowAgainPermission:Bool = false
     
     func writePrescriptionAlert(appointmentId: String, requestedBy: String, navigate: @escaping (Bool) -> ()) {
         navigate(writePrescription)
@@ -20,5 +23,14 @@ class MockDoctorAlertHelpers: DoctorAlertHelpersProtocol {
         amend(amendPrescription)
     }
     
+    func askToSavePrescriptionAlert (save: @escaping (Bool) -> ()) {
+        save(askToSavePrescriptionPermission)
+    }
     
+    func endConsultationAlert (endConsultation: @escaping (_ ended:Bool) -> (), dontShowAgain: @escaping (_ dontshowAgain:Bool) -> ()) {
+        endConsultation(endConsultationPermission)
+        dontShowAgain(dontShowAgainPermission)
+    }
+    
+    func patientAddedAlert () {}
 }

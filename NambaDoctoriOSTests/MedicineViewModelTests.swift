@@ -20,7 +20,7 @@ class MedicineViewModelTests: XCTestCase {
     func testFoodSelectionStringReturnsAsExpected() {
         setMedicineEntryTestValues()
         XCTAssertEqual(medicineVM.medFoodCorrelation, foodSelectionArray[2])
-        XCTAssertEqual(medicineVM.routeOfAdmission, routeOfAdmissionArray[2])
+        XCTAssertEqual(medicineVM.routeOfAdministration, routeOfAdmissionArray[2])
         XCTAssertEqual(medicineVM.medInTake, medicineInTakeTimings[2])
     }
     
@@ -65,8 +65,8 @@ class MedicineViewModelTests: XCTestCase {
         XCTAssertEqual(medicineVM.tempMedicine.dosage, medInArr.dosage)
         XCTAssertEqual(medicineVM.tempMedicine.timings, medInArr.timings)
         XCTAssertEqual(medicineVM.tempMedicine.intake, medInArr.intake)
-        XCTAssertEqual(medicineVM.tempMedicine.routeOfAdmission, medInArr.routeOfAdmission)
-        XCTAssertEqual(medicineVM.tempMedicine.splInstructions, medInArr.splInstructions)
+        XCTAssertEqual(medicineVM.tempMedicine.routeOfAdministration, medInArr.routeOfAdministration)
+        XCTAssertEqual(medicineVM.tempMedicine.specialInstructions, medInArr.specialInstructions)
     }
 
     func testEditMedicineReturnsSuccessfull() {
@@ -88,8 +88,8 @@ class MedicineViewModelTests: XCTestCase {
         XCTAssertEqual(medicineVM.tempMedicine.dosage, medEntryVM.dosage)
         XCTAssertEqual(medicineVM.tempMedicine.timings, medEntryVM.timingString)
         XCTAssertEqual(medicineVM.tempMedicine.intake, medicineVM.medInTake)
-        XCTAssertEqual(medicineVM.tempMedicine.routeOfAdmission, medicineVM.routeOfAdmission)
-        XCTAssertEqual(medicineVM.tempMedicine.splInstructions, medicineVM.medFoodCorrelation)
+        XCTAssertEqual(medicineVM.tempMedicine.routeOfAdministration, medicineVM.routeOfAdministration)
+        XCTAssertEqual(medicineVM.tempMedicine.specialInstructions, medicineVM.medFoodCorrelation)
     }
     
     func setMedicineEntryTestValues () {

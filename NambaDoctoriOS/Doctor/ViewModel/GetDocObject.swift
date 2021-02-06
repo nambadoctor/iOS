@@ -7,15 +7,13 @@
 
 import Foundation
 
-class GetDocObject {
-    static let docHelper = GetDocObject()
-    private var doctor:Nambadoctor_V1_DoctorResponse?
+//global variable for now. not singleton
+var doctor:Nambadoctor_V1_DoctorResponse?
 
-    init(){}
-    
+class GetDocObject : GetDocObjectProtocol {
     func fetchDoctor (userId:String, completion: @escaping (_ doctor:Nambadoctor_V1_DoctorResponse)->())  {
         RetrieveDocObj().getDoc(doctorId:userId) { docObj in
-            self.doctor = docObj
+            doctor = docObj
             completion(docObj)
         }
     }

@@ -21,7 +21,7 @@ class UpcomingAppointmentViewModel: ObservableObject {
     @Published var showCancelButton:Bool = true
 
     private var patientTokenId:String = ""
-    private var notifHelper:DocNotifHelpers = DocNotifHelpers()
+    private var notifHelper:DocNotifHelpersProtocol
     private var docSheetHelper:DoctorSheetHelpers = DoctorSheetHelpers()
 
     private var updateAppointmentStatus:UpdateAppointmentStatusProtocol
@@ -31,14 +31,14 @@ class UpcomingAppointmentViewModel: ObservableObject {
     init(appointment:Nambadoctor_V1_AppointmentObject,
          updateAppointmentStatus:UpdateAppointmentStatusProtocol = UpdateAppointmentStatusViewModel(),
          doctorAlertHelper:DoctorAlertHelpersProtocol = DoctorAlertHelpers(),
-         twilioAccessTokenHelper:TwilioAccessTokenProtocol = RetrieveTwilioAccessToken()) {
+         twilioAccessTokenHelper:TwilioAccessTokenProtocol = RetrieveTwilioAccessToken(),
+         notifHelper:DocNotifHelpersProtocol = DocNotifHelpers()) {
         
         self.appointment = appointment
-
         self.updateAppointmentStatus = updateAppointmentStatus
         self.twilioAccessTokenHelper = twilioAccessTokenHelper
         self.doctorAlertHelper = doctorAlertHelper
-
+        self.notifHelper = notifHelper
         checkIfConsultationStarted()
         checkToShowCancelButton()
     }

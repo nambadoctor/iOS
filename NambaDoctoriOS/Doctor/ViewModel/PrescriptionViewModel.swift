@@ -11,7 +11,7 @@ import SwiftUI
 class PrescriptionViewModel: ObservableObject {
     var appointment:Nambadoctor_V1_AppointmentObject
     var isNewPrescription:Bool
-    let loggedInDoctor = GetDocObject.docHelper.getDoctor()
+    var loggedInDoctor:Nambadoctor_V1_DoctorResponse
     
     @Published var prescription:Nambadoctor_V1_PrescriptionObject!
     @Published var errorInRetrievingPrescription:Bool = false
@@ -24,6 +24,7 @@ class PrescriptionViewModel: ObservableObject {
     @Published var MedicineEntryVM:MedicineEntryViewModel = MedicineEntryViewModel()
     @Published var patientAllergies:String = ""
     
+    private var docObjectHelper:GetDocObjectProtocol
     private var retrievePrescriptionHelper:RetrievePrescriptionForAppointmentProtocol
     private var retrieveFollowUpObjHelper:RetrieveFollowUpFeeObjProtocol
     private var retrieveAllergiesHelper:RetrievePatientAllergiesProtocol
@@ -33,10 +34,9 @@ class PrescriptionViewModel: ObservableObject {
 
     init(appointment:Nambadoctor_V1_AppointmentObject,
          isNewPrescription:Bool,
+         docObjectHelper:GetDocObjectProtocol = GetDocObject(),
          retrievePrescriptionHelper:RetrievePrescriptionForAppointmentProtocol = RetrievePrescriptionForAppointmentViewModel(),
-
          retrieveFollowUpObjHelper:RetrieveFollowUpFeeObjProtocol = RetrieveFollowUpObjViewModel(),
-
          retrieveAllergiesHelper:RetrievePatientAllergiesProtocol = RetrievePatientAllergiesViewModel()) {
 
         self.appointment = appointment
@@ -44,6 +44,8 @@ class PrescriptionViewModel: ObservableObject {
         self.retrievePrescriptionHelper = retrievePrescriptionHelper
         self.retrieveFollowUpObjHelper = retrieveFollowUpObjHelper
         self.retrieveAllergiesHelper = retrieveAllergiesHelper
+        self.docObjectHelper = docObjectHelper
+        self.loggedInDoctor = docObjectHelper.getDoctor()
     }
 
     /*

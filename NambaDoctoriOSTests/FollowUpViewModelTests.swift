@@ -33,7 +33,7 @@ class FollowUpViewModelTests: XCTestCase {
         let followUpObj = MakeMockFollowUp.getFollowUp()
         followupVM.mapExistingValuesFromFollowUpObj(followUpObj: followUpObj)
         
-        XCTAssertEqual(String(followUpObj.validityDays), followupVM.validDaysHelperString)
-        XCTAssertEqual(String(followUpObj.nextAppointmentFee), followupVM.nextFeeHelperString)
+        XCTAssertEqual(String(followUpObj.nofDays), followupVM.validDaysHelperString)
+        XCTAssertEqual(String(followUpObj.discountedFee), followupVM.nextFeeHelperString)
     }
 }

@@ -15,15 +15,18 @@ class DoctorViewModel: ObservableObject {
     @Published var doctorLoggedIn:Bool = false
     
     var authenticateService:AuthenticateServiceProtocol
+    var doctorAppointmentViewModel:DoctorAppointmentViewModelProtocol
 
-    init(authenticateService:AuthenticateServiceProtocol = AuthenticateService()) {
+    init(authenticateService:AuthenticateServiceProtocol = AuthenticateService(),
+         doctorAptVM:DoctorAppointmentViewModelProtocol = DoctorAppointmentViewModel()) {
         self.authenticateService = authenticateService
+        self.doctorAppointmentViewModel = doctorAptVM
         fetchDoctor()
         retrieveAppointments()
     }
     
     func fetchDoctor () {
-        GetDocObject.docHelper.fetchDoctor(userId: authenticateService.getUserId()) { (docObj) in
+        GetDocObject().fetchDoctor(userId: authenticateService.getUserId()) { (docObj) in
             self.doctor = docObj
             self.doctorLoggedIn = true
         }
@@ -47,7 +50,7 @@ class DoctorViewModel: ObservableObject {
     }
     
     func retrieveAppointments () {
-        DoctorAppointmentViewModel.retrieveDocAppointmentList { (appointments) in
+        doctorAppointmentViewModel.retrieveDocAppointmentList { (appointments) in
             for appointment in appointments {
                 switch CheckAppointmentStatus.checkStatus(appointmentStatus: appointment.status) {
                 case .Confirmed, .FinishedAppointment, .StartedConsultation:

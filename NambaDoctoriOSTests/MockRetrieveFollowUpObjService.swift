@@ -11,8 +11,8 @@ import Foundation
 class MockRetrieveFollowUpObjService: RetrieveFollowUpFeeObjProtocol {
     
     var hasFollowUp:Bool = false
-
-    func getNextFee(patientId: String, _ completion: @escaping ((PatientFollowUpObj?) -> ())) {
+    
+    func getNextFee (doctorId:String, patientId:String, _ completion: @escaping ((_ nextFeeObj:Nambadoctor_V1_FollowUpObject?)->())) {
         if hasFollowUp {
             let mockNextFeeObj = MakeMockFollowUp.getFollowUp()
             completion(mockNextFeeObj)

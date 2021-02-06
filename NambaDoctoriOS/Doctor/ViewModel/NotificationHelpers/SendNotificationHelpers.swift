@@ -7,12 +7,15 @@
 
 import Foundation
 
-class DocNotifHelpers {
+class DocNotifHelpers : DocNotifHelpersProtocol {
     
     var currentDocObj:Nambadoctor_V1_DoctorResponse
+    var sendPushNotification = NambaDoctoriOS.SendPushNotification()
+    var getDocObjectHelper:GetDocObjectProtocol
     
-    init() {
-        currentDocObj = GetDocObject.docHelper.getDoctor()
+    init(getDocObjHelper:GetDocObjectProtocol = GetDocObject()) {
+        self.getDocObjectHelper = getDocObjHelper
+        currentDocObj = getDocObjectHelper.getDoctor()
     }
     
     func fireCancelNotif (patientToken:String, appointmentTime:String) {
@@ -22,9 +25,9 @@ class DocNotifHelpers {
             $0.receiverDeviceToken = patientToken
             $0.idIfAny = ""
         }
-        SendPushNotification.sendNotif(notifObj: cancelNotifObj)
+        sendPushNotification.sendNotif(notifObj: cancelNotifObj)
     }
-
+    
     func fireStartedConsultationNotif (patientToken:String, appointmentTime:String) {
         
         let startedConsultNotifObj = Nambadoctor_V1_NotificationRequest.with {
@@ -34,7 +37,7 @@ class DocNotifHelpers {
             $0.idIfAny = ""
         }
         
-        SendPushNotification.sendNotif(notifObj: startedConsultNotifObj)
+        sendPushNotification.sendNotif(notifObj: startedConsultNotifObj)
     }
     
     func fireAppointmentOverNotif(patientToken: String) {
@@ -45,7 +48,7 @@ class DocNotifHelpers {
             $0.idIfAny = ""
         }
         
-        SendPushNotification.sendNotif(notifObj: startedConsultNotifObj)
+        sendPushNotification.sendNotif(notifObj: startedConsultNotifObj)
     }
-
+    
 }

@@ -8,12 +8,16 @@
 import Foundation
 @testable import NambaDoctoriOS
 
-let mockMedicineJSON = "{\"dosage\":\"350mg\",\"intake\":\"Twice a day\",\"medicineName\":\"dolo\",\"numOfDays\":10,\"routeOfAdmission\":\"Intramuscular\",\"splInstructions\":\"AnyTime\",\"timings\":\"0.0,0.5,1.5,0.0\"}"
-
 class MakeMockMedicine {
-    static func getMedicine () -> Medicine {
-        let data = mockMedicineJSON.data(using: .utf8)!
-        let mockMedicine = try? JSONDecoder().decode(Medicine.self, from: data)
-        return mockMedicine!
+    static func getMedicine () -> Nambadoctor_V1_MedicineObject {
+        return Nambadoctor_V1_MedicineObject.with {
+            $0.medicineName = "dolo"
+            $0.dosage = "350mg"
+            $0.routeOfAdministration = "Intramuscular"
+            $0.intake = "Twice a day"
+            $0.duration = 10
+            $0.timings = "0.0,0.5,1.5,0.0"
+            $0.specialInstructions = "spl instructions"
+        }
     }
 }

@@ -8,16 +8,16 @@
 
 import Foundation
 
-class DoctorAppointmentViewModel {
-    static func retrieveDocAppointmentList (_ completion: @escaping ((_ appointmentList:[Nambadoctor_V1_AppointmentObject])->())) {
+class DoctorAppointmentViewModel : DoctorAppointmentViewModelProtocol {
+    func retrieveDocAppointmentList (_ completion: @escaping ((_ appointmentList:[Nambadoctor_V1_AppointmentObject])->())) {
 
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let appointmentClient = Nambadoctor_V1_AppointmentWorkerV1Client(channel: channel)
         
         let request = Nambadoctor_V1_AppointmentDoctorRequest.with {
-            $0.doctorID = GetDocObject.docHelper.getDoctor().doctorID
+            $0.doctorID = GetDocObject().getDoctor().doctorID
         }
-        
+
         let getDoctorsAppointment = appointmentClient.getAllDoctorAppointments(request)
         
         do {
