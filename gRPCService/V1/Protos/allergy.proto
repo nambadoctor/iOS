@@ -5,7 +5,7 @@ option csharp_namespace = "NambaDoctor.Proto.v1";
 package nambadoctor.v1;
 
 service AllergyWorkerv1 {
-	rpc GetAllergyofDoctor(AllergyDoc) returns (AllergyObject);
+	rpc GetAllergyofAppointment(AllergyForAppointmentRequest) returns (AllergyObject);
 	rpc GetAllergyofPatient(AllergyPat) returns (AllergyObject);
 	rpc SaveNewAllergy(AllergyObject) returns(AllergyResponse);
 }
@@ -18,8 +18,8 @@ message AllergyObject{
 	int64 CreatedDateTime = 5;
 }
 
-message AllergyDoc{
-	string doc_id = 1;
+message AllergyForAppointmentRequest{
+	string AppointmentId = 1;
 }
 
 message AllergyPat{

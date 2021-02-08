@@ -12,15 +12,15 @@ class PatientInfoViewModel: ObservableObject {
     @Published var patientObj:Nambadoctor_V1_PatientObject!
     @Published var patientAllergies:String = ""
     @Published var AppointmentList:[Nambadoctor_V1_AppointmentObject]!
-    @Published var UploadedDocumentList:[Nambadoctor_V1_ReportDownloadObject]!
-
+    @Published var ReportList:[Nambadoctor_V1_ReportDownloadObject]!
+    
     var appointment:Nambadoctor_V1_AppointmentObject
     private var retrievePatientInfoHelper:RetrievePatientInfoProtocol
     private var retrievePatientAllergiesHelper:RetrievePatientAllergiesProtocol
-    
+
     init(appointment:Nambadoctor_V1_AppointmentObject) {
         self.appointment = appointment
-        retrievePatientInfoHelper = RetrievePatientInfo()
+        retrievePatientInfoHelper = RetrievePatientInfoViewModel()
         retrievePatientAllergiesHelper = RetrievePatientAllergiesViewModel()
         
         retrievePatientObj()
@@ -42,8 +42,8 @@ class PatientInfoViewModel: ObservableObject {
     }
 
     private func retrieveUploadedDocumentList () {
-        retrievePatientInfoHelper.getUploadedDocumentList(appointmentId: appointment.appointmentID) { (uploadedDocList) in
-            self.UploadedDocumentList = uploadedDocList
+        retrievePatientInfoHelper.getUploadedReportList(appointment: appointment) { (uploadedDocList) in
+            self.ReportList = uploadedDocList
         }
     }
 

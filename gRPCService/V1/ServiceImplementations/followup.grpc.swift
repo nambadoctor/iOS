@@ -44,6 +44,11 @@ internal protocol Nambadoctor_V1_FollowUpWorkerV1ClientProtocol: GRPCClient {
     _ request: Nambadoctor_V1_FollowUpObject,
     callOptions: CallOptions?
   ) -> UnaryCall<Nambadoctor_V1_FollowUpObject, Nambadoctor_V1_FollowUpResponse>
+
+  func getFollowupForAppointment(
+    _ request: Nambadoctor_V1_FollowUpAppointmentRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nambadoctor_V1_FollowUpAppointmentRequest, Nambadoctor_V1_FollowUpObject>
 }
 
 extension Nambadoctor_V1_FollowUpWorkerV1ClientProtocol {
@@ -104,6 +109,24 @@ extension Nambadoctor_V1_FollowUpWorkerV1ClientProtocol {
       interceptors: self.interceptors?.makeWriteNewFollowUpInterceptors() ?? []
     )
   }
+
+  /// Unary call to GetFollowupForAppointment
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetFollowupForAppointment.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getFollowupForAppointment(
+    _ request: Nambadoctor_V1_FollowUpAppointmentRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nambadoctor_V1_FollowUpAppointmentRequest, Nambadoctor_V1_FollowUpObject> {
+    return self.makeUnaryCall(
+      path: "/nambadoctor.v1.FollowUpWorkerV1/GetFollowupForAppointment",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetFollowupForAppointmentInterceptors() ?? []
+    )
+  }
 }
 
 internal protocol Nambadoctor_V1_FollowUpWorkerV1ClientInterceptorFactoryProtocol {
@@ -116,6 +139,9 @@ internal protocol Nambadoctor_V1_FollowUpWorkerV1ClientInterceptorFactoryProtoco
 
   /// - Returns: Interceptors to use when invoking 'writeNewFollowUp'.
   func makeWriteNewFollowUpInterceptors() -> [ClientInterceptor<Nambadoctor_V1_FollowUpObject, Nambadoctor_V1_FollowUpResponse>]
+
+  /// - Returns: Interceptors to use when invoking 'getFollowupForAppointment'.
+  func makeGetFollowupForAppointmentInterceptors() -> [ClientInterceptor<Nambadoctor_V1_FollowUpAppointmentRequest, Nambadoctor_V1_FollowUpObject>]
 }
 
 internal final class Nambadoctor_V1_FollowUpWorkerV1Client: Nambadoctor_V1_FollowUpWorkerV1ClientProtocol {
@@ -149,6 +175,8 @@ internal protocol Nambadoctor_V1_FollowUpWorkerV1Provider: CallHandlerProvider {
   func getNextFollowUpWithDoctor(request: Nambadoctor_V1_FollowUpRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Nambadoctor_V1_FollowUpObject>
 
   func writeNewFollowUp(request: Nambadoctor_V1_FollowUpObject, context: StatusOnlyCallContext) -> EventLoopFuture<Nambadoctor_V1_FollowUpResponse>
+
+  func getFollowupForAppointment(request: Nambadoctor_V1_FollowUpAppointmentRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Nambadoctor_V1_FollowUpObject>
 }
 
 extension Nambadoctor_V1_FollowUpWorkerV1Provider {
@@ -188,6 +216,15 @@ extension Nambadoctor_V1_FollowUpWorkerV1Provider {
         userFunction: self.writeNewFollowUp(request:context:)
       )
 
+    case "GetFollowupForAppointment":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nambadoctor_V1_FollowUpAppointmentRequest>(),
+        responseSerializer: ProtobufSerializer<Nambadoctor_V1_FollowUpObject>(),
+        interceptors: self.interceptors?.makeGetFollowupForAppointmentInterceptors() ?? [],
+        userFunction: self.getFollowupForAppointment(request:context:)
+      )
+
     default:
       return nil
     }
@@ -207,4 +244,8 @@ internal protocol Nambadoctor_V1_FollowUpWorkerV1ServerInterceptorFactoryProtoco
   /// - Returns: Interceptors to use when handling 'writeNewFollowUp'.
   ///   Defaults to calling `self.makeInterceptors()`.
   func makeWriteNewFollowUpInterceptors() -> [ServerInterceptor<Nambadoctor_V1_FollowUpObject, Nambadoctor_V1_FollowUpResponse>]
+
+  /// - Returns: Interceptors to use when handling 'getFollowupForAppointment'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetFollowupForAppointmentInterceptors() -> [ServerInterceptor<Nambadoctor_V1_FollowUpAppointmentRequest, Nambadoctor_V1_FollowUpObject>]
 }

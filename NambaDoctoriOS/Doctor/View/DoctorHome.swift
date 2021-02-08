@@ -44,12 +44,14 @@ struct DoctorHome: View {
             alertToShow(alertItem: alertItem)
         }
         .sheet(item: $sheetItem) { sheetItem in
-            if sheetItem.appointment != nil {
-                PatientInfoView(appointment: sheetItem.appointment!)
-            }
-            
-            if sheetItem.showAddPatient != nil {
-                AddPatientView()
+            NavigationView {
+                if sheetItem.appointment != nil {
+                    PatientInfoView(appointment: sheetItem.appointment!)
+                }
+                
+                if sheetItem.showAddPatient != nil {
+                    AddPatientView()
+                }
             }
         }
     }

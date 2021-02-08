@@ -61,7 +61,14 @@ struct Nambadoctor_V1_PrescriptionObject {
 
   var diagnosisType: String = String()
 
-  var investigations: [String] = []
+  var investigations: Nambadoctor_V1_InvestigationList {
+    get {return _investigations ?? Nambadoctor_V1_InvestigationList()}
+    set {_investigations = newValue}
+  }
+  /// Returns true if `investigations` has been explicitly set.
+  var hasInvestigations: Bool {return self._investigations != nil}
+  /// Clears the value of `investigations`. Subsequent reads from it will return its default value.
+  mutating func clearInvestigations() {self._investigations = nil}
 
   var advice: String = String()
 
@@ -72,6 +79,20 @@ struct Nambadoctor_V1_PrescriptionObject {
   var createdDateTime: Int64 = 0
 
   var medicines: [Nambadoctor_V1_MedicineObject] = []
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _investigations: Nambadoctor_V1_InvestigationList? = nil
+}
+
+struct Nambadoctor_V1_InvestigationList {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var investigation: [String] = []
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -199,7 +220,7 @@ extension Nambadoctor_V1_PrescriptionObject: SwiftProtobuf.Message, SwiftProtobu
       case 4: try { try decoder.decodeSingularStringField(value: &self.examination) }()
       case 5: try { try decoder.decodeSingularStringField(value: &self.diagnosis) }()
       case 6: try { try decoder.decodeSingularStringField(value: &self.diagnosisType) }()
-      case 7: try { try decoder.decodeRepeatedStringField(value: &self.investigations) }()
+      case 7: try { try decoder.decodeSingularMessageField(value: &self._investigations) }()
       case 8: try { try decoder.decodeSingularStringField(value: &self.advice) }()
       case 9: try { try decoder.decodeSingularStringField(value: &self.doctorID) }()
       case 10: try { try decoder.decodeSingularStringField(value: &self.patientID) }()
@@ -229,8 +250,8 @@ extension Nambadoctor_V1_PrescriptionObject: SwiftProtobuf.Message, SwiftProtobu
     if !self.diagnosisType.isEmpty {
       try visitor.visitSingularStringField(value: self.diagnosisType, fieldNumber: 6)
     }
-    if !self.investigations.isEmpty {
-      try visitor.visitRepeatedStringField(value: self.investigations, fieldNumber: 7)
+    if let v = self._investigations {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
     }
     if !self.advice.isEmpty {
       try visitor.visitSingularStringField(value: self.advice, fieldNumber: 8)
@@ -257,12 +278,44 @@ extension Nambadoctor_V1_PrescriptionObject: SwiftProtobuf.Message, SwiftProtobu
     if lhs.examination != rhs.examination {return false}
     if lhs.diagnosis != rhs.diagnosis {return false}
     if lhs.diagnosisType != rhs.diagnosisType {return false}
-    if lhs.investigations != rhs.investigations {return false}
+    if lhs._investigations != rhs._investigations {return false}
     if lhs.advice != rhs.advice {return false}
     if lhs.doctorID != rhs.doctorID {return false}
     if lhs.patientID != rhs.patientID {return false}
     if lhs.createdDateTime != rhs.createdDateTime {return false}
     if lhs.medicines != rhs.medicines {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Nambadoctor_V1_InvestigationList: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".InvestigationList"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "Investigation"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeRepeatedStringField(value: &self.investigation) }()
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.investigation.isEmpty {
+      try visitor.visitRepeatedStringField(value: self.investigation, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Nambadoctor_V1_InvestigationList, rhs: Nambadoctor_V1_InvestigationList) -> Bool {
+    if lhs.investigation != rhs.investigation {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

@@ -30,10 +30,10 @@ internal protocol Nambadoctor_V1_AllergyWorkerv1ClientProtocol: GRPCClient {
   var serviceName: String { get }
   var interceptors: Nambadoctor_V1_AllergyWorkerv1ClientInterceptorFactoryProtocol? { get }
 
-  func getAllergyofDoctor(
-    _ request: Nambadoctor_V1_AllergyDoc,
+  func getAllergyofAppointment(
+    _ request: Nambadoctor_V1_AllergyForAppointmentRequest,
     callOptions: CallOptions?
-  ) -> UnaryCall<Nambadoctor_V1_AllergyDoc, Nambadoctor_V1_AllergyObject>
+  ) -> UnaryCall<Nambadoctor_V1_AllergyForAppointmentRequest, Nambadoctor_V1_AllergyObject>
 
   func getAllergyofPatient(
     _ request: Nambadoctor_V1_AllergyPat,
@@ -51,21 +51,21 @@ extension Nambadoctor_V1_AllergyWorkerv1ClientProtocol {
     return "nambadoctor.v1.AllergyWorkerv1"
   }
 
-  /// Unary call to GetAllergyofDoctor
+  /// Unary call to GetAllergyofAppointment
   ///
   /// - Parameters:
-  ///   - request: Request to send to GetAllergyofDoctor.
+  ///   - request: Request to send to GetAllergyofAppointment.
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func getAllergyofDoctor(
-    _ request: Nambadoctor_V1_AllergyDoc,
+  internal func getAllergyofAppointment(
+    _ request: Nambadoctor_V1_AllergyForAppointmentRequest,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nambadoctor_V1_AllergyDoc, Nambadoctor_V1_AllergyObject> {
+  ) -> UnaryCall<Nambadoctor_V1_AllergyForAppointmentRequest, Nambadoctor_V1_AllergyObject> {
     return self.makeUnaryCall(
-      path: "/nambadoctor.v1.AllergyWorkerv1/GetAllergyofDoctor",
+      path: "/nambadoctor.v1.AllergyWorkerv1/GetAllergyofAppointment",
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetAllergyofDoctorInterceptors() ?? []
+      interceptors: self.interceptors?.makeGetAllergyofAppointmentInterceptors() ?? []
     )
   }
 
@@ -108,8 +108,8 @@ extension Nambadoctor_V1_AllergyWorkerv1ClientProtocol {
 
 internal protocol Nambadoctor_V1_AllergyWorkerv1ClientInterceptorFactoryProtocol {
 
-  /// - Returns: Interceptors to use when invoking 'getAllergyofDoctor'.
-  func makeGetAllergyofDoctorInterceptors() -> [ClientInterceptor<Nambadoctor_V1_AllergyDoc, Nambadoctor_V1_AllergyObject>]
+  /// - Returns: Interceptors to use when invoking 'getAllergyofAppointment'.
+  func makeGetAllergyofAppointmentInterceptors() -> [ClientInterceptor<Nambadoctor_V1_AllergyForAppointmentRequest, Nambadoctor_V1_AllergyObject>]
 
   /// - Returns: Interceptors to use when invoking 'getAllergyofPatient'.
   func makeGetAllergyofPatientInterceptors() -> [ClientInterceptor<Nambadoctor_V1_AllergyPat, Nambadoctor_V1_AllergyObject>]
@@ -144,7 +144,7 @@ internal final class Nambadoctor_V1_AllergyWorkerv1Client: Nambadoctor_V1_Allerg
 internal protocol Nambadoctor_V1_AllergyWorkerv1Provider: CallHandlerProvider {
   var interceptors: Nambadoctor_V1_AllergyWorkerv1ServerInterceptorFactoryProtocol? { get }
 
-  func getAllergyofDoctor(request: Nambadoctor_V1_AllergyDoc, context: StatusOnlyCallContext) -> EventLoopFuture<Nambadoctor_V1_AllergyObject>
+  func getAllergyofAppointment(request: Nambadoctor_V1_AllergyForAppointmentRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Nambadoctor_V1_AllergyObject>
 
   func getAllergyofPatient(request: Nambadoctor_V1_AllergyPat, context: StatusOnlyCallContext) -> EventLoopFuture<Nambadoctor_V1_AllergyObject>
 
@@ -161,13 +161,13 @@ extension Nambadoctor_V1_AllergyWorkerv1Provider {
     context: CallHandlerContext
   ) -> GRPCServerHandlerProtocol? {
     switch name {
-    case "GetAllergyofDoctor":
+    case "GetAllergyofAppointment":
       return UnaryServerHandler(
         context: context,
-        requestDeserializer: ProtobufDeserializer<Nambadoctor_V1_AllergyDoc>(),
+        requestDeserializer: ProtobufDeserializer<Nambadoctor_V1_AllergyForAppointmentRequest>(),
         responseSerializer: ProtobufSerializer<Nambadoctor_V1_AllergyObject>(),
-        interceptors: self.interceptors?.makeGetAllergyofDoctorInterceptors() ?? [],
-        userFunction: self.getAllergyofDoctor(request:context:)
+        interceptors: self.interceptors?.makeGetAllergyofAppointmentInterceptors() ?? [],
+        userFunction: self.getAllergyofAppointment(request:context:)
       )
 
     case "GetAllergyofPatient":
@@ -196,9 +196,9 @@ extension Nambadoctor_V1_AllergyWorkerv1Provider {
 
 internal protocol Nambadoctor_V1_AllergyWorkerv1ServerInterceptorFactoryProtocol {
 
-  /// - Returns: Interceptors to use when handling 'getAllergyofDoctor'.
+  /// - Returns: Interceptors to use when handling 'getAllergyofAppointment'.
   ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetAllergyofDoctorInterceptors() -> [ServerInterceptor<Nambadoctor_V1_AllergyDoc, Nambadoctor_V1_AllergyObject>]
+  func makeGetAllergyofAppointmentInterceptors() -> [ServerInterceptor<Nambadoctor_V1_AllergyForAppointmentRequest, Nambadoctor_V1_AllergyObject>]
 
   /// - Returns: Interceptors to use when handling 'getAllergyofPatient'.
   ///   Defaults to calling `self.makeInterceptors()`.

@@ -8,9 +8,10 @@
 import Foundation
 import SwiftUI
 
-class RetrievePatientInfo: RetrievePatientInfoProtocol {
+class RetrievePatientInfoViewModel: RetrievePatientInfoProtocol {
+    
     func getPatientProfile(patientId: String, _ completion: @escaping ((Nambadoctor_V1_PatientObject) -> ())) {
-        
+
         let channel = ChannelManager.sharedChannelManager.getChannel()
         
         // Provide the connection to the generated client.
@@ -53,26 +54,45 @@ class RetrievePatientInfo: RetrievePatientInfoProtocol {
         }
     }
 
-    func getUploadedDocumentList(appointmentId: String, _ completion: @escaping (([Nambadoctor_V1_ReportDownloadObject]) -> ())) {
-//        ApiGetCall.get(extensionURL: "documnet/appointment/\(appointmentId)") { (data) in
-//            do {
-//                let uploadedDocList = try JSONDecoder().decode([UploadedDocument].self, from: data)
-//                completion(uploadedDocList)
-//            } catch {
-//                print(error)
-//            }
-//        }
+    func getUploadedReportList(appointment: Nambadoctor_V1_AppointmentObject, _ completion: @escaping (([Nambadoctor_V1_ReportDownloadObject]) -> ())) {
+        let channel = ChannelManager.sharedChannelManager.getChannel()
+        
+        // Provide the connection to the generated client.
+        let reportsClient = Nambadoctor_V1_ReportWorkerV1Client(channel: channel)
+
+        let request = Nambadoctor_V1_ReportPatRequest.with {
+            $0.patientID = appointment.requestedBy
+        }
+
+        let getPatientReports = reportsClient.getAllPatientReports(request)
+
+        do {
+            let response = try getPatientReports.response.wait()
+            print("Patient Reports received")
+            completion(response.reports)
+        } catch {
+            print("Patient Reports failed: \(error)")
+        }
     }
     
-    func getDocImage(docId: String, _ completion: @escaping ((UIImage?) -> ())) {
-//        ApiGetCall.get(extensionURL: "documnet/image/\(docId)") { (data) in
-//            do {
-//                let imageDict = try JSONDecoder().decode([String:String].self, from: data)
-//                let imageString = imageDict["base64Image"]!
-//                completion(Helpers.convertB64ToUIImage(b64Data: imageString))
-//            } catch {
-//                print(error)
-//            }
-//        }
+    func getReportImage(reportId: String, _ completion: @escaping ((UIImage?) -> ())) {
+        let channel = ChannelManager.sharedChannelManager.getChannel()
+        
+        // Provide the connection to the generated client.
+        let reportImageClient = Nambadoctor_V1_ReportWorkerV1Client(channel: channel)
+
+        let request = Nambadoctor_V1_MediaName.with {
+            $0.name = reportId
+        }
+
+        let getPatientReports = reportImageClient.downloadReportMedia(request)
+
+        do {
+            let response = try getPatientReports.response.wait()
+            print("Patient Reports received \(response.mediaFile)")
+            completion(UIImage(data: response.mediaFile, scale: 1.0))
+        } catch {
+            print("Patient Reports failed: \(error)")
+        }
     }
 }

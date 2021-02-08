@@ -37,6 +37,8 @@ struct Nambadoctor_V1_FollowUpObject {
 
   var createdDateTime: Int64 = 0
 
+  var appointmentID: String = String()
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -50,6 +52,18 @@ struct Nambadoctor_V1_FollowUpRequest {
   var patientID: String = String()
 
   var doctorID: String = String()
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Nambadoctor_V1_FollowUpAppointmentRequest {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var appointmentID: String = String()
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -81,6 +95,7 @@ extension Nambadoctor_V1_FollowUpObject: SwiftProtobuf.Message, SwiftProtobuf._M
     4: .same(proto: "DiscountedFee"),
     5: .same(proto: "NofDays"),
     6: .same(proto: "CreatedDateTime"),
+    7: .same(proto: "AppointmentId"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -95,6 +110,7 @@ extension Nambadoctor_V1_FollowUpObject: SwiftProtobuf.Message, SwiftProtobuf._M
       case 4: try { try decoder.decodeSingularInt32Field(value: &self.discountedFee) }()
       case 5: try { try decoder.decodeSingularInt32Field(value: &self.nofDays) }()
       case 6: try { try decoder.decodeSingularInt64Field(value: &self.createdDateTime) }()
+      case 7: try { try decoder.decodeSingularStringField(value: &self.appointmentID) }()
       default: break
       }
     }
@@ -119,6 +135,9 @@ extension Nambadoctor_V1_FollowUpObject: SwiftProtobuf.Message, SwiftProtobuf._M
     if self.createdDateTime != 0 {
       try visitor.visitSingularInt64Field(value: self.createdDateTime, fieldNumber: 6)
     }
+    if !self.appointmentID.isEmpty {
+      try visitor.visitSingularStringField(value: self.appointmentID, fieldNumber: 7)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -129,6 +148,7 @@ extension Nambadoctor_V1_FollowUpObject: SwiftProtobuf.Message, SwiftProtobuf._M
     if lhs.discountedFee != rhs.discountedFee {return false}
     if lhs.nofDays != rhs.nofDays {return false}
     if lhs.createdDateTime != rhs.createdDateTime {return false}
+    if lhs.appointmentID != rhs.appointmentID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -167,6 +187,38 @@ extension Nambadoctor_V1_FollowUpRequest: SwiftProtobuf.Message, SwiftProtobuf._
   static func ==(lhs: Nambadoctor_V1_FollowUpRequest, rhs: Nambadoctor_V1_FollowUpRequest) -> Bool {
     if lhs.patientID != rhs.patientID {return false}
     if lhs.doctorID != rhs.doctorID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Nambadoctor_V1_FollowUpAppointmentRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".FollowUpAppointmentRequest"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "AppointmentId"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularStringField(value: &self.appointmentID) }()
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.appointmentID.isEmpty {
+      try visitor.visitSingularStringField(value: self.appointmentID, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Nambadoctor_V1_FollowUpAppointmentRequest, rhs: Nambadoctor_V1_FollowUpAppointmentRequest) -> Bool {
+    if lhs.appointmentID != rhs.appointmentID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

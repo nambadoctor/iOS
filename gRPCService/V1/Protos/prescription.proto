@@ -24,12 +24,16 @@ message PrescriptionObject{
     string Examination = 4;
     string Diagnosis = 5;
     string DiagnosisType = 6;
-    repeated string Investigations = 7;
+    InvestigationList Investigations = 7;
     string Advice = 8;
     string DoctorId = 9;
     string PatientId = 10;
     int64 CreatedDateTime = 11;
     repeated MedicineObject Medicines = 12;
+}
+
+message InvestigationList{
+    repeated string Investigation = 1;
 }
 
 message MedicineObject{

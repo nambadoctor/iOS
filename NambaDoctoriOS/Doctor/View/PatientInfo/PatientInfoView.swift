@@ -16,17 +16,20 @@ struct PatientInfoView: View {
     }
     
     var body: some View {
-        VStack {
+        VStack (alignment: .leading) {
             if patientInfoVM.patientObj == nil {
                 Indicator()
             } else {
-                List {
-                    basicDetails
-                    reports
-                    
-                    Text("PATIENT'S PREVIOUS CONSULTATIONS").bold()
-                    previousConsultations
-                }
+                
+                basicDetails
+                Spacer().frame(height: 20)
+                
+                reports
+                Spacer().frame(height: 20)
+                
+                Text("PATIENT'S PREVIOUS CONSULTATIONS").bold()
+                previousConsultations
+                
                 Spacer()
             }
         }
@@ -46,22 +49,22 @@ struct PatientInfoView: View {
     var reports : some View {
         VStack (alignment: .leading) {
             Text("PATIENT REPORTS").bold()
-            if patientInfoVM.UploadedDocumentList != nil {
-                ForEach (patientInfoVM.UploadedDocumentList, id: \.id) { document in
-                    NavigationLink(destination: Text("patient report view")) {
-                        Text("patient report card")
+            if !patientInfoVM.ReportList.isEmpty {
+                ForEach (patientInfoVM.ReportList, id: \.id) { report in
+                    NavigationLink(destination: PatientReportView(report: report)) {
+                        Text(report.name)
                     }
                 }
             }
         }
     }
-
+    
     var previousConsultations : some View {
         VStack {
             if patientInfoVM.AppointmentList != nil {
                 ForEach (patientInfoVM.AppointmentList, id: \.appointmentID) { appointment in
                     NavigationLink(destination: ViewPrescription(prescriptionVM: patientInfoVM.getPrescriptionVMToNavigate())) {
-                        Text("Click Here") //replace with patient info appointment card
+                        Text("\(appointment.requestedTime)")
                     }
                 }
             }

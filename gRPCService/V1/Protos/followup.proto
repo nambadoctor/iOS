@@ -8,6 +8,7 @@ service FollowUpWorkerV1{
 	rpc GetNextFollowUpWithPatient(FollowUpRequest) returns (FollowUpObject);
 	rpc GetNextFollowUpWithDoctor(FollowUpRequest) returns (FollowUpObject);
 	rpc WriteNewFollowUp(FollowUpObject) returns (FollowUpResponse);
+	rpc GetFollowupForAppointment(FollowUpAppointmentRequest) returns (FollowUpObject);
 }
 
 message FollowUpObject{
@@ -17,11 +18,16 @@ message FollowUpObject{
     int32 DiscountedFee = 4;
     int32 NofDays = 5;
     int64 CreatedDateTime = 6;
+    string AppointmentId = 7;
 }
 
 message FollowUpRequest{
 	string PatientId = 1;
 	string DoctorId = 2;
+}
+
+message FollowUpAppointmentRequest{
+    string AppointmentId = 1;
 }
 
 message FollowUpResponse{

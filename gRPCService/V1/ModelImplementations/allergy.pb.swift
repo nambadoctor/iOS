@@ -40,12 +40,12 @@ struct Nambadoctor_V1_AllergyObject {
   init() {}
 }
 
-struct Nambadoctor_V1_AllergyDoc {
+struct Nambadoctor_V1_AllergyForAppointmentRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  var docID: String = String()
+  var appointmentID: String = String()
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -136,10 +136,10 @@ extension Nambadoctor_V1_AllergyObject: SwiftProtobuf.Message, SwiftProtobuf._Me
   }
 }
 
-extension Nambadoctor_V1_AllergyDoc: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let protoMessageName: String = _protobuf_package + ".AllergyDoc"
+extension Nambadoctor_V1_AllergyForAppointmentRequest: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".AllergyForAppointmentRequest"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .standard(proto: "doc_id"),
+    1: .same(proto: "AppointmentId"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -148,21 +148,21 @@ extension Nambadoctor_V1_AllergyDoc: SwiftProtobuf.Message, SwiftProtobuf._Messa
       // allocates stack space for every case branch when no optimizations are
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try { try decoder.decodeSingularStringField(value: &self.docID) }()
+      case 1: try { try decoder.decodeSingularStringField(value: &self.appointmentID) }()
       default: break
       }
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if !self.docID.isEmpty {
-      try visitor.visitSingularStringField(value: self.docID, fieldNumber: 1)
+    if !self.appointmentID.isEmpty {
+      try visitor.visitSingularStringField(value: self.appointmentID, fieldNumber: 1)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  static func ==(lhs: Nambadoctor_V1_AllergyDoc, rhs: Nambadoctor_V1_AllergyDoc) -> Bool {
-    if lhs.docID != rhs.docID {return false}
+  static func ==(lhs: Nambadoctor_V1_AllergyForAppointmentRequest, rhs: Nambadoctor_V1_AllergyForAppointmentRequest) -> Bool {
+    if lhs.appointmentID != rhs.appointmentID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
