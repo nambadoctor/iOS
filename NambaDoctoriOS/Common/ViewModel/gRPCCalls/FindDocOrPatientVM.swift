@@ -13,6 +13,7 @@ class FindDocOrPatientVM : FindUserTypeViewModelProtocol {
     func getDocOrPatient (phoneNumber:String, _ completion : @escaping (_ patientOrDoc:UserLoginStatus)->()) {
 
         let channel = ChannelManager.sharedChannelManager.getChannel()
+        let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         
         // Provide the connection to the generated client.
         let logonClient = Nambadoctor_V1_LogonWorkerV1Client(channel: channel)
@@ -22,7 +23,7 @@ class FindDocOrPatientVM : FindUserTypeViewModelProtocol {
             $0.userID = AuthTokenId
         }
 
-        let getUserType = logonClient.getUserType(request)
+        let getUserType = logonClient.getUserType(request, callOptions: callOptions)
 
         do {
             let response = try getUserType.response.wait()

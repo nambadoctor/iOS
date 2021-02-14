@@ -12,7 +12,7 @@ class LoginViewModelTests: XCTestCase {
     
     var loginViewModel: PreRegisteredUserVM!
     var mockAuthService: MockAuthenticateService!
-    
+
     override func setUp() {
         mockAuthService = MockAuthenticateService()
         loginViewModel = .init(AuthService: mockAuthService)

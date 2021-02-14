@@ -15,6 +15,7 @@ class RetrieveTwilioAccessToken : TwilioAccessTokenProtocol {
                                _ completion: @escaping ((_ success:Bool, _ twilioToke:String?)->())) {
         
         let channel = ChannelManager.sharedChannelManager.getChannel()
+        let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         let twilioClient = Nambadoctor_V1_TwilioWorkerV1Client(channel: channel)
         
         let request = Nambadoctor_V1_TwilioRequest.with {
@@ -22,7 +23,7 @@ class RetrieveTwilioAccessToken : TwilioAccessTokenProtocol {
             $0.roomID = appointmentId
         }
         
-        let getTwilioToken = twilioClient.getTwilioToken(request)
+        let getTwilioToken = twilioClient.getTwilioToken(request, callOptions: callOptions)
         
         do {
             let response = try getTwilioToken.response.wait()

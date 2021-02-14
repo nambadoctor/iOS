@@ -9,19 +9,25 @@ import Foundation
 
 class PutPatientAllergiesViewModel: PutPatientAllergiesProtocol {
     func putPatientAllergiesForAppointment (prescriptionVM:PrescriptionViewModel, _ completion : @escaping ((_ successfull:Bool)->())) {
+        
+        CommonDefaultModifiers.showLoader()
+        
         let channel = ChannelManager.sharedChannelManager.getChannel()
+        let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
+        
         let allergiestClient = Nambadoctor_V1_AllergyWorkerv1Client(channel: channel)
         
         let request = makeAllergyObj(allergies: prescriptionVM.patientAllergies,
                                      patientId: prescriptionVM.appointment.requestedBy,
                                      appointmentId: prescriptionVM.appointment.appointmentID)
         
-        let putAllergy = allergiestClient.saveNewAllergy(request)
+        let putAllergy = allergiestClient.saveNewAllergy(request, callOptions: callOptions)
         
         do {
             let response = try putAllergy.response.wait()
-            completion(true)
             print("Allergies Put Client Successful: \(response.allergyID)")
+            CommonDefaultModifiers.hideLoader()
+            completion(true)
         } catch {
             print("Allergies Put Client Failure")
         }
@@ -34,13 +40,15 @@ class PutPatientAllergiesViewModel: PutPatientAllergiesProtocol {
                                             _ completion : @escaping ((_ successfull:Bool)->())) {
         
         let channel = ChannelManager.sharedChannelManager.getChannel()
+        let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
+        
         let allergiestClient = Nambadoctor_V1_AllergyWorkerv1Client(channel: channel)
         
         let request = makeAllergyObj(allergies: patientAllergies,
                                      patientId: patientId,
                                      appointmentId: appointmentId)
         
-        let putAllergy = allergiestClient.saveNewAllergy(request)
+        let putAllergy = allergiestClient.saveNewAllergy(request, callOptions: callOptions)
         
         do {
             let response = try putAllergy.response.wait()

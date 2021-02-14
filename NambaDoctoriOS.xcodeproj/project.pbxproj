@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1728B76D25B38156001D554E /* gRPCCalls.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728B76C25B38156001D554E /* gRPCCalls.swift */; };
+		1728B76D25B38156001D554E /* FindDocOrPatientVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728B76C25B38156001D554E /* FindDocOrPatientVM.swift */; };
 		1728B77525B381D1001D554E /* PreRegisteredUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728B77425B381D1001D554E /* PreRegisteredUser.swift */; };
 		1728B77A25B381E7001D554E /* PreRegisteredUserVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728B77925B381E7001D554E /* PreRegisteredUserVM.swift */; };
 		1728B77F25B3838E001D554E /* LoginStatusEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728B77E25B3838E001D554E /* LoginStatusEnum.swift */; };
@@ -117,6 +117,11 @@
 		1748011025B8E12500C8E3CC /* DocViewStatesK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748010F25B8E12500C8E3CC /* DocViewStatesK.swift */; };
 		1748011525B8E21700C8E3CC /* RetrieveTwilioAccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748011425B8E21700C8E3CC /* RetrieveTwilioAccessToken.swift */; };
 		1748011A25B9746600C8E3CC /* DoctorAlertHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748011925B9746600C8E3CC /* DoctorAlertHelpers.swift */; };
+		17626CAD25D5BAC200C36A99 /* LoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626CAC25D5BAC200C36A99 /* LoadingScreen.swift */; };
+		17626CCD25D5C02F00C36A99 /* DoctorHomeListeners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626CCC25D5C02F00C36A99 /* DoctorHomeListeners.swift */; };
+		17626CD225D5C06200C36A99 /* DoctorHomeShowAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626CD125D5C06200C36A99 /* DoctorHomeShowAlert.swift */; };
+		17626D7125D91F9900C36A99 /* LogonServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626D7025D91F9900C36A99 /* LogonServiceTest.swift */; };
+		17626D7E25D9B46B00C36A99 /* TwilioTokenServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626D7D25D9B46B00C36A99 /* TwilioTokenServiceTests.swift */; };
 		1772336E25B70F99002B814A /* SimpleStateConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1772336D25B70F99002B814A /* SimpleStateConstants.swift */; };
 		1772338D25B726A6002B814A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1772338C25B726A6002B814A /* GoogleService-Info.plist */; };
 		1772339825B72FF2002B814A /* CheckLoginStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1772339725B72FF2002B814A /* CheckLoginStatus.swift */; };
@@ -216,7 +221,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1728B76C25B38156001D554E /* gRPCCalls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gRPCCalls.swift; sourceTree = "<group>"; };
+		1728B76C25B38156001D554E /* FindDocOrPatientVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindDocOrPatientVM.swift; sourceTree = "<group>"; };
 		1728B77425B381D1001D554E /* PreRegisteredUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreRegisteredUser.swift; sourceTree = "<group>"; };
 		1728B77925B381E7001D554E /* PreRegisteredUserVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreRegisteredUserVM.swift; sourceTree = "<group>"; };
 		1728B77E25B3838E001D554E /* LoginStatusEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStatusEnum.swift; sourceTree = "<group>"; };
@@ -325,6 +330,11 @@
 		1748010F25B8E12500C8E3CC /* DocViewStatesK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewStatesK.swift; sourceTree = "<group>"; };
 		1748011425B8E21700C8E3CC /* RetrieveTwilioAccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrieveTwilioAccessToken.swift; sourceTree = "<group>"; };
 		1748011925B9746600C8E3CC /* DoctorAlertHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorAlertHelpers.swift; sourceTree = "<group>"; };
+		17626CAC25D5BAC200C36A99 /* LoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreen.swift; sourceTree = "<group>"; };
+		17626CCC25D5C02F00C36A99 /* DoctorHomeListeners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorHomeListeners.swift; sourceTree = "<group>"; };
+		17626CD125D5C06200C36A99 /* DoctorHomeShowAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorHomeShowAlert.swift; sourceTree = "<group>"; };
+		17626D7025D91F9900C36A99 /* LogonServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogonServiceTest.swift; sourceTree = "<group>"; };
+		17626D7D25D9B46B00C36A99 /* TwilioTokenServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwilioTokenServiceTests.swift; sourceTree = "<group>"; };
 		1772336D25B70F99002B814A /* SimpleStateConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleStateConstants.swift; sourceTree = "<group>"; };
 		1772338C25B726A6002B814A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1772339725B72FF2002B814A /* CheckLoginStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckLoginStatus.swift; sourceTree = "<group>"; };
@@ -460,7 +470,7 @@
 		1728B76B25B38138001D554E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				174800AE25B8DB6600C8E3CC /* ApiCalls */,
+				174800AE25B8DB6600C8E3CC /* gRPCCalls */,
 				1728B77925B381E7001D554E /* PreRegisteredUserVM.swift */,
 			);
 			path = ViewModel;
@@ -540,7 +550,6 @@
 				1742523525BD988C00523B94 /* PatientInfoViewModel.swift */,
 				17E3707C25BF12AF0004C965 /* DoctorTwilioViewModel.swift */,
 				179F628125BF58C800BA0A73 /* AddPatientViewModel.swift */,
-				179F62AC25BF62C900BA0A73 /* AddPreRegisteredViewModel.swift */,
 				17E869E525CE771E000B0952 /* PatientReportViewModel.swift */,
 			);
 			path = ViewModel;
@@ -710,6 +719,7 @@
 			children = (
 				17B5D16825B75EE9009D6A42 /* Indicator.swift */,
 				17424FE425BAD1B100523B94 /* SideBySideCheckBox.swift */,
+				17626CAC25D5BAC200C36A99 /* LoadingScreen.swift */,
 			);
 			path = CommonHelperViews;
 			sourceTree = "<group>";
@@ -766,13 +776,13 @@
 			path = NotificationService;
 			sourceTree = "<group>";
 		};
-		174800AE25B8DB6600C8E3CC /* ApiCalls */ = {
+		174800AE25B8DB6600C8E3CC /* gRPCCalls */ = {
 			isa = PBXGroup;
 			children = (
-				1728B76C25B38156001D554E /* gRPCCalls.swift */,
+				1728B76C25B38156001D554E /* FindDocOrPatientVM.swift */,
 				1748011425B8E21700C8E3CC /* RetrieveTwilioAccessToken.swift */,
 			);
-			path = ApiCalls;
+			path = gRPCCalls;
 			sourceTree = "<group>";
 		};
 		174800BE25B8DE0300C8E3CC /* NotificationHelpers */ = {
@@ -781,6 +791,41 @@
 				174800B625B8DC0A00C8E3CC /* SendNotificationHelpers.swift */,
 			);
 			path = NotificationHelpers;
+			sourceTree = "<group>";
+		};
+		17626CCB25D5C01A00C36A99 /* DoctorHome */ = {
+			isa = PBXGroup;
+			children = (
+				17B5D12225B74BCA009D6A42 /* DoctorHome.swift */,
+				17626CCC25D5C02F00C36A99 /* DoctorHomeListeners.swift */,
+				17626CD125D5C06200C36A99 /* DoctorHomeShowAlert.swift */,
+			);
+			path = DoctorHome;
+			sourceTree = "<group>";
+		};
+		17626D0725D85CC000C36A99 /* ViewModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				1772756425B8A7DB0012B9DE /* LoginViewModelTests.swift */,
+				17424F1D25BA0C2B00523B94 /* FinishedAppointmentsViewModelTests.swift */,
+				17BA0AB725B9AABD00EDE4D1 /* UpcomingAppointmentsViewModelTests.swift */,
+				174250E125BB7AC800523B94 /* InvestigationViewModelTests.swift */,
+				1742510825BC657E00523B94 /* FollowUpViewModelTests.swift */,
+				174250CF25BB6E7500523B94 /* PrescriptionViewModelTests.swift */,
+				174250E925BB7C1D00523B94 /* MedicineViewModelTests.swift */,
+				1742510025BC5C7100523B94 /* MedicineEntryViewModelTests.swift */,
+				17E5186A25AED16D001F1A80 /* NambaDoctoriOSTests.swift */,
+			);
+			name = ViewModelTests;
+			sourceTree = "<group>";
+		};
+		17626D0825D85CD600C36A99 /* IntegrationTests */ = {
+			isa = PBXGroup;
+			children = (
+				17626D7025D91F9900C36A99 /* LogonServiceTest.swift */,
+				17626D7D25D9B46B00C36A99 /* TwilioTokenServiceTests.swift */,
+			);
+			name = IntegrationTests;
 			sourceTree = "<group>";
 		};
 		177233B025B74006002B814A /* Constants */ = {
@@ -837,6 +882,7 @@
 		17B5D11625B74B29009D6A42 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				17626CCB25D5C01A00C36A99 /* DoctorHome */,
 				17E370C225BF55620004C965 /* AddPatient */,
 				17E370A025BF196C0004C965 /* DoctorTwilioManager */,
 				1742523425BD987500523B94 /* PatientInfo */,
@@ -847,7 +893,6 @@
 				17424FA025BACEBB00523B94 /* WritePrescription */,
 				17B5D13525B759F3009D6A42 /* FInishedAppointments */,
 				17B5D13425B759EC009D6A42 /* UpcomingAppointments */,
-				17B5D12225B74BCA009D6A42 /* DoctorHome.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1036,18 +1081,11 @@
 		17E5186925AED16D001F1A80 /* NambaDoctoriOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				17626D0825D85CD600C36A99 /* IntegrationTests */,
+				17626D0725D85CC000C36A99 /* ViewModelTests */,
 				17BA0ACE25B9B2AC00EDE4D1 /* MockData */,
 				17BA0ABC25B9AD8400EDE4D1 /* OtherMockServices */,
 				17BA0A8025B9A61400EDE4D1 /* MockAuthService */,
-				1772756425B8A7DB0012B9DE /* LoginViewModelTests.swift */,
-				17424F1D25BA0C2B00523B94 /* FinishedAppointmentsViewModelTests.swift */,
-				17BA0AB725B9AABD00EDE4D1 /* UpcomingAppointmentsViewModelTests.swift */,
-				174250E125BB7AC800523B94 /* InvestigationViewModelTests.swift */,
-				1742510825BC657E00523B94 /* FollowUpViewModelTests.swift */,
-				174250CF25BB6E7500523B94 /* PrescriptionViewModelTests.swift */,
-				174250E925BB7C1D00523B94 /* MedicineViewModelTests.swift */,
-				1742510025BC5C7100523B94 /* MedicineEntryViewModelTests.swift */,
-				17E5186A25AED16D001F1A80 /* NambaDoctoriOSTests.swift */,
 				17E5186C25AED16D001F1A80 /* Info.plist */,
 			);
 			path = NambaDoctoriOSTests;
@@ -1065,6 +1103,7 @@
 		17E8687D25CC6F9C000B0952 /* gRPCCallHelpers */ = {
 			isa = PBXGroup;
 			children = (
+				179F62AC25BF62C900BA0A73 /* AddPreRegisteredViewModel.swift */,
 				1748006325B8C00300C8E3CC /* UpdateAppointmentStatusViewModel.swift */,
 				1742512325BCAB9E00523B94 /* RetrieveFollowUpObjViewModel.swift */,
 				1742502D25BAD64900523B94 /* RetrievePrescriptionForAppointmentViewModel.swift */,
@@ -1367,6 +1406,7 @@
 				1742504A25BAE39E00523B94 /* GeneralDoctorHelpers.swift in Sources */,
 				1772339825B72FF2002B814A /* CheckLoginStatus.swift in Sources */,
 				1796320525AEE7B5002E466C /* Helpers.swift in Sources */,
+				17626CD225D5C06200C36A99 /* DoctorHomeShowAlert.swift in Sources */,
 				1728B77525B381D1001D554E /* PreRegisteredUser.swift in Sources */,
 				173A22AE25CAF7360086342A /* notification.proto in Sources */,
 				1772336E25B70F99002B814A /* SimpleStateConstants.swift in Sources */,
@@ -1383,6 +1423,7 @@
 				17E8688225CC74C5000B0952 /* GetDocObject.swift in Sources */,
 				1742523625BD988D00523B94 /* PatientInfoViewModel.swift in Sources */,
 				1748011025B8E12500C8E3CC /* DocViewStatesK.swift in Sources */,
+				17626CCD25D5C02F00C36A99 /* DoctorHomeListeners.swift in Sources */,
 				1748010B25B8DFC100C8E3CC /* DoctorDefaultModifiers.swift in Sources */,
 				174251D825BCFDA900523B94 /* PutPrescriptionViewModelProtocol.swift in Sources */,
 				17E8696D25CDE1C2000B0952 /* report.proto in Sources */,
@@ -1400,7 +1441,7 @@
 				17E8695B25CDE19D000B0952 /* report.grpc.swift in Sources */,
 				17E8695125CDE191000B0952 /* appointment.grpc.swift in Sources */,
 				17B5D15B25B75B31009D6A42 /* DoctorAppointmentsViewModel.swift in Sources */,
-				1728B76D25B38156001D554E /* gRPCCalls.swift in Sources */,
+				1728B76D25B38156001D554E /* FindDocOrPatientVM.swift in Sources */,
 				173A22B425CAF7360086342A /* slot.proto in Sources */,
 				1742515A25BCC4AA00523B94 /* ReviewPrescriptionView.swift in Sources */,
 				17E86A1C25D1027E000B0952 /* followup.pb.swift in Sources */,
@@ -1436,6 +1477,7 @@
 				17B5D12825B755F8009D6A42 /* RetrieveDocObj.swift in Sources */,
 				1748006425B8C00300C8E3CC /* UpdateAppointmentStatusViewModel.swift in Sources */,
 				1748003425B8BCA800C8E3CC /* UpcomingAppointmentCard.swift in Sources */,
+				17626CAD25D5BAC200C36A99 /* LoadingScreen.swift in Sources */,
 				173A22E425CAF9040086342A /* patient.pb.swift in Sources */,
 				173A231B25CBB8F20086342A /* FindUserTypeViewModelProtocol.swift in Sources */,
 				17B5D12D25B75789009D6A42 /* LocalEncodingK.swift in Sources */,
@@ -1537,8 +1579,10 @@
 				1742513E25BCBBBC00523B94 /* MockRetrieveFollowUpObjService.swift in Sources */,
 				17BA0AB825B9AABD00EDE4D1 /* UpcomingAppointmentsViewModelTests.swift in Sources */,
 				17E5186B25AED16D001F1A80 /* NambaDoctoriOSTests.swift in Sources */,
+				17626D7E25D9B46B00C36A99 /* TwilioTokenServiceTests.swift in Sources */,
 				17424F3C25BA3BE400523B94 /* MockDataAlertHelpers.swift in Sources */,
 				1742513625BCB08600523B94 /* MockFollowUpAptData.swift in Sources */,
+				17626D7125D91F9900C36A99 /* LogonServiceTest.swift in Sources */,
 				174250E225BB7AC800523B94 /* InvestigationViewModelTests.swift in Sources */,
 				17424F7F25BAC6BF00523B94 /* MockTwilioAccessTokenService.swift in Sources */,
 				17E869D425CE1593000B0952 /* MockDoctorNotifHelper.swift in Sources */,

@@ -13,6 +13,8 @@ class PutFollowUpAppointmentViewModel: PutFollowUpAppointmentViewModelProtocol{
         let followUpVM = prescriptionVM.FollowUpVM
         
         let channel = ChannelManager.sharedChannelManager.getChannel()
+        let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
+        
         let followUpClient = Nambadoctor_V1_FollowUpWorkerV1Client(channel: channel)
         
         let request = Nambadoctor_V1_FollowUpObject.with {
@@ -22,7 +24,7 @@ class PutFollowUpAppointmentViewModel: PutFollowUpAppointmentViewModelProtocol{
             $0.doctorID = GetDocObject().getDoctor().doctorID
         }
         
-        let putFollowUpClient = followUpClient.writeNewFollowUp(request)
+        let putFollowUpClient = followUpClient.writeNewFollowUp(request, callOptions: callOptions)
         
         do {
             let response = try putFollowUpClient.response.wait()
@@ -35,9 +37,13 @@ class PutFollowUpAppointmentViewModel: PutFollowUpAppointmentViewModelProtocol{
     
     func makeFollowUpAppointment (followUpVM:FollowUpAppointmentViewModel, patientId:String, _ completion : @escaping ((_ successfull:Bool)->())) {
         
+        CommonDefaultModifiers.showLoader()
+        
         let loggedInDoctor:Nambadoctor_V1_DoctorResponse = GetDocObject().getDoctor()
 
         let channel = ChannelManager.sharedChannelManager.getChannel()
+        let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
+        
         let followUpClient = Nambadoctor_V1_FollowUpWorkerV1Client(channel: channel)
         
         let request = Nambadoctor_V1_FollowUpObject.with {
@@ -47,12 +53,13 @@ class PutFollowUpAppointmentViewModel: PutFollowUpAppointmentViewModelProtocol{
             $0.doctorID = loggedInDoctor.doctorID
         }
         
-        let putFollowUpClient = followUpClient.writeNewFollowUp(request)
+        let putFollowUpClient = followUpClient.writeNewFollowUp(request, callOptions: callOptions)
         
         do {
             let response = try putFollowUpClient.response.wait()
-            completion(true)
             print("MakeFollowUp Success")
+            CommonDefaultModifiers.hideLoader()
+            completion(true)
         } catch {
             print("MakeFollowUp Failure")
         }

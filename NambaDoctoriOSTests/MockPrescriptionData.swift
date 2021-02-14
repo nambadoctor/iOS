@@ -19,7 +19,9 @@ class MakeMockPrescription {
             $0.examination = "examination"
             $0.diagnosis = "diagnosis"
             $0.diagnosisType = "definitive"
-            $0.investigations = ["inv 1", "inv 2"]
+            $0.investigations = Nambadoctor_V1_InvestigationList.with {
+                $0.investigation = ["inv 1", "inv 2"]
+            }
             $0.advice = "advice"
             $0.doctorID = "jhsY3OMj6Oe8oswMUiWnTZqAk7q1"
             $0.patientID = "patientId"
