@@ -10,11 +10,11 @@ import SwiftUI
 
 class FindDocOrPatientVM : FindUserTypeViewModelProtocol {
 
-    func getDocOrPatient (phoneNumber:String, _ completion : @escaping (_ patientOrDoc:UserLoginStatus)->()) {
+    func getDocOrPatient (phoneNumber:String, _ completion : @escaping (_ patientOrDoc:UserLoginStatus?)->()) {
 
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
-        
+
         // Provide the connection to the generated client.
         let logonClient = Nambadoctor_V1_LogonWorkerV1Client(channel: channel)
 
@@ -31,6 +31,7 @@ class FindDocOrPatientVM : FindUserTypeViewModelProtocol {
             let userStatus = CheckLoginStatus.checkStatus(loggedInStatus: response.type)
             completion(userStatus)
         } catch {
+            completion(nil)
             print("UserTypeClient failed: \(error)")
         }
     } 

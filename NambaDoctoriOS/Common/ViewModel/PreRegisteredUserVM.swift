@@ -66,6 +66,8 @@ class PreRegisteredUserVM:ObservableObject {
                 LoginDefaultModifiers.signInPatient(userId: self.AuthService.getUserId())
             case .NotSignedIn:
                 return
+            default:
+                return
             }
         }
     }
