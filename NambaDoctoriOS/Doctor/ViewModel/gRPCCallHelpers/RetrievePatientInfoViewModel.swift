@@ -11,12 +11,18 @@ import SwiftUI
 class RetrievePatientInfoViewModel: RetrievePatientInfoProtocol {
     
     var appointmentObjMapper:AppointmentObjMapper
+    var patientObjMapper:PatientObjMapper
+    var reportObjMapper:ReportObjMapper
     
-    init(appointmentObjMapper:AppointmentObjMapper = AppointmentObjMapper()) {
+    init(appointmentObjMapper:AppointmentObjMapper = AppointmentObjMapper(),
+         patientObjMapper:PatientObjMapper = PatientObjMapper(),
+         reportObjMapper:ReportObjMapper = ReportObjMapper()) {
         self.appointmentObjMapper = appointmentObjMapper
+        self.patientObjMapper = patientObjMapper
+        self.reportObjMapper = reportObjMapper
     }
 
-    func getPatientProfile(patientId: String, _ completion: @escaping ((Nambadoctor_V1_PatientObject?) -> ())) {
+    func getPatientProfile(patientId: String, _ completion: @escaping ((Patient?) -> ())) {
                 
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
@@ -32,8 +38,9 @@ class RetrievePatientInfoViewModel: RetrievePatientInfoProtocol {
 
         do {
             let response = try getPatientObject.response.wait()
+            let patient = patientObjMapper.grpcToLocalPatientObject(patient: response)
             print("Patient Client received: \(response.patientID)")
-            completion(response)
+            completion(patient)
         } catch {
             print("Patient Client failed: \(error)")
             completion(nil)
@@ -65,7 +72,7 @@ class RetrievePatientInfoViewModel: RetrievePatientInfoProtocol {
         }
     }
 
-    func getUploadedReportList(appointment: Appointment, _ completion: @escaping (([Nambadoctor_V1_ReportDownloadObject]?) -> ())) {
+    func getUploadedReportList(appointment: Appointment, _ completion: @escaping (([Report]?) -> ())) {
                 
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
@@ -81,8 +88,9 @@ class RetrievePatientInfoViewModel: RetrievePatientInfoProtocol {
 
         do {
             let response = try getPatientReports.response.wait()
+            let reportList = reportObjMapper.grpcReportToLocalList(reportList: response.reports)
             print("Patient Reports received")
-            completion(response.reports)
+            completion(reportList)
         } catch {
             print("Patient Reports failed: \(error)")
             completion(nil)

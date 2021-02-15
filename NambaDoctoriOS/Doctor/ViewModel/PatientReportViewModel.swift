@@ -9,13 +9,13 @@ import Foundation
 import UIKit
 
 class PatientReportViewModel : ObservableObject {
-    @Published var report:Nambadoctor_V1_ReportDownloadObject
+    @Published var report:Report
     @Published var mediaObject:UIImage?
     @Published var displayImage:ImageDisplayEnum = .loading
     
     private var retrievePatientInfo:RetrievePatientInfoProtocol
     
-    init(report:Nambadoctor_V1_ReportDownloadObject,
+    init(report:Report,
          retrievePatientInfo:RetrievePatientInfoProtocol = RetrievePatientInfoViewModel()) {
         self.report = report
         self.retrievePatientInfo = retrievePatientInfo

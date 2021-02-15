@@ -9,10 +9,10 @@ import Foundation
 
 class PatientInfoViewModel: ObservableObject {
     
-    @Published var patientObj:Nambadoctor_V1_PatientObject!
+    @Published var patientObj:Patient!
     @Published var patientAllergies:String = ""
     @Published var AppointmentList:[Appointment]!
-    @Published var ReportList:[Nambadoctor_V1_ReportDownloadObject]!
+    @Published var ReportList:[Report]!
     
     var appointment:Appointment
     private var retrievePatientInfoHelper:RetrievePatientInfoProtocol
