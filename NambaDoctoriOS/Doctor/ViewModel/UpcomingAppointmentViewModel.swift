@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class UpcomingAppointmentViewModel: ObservableObject {
-    @Published var appointment:Nambadoctor_V1_AppointmentObject
+    @Published var appointment:Appointment
 
     @Published var consultationStarted:Bool = false
     @Published var consultationDone:Bool = false
@@ -28,7 +28,7 @@ class UpcomingAppointmentViewModel: ObservableObject {
     private var doctorAlertHelper:DoctorAlertHelpersProtocol
     private var twilioAccessTokenHelper:TwilioAccessTokenProtocol
 
-    init(appointment:Nambadoctor_V1_AppointmentObject,
+    init(appointment:Appointment,
          updateAppointmentStatus:UpdateAppointmentStatusProtocol = UpdateAppointmentStatusViewModel(),
          doctorAlertHelper:DoctorAlertHelpersProtocol = DoctorAlertHelpers(),
          twilioAccessTokenHelper:TwilioAccessTokenProtocol = RetrieveTwilioAccessToken(),

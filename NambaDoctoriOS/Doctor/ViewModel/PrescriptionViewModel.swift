@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class PrescriptionViewModel: ObservableObject {
-    var appointment:Nambadoctor_V1_AppointmentObject
+    var appointment:Appointment
     var isNewPrescription:Bool
     var loggedInDoctor:Nambadoctor_V1_DoctorResponse
     
@@ -32,7 +32,7 @@ class PrescriptionViewModel: ObservableObject {
     private var docSheetHelper:DoctorSheetHelpers = DoctorSheetHelpers()
     private var docAlertHelper:DoctorAlertHelpers = DoctorAlertHelpers()
 
-    init(appointment:Nambadoctor_V1_AppointmentObject,
+    init(appointment:Appointment,
          isNewPrescription:Bool,
          docObjectHelper:GetDocObjectProtocol = GetDocObject(),
          retrievePrescriptionHelper:RetrievePrescriptionForAppointmentProtocol = RetrievePrescriptionForAppointmentViewModel(),

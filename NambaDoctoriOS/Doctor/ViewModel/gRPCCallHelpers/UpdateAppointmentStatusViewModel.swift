@@ -9,9 +9,13 @@ import Foundation
 
 class UpdateAppointmentStatusViewModel:UpdateAppointmentStatusProtocol {
     
-    let appointmentStatusUpdateExtension = "doctor/appointment"
+    var appointmentObjMapper:AppointmentObjMapper
+    
+    init() {
+        self.appointmentObjMapper = AppointmentObjMapper()
+    }
 
-    func makeAppointmentUpdate (appointment:Nambadoctor_V1_AppointmentObject,
+    func makeAppointmentUpdate (appointment:Appointment,
                                 completion: @escaping (_ updated:Bool)->()) {
         
         CommonDefaultModifiers.showLoader()
@@ -21,7 +25,7 @@ class UpdateAppointmentStatusViewModel:UpdateAppointmentStatusProtocol {
         
         let appointmentClient = Nambadoctor_V1_AppointmentWorkerV1Client(channel: channel)
         
-        let request = appointment
+        let request = appointmentObjMapper.localAppointmentToGrpcObject(appointment: appointment)
         
         let setAptStatus = appointmentClient.upsertNewAppointment(request, callOptions: callOptions)
  
@@ -37,7 +41,7 @@ class UpdateAppointmentStatusViewModel:UpdateAppointmentStatusProtocol {
         
     }
     
-    func toCancelled (appointment:inout Nambadoctor_V1_AppointmentObject, completion: @escaping (_ success:Bool) -> ()) {
+    func toCancelled (appointment:inout Appointment, completion: @escaping (_ success:Bool) -> ()) {
         appointment.status = "Cancelled"
         
         makeAppointmentUpdate(appointment: appointment) { (updated) in
@@ -45,7 +49,7 @@ class UpdateAppointmentStatusViewModel:UpdateAppointmentStatusProtocol {
         }
     }
     
-    func updateToStartedConsultation (appointment:inout Nambadoctor_V1_AppointmentObject, completion: @escaping (_ success:Bool) -> ()) {
+    func updateToStartedConsultation (appointment:inout Appointment, completion: @escaping (_ success:Bool) -> ()) {
         
         appointment.status = "StartedConsultation"
         
@@ -54,7 +58,7 @@ class UpdateAppointmentStatusViewModel:UpdateAppointmentStatusProtocol {
         }
     }
     
-    func updateToFinished (appointment:inout Nambadoctor_V1_AppointmentObject, completion: @escaping (_ success:Bool) -> ()) {
+    func updateToFinished (appointment:inout Appointment, completion: @escaping (_ success:Bool) -> ()) {
         
         appointment.status = "Finished"
 
@@ -63,7 +67,7 @@ class UpdateAppointmentStatusViewModel:UpdateAppointmentStatusProtocol {
         }
     }
 
-    func updateToFinishedAppointment (appointment:inout Nambadoctor_V1_AppointmentObject, completion: @escaping (_ success:Bool) -> ()) {
+    func updateToFinishedAppointment (appointment:inout Appointment, completion: @escaping (_ success:Bool) -> ()) {
         
         appointment.status = "FinishedAppointment"
         

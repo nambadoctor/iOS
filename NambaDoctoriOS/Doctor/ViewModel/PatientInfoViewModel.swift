@@ -11,15 +11,14 @@ class PatientInfoViewModel: ObservableObject {
     
     @Published var patientObj:Nambadoctor_V1_PatientObject!
     @Published var patientAllergies:String = ""
-    @Published var AppointmentList:[Nambadoctor_V1_AppointmentObject]!
+    @Published var AppointmentList:[Appointment]!
     @Published var ReportList:[Nambadoctor_V1_ReportDownloadObject]!
     
-    var appointment:Nambadoctor_V1_AppointmentObject
+    var appointment:Appointment
     private var retrievePatientInfoHelper:RetrievePatientInfoProtocol
     private var retrievePatientAllergiesHelper:RetrievePatientAllergiesProtocol
 
-    init(appointment:Nambadoctor_V1_AppointmentObject) {
-        print("INITIALIZING")
+    init(appointment:Appointment) {
         self.appointment = appointment
         retrievePatientInfoHelper = RetrievePatientInfoViewModel()
         retrievePatientAllergiesHelper = RetrievePatientAllergiesViewModel()

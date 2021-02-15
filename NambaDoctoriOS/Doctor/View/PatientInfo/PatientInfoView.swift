@@ -11,7 +11,7 @@ struct PatientInfoView: View {
     
     @ObservedObject var patientInfoVM:PatientInfoViewModel
     
-    init(appointment:Nambadoctor_V1_AppointmentObject) {
+    init(appointment:Appointment) {
         patientInfoVM = PatientInfoViewModel(appointment: appointment)
     }
     

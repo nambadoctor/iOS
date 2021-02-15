@@ -8,14 +8,14 @@
 import Foundation
 
 class AddPatientViewModel: ObservableObject {
-    @Published var preRegisteredPatient:Nambadoctor_V1_PatientObject
+    @Published var preRegisteredPatient:Patient
     @Published var followUpFeeObj:FollowUpAppointmentViewModel = FollowUpAppointmentViewModel()
     var allergies:String = ""
     var addPreRegPatient = AddPreRegisteredViewModel()
     var doctorAlertHelpers = DoctorAlertHelpers()
 
     init() {
-        preRegisteredPatient = Nambadoctor_V1_PatientObject()
+        preRegisteredPatient = MakeEmptyPatient()
     }
     
     func addPatient (completion: @escaping (_ added:Bool)->()) {

@@ -8,7 +8,14 @@
 import Foundation
 
 class AddPreRegisteredViewModel {
-    func preRegisterPatient(patientObj:Nambadoctor_V1_PatientObject, _ completion : @escaping ((_ patientId:String?)->())) {
+    
+    var patientObjMapper:PatientObjMapper
+    
+    init() {
+        self.patientObjMapper = PatientObjMapper()
+    }
+    
+    func preRegisterPatient(patientObj:Patient, _ completion : @escaping ((_ patientId:String?)->())) {
 
         CommonDefaultModifiers.showLoader()
 
@@ -17,7 +24,7 @@ class AddPreRegisteredViewModel {
         
         let patientClient = Nambadoctor_V1_PatientWorkerV1Client(channel: channel)
         
-        let request = patientObj
+        let request = patientObjMapper.localPatientToGrpcObject(patient: patientObj)
 
         let putPatient = patientClient.writeNewPatientObject(request, callOptions: callOptions)
 

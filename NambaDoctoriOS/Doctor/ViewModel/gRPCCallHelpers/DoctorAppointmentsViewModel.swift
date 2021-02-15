@@ -11,12 +11,15 @@ import Foundation
 class DoctorAppointmentViewModel : DoctorAppointmentViewModelProtocol {
     
     var getDoctorHelper:GetDocObjectProtocol!
+    var appointmentObjectMapper:AppointmentObjMapper
     
-    init(getDoctorHelper:GetDocObjectProtocol = GetDocObject()) {
+    init(getDoctorHelper:GetDocObjectProtocol = GetDocObject(),
+         appointmentObjMapper:AppointmentObjMapper = AppointmentObjMapper()) {
         self.getDoctorHelper = getDoctorHelper
+        self.appointmentObjectMapper = appointmentObjMapper
     }
     
-    func retrieveDocAppointmentList (_ completion: @escaping ((_ appointmentList:[Nambadoctor_V1_AppointmentObject]?)->())) {
+    func retrieveDocAppointmentList (_ completion: @escaping ((_ appointmentList:[Appointment]?)->())) {
         
         CommonDefaultModifiers.showLoader()
 
@@ -33,9 +36,10 @@ class DoctorAppointmentViewModel : DoctorAppointmentViewModelProtocol {
         
         do {
             let response = try getDoctorsAppointment.response.wait()
+            let appointmentList = appointmentObjectMapper.grpcAppointmentListToLocalAppointmentList(appointmentList: response.appointmentResponse)
             print("Doctor Appointment Client Success")
             CommonDefaultModifiers.hideLoader()
-            completion(response.appointmentResponse)
+            completion(appointmentList)
         } catch {
             print("Doctor Appointment Client Failed")
             completion(nil)

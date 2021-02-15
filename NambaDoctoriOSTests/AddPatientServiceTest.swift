@@ -22,8 +22,7 @@ class AddPatientServiceTest: XCTestCase {
         
         AuthTokenId = "ND_Test_"
         
-        addPreRegPatient.preRegisterPatient(patientObj: MockPreRegPatient.mockPatientObj(),
-                                            nextFeeObj: followUpVM) { (patientId) in
+        addPreRegPatient.preRegisterPatient(patientObj: MockPreRegPatient.mockPatientObj()) { (patientId) in
             
             XCTAssertNotNil(patientId, "No data was downloaded.")
             

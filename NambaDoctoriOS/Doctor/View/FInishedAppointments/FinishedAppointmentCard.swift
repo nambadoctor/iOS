@@ -12,7 +12,7 @@ struct FinishedAppointmentCard: View {
     @ObservedObject private var AppointmentVM:FinishedAppointmentViewModel
     var prescriptionVM:PrescriptionViewModel
 
-    init(appointment:Nambadoctor_V1_AppointmentObject) {
+    init(appointment:Appointment) {
         AppointmentVM = FinishedAppointmentViewModel(appointment: appointment)
         prescriptionVM = PrescriptionViewModel(appointment: appointment, isNewPrescription: false)
     }

@@ -8,13 +8,13 @@
 import Foundation
 
 class FinishedAppointmentViewModel: ObservableObject {
-    @Published var appointment:Nambadoctor_V1_AppointmentObject
+    @Published var appointment:Appointment
     @Published var viewPrescription:Bool = false
     @Published var amendPrescription:Bool = false
     
     private var doctorAlertHelper:DoctorAlertHelpersProtocol
 
-    init(appointment:Nambadoctor_V1_AppointmentObject,
+    init(appointment:Appointment,
          doctorAlertHelper:DoctorAlertHelpersProtocol = DoctorAlertHelpers()) {
         self.appointment = appointment
         self.doctorAlertHelper = doctorAlertHelper

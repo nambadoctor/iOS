@@ -63,7 +63,7 @@ class RetrievePatientInfoServiceTest: XCTestCase {
         
         AuthTokenId = "ND_Test_"
         
-        retrievePatientInfoService.getReportImage(reportId: "601b91cb523ecabc6731188c") { (image) in
+        retrievePatientInfoService.getReportImage(reportId: "60225ad90f3337fe4c6f0c8d") { (image) in
             XCTAssertNotNil(image, "no data found")
             expectation.fulfill()
         }

@@ -9,6 +9,12 @@ import Foundation
 import SwiftUI
 
 class RetrievePatientInfoViewModel: RetrievePatientInfoProtocol {
+    
+    var appointmentObjMapper:AppointmentObjMapper
+    
+    init(appointmentObjMapper:AppointmentObjMapper = AppointmentObjMapper()) {
+        self.appointmentObjMapper = appointmentObjMapper
+    }
 
     func getPatientProfile(patientId: String, _ completion: @escaping ((Nambadoctor_V1_PatientObject?) -> ())) {
                 
@@ -34,7 +40,7 @@ class RetrievePatientInfoViewModel: RetrievePatientInfoProtocol {
         }
     }
     
-    func getPatientAppointmentList(patientId: String, _ completion: @escaping (([Nambadoctor_V1_AppointmentObject]?) -> ())) {
+    func getPatientAppointmentList(patientId: String, _ completion: @escaping (([Appointment]?) -> ())) {
                 
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
@@ -50,15 +56,16 @@ class RetrievePatientInfoViewModel: RetrievePatientInfoProtocol {
 
         do {
             let response = try getPatientAppointments.response.wait()
+            let appointmentList = appointmentObjMapper.grpcAppointmentListToLocalAppointmentList(appointmentList: response.appointmentResponse)
             print("Patient Appointments received")
-            completion(response.appointmentResponse)
+            completion(appointmentList)
         } catch {
             print("Patient Appointments failed: \(error)")
             completion(nil)
         }
     }
 
-    func getUploadedReportList(appointment: Nambadoctor_V1_AppointmentObject, _ completion: @escaping (([Nambadoctor_V1_ReportDownloadObject]?) -> ())) {
+    func getUploadedReportList(appointment: Appointment, _ completion: @escaping (([Nambadoctor_V1_ReportDownloadObject]?) -> ())) {
                 
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
