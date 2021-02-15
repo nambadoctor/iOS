@@ -556,7 +556,6 @@
 		1728B76B25B38138001D554E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				174800AE25B8DB6600C8E3CC /* gRPCCalls */,
 				1728B77925B381E7001D554E /* PreRegisteredUserVM.swift */,
 			);
 			path = ViewModel;
@@ -621,8 +620,6 @@
 		172B84E525AEE38200C6B035 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				17E8687D25CC6F9C000B0952 /* gRPCCallHelpers */,
-				174800BE25B8DE0300C8E3CC /* NotificationHelpers */,
 				172B84E625AEE39E00C6B035 /* DoctorViewModel.swift */,
 				17E8688125CC74C5000B0952 /* GetDocObject.swift */,
 				1748005E25B8BDB000C8E3CC /* UpcomingAppointmentViewModel.swift */,
@@ -730,6 +727,7 @@
 		173A22BA25CAF8B30086342A /* V1 */ = {
 			isa = PBXGroup;
 			children = (
+				17626EAD25DB3FAD00C36A99 /* ServiceCalls */,
 				17626E1825DB0FC600C36A99 /* ObjectMappers */,
 				173A22BC25CAF8C60086342A /* ModelImplementations */,
 				173A22BB25CAF8BC0086342A /* ServiceImplementations */,
@@ -867,21 +865,12 @@
 			path = NotificationService;
 			sourceTree = "<group>";
 		};
-		174800AE25B8DB6600C8E3CC /* gRPCCalls */ = {
-			isa = PBXGroup;
-			children = (
-				1728B76C25B38156001D554E /* FindDocOrPatientVM.swift */,
-				1748011425B8E21700C8E3CC /* RetrieveTwilioAccessToken.swift */,
-			);
-			path = gRPCCalls;
-			sourceTree = "<group>";
-		};
-		174800BE25B8DE0300C8E3CC /* NotificationHelpers */ = {
+		174800BE25B8DE0300C8E3CC /* Notification */ = {
 			isa = PBXGroup;
 			children = (
 				174800B625B8DC0A00C8E3CC /* SendNotificationHelpers.swift */,
 			);
-			path = NotificationHelpers;
+			path = Notification;
 			sourceTree = "<group>";
 		};
 		17626CCB25D5C01A00C36A99 /* DoctorHome */ = {
@@ -979,6 +968,43 @@
 				17626E8725DB283100C36A99 /* DoctorLatestSlotMapper.swift */,
 			);
 			path = DoctorObjMappers;
+			sourceTree = "<group>";
+		};
+		17626EAD25DB3FAD00C36A99 /* ServiceCalls */ = {
+			isa = PBXGroup;
+			children = (
+				174800BE25B8DE0300C8E3CC /* Notification */,
+				17626EAF25DB3FCE00C36A99 /* Doctor */,
+				17626EAE25DB3FBE00C36A99 /* Common */,
+			);
+			path = ServiceCalls;
+			sourceTree = "<group>";
+		};
+		17626EAE25DB3FBE00C36A99 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				1728B76C25B38156001D554E /* FindDocOrPatientVM.swift */,
+				1748011425B8E21700C8E3CC /* RetrieveTwilioAccessToken.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		17626EAF25DB3FCE00C36A99 /* Doctor */ = {
+			isa = PBXGroup;
+			children = (
+				179F62AC25BF62C900BA0A73 /* AddPreRegisteredViewModel.swift */,
+				1748006325B8C00300C8E3CC /* UpdateAppointmentStatusViewModel.swift */,
+				1742512325BCAB9E00523B94 /* RetrieveFollowUpObjViewModel.swift */,
+				1742502D25BAD64900523B94 /* RetrievePrescriptionForAppointmentViewModel.swift */,
+				1742528A25BDADDA00523B94 /* PUTPrescriptionViewModel.swift */,
+				17B5D15A25B75B31009D6A42 /* DoctorAppointmentsViewModel.swift */,
+				174251CA25BCFC2D00523B94 /* PutFollowUpAppointmentViewModel.swift */,
+				174251CF25BCFD1100523B94 /* PutPatientAllergiesViewModel.swift */,
+				1742513025BCAFA800523B94 /* RetrievePatientAllergiesViewModel.swift */,
+				1742523D25BD98F400523B94 /* RetrievePatientInfoViewModel.swift */,
+				17B5D12725B755F8009D6A42 /* RetrieveDocObj.swift */,
+			);
+			path = Doctor;
 			sourceTree = "<group>";
 		};
 		177233B025B74006002B814A /* Constants */ = {
@@ -1255,24 +1281,6 @@
 				17E5187725AED16D001F1A80 /* Info.plist */,
 			);
 			path = NambaDoctoriOSUITests;
-			sourceTree = "<group>";
-		};
-		17E8687D25CC6F9C000B0952 /* gRPCCallHelpers */ = {
-			isa = PBXGroup;
-			children = (
-				179F62AC25BF62C900BA0A73 /* AddPreRegisteredViewModel.swift */,
-				1748006325B8C00300C8E3CC /* UpdateAppointmentStatusViewModel.swift */,
-				1742512325BCAB9E00523B94 /* RetrieveFollowUpObjViewModel.swift */,
-				1742502D25BAD64900523B94 /* RetrievePrescriptionForAppointmentViewModel.swift */,
-				1742528A25BDADDA00523B94 /* PUTPrescriptionViewModel.swift */,
-				17B5D15A25B75B31009D6A42 /* DoctorAppointmentsViewModel.swift */,
-				174251CA25BCFC2D00523B94 /* PutFollowUpAppointmentViewModel.swift */,
-				174251CF25BCFD1100523B94 /* PutPatientAllergiesViewModel.swift */,
-				1742513025BCAFA800523B94 /* RetrievePatientAllergiesViewModel.swift */,
-				1742523D25BD98F400523B94 /* RetrievePatientInfoViewModel.swift */,
-				17B5D12725B755F8009D6A42 /* RetrieveDocObj.swift */,
-			);
-			path = gRPCCallHelpers;
 			sourceTree = "<group>";
 		};
 		17E8694425CDDBFA000B0952 /* Models */ = {
