@@ -135,6 +135,7 @@
 		17626DBF25DA08E900C36A99 /* RetrievePatientAllergiesServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626DBE25DA08E900C36A99 /* RetrievePatientAllergiesServiceTest.swift */; };
 		17626DC425DA0BC800C36A99 /* RetrievePatientInfoServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626DC325DA0BC800C36A99 /* RetrievePatientInfoServiceTest.swift */; };
 		17626E0525DA23E000C36A99 /* PinchToZoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626E0425DA23E000C36A99 /* PinchToZoom.swift */; };
+		17626E0A25DA270400C36A99 /* ImageDisplayEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626E0925DA270400C36A99 /* ImageDisplayEnum.swift */; };
 		1772336E25B70F99002B814A /* SimpleStateConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1772336D25B70F99002B814A /* SimpleStateConstants.swift */; };
 		1772338D25B726A6002B814A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1772338C25B726A6002B814A /* GoogleService-Info.plist */; };
 		1772339825B72FF2002B814A /* CheckLoginStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1772339725B72FF2002B814A /* CheckLoginStatus.swift */; };
@@ -361,6 +362,7 @@
 		17626DBE25DA08E900C36A99 /* RetrievePatientAllergiesServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrievePatientAllergiesServiceTest.swift; sourceTree = "<group>"; };
 		17626DC325DA0BC800C36A99 /* RetrievePatientInfoServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrievePatientInfoServiceTest.swift; sourceTree = "<group>"; };
 		17626E0425DA23E000C36A99 /* PinchToZoom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinchToZoom.swift; sourceTree = "<group>"; };
+		17626E0925DA270400C36A99 /* ImageDisplayEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDisplayEnum.swift; sourceTree = "<group>"; };
 		1772336D25B70F99002B814A /* SimpleStateConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleStateConstants.swift; sourceTree = "<group>"; };
 		1772338C25B726A6002B814A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1772339725B72FF2002B814A /* CheckLoginStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckLoginStatus.swift; sourceTree = "<group>"; };
@@ -879,6 +881,7 @@
 				1772336D25B70F99002B814A /* SimpleStateConstants.swift */,
 				1728B77E25B3838E001D554E /* LoginStatusEnum.swift */,
 				17B5D12C25B75789009D6A42 /* LocalEncodingK.swift */,
+				17626E0925DA270400C36A99 /* ImageDisplayEnum.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -1543,6 +1546,7 @@
 				172B851125AEE46700C6B035 /* OTPVerificationView.swift in Sources */,
 				17E5185625AED16A001F1A80 /* SceneDelegate.swift in Sources */,
 				173A22D025CAF8F50086342A /* logon.grpc.swift in Sources */,
+				17626E0A25DA270400C36A99 /* ImageDisplayEnum.swift in Sources */,
 				1742526025BD9E9F00523B94 /* PatientInfoView.swift in Sources */,
 				17E869E625CE771E000B0952 /* PatientReportViewModel.swift in Sources */,
 				1748006A25B8C14400C8E3CC /* SendPushNotification.swift in Sources */,

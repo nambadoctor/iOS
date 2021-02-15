@@ -9,18 +9,19 @@ import SwiftUI
 
 struct PatientReportView: View {
     @ObservedObject var patientReportVM:PatientReportViewModel
-    
+
     init(report:Nambadoctor_V1_ReportDownloadObject) {
         patientReportVM = PatientReportViewModel(report: report)
     }
 
     var body: some View {
         VStack {
-            if patientReportVM.mediaObject == nil {
+            switch patientReportVM.displayImage {
+            case .loading:
                 Indicator()
-            } else if (patientReportVM.noImage) {
-                Text("Sorry this image does not exist")
-            } else {
+            case .notFound:
+                Text("Sorry this image was not found")
+            case .display:
                 Image(uiImage: patientReportVM.mediaObject!)
                     .resizable()
                     .scaledToFit()
