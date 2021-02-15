@@ -10,11 +10,11 @@ import Foundation
 
 class MockRetrieveAllergiesService: RetrievePatientAllergiesProtocol {
     var hasAllergies:Bool = false
-    func getPatientAllergies(patientId: String, _ completion: @escaping ((String) -> ())) {
+    func getPatientAllergies(patientId: String, _ completion: @escaping ((String?) -> ())) {
         if hasAllergies {
             completion("insulin")
         } else {
-            completion("none")
+            completion(nil)
         }
     }
 }

@@ -30,9 +30,9 @@ struct AddPatientView: View {
                     Section(header: Text("Allergies(optional)")) {
                         TextField("Enter patient allergies if any", text: $AddPatientVM.allergies)
                     }
-
+                    
                     MakeFollowUpAppointmentView(followUpAppointmentVM: AddPatientVM.followUpFeeObj)
-
+                    
                     Button(action: {
                         presentationMode.wrappedValue.dismiss()
                     }) {
@@ -42,7 +42,7 @@ struct AddPatientView: View {
                             Spacer()
                         }.padding(12).background(Color.red).cornerRadius(4)
                     }
-
+                    
                     Button(action: {
                         AddPatientVM.addPatient { (added) in
                             presentationMode.wrappedValue.dismiss()
@@ -55,6 +55,8 @@ struct AddPatientView: View {
                         }.padding(12).background(Color.green).cornerRadius(4)
                     }
                 }
+                .navigationBarTitle("")
+                .navigationBarHidden(true)
             }
         }
         .navigationTitle("Add Your Patient")

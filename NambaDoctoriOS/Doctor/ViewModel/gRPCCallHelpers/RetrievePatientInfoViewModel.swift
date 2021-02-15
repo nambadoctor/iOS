@@ -9,11 +9,9 @@ import Foundation
 import SwiftUI
 
 class RetrievePatientInfoViewModel: RetrievePatientInfoProtocol {
-    
-    func getPatientProfile(patientId: String, _ completion: @escaping ((Nambadoctor_V1_PatientObject) -> ())) {
-        
-        CommonDefaultModifiers.showLoader()
-        
+
+    func getPatientProfile(patientId: String, _ completion: @escaping ((Nambadoctor_V1_PatientObject?) -> ())) {
+                
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         
@@ -28,18 +26,16 @@ class RetrievePatientInfoViewModel: RetrievePatientInfoProtocol {
 
         do {
             let response = try getPatientObject.response.wait()
-            print("PatientClient received: \(response.patientID)")
-            CommonDefaultModifiers.hideLoader()
+            print("Patient Client received: \(response.patientID)")
             completion(response)
         } catch {
-            print("PatientClient failed: \(error)")
+            print("Patient Client failed: \(error)")
+            completion(nil)
         }
     }
     
-    func getPatientAppointmentList(patientId: String, _ completion: @escaping (([Nambadoctor_V1_AppointmentObject]) -> ())) {
-        
-        CommonDefaultModifiers.showLoader()
-        
+    func getPatientAppointmentList(patientId: String, _ completion: @escaping (([Nambadoctor_V1_AppointmentObject]?) -> ())) {
+                
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         
@@ -54,18 +50,16 @@ class RetrievePatientInfoViewModel: RetrievePatientInfoProtocol {
 
         do {
             let response = try getPatientAppointments.response.wait()
-            print("PatientClient received")
-            CommonDefaultModifiers.hideLoader()
+            print("Patient Appointments received")
             completion(response.appointmentResponse)
         } catch {
-            print("PatientClient failed: \(error)")
+            print("Patient Appointments failed: \(error)")
+            completion(nil)
         }
     }
 
-    func getUploadedReportList(appointment: Nambadoctor_V1_AppointmentObject, _ completion: @escaping (([Nambadoctor_V1_ReportDownloadObject]) -> ())) {
-        
-        CommonDefaultModifiers.showLoader()
-        
+    func getUploadedReportList(appointment: Nambadoctor_V1_AppointmentObject, _ completion: @escaping (([Nambadoctor_V1_ReportDownloadObject]?) -> ())) {
+                
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         
@@ -81,17 +75,15 @@ class RetrievePatientInfoViewModel: RetrievePatientInfoProtocol {
         do {
             let response = try getPatientReports.response.wait()
             print("Patient Reports received")
-            CommonDefaultModifiers.hideLoader()
             completion(response.reports)
         } catch {
             print("Patient Reports failed: \(error)")
+            completion(nil)
         }
     }
     
-    func getReportImage(reportId: String, _ completion: @escaping ((UIImage?) -> ())) {
-        
-        CommonDefaultModifiers.showLoader()
-        
+    func getReportImage(reportId: String, _ completion: @escaping (UIImage?) -> ()) {
+                
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         
@@ -107,10 +99,10 @@ class RetrievePatientInfoViewModel: RetrievePatientInfoProtocol {
         do {
             let response = try getPatientReports.response.wait()
             print("Patient Reports received \(response.mediaFile)")
-            CommonDefaultModifiers.hideLoader()
-            completion(UIImage(data: response.mediaFile, scale: 1.0))
+            completion(Helpers.convertB64ToUIImage(b64Data: response.mediaFile.base64EncodedString()))
         } catch {
             print("Patient Reports failed: \(error)")
+            completion(nil)
         }
     }
 }

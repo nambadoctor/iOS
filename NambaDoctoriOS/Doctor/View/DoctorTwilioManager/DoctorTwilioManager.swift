@@ -44,7 +44,7 @@ struct DoctorTwilioManager: View {
     
     var navPatientInfo : some View {
         Button {
-            DoctorTwilioVM.viewPatientInfo()
+            DoctorTwilioVM.viewPatientInfoClicked()
         } label: {
             VStack {
                 Text("Patient")

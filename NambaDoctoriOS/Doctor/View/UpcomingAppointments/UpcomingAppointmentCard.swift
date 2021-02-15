@@ -77,7 +77,7 @@ struct UpcomingAppointmentCard: View {
             }
         }
     }
-    
+
     var writePrescriptionButton : some View {
         Button (action: {
             AppointmentVM.writePrescription()

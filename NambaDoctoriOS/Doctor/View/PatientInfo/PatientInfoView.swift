@@ -33,6 +33,7 @@ struct PatientInfoView: View {
                 Spacer()
             }
         }
+        .navigationTitle("\(patientInfoVM.patientName)'s Info")
     }
     
     var basicDetails : some View {

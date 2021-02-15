@@ -56,7 +56,7 @@ class PrescriptionViewModel: ObservableObject {
     func prescriptionViewOnAppear () {
         if isNewPrescription { //entry from upcoming appointments
             //checkForStoredPrescriptionAndRetreive()
-            self.retrievePrescription()
+            self.prescription = Nambadoctor_V1_PrescriptionObject()
         } else {
             self.retrievePrescription()
         }
@@ -71,16 +71,6 @@ class PrescriptionViewModel: ObservableObject {
             return true
         }
     }
-    
-//    func checkForStoredPrescriptionAndRetreive() {
-//        let storedPrescription = LocalDecoder.decode(modelType: Nambadoctor_V1_PrescriptionObject.self, from: "prescription:\(self.appointment.id)")
-//
-//        if storedPrescription == nil {
-//            self.prescription = Nambadoctor_V1_PrescriptionObject()
-//        } else {
-//            self.mapPrescriptionValues(prescription: storedPrescription!)
-//        }
-//    }
 
     func retrievePrescription() {
         retrievePrescriptionHelper.getPrescription(appointmentId: self.appointment.appointmentID) { (prescription) in
@@ -109,7 +99,7 @@ class PrescriptionViewModel: ObservableObject {
 
     func retrieveAllergiesForPatient() {
         retrieveAllergiesHelper.getPatientAllergies(patientId: appointment.requestedBy) { (allergies) in
-            self.patientAllergies = allergies
+            self.patientAllergies = allergies ?? "none"
         }
     }
 
@@ -120,6 +110,17 @@ class PrescriptionViewModel: ObservableObject {
 
     func viewPatientInfo() {
         docSheetHelper.showPatientInfoSheet(appointment: appointment)
+    }
+    
+    
+    func checkForStoredPrescriptionAndRetreive() {
+//        let storedPrescription = LocalDecoder.decode(modelType: Nambadoctor_V1_PrescriptionObject.self, from: "prescription:\(self.appointment.id)")
+//
+//        if storedPrescription == nil {
+//            self.prescription = Nambadoctor_V1_PrescriptionObject()
+//        } else {
+//            self.mapPrescriptionValues(prescription: storedPrescription!)
+//        }
     }
     
     func navBarBackPressed (completion: @escaping (_ GoBack:Bool)->()) {
@@ -138,7 +139,6 @@ class PrescriptionViewModel: ObservableObject {
 //                completion(true)
 //            }
 //        }
-        
-        completion(true)
+//        completion(true)
     }
 }

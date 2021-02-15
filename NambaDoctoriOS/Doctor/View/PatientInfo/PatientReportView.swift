@@ -18,8 +18,13 @@ struct PatientReportView: View {
         VStack {
             if patientReportVM.mediaObject == nil {
                 Indicator()
+            } else if (patientReportVM.noImage) {
+                Text("Sorry this image does not exist")
             } else {
                 Image(uiImage: patientReportVM.mediaObject!)
+                    .resizable()
+                    .scaledToFit()
+                    .pinchToZoom()
             }
         }
     }

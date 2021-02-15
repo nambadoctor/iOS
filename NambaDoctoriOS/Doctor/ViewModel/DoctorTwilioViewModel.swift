@@ -55,7 +55,7 @@ class DoctorTwilioViewModel: ObservableObject {
         status = .finished
     }
     
-    func viewPatientInfo() {
+    func viewPatientInfoClicked() {
         docSheetHelper.showPatientInfoSheet(appointment: appointment)
     }
 }

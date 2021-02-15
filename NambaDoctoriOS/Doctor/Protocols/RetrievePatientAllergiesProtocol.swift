@@ -8,5 +8,5 @@
 import Foundation
 
 protocol RetrievePatientAllergiesProtocol {
-    func getPatientAllergies (patientId:String, _ completion: @escaping ((_ allergies:String)->()))
+    func getPatientAllergies (patientId:String, _ completion: @escaping ((_ allergies:String?)->()))
 }

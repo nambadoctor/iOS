@@ -8,7 +8,7 @@
 import Foundation
 
 class AddPreRegisteredViewModel {
-    func preRegisterPatient(patientObj:Nambadoctor_V1_PatientObject, nextFeeObj:FollowUpAppointmentViewModel, _ completion : @escaping ((_ patientId:String?)->())) {
+    func preRegisterPatient(patientObj:Nambadoctor_V1_PatientObject, _ completion : @escaping ((_ patientId:String?)->())) {
 
         CommonDefaultModifiers.showLoader()
 

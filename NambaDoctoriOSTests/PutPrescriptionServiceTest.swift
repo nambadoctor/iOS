@@ -16,15 +16,9 @@ class PutPrescriptionServiceTest: XCTestCase {
     override func setUp() {
         self.putPrescriptionService = PutPrescriptionViewModel()
         
-        self.newPrescriptionVM = PrescriptionViewModel(
-            appointment: MakeMockAppointment.getAppointment(),
-            isNewPrescription: true,
-            docObjectHelper: MockGetDoctorObjectService())
+        self.newPrescriptionVM = MockPrescriptionViewModel.getNewPrescriptionVM()
         
-        self.ammendPrescriptionVM = PrescriptionViewModel(
-            appointment: MakeMockAppointment.getAppointment(),
-            isNewPrescription: false,
-            docObjectHelper: MockGetDoctorObjectService())
+        self.ammendPrescriptionVM = MockPrescriptionViewModel.getAmmendPrescriptionVM()
     }
     
     func testPutNewPrescription () {

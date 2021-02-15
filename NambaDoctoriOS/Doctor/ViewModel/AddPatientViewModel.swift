@@ -27,7 +27,7 @@ class AddPatientViewModel: ObservableObject {
 
         CommonDefaultModifiers.showLoader()
         
-        addPreRegPatient.preRegisterPatient(patientObj: preRegisteredPatient, nextFeeObj: followUpFeeObj) { (patientId) in
+        addPreRegPatient.preRegisterPatient(patientObj: preRegisteredPatient) { (patientId) in
             if (patientId != nil) {
                 self.setAllergies(patientAllergies: self.allergies, patientId: patientId!)
                 self.setFollowUp(nextFeeObj: self.followUpFeeObj, patientId: patientId!)

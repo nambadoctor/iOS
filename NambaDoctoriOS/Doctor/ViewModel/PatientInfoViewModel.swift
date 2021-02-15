@@ -19,6 +19,7 @@ class PatientInfoViewModel: ObservableObject {
     private var retrievePatientAllergiesHelper:RetrievePatientAllergiesProtocol
 
     init(appointment:Nambadoctor_V1_AppointmentObject) {
+        print("INITIALIZING")
         self.appointment = appointment
         retrievePatientInfoHelper = RetrievePatientInfoViewModel()
         retrievePatientAllergiesHelper = RetrievePatientAllergiesViewModel()
@@ -27,6 +28,10 @@ class PatientInfoViewModel: ObservableObject {
         retrieveAppointmentList()
         retrievePatientAllergies()
         retrieveUploadedDocumentList()
+    }
+    
+    var patientName:String {
+        return patientObj.fullName
     }
 
     private func retrievePatientObj () {
@@ -49,7 +54,7 @@ class PatientInfoViewModel: ObservableObject {
 
     private func retrievePatientAllergies () {
         retrievePatientAllergiesHelper.getPatientAllergies(patientId: appointment.requestedBy) { (allergies) in
-            self.patientAllergies = allergies
+            self.patientAllergies = allergies ?? "none"
         }
     }
 

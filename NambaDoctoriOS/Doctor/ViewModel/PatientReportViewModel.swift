@@ -11,6 +11,7 @@ import UIKit
 class PatientReportViewModel : ObservableObject {
     @Published var report:Nambadoctor_V1_ReportDownloadObject
     @Published var mediaObject:UIImage?
+    @Published var noImage:Bool = false
     
     private var retrievePatientInfo:RetrievePatientInfoProtocol
     
@@ -24,8 +25,11 @@ class PatientReportViewModel : ObservableObject {
     
     func getImageObj () {
         retrievePatientInfo.getReportImage(reportId: report.id) { (reportImage) in
-            print("Got Image: \(reportImage)")
-            self.mediaObject = reportImage
+            if reportImage != nil {
+                self.mediaObject = reportImage
+            } else {
+                noImage = true
+            }
         }
     }
 }

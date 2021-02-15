@@ -8,10 +8,8 @@
 import Foundation
 
 class RetrievePatientAllergiesViewModel: RetrievePatientAllergiesProtocol {
-    func getPatientAllergies (patientId:String, _ completion: @escaping ((_ allergies:String)->())) {
-        
-        CommonDefaultModifiers.showLoader()
-        
+    func getPatientAllergies (patientId:String, _ completion: @escaping ((_ allergies:String?)->())) {
+                
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         
@@ -26,10 +24,10 @@ class RetrievePatientAllergiesViewModel: RetrievePatientAllergiesProtocol {
         do {
             let response = try putAllergy.response.wait()
             print("Allergies Get Client Successful: \(response.allergies)")
-            CommonDefaultModifiers.hideLoader()
             completion(response.allergies)
         } catch {
             print("Allergies Get Client Failure")
+            completion(nil)
         }
 
     }
