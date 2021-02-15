@@ -41,7 +41,7 @@ class MedicineEntryViewModel : ObservableObject {
         return "\(morning),\(afternoon),\(evening),\(night)"
     }
 
-    func mapExistingMedicine(medicine:Nambadoctor_V1_MedicineObject) {
+    func mapExistingMedicine(medicine:Medicine) {
         medicineName = medicine.medicineName
         dosage = medicine.dosage
 

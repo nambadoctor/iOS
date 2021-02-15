@@ -8,6 +8,13 @@
 import Foundation
 
 class PutPrescriptionViewModel: PutPrescriptionViewModelProtocol {
+    
+    var prescriptionObjectMapper:PrescriptionObjectMapper
+    
+    init (prescriptionObjectMapper:PrescriptionObjectMapper = PrescriptionObjectMapper()) {
+        self.prescriptionObjectMapper = prescriptionObjectMapper
+    }
+    
     func writePrescriptionToDB(prescriptionViewModel:PrescriptionViewModel, _ completion : @escaping ((_ successfull:Bool)->())) {
         
         CommonDefaultModifiers.showLoader()
@@ -17,7 +24,7 @@ class PutPrescriptionViewModel: PutPrescriptionViewModelProtocol {
         
         let prescriptionClient = Nambadoctor_V1_PrescriptionWorkerV1Client(channel: channel)
 
-        let request = prescriptionViewModel.prescription ?? Nambadoctor_V1_PrescriptionObject()
+        let request = prescriptionObjectMapper.localPrescriptionToGrpcObject(prescription: prescriptionViewModel.prescription)
 
         let makePrescription = prescriptionClient.saveNewPrescription(request, callOptions: callOptions)
         

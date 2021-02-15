@@ -11,9 +11,9 @@ import SwiftUI
 class PrescriptionViewModel: ObservableObject {
     var appointment:Appointment
     var isNewPrescription:Bool
-    var loggedInDoctor:Nambadoctor_V1_DoctorResponse
+    var loggedInDoctor:Doctor
     
-    @Published var prescription:Nambadoctor_V1_PrescriptionObject!
+    @Published var prescription:Prescription!
     @Published var errorInRetrievingPrescription:Bool = false
     @Published var navigateToReviewPrescription:Bool = false
     @Published var dismissAllViews:Bool = false
@@ -56,7 +56,7 @@ class PrescriptionViewModel: ObservableObject {
     func prescriptionViewOnAppear () {
         if isNewPrescription { //entry from upcoming appointments
             //checkForStoredPrescriptionAndRetreive()
-            self.prescription = Nambadoctor_V1_PrescriptionObject()
+            self.prescription = MakeEmptyPrescription()
         } else {
             self.retrievePrescription()
         }
@@ -83,7 +83,7 @@ class PrescriptionViewModel: ObservableObject {
         }
     }
     
-    func mapPrescriptionValues (prescription:Nambadoctor_V1_PrescriptionObject) {
+    func mapPrescriptionValues (prescription:Prescription) {
         self.prescription = prescription
         self.MedicineVM.medicineArr = self.prescription.medicines
         self.InvestigationsVM.parsePlanIntoInvestigationsArr(planInfo: self.prescription.advice)

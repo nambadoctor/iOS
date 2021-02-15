@@ -9,7 +9,7 @@ import Foundation
 
 class DocNotifHelpers : DocNotifHelpersProtocol {
     
-    var currentDocObj:Nambadoctor_V1_DoctorResponse
+    var currentDocObj:Doctor
     var sendPushNotification = NambaDoctoriOS.SendPushNotification()
     var getDocObjectHelper:GetDocObjectProtocol
     

@@ -9,7 +9,13 @@ import Foundation
 
 class RetrieveFollowUpObjViewModel: RetrieveFollowUpFeeObjProtocol {
     
-    func getNextFee(doctorId:String, patientId: String, _ completion: @escaping ((Nambadoctor_V1_FollowUpObject?) -> ())) {
+    var followUpObjMapper:FollowUpObjectMapper
+    
+    init(followUpObjMapper:FollowUpObjectMapper = FollowUpObjectMapper()) {
+        self.followUpObjMapper = followUpObjMapper
+    }
+    
+    func getNextFee(doctorId:String, patientId: String, _ completion: @escaping ((FollowUp?) -> ())) {
         
         CommonDefaultModifiers.showLoader()
 
@@ -27,11 +33,13 @@ class RetrieveFollowUpObjViewModel: RetrieveFollowUpFeeObjProtocol {
         
         do {
             let response = try getFollowUp.response.wait()
+            let followup = followUpObjMapper.grpcToLocalFollowUpObject(followup: response)
             print("UserTypeClient received: \(response)")
             CommonDefaultModifiers.hideLoader()
-            completion(response)
+            completion(followup)
         } catch {
             print("UserTypeClient failed: \(error)")
+            completion(nil)
         }
     }
 }

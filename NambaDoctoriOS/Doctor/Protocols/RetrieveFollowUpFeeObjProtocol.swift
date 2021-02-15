@@ -8,5 +8,5 @@
 import Foundation
 
 protocol RetrieveFollowUpFeeObjProtocol {
-    func getNextFee (doctorId:String, patientId:String, _ completion: @escaping ((_ nextFeeObj:Nambadoctor_V1_FollowUpObject?)->()))
+    func getNextFee (doctorId:String, patientId:String, _ completion: @escaping ((_ nextFeeObj:FollowUp?)->()))
 }

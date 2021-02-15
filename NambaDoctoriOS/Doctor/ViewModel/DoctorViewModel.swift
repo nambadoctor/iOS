@@ -8,7 +8,7 @@
 import Foundation
 
 class DoctorViewModel: ObservableObject {
-    @Published private var doctor:Nambadoctor_V1_DoctorResponse = Nambadoctor_V1_DoctorResponse()
+    @Published private var doctor:Doctor = MakeEmptyDoctor()
     @Published var upcomingAppointments:[Appointment] = [Appointment]()
     @Published var finishedAppointments:[Appointment] = [Appointment]()
     

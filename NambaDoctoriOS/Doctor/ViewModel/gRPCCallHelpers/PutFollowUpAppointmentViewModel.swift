@@ -46,7 +46,7 @@ class PutFollowUpAppointmentViewModel: PutFollowUpAppointmentViewModelProtocol{
         
         CommonDefaultModifiers.showLoader()
         
-        let loggedInDoctor:Nambadoctor_V1_DoctorResponse = getDocObjHelper.getDoctor()
+        let loggedInDoctor:Doctor = getDocObjHelper.getDoctor()
 
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()

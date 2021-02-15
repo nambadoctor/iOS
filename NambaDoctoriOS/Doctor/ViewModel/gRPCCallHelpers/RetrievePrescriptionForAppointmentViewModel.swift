@@ -8,7 +8,14 @@
 import Foundation
 
 class RetrievePrescriptionForAppointmentViewModel : RetrievePrescriptionForAppointmentProtocol {
-    func getPrescription (appointmentId:String, _ completion: @escaping ((_ prescription:Nambadoctor_V1_PrescriptionObject?)->())) {
+    
+    var prescriptionObjMapper:PrescriptionObjectMapper
+    
+    init(prescriptionObjMapper:PrescriptionObjectMapper = PrescriptionObjectMapper()) {
+        self.prescriptionObjMapper = prescriptionObjMapper
+    }
+    
+    func getPrescription (appointmentId:String, _ completion: @escaping ((_ prescription:Prescription?)->())) {
         
         CommonDefaultModifiers.showLoader()
 
@@ -25,9 +32,10 @@ class RetrievePrescriptionForAppointmentViewModel : RetrievePrescriptionForAppoi
         
         do {
             let response = try getPrescriptionObj.response.wait()
+            let prescription = prescriptionObjMapper.grpcToLocalPrescriptionObject(prescription: response)
             print("PrescriptionClient received: \(response)")
             CommonDefaultModifiers.hideLoader()
-            completion(response)
+            completion(prescription)
         } catch {
             print("PrescriptionClient failed: \(error)")
         }

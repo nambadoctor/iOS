@@ -8,7 +8,14 @@
 import Foundation
 
 class RetrieveDocObj {
-    func getDoc (doctorId:String, _ completion : @escaping (_ DoctorObj:Nambadoctor_V1_DoctorResponse)->()) {
+    
+    var doctorObjectMapper:DoctorObjectMapper
+    
+    init(doctorObjectMapper:DoctorObjectMapper = DoctorObjectMapper()) {
+        self.doctorObjectMapper = doctorObjectMapper
+    }
+    
+    func getDoc (doctorId:String, _ completion : @escaping (_ DoctorObj:Doctor)->()) {
         
         CommonDefaultModifiers.showLoader()
 
@@ -20,14 +27,15 @@ class RetrieveDocObj {
         let request = Nambadoctor_V1_DoctorRequest.with {
             $0.doctorID = doctorId
         }
-        
+
         let getDoctor = doctorClient.getDoctor(request, callOptions: callOptions)
 
         do {
             let response = try getDoctor.response.wait()
+            let doctor = doctorObjectMapper.grpcToLocalDoctorObject(doctor: response)
             print("Get Doctor Client Success")
             CommonDefaultModifiers.hideLoader()
-            completion(response)
+            completion(doctor)
         } catch {
             print("Get Doctor Client Failed")
         }

@@ -42,8 +42,8 @@ class GeneralDoctorHelpers : GeneralDoctorHelpersProtocol {
     }
     
     //MARK: GETTING INDEX OF PRESCRIPTION
-     func getMedicineIndex (medicineArr:[Nambadoctor_V1_MedicineObject],
-                            medicine:Nambadoctor_V1_MedicineObject) -> Int {
+     func getMedicineIndex (medicineArr:[Medicine],
+                            medicine:Medicine) -> Int {
         var index:Int = 0
         
         for medArrItem in medicineArr {
@@ -56,7 +56,7 @@ class GeneralDoctorHelpers : GeneralDoctorHelpersProtocol {
         return index
     }
     
-     func checkIfMedicineExists (medicineArr:[Nambadoctor_V1_MedicineObject], medicine:Nambadoctor_V1_MedicineObject) -> Bool {
+     func checkIfMedicineExists (medicineArr:[Medicine], medicine:Medicine) -> Bool {
         for medArrItem in medicineArr {
             if medicine.medicineName == medArrItem.medicineName {
                 return true

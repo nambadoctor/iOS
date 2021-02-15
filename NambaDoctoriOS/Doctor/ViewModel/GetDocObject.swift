@@ -8,17 +8,17 @@
 import Foundation
 
 //global variable for now. not singleton
-var doctor:Nambadoctor_V1_DoctorResponse?
+var doctor:Doctor?
 
 class GetDocObject : GetDocObjectProtocol {
-    func fetchDoctor (userId:String, completion: @escaping (_ doctor:Nambadoctor_V1_DoctorResponse)->())  {
+    func fetchDoctor (userId:String, completion: @escaping (_ doctor:Doctor)->())  {
         RetrieveDocObj().getDoc(doctorId:userId) { docObj in
             doctor = docObj
             completion(docObj)
         }
     }
     
-    func getDoctor () -> Nambadoctor_V1_DoctorResponse {
+    func getDoctor () -> Doctor {
         return doctor!
     }
 }

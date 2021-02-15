@@ -8,6 +8,6 @@
 import Foundation
 
 protocol GetDocObjectProtocol {
-    func fetchDoctor (userId:String, completion: @escaping (_ doctor:Nambadoctor_V1_DoctorResponse)->())
-    func getDoctor () -> Nambadoctor_V1_DoctorResponse
+    func fetchDoctor (userId:String, completion: @escaping (_ doctor:Doctor)->())
+    func getDoctor () -> Doctor
 }

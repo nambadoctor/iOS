@@ -8,8 +8,8 @@
 import Foundation
 
 class MedicineViewModel: ObservableObject {
-    @Published var medicineArr:[Nambadoctor_V1_MedicineObject] = [Nambadoctor_V1_MedicineObject]()
-    @Published var tempMedicine:Nambadoctor_V1_MedicineObject = Nambadoctor_V1_MedicineObject()
+    @Published var medicineArr:[Medicine] = [Medicine]()
+    @Published var tempMedicine:Medicine = MakeEmptyMedicine()
     @Published var medicineEntryVM:MedicineEntryViewModel = MedicineEntryViewModel()
     
     //global alert will not show when using bottom sheet
@@ -38,18 +38,18 @@ class MedicineViewModel: ObservableObject {
         return generalDoctorHelpers.convertingToFraction(decimal: Double(medicineEntryVM.nightTemp.clean)!)
     }
     
-    func timingStringForMedDisplay (medicine:Nambadoctor_V1_MedicineObject) -> String {
+    func timingStringForMedDisplay (medicine:Medicine) -> String {
         return generalDoctorHelpers.formatTimingToDecimal(timings: medicine.timings)
     }
 
     func addMedicineOnTap () {
         EndEditingHelper.endEditing()
-        tempMedicine = Nambadoctor_V1_MedicineObject()
+        tempMedicine = MakeEmptyMedicine()
         medicineEntryVM.isNewMedicine = true
         medicineEntryVM.showAddMedicineSheet.toggle()
     }
 
-    func editMedicineOnTap (medicineToEdit:Nambadoctor_V1_MedicineObject) {
+    func editMedicineOnTap (medicineToEdit:Medicine) {
         tempMedicine = medicineToEdit
         medicineEntryVM.isNewMedicine = false
         medicineEntryVM.mapExistingMedicine(medicine: tempMedicine)
