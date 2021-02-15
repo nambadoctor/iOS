@@ -17,10 +17,10 @@ class PutPrescriptionViewModel: PutPrescriptionViewModelProtocol {
         
         let prescriptionClient = Nambadoctor_V1_PrescriptionWorkerV1Client(channel: channel)
 
-        let request = prescriptionViewModel.prescription!
+        let request = prescriptionViewModel.prescription ?? Nambadoctor_V1_PrescriptionObject()
 
         let makePrescription = prescriptionClient.saveNewPrescription(request, callOptions: callOptions)
-
+        
         do {
             let response = try makePrescription.response.wait()
             print("Prescription Write Client Successfull: \(response.prescriptionID)")

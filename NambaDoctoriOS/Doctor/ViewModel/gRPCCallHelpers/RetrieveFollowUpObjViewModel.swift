@@ -12,7 +12,7 @@ class RetrieveFollowUpObjViewModel: RetrieveFollowUpFeeObjProtocol {
     func getNextFee(doctorId:String, patientId: String, _ completion: @escaping ((Nambadoctor_V1_FollowUpObject?) -> ())) {
         
         CommonDefaultModifiers.showLoader()
-        
+
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         

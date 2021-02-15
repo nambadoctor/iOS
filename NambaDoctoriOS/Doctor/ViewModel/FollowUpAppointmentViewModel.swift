@@ -28,11 +28,11 @@ class FollowUpAppointmentViewModel:ObservableObject {
     }
     
     var nextFeeInt:Int32 {
-        return Int32(nextFeeHelperString)!
+        return Int32(nextFeeHelperString) ?? 0
     }
     
     var validityDaysInt:Int32 {
-        return Int32(validDaysHelperString)!
+        return Int32(validDaysHelperString) ?? 0
     }
 
     func showEntryFields () {

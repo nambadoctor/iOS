@@ -22,7 +22,7 @@ class TwilioTokenServiceTests: XCTestCase {
         
         retrieveTokenAccessToken.retrieveToken(appointmentId: "appointmentId") { (success, token) in
             XCTAssertNotNil(token, "No data was downloaded.")
-            
+
             expectation.fulfill()
         }
         

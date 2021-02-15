@@ -8,6 +8,13 @@
 import Foundation
 
 class PutFollowUpAppointmentViewModel: PutFollowUpAppointmentViewModelProtocol{
+    
+    var getDocObjHelper:GetDocObjectProtocol
+    
+    init(getDocObjHelper:GetDocObjectProtocol = GetDocObject()) {
+        self.getDocObjHelper = getDocObjHelper
+    }
+    
     func makeFollowUpAppointment (prescriptionVM:PrescriptionViewModel, _ completion : @escaping ((_ successfull:Bool)->())) {
         
         let followUpVM = prescriptionVM.FollowUpVM
@@ -21,7 +28,7 @@ class PutFollowUpAppointmentViewModel: PutFollowUpAppointmentViewModelProtocol{
             $0.discountedFee = followUpVM.nextFeeInt
             $0.nofDays = followUpVM.validityDaysInt
             $0.patientID = prescriptionVM.appointment.requestedBy
-            $0.doctorID = GetDocObject().getDoctor().doctorID
+            $0.doctorID = getDocObjHelper.getDoctor().doctorID
         }
         
         let putFollowUpClient = followUpClient.writeNewFollowUp(request, callOptions: callOptions)
@@ -39,7 +46,7 @@ class PutFollowUpAppointmentViewModel: PutFollowUpAppointmentViewModelProtocol{
         
         CommonDefaultModifiers.showLoader()
         
-        let loggedInDoctor:Nambadoctor_V1_DoctorResponse = GetDocObject().getDoctor()
+        let loggedInDoctor:Nambadoctor_V1_DoctorResponse = getDocObjHelper.getDoctor()
 
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()

@@ -8,5 +8,5 @@
 import Foundation
 
 protocol DoctorAppointmentViewModelProtocol {
-    func retrieveDocAppointmentList (_ completion: @escaping ((_ appointmentList:[Nambadoctor_V1_AppointmentObject])->()))
+    func retrieveDocAppointmentList (_ completion: @escaping ((_ appointmentList:[Nambadoctor_V1_AppointmentObject]?)->()))
 }

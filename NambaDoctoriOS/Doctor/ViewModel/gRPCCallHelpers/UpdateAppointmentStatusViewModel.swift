@@ -62,7 +62,7 @@ class UpdateAppointmentStatusViewModel:UpdateAppointmentStatusProtocol {
             if updated { completion(true) } else { }
         }
     }
-    
+
     func updateToFinishedAppointment (appointment:inout Nambadoctor_V1_AppointmentObject, completion: @escaping (_ success:Bool) -> ()) {
         
         appointment.status = "FinishedAppointment"

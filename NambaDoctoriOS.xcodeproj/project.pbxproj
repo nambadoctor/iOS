@@ -122,6 +122,14 @@
 		17626CD225D5C06200C36A99 /* DoctorHomeShowAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626CD125D5C06200C36A99 /* DoctorHomeShowAlert.swift */; };
 		17626D7125D91F9900C36A99 /* LogonServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626D7025D91F9900C36A99 /* LogonServiceTest.swift */; };
 		17626D7E25D9B46B00C36A99 /* TwilioTokenServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626D7D25D9B46B00C36A99 /* TwilioTokenServiceTests.swift */; };
+		17626D8325D9B7F100C36A99 /* AddPatientServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626D8225D9B7F100C36A99 /* AddPatientServiceTest.swift */; };
+		17626D8825D9B84200C36A99 /* MockPreRegisteredPatient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626D8725D9B84200C36A99 /* MockPreRegisteredPatient.swift */; };
+		17626D8D25D9B9C900C36A99 /* UpdateAppointmentStatusServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626D8C25D9B9C900C36A99 /* UpdateAppointmentStatusServiceTest.swift */; };
+		17626D9225D9BA8700C36A99 /* RetrieveFollowUpObjServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626D9125D9BA8700C36A99 /* RetrieveFollowUpObjServiceTest.swift */; };
+		17626D9725D9BB4900C36A99 /* RetrievePrescriptionServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626D9625D9BB4900C36A99 /* RetrievePrescriptionServiceTest.swift */; };
+		17626D9C25D9BBD600C36A99 /* PutPrescriptionServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626D9B25D9BBD600C36A99 /* PutPrescriptionServiceTest.swift */; };
+		17626DA125D9BCB400C36A99 /* RetrieveDoctorAppointmentsServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626DA025D9BCB400C36A99 /* RetrieveDoctorAppointmentsServiceTest.swift */; };
+		17626DA625D9FF7500C36A99 /* PutFollowUpServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626DA525D9FF7500C36A99 /* PutFollowUpServiceTest.swift */; };
 		1772336E25B70F99002B814A /* SimpleStateConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1772336D25B70F99002B814A /* SimpleStateConstants.swift */; };
 		1772338D25B726A6002B814A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1772338C25B726A6002B814A /* GoogleService-Info.plist */; };
 		1772339825B72FF2002B814A /* CheckLoginStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1772339725B72FF2002B814A /* CheckLoginStatus.swift */; };
@@ -335,6 +343,14 @@
 		17626CD125D5C06200C36A99 /* DoctorHomeShowAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorHomeShowAlert.swift; sourceTree = "<group>"; };
 		17626D7025D91F9900C36A99 /* LogonServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogonServiceTest.swift; sourceTree = "<group>"; };
 		17626D7D25D9B46B00C36A99 /* TwilioTokenServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwilioTokenServiceTests.swift; sourceTree = "<group>"; };
+		17626D8225D9B7F100C36A99 /* AddPatientServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPatientServiceTest.swift; sourceTree = "<group>"; };
+		17626D8725D9B84200C36A99 /* MockPreRegisteredPatient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPreRegisteredPatient.swift; sourceTree = "<group>"; };
+		17626D8C25D9B9C900C36A99 /* UpdateAppointmentStatusServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAppointmentStatusServiceTest.swift; sourceTree = "<group>"; };
+		17626D9125D9BA8700C36A99 /* RetrieveFollowUpObjServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrieveFollowUpObjServiceTest.swift; sourceTree = "<group>"; };
+		17626D9625D9BB4900C36A99 /* RetrievePrescriptionServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrievePrescriptionServiceTest.swift; sourceTree = "<group>"; };
+		17626D9B25D9BBD600C36A99 /* PutPrescriptionServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutPrescriptionServiceTest.swift; sourceTree = "<group>"; };
+		17626DA025D9BCB400C36A99 /* RetrieveDoctorAppointmentsServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrieveDoctorAppointmentsServiceTest.swift; sourceTree = "<group>"; };
+		17626DA525D9FF7500C36A99 /* PutFollowUpServiceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PutFollowUpServiceTest.swift; sourceTree = "<group>"; };
 		1772336D25B70F99002B814A /* SimpleStateConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleStateConstants.swift; sourceTree = "<group>"; };
 		1772338C25B726A6002B814A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1772339725B72FF2002B814A /* CheckLoginStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckLoginStatus.swift; sourceTree = "<group>"; };
@@ -824,6 +840,13 @@
 			children = (
 				17626D7025D91F9900C36A99 /* LogonServiceTest.swift */,
 				17626D7D25D9B46B00C36A99 /* TwilioTokenServiceTests.swift */,
+				17626D8225D9B7F100C36A99 /* AddPatientServiceTest.swift */,
+				17626D8C25D9B9C900C36A99 /* UpdateAppointmentStatusServiceTest.swift */,
+				17626D9125D9BA8700C36A99 /* RetrieveFollowUpObjServiceTest.swift */,
+				17626D9625D9BB4900C36A99 /* RetrievePrescriptionServiceTest.swift */,
+				17626D9B25D9BBD600C36A99 /* PutPrescriptionServiceTest.swift */,
+				17626DA025D9BCB400C36A99 /* RetrieveDoctorAppointmentsServiceTest.swift */,
+				17626DA525D9FF7500C36A99 /* PutFollowUpServiceTest.swift */,
 			);
 			name = IntegrationTests;
 			sourceTree = "<group>";
@@ -979,6 +1002,7 @@
 				1742513525BCB08600523B94 /* MockFollowUpAptData.swift */,
 				17E8698D25CE09B1000B0952 /* MockDoctor.swift */,
 				17E8699225CE0A5D000B0952 /* MockSlotObject.swift */,
+				17626D8725D9B84200C36A99 /* MockPreRegisteredPatient.swift */,
 			);
 			name = MockData;
 			sourceTree = "<group>";
@@ -1569,10 +1593,14 @@
 				17E8699325CE0A5D000B0952 /* MockSlotObject.swift in Sources */,
 				1772755D25B8A4880012B9DE /* MockAuthenticateService.swift in Sources */,
 				1742514325BCBD4500523B94 /* MockRetrieveAllergiesService.swift in Sources */,
+				17626D8325D9B7F100C36A99 /* AddPatientServiceTest.swift in Sources */,
+				17626D8825D9B84200C36A99 /* MockPreRegisteredPatient.swift in Sources */,
 				174250D025BB6E7500523B94 /* PrescriptionViewModelTests.swift in Sources */,
 				1742510925BC657E00523B94 /* FollowUpViewModelTests.swift in Sources */,
 				174250F225BB7E1E00523B94 /* MockMedicineData.swift in Sources */,
+				17626D9225D9BA8700C36A99 /* RetrieveFollowUpObjServiceTest.swift in Sources */,
 				174250D825BB6ECD00523B94 /* MockRetrievePrescriptionService.swift in Sources */,
+				17626DA625D9FF7500C36A99 /* PutFollowUpServiceTest.swift in Sources */,
 				17BA0AD025B9B2B600EDE4D1 /* MockAppointmentData.swift in Sources */,
 				17E8698E25CE09B1000B0952 /* MockDoctor.swift in Sources */,
 				174250EA25BB7C1D00523B94 /* MedicineViewModelTests.swift in Sources */,
@@ -1580,13 +1608,17 @@
 				17BA0AB825B9AABD00EDE4D1 /* UpcomingAppointmentsViewModelTests.swift in Sources */,
 				17E5186B25AED16D001F1A80 /* NambaDoctoriOSTests.swift in Sources */,
 				17626D7E25D9B46B00C36A99 /* TwilioTokenServiceTests.swift in Sources */,
+				17626D9C25D9BBD600C36A99 /* PutPrescriptionServiceTest.swift in Sources */,
 				17424F3C25BA3BE400523B94 /* MockDataAlertHelpers.swift in Sources */,
 				1742513625BCB08600523B94 /* MockFollowUpAptData.swift in Sources */,
+				17626D9725D9BB4900C36A99 /* RetrievePrescriptionServiceTest.swift in Sources */,
 				17626D7125D91F9900C36A99 /* LogonServiceTest.swift in Sources */,
 				174250E225BB7AC800523B94 /* InvestigationViewModelTests.swift in Sources */,
+				17626D8D25D9B9C900C36A99 /* UpdateAppointmentStatusServiceTest.swift in Sources */,
 				17424F7F25BAC6BF00523B94 /* MockTwilioAccessTokenService.swift in Sources */,
 				17E869D425CE1593000B0952 /* MockDoctorNotifHelper.swift in Sources */,
 				174250DD25BB6F3000523B94 /* MockPrescriptionData.swift in Sources */,
+				17626DA125D9BCB400C36A99 /* RetrieveDoctorAppointmentsServiceTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

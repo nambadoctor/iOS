@@ -9,7 +9,14 @@
 import Foundation
 
 class DoctorAppointmentViewModel : DoctorAppointmentViewModelProtocol {
-    func retrieveDocAppointmentList (_ completion: @escaping ((_ appointmentList:[Nambadoctor_V1_AppointmentObject])->())) {
+    
+    var getDoctorHelper:GetDocObjectProtocol!
+    
+    init(getDoctorHelper:GetDocObjectProtocol = GetDocObject()) {
+        self.getDoctorHelper = getDoctorHelper
+    }
+    
+    func retrieveDocAppointmentList (_ completion: @escaping ((_ appointmentList:[Nambadoctor_V1_AppointmentObject]?)->())) {
         
         CommonDefaultModifiers.showLoader()
 
@@ -19,7 +26,7 @@ class DoctorAppointmentViewModel : DoctorAppointmentViewModelProtocol {
         let appointmentClient = Nambadoctor_V1_AppointmentWorkerV1Client(channel: channel)
         
         let request = Nambadoctor_V1_AppointmentDoctorRequest.with {
-            $0.doctorID = GetDocObject().getDoctor().doctorID
+            $0.doctorID = getDoctorHelper.getDoctor().doctorID
         }
 
         let getDoctorsAppointment = appointmentClient.getAllDoctorAppointments(request, callOptions: callOptions)
@@ -31,6 +38,7 @@ class DoctorAppointmentViewModel : DoctorAppointmentViewModelProtocol {
             completion(response.appointmentResponse)
         } catch {
             print("Doctor Appointment Client Failed")
+            completion(nil)
         }
     }
 }
