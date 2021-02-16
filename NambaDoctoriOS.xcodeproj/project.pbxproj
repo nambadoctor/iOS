@@ -676,12 +676,7 @@
 		172B852025AEE65300C6B035 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				17626E2725DB12DB00C36A99 /* Appointment.swift */,
-				17626E3125DB180200C36A99 /* FollowUp.swift */,
-				17626E3E25DB19D300C36A99 /* Medicine.swift */,
-				17626E4325DB1A6B00C36A99 /* Prescription.swift */,
-				17626E5525DB207000C36A99 /* LoginModels */,
-				17626EA225DB3AD800C36A99 /* Report.swift */,
+				17626EB325DB4AFC00C36A99 /* V1 */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1007,6 +1002,31 @@
 			path = Doctor;
 			sourceTree = "<group>";
 		};
+		17626EB325DB4AFC00C36A99 /* V1 */ = {
+			isa = PBXGroup;
+			children = (
+				17626E2725DB12DB00C36A99 /* Appointment.swift */,
+				17626E3125DB180200C36A99 /* FollowUp.swift */,
+				17626E3E25DB19D300C36A99 /* Medicine.swift */,
+				17626E4325DB1A6B00C36A99 /* Prescription.swift */,
+				17626E5525DB207000C36A99 /* LoginModels */,
+				17626EA225DB3AD800C36A99 /* Report.swift */,
+			);
+			path = V1;
+			sourceTree = "<group>";
+		};
+		17626EB425DB4B2800C36A99 /* V1 */ = {
+			isa = PBXGroup;
+			children = (
+				17626E5625DB20A500C36A99 /* DoctorContactInfo.swift */,
+				17626E5E25DB20E000C36A99 /* DoctorEducationInfo.swift */,
+				17626E6325DB210700C36A99 /* DoctorExperience.swift */,
+				17626E6825DB214100C36A99 /* LatestSlot.swift */,
+				17626E6D25DB21B900C36A99 /* Doctor.swift */,
+			);
+			path = V1;
+			sourceTree = "<group>";
+		};
 		177233B025B74006002B814A /* Constants */ = {
 			isa = PBXGroup;
 			children = (
@@ -1098,6 +1118,7 @@
 		17B5D16225B75CDB009D6A42 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				17E8694525CDDC09000B0952 /* DoctorSheetItem.swift */,
 				1742527625BDA9A100523B94 /* SheetAndAlertHelpers */,
 				17B5D16325B75CE7009D6A42 /* CheckAppointmentStatus.swift */,
 				1748010A25B8DFC100C8E3CC /* DoctorDefaultModifiers.swift */,
@@ -1286,12 +1307,7 @@
 		17E8694425CDDBFA000B0952 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				17E8694525CDDC09000B0952 /* DoctorSheetItem.swift */,
-				17626E5625DB20A500C36A99 /* DoctorContactInfo.swift */,
-				17626E5E25DB20E000C36A99 /* DoctorEducationInfo.swift */,
-				17626E6325DB210700C36A99 /* DoctorExperience.swift */,
-				17626E6825DB214100C36A99 /* LatestSlot.swift */,
-				17626E6D25DB21B900C36A99 /* Doctor.swift */,
+				17626EB425DB4B2800C36A99 /* V1 */,
 			);
 			path = Models;
 			sourceTree = "<group>";
