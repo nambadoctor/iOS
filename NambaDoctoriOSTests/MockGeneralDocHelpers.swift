@@ -30,7 +30,7 @@ class MockGeneralDoctorHelpers: GeneralDoctorHelpersProtocol {
     }
 
     var medicineIndexToReturn:Int? = nil
-    func getMedicineIndex(medicineArr: [Nambadoctor_V1_MedicineObject], medicine: Nambadoctor_V1_MedicineObject) -> Int {
+    func getMedicineIndex(medicineArr: [Medicine], medicine: Medicine) -> Int {
         if medicineIndexToReturn != nil {
             return medicineIndexToReturn!
         } else {
@@ -39,7 +39,7 @@ class MockGeneralDoctorHelpers: GeneralDoctorHelpersProtocol {
     }
     
     var medicineExists:Bool? = nil
-    func checkIfMedicineExists(medicineArr: [Nambadoctor_V1_MedicineObject], medicine: Nambadoctor_V1_MedicineObject) -> Bool {
+    func checkIfMedicineExists(medicineArr: [Medicine], medicine: Medicine) -> Bool {
         if medicineExists != nil {
             return medicineExists!
         } else {

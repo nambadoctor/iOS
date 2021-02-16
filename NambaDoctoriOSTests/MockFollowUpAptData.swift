@@ -9,15 +9,8 @@ import Foundation
 @testable import NambaDoctoriOS
 
 class MakeMockFollowUp {
-    static func getFollowUp () -> Nambadoctor_V1_FollowUpObject {
-        return Nambadoctor_V1_FollowUpObject.with {
-            $0.id = "followUpObjId"
-            $0.patientID = "patientId"
-            $0.doctorID = "doctorId"
-            $0.discountedFee = 300
-            $0.nofDays = 10
-            $0.createdDateTime = 0
-        }
+    static func getFollowUp () -> FollowUp {
+        return FollowUp(id: "", patientID: "", doctorID: "", discountedFee: 300, nofDays: 10, createdDateTime: 0, appointmentID: "")
     }
 }
 

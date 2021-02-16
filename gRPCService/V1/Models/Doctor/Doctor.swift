@@ -8,7 +8,7 @@
 import Foundation
 
 struct Doctor {
-    internal init(DoctorId: String, FullName: String, LoginPhoneNumber: String, ProfilePic: String, CreatedDateTime: Int64, ConsultationFee: Int32, RegistrationNumber: String, Specialities: [String], Languages: [String], DeviceTokenId: String, DoctorsContactInfo: [DoctorContactInfo], DoctorsEducationInfo: [DoctorEducationInfo], DoctorsExperience: [DoctorExperience], latestSlot: LatestSlot) {
+    internal init(DoctorId: String, FullName: String, LoginPhoneNumber: String, ProfilePic: String, CreatedDateTime: Int64, ConsultationFee: Int32, RegistrationNumber: String, Specialities: [String], Languages: [String], DeviceTokenId: String, DoctorsContactInfo: [DoctorContactInfo], DoctorsEducationInfo: [DoctorEducationInfo], DoctorsExperience: [DoctorExperience], latestSlot: Slot) {
         self.doctorID = DoctorId
         self.fullName = FullName
         self.loginPhoneNumber = LoginPhoneNumber
@@ -38,7 +38,7 @@ struct Doctor {
     var doctorsContactInfo:[DoctorContactInfo]
     var doctorsEducationInfo:[DoctorEducationInfo]
     var doctorsExperience:[DoctorExperience]
-    var latestSlot:LatestSlot
+    var latestSlot:Slot
 }
 
 func MakeEmptyDoctor() -> Doctor {

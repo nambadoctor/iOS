@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct LatestSlot {
+struct Slot {
     var id: String
     var doctorID: String
     var bookedBy: String
@@ -17,6 +17,7 @@ struct LatestSlot {
     var createdDateTime: Int64
 }
 
-func MakeEmptySlot() -> LatestSlot {
-    return LatestSlot(id: "", doctorID: "", bookedBy: "", duration: 0, startDateTime: 0, status: "", createdDateTime: 0)
+func MakeEmptySlot() -> Slot {
+    return Slot(id: "", doctorID: "", bookedBy: "", duration: 0, startDateTime: 0, status: "", createdDateTime: 0)
 }
+ 

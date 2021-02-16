@@ -8,8 +8,8 @@
 import Foundation
 
 class DoctorLatestSlotMapper {
-    func grpcToLocalDoctorLatestSlotObject(latestSlot:Nambadoctor_V1_LatestSlot) -> LatestSlot {
-        let slot = LatestSlot(id: latestSlot.id,
+    func grpcToLocalDoctorLatestSlotObject(latestSlot:Nambadoctor_V1_LatestSlot) -> Slot {
+        let slot = Slot(id: latestSlot.id,
                               doctorID: latestSlot.doctorID,
                               bookedBy: latestSlot.bookedBy,
                               duration: latestSlot.duration,
@@ -20,7 +20,7 @@ class DoctorLatestSlotMapper {
         return slot
     }
     
-    func localDoctorLatestSlotToGrpcObject(latestSlot:LatestSlot) -> Nambadoctor_V1_LatestSlot {
+    func localDoctorLatestSlotToGrpcObject(latestSlot:Slot) -> Nambadoctor_V1_LatestSlot {
         let slot = Nambadoctor_V1_LatestSlot.with {
             $0.id = latestSlot.id
             $0.doctorID = latestSlot.doctorID

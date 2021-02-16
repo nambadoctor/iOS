@@ -15,24 +15,24 @@ class MockUpdateAptStatusService: UpdateAppointmentStatusProtocol {
     var updateToFinishedSuccess:Bool = false
     var updateToFinishedAppointmentSuccess:Bool = false
     
-    func makeAppointmentUpdate (appointment:Nambadoctor_V1_AppointmentObject,
+    func makeAppointmentUpdate (appointment:Appointment,
                                 completion: @escaping (_ updated:Bool)->()) {
         completion(makeAppointmentUpdate)
     }
     
-    func toCancelled(appointment:inout Nambadoctor_V1_AppointmentObject, completion: @escaping (Bool) -> ()) {
+    func toCancelled(appointment:inout Appointment, completion: @escaping (Bool) -> ()) {
         completion(updateCancelSuccess)
     }
     
-    func updateToStartedConsultation(appointment:inout Nambadoctor_V1_AppointmentObject, completion: @escaping (Bool) -> ()) {
+    func updateToStartedConsultation(appointment:inout Appointment, completion: @escaping (Bool) -> ()) {
         completion(updateStartConsultationSuccess)
     }
     
-    func updateToFinished(appointment:inout Nambadoctor_V1_AppointmentObject, completion: @escaping (Bool) -> ()) {
+    func updateToFinished(appointment:inout Appointment, completion: @escaping (Bool) -> ()) {
         completion(updateToFinishedSuccess)
     }
 
-    func updateToFinishedAppointment(appointment:inout Nambadoctor_V1_AppointmentObject, completion: @escaping (Bool) -> ()) {
+    func updateToFinishedAppointment(appointment:inout Appointment, completion: @escaping (Bool) -> ()) {
         completion(updateToFinishedAppointmentSuccess)
     }
 }

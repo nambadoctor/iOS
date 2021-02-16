@@ -9,10 +9,10 @@ import Foundation
 @testable import NambaDoctoriOS
 
 class MockGetDoctorObjectService : GetDocObjectProtocol {
-    func fetchDoctor (userId:String, completion: @escaping (_ doctor:Nambadoctor_V1_DoctorResponse)->()) {
+    func fetchDoctor (userId:String, completion: @escaping (_ doctor:Doctor)->()) {
         completion(MockDoctor.getDoctor())
     }
-    func getDoctor () -> Nambadoctor_V1_DoctorResponse {
+    func getDoctor () -> Doctor {
         return MockDoctor.getDoctor()
     }
 }

@@ -149,7 +149,7 @@
 		17626E5725DB20A500C36A99 /* DoctorContactInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626E5625DB20A500C36A99 /* DoctorContactInfo.swift */; };
 		17626E5F25DB20E000C36A99 /* DoctorEducationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626E5E25DB20E000C36A99 /* DoctorEducationInfo.swift */; };
 		17626E6425DB210700C36A99 /* DoctorExperience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626E6325DB210700C36A99 /* DoctorExperience.swift */; };
-		17626E6925DB214100C36A99 /* LatestSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626E6825DB214100C36A99 /* LatestSlot.swift */; };
+		17626E6925DB214100C36A99 /* SLot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626E6825DB214100C36A99 /* SLot.swift */; };
 		17626E6E25DB21B900C36A99 /* Doctor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626E6D25DB21B900C36A99 /* Doctor.swift */; };
 		17626E7325DB224A00C36A99 /* DoctorObjectMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626E7225DB224A00C36A99 /* DoctorObjectMapper.swift */; };
 		17626E7925DB23D100C36A99 /* DoctorContactInfoMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626E7825DB23D100C36A99 /* DoctorContactInfoMapper.swift */; };
@@ -158,6 +158,7 @@
 		17626E8825DB283100C36A99 /* DoctorLatestSlotMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626E8725DB283100C36A99 /* DoctorLatestSlotMapper.swift */; };
 		17626EA325DB3AD800C36A99 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626EA225DB3AD800C36A99 /* Report.swift */; };
 		17626EA825DB3B0E00C36A99 /* ReportObjMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626EA725DB3B0E00C36A99 /* ReportObjMapper.swift */; };
+		17626ECE25DB4CB100C36A99 /* LogAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626ECD25DB4CB100C36A99 /* LogAnalytics.swift */; };
 		1772336E25B70F99002B814A /* SimpleStateConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1772336D25B70F99002B814A /* SimpleStateConstants.swift */; };
 		1772338D25B726A6002B814A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1772338C25B726A6002B814A /* GoogleService-Info.plist */; };
 		1772339825B72FF2002B814A /* CheckLoginStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1772339725B72FF2002B814A /* CheckLoginStatus.swift */; };
@@ -412,7 +413,7 @@
 		17626E5625DB20A500C36A99 /* DoctorContactInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorContactInfo.swift; sourceTree = "<group>"; };
 		17626E5E25DB20E000C36A99 /* DoctorEducationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorEducationInfo.swift; sourceTree = "<group>"; };
 		17626E6325DB210700C36A99 /* DoctorExperience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorExperience.swift; sourceTree = "<group>"; };
-		17626E6825DB214100C36A99 /* LatestSlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestSlot.swift; sourceTree = "<group>"; };
+		17626E6825DB214100C36A99 /* SLot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SLot.swift; sourceTree = "<group>"; };
 		17626E6D25DB21B900C36A99 /* Doctor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Doctor.swift; sourceTree = "<group>"; };
 		17626E7225DB224A00C36A99 /* DoctorObjectMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorObjectMapper.swift; sourceTree = "<group>"; };
 		17626E7825DB23D100C36A99 /* DoctorContactInfoMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorContactInfoMapper.swift; sourceTree = "<group>"; };
@@ -421,6 +422,7 @@
 		17626E8725DB283100C36A99 /* DoctorLatestSlotMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorLatestSlotMapper.swift; sourceTree = "<group>"; };
 		17626EA225DB3AD800C36A99 /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		17626EA725DB3B0E00C36A99 /* ReportObjMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportObjMapper.swift; sourceTree = "<group>"; };
+		17626ECD25DB4CB100C36A99 /* LogAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogAnalytics.swift; sourceTree = "<group>"; };
 		1772336D25B70F99002B814A /* SimpleStateConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleStateConstants.swift; sourceTree = "<group>"; };
 		1772338C25B726A6002B814A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1772339725B72FF2002B814A /* CheckLoginStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckLoginStatus.swift; sourceTree = "<group>"; };
@@ -1013,10 +1015,27 @@
 				17626E5625DB20A500C36A99 /* DoctorContactInfo.swift */,
 				17626E5E25DB20E000C36A99 /* DoctorEducationInfo.swift */,
 				17626E6325DB210700C36A99 /* DoctorExperience.swift */,
-				17626E6825DB214100C36A99 /* LatestSlot.swift */,
+				17626E6825DB214100C36A99 /* SLot.swift */,
 				17626E6D25DB21B900C36A99 /* Doctor.swift */,
 			);
 			path = Doctor;
+			sourceTree = "<group>";
+		};
+		17626EC525DB4C7E00C36A99 /* FirebaseServices */ = {
+			isa = PBXGroup;
+			children = (
+				17626ECC25DB4C9400C36A99 /* Analytics */,
+				172B84B825AED36F00C6B035 /* AuthService */,
+			);
+			path = FirebaseServices;
+			sourceTree = "<group>";
+		};
+		17626ECC25DB4C9400C36A99 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				17626ECD25DB4CB100C36A99 /* LogAnalytics.swift */,
+			);
+			path = Analytics;
 			sourceTree = "<group>";
 		};
 		177233B025B74006002B814A /* Constants */ = {
@@ -1229,7 +1248,7 @@
 				173A229325CAF7150086342A /* gRPCService */,
 				17E3706825BF12340004C965 /* TwilioService */,
 				1748006825B8C12D00C8E3CC /* NotificationService */,
-				172B84B825AED36F00C6B035 /* AuthService */,
+				17626EC525DB4C7E00C36A99 /* FirebaseServices */,
 				17E5185225AED16A001F1A80 /* NambaDoctoriOS */,
 				17E5186925AED16D001F1A80 /* NambaDoctoriOSTests */,
 				17E5187425AED16D001F1A80 /* NambaDoctoriOSUITests */,
@@ -1668,7 +1687,7 @@
 				17B5D12D25B75789009D6A42 /* LocalEncodingK.swift in Sources */,
 				172B851C25AEE50C00C6B035 /* EndEditing.swift in Sources */,
 				17E86A2625D1028E000B0952 /* followup.proto in Sources */,
-				17626E6925DB214100C36A99 /* LatestSlot.swift in Sources */,
+				17626E6925DB214100C36A99 /* SLot.swift in Sources */,
 				17626E5725DB20A500C36A99 /* DoctorContactInfo.swift in Sources */,
 				17E86A1325D10272000B0952 /* allergy.grpc.swift in Sources */,
 				173A22CF25CAF8F50086342A /* notification.grpc.swift in Sources */,
@@ -1744,6 +1763,7 @@
 				174251DD25BCFDF600523B94 /* PutFollowUpAppointmentViewModelProtocol.swift in Sources */,
 				1742506825BAE62500523B94 /* MakeFollowUpAppointmentView.swift in Sources */,
 				172B850E25AEE46700C6B035 /* CountryPickerView.swift in Sources */,
+				17626ECE25DB4CB100C36A99 /* LogAnalytics.swift in Sources */,
 				17BA0AC725B9AE6200EDE4D1 /* UpdateAppointmentStatusProtocol.swift in Sources */,
 				1742513125BCAFA800523B94 /* RetrievePatientAllergiesViewModel.swift in Sources */,
 				1796322E25AEE9D6002E466C /* GlobalPopupHelpers.swift in Sources */,
