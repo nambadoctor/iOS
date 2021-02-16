@@ -609,7 +609,7 @@
 				173A231925CBB8BC0086342A /* Protocols */,
 				177233B025B74006002B814A /* Constants */,
 				1728B76B25B38138001D554E /* ViewModel */,
-				172B852025AEE65300C6B035 /* Model */,
+				17626E5525DB207000C36A99 /* LoginModels */,
 				172B851525AEE49E00C6B035 /* Helpers */,
 				172B852925AEE66600C6B035 /* View */,
 			);
@@ -672,12 +672,18 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		172B852025AEE65300C6B035 /* Model */ = {
+		172B852025AEE65300C6B035 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				17626EB325DB4AFC00C36A99 /* V1 */,
+				17626EA225DB3AD800C36A99 /* Report.swift */,
+				17626E1025DB0EB900C36A99 /* Patient.swift */,
+				17626EB525DB4B9F00C36A99 /* Doctor */,
+				17626E2725DB12DB00C36A99 /* Appointment.swift */,
+				17626E3125DB180200C36A99 /* FollowUp.swift */,
+				17626E3E25DB19D300C36A99 /* Medicine.swift */,
+				17626E4325DB1A6B00C36A99 /* Prescription.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		172B852925AEE66600C6B035 /* View */ = {
@@ -721,6 +727,7 @@
 		173A22BA25CAF8B30086342A /* V1 */ = {
 			isa = PBXGroup;
 			children = (
+				172B852025AEE65300C6B035 /* Models */,
 				17626EAD25DB3FAD00C36A99 /* ServiceCalls */,
 				17626E1825DB0FC600C36A99 /* ObjectMappers */,
 				173A22BC25CAF8C60086342A /* ModelImplementations */,
@@ -998,21 +1005,6 @@
 				17B5D12725B755F8009D6A42 /* RetrieveDocObj.swift */,
 			);
 			path = Doctor;
-			sourceTree = "<group>";
-		};
-		17626EB325DB4AFC00C36A99 /* V1 */ = {
-			isa = PBXGroup;
-			children = (
-				17626E1025DB0EB900C36A99 /* Patient.swift */,
-				17626EB525DB4B9F00C36A99 /* Doctor */,
-				17626E2725DB12DB00C36A99 /* Appointment.swift */,
-				17626E3125DB180200C36A99 /* FollowUp.swift */,
-				17626E3E25DB19D300C36A99 /* Medicine.swift */,
-				17626E4325DB1A6B00C36A99 /* Prescription.swift */,
-				17626E5525DB207000C36A99 /* LoginModels */,
-				17626EA225DB3AD800C36A99 /* Report.swift */,
-			);
-			path = V1;
 			sourceTree = "<group>";
 		};
 		17626EB525DB4B9F00C36A99 /* Doctor */ = {
