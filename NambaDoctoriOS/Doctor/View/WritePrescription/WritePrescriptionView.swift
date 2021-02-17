@@ -17,7 +17,7 @@ struct WritePrescriptionView: View {
          isNewPrescription:Bool) {
         prescriptionVM = PrescriptionViewModel(appointment: appointment, isNewPrescription: isNewPrescription)
     }
-    
+
     var body: some View {
         VStack {
             if prescriptionVM.prescription == nil {
@@ -31,10 +31,10 @@ struct WritePrescriptionView: View {
                         InvestigationsView(investigationsVM: prescriptionVM.InvestigationsVM)
                         
                         Section(header: Text("Patient Allergies: ")) { TextField("loading...", text: $prescriptionVM.patientAllergies) }
-                        
+
                         Section(header: Text("Prescriptions (if any)")) {
                             MedicineView(medicineVM: prescriptionVM.MedicineVM)
-                            
+
                             AddMedicine(medicineVM: prescriptionVM.MedicineVM)
                         }
                     } else if tabNavigationIndex == 2 {
@@ -48,11 +48,11 @@ struct WritePrescriptionView: View {
                         reviewAndSubmitView
                     }
                 }
-                
+
                 NavigationLink("",
                                destination: ReviewPrescriptionView(prescriptionVM: prescriptionVM),
                                isActive: $prescriptionVM.navigateToReviewPrescription)
-                
+
                 //FIND BETTER WAY TO DISMISS VIEWS WHEN WRITING PRESCRIPTION IS DONE!
                 if prescriptionVM.dismissAllViews {
                     Text("").onAppear() {self.presentationMode.wrappedValue.dismiss()}

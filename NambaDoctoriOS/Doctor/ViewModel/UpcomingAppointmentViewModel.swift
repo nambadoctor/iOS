@@ -89,7 +89,7 @@ class UpcomingAppointmentViewModel: ObservableObject {
         twilioAccessTokenHelper.retrieveToken(appointmentId: appointmentId) { (success, token) in
             if success {
                 self.updateAppointmentStatus.updateToStartedConsultation(appointment: &self.appointment) { (success) in
-                    
+                    print("parent: \(self.appointment.id)")
                     if success {
                         CommonDefaultModifiers.hideLoader()
                         self.takeToTwilioRoom = true

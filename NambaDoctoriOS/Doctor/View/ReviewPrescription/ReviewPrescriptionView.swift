@@ -10,14 +10,14 @@ import SwiftUI
 struct ReviewPrescriptionView: View {
     
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var prescriptionVM:PrescriptionViewModel
+    var prescriptionVM:PrescriptionViewModel
     @ObservedObject var submitPrescriptionVM:SubmitPrescriptionViewModel
     
     init(prescriptionVM:PrescriptionViewModel) {
         self.prescriptionVM = prescriptionVM
         self.submitPrescriptionVM = SubmitPrescriptionViewModel(prescriptionVM: prescriptionVM)
     }
-    
+
     var body: some View {
         VStack {
             ViewPrescription(prescriptionVM: prescriptionVM)

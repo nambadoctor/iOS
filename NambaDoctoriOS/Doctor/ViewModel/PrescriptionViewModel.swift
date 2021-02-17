@@ -54,6 +54,9 @@ class PrescriptionViewModel: ObservableObject {
      this way, only when the write or view prescription view is opened, the values are retrieved
      */
     func prescriptionViewOnAppear () {
+        
+        guard self.checkIfPrescriptionIsEmpty() else { return }
+        print("PASSING")
         if isNewPrescription { //entry from upcoming appointments
             //checkForStoredPrescriptionAndRetreive()
             self.prescription = MakeEmptyPrescription()
@@ -112,7 +115,16 @@ class PrescriptionViewModel: ObservableObject {
         docSheetHelper.showPatientInfoSheet(appointment: appointment)
     }
     
-    
+    func checkIfPrescriptionIsEmpty () -> Bool {
+        if prescription == nil {
+            return true
+        } else if prescription.history.isEmpty || prescription.diagnosis.isEmpty || prescription.examination.isEmpty {
+            return true
+        } else {
+            return false
+        }
+    }
+
     func checkForStoredPrescriptionAndRetreive() {
 //        let storedPrescription = LocalDecoder.decode(modelType: Nambadoctor_V1_PrescriptionObject.self, from: "prescription:\(self.appointment.id)")
 //

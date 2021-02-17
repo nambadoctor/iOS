@@ -8,7 +8,7 @@
 import Foundation
 
 class SubmitPrescriptionViewModel: ObservableObject {
-    @Published var prescriptionVM:PrescriptionViewModel
+    var prescriptionVM:PrescriptionViewModel
     
     var putPrescriptionVM:PutPrescriptionViewModelProtocol
     var putFollowUpVM:PutFollowUpAppointmentViewModelProtocol

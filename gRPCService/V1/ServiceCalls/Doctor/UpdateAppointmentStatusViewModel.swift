@@ -23,6 +23,8 @@ class UpdateAppointmentStatusViewModel:UpdateAppointmentStatusProtocol {
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         
+        print("child: \(appointment.appointmentID)")
+        
         let appointmentClient = Nambadoctor_V1_AppointmentWorkerV1Client(channel: channel)
         
         let request = appointmentObjMapper.localAppointmentToGrpcObject(appointment: appointment)

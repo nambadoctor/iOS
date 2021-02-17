@@ -20,4 +20,3 @@ struct Slot {
 func MakeEmptySlot() -> Slot {
     return Slot(id: "", doctorID: "", bookedBy: "", duration: 0, startDateTime: 0, status: "", createdDateTime: 0)
 }
- 

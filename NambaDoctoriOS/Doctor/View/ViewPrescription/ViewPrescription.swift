@@ -24,8 +24,7 @@ struct ViewPrescription: View {
     
     var ViewPrescriptionForm : some View {
         Form {
-            Section(header: Text("History"))
-                { Text(prescriptionVM.prescription.history ?? "none") }
+            Section(header: Text("History")) { Text(prescriptionVM.prescription.history) }
             Section(header: Text("Examination")) { Text(prescriptionVM.prescription.examination) }
             Section(header: Text("Diagnosis")) { Text(prescriptionVM.prescription.diagnosis) }
             Section(header: Text("Advise")) { Text(prescriptionVM.prescription.advice) }

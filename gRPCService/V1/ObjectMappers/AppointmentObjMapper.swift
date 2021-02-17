@@ -30,6 +30,7 @@ class AppointmentObjMapper {
     
     func localAppointmentToGrpcObject(appointment:Appointment) -> Nambadoctor_V1_AppointmentObject {
         let appointment = Nambadoctor_V1_AppointmentObject.with {
+            $0.appointmentID = appointment.appointmentID
             $0.preferredLanguage = appointment.preferredLanguage
             $0.status = appointment.status
             $0.doctorID = appointment.doctorID
@@ -48,7 +49,7 @@ class AppointmentObjMapper {
         
         return appointment
     }
-    
+
     func grpcAppointmentListToLocalAppointmentList(appointmentList:[Nambadoctor_V1_AppointmentObject]) -> [Appointment] {
         
         var localAppointmentList = [Appointment]()
