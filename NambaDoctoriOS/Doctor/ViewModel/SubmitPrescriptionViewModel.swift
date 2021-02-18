@@ -48,6 +48,7 @@ class SubmitPrescriptionViewModel: ObservableObject {
         
         func toggleToTrue () {
             self.prescriptionDone = true
+            LocalEncoder.encode(payload: MakeEmptyPrescription(), destination: "prescription:\(self.prescriptionVM.appointment.appointmentID)")
             checkIfAllWritesDone()
         }
         

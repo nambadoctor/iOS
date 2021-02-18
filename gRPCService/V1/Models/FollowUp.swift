@@ -28,5 +28,5 @@ struct FollowUp : Identifiable {
 }
 
 func MakeEmptyFollowUp() -> FollowUp {
-    return FollowUp(id: "", patientID: "", doctorID: "", discountedFee: 0, nofDays: 0, createdDateTime: 0, appointmentID: "")
+    return FollowUp(id: "", patientID: "", doctorID: "", discountedFee: 0, nofDays: 0, createdDateTime: Date().millisecondsSince1970, appointmentID: "")
 }

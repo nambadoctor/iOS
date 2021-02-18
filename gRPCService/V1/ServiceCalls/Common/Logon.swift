@@ -10,7 +10,7 @@ import SwiftUI
 
 class Logon : FindUserTypeViewModelProtocol {
 
-    func getDocOrPatient (phoneNumber:String, _ completion : @escaping (_ patientOrDoc:UserLoginStatus?)->()) {
+    func logonUser (_ completion : @escaping (_ patientOrDoc:UserLoginStatus?)->()) {
         
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
@@ -18,17 +18,17 @@ class Logon : FindUserTypeViewModelProtocol {
         // Provide the connection to the generated client.
         let logonClient = Nambadoctor_V1_LogonWorkerV1Client(channel: channel)
 
-        let request = Nambadoctor_V1_LogonRequestUserType.with {
-            $0.phoneNumber = phoneNumber
-            $0.userID = AuthTokenId
+        let request = Nambadoctor_V1_LogonRequestMessage.with {
+            $0.authToken = AuthTokenId
+            $0.deviceToken = FCMTokenId
         }
 
-        let getUserType = logonClient.getUserType(request, callOptions: callOptions)
+        let getUserType = logonClient.logon(request, callOptions: callOptions)
 
         do {
             let response = try getUserType.response.wait()
-            print("UserTypeClient received: \(response.type)")
-            let userStatus = CheckLoginStatus.checkStatus(loggedInStatus: response.type)
+            print("UserTypeClient received: \(response.userType)")
+            let userStatus = CheckLoginStatus.checkStatus(loggedInStatus: response.userType)
             completion(userStatus)
         } catch {
             completion(nil)

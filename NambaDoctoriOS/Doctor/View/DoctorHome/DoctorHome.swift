@@ -14,7 +14,6 @@ struct DoctorHome: View {
     @ObservedObject var doctorViewModel:DoctorViewModel
     @State var alertItem : AlertItem?
     @State var sheetItem : DoctorSheetItem?
-    @State var showLoadingScreen:Bool = false
     
     var body: some View {
         NavigationView {
@@ -35,10 +34,6 @@ struct DoctorHome: View {
                             Text("Appointments")
                         }.tag(2)
                     }
-
-                    if showLoadingScreen {
-                        LoadingScreen()
-                    }
                 }
                 .navigationBarTitle("NambaDoctor", displayMode: .inline)
                 .navigationBarItems(trailing: addPatientButton)
@@ -46,7 +41,7 @@ struct DoctorHome: View {
         }.onAppear() {
             showAlertListener()
             showSheetListener()
-            showLoadingScreenListener()
+            refreshAppointmentsListener()
         }
         .alert(item: $alertItem) { alertItem in
             alertToShow(alertItem: alertItem)

@@ -8,5 +8,5 @@
 import Foundation
 
 protocol FindUserTypeViewModelProtocol {
-    func getDocOrPatient (phoneNumber:String, _ completion : @escaping (_ patientOrDoc:UserLoginStatus?)->())
+    func logonUser (_ completion : @escaping (_ patientOrDoc:UserLoginStatus?)->())
 }

@@ -41,12 +41,13 @@ class UpcomingAppointmentViewModel: ObservableObject {
         self.notifHelper = notifHelper
         checkIfConsultationStarted()
         checkToShowCancelButton()
+        checkIfConsultationDone()
     }
 
     var LocalTime:String {
-        return "Time module not done"
+        return Helpers.getTimeFromTimeStamp(timeStamp: self.appointment.requestedTime)
     }
-    
+
     var appointmentId:String {
         return self.appointment.appointmentID
     }
@@ -54,19 +55,21 @@ class UpcomingAppointmentViewModel: ObservableObject {
     var cardBackgroundColor:Color {
         return appointment.status == ConsultStateK.StartedConsultation.rawValue ? Color(UIColor.green).opacity(0.5) : Color.white
     }
-    
+
     func checkIfConsultationStarted() {
-        if appointment.status != ConsultStateK.StartedConsultation.rawValue {
-            consultationStarted = false
-        } else {
+        if appointment.status == ConsultStateK.StartedConsultation.rawValue {
             consultationStarted = true
+        }
+    }
+    
+    func checkIfConsultationDone() {
+        if appointment.status == ConsultStateK.FinishedAppointment.rawValue {
+            consultationDone = true
         }
     }
 
     func checkToShowCancelButton() {
-        if appointment.status != ConsultStateK.Confirmed.rawValue {
-            self.showCancelButton = false
-        } else {
+        if appointment.status == ConsultStateK.Confirmed.rawValue {
             self.showCancelButton = true
         }
     }
@@ -75,7 +78,7 @@ class UpcomingAppointmentViewModel: ObservableObject {
         updateAppointmentStatus.toCancelled(appointment: &appointment) { (success) in
             if success {
                 self.getPatientFCMTokenId { _ in
-                    //self.notifHelper.fireCancelNotif(patientToken: self.patientTokenId, appointmentTime: self.appointment.slotDateTime)
+                    self.notifHelper.fireCancelNotif(patientToken: self.patientTokenId, appointmentTime: self.appointment.createdDateTime)
                 }
                 DoctorDefaultModifiers.refreshAppointments()
             } else {
@@ -85,16 +88,14 @@ class UpcomingAppointmentViewModel: ObservableObject {
     }
 
     func startConsultation() {
-        CommonDefaultModifiers.showLoader()
         twilioAccessTokenHelper.retrieveToken(appointmentId: appointmentId) { (success, token) in
             if success {
                 self.updateAppointmentStatus.updateToStartedConsultation(appointment: &self.appointment) { (success) in
-                    print("parent: \(self.appointment.id)")
                     if success {
-                        CommonDefaultModifiers.hideLoader()
+                        TwilioAlertHelpers.TwilioRoomHideLoadingAlert()
                         self.takeToTwilioRoom = true
                         self.getPatientFCMTokenId { _ in
-                            //self.notifHelper.fireStartedConsultationNotif(patientToken: self.patientTokenId, appointmentTime: self.appointment.slotDateTime)
+                            self.notifHelper.fireStartedConsultationNotif(patientToken: self.patientTokenId, appointmentTime: self.appointment.createdDateTime)
                         }
                     }
                 }

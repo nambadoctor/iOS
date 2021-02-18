@@ -21,8 +21,7 @@ class FinishedAppointmentViewModel: ObservableObject {
     }
 
     var LocalTime:String {
-        return "Need to fix time module"
-            //Helpers.utcToLocal(dateStr: self.appointment.slotID)
+        return Helpers.getTimeFromTimeStamp(timeStamp: self.appointment.requestedTime)
     }
 
     func takeToViewPrescription () {

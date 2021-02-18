@@ -10,21 +10,24 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var loginStatus:UserLoginStatus = UserLoginStatus.NotSignedIn
-    
+
     var body: some View {
-        VStack {
-            switch loginStatus {
-            case .Doctor:
-                DoctorHome(doctorViewModel: .init())
-            case .Patient:
-                Text("PATIENT HOME")
-            case .NotSignedIn:
-                PhoneVerificationview(preRegUser: .init())
+        ZStack {
+            VStack {
+                switch loginStatus {
+                case .Doctor:
+                    DoctorHome(doctorViewModel: .init())
+                case .Patient:
+                    Text("PATIENT HOME")
+                case .NotSignedIn:
+                    PhoneVerificationview(preRegUser: .init())
+                }
             }
         }.onAppear() {
             loginStateListener()
         }
     }
+    
 }
 
 //MARK: STATE CHANGE OBSERVERS

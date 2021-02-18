@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Prescription : Identifiable {
+struct Prescription : Identifiable, Codable {
     internal init(id: String, appointmentID: String, history: String, examination: String, diagnosis: String, diagnosisType: String, investigations: [String], advice: String, doctorID: String, patientID: String, createdDateTime: Int64, medicines: [Medicine]) {
         self.id = id
         self.appointmentID = appointmentID
@@ -38,5 +38,5 @@ struct Prescription : Identifiable {
 }
 
 func MakeEmptyPrescription () -> Prescription {
-    return Prescription(id: "", appointmentID: "", history: "", examination: "", diagnosis: "", diagnosisType: "", investigations: [""], advice: "", doctorID: "", patientID: "", createdDateTime: 0, medicines: [Medicine]())
+    return Prescription(id: "", appointmentID: "", history: "", examination: "", diagnosis: "", diagnosisType: "", investigations: [""], advice: "", doctorID: "", patientID: "", createdDateTime: Date().millisecondsSince1970, medicines: [Medicine]())
 }

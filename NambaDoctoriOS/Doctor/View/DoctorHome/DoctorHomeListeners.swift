@@ -12,6 +12,8 @@ extension DoctorHome {
         NotificationCenter.default.addObserver(forName: NSNotification.Name("\(SimpleStateK.showPopupChange)"), object: nil, queue: .main) { (_) in
             if alertTempItem != nil {
                 self.alertItem = alertTempItem
+            } else {
+                self.alertItem = nil
             }
         }
     }
@@ -24,9 +26,9 @@ extension DoctorHome {
         }
     }
 
-    func showLoadingScreenListener () {
-        NotificationCenter.default.addObserver(forName: NSNotification.Name("\(SimpleStateK.showLoaderChange)"), object: nil, queue: .main) { (_) in
-            self.showLoadingScreen = UserDefaults.standard.value(forKey: "\(SimpleStateK.showLoader)") as! Bool
+    func refreshAppointmentsListener () {
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("\(DocViewStatesK.refreshAppointmentsChange)"), object: nil, queue: .main) { (_) in
+            doctorViewModel.retrieveAppointments()
         }
     }
 }

@@ -33,7 +33,7 @@ struct UpcomingAppointmentCard: View {
                 writePrescriptionButton
                 Spacer()
                 
-                if AppointmentVM.showCancelButton {
+                if !AppointmentVM.consultationDone {
                     startConsultationButton
                 }
             }
@@ -92,7 +92,9 @@ struct UpcomingAppointmentCard: View {
     
     var startConsultationButton : some View {
         Button (action: {
-            AppointmentVM.startConsultation()
+            TwilioAlertHelpers.TwilioRoomShowLoadingAlert {_ in 
+                AppointmentVM.startConsultation()
+            }
         }) {
             VStack (alignment: .center) {
                 if !AppointmentVM.consultationDone {

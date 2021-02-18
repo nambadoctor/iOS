@@ -33,5 +33,5 @@ struct Patient : Identifiable {
 }
 
 func MakeEmptyPatient() -> Patient {
-    return Patient(patientID: "", age: "", deviceTokenID: "", fullName: "", language: "", phoneNumber: "", preferredDoctorID: "", createdDateTime: 0, gender: "")
+    return Patient(patientID: "", age: "", deviceTokenID: "", fullName: "", language: "", phoneNumber: "", preferredDoctorID: "", createdDateTime: Date().millisecondsSince1970, gender: "")
 }

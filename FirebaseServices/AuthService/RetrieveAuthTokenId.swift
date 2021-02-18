@@ -16,7 +16,7 @@ class RetrieveAuthTokenId {
             Auth.auth().currentUser?.getIDToken(completion: { (token, err) in
                 if err == nil {
                     AuthTokenId = token!
-                    UpdateFCMToken.updateTokenInDB()
+                    Logon().logonUser { _ in } //updates FCMTokenID
                     completion(true)
                 } else {
                     completion(false)

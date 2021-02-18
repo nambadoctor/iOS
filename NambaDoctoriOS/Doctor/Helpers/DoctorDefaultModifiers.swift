@@ -11,7 +11,7 @@ class DoctorDefaultModifiers {
     //MARK: REFRESH APPOINTMENTS
     static func refreshAppointments () {
         UserDefaults.standard.set(true, forKey: DocViewStatesK.toRefreshAppointments.rawValue)
-        NotificationCenter.default.post(name: NSNotification.Name(DocViewStatesK.refreshAppointments.rawValue), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(DocViewStatesK.refreshAppointmentsChange.rawValue), object: nil)
     }
     
     //MARK: DO NOT SHOW FOR END CONSULTATION ALERT

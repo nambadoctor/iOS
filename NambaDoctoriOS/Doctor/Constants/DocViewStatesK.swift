@@ -13,7 +13,7 @@ enum DocViewStatesK:String {
     case postConsultationChange
     
     case toRefreshAppointments
-    case refreshAppointments
+    case refreshAppointmentsChange
 
     case showPatientInfo
     case patientInfo

@@ -31,4 +31,9 @@ class CommonDefaultModifiers {
         UserDefaults.standard.set(true, forKey: "\(SimpleStateK.showPopup)")
         NotificationCenter.default.post(name: NSNotification.Name("\(SimpleStateK.showPopupChange)"), object: nil)
     }
+    
+    static func hideAlert () {
+        UserDefaults.standard.set(false, forKey: "\(SimpleStateK.showPopup)")
+        NotificationCenter.default.post(name: NSNotification.Name("\(SimpleStateK.showPopupChange)"), object: nil)
+    }
 }

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Medicine : Identifiable {
+struct Medicine : Identifiable, Codable {
     internal init(id: String = UUID().uuidString, medicineName: String, dosage: String, routeOfAdministration: String, intake: String, duration: Int32, timings: String, specialInstructions: String) {
         self.id = id
         self.medicineName = medicineName
@@ -18,7 +18,7 @@ struct Medicine : Identifiable {
         self.timings = timings
         self.specialInstructions = specialInstructions
     }
-    
+
     var id = UUID().uuidString
     var medicineName:String
     var dosage:String

@@ -9,9 +9,16 @@ import SwiftUI
 
 struct LoadingScreen: View {
     var body: some View {
-        VStack (alignment: .center) {
+        VStack {
             Spacer()
-            Indicator()
+            HStack {
+                Spacer()
+                ProgressView("Loading...")
+                    .scaleEffect(1.5, anchor: .center)
+                    .progressViewStyle(CircularProgressViewStyle(tint: .blue))
+                    .foregroundColor(.blue)
+                Spacer()
+            }
             Spacer()
         }
     }

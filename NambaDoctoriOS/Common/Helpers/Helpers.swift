@@ -42,13 +42,19 @@ class Helpers {
             return nil
         }
     }
-    
-    static func getCurrentTimeStamp () -> TimeInterval {
-        return NSDate().timeIntervalSince1970
-    }
-    
-    static func makeTimeStampToDate (timestamp:Int64) -> NSDate {
-        let myTimeInterval = TimeInterval(timestamp)
-        return NSDate(timeIntervalSince1970: TimeInterval(myTimeInterval))
-    }
+
+    static func getTimeFromTimeStamp(timeStamp : Int64) -> String {
+
+         let formatter = DateFormatter()
+
+         formatter.timeZone = TimeZone.current
+
+         formatter.dateFormat = "h:mm a, dd-MMM"
+         formatter.amSymbol = "AM"
+         formatter.pmSymbol = "PM"
+
+         let dateString = formatter.string(from: Date(milliseconds: timeStamp))
+         
+         return dateString
+     }
 }

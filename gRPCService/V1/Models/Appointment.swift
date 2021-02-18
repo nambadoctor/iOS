@@ -46,5 +46,5 @@ struct Appointment : Identifiable{
 }
 
 func MakeEmptyAppointment() -> Appointment {
-    return Appointment(appointmentID: "", preferredLanguage: "", status: "", doctorID: "", doctorName: "", requestedBy: "", patientName: "", consultationFee: 0, paymentStatus: "", problemDetails: "", createdDateTime: 0, slotID: "", discountedConsultationFee: 0, requestedTime: 0, noOfReports: 0)
+    return Appointment(appointmentID: "", preferredLanguage: "", status: "", doctorID: "", doctorName: "", requestedBy: "", patientName: "", consultationFee: 0, paymentStatus: "", problemDetails: "", createdDateTime: Date().millisecondsSince1970, slotID: "", discountedConsultationFee: 0, requestedTime: Date().millisecondsSince1970, noOfReports: 0)
 }

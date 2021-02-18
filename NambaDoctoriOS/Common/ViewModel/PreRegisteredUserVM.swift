@@ -16,7 +16,7 @@ class PreRegisteredUserVM:ObservableObject {
     private let findDocOrPatientVM:FindUserTypeViewModelProtocol
 
     init(AuthService: AuthenticateServiceProtocol = AuthenticateService(),
-         findDocOrPatientVM:FindUserTypeViewModelProtocol = FindDocOrPatientVM()) {
+         findDocOrPatientVM:FindUserTypeViewModelProtocol = Logon()) {
 
         self.AuthService = AuthService
         self.findDocOrPatientVM = findDocOrPatientVM
@@ -56,7 +56,7 @@ class PreRegisteredUserVM:ObservableObject {
 
     func loginUser () {
         self.userLoggedIn = true
-        findDocOrPatientVM.getDocOrPatient (phoneNumber: phoneNumber) { (patientOrDoc) in
+        findDocOrPatientVM.logonUser { (patientOrDoc) in
             CommonDefaultModifiers.hideLoader()
 
             switch patientOrDoc {

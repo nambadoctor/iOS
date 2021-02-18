@@ -18,17 +18,20 @@ class DocNotifHelpers : DocNotifHelpersProtocol {
         currentDocObj = getDocObjectHelper.getDoctor()
     }
     
-    func fireCancelNotif (patientToken:String, appointmentTime:String) {
+    func fireCancelNotif (patientToken:String, appointmentTime:Int64) {
+        
+        let readableTime = Helpers.getTimeFromTimeStamp(timeStamp: appointmentTime)
+        
         let cancelNotifObj = Nambadoctor_V1_NotificationRequest.with {
             $0.title = "Your Appointment Cancelled"
-            $0.body = "\(currentDocObj.fullName) has cancelled the appointment at \(appointmentTime)"
+            $0.body = "\(currentDocObj.fullName) has cancelled the appointment at \(readableTime)"
             $0.receiverDeviceToken = patientToken
             $0.idIfAny = ""
         }
         sendPushNotification.sendNotif(notifObj: cancelNotifObj)
     }
     
-    func fireStartedConsultationNotif (patientToken:String, appointmentTime:String) {
+    func fireStartedConsultationNotif (patientToken:String, appointmentTime:Int64) {
         
         let startedConsultNotifObj = Nambadoctor_V1_NotificationRequest.with {
             $0.title = "Dr \(currentDocObj.fullName) is calling you"
