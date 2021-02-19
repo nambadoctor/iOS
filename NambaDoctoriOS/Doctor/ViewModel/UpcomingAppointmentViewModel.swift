@@ -81,6 +81,7 @@ class UpcomingAppointmentViewModel: ObservableObject {
                     self.notifHelper.fireCancelNotif(patientToken: self.patientTokenId, appointmentTime: self.appointment.createdDateTime)
                 }
                 DoctorDefaultModifiers.refreshAppointments()
+                self.checkToShowCancelButton()
             } else {
                 GlobalPopupHelpers.setErrorAlert()
             }

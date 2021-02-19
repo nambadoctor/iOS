@@ -65,7 +65,7 @@ struct UpcomingAppointmentCard: View {
             }
         }
     }
-    
+
     var patientInfoButton : some View {
         Button (action: {
             AppointmentVM.viewPatientInfo()
@@ -82,7 +82,7 @@ struct UpcomingAppointmentCard: View {
         Button (action: {
             AppointmentVM.writePrescription()
         }) {
-            VStack (alignment: .center){
+            VStack (alignment: .center) {
                 Image("text.badge.checkmark")
                 Text("Write").font(.system(size: 13))
                 Text("Prescription").font(.system(size: 13))

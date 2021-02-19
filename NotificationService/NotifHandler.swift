@@ -37,16 +37,13 @@ extension AppDelegate {
         if let messageID = userInfo[gcmMessageIDKey] {
             print("Message ID: \(messageID)")
         }
-
+        
         // Print full message.
         print(userInfo)
 
         LocalNotificationSender().notifRecieveHelper(userInfo: userInfo)
-        completionHandler(UIBackgroundFetchResult.newData)
     }
     // [END receive_message]
-    
-    
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("Unable to register for remote notifications: \(error.localizedDescription)")
     }

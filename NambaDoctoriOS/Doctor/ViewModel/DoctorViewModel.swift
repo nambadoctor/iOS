@@ -51,9 +51,7 @@ class DoctorViewModel: ObservableObject {
     
     func retrieveAppointments () {
         doctorAppointmentViewModel.retrieveDocAppointmentList { (appointments) in
-            
             guard appointments != nil else {return}
-            
             for appointment in appointments! {
                 switch CheckAppointmentStatus.checkStatus(appointmentStatus: appointment.status) {
                 case .Confirmed, .FinishedAppointment, .StartedConsultation:
@@ -63,5 +61,11 @@ class DoctorViewModel: ObservableObject {
                 }
             }
         }
+    }
+    
+    func refreshAppointments () {
+        self.upcomingAppointments.removeAll()
+        self.finishedAppointments.removeAll()
+        self.retrieveAppointments()
     }
 }
