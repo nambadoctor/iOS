@@ -51,5 +51,10 @@ class DoctorAlertHelpers: DoctorAlertHelpersProtocol {
         alertTempItem = AlertItem(title: Text("Patint Added"), message: Text("this patient has been successfully added"), dismissButton: .default(Text("OK")))
         CommonDefaultModifiers.showAlert()
     }
+    
+    func prescriptionWriteSuccessAlert () {
+        alertTempItem = AlertItem(title: Text("Success"), message: Text("Your prescription has been saved successfully."), dismissButton: .default(Text("OK")))
+        CommonDefaultModifiers.showAlert()
+    }
 
 }

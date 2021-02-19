@@ -14,18 +14,21 @@ class SubmitPrescriptionViewModel: ObservableObject {
     var putFollowUpVM:PutFollowUpAppointmentViewModelProtocol
     var putAllergiesVM:PutPatientAllergiesProtocol
     var updateAptStatusVM:UpdateAppointmentStatusProtocol
+    var docAlertHelpers:DoctorAlertHelpersProtocol
     
     init(prescriptionVM:PrescriptionViewModel,
          putPrescriptionVM:PutPrescriptionViewModelProtocol = PutPrescriptionViewModel(),
          putFollowUpVM:PutFollowUpAppointmentViewModelProtocol = PutFollowUpAppointmentViewModel(),
          putAllergiesVM:PutPatientAllergiesProtocol = PutPatientAllergiesViewModel(),
-         updateAptStatusVM:UpdateAppointmentStatusProtocol = UpdateAppointmentStatusViewModel()) {
+         updateAptStatusVM:UpdateAppointmentStatusProtocol = UpdateAppointmentStatusViewModel(),
+         docAlertHelpers:DoctorAlertHelpersProtocol = DoctorAlertHelpers()) {
         
         self.prescriptionVM = prescriptionVM
         self.putPrescriptionVM = putPrescriptionVM
         self.putFollowUpVM = putFollowUpVM
         self.putAllergiesVM = putAllergiesVM
         self.updateAptStatusVM = updateAptStatusVM
+        self.docAlertHelpers = docAlertHelpers
     }
     
     var prescriptionDone:Bool = false
@@ -120,6 +123,7 @@ class SubmitPrescriptionViewModel: ObservableObject {
     
     private func checkIfAllWritesDone() {
         if prescriptionDone && followUpDone && allergiesDone && updateStatusDone {
+            docAlertHelpers.prescriptionWriteSuccessAlert()
             prescriptionVM.dismissAllViews = true
         }
     }
