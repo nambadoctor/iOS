@@ -13,7 +13,9 @@ struct UpcomingAppointmentsView: View {
     
     var body: some View {
         VStack {
-            if self.doctor.upcomingAppointments.isEmpty {
+            if self.doctor.noUpcomingAppointments {
+                Text("There are currently no upcoming appointments").padding()
+            } else if self.doctor.upcomingAppointments.isEmpty {
                 Indicator()
             } else {
                 ScrollView {

@@ -14,7 +14,7 @@ struct UpcomingAppointmentCard: View {
     init(appointment:Appointment) {
         AppointmentVM = UpcomingAppointmentViewModel(appointment: appointment)
     }
-    
+
     var body: some View {
         VStack (alignment: .leading, spacing: 10) {
             Text(AppointmentVM.appointment.patientName)

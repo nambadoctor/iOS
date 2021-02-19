@@ -12,7 +12,9 @@ struct FinishedAppointmentsView: View {
     
     var body: some View {
         VStack {
-            if self.doctor.finishedAppointments.isEmpty {
+            if self.doctor.noFinishedAppointments {
+                Text("There are currently no finished appointments").padding()
+            } else if self.doctor.finishedAppointments.isEmpty {
                 Indicator()
             } else {
                 ScrollView {

@@ -12,6 +12,9 @@ class DoctorViewModel: ObservableObject {
     @Published var upcomingAppointments:[Appointment] = [Appointment]()
     @Published var finishedAppointments:[Appointment] = [Appointment]()
     
+    @Published var noUpcomingAppointments:Bool = false
+    @Published var noFinishedAppointments:Bool = false
+    
     @Published var doctorLoggedIn:Bool = false
     
     var authenticateService:AuthenticateServiceProtocol
@@ -60,6 +63,18 @@ class DoctorViewModel: ObservableObject {
                     self.finishedAppointments.append(appointment)
                 }
             }
+            
+            self.checkForEmptyList()
+        }
+    }
+    
+    func checkForEmptyList () {
+        if upcomingAppointments.isEmpty {
+            self.noUpcomingAppointments = true
+        }
+        
+        if finishedAppointments.isEmpty {
+            self.noFinishedAppointments = true
         }
     }
     

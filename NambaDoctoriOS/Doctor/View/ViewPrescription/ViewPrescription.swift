@@ -13,7 +13,9 @@ struct ViewPrescription: View {
 
     var body: some View {
         VStack {
-            if prescriptionVM.prescription == nil {
+            if prescriptionVM.errorInRetrievingPrescription {
+                Text("Prescription could not be retrieved")
+            } else if prescriptionVM.prescription == nil {
                 Indicator()
             } else {
                 ViewPrescriptionForm

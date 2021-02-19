@@ -56,7 +56,6 @@ class PrescriptionViewModel: ObservableObject {
     func prescriptionViewOnAppear () {
         
         guard self.checkIfPrescriptionIsEmpty() else { return }
-        print("PASSING")
         if isNewPrescription { //entry from upcoming appointments
             checkForStoredPrescriptionAndRetreive()
         } else {

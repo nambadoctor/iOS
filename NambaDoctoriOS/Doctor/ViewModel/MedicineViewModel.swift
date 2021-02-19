@@ -78,8 +78,10 @@ class MedicineViewModel: ObservableObject {
             medicineArr.append(tempMedicine)
         } else {
             let indexOfmed = generalDoctorHelpers.getMedicineIndex(medicineArr: medicineArr, medicine: tempMedicine)
-            medicineArr[indexOfmed-1] = tempMedicine
+            medicineArr[indexOfmed == 0 ? indexOfmed : indexOfmed-1] = tempMedicine
         }
+        
+        tempMedicine = MakeEmptyMedicine()
         
         dismissMedicineEntrySheet()
     }
