@@ -16,7 +16,14 @@ struct InvestigationsView: View {
             
             ForEach(Array(investigationsVM.investigations.enumerated()), id: \.0) { i, _ in
                 HStack {
-                    Text("\(investigationsVM.investigations[i])")
+                    TextField("", text: $investigationsVM.investigations[i])
+                    
+                    Button {
+                        investigationsVM.investigations.remove(at: i)
+                    } label: {
+                        Image(systemName: "xmark")
+                    }
+
                 }
             }.onDelete(perform: investigationsVM.removeInvestigationRows)
 
