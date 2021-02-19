@@ -55,8 +55,13 @@ class MedicineViewModel: ObservableObject {
         medicineEntryVM.mapExistingMedicine(medicine: tempMedicine)
         medicineEntryVM.showAddMedicineSheet = true
     }
+    
+    func removeMedicineManually (medicine:Medicine) {
+        let index = generalDoctorHelpers.getMedicineIndex(medicineArr: medicineArr, medicine: medicine)
+        medicineArr.remove(at: index)
+    }
 
-    func removePrescriptionRows(at offsets: IndexSet) {
+    func removeMedicineRowsBySwiping(at offsets: IndexSet) {
         medicineArr.remove(atOffsets: offsets)
     }
 

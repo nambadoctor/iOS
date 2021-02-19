@@ -11,8 +11,12 @@ class InvestigationsViewModel:ObservableObject {
     @Published var investigations: [String] = []
     @Published var investigationTemp:String = ""
 
-    func removeInvestigationRows(at offsets: IndexSet) {
+    func removeInvestigationBySwiping(at offsets: IndexSet) {
         investigations.remove(atOffsets: offsets)
+    }
+    
+    func removeInvestigationManually(index:Int) {
+        self.investigations.remove(at: index)
     }
 
     func appendInvestigation() {

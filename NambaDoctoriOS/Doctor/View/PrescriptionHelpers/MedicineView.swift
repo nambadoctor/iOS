@@ -35,10 +35,18 @@ struct MedicineView: View {
                     }.onTapGesture {
                         medicineVM.editMedicineOnTap(medicineToEdit: medicine)
                     }
+                    
+                    HStack {
+                        Spacer()
+                        Text("Delete").foregroundColor(Color(UIColor.blue))
+                        Spacer()
+                    }.onTapGesture {
+                        medicineVM.removeMedicineManually(medicine: medicine)
+                    }
                     Divider().frame(width: 0, height: 20)
                 }
             }
-        }.onDelete(perform: medicineVM.removePrescriptionRows)
+        }.onDelete(perform: medicineVM.removeMedicineRowsBySwiping)
     }
     
     

@@ -19,13 +19,13 @@ struct InvestigationsView: View {
                     TextField("", text: $investigationsVM.investigations[i])
                     
                     Button {
-                        investigationsVM.investigations.remove(at: i)
+                        investigationsVM.removeInvestigationManually(index: i)
                     } label: {
                         Image(systemName: "xmark")
                     }
 
                 }
-            }.onDelete(perform: investigationsVM.removeInvestigationRows)
+            }.onDelete(perform: investigationsVM.removeInvestigationBySwiping)
 
             TextField("Enter Investigation", text: $investigationsVM.investigationTemp)
             Button {
