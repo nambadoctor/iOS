@@ -8,18 +8,23 @@
 import SwiftUI
 
 struct LoadingScreen: View {
+    
+    @Binding var showLoader:Bool
+    
     var body: some View {
-        VStack {
-            Spacer()
-            HStack {
+        if showLoader {
+            VStack {
                 Spacer()
-                ProgressView("Loading...")
-                    .scaleEffect(1.5, anchor: .center)
-                    .progressViewStyle(CircularProgressViewStyle(tint: .blue))
-                    .foregroundColor(.blue)
+                HStack {
+                    Spacer()
+                    ProgressView("Loading...")
+                        .scaleEffect(1.5, anchor: .center)
+                        .progressViewStyle(CircularProgressViewStyle(tint: .blue))
+                        .foregroundColor(.blue)
+                    Spacer()
+                }
                 Spacer()
-            }
-            Spacer()
+            }.background(Color.gray.opacity(0.5))
         }
     }
 }

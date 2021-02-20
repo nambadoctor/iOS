@@ -10,6 +10,7 @@ import SwiftUI
 
 struct PhoneVerificationview: View {
     @ObservedObject var preRegUser:PreRegisteredUserVM
+    
     //User Interface
     var body: some View {
         NavigationView {
