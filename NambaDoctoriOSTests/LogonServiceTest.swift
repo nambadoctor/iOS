@@ -13,7 +13,7 @@ class LogonServiceTest: XCTestCase {
     var findUserTypeService:FindUserTypeViewModelProtocol!
     
     override func setUp() {
-        self.findUserTypeService = FindDocOrPatientVM()
+        self.findUserTypeService = Logon()
     }
     
     func testGetUserType () {
@@ -21,7 +21,7 @@ class LogonServiceTest: XCTestCase {
         
         AuthTokenId = "ND_Test_"
         
-        findUserTypeService.getDocOrPatient(phoneNumber: "+911234567890") { (userStatus) in
+        findUserTypeService.logonUser() { (userStatus) in
             XCTAssertNotNil(userStatus, "No data was downloaded.")
 
             expectation.fulfill()

@@ -18,7 +18,7 @@ class UpcomingAppointmentViewModel: ObservableObject {
     @Published var takeToWritePrescription:Bool = false
     @Published var takeToViewPatientInfo:Bool = false
 
-    @Published var showCancelButton:Bool = true
+    @Published var showCancelButton:Bool = false
 
     private var patientTokenId:String = ""
     private var notifHelper:DocNotifHelpersProtocol

@@ -52,23 +52,6 @@ class MedicineViewModelTests: XCTestCase {
         XCTAssertEqual(medicineVM.medicineArr.count, 1)
     }
     
-    func testFinishEditingMedicineReturnsSuccessFull() {
-        medicineVM.medicineArr.append(MakeMockMedicine.getMedicine())
-        setMedicineEntryTestValues()
-
-        medicineVM.finishWritingMedicine(isNewMedicine: false)
-
-        let medInArr = medicineVM.medicineArr[0]
-
-        XCTAssertEqual(medicineVM.tempMedicine.medicineName, medInArr.medicineName)
-        XCTAssertEqual(medicineVM.tempMedicine.medicineName, medInArr.medicineName)
-        XCTAssertEqual(medicineVM.tempMedicine.dosage, medInArr.dosage)
-        XCTAssertEqual(medicineVM.tempMedicine.timings, medInArr.timings)
-        XCTAssertEqual(medicineVM.tempMedicine.intake, medInArr.intake)
-        XCTAssertEqual(medicineVM.tempMedicine.routeOfAdministration, medInArr.routeOfAdministration)
-        XCTAssertEqual(medicineVM.tempMedicine.specialInstructions, medInArr.specialInstructions)
-    }
-
     func testEditMedicineReturnsSuccessfull() {
         let mockMedicine = MakeMockMedicine.getMedicine()
         medicineVM.medicineArr.append(mockMedicine)

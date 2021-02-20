@@ -123,7 +123,6 @@ class SubmitPrescriptionViewModel: ObservableObject {
     
     private func checkIfAllWritesDone() {
         if prescriptionDone && followUpDone && allergiesDone && updateStatusDone {
-            docAlertHelpers.prescriptionWriteSuccessAlert()
             prescriptionVM.dismissAllViews = true
         }
     }

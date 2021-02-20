@@ -33,4 +33,6 @@ class MockDoctorAlertHelpers: DoctorAlertHelpersProtocol {
     }
     
     func patientAddedAlert () {}
+    
+    func prescriptionWriteSuccessAlert () {}
 }
