@@ -55,9 +55,12 @@ class ChannelManager {
     }
 
     private func getAuthHeader() -> CallOptions {
-        let headers: HPACKHeaders = ["authorization": AuthTokenId]
+        let headers: HPACKHeaders = ["authorization": "ND_Test_"]
+        //let headers: HPACKHeaders = ["authorization": AuthTokenId]
         return CallOptions(customMetadata: headers)
     }
+    
+    
 }
 
 extension ChannelManager {

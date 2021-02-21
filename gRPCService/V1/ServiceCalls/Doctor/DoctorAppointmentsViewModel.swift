@@ -21,8 +21,6 @@ class DoctorAppointmentViewModel : DoctorAppointmentViewModelProtocol {
     
     func retrieveDocAppointmentList (_ completion: @escaping ((_ appointmentList:[Appointment]?)->())) {
         
-        CommonDefaultModifiers.showLoader()
-
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         
@@ -38,7 +36,6 @@ class DoctorAppointmentViewModel : DoctorAppointmentViewModelProtocol {
             let response = try getDoctorsAppointment.response.wait()
             let appointmentList = appointmentObjectMapper.grpcAppointmentListToLocalAppointmentList(appointmentList: response.appointmentResponse)
             print("Doctor Appointment Client Success")
-            CommonDefaultModifiers.hideLoader()
             completion(appointmentList)
         } catch {
             print("Doctor Appointment Client Failed")

@@ -63,7 +63,6 @@ class DoctorViewModel: ObservableObject {
                     self.finishedAppointments.append(appointment)
                 }
             }
-            
             self.checkForEmptyList()
         }
     }

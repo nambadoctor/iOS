@@ -8,6 +8,7 @@
 import Foundation
 
 enum TwilioStateK: String {
+    case waitingToStart
     case started
     case finished
     case disconnected

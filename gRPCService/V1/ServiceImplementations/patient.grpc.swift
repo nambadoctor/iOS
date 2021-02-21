@@ -49,6 +49,11 @@ internal protocol Nambadoctor_V1_PatientWorkerV1ClientProtocol: GRPCClient {
     _ request: Nambadoctor_V1_PatientObject,
     callOptions: CallOptions?
   ) -> UnaryCall<Nambadoctor_V1_PatientObject, Nambadoctor_V1_PatientRequest>
+
+  func writeNewPreRegObject(
+    _ request: Nambadoctor_V1_PreRegPatientObject,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nambadoctor_V1_PreRegPatientObject, Nambadoctor_V1_PatientRequest>
 }
 
 extension Nambadoctor_V1_PatientWorkerV1ClientProtocol {
@@ -127,6 +132,24 @@ extension Nambadoctor_V1_PatientWorkerV1ClientProtocol {
       interceptors: self.interceptors?.makeWriteNewPatientObjectInterceptors() ?? []
     )
   }
+
+  /// Unary call to WriteNewPreRegObject
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to WriteNewPreRegObject.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func writeNewPreRegObject(
+    _ request: Nambadoctor_V1_PreRegPatientObject,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nambadoctor_V1_PreRegPatientObject, Nambadoctor_V1_PatientRequest> {
+    return self.makeUnaryCall(
+      path: "/nambadoctor.v1.PatientWorkerV1/WriteNewPreRegObject",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeWriteNewPreRegObjectInterceptors() ?? []
+    )
+  }
 }
 
 internal protocol Nambadoctor_V1_PatientWorkerV1ClientInterceptorFactoryProtocol {
@@ -142,6 +165,9 @@ internal protocol Nambadoctor_V1_PatientWorkerV1ClientInterceptorFactoryProtocol
 
   /// - Returns: Interceptors to use when invoking 'writeNewPatientObject'.
   func makeWriteNewPatientObjectInterceptors() -> [ClientInterceptor<Nambadoctor_V1_PatientObject, Nambadoctor_V1_PatientRequest>]
+
+  /// - Returns: Interceptors to use when invoking 'writeNewPreRegObject'.
+  func makeWriteNewPreRegObjectInterceptors() -> [ClientInterceptor<Nambadoctor_V1_PreRegPatientObject, Nambadoctor_V1_PatientRequest>]
 }
 
 internal final class Nambadoctor_V1_PatientWorkerV1Client: Nambadoctor_V1_PatientWorkerV1ClientProtocol {
@@ -177,6 +203,8 @@ internal protocol Nambadoctor_V1_PatientWorkerV1Provider: CallHandlerProvider {
   func getSpecificPatientOfDoctor(request: Nambadoctor_V1_PatientRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Nambadoctor_V1_PatientObject>
 
   func writeNewPatientObject(request: Nambadoctor_V1_PatientObject, context: StatusOnlyCallContext) -> EventLoopFuture<Nambadoctor_V1_PatientRequest>
+
+  func writeNewPreRegObject(request: Nambadoctor_V1_PreRegPatientObject, context: StatusOnlyCallContext) -> EventLoopFuture<Nambadoctor_V1_PatientRequest>
 }
 
 extension Nambadoctor_V1_PatientWorkerV1Provider {
@@ -225,6 +253,15 @@ extension Nambadoctor_V1_PatientWorkerV1Provider {
         userFunction: self.writeNewPatientObject(request:context:)
       )
 
+    case "WriteNewPreRegObject":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nambadoctor_V1_PreRegPatientObject>(),
+        responseSerializer: ProtobufSerializer<Nambadoctor_V1_PatientRequest>(),
+        interceptors: self.interceptors?.makeWriteNewPreRegObjectInterceptors() ?? [],
+        userFunction: self.writeNewPreRegObject(request:context:)
+      )
+
     default:
       return nil
     }
@@ -248,4 +285,8 @@ internal protocol Nambadoctor_V1_PatientWorkerV1ServerInterceptorFactoryProtocol
   /// - Returns: Interceptors to use when handling 'writeNewPatientObject'.
   ///   Defaults to calling `self.makeInterceptors()`.
   func makeWriteNewPatientObjectInterceptors() -> [ServerInterceptor<Nambadoctor_V1_PatientObject, Nambadoctor_V1_PatientRequest>]
+
+  /// - Returns: Interceptors to use when handling 'writeNewPreRegObject'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeWriteNewPreRegObjectInterceptors() -> [ServerInterceptor<Nambadoctor_V1_PreRegPatientObject, Nambadoctor_V1_PatientRequest>]
 }

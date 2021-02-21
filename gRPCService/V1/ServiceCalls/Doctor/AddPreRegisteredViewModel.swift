@@ -9,13 +9,13 @@ import Foundation
 
 class AddPreRegisteredViewModel {
     
-    var patientObjMapper:PatientObjMapper
+    var preRegPatientObjMapper:PreRegPatientObjectMapper
     
     init() {
-        self.patientObjMapper = PatientObjMapper()
+        self.preRegPatientObjMapper = PreRegPatientObjectMapper()
     }
     
-    func preRegisterPatient(patientObj:Patient, _ completion : @escaping ((_ patientId:String?)->())) {
+    func preRegisterPatient(patientObj:PreRegPatient, _ completion : @escaping ((_ patientId:String?)->())) {
 
         CommonDefaultModifiers.showLoader()
 
@@ -24,9 +24,9 @@ class AddPreRegisteredViewModel {
         
         let patientClient = Nambadoctor_V1_PatientWorkerV1Client(channel: channel)
         
-        let request = patientObjMapper.localPatientToGrpcObject(patient: patientObj)
+        let request = preRegPatientObjMapper.localPreRegPatientToGrpcObject(patient: patientObj)
 
-        let putPatient = patientClient.writeNewPatientObject(request, callOptions: callOptions)
+        let putPatient = patientClient.writeNewPreRegObject(request, callOptions: callOptions)
 
         do {
             let response = try putPatient.response.wait()
@@ -35,6 +35,7 @@ class AddPreRegisteredViewModel {
             completion(response.patientID)
         } catch {
             print("Add Pre-Reg Patient Failure")
+            print(error)
         }
     }
 }

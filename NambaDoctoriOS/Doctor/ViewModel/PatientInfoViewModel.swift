@@ -23,14 +23,12 @@ class PatientInfoViewModel: ObservableObject {
         retrievePatientInfoHelper = RetrievePatientInfoViewModel()
         retrievePatientAllergiesHelper = RetrievePatientAllergiesViewModel()
         
-        retrievePatientObj()
-        retrieveAppointmentList()
-        retrievePatientAllergies()
-        retrieveUploadedDocumentList()
-    }
-    
-    var patientName:String {
-        return patientObj.fullName
+        DispatchQueue.main.async {
+            self.retrievePatientObj()
+            self.retrieveAppointmentList()
+            self.retrievePatientAllergies()
+            self.retrieveUploadedDocumentList()
+        }
     }
 
     private func retrievePatientObj () {

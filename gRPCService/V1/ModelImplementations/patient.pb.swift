@@ -48,6 +48,28 @@ struct Nambadoctor_V1_PatientObject {
   init() {}
 }
 
+struct Nambadoctor_V1_PreRegPatientObject {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var age: String = String()
+
+  var fullName: String = String()
+
+  var phoneNumber: String = String()
+
+  var preferredDoctorID: String = String()
+
+  var createdDateTime: Int64 = 0
+
+  var gender: String = String()
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
 struct Nambadoctor_V1_PatientRequest {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -159,6 +181,68 @@ extension Nambadoctor_V1_PatientObject: SwiftProtobuf.Message, SwiftProtobuf._Me
     if lhs.deviceTokenID != rhs.deviceTokenID {return false}
     if lhs.fullName != rhs.fullName {return false}
     if lhs.language != rhs.language {return false}
+    if lhs.phoneNumber != rhs.phoneNumber {return false}
+    if lhs.preferredDoctorID != rhs.preferredDoctorID {return false}
+    if lhs.createdDateTime != rhs.createdDateTime {return false}
+    if lhs.gender != rhs.gender {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Nambadoctor_V1_PreRegPatientObject: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".PreRegPatientObject"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "Age"),
+    2: .same(proto: "FullName"),
+    3: .same(proto: "PhoneNumber"),
+    4: .same(proto: "PreferredDoctorId"),
+    5: .same(proto: "CreatedDateTime"),
+    6: .same(proto: "Gender"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularStringField(value: &self.age) }()
+      case 2: try { try decoder.decodeSingularStringField(value: &self.fullName) }()
+      case 3: try { try decoder.decodeSingularStringField(value: &self.phoneNumber) }()
+      case 4: try { try decoder.decodeSingularStringField(value: &self.preferredDoctorID) }()
+      case 5: try { try decoder.decodeSingularInt64Field(value: &self.createdDateTime) }()
+      case 6: try { try decoder.decodeSingularStringField(value: &self.gender) }()
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.age.isEmpty {
+      try visitor.visitSingularStringField(value: self.age, fieldNumber: 1)
+    }
+    if !self.fullName.isEmpty {
+      try visitor.visitSingularStringField(value: self.fullName, fieldNumber: 2)
+    }
+    if !self.phoneNumber.isEmpty {
+      try visitor.visitSingularStringField(value: self.phoneNumber, fieldNumber: 3)
+    }
+    if !self.preferredDoctorID.isEmpty {
+      try visitor.visitSingularStringField(value: self.preferredDoctorID, fieldNumber: 4)
+    }
+    if self.createdDateTime != 0 {
+      try visitor.visitSingularInt64Field(value: self.createdDateTime, fieldNumber: 5)
+    }
+    if !self.gender.isEmpty {
+      try visitor.visitSingularStringField(value: self.gender, fieldNumber: 6)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Nambadoctor_V1_PreRegPatientObject, rhs: Nambadoctor_V1_PreRegPatientObject) -> Bool {
+    if lhs.age != rhs.age {return false}
+    if lhs.fullName != rhs.fullName {return false}
     if lhs.phoneNumber != rhs.phoneNumber {return false}
     if lhs.preferredDoctorID != rhs.preferredDoctorID {return false}
     if lhs.createdDateTime != rhs.createdDateTime {return false}

@@ -19,9 +19,11 @@ struct DoctorTwilioManager: View {
     var body: some View {
         VStack {
             switch DoctorTwilioVM.status {
+            case .waitingToStart:
+                Text("loading...").onAppear(){DoctorTwilioVM.startRoom()}
             case .started:
                 TwilioViewHelper(appointmentId: DoctorTwilioVM.appointment.appointmentID)
-                    .navigationBarItems(leading: navBarBack, trailing: navBarTrailing)
+                    .navigationBarItems(trailing: navBarTrailing)
             case .finished:
                 WritePrescriptionView(appointment: DoctorTwilioVM.appointment, isNewPrescription: true)
             case .disconnected:
@@ -33,15 +35,7 @@ struct DoctorTwilioManager: View {
         .onAppear(){ twilioStatusChangeListener() }
         .navigationBarBackButtonHidden(true)
     }
-    
-    var navBarBack : some View {
-        Button {
-            killView()
-        } label: {
-            Text("< Back")
-        }
-    }
-    
+
     var navPatientInfo : some View {
         Button {
             DoctorTwilioVM.viewPatientInfoClicked()

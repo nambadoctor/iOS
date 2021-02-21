@@ -25,14 +25,18 @@ class InvestigationsViewModel:ObservableObject {
             return
         }
 
-        investigations.append(investigationTemp)
-        investigationTemp = ""
+        addInvestigation()
     }
     
     func addTempIntoArrayWhenFinished () {
         if !investigationTemp.isEmpty {
-            investigations.append(investigationTemp)
+            addInvestigation()
         }
+    }
+    
+    func addInvestigation () {
+        investigations.append(investigationTemp)
+        investigationTemp = ""
     }
 
     func parsePlanIntoInvestigationsArr(planInfo:String) {

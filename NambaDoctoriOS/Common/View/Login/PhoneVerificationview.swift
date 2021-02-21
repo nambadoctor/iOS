@@ -31,14 +31,9 @@ struct PhoneVerificationview: View {
                     PhoneNumberEntryView(numberObj: $preRegUser.user.phNumberObj)
                     
                     Button (action: {
-                        if preRegUser.checkNumberLength() {
-                            CommonDefaultModifiers.showLoader()
-                            EndEditingHelper.endEditing()
-                            preRegUser.validateNumWithFirebase()
-                        } else {
-                            GlobalPopupHelpers.invalidNumberAlert()
-                            EndEditingHelper.endEditing()
-                        }
+                        CommonDefaultModifiers.showLoader()
+                        EndEditingHelper.endEditing()
+                        preRegUser.validateNumWithFirebase()
                     }) {
                         Text("Next").frame(width: UIScreen.main.bounds.width - 30,height: 50)
                     }.foregroundColor(.white)

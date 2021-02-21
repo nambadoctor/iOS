@@ -21,24 +21,18 @@ class UpcomingAppointmentViewModel: ObservableObject {
     @Published var showCancelButton:Bool = false
 
     private var patientTokenId:String = ""
-    private var notifHelper:DocNotifHelpersProtocol
     private var docSheetHelper:DoctorSheetHelpers = DoctorSheetHelpers()
 
     private var updateAppointmentStatus:UpdateAppointmentStatusProtocol
     private var doctorAlertHelper:DoctorAlertHelpersProtocol
-    private var twilioAccessTokenHelper:TwilioAccessTokenProtocol
 
     init(appointment:Appointment,
          updateAppointmentStatus:UpdateAppointmentStatusProtocol = UpdateAppointmentStatusViewModel(),
-         doctorAlertHelper:DoctorAlertHelpersProtocol = DoctorAlertHelpers(),
-         twilioAccessTokenHelper:TwilioAccessTokenProtocol = RetrieveTwilioAccessToken(),
-         notifHelper:DocNotifHelpersProtocol = DocNotifHelpers()) {
+         doctorAlertHelper:DoctorAlertHelpersProtocol = DoctorAlertHelpers()) {
         
         self.appointment = appointment
         self.updateAppointmentStatus = updateAppointmentStatus
-        self.twilioAccessTokenHelper = twilioAccessTokenHelper
         self.doctorAlertHelper = doctorAlertHelper
-        self.notifHelper = notifHelper
         checkIfConsultationStarted()
         checkToShowCancelButton()
         checkIfConsultationDone()
@@ -75,35 +69,21 @@ class UpcomingAppointmentViewModel: ObservableObject {
     }
     
     func cancelAppointment() {
-        updateAppointmentStatus.toCancelled(appointment: &appointment) { (success) in
-            if success {
-                self.getPatientFCMTokenId { _ in
-                    self.notifHelper.fireCancelNotif(patientToken: self.patientTokenId, appointmentTime: self.appointment.createdDateTime)
+        doctorAlertHelper.cancelAppointmentAlert { (cancel) in
+            self.updateAppointmentStatus.toCancelled(appointment: &self.appointment) { (success) in
+                if success {
+                    DocNotifHelpers.sharedNotifHelpers.fireCancelNotif(requestedBy: self.appointment.requestedBy, appointmentTime: self.appointment.requestedTime)
+                    DoctorDefaultModifiers.refreshAppointments()
+                    self.checkToShowCancelButton()
+                } else {
+                    GlobalPopupHelpers.setErrorAlert()
                 }
-                DoctorDefaultModifiers.refreshAppointments()
-                self.checkToShowCancelButton()
-            } else {
-                GlobalPopupHelpers.setErrorAlert()
             }
         }
     }
 
     func startConsultation() {
-        twilioAccessTokenHelper.retrieveToken(appointmentId: appointmentId) { (success, token) in
-            if success {
-                self.updateAppointmentStatus.updateToStartedConsultation(appointment: &self.appointment) { (success) in
-                    if success {
-                        TwilioAlertHelpers.TwilioRoomHideLoadingAlert()
-                        self.takeToTwilioRoom = true
-                        self.getPatientFCMTokenId { _ in
-                            self.notifHelper.fireStartedConsultationNotif(patientToken: self.patientTokenId, appointmentTime: self.appointment.createdDateTime)
-                        }
-                    }
-                }
-            } else {
-                //show failed alert
-            }
-        }
+        self.takeToTwilioRoom = true
     }
 
     func writePrescription() {
@@ -113,9 +93,7 @@ class UpcomingAppointmentViewModel: ObservableObject {
             self.updateAppointmentStatus.updateToFinishedAppointment(appointment: &self.appointment)
                 { _ in }
             
-            self.getPatientFCMTokenId { _ in
-                self.notifHelper.fireAppointmentOverNotif(patientToken: self.patientTokenId)
-            }
+            DocNotifHelpers.sharedNotifHelpers.fireAppointmentOverNotif(requestedBy: self.appointment.requestedBy)
             
             self.takeToWritePrescription = true
         }
@@ -123,19 +101,5 @@ class UpcomingAppointmentViewModel: ObservableObject {
 
     func viewPatientInfo() {
         docSheetHelper.showPatientInfoSheet(appointment: appointment)
-    }
-
-    //get patient token id, if not existing, fetch from api and completing parent call
-    func getPatientFCMTokenId (completion: @escaping (_ retrieved:Bool) -> ()) {
-        if patientTokenId.isEmpty {
-            GetReceptientFCMTokenId.getPatientTokenId(patientId: appointment.requestedBy) { (tokenId) in
-                if tokenId != nil {
-                    self.patientTokenId = tokenId!
-                    completion(true)
-                }
-            }
-        } else {
-            completion(true)
-        }
     }
 }

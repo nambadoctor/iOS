@@ -49,7 +49,7 @@ class Helpers {
 
          formatter.timeZone = TimeZone.current
 
-         formatter.dateFormat = "h:mm a, dd-MMM"
+         formatter.dateFormat = "dd-MMM, h:mm a"
          formatter.amSymbol = "AM"
          formatter.pmSymbol = "PM"
 

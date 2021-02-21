@@ -19,7 +19,7 @@ struct PhoneNumberEntryView: View {
                 .background(Color(UIColor.LightGrey))
                 .clipShape(RoundedRectangle(cornerRadius: 10))
             
-            TextField("Number", text: $numberObj.number)
+            TextField("Number", text: $numberObj.number.text)
                 .keyboardType(.numberPad)
                 .padding()
                 .background(Color(UIColor.LightGrey))

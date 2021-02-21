@@ -8,7 +8,8 @@
 import Foundation
 
 protocol DocNotifHelpersProtocol {
-    func fireCancelNotif (patientToken:String, appointmentTime:Int64)
-    func fireStartedConsultationNotif (patientToken:String, appointmentTime:Int64)
-    func fireAppointmentOverNotif(patientToken: String)
+    func getPatientFCMTokenId (requestedBy:String, completion: @escaping (_ retrieved:Bool) -> ())
+    func fireCancelNotif (requestedBy:String, appointmentTime:Int64)
+    func fireStartedConsultationNotif (requestedBy:String, appointmentTime:Int64)
+    func fireAppointmentOverNotif(requestedBy: String)
 }

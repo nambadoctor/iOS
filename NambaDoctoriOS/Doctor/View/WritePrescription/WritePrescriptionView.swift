@@ -70,13 +70,15 @@ struct WritePrescriptionView: View {
                 self.presentationMode.wrappedValue.dismiss()
             }
         }, label: {
-            Text("< Back")
+            Text("< Home")
                 .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
         })
     }
 
     private var navBarTrailingBtn : some View {
-        Text("Patient Info").onTapGesture() {prescriptionVM.viewPatientInfo()}
+        Text("Patient Info")
+            .foregroundColor(.blue)
+            .onTapGesture() {prescriptionVM.viewPatientInfo()}
     }
     
     private var tabbedHeaders : some View {
@@ -90,14 +92,14 @@ struct WritePrescriptionView: View {
             }
             Spacer()
             VStack {
-                Text("Medicine & Plan").frame(height: 50).foregroundColor(self.tabNavigationIndex == 1 ? Color.green : Color.black)
+                Text("Plan & Prescription").frame(height: 50).foregroundColor(self.tabNavigationIndex == 1 ? Color.green : Color.black)
                 Divider().frame(height: 2).background(self.tabNavigationIndex == 1 ? Color.green : Color.black)
             }.onTapGesture {
                 self.tabNavigationIndex = 1
             }
             Spacer()
             VStack {
-                Text("Optional").frame(height: 50).foregroundColor(self.tabNavigationIndex == 2 ? Color.green : Color.black)
+                Text("Advice & Follow-Up").frame(height: 50).foregroundColor(self.tabNavigationIndex == 2 ? Color.green : Color.black)
                 Divider().frame(height: 2).background(self.tabNavigationIndex == 2 ? Color.green : Color.black)
             }.onTapGesture {
                 self.tabNavigationIndex = 2

@@ -54,17 +54,18 @@ class PrescriptionViewModel: ObservableObject {
      this way, only when the write or view prescription view is opened, the values are retrieved
      */
     func prescriptionViewOnAppear () {
-        
-        guard self.checkIfPrescriptionIsEmpty() else { return }
-        if isNewPrescription { //entry from upcoming appointments
-            checkForStoredPrescriptionAndRetreive()
-        } else {
-            self.retrievePrescription()
+        DispatchQueue.main.async {
+            guard self.checkIfPrescriptionIsEmpty() else { return }
+            if self.isNewPrescription { //entry from upcoming appointments
+                self.checkForStoredPrescriptionAndRetreive()
+            } else {
+                self.retrievePrescription()
+            }
+
+            self.retrieveAllergiesForPatient()
         }
-        
-        retrieveAllergiesForPatient()
     }
-    
+
     var hasMedicines:Bool {
         if MedicineVM.medicineArr.isEmpty {
             return false

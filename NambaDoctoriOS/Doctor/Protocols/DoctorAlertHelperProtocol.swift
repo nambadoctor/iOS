@@ -14,7 +14,9 @@ protocol DoctorAlertHelpersProtocol {
     
     func askToSavePrescriptionAlert (save: @escaping (Bool) -> ())
     
-    func endConsultationAlert (endConsultation: @escaping (_ ended:Bool) -> (), dontShowAgain: @escaping (_ dontshowAgain:Bool) -> ())
+    func cancelAppointmentAlert (cancel: @escaping (Bool) -> ())
+    
+    func endConsultationAlert (endConsultation: @escaping (_ ended:Bool) -> ())
     
     func patientAddedAlert ()
     

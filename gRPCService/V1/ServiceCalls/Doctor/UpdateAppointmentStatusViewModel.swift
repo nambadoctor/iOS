@@ -14,12 +14,10 @@ class UpdateAppointmentStatusViewModel:UpdateAppointmentStatusProtocol {
     init() {
         self.appointmentObjMapper = AppointmentObjMapper()
     }
-
+    
     func makeAppointmentUpdate (appointment:Appointment,
                                 completion: @escaping (_ updated:Bool)->()) {
-        
-        CommonDefaultModifiers.showLoader()
-        
+                
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         
@@ -30,24 +28,29 @@ class UpdateAppointmentStatusViewModel:UpdateAppointmentStatusProtocol {
         let request = appointmentObjMapper.localAppointmentToGrpcObject(appointment: appointment)
         
         let setAptStatus = appointmentClient.upsertNewAppointment(request, callOptions: callOptions)
- 
-        do {
-            let response = try setAptStatus.response.wait()
-            print("Update Appointment \(appointment.status) Success for \(response.appointmentID)")
-            CommonDefaultModifiers.hideLoader()
-            completion(true)
-        } catch {
-            print("Update Appointment \(appointment.status) Failure")
-            completion(false)
-        }
         
+        DispatchQueue.main.async {
+            do {
+                let response = try setAptStatus.response.wait()
+                print("Update Appointment \(appointment.status) Success for \(response.appointmentID)")
+                completion(true)
+            } catch {
+                print("Update Appointment \(appointment.status) Failure")
+                completion(false)
+            }
+        }
     }
     
     func toCancelled (appointment:inout Appointment, completion: @escaping (_ success:Bool) -> ()) {
         appointment.status = "Cancelled"
         
+        CommonDefaultModifiers.showLoader()
+        
         makeAppointmentUpdate(appointment: appointment) { (updated) in
-            if updated { completion(true) } else { }
+            if updated {
+                CommonDefaultModifiers.hideLoader()
+                completion(true)
+            } else { }
         }
     }
     
@@ -63,12 +66,12 @@ class UpdateAppointmentStatusViewModel:UpdateAppointmentStatusProtocol {
     func updateToFinished (appointment:inout Appointment, completion: @escaping (_ success:Bool) -> ()) {
         
         appointment.status = "Finished"
-
+        
         makeAppointmentUpdate(appointment: appointment) { (updated) in
             if updated { completion(true) } else { }
         }
     }
-
+    
     func updateToFinishedAppointment (appointment:inout Appointment, completion: @escaping (_ success:Bool) -> ()) {
         
         appointment.status = "FinishedAppointment"

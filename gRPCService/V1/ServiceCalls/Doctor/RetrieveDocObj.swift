@@ -17,8 +17,6 @@ class RetrieveDocObj {
     
     func getDoc (doctorId:String, _ completion : @escaping (_ DoctorObj:Doctor)->()) {
         
-        CommonDefaultModifiers.showLoader()
-
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         
@@ -34,7 +32,6 @@ class RetrieveDocObj {
             let response = try getDoctor.response.wait()
             let doctor = doctorObjectMapper.grpcToLocalDoctorObject(doctor: response)
             print("Get Doctor Client Success")
-            CommonDefaultModifiers.hideLoader()
             completion(doctor)
         } catch {
             print("Get Doctor Client Failed")

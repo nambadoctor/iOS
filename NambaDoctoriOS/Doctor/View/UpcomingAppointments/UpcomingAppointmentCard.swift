@@ -92,9 +92,7 @@ struct UpcomingAppointmentCard: View {
     
     var startConsultationButton : some View {
         Button (action: {
-            TwilioAlertHelpers.TwilioRoomShowLoadingAlert {_ in 
-                AppointmentVM.startConsultation()
-            }
+            AppointmentVM.startConsultation()
         }) {
             VStack (alignment: .center) {
                 if !AppointmentVM.consultationDone {

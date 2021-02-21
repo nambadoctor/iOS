@@ -33,8 +33,7 @@ class PatientObjMapper {
             $0.preferredDoctorID = patient.preferredDoctorID
             $0.createdDateTime = patient.createdDateTime
             $0.gender = patient.gender
-        }  
-        
+        }
         return patient
     }
 }

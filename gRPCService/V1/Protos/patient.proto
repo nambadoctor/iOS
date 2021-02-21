@@ -4,11 +4,12 @@ option csharp_namespace = "NambaDoctor.Proto.v1";
 
 package nambadoctor.v1;
 
-service PatientWorkerV1{
+service PatientWorkerV1 {
 	rpc GetPatientObject(PatientRequest) returns (PatientObject);
 	rpc GetListOfDoctorsPatients(DoctorsRequest) returns (DoctorsResponse);
 	rpc GetSpecificPatientOfDoctor(PatientRequest) returns (PatientObject);
 	rpc WriteNewPatientObject(PatientObject) returns (PatientRequest);
+    rpc WriteNewPreRegObject(PreRegPatientObject) returns (PatientRequest);
 }
 
 message PatientObject{
@@ -21,6 +22,15 @@ message PatientObject{
 	string PreferredDoctorId = 7;
 	int64 CreatedDateTime = 8;
 	string Gender = 9;
+}
+
+message PreRegPatientObject{
+    string Age = 1;
+    string FullName = 2;
+    string PhoneNumber = 3;
+    string PreferredDoctorId = 4;
+    int64 CreatedDateTime = 5;
+    string Gender = 6;
 }
 
 message PatientRequest{

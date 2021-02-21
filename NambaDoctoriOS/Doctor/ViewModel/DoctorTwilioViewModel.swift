@@ -10,14 +10,43 @@ import SwiftUI
 
 class DoctorTwilioViewModel: ObservableObject {
     var appointment:Appointment
-    @Published var status:TwilioStateK = .started
-    
+    @Published var status:TwilioStateK = .waitingToStart
+
     private var docAlertHelpers:DoctorAlertHelpersProtocol!
     private var docSheetHelper:DoctorSheetHelpers = DoctorSheetHelpers()
 
-    init(appointment:Appointment) {
+    private var twilioAccessTokenHelper:TwilioAccessTokenProtocol
+    private var updateAppointmentStatus:UpdateAppointmentStatusProtocol
+
+    init(appointment:Appointment,
+         twilioAccessTokenHelper:TwilioAccessTokenProtocol = RetrieveTwilioAccessToken(),
+         updateAppointmentStatus:UpdateAppointmentStatusProtocol = UpdateAppointmentStatusViewModel()) {
         self.appointment = appointment
+        self.twilioAccessTokenHelper = twilioAccessTokenHelper
+        self.updateAppointmentStatus = updateAppointmentStatus
         docAlertHelpers = DoctorAlertHelpers()
+    }
+
+    func startRoom() {
+        DispatchQueue.main.async {
+            self.twilioAccessTokenHelper.retrieveToken(appointmentId: self.appointment.appointmentID) { (success, token) in
+                if success {
+                    self.status = .started
+                    self.fireStartedNotif()
+                } else {
+                    //show failed alert
+                }
+            }
+        }
+    }
+    
+    func fireStartedNotif () {
+        let replicatedAppointment = self.appointment //cannot do simultanueous access...
+        self.updateAppointmentStatus.updateToStartedConsultation(appointment: &self.appointment) { (success) in
+            if success {
+                DocNotifHelpers.sharedNotifHelpers.fireStartedConsultationNotif(requestedBy: replicatedAppointment.requestedBy, appointmentTime: replicatedAppointment.requestedTime)
+            }
+        }
     }
 
     func toggleStatus (defaultChangeString: String) {
@@ -36,23 +65,14 @@ class DoctorTwilioViewModel: ObservableObject {
     }
 
     func disconnect() {
-        let localStatus = UserDefaults.standard.value(forKey: "\(DocViewStatesK.endConsultationAlert)") ?? false
-        
-        guard localStatus as! Bool == false else {
-            self.status = .disconnected
-            return
-        }
-
-        docAlertHelpers.endConsultationAlert { (endConsultation) in
-            self.status = .disconnected
-        } dontShowAgain: { (dontShowAgain) in
-            DoctorDefaultModifiers.endConsultAlertDoNotShow()
-            self.status = .disconnected
-        }
+        self.status = .disconnected
     }
     
     func endConsultation() {
-        status = .finished
+        docAlertHelpers.endConsultationAlert { (endConsultation) in
+            self.status = .finished
+        }
+        //DoctorDefaultModifiers.endConsultAlertDoNotShow()
     }
     
     func viewPatientInfoClicked() {

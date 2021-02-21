@@ -24,13 +24,9 @@ class PreRegisteredUserVM:ObservableObject {
     }
 
     var phoneNumber:String {
-        return user.phNumberObj.countryCode+user.phNumberObj.number
+        return user.phNumberObj.countryCode+user.phNumberObj.number.text
     }
 
-    func checkNumberLength() -> Bool {
-        return AuthService.validatePhoneNumber(user.phNumberObj.number)
-    }
-    
     func validateNumWithFirebase() {
         AuthService.verifyNumber(phNumber: phoneNumber) { verificationId in
             CommonDefaultModifiers.hideLoader()

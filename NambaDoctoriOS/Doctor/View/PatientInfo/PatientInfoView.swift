@@ -9,6 +9,7 @@ import SwiftUI
 
 struct PatientInfoView: View {
     
+    @Environment(\.presentationMode) var presentationMode
     @ObservedObject var patientInfoVM:PatientInfoViewModel
     
     init(appointment:Appointment) {
@@ -29,11 +30,12 @@ struct PatientInfoView: View {
                 
                 Text("PATIENT'S PREVIOUS CONSULTATIONS").bold()
                 previousConsultations
-                
+
                 Spacer()
             }
         }
-        .navigationTitle("\(patientInfoVM.patientName)'s Info")
+        .navigationTitle("Patient Info")
+        .navigationBarItems(trailing: closeButton)
     }
     
     var basicDetails : some View {
@@ -70,5 +72,13 @@ struct PatientInfoView: View {
                 }
             }
         }
+    }
+    
+    var closeButton : some View {
+        Button(action: {
+            presentationMode.wrappedValue.dismiss()
+        }, label: {
+            Image(systemName: "xmark")
+        })
     }
 }

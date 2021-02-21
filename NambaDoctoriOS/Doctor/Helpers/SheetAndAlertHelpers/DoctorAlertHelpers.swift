@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 class DoctorAlertHelpers: DoctorAlertHelpersProtocol {
+    
     func writePrescriptionAlert (appointmentId:String, requestedBy:String, navigate: @escaping (Bool) -> ()) {
         alertTempItem = AlertItem(title: Text("Warning! End consultation and write prescription?"), message: Text("You will not be able to call patient in consulting room anymore"), primaryButton: Alert.Button.default(Text("Confirm"), action: {
 
@@ -36,12 +37,18 @@ class DoctorAlertHelpers: DoctorAlertHelpersProtocol {
 
         CommonDefaultModifiers.showAlert()
     }
+    
+    func cancelAppointmentAlert (cancel: @escaping (Bool) -> ()) {
+        alertTempItem = AlertItem(title: Text("Are you sure?"), message: Text("Do you want to cancel this appointment?"), primaryButton: Alert.Button.default(Text("Yes"), action: {
+            cancel(true)
+        }), secondaryButton: Alert.Button.cancel(Text("No")))
+        
+        CommonDefaultModifiers.showAlert()
+    }
 
-    func endConsultationAlert (endConsultation: @escaping (Bool) -> (), dontShowAgain: @escaping (Bool) -> ()) {
-        alertTempItem = AlertItem(title: Text("*** IMPORTANT ALERT ***"), message: Text("If you are ending consultation, make sure to write prescription"), primaryButton: .destructive(Text("Ok")) {
+    func endConsultationAlert (endConsultation: @escaping (Bool) -> ()) {
+        alertTempItem = AlertItem(title: Text("Are you sure?"), message: Text("You will not be able to join consultation room again!"), primaryButton: Alert.Button.default(Text("No")), secondaryButton: Alert.Button.default(Text("Yes"), action: {
             endConsultation(true)
-        }, secondaryButton: .destructive(Text("Don't show again"), action: {
-            dontShowAgain(true)
         }))
         
         CommonDefaultModifiers.showAlert()

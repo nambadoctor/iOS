@@ -11,28 +11,28 @@ struct AddPatientView: View {
     
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var AddPatientVM:AddPatientViewModel = AddPatientViewModel()
-    @State var phoneNumObj:PhoneNumberObj = PhoneNumberObj()
+    
     var body: some View {
         ZStack {
             NavigationView {
                 Form {
                     Section(header: Text("Basic Details")) {
                         TextField("Patient Name", text: $AddPatientVM.preRegisteredPatient.fullName)
-                        
+
                         TextField("Patient Age", text: $AddPatientVM.preRegisteredPatient.age)
                             .keyboardType(.numberPad)
-                        
+
                         SideBySideCheckBox(isChecked: $AddPatientVM.preRegisteredPatient.gender, title1: "male", title2: "female")
-                        
-                        PhoneNumberEntryView(numberObj: $phoneNumObj)
+
+                        PhoneNumberEntryView(numberObj: $AddPatientVM.phoneNumObj)
                     }
-                    
+
                     Section(header: Text("Allergies(optional)")) {
                         TextField("Enter patient allergies if any", text: $AddPatientVM.allergies)
                     }
-                    
+
                     MakeFollowUpAppointmentView(followUpAppointmentVM: AddPatientVM.followUpFeeObj)
-                    
+
                     Button(action: {
                         presentationMode.wrappedValue.dismiss()
                     }) {
@@ -42,7 +42,7 @@ struct AddPatientView: View {
                             Spacer()
                         }.padding(12).background(Color.red).cornerRadius(4)
                     }
-                    
+
                     Button(action: {
                         AddPatientVM.addPatient { (added) in
                             presentationMode.wrappedValue.dismiss()
@@ -60,5 +60,14 @@ struct AddPatientView: View {
             }
         }
         .navigationTitle("Add Your Patient")
+        .navigationBarItems(trailing: closeButton)
+    }
+    
+    var closeButton : some View {
+        Button(action: {
+            presentationMode.wrappedValue.dismiss()
+        }, label: {
+            Image(systemName: "xmark")
+        })
     }
 }

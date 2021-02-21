@@ -8,14 +8,16 @@
 import Foundation
 
 class AddPatientViewModel: ObservableObject {
-    @Published var preRegisteredPatient:Patient
+    @Published var preRegisteredPatient:PreRegPatient
     @Published var followUpFeeObj:FollowUpAppointmentViewModel = FollowUpAppointmentViewModel()
+    @Published var phoneNumObj:PhoneNumberObj = PhoneNumberObj()
+    
     var allergies:String = ""
     var addPreRegPatient = AddPreRegisteredViewModel()
     var doctorAlertHelpers = DoctorAlertHelpers()
 
     init() {
-        preRegisteredPatient = MakeEmptyPatient()
+        preRegisteredPatient = MakeEmptyPreRegPatient()
     }
     
     func addPatient (completion: @escaping (_ added:Bool)->()) {
@@ -24,8 +26,6 @@ class AddPatientViewModel: ObservableObject {
             //self.showLocalAlert.toggle()
             return
         }
-
-        CommonDefaultModifiers.showLoader()
         
         addPreRegPatient.preRegisterPatient(patientObj: preRegisteredPatient) { (patientId) in
             if (patientId != nil) {
