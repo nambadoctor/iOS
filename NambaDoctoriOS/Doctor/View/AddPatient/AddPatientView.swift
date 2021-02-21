@@ -64,6 +64,9 @@ struct AddPatientView: View {
         }
         .navigationTitle("Add Your Patient")
         .navigationBarItems(trailing: closeButton)
+        .alert(isPresented: self.$AddPatientVM.fillAllFieldsAlert, content: {
+            Alert(title: Text("Please Fill All Fields!"), dismissButton: Alert.Button.default(Text("Ok")))
+        })
     }
 
     var closeButton : some View {

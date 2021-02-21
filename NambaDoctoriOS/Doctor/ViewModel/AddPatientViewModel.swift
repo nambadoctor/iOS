@@ -12,6 +12,7 @@ class AddPatientViewModel: ObservableObject {
     @Published var followUpFeeObj:FollowUpAppointmentViewModel = FollowUpAppointmentViewModel()
     @Published var phoneNumObj:PhoneNumberObj = PhoneNumberObj()
     @Published var loadingScreen:Bool = false
+    @Published var fillAllFieldsAlert:Bool = false
     
     var allergies:String = ""
     var addPreRegPatient = AddPreRegisteredViewModel()
@@ -26,7 +27,7 @@ class AddPatientViewModel: ObservableObject {
         
         guard emptyValuesCheck() else {
             GlobalPopupHelpers.fillAllFieldsAlert()
-            //self.showLocalAlert.toggle()
+            self.fillAllFieldsAlert = true
             return
         }
         
