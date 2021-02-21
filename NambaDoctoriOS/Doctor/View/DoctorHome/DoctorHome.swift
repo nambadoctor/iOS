@@ -33,6 +33,12 @@ struct DoctorHome: View {
                             Text("Finished")
                             Text("Appointments")
                         }.tag(2)
+                        
+                        DoctorsPatientsView().tabItem {
+                            //Image("timer")
+                            Text("My")
+                            Text("Patients")
+                        }.tag(3)
                     }
                 }
                 .navigationBarTitle("NambaDoctor", displayMode: .inline)

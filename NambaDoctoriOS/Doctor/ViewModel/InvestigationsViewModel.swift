@@ -40,6 +40,7 @@ class InvestigationsViewModel:ObservableObject {
     }
 
     func parsePlanIntoInvestigationsArr(planInfo:String) {
+        guard !planInfo.isEmpty else {return}
         investigations = planInfo.components(separatedBy: ";")
     }
 }

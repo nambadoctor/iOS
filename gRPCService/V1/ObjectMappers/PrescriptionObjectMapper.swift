@@ -40,6 +40,7 @@ class PrescriptionObjectMapper {
         let medList = medicineObjMapper.localMedicineListToGrpcList(medicines: prescription.medicines)
         
         let prescriptionObj = Nambadoctor_V1_PrescriptionObject.with {
+            $0.id = ""
             $0.appointmentID = prescription.appointmentID
             $0.history = prescription.history
             $0.examination = prescription.examination

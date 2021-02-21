@@ -26,5 +26,5 @@ struct PreRegPatient {
 }
 
 func MakeEmptyPreRegPatient () -> PreRegPatient {
-    return PreRegPatient(age: "", fullName: "", phoneNumber: "", preferredDoctorID: "", createdDateTime: Date().millisecondsSince1970, gender: "")
+    return PreRegPatient(age: "", fullName: "", phoneNumber: "", preferredDoctorID: doctor!.doctorID, createdDateTime: Date().millisecondsSince1970, gender: "")
 }

@@ -23,13 +23,15 @@ class PutPatientAllergiesViewModel: PutPatientAllergiesProtocol {
         
         let putAllergy = allergiestClient.saveNewAllergy(request, callOptions: callOptions)
         
-        do {
-            let response = try putAllergy.response.wait()
-            print("Allergies Put Client Successful: \(response.allergyID)")
-            CommonDefaultModifiers.hideLoader()
-            completion(true)
-        } catch {
-            print("Allergies Put Client Failure")
+        DispatchQueue.main.async {
+            do {
+                let response = try putAllergy.response.wait()
+                print("Allergies Put Client Successful: \(response.allergyID)")
+                CommonDefaultModifiers.hideLoader()
+                completion(true)
+            } catch {
+                print("Allergies Put Client Failure")
+            }
         }
 
     }
@@ -50,12 +52,14 @@ class PutPatientAllergiesViewModel: PutPatientAllergiesProtocol {
         
         let putAllergy = allergiestClient.saveNewAllergy(request, callOptions: callOptions)
         
-        do {
-            let response = try putAllergy.response.wait()
-            completion(true)
-            print("Allergies Put Client Successful: \(response.allergyID)")
-        } catch {
-            print("Allergies Put Client Failure")
+        DispatchQueue.main.async {
+            do {
+                let response = try putAllergy.response.wait()
+                completion(true)
+                print("Allergies Put Client Successful: \(response.allergyID)")
+            } catch {
+                print("Allergies Put Client Failure")
+            }
         }
         
     }

@@ -17,8 +17,6 @@ class AddPreRegisteredViewModel {
     
     func preRegisterPatient(patientObj:PreRegPatient, _ completion : @escaping ((_ patientId:String?)->())) {
 
-        CommonDefaultModifiers.showLoader()
-
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         
@@ -28,14 +26,15 @@ class AddPreRegisteredViewModel {
 
         let putPatient = patientClient.writeNewPreRegObject(request, callOptions: callOptions)
 
-        do {
-            let response = try putPatient.response.wait()
-            print("Add Pre-Reg Patient Success \(response.patientID)")
-            CommonDefaultModifiers.hideLoader()
-            completion(response.patientID)
-        } catch {
-            print("Add Pre-Reg Patient Failure")
-            print(error)
+        DispatchQueue.main.async {
+            do {
+                let response = try putPatient.response.wait()
+                print("Add Pre-Reg Patient Success \(response.patientID)")
+                completion(response.patientID)
+            } catch {
+                print("Add Pre-Reg Patient Failure")
+                print(error)
+            }
         }
     }
 }

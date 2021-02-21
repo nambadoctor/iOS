@@ -89,13 +89,13 @@ class UpcomingAppointmentViewModel: ObservableObject {
     func writePrescription() {
         consultationDone = true
         doctorAlertHelper.writePrescriptionAlert(appointmentId: appointmentId, requestedBy: appointment.requestedBy) { (navigate) in
-            
+            self.takeToWritePrescription = true
+
             self.updateAppointmentStatus.updateToFinishedAppointment(appointment: &self.appointment)
                 { _ in }
-            
+
             DocNotifHelpers.sharedNotifHelpers.fireAppointmentOverNotif(requestedBy: self.appointment.requestedBy)
-            
-            self.takeToWritePrescription = true
+
         }
     }
 

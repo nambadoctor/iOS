@@ -36,4 +36,14 @@ class PatientObjMapper {
         }
         return patient
     }
+    
+    func grpcPatientsListToLocal (patientList:[Nambadoctor_V1_PatientObject]) -> [Patient] {
+        var returnPatientList = [Patient]()
+        
+        for patient in patientList {
+            returnPatientList.append(grpcToLocalPatientObject(patient: patient))
+        }
+        
+        return returnPatientList
+    }
 }

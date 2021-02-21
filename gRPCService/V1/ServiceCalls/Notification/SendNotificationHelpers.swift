@@ -21,11 +21,13 @@ class DocNotifHelpers : DocNotifHelpersProtocol {
     
     func getPatientFCMTokenId (requestedBy:String, completion: @escaping (_ retrieved:Bool) -> ()) {
         if patientTokenId.isEmpty {
-            GetReceptientFCMTokenId.getPatientTokenId(patientId: requestedBy) { (tokenId) in
-                if tokenId != nil {
-                    completion(true)
-                } else {
-                    completion(false)
+            DispatchQueue.main.async {
+                GetReceptientFCMTokenId.getPatientTokenId(patientId: requestedBy) { (tokenId) in
+                    if tokenId != nil {
+                        completion(true)
+                    } else {
+                        completion(false)
+                    }
                 }
             }
         } else {
@@ -41,10 +43,10 @@ class DocNotifHelpers : DocNotifHelpersProtocol {
             let cancelNotifObj = Nambadoctor_V1_NotificationRequest.with {
                 $0.title = "Your Appointment Cancelled"
                 $0.body = "\(currentDocObj.fullName) has cancelled the appointment at \(readableTime)"
-                $0.receiverDeviceToken = "cWTHDC8Fl0pJp6LAvBeqBP:APA91bFR1VoxGls3jpWq1_8rpG7WyjOl7G82e8Z_PqInoyYbQFk3dUi9Mv24Pguu9RYxrYhS9K_uefyX1-8lhrZ35MSW4sZrkzIqYT6oqPNveqCTH08AXsjYhrMjRKXJnMg7O730bsET"
+                $0.receiverDeviceToken = patientTokenId
                 $0.idIfAny = ""
             }
-            
+
             sendPushNotification.sendNotif(notifObj: cancelNotifObj)
         }
 

@@ -12,6 +12,7 @@ struct AddPatientView: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var AddPatientVM:AddPatientViewModel = AddPatientViewModel()
     
+    
     var body: some View {
         ZStack {
             NavigationView {
@@ -58,11 +59,13 @@ struct AddPatientView: View {
                 .navigationBarTitle("")
                 .navigationBarHidden(true)
             }
+            
+            LoadingScreen(showLoader: self.$AddPatientVM.loadingScreen)
         }
         .navigationTitle("Add Your Patient")
         .navigationBarItems(trailing: closeButton)
     }
-    
+
     var closeButton : some View {
         Button(action: {
             presentationMode.wrappedValue.dismiss()

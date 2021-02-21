@@ -11,7 +11,7 @@ import SwiftUI
 class PrescriptionViewModel: ObservableObject {
     var appointment:Appointment
     var isNewPrescription:Bool
-    var loggedInDoctor:Doctor
+    var loggedInDoctor:Doctor = doctor!
     
     @Published var prescription:Prescription!
     @Published var errorInRetrievingPrescription:Bool = false
@@ -24,7 +24,6 @@ class PrescriptionViewModel: ObservableObject {
     @Published var MedicineEntryVM:MedicineEntryViewModel = MedicineEntryViewModel()
     @Published var patientAllergies:String = ""
     
-    private var docObjectHelper:GetDocObjectProtocol
     private var retrievePrescriptionHelper:RetrievePrescriptionForAppointmentProtocol
     private var retrieveFollowUpObjHelper:RetrieveFollowUpFeeObjProtocol
     private var retrieveAllergiesHelper:RetrievePatientAllergiesProtocol
@@ -34,7 +33,6 @@ class PrescriptionViewModel: ObservableObject {
     
     init(appointment:Appointment,
          isNewPrescription:Bool,
-         docObjectHelper:GetDocObjectProtocol = GetDocObject(),
          retrievePrescriptionHelper:RetrievePrescriptionForAppointmentProtocol = RetrievePrescriptionForAppointmentViewModel(),
          retrieveFollowUpObjHelper:RetrieveFollowUpFeeObjProtocol = RetrieveFollowUpObjViewModel(),
          retrieveAllergiesHelper:RetrievePatientAllergiesProtocol = RetrievePatientAllergiesViewModel()) {
@@ -44,8 +42,6 @@ class PrescriptionViewModel: ObservableObject {
         self.retrievePrescriptionHelper = retrievePrescriptionHelper
         self.retrieveFollowUpObjHelper = retrieveFollowUpObjHelper
         self.retrieveAllergiesHelper = retrieveAllergiesHelper
-        self.docObjectHelper = docObjectHelper
-        self.loggedInDoctor = docObjectHelper.getDoctor()
     }
     
     /*

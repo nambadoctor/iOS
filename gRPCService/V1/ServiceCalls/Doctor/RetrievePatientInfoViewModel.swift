@@ -36,14 +36,16 @@ class RetrievePatientInfoViewModel: RetrievePatientInfoProtocol {
 
         let getPatientObject = patientClient.getPatientObject(request, callOptions: callOptions)
 
-        do {
-            let response = try getPatientObject.response.wait()
-            let patient = patientObjMapper.grpcToLocalPatientObject(patient: response)
-            print("Patient Client received: \(response.patientID)")
-            completion(patient)
-        } catch {
-            print("Patient Client failed: \(error)")
-            completion(nil)
+        DispatchQueue.main.async {
+            do {
+                let response = try getPatientObject.response.wait()
+                let patient = self.patientObjMapper.grpcToLocalPatientObject(patient: response)
+                print("Patient Client received: \(response.patientID)")
+                completion(patient)
+            } catch {
+                print("Patient Client failed: \(error)")
+                completion(nil)
+            }
         }
     }
     
@@ -61,14 +63,16 @@ class RetrievePatientInfoViewModel: RetrievePatientInfoProtocol {
 
         let getPatientAppointments = appointmentsClient.getAllPatientAppointments(request, callOptions: callOptions)
 
-        do {
-            let response = try getPatientAppointments.response.wait()
-            let appointmentList = appointmentObjMapper.grpcAppointmentListToLocalAppointmentList(appointmentList: response.appointmentResponse)
-            print("Patient Appointments received")
-            completion(appointmentList)
-        } catch {
-            print("Patient Appointments failed: \(error)")
-            completion(nil)
+        DispatchQueue.main.async {
+            do {
+                let response = try getPatientAppointments.response.wait()
+                let appointmentList = self.appointmentObjMapper.grpcAppointmentListToLocalAppointmentList(appointmentList: response.appointmentResponse)
+                print("Patient Appointments received")
+                completion(appointmentList)
+            } catch {
+                print("Patient Appointments failed: \(error)")
+                completion(nil)
+            }
         }
     }
 
@@ -86,14 +90,16 @@ class RetrievePatientInfoViewModel: RetrievePatientInfoProtocol {
 
         let getPatientReports = reportsClient.getAllPatientReports(request, callOptions:callOptions)
 
-        do {
-            let response = try getPatientReports.response.wait()
-            let reportList = reportObjMapper.grpcReportToLocalList(reportList: response.reports)
-            print("Patient Reports received")
-            completion(reportList)
-        } catch {
-            print("Patient Reports failed: \(error)")
-            completion(nil)
+        DispatchQueue.main.async {
+            do {
+                let response = try getPatientReports.response.wait()
+                let reportList = self.reportObjMapper.grpcReportToLocalList(reportList: response.reports)
+                print("Patient Reports received")
+                completion(reportList)
+            } catch {
+                print("Patient Reports failed: \(error)")
+                completion(nil)
+            }
         }
     }
     
@@ -111,13 +117,15 @@ class RetrievePatientInfoViewModel: RetrievePatientInfoProtocol {
 
         let getPatientReports = reportImageClient.downloadReportMedia(request, callOptions:callOptions)
 
-        do {
-            let response = try getPatientReports.response.wait()
-            print("Patient Reports received \(response.mediaFile)")
-            completion(Helpers.convertB64ToUIImage(b64Data: response.mediaFile.base64EncodedString()))
-        } catch {
-            print("Patient Reports failed: \(error)")
-            completion(nil)
+        DispatchQueue.main.async {
+            do {
+                let response = try getPatientReports.response.wait()
+                print("Patient Reports received \(response.mediaFile)")
+                completion(Helpers.convertB64ToUIImage(b64Data: response.mediaFile.base64EncodedString()))
+            } catch {
+                print("Patient Reports failed: \(error)")
+                completion(nil)
+            }
         }
     }
 }

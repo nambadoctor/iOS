@@ -33,12 +33,14 @@ class PutFollowUpAppointmentViewModel: PutFollowUpAppointmentViewModelProtocol{
         
         let putFollowUpClient = followUpClient.writeNewFollowUp(request, callOptions: callOptions)
         
-        do {
-            let response = try putFollowUpClient.response.wait()
-            completion(true)
-            print("MakeFollowUp Success")
-        } catch {
-            print("MakeFollowUp Failure")
+        DispatchQueue.main.async {
+            do {
+                let response = try putFollowUpClient.response.wait()
+                completion(true)
+                print("MakeFollowUp Success")
+            } catch {
+                print("MakeFollowUp Failure")
+            }
         }
     }
     
@@ -62,13 +64,15 @@ class PutFollowUpAppointmentViewModel: PutFollowUpAppointmentViewModelProtocol{
         
         let putFollowUpClient = followUpClient.writeNewFollowUp(request, callOptions: callOptions)
         
-        do {
-            let response = try putFollowUpClient.response.wait()
-            print("MakeFollowUp Success")
-            CommonDefaultModifiers.hideLoader()
-            completion(true)
-        } catch {
-            print("MakeFollowUp Failure")
+        DispatchQueue.main.async {
+            do {
+                let response = try putFollowUpClient.response.wait()
+                print("MakeFollowUp Success")
+                CommonDefaultModifiers.hideLoader()
+                completion(true)
+            } catch {
+                print("MakeFollowUp Failure")
+            }
         }
     }
 

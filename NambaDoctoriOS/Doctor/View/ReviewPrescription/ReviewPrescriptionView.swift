@@ -50,5 +50,7 @@ struct ReviewPrescriptionView: View {
             }
 
         }
+        .navigationTitle("")
+        .navigationBarBackButtonHidden(true)
     }
 }
