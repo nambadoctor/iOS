@@ -21,7 +21,7 @@ class PrescriptionViewModelTests: XCTestCase {
         mockRetrievePrescriptionService = MockRetrievePrescriptionService()
         mockRetrieveFollowUpService = MockRetrieveFollowUpObjService()
         mockRetrieveAllergiesService = MockRetrieveAllergiesService()
-        
+        doctor = MockDoctor.getDoctor()
         prescriptionVM = .init(appointment: mockAppointment,
                                isNewPrescription: true,
                                retrievePrescriptionHelper: mockRetrievePrescriptionService,
@@ -59,6 +59,7 @@ class PrescriptionViewModelTests: XCTestCase {
     }
     
     func testSendToReviewPrescriptionWithNonEmptyInvestigationTemp() {
+        prescriptionVM.prescription = MakeMockPrescription.getPrescription()
         prescriptionVM.InvestigationsVM.investigationTemp = "empty"
         prescriptionVM.sendToReviewPrescription()
 

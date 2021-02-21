@@ -8,7 +8,7 @@
 import Foundation
 
 class InvestigationsViewModel:ObservableObject {
-    @Published var investigations: [String] = []
+    @Published var investigations:[String] = [String]()
     @Published var investigationTemp:String = ""
 
     func removeInvestigationBySwiping(at offsets: IndexSet) {

@@ -38,5 +38,5 @@ struct Prescription : Identifiable, Codable {
 }
 
 func MakeEmptyPrescription () -> Prescription {
-    return Prescription(id: "", appointmentID: "", history: "", examination: "", diagnosis: "", diagnosisType: "", investigations: [""], advice: "", doctorID: "", patientID: "", createdDateTime: Date().millisecondsSince1970, medicines: [Medicine]())
+    return Prescription(id: "", appointmentID: "", history: "", examination: "", diagnosis: "", diagnosisType: "", investigations: [String](), advice: "", doctorID: "", patientID: "", createdDateTime: Date().millisecondsSince1970, medicines: [Medicine]())
 }
