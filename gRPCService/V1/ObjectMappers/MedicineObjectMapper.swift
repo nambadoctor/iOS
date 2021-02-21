@@ -21,6 +21,7 @@ class MedicineObjectMapper {
     
     func localMedicineToGrpcObject(medicine:Medicine) -> Nambadoctor_V1_MedicineObject {
         let medObj = Nambadoctor_V1_MedicineObject.with {
+            $0.medicineName = medicine.medicineName
             $0.dosage = medicine.dosage
             $0.routeOfAdministration = medicine.routeOfAdministration
             $0.intake = medicine.intake

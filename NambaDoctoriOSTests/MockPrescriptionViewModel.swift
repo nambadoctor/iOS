@@ -10,16 +10,22 @@ import Foundation
 
 class MockPrescriptionViewModel {
     static func getNewPrescriptionVM() -> PrescriptionViewModel {
-        return PrescriptionViewModel(
+        let prescriptionVM = PrescriptionViewModel(
             appointment: MakeMockAppointment.getAppointment(),
-            isNewPrescription: true,
-            docObjectHelper: MockGetDoctorObjectService())
+            isNewPrescription: true)
+        
+        prescriptionVM.prescription = MakeMockPrescription.getPrescription()
+        
+        return prescriptionVM
     }
     
     static func getAmmendPrescriptionVM() -> PrescriptionViewModel {
-        return PrescriptionViewModel(
+        let prescriptionVM = PrescriptionViewModel(
             appointment: MakeMockAppointment.getAppointment(),
-            isNewPrescription: false,
-            docObjectHelper: MockGetDoctorObjectService())
+            isNewPrescription: false)
+        
+        prescriptionVM.prescription = MakeMockPrescription.getPrescription()
+        
+        return prescriptionVM
     }
 }

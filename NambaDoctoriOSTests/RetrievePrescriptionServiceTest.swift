@@ -18,7 +18,7 @@ class RetrievePrescriptionServiceTest: XCTestCase {
     func testGetFollowUpServiceSuccess () {
         let expectation = XCTestExpectation(description: "Retrieve Prescription Object")
         
-        AuthTokenId = "ND_Test_"
+        AuthTokenId = "ND_Test_iOS"
         
         retrievePrescriptionService.getPrescription(appointmentId: "appointmentId") { (prescriptionObj) in
             

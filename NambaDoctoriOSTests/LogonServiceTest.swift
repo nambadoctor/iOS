@@ -19,7 +19,7 @@ class LogonServiceTest: XCTestCase {
     func testGetUserType () {
         let expectation = XCTestExpectation(description: "Get Correct User Type")
         
-        AuthTokenId = "ND_Test_"
+        AuthTokenId = "ND_Test_iOS"
         
         findUserTypeService.logonUser() { (userStatus) in
             XCTAssertNotNil(userStatus, "No data was downloaded.")

@@ -103,6 +103,8 @@ class PrescriptionViewModel: ObservableObject {
 
     func sendToReviewPrescription() {
         InvestigationsVM.addTempIntoArrayWhenFinished()
+        self.prescription.investigations = InvestigationsVM.investigations
+
         self.navigateToReviewPrescription = true
     }
 
@@ -121,11 +123,13 @@ class PrescriptionViewModel: ObservableObject {
     }
 
     func checkForStoredPrescriptionAndRetreive() {
-        let storedPrescription = LocalDecoder.decode(modelType: Prescription.self, from: "prescription:\(self.appointment.appointmentID)")
+        let storedPrescription:Prescription? = LocalDecoder.decode(modelType: Prescription.self, from: "stored_prescriptions:\(self.appointment.appointmentID)")
 
         if storedPrescription == nil {
             self.prescription = MakeEmptyPrescription()
             self.prescription.appointmentID = appointment.appointmentID
+            self.prescription.doctorID = loggedInDoctor.doctorID
+            self.prescription.patientID = appointment.requestedBy
         } else {
             self.mapPrescriptionValues(prescription: storedPrescription!)
         }
@@ -137,11 +141,11 @@ class PrescriptionViewModel: ObservableObject {
 
             self.prescription.medicines = self.MedicineVM.medicineArr
 
-            LocalEncoder.encode(payload: self.prescription, destination: "prescription:\(self.appointment.appointmentID)")
+            LocalEncoder.encode(payload: self.prescription, destination: "stored_prescriptions:\(self.appointment.appointmentID)")
         }
 
         func deleteLocallyStoredPrescription () {
-            LocalEncoder.encode(payload: MakeEmptyPrescription(), destination: "prescription:\(self.appointment.appointmentID)")
+            LocalEncoder.encode(payload: MakeEmptyPrescription(), destination: "stored_prescriptions:\(self.appointment.appointmentID)")
         }
 
         docAlertHelper.askToSavePrescriptionAlert() { save in

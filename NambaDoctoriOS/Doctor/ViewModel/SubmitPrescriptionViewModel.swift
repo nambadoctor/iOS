@@ -37,8 +37,6 @@ class SubmitPrescriptionViewModel: ObservableObject {
     var updateStatusDone:Bool = false
 
     func submitPrescription () {
-        prescriptionVM.prescription.advice = prescriptionVM.InvestigationsVM.investigations.joined(separator: ";")
-
         prescriptionVM.prescription.medicines = prescriptionVM.MedicineVM.medicineArr
 
         putPrescription()
@@ -51,10 +49,10 @@ class SubmitPrescriptionViewModel: ObservableObject {
         
         func toggleToTrue () {
             self.prescriptionDone = true
-            LocalEncoder.encode(payload: MakeEmptyPrescription(), destination: "prescription:\(self.prescriptionVM.appointment.appointmentID)")
+            RemoveStoredObject.removeForKey(key: "stored_prescriptions")
             checkIfAllWritesDone()
         }
-        
+
         putPrescriptionVM.writePrescriptionToDB(prescriptionViewModel: prescriptionVM) { (success) in
             if success {
                 toggleToTrue()
@@ -123,6 +121,7 @@ class SubmitPrescriptionViewModel: ObservableObject {
     
     private func checkIfAllWritesDone() {
         if prescriptionDone && followUpDone && allergiesDone && updateStatusDone {
+            DoctorDefaultModifiers.refreshAppointments()
             prescriptionVM.dismissAllViews = true
         }
     }

@@ -19,7 +19,7 @@ class RetrievePatientAllergiesServiceTest: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Get Patient Allergies Successful")
         
-        AuthTokenId = "ND_Test_"
+        AuthTokenId = "ND_Test_iOS"
         
         retrieveAllergiesService.getPatientAllergies(patientId: "patientId") { (allergies) in
             XCTAssertNotNil(allergies, "no data found")

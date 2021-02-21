@@ -18,7 +18,7 @@ class RetrievePatientInfoServiceTest: XCTestCase {
     func testRetrievePatientProfileSuccess () {
         let expectation = XCTestExpectation(description: "Retrieve Patient Info Succes")
         
-        AuthTokenId = "ND_Test_"
+        AuthTokenId = "ND_Test_iOS"
         
         retrievePatientInfoService.getPatientProfile(patientId: "patientId") { (patientObj) in
             XCTAssertNotNil(patientObj, "no data found")
@@ -32,7 +32,7 @@ class RetrievePatientInfoServiceTest: XCTestCase {
     func testRetrievePatientAppointmentListSuccess () {
         let expectation = XCTestExpectation(description: "Retrieve Appointment List Success")
         
-        AuthTokenId = "ND_Test_"
+        AuthTokenId = "ND_Test_iOS"
 
         retrievePatientInfoService.getPatientAppointmentList(patientId: "patientId") { (appointmentList) in
             XCTAssertNotNil(appointmentList, "no data found")
@@ -46,7 +46,7 @@ class RetrievePatientInfoServiceTest: XCTestCase {
     func testRetrievePatientReportListSuccess () {
         let expectation = XCTestExpectation(description: "Retrieve Report List Success")
         
-        AuthTokenId = "ND_Test_"
+        AuthTokenId = "ND_Test_iOS"
         
         retrievePatientInfoService.getUploadedReportList(appointment: MakeMockAppointment.getAppointment()) { reportList in
             
@@ -61,7 +61,7 @@ class RetrievePatientInfoServiceTest: XCTestCase {
     func testRetrievePatientReportImageSuccess() {
         let expectation = XCTestExpectation(description: "Retrieve Report Image Success")
         
-        AuthTokenId = "ND_Test_"
+        AuthTokenId = "ND_Test_iOS"
         
         retrievePatientInfoService.getReportImage(reportId: "60225ad90f3337fe4c6f0c8d") { (image) in
             XCTAssertNotNil(image, "no data found")

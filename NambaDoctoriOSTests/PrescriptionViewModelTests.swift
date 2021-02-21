@@ -21,11 +21,9 @@ class PrescriptionViewModelTests: XCTestCase {
         mockRetrievePrescriptionService = MockRetrievePrescriptionService()
         mockRetrieveFollowUpService = MockRetrieveFollowUpObjService()
         mockRetrieveAllergiesService = MockRetrieveAllergiesService()
-        mockGetDocObjService = MockGetDoctorObjectService()
         
         prescriptionVM = .init(appointment: mockAppointment,
                                isNewPrescription: true,
-                               docObjectHelper: mockGetDocObjService,
                                retrievePrescriptionHelper: mockRetrievePrescriptionService,
                                retrieveFollowUpObjHelper: mockRetrieveFollowUpService,
                                retrieveAllergiesHelper: mockRetrieveAllergiesService)

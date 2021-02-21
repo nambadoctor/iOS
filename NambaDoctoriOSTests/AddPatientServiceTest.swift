@@ -20,9 +20,9 @@ class AddPatientServiceTest: XCTestCase {
     func testAddingValidPatient () {
         let expectation = XCTestExpectation(description: "Add Patient Service Test")
         
-        AuthTokenId = "ND_Test_"
+        AuthTokenId = "ND_Test_iOS"
         
-        addPreRegPatient.preRegisterPatient(patientObj: MockPreRegPatient.mockPatientObj()) { (patientId) in
+        addPreRegPatient.preRegisterPatient(patientObj: MockPatientObj.mockPreRegPatient()) { (patientId) in
             
             XCTAssertNotNil(patientId, "No data was downloaded.")
             

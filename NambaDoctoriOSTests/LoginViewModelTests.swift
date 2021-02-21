@@ -45,23 +45,4 @@ class LoginViewModelTests: XCTestCase {
         
         XCTAssertFalse(loginViewModel.userLoggedIn)
     }
-
-    //testing number length validation
-    func testPhoneNumberLengthReturnTrue () {
-        loginViewModel.user.phNumberObj.number = "1234567890"
-        
-        XCTAssertTrue(loginViewModel.checkNumberLength())
-    }
-    
-    func testPhoneNumberLengthTooShortReturnFalse () {
-        loginViewModel.user.phNumberObj.number = "12345678"
-        
-        XCTAssertFalse(loginViewModel.checkNumberLength())
-    }
-    
-    func testPhoneNumberLengthTooLongReturnFalse () {
-        loginViewModel.user.phNumberObj.number = "123456789000"
-        
-        XCTAssertFalse(loginViewModel.checkNumberLength())
-    }
 }

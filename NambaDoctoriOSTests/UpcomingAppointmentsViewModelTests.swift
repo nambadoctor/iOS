@@ -21,9 +21,7 @@ class UpcomingAppointmentsViewModelTests: XCTestCase {
         
         let mockAppointment = MakeMockAppointment.getAppointment()
         appointmentsVM = .init(appointment: mockAppointment,
-                               updateAppointmentStatus: mockUpdateStatus,
-                               twilioAccessTokenHelper: mockTwilioAccessTokenService,
-                               notifHelper: mockDocNotifHelper)
+                               updateAppointmentStatus: mockUpdateStatus)
         
     }
     
@@ -55,14 +53,7 @@ class UpcomingAppointmentsViewModelTests: XCTestCase {
         
         XCTAssertTrue(appointmentsVM.takeToTwilioRoom)
     }
-    
-    func testStartConsultationButtonTogglesTwilioRoomFalse() {
-        mockTwilioAccessTokenService.isTokenRetrieved = false
-        appointmentsVM.startConsultation()
-        
-        XCTAssertFalse(appointmentsVM.takeToTwilioRoom)
-    }
-    
+
     func testWritePrescriptionTogglesConsultationDoneToTrue() {
         appointmentsVM.writePrescription()
         

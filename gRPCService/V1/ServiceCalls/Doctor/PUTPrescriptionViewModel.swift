@@ -24,7 +24,9 @@ class PutPrescriptionViewModel: PutPrescriptionViewModelProtocol {
         
         let prescriptionClient = Nambadoctor_V1_PrescriptionWorkerV1Client(channel: channel)
 
-        let request = prescriptionObjectMapper.localPrescriptionToGrpcObject(prescription: prescriptionViewModel.prescription ?? MakeEmptyPrescription())
+        let request = prescriptionObjectMapper.localPrescriptionToGrpcObject(prescription: prescriptionViewModel.prescription)
+        
+        print(request)
 
         let makePrescription = prescriptionClient.saveNewPrescription(request, callOptions: callOptions)
         

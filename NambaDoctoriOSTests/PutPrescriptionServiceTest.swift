@@ -14,6 +14,8 @@ class PutPrescriptionServiceTest: XCTestCase {
     var ammendPrescriptionVM:PrescriptionViewModel!
     
     override func setUp() {
+        doctor = MockDoctor.getDoctor()
+        
         self.putPrescriptionService = PutPrescriptionViewModel()
         
         self.newPrescriptionVM = MockPrescriptionViewModel.getNewPrescriptionVM()
@@ -25,8 +27,8 @@ class PutPrescriptionServiceTest: XCTestCase {
     func testPutNewPrescription () {
         let expectation = XCTestExpectation(description: "Put New Prescription")
         
-        AuthTokenId = "ND_Test_"
-        
+        AuthTokenId = "ND_Test_iOS"
+
         putPrescriptionService.writePrescriptionToDB(prescriptionViewModel: newPrescriptionVM) { (success) in
             
             XCTAssertTrue(success)
@@ -40,8 +42,8 @@ class PutPrescriptionServiceTest: XCTestCase {
     func testPutAmmendPrescription () {
         let expectation = XCTestExpectation(description: "Put Ammend Prescription")
         
-        AuthTokenId = "ND_Test_"
-        
+        AuthTokenId = "ND_Test_iOS"
+                
         putPrescriptionService.writePrescriptionToDB(prescriptionViewModel: ammendPrescriptionVM) { (success) in
             
             XCTAssertTrue(success)

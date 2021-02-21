@@ -18,7 +18,7 @@ class RetrieveDoctorAppointmentsServiceTest: XCTestCase {
     func testRetrieveAppointmentsSuccessfully () {
         let expectation = XCTestExpectation(description: "Retrieve Appointments Service")
         
-        AuthTokenId = "ND_Test_"
+        AuthTokenId = "ND_Test_iOS"
         
         retrieveAppointmentService.retrieveDocAppointmentList { (appointmentList) in
             XCTAssertNotNil(appointmentList, "no data found")

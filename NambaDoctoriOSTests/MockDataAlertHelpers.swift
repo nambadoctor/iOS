@@ -8,12 +8,12 @@
 @testable import NambaDoctoriOS
 
 class MockDoctorAlertHelpers: DoctorAlertHelpersProtocol {
-    
     var writePrescription:Bool = false
     var amendPrescription:Bool = false
     var askToSavePrescriptionPermission:Bool = false
     var endConsultationPermission:Bool = false
     var dontShowAgainPermission:Bool = false
+    var cancelAppointment:Bool = false
     
     func writePrescriptionAlert(appointmentId: String, requestedBy: String, navigate: @escaping (Bool) -> ()) {
         navigate(writePrescription)
@@ -27,12 +27,16 @@ class MockDoctorAlertHelpers: DoctorAlertHelpersProtocol {
         save(askToSavePrescriptionPermission)
     }
     
-    func endConsultationAlert (endConsultation: @escaping (_ ended:Bool) -> (), dontShowAgain: @escaping (_ dontshowAgain:Bool) -> ()) {
+    func endConsultationAlert(endConsultation: @escaping (Bool) -> ()) {
         endConsultation(endConsultationPermission)
-        dontShowAgain(dontShowAgainPermission)
     }
     
     func patientAddedAlert () {}
     
     func prescriptionWriteSuccessAlert () {}
+    
+    func cancelAppointmentAlert(cancel: @escaping (Bool) -> ()) {
+        cancel(cancelAppointment)
+    }
+    
 }

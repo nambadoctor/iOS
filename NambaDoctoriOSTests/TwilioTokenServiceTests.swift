@@ -18,7 +18,7 @@ class TwilioTokenServiceTests: XCTestCase {
     func testGettingToken () {
         let expectation = XCTestExpectation(description: "Get Twilio Token")
         
-        AuthTokenId = "ND_Test_"
+        AuthTokenId = "ND_Test_iOS"
         
         retrieveTokenAccessToken.retrieveToken(appointmentId: "appointmentId") { (success, token) in
             XCTAssertNotNil(token, "No data was downloaded.")

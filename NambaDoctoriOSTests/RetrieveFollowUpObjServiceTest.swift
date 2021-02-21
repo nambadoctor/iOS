@@ -18,7 +18,7 @@ class RetrieveFollowUpObjServiceTest: XCTestCase {
     func testGetFollowUpServiceSuccess () {
         let expectation = XCTestExpectation(description: "Retrieve FollowUp Object Test")
         
-        AuthTokenId = "ND_Test_"
+        AuthTokenId = "ND_Test_iOS"
         
         retrieveFollowUpService.getNextFee(doctorId: "doctorId", patientId: "patientId") { (followUpObj) in
             

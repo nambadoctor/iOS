@@ -18,7 +18,7 @@ class UpdateAppointmentStatusServiceTest: XCTestCase {
     func testUpdateAppointmentStatusSuccessful () {
         let expectation = XCTestExpectation(description: "Update Appointment Status Test")
         
-        AuthTokenId = "ND_Test_"
+        AuthTokenId = "ND_Test_iOS"
         
         updateAppointmentService.makeAppointmentUpdate(appointment: MakeMockAppointment.getAppointment()) { (success) in
             XCTAssertTrue(success)

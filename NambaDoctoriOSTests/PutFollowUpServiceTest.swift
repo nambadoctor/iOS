@@ -21,7 +21,7 @@ class PutFollowUpServiceTest: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Making FollowUp Using Prescription View model")
         
-        AuthTokenId = "ND_Test_"
+        AuthTokenId = "ND_Test_iOS"
 
         putFollowUpService.makeFollowUpAppointment(followUpVM: followUpVM, patientId: "patientId") { (success) in
             
@@ -39,7 +39,7 @@ class PutFollowUpServiceTest: XCTestCase {
         
         let expectation = XCTestExpectation(description: "Making FollowUp Using Prescription View model")
 
-        AuthTokenId = "ND_Test_"
+        AuthTokenId = "ND_Test_iOS"
         
         putFollowUpService.makeFollowUpAppointment(prescriptionVM: prescriptionVM) { (success) in
             XCTAssertTrue(success)
