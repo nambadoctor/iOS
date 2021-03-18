@@ -41,7 +41,7 @@ class MedicineEntryViewModel : ObservableObject {
         return "\(morning),\(afternoon),\(evening),\(night)"
     }
 
-    func mapExistingMedicine(medicine:Medicine) {
+    func mapExistingMedicine(medicine:ServiceProviderMedicine) {
         medicineName = medicine.medicineName
         dosage = medicine.dosage
 

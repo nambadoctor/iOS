@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class UpcomingAppointmentViewModel: ObservableObject {
-    @Published var appointment:Appointment
+    @Published var appointment:ServiceProviderAppointment
 
     @Published var consultationStarted:Bool = false
     @Published var consultationDone:Bool = false
@@ -26,7 +26,7 @@ class UpcomingAppointmentViewModel: ObservableObject {
     private var updateAppointmentStatus:UpdateAppointmentStatusProtocol
     private var doctorAlertHelper:DoctorAlertHelpersProtocol
 
-    init(appointment:Appointment,
+    init(appointment:ServiceProviderAppointment,
          updateAppointmentStatus:UpdateAppointmentStatusProtocol = UpdateAppointmentStatusViewModel(),
          doctorAlertHelper:DoctorAlertHelpersProtocol = DoctorAlertHelpers()) {
         

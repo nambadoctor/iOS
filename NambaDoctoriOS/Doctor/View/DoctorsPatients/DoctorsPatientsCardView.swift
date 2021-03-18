@@ -9,13 +9,12 @@ import SwiftUI
 
 struct DoctorsPatientsCardView: View {
     
-    var patientObj:Patient
+    var patientObj:ServiceProviderCustomerProfile
     
     var body: some View {
         VStack {
-            Text(patientObj.fullName)
+            Text("\(patientObj.firstName) \(patientObj.lastName)")
             Text(patientObj.age)
-            Text(patientObj.phoneNumber)
         }
     }
 }

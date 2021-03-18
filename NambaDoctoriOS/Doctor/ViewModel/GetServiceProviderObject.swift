@@ -10,9 +10,9 @@ import Foundation
 //global variable for now. not singleton
 var serviceProvider:ServiceProviderProfile?
 
-class GetServiceProviderObject : GetDocObjectProtocol {
+class GetServiceProviderObject : GetServiceProviderObjectProtocol {
     
-    func fetchDoctor (userId:String,
+    func fetchServiceProvider (userId:String,
                       completion: @escaping (_ service_provider:ServiceProviderProfile)->())  {
         
         RetrieveDocObj().getDoc(serviceProviderId: userId, { serviceProviderObj in
@@ -21,7 +21,7 @@ class GetServiceProviderObject : GetDocObjectProtocol {
         })
     }
     
-    func getDoctor () -> ServiceProviderProfile {
+    func getServiceProvider () -> ServiceProviderProfile {
         return serviceProvider!
     }
 }

@@ -8,25 +8,19 @@
 import Foundation
 
 class SubmitPrescriptionViewModel: ObservableObject {
-    var prescriptionVM:PrescriptionViewModel
+    var prescriptionVM:ServiceRequestViewModel
     
     var putPrescriptionVM:PutPrescriptionViewModelProtocol
-    var putFollowUpVM:PutFollowUpAppointmentViewModelProtocol
-    var putAllergiesVM:PutPatientAllergiesProtocol
     var updateAptStatusVM:UpdateAppointmentStatusProtocol
     var docAlertHelpers:DoctorAlertHelpersProtocol
     
-    init(prescriptionVM:PrescriptionViewModel,
+    init(prescriptionVM:ServiceRequestViewModel,
          putPrescriptionVM:PutPrescriptionViewModelProtocol = PutPrescriptionViewModel(),
-         putFollowUpVM:PutFollowUpAppointmentViewModelProtocol = PutFollowUpAppointmentViewModel(),
-         putAllergiesVM:PutPatientAllergiesProtocol = PutPatientAllergiesViewModel(),
          updateAptStatusVM:UpdateAppointmentStatusProtocol = UpdateAppointmentStatusViewModel(),
          docAlertHelpers:DoctorAlertHelpersProtocol = DoctorAlertHelpers()) {
         
         self.prescriptionVM = prescriptionVM
         self.putPrescriptionVM = putPrescriptionVM
-        self.putFollowUpVM = putFollowUpVM
-        self.putAllergiesVM = putAllergiesVM
         self.updateAptStatusVM = updateAptStatusVM
         self.docAlertHelpers = docAlertHelpers
     }

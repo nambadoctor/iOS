@@ -9,30 +9,28 @@ import Foundation
 
 class PutPrescriptionViewModel: PutPrescriptionViewModelProtocol {
     
-    var prescriptionObjectMapper:PrescriptionObjectMapper
+    var prescriptionObjectMapper:ServiceProviderPrescriptionMapper
     
-    init (prescriptionObjectMapper:PrescriptionObjectMapper = PrescriptionObjectMapper()) {
+    init (prescriptionObjectMapper:ServiceProviderPrescriptionMapper = ServiceProviderPrescriptionMapper()) {
         self.prescriptionObjectMapper = prescriptionObjectMapper
     }
     
-    func writePrescriptionToDB(prescriptionViewModel:PrescriptionViewModel, _ completion : @escaping ((_ successfull:Bool)->())) {
+    func writePrescriptionToDB(prescriptionViewModel:ServiceRequestViewModel, _ completion : @escaping ((_ successfull:Bool)->())) {
         
         CommonDefaultModifiers.showLoader()
         
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         
-        let prescriptionClient = Nambadoctor_V1_PrescriptionWorkerV1Client(channel: channel)
+        let prescriptionClient = Nd_V1_ServiceProviderPrescriptionWorkerV1Client(channel: channel)
 
-        let request = prescriptionObjectMapper.localPrescriptionToGrpcObject(prescription: prescriptionViewModel.prescription)
+        let request = prescriptionObjectMapper.localPrescriptionToGrpc(prescription: prescriptionViewModel.med.prescription)
         
-        print(request)
-
-        let makePrescription = prescriptionClient.saveNewPrescription(request, callOptions: callOptions)
+        let makePrescription = prescriptionClient.setPrescription(request, callOptions: callOptions)
         
         do {
             let response = try makePrescription.response.wait()
-            print("Prescription Write Client Successfull: \(response.prescriptionID)")
+            print("Prescription Write Client Successfull: \(response.id)")
             CommonDefaultModifiers.hideLoader()
             completion(true)
         } catch {

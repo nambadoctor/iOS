@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ServiceProviderDiagnosis {
+struct ServiceProviderDiagnosis : Codable {
     var name:String
     var type:String
 }

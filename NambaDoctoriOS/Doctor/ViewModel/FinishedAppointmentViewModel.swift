@@ -8,13 +8,13 @@
 import Foundation
 
 class FinishedAppointmentViewModel: ObservableObject {
-    @Published var appointment:Appointment
+    @Published var appointment:ServiceProviderAppointment
     @Published var viewPrescription:Bool = false
     @Published var amendPrescription:Bool = false
     
     private var doctorAlertHelper:DoctorAlertHelpersProtocol
 
-    init(appointment:Appointment,
+    init(appointment:ServiceProviderAppointment,
          doctorAlertHelper:DoctorAlertHelpersProtocol = DoctorAlertHelpers()) {
         self.appointment = appointment
         self.doctorAlertHelper = doctorAlertHelper
@@ -28,8 +28,8 @@ class FinishedAppointmentViewModel: ObservableObject {
         viewPrescription = true
     }
 
-    func getPrescriptionViewModelToNavigate () -> PrescriptionViewModel {
-        return PrescriptionViewModel(appointment: appointment, isNewPrescription: false)
+    func getPrescriptionViewModelToNavigate () -> ServiceRequestViewModel {
+        return ServiceRequestViewModel(appointment: appointment, isNewPrescription: false)
     }
 
     func takeToAmendPrescription () {

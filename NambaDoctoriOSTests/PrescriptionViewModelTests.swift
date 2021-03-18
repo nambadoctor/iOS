@@ -9,7 +9,7 @@ import XCTest
 @testable import NambaDoctoriOS
 
 class PrescriptionViewModelTests: XCTestCase {
-    var prescriptionVM:PrescriptionViewModel!
+    var prescriptionVM:ServiceRequestViewModel!
     var mockRetrievePrescriptionService:MockRetrievePrescriptionService!
     var mockRetrieveFollowUpService:MockRetrieveFollowUpObjService!
     var mockRetrieveAllergiesService:MockRetrieveAllergiesService!

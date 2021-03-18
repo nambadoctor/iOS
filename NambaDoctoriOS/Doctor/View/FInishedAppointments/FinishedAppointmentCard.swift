@@ -10,16 +10,16 @@ import SwiftUI
 struct FinishedAppointmentCard: View {
     
     @ObservedObject private var AppointmentVM:FinishedAppointmentViewModel
-    var prescriptionVM:PrescriptionViewModel
+    var prescriptionVM:ServiceRequestViewModel
 
-    init(appointment:Appointment) {
+    init(appointment:ServiceProviderAppointment) {
         AppointmentVM = FinishedAppointmentViewModel(appointment: appointment)
-        prescriptionVM = PrescriptionViewModel(appointment: appointment, isNewPrescription: false)
+        prescriptionVM = ServiceRequestViewModel(appointment: appointment, isNewPrescription: false)
     }
 
     var body: some View {
         VStack (alignment: .leading) {
-            Text(AppointmentVM.appointment.patientName)
+            Text(verbatim: AppointmentVM.appointment.customerName)
             Text(AppointmentVM.LocalTime)
 
             HStack {

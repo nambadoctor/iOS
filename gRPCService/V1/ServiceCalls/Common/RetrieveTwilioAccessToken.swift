@@ -12,10 +12,10 @@ var TwilioAccessTokenString = ""
 
 class RetrieveTwilioAccessToken : TwilioAccessTokenProtocol {
     
-    var getDocObject:GetDocObjectProtocol
+    var getServiceProviderHelper:GetServiceProviderObjectProtocol
     
-    init(getDocObject:GetDocObjectProtocol = GetDocObject()) {
-        self.getDocObject = getDocObject
+    init(getServiceProviderHelper:GetServiceProviderObjectProtocol = GetServiceProviderObject()) {
+        self.getServiceProviderHelper = getServiceProviderHelper
     }
     
     func retrieveToken (appointmentId:String,
@@ -23,18 +23,18 @@ class RetrieveTwilioAccessToken : TwilioAccessTokenProtocol {
                 
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
-        let twilioClient = Nambadoctor_V1_TwilioWorkerV1Client(channel: channel)
+        let twilioClient = Nd_V1_TwilioWorkerV1Client(channel: channel)
         
-        let request = Nambadoctor_V1_TwilioRequest.with {
-            $0.uid = getDocObject.getDoctor().doctorID
-            $0.roomID = appointmentId
+        let request = Nd_V1_TwilioAuthRequest.with {
+            $0.roomID = appointmentId.toProto
+            $0.userID = getServiceProviderHelper.getServiceProvider().serviceProviderID.toProto
         }
 
-        let getTwilioToken = twilioClient.getTwilioToken(request, callOptions: callOptions)
+        let getTwilioToken = twilioClient.getTwilioVideoAuthToken(request, callOptions: callOptions)
         
         do {
             let response = try getTwilioToken.response.wait()
-            let twilioToken = response.authToken
+            let twilioToken = response.message.toString
             print("TwilioToken received: \(twilioToken)")
             completion(true, twilioToken)
             TwilioAccessTokenString = twilioToken

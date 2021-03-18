@@ -9,14 +9,14 @@ import Foundation
 
 class DocNotifHelpers : DocNotifHelpersProtocol {
     static var sharedNotifHelpers:DocNotifHelpers = DocNotifHelpers()
-    var currentDocObj:Doctor
+    var currentDocObj:ServiceProviderProfile
     var sendPushNotification = NambaDoctoriOS.SendPushNotification()
-    var getDocObjectHelper:GetDocObjectProtocol
+    var getDocObjectHelper:GetServiceProviderObjectProtocol
     var patientTokenId:String = ""
     
-    init(getDocObjHelper:GetDocObjectProtocol = GetDocObject()) {
+    init(getDocObjHelper:GetServiceProviderObjectProtocol = GetServiceProviderObject()) {
         self.getDocObjectHelper = getDocObjHelper
-        currentDocObj = getDocObjectHelper.getDoctor()
+        currentDocObj = getDocObjectHelper.getServiceProvider()
     }
     
     func getPatientFCMTokenId (requestedBy:String, completion: @escaping (_ retrieved:Bool) -> ()) {

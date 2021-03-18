@@ -77,7 +77,7 @@ class RetrievePatientInfoViewModel: RetrievePatientInfoProtocol {
         }
     }
     
-    func getUploadedReportList(customerId:String, _ completion: @escaping (([Report]?) -> ())) {
+    func getUploadedReportList(customerId:String, _ completion: @escaping (([ServiceProviderReport]?) -> ())) {
         
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()

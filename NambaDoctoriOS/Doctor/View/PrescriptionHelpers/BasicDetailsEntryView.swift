@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BasicDetailsEntryView: View {
-    @ObservedObject var prescriptionVM:PrescriptionViewModel
+    @ObservedObject var prescriptionVM:ServiceRequestViewModel
 
     var body: some View {
         Section(header: Text("History")) {

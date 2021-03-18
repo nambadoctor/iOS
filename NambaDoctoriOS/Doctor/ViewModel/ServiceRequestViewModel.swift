@@ -8,40 +8,33 @@
 import Foundation
 import SwiftUI
 
-class PrescriptionViewModel: ObservableObject {
-    var appointment:Appointment
+class ServiceRequestViewModel: ObservableObject {
+    var appointment:ServiceProviderAppointment
     var isNewPrescription:Bool
-    var loggedInDoctor:Doctor = doctor!
-    
-    @Published var prescription:Prescription!
+    var loggedInDoctor:ServiceProviderProfile = serviceProvider!
+
+    @Published var serviceRequest:ServiceProviderServiceRequest!
     @Published var errorInRetrievingPrescription:Bool = false
     @Published var navigateToReviewPrescription:Bool = false
     @Published var dismissAllViews:Bool = false
-    
+
     @Published var MedicineVM:MedicineViewModel = MedicineViewModel()
     @Published var InvestigationsVM:InvestigationsViewModel = InvestigationsViewModel()
     @Published var FollowUpVM:FollowUpAppointmentViewModel = FollowUpAppointmentViewModel()
     @Published var MedicineEntryVM:MedicineEntryViewModel = MedicineEntryViewModel()
     @Published var patientAllergies:String = ""
-    
-    private var retrievePrescriptionHelper:RetrievePrescriptionForAppointmentProtocol
-    private var retrieveFollowUpObjHelper:RetrieveFollowUpFeeObjProtocol
-    private var retrieveAllergiesHelper:RetrievePatientAllergiesProtocol
-    
+
+    private var retrieveServiceRequesthelper:RetrieveServiceRequestProtocol
     private var docSheetHelper:DoctorSheetHelpers = DoctorSheetHelpers()
     private var docAlertHelper:DoctorAlertHelpers = DoctorAlertHelpers()
     
-    init(appointment:Appointment,
+    init(appointment:ServiceProviderAppointment,
          isNewPrescription:Bool,
-         retrievePrescriptionHelper:RetrievePrescriptionForAppointmentProtocol = RetrievePrescriptionForAppointmentViewModel(),
-         retrieveFollowUpObjHelper:RetrieveFollowUpFeeObjProtocol = RetrieveFollowUpObjViewModel(),
-         retrieveAllergiesHelper:RetrievePatientAllergiesProtocol = RetrievePatientAllergiesViewModel()) {
+         retrieveServiceRequesthelper:RetrieveServiceRequestProtocol = RetrieveServiceRequestViewModel()) {
         
         self.appointment = appointment
         self.isNewPrescription = isNewPrescription
-        self.retrievePrescriptionHelper = retrievePrescriptionHelper
-        self.retrieveFollowUpObjHelper = retrieveFollowUpObjHelper
-        self.retrieveAllergiesHelper = retrieveAllergiesHelper
+        self.retrieveServiceRequesthelper = retrieveServiceRequesthelper
     }
     
     /*
@@ -57,8 +50,6 @@ class PrescriptionViewModel: ObservableObject {
             } else {
                 self.retrievePrescription()
             }
-
-            self.retrieveAllergiesForPatient()
         }
     }
 
@@ -71,9 +62,9 @@ class PrescriptionViewModel: ObservableObject {
     }
     
     func retrievePrescription() {
-        retrievePrescriptionHelper.getPrescription(appointmentId: self.appointment.appointmentID) { (prescription) in
-            if prescription != nil {
-                self.mapPrescriptionValues(prescription: prescription!)
+        retrieveServiceRequesthelper.getServiceRequest(appointmentId: self.appointment.appointmentID, serviceRequestId: appointment.serviceRequestID, customerId: self.appointment.customerID) { (serviceRequest) in
+            if serviceRequest != nil {
+                self.mapPrescriptionValues(serviceRequest: serviceRequest!)
             } else {
                 //self.prescription = nil
                 self.errorInRetrievingPrescription = true
@@ -81,29 +72,14 @@ class PrescriptionViewModel: ObservableObject {
         }
     }
 
-    func mapPrescriptionValues (prescription:Prescription) {
-        self.prescription = prescription
-        self.MedicineVM.medicineArr = self.prescription.medicines
-        self.InvestigationsVM.parsePlanIntoInvestigationsArr(planInfo: self.prescription.advice)
-    }
-
-    func retrieveFollowUpFeeForPrescription() {
-        retrieveFollowUpObjHelper.getNextFee(doctorId: loggedInDoctor.doctorID, patientId: appointment.requestedBy) { (FollowUpObj) in
-            if FollowUpObj != nil {
-                self.FollowUpVM.mapExistingValuesFromFollowUpObj(followUpObj: FollowUpObj!)
-            }
-        }
-    }
-
-    func retrieveAllergiesForPatient() {
-        retrieveAllergiesHelper.getPatientAllergies(patientId: appointment.requestedBy) { (allergies) in
-            self.patientAllergies = allergies ?? "none"
-        }
+    func mapPrescriptionValues (serviceRequest:ServiceProviderServiceRequest) {
+        self.serviceRequest = serviceRequest
+        self.InvestigationsVM.parsePlanIntoInvestigationsArr(planInfo: self.serviceRequest.advice)
     }
 
     func sendToReviewPrescription() {
         InvestigationsVM.addTempIntoArrayWhenFinished()
-        self.prescription.investigations = InvestigationsVM.investigations
+        self.serviceRequest.investigations = InvestigationsVM.investigations
 
         self.navigateToReviewPrescription = true
     }
@@ -113,9 +89,9 @@ class PrescriptionViewModel: ObservableObject {
     }
 
     func checkIfPrescriptionIsEmpty () -> Bool {
-        if prescription == nil {
+        if serviceRequest == nil {
             return true
-        } else if prescription.history.isEmpty || prescription.diagnosis.isEmpty || prescription.examination.isEmpty {
+        } else if serviceRequest.diagnosis.name.isEmpty || serviceRequest.examination.isEmpty {
             return true
         } else {
             return false
@@ -123,25 +99,23 @@ class PrescriptionViewModel: ObservableObject {
     }
 
     func checkForStoredPrescriptionAndRetreive() {
-        let storedPrescription:Prescription? = LocalDecoder.decode(modelType: Prescription.self, from: "stored_prescriptions:\(self.appointment.appointmentID)")
+        let storedPrescription:ServiceProviderServiceRequest? = LocalDecoder.decode(modelType: ServiceProviderServiceRequest.self, from: "stored_prescriptions:\(self.appointment.appointmentID)")
 
         if storedPrescription == nil {
             self.prescription = MakeEmptyPrescription()
-            self.prescription.appointmentID = appointment.appointmentID
-            self.prescription.doctorID = loggedInDoctor.doctorID
-            self.prescription.patientID = appointment.requestedBy
+            self.serviceRequest.appointmentID = appointment.appointmentID
+            self.serviceRequest.serviceProviderID = loggedInDoctor.serviceProviderID
+            self.serviceRequest.customerID = appointment.customerID
         } else {
-            self.mapPrescriptionValues(prescription: storedPrescription!)
+            self.mapPrescriptionValues(serviceRequest: storedPrescription!)
         }
     }
 
     func navBarBackPressed (completion: @escaping (_ GoBack:Bool)->()) {
         func encodePrescriptionLocally () {
-            self.prescription.advice = self.InvestigationsVM.investigations.joined(separator: ";")
+            self.serviceRequest.advice = self.InvestigationsVM.investigations.joined(separator: ";")
 
-            self.prescription.medicines = self.MedicineVM.medicineArr
-
-            LocalEncoder.encode(payload: self.prescription, destination: "stored_prescriptions:\(self.appointment.appointmentID)")
+            LocalEncoder.encode(payload: self.serviceRequest, destination: "stored_prescriptions:\(self.appointment.appointmentID)")
         }
 
         func deleteLocallyStoredPrescription () {

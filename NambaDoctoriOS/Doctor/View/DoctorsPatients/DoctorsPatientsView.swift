@@ -14,7 +14,7 @@ struct DoctorsPatientsView: View {
             if doctorsPatientsView.patientList == nil {
                 Indicator()
             } else {
-                List(self.doctorsPatientsView.patientList!) { patient in
+                ForEach(self.doctorsPatientsView.patientList!, id: \.customerID) { patient in
                     DoctorsPatientsCardView(patientObj: patient)
                 }
             }

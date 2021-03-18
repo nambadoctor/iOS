@@ -12,7 +12,7 @@ struct PatientInfoView: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var patientInfoVM:PatientInfoViewModel
     
-    init(appointment:Appointment) {
+    init(appointment:ServiceProviderAppointment) {
         patientInfoVM = PatientInfoViewModel(appointment: appointment)
     }
     

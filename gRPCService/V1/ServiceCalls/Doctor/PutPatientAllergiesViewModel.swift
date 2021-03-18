@@ -8,7 +8,7 @@
 import Foundation
 
 class PutPatientAllergiesViewModel: PutPatientAllergiesProtocol {
-    func putPatientAllergiesForAppointment (prescriptionVM:PrescriptionViewModel, _ completion : @escaping ((_ successfull:Bool)->())) {
+    func putPatientAllergiesForAppointment (prescriptionVM:ServiceRequestViewModel, _ completion : @escaping ((_ successfull:Bool)->())) {
         
         CommonDefaultModifiers.showLoader()
         
@@ -16,11 +16,11 @@ class PutPatientAllergiesViewModel: PutPatientAllergiesProtocol {
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         
         let allergiestClient = Nambadoctor_V1_AllergyWorkerv1Client(channel: channel)
-        
+
         let request = makeAllergyObj(allergies: prescriptionVM.patientAllergies,
                                      patientId: prescriptionVM.appointment.requestedBy,
                                      appointmentId: prescriptionVM.appointment.appointmentID)
-        
+
         let putAllergy = allergiestClient.saveNewAllergy(request, callOptions: callOptions)
         
         DispatchQueue.main.async {

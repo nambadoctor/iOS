@@ -8,17 +8,27 @@
 import Foundation
 
 class MedicineViewModel: ObservableObject {
-    @Published var medicineArr:[Medicine] = [Medicine]()
-    @Published var tempMedicine:Medicine = MakeEmptyMedicine()
+    var appointment:ServiceProviderAppointment
+    @Published var prescription:ServiceProviderPrescription?
+    @Published var tempMedicine:ServiceProviderMedicine = MakeEmptyMedicine()
     @Published var medicineEntryVM:MedicineEntryViewModel = MedicineEntryViewModel()
     
     //global alert will not show when using bottom sheet
     @Published var showLocalAlert:Bool = false
 
     var generalDoctorHelpers:GeneralDoctorHelpersProtocol!
+    private var retrieveMedicineHelper:RetrievePrescriptionForAppointmentProtocol
     
-    init(generalDoctorHelpers:GeneralDoctorHelpersProtocol = GeneralDoctorHelpers()) {
+    init(appointment:ServiceProviderAppointment,
+        generalDoctorHelpers:GeneralDoctorHelpersProtocol = GeneralDoctorHelpers(),
+         retrieveMedicineHelper:RetrievePrescriptionForAppointmentProtocol = RetrievePrescriptionForAppointmentViewModel()) {
+        self.appointment = appointment
         self.generalDoctorHelpers = generalDoctorHelpers
+        self.retrieveMedicineHelper = retrieveMedicineHelper
+        
+        DispatchQueue.main.async {
+            self.retrieveMedicines()
+        }
     }
 
     var medFoodCorrelation:String { return foodSelectionArray[medicineEntryVM.foodSelectionIndex] }
@@ -38,7 +48,15 @@ class MedicineViewModel: ObservableObject {
         return generalDoctorHelpers.convertingToFraction(decimal: Double(medicineEntryVM.nightTemp.clean)!)
     }
     
-    func timingStringForMedDisplay (medicine:Medicine) -> String {
+    func retrieveMedicines () {
+        retrieveMedicineHelper.getPrescription(appointmentId: self.appointment.appointmentID, serviceRequestId: self.appointment.serviceRequestID, customerId: self.appointment.customerID) { (prescription) in
+            if prescription != nil {
+                self.prescription = prescription!
+            }
+        }
+    }
+    
+    func timingStringForMedDisplay (medicine:ServiceProviderMedicine) -> String {
         return generalDoctorHelpers.formatTimingToDecimal(timings: medicine.timings)
     }
 
@@ -49,20 +67,20 @@ class MedicineViewModel: ObservableObject {
         medicineEntryVM.showAddMedicineSheet.toggle()
     }
 
-    func editMedicineOnTap (medicineToEdit:Medicine) {
+    func editMedicineOnTap (medicineToEdit:ServiceProviderMedicine) {
         tempMedicine = medicineToEdit
         medicineEntryVM.isNewMedicine = false
         medicineEntryVM.mapExistingMedicine(medicine: tempMedicine)
         medicineEntryVM.showAddMedicineSheet = true
     }
     
-    func removeMedicineManually (medicine:Medicine) {
-        let index = generalDoctorHelpers.getMedicineIndex(medicineArr: medicineArr, medicine: medicine)
-        medicineArr.remove(at: index)
+    func removeMedicineManually (medicine:ServiceProviderMedicine) {
+        let index = generalDoctorHelpers.getMedicineIndex(medicineArr: prescription!.medicineList, medicine: medicine)
+        prescription!.medicineList.remove(at: index)
     }
 
     func removeMedicineRowsBySwiping(at offsets: IndexSet) {
-        medicineArr.remove(atOffsets: offsets)
+        prescription!.medicineList.remove(atOffsets: offsets)
     }
 
     func dismissMedicineEntrySheet () {
@@ -80,10 +98,10 @@ class MedicineViewModel: ObservableObject {
         mapMedicineValuesToTemp()
 
         if isNewMedicine {
-            medicineArr.append(tempMedicine)
+            prescription!.medicineList.append(tempMedicine)
         } else {
-            let indexOfmed = generalDoctorHelpers.getMedicineIndex(medicineArr: medicineArr, medicine: tempMedicine)
-            medicineArr[indexOfmed == 0 ? indexOfmed : indexOfmed-1] = tempMedicine
+            let indexOfmed = generalDoctorHelpers.getMedicineIndex(medicineArr: prescription!.medicineList, medicine: tempMedicine)
+            prescription!.medicineList[indexOfmed == 0 ? indexOfmed : indexOfmed-1] = tempMedicine
         }
         
         tempMedicine = MakeEmptyMedicine()

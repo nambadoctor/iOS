@@ -8,5 +8,5 @@
 import Foundation
 
 protocol RetrieveDoctorsPatientsServiceProtocol {
-    func getDoctorsPatients(_ completion: @escaping (([Patient]?) -> ()))
+    func getDoctorsPatients(_ completion: @escaping (([ServiceProviderCustomerProfile]?) -> ()))
 }

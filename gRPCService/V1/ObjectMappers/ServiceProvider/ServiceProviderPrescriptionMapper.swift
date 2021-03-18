@@ -8,7 +8,7 @@
 import Foundation
 
 class ServiceProviderPrescriptionMapper {
-    static func grpcPrescriptionToLocal (prescription:Nd_V1_ServiceProviderPrescriptionMessage) -> ServiceProviderPrescription {
+    func grpcPrescriptionToLocal (prescription:Nd_V1_ServiceProviderPrescriptionMessage) -> ServiceProviderPrescription {
         return ServiceProviderPrescription(
             prescriptionID: prescription.prescriptionID.toString,
             serviceRequestID: prescription.serviceRequestID.toString,
@@ -18,7 +18,7 @@ class ServiceProviderPrescriptionMapper {
             prescriptionImageURL: prescription.prescriptionImageURL.toString)
     }
     
-    static func localPrescriptionToGrpc (prescription: ServiceProviderPrescription) -> Nd_V1_ServiceProviderPrescriptionMessage {
+    func localPrescriptionToGrpc (prescription: ServiceProviderPrescription) -> Nd_V1_ServiceProviderPrescriptionMessage {
         return Nd_V1_ServiceProviderPrescriptionMessage.with {
             $0.prescriptionID = prescription.prescriptionID.toProto
             $0.serviceRequestID = prescription.serviceRequestID.toProto

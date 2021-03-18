@@ -12,7 +12,7 @@ struct DoctorTwilioManager: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var DoctorTwilioVM:DoctorTwilioViewModel
 
-    init(appointment:Appointment) {
+    init(appointment:ServiceProviderAppointment) {
         DoctorTwilioVM = DoctorTwilioViewModel(appointment: appointment)
     }
 

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ViewPrescription: View {
     
-    @ObservedObject var prescriptionVM: PrescriptionViewModel
+    @ObservedObject var prescriptionVM: ServiceRequestViewModel
 
     var body: some View {
         VStack {

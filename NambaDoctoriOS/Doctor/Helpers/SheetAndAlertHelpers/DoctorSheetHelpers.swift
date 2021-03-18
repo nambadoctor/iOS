@@ -8,7 +8,7 @@
 import Foundation
 
 class DoctorSheetHelpers {
-    func showPatientInfoSheet (appointment:Appointment) {
+    func showPatientInfoSheet (appointment:ServiceProviderAppointment) {
         let tempSheetItem = DoctorSheetItem(id: UUID(), appointment: appointment)
         sheetTempItem = tempSheetItem
 

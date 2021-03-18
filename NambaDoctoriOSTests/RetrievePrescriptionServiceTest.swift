@@ -12,7 +12,7 @@ class RetrievePrescriptionServiceTest: XCTestCase {
     var retrievePrescriptionService:RetrievePrescriptionForAppointmentProtocol!
     
     override func setUp() {
-        self.retrievePrescriptionService = RetrievePrescriptionForAppointmentViewModel()
+        self.retrievePrescriptionService = RetrieveServiceRequestForAppointmentViewModel()
     }
     
     func testGetFollowUpServiceSuccess () {

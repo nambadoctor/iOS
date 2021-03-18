@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ServiceProviderServiceRequest {
+struct ServiceProviderServiceRequest : Codable {
     var serviceRequestID:String
     var reason:String
     var serviceProviderID:String

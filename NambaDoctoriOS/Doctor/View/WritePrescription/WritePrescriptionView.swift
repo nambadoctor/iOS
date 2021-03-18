@@ -10,12 +10,12 @@ import SwiftUI
 struct WritePrescriptionView: View {
     
     @State private var tabNavigationIndex = 0
-    @ObservedObject private var prescriptionVM:PrescriptionViewModel
+    @ObservedObject private var prescriptionVM:ServiceRequestViewModel
     @Environment(\.presentationMode) var presentationMode
     
-    init(appointment:Appointment,
+    init(appointment:ServiceProviderAppointment,
          isNewPrescription:Bool) {
-        prescriptionVM = PrescriptionViewModel(appointment: appointment, isNewPrescription: isNewPrescription)
+        prescriptionVM = ServiceRequestViewModel(appointment: appointment, isNewPrescription: isNewPrescription)
     }
 
     var body: some View {

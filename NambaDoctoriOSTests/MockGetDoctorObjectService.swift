@@ -8,7 +8,7 @@
 import Foundation
 @testable import NambaDoctoriOS
 
-class MockGetDoctorObjectService : GetDocObjectProtocol {
+class MockGetDoctorObjectService : GetServiceProviderObjectProtocol {
     func fetchDoctor (userId:String, completion: @escaping (_ doctor:Doctor)->()) {
         completion(MockDoctor.getDoctor())
     }

@@ -9,8 +9,8 @@ import Foundation
 @testable import NambaDoctoriOS
 
 class MockPrescriptionViewModel {
-    static func getNewPrescriptionVM() -> PrescriptionViewModel {
-        let prescriptionVM = PrescriptionViewModel(
+    static func getNewPrescriptionVM() -> ServiceRequestViewModel {
+        let prescriptionVM = ServiceRequestViewModel(
             appointment: MakeMockAppointment.getAppointment(),
             isNewPrescription: true)
         
@@ -19,8 +19,8 @@ class MockPrescriptionViewModel {
         return prescriptionVM
     }
     
-    static func getAmmendPrescriptionVM() -> PrescriptionViewModel {
-        let prescriptionVM = PrescriptionViewModel(
+    static func getAmmendPrescriptionVM() -> ServiceRequestViewModel {
+        let prescriptionVM = ServiceRequestViewModel(
             appointment: MakeMockAppointment.getAppointment(),
             isNewPrescription: false)
         

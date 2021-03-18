@@ -10,7 +10,7 @@ import SwiftUI
 struct PatientReportView: View {
     @ObservedObject var patientReportVM:PatientReportViewModel
 
-    init(report:Report) {
+    init(report:ServiceProviderReport) {
         patientReportVM = PatientReportViewModel(report: report)
     }
 

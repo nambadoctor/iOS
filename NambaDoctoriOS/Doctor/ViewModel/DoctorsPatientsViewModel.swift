@@ -8,7 +8,7 @@
 import Foundation
 
 class DoctorsPatientsViewModel: ObservableObject {
-    @Published var patientList:[Patient]?
+    @Published var patientList:[ServiceProviderCustomerProfile]?
     
     private var retrieveDoctorsPatientsService:RetrieveDoctorsPatientsServiceProtocol
     

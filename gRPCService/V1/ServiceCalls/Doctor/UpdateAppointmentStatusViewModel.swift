@@ -9,13 +9,13 @@ import Foundation
 
 class UpdateAppointmentStatusViewModel:UpdateAppointmentStatusProtocol {
     
-    var appointmentObjMapper:AppointmentObjMapper
+    var appointmentObjMapper:ServiceProviderAppointmentObjectMapper
     
     init() {
-        self.appointmentObjMapper = AppointmentObjMapper()
+        self.appointmentObjMapper = ServiceProviderAppointmentObjectMapper()
     }
     
-    func makeAppointmentUpdate (appointment:Appointment,
+    func makeAppointmentUpdate (appointment:ServiceProviderAppointment,
                                 completion: @escaping (_ updated:Bool)->()) {
                 
         let channel = ChannelManager.sharedChannelManager.getChannel()
@@ -23,16 +23,16 @@ class UpdateAppointmentStatusViewModel:UpdateAppointmentStatusProtocol {
         
         print("child: \(appointment.appointmentID)")
         
-        let appointmentClient = Nambadoctor_V1_AppointmentWorkerV1Client(channel: channel)
+        let appointmentClient = Nd_V1_ServiceProviderAppointmentWorkerV1Client(channel: channel)
         
-        let request = appointmentObjMapper.localAppointmentToGrpcObject(appointment: appointment)
+        let request = appointmentObjMapper.localAppointmentToGrpc(appointment: appointment)
         
-        let setAptStatus = appointmentClient.upsertNewAppointment(request, callOptions: callOptions)
+        let setAptStatus = appointmentClient.setAppointment(request, callOptions: callOptions)
         
         DispatchQueue.main.async {
             do {
                 let response = try setAptStatus.response.wait()
-                print("Update Appointment \(appointment.status) Success for \(response.appointmentID)")
+                print("Update Appointment \(appointment.status) Success for \(response.id)")
                 completion(true)
             } catch {
                 print("Update Appointment \(appointment.status) Failure")
@@ -41,7 +41,7 @@ class UpdateAppointmentStatusViewModel:UpdateAppointmentStatusProtocol {
         }
     }
     
-    func toCancelled (appointment:inout Appointment, completion: @escaping (_ success:Bool) -> ()) {
+    func toCancelled (appointment:inout ServiceProviderAppointment, completion: @escaping (_ success:Bool) -> ()) {
         appointment.status = "Cancelled"
         
         CommonDefaultModifiers.showLoader()
@@ -54,7 +54,7 @@ class UpdateAppointmentStatusViewModel:UpdateAppointmentStatusProtocol {
         }
     }
     
-    func updateToStartedConsultation (appointment:inout Appointment, completion: @escaping (_ success:Bool) -> ()) {
+    func updateToStartedConsultation (appointment:inout ServiceProviderAppointment, completion: @escaping (_ success:Bool) -> ()) {
         
         appointment.status = "StartedConsultation"
         
@@ -63,7 +63,7 @@ class UpdateAppointmentStatusViewModel:UpdateAppointmentStatusProtocol {
         }
     }
     
-    func updateToFinished (appointment:inout Appointment, completion: @escaping (_ success:Bool) -> ()) {
+    func updateToFinished (appointment:inout ServiceProviderAppointment, completion: @escaping (_ success:Bool) -> ()) {
         
         appointment.status = "Finished"
         
@@ -72,7 +72,7 @@ class UpdateAppointmentStatusViewModel:UpdateAppointmentStatusProtocol {
         }
     }
     
-    func updateToFinishedAppointment (appointment:inout Appointment, completion: @escaping (_ success:Bool) -> ()) {
+    func updateToFinishedAppointment (appointment:inout ServiceProviderAppointment, completion: @escaping (_ success:Bool) -> ()) {
         
         appointment.status = "FinishedAppointment"
         

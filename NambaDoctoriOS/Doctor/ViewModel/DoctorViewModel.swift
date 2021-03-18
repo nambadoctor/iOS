@@ -8,9 +8,9 @@
 import Foundation
 
 class DoctorViewModel: ObservableObject {
-    @Published private var doctor:Doctor = MakeEmptyDoctor()
-    @Published var upcomingAppointments:[Appointment] = [Appointment]()
-    @Published var finishedAppointments:[Appointment] = [Appointment]()
+    @Published private var doctor:ServiceProviderProfile?
+    @Published var upcomingAppointments:[ServiceProviderAppointment] = [ServiceProviderAppointment]()
+    @Published var finishedAppointments:[ServiceProviderAppointment] = [ServiceProviderAppointment]()
     
     @Published var noUpcomingAppointments:Bool = false
     @Published var noFinishedAppointments:Bool = false
@@ -29,8 +29,8 @@ class DoctorViewModel: ObservableObject {
     }
     
     func fetchDoctor () {
-        GetDocObject().fetchDoctor(userId: authenticateService.getUserId()) { (docObj) in
-            self.doctor = docObj
+        GetServiceProviderObject().fetchServiceProvider(userId: authenticateService.getUserId()) { (serviceProviderObj) in
+            self.doctor = serviceProviderObj
             self.doctorLoggedIn = true
         }
     }

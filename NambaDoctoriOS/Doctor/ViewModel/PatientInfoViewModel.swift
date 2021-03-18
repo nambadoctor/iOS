@@ -9,24 +9,21 @@ import Foundation
 
 class PatientInfoViewModel: ObservableObject {
     
-    @Published var patientObj:Patient!
+    @Published var patientObj:ServiceProviderCustomerProfile!
     @Published var patientAllergies:String = ""
-    @Published var AppointmentList:[Appointment]!
-    @Published var ReportList:[Report]!
+    @Published var AppointmentList:[ServiceProviderAppointment]!
+    @Published var ReportList:[ServiceProviderReport]!
     
-    var appointment:Appointment
+    var appointment:ServiceProviderAppointment
     private var retrievePatientInfoHelper:RetrievePatientInfoProtocol
-    private var retrievePatientAllergiesHelper:RetrievePatientAllergiesProtocol
 
-    init(appointment:Appointment) {
+    init(appointment:ServiceProviderAppointment) {
         self.appointment = appointment
         retrievePatientInfoHelper = RetrievePatientInfoViewModel()
-        retrievePatientAllergiesHelper = RetrievePatientAllergiesViewModel()
         
         DispatchQueue.main.async {
             self.retrievePatientObj()
             self.retrieveAppointmentList()
-            self.retrievePatientAllergies()
             self.retrieveUploadedDocumentList()
         }
     }
@@ -49,13 +46,7 @@ class PatientInfoViewModel: ObservableObject {
         }
     }
 
-    private func retrievePatientAllergies () {
-        retrievePatientAllergiesHelper.getPatientAllergies(patientId: appointment.requestedBy) { (allergies) in
-            self.patientAllergies = allergies ?? "none"
-        }
-    }
-
-    func getPrescriptionVMToNavigate() -> PrescriptionViewModel  {
-        return PrescriptionViewModel(appointment: appointment, isNewPrescription: false)
+    func getPrescriptionVMToNavigate() -> ServiceRequestViewModel  {
+        return ServiceRequestViewModel(appointment: appointment, isNewPrescription: false)
     }
 }

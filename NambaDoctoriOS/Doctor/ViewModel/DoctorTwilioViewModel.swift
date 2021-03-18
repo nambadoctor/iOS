@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class DoctorTwilioViewModel: ObservableObject {
-    var appointment:Appointment
+    var appointment:ServiceProviderAppointment
     @Published var status:TwilioStateK = .waitingToStart
 
     private var docAlertHelpers:DoctorAlertHelpersProtocol!
@@ -18,7 +18,7 @@ class DoctorTwilioViewModel: ObservableObject {
     private var twilioAccessTokenHelper:TwilioAccessTokenProtocol
     private var updateAppointmentStatus:UpdateAppointmentStatusProtocol
 
-    init(appointment:Appointment,
+    init(appointment:ServiceProviderAppointment,
          twilioAccessTokenHelper:TwilioAccessTokenProtocol = RetrieveTwilioAccessToken(),
          updateAppointmentStatus:UpdateAppointmentStatusProtocol = UpdateAppointmentStatusViewModel()) {
         self.appointment = appointment

@@ -8,5 +8,5 @@
 import Foundation
 
 protocol PutPatientAllergiesProtocol {
-    func putPatientAllergiesForAppointment (prescriptionVM:PrescriptionViewModel, _ completion : @escaping ((_ successfull:Bool)->()))
+    func putPatientAllergiesForAppointment (prescriptionVM:ServiceRequestViewModel, _ completion : @escaping ((_ successfull:Bool)->()))
 }

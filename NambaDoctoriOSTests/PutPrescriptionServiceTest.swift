@@ -10,8 +10,8 @@ import XCTest
 
 class PutPrescriptionServiceTest: XCTestCase {
     var putPrescriptionService:PutPrescriptionViewModelProtocol!
-    var newPrescriptionVM:PrescriptionViewModel!
-    var ammendPrescriptionVM:PrescriptionViewModel!
+    var newPrescriptionVM:ServiceRequestViewModel!
+    var ammendPrescriptionVM:ServiceRequestViewModel!
     
     override func setUp() {
         doctor = MockDoctor.getDoctor()

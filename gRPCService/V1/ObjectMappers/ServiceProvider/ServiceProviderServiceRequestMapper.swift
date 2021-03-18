@@ -8,7 +8,7 @@
 import Foundation
 
 class ServiceProviderServiceRequestMapper {
-    static func grpcServiceRequestToLocal(serviceRequest:Nd_V1_ServiceProviderServiceRequestMessage) -> ServiceProviderServiceRequest {
+    func grpcServiceRequestToLocal(serviceRequest:Nd_V1_ServiceProviderServiceRequestMessage) -> ServiceProviderServiceRequest {
         return ServiceProviderServiceRequest(
             serviceRequestID: serviceRequest.serviceRequestID.toString,
             reason: serviceRequest.reason.toString,
@@ -23,7 +23,7 @@ class ServiceProviderServiceRequestMapper {
             customerID: serviceRequest.customerID.toString)
     }
     
-    static func localServiceRequestToGrpc(serviceRequest:ServiceProviderServiceRequest) -> Nd_V1_ServiceProviderServiceRequestMessage {
+    func localServiceRequestToGrpc(serviceRequest:ServiceProviderServiceRequest) -> Nd_V1_ServiceProviderServiceRequestMessage {
         return Nd_V1_ServiceProviderServiceRequestMessage.with{
             $0.serviceRequestID = serviceRequest.serviceRequestID.toProto
             $0.reason = serviceRequest.reason.toProto

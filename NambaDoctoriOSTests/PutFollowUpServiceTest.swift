@@ -35,7 +35,7 @@ class PutFollowUpServiceTest: XCTestCase {
     
     func testMakeFollowUpWithPrescriptionVMSuccessFull () {
         
-        let prescriptionVM:PrescriptionViewModel = MockPrescriptionViewModel.getNewPrescriptionVM()
+        let prescriptionVM:ServiceRequestViewModel = MockPrescriptionViewModel.getNewPrescriptionVM()
         
         let expectation = XCTestExpectation(description: "Making FollowUp Using Prescription View model")
 

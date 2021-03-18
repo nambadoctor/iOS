@@ -10,31 +10,31 @@ import Foundation
 
 class DoctorAppointmentViewModel : DoctorAppointmentViewModelProtocol {
     
-    var getDoctorHelper:GetDocObjectProtocol!
-    var appointmentObjectMapper:AppointmentObjMapper
+    var getServiceProviderHelper:GetServiceProviderObjectProtocol!
+    var appointmentObjectMapper:ServiceProviderAppointmentObjectMapper
     
-    init(getDoctorHelper:GetDocObjectProtocol = GetDocObject(),
-         appointmentObjMapper:AppointmentObjMapper = AppointmentObjMapper()) {
-        self.getDoctorHelper = getDoctorHelper
+    init(getServiceProviderHelper:GetServiceProviderObjectProtocol = GetServiceProviderObject(),
+         appointmentObjMapper:ServiceProviderAppointmentObjectMapper = ServiceProviderAppointmentObjectMapper()) {
+        self.getServiceProviderHelper = getServiceProviderHelper
         self.appointmentObjectMapper = appointmentObjMapper
     }
     
-    func retrieveDocAppointmentList (_ completion: @escaping ((_ appointmentList:[Appointment]?)->())) {
+    func retrieveDocAppointmentList (_ completion: @escaping ((_ appointmentList:[ServiceProviderAppointment]?)->())) {
         
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         
-        let appointmentClient = Nambadoctor_V1_AppointmentWorkerV1Client(channel: channel)
+        let appointmentClient = Nd_V1_ServiceProviderAppointmentWorkerV1Client(channel: channel)
         
-        let request = Nambadoctor_V1_AppointmentDoctorRequest.with {
-            $0.doctorID = getDoctorHelper.getDoctor().doctorID
+        let request = Nd_V1_IdMessage.with {
+            $0.id = getServiceProviderHelper.getServiceProvider().serviceProviderID.toProto
         }
 
-        let getDoctorsAppointment = appointmentClient.getAllDoctorAppointments(request, callOptions: callOptions)
+        let getDoctorsAppointment = appointmentClient.getAppointments(request, callOptions: callOptions)
         
         do {
             let response = try getDoctorsAppointment.response.wait()
-            let appointmentList = appointmentObjectMapper.grpcAppointmentListToLocalAppointmentList(appointmentList: response.appointmentResponse)
+            let appointmentList = self.appointmentObjectMapper.grpcAppointmentToLocal(appointment: response.appointments)
             print("Doctor Appointment Client Success")
             completion(appointmentList)
         } catch {

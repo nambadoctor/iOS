@@ -42,8 +42,8 @@ class GeneralDoctorHelpers : GeneralDoctorHelpersProtocol {
     }
     
     //MARK: GETTING INDEX OF PRESCRIPTION
-     func getMedicineIndex (medicineArr:[Medicine],
-                            medicine:Medicine) -> Int {
+     func getMedicineIndex (medicineArr:[ServiceProviderMedicine],
+                            medicine:ServiceProviderMedicine) -> Int {
         var index:Int = 0
         
         for medArrItem in medicineArr {
@@ -56,7 +56,7 @@ class GeneralDoctorHelpers : GeneralDoctorHelpersProtocol {
         return index
     }
     
-     func checkIfMedicineExists (medicineArr:[Medicine], medicine:Medicine) -> Bool {
+     func checkIfMedicineExists (medicineArr:[ServiceProviderMedicine], medicine:ServiceProviderMedicine) -> Bool {
         for medArrItem in medicineArr {
             if medicine.medicineName == medArrItem.medicineName {
                 return true
