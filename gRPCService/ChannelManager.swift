@@ -60,7 +60,6 @@ class ChannelManager {
         return CallOptions(customMetadata: headers)
     }
     
-    
 }
 
 extension ChannelManager {
