@@ -9,31 +9,31 @@ import Foundation
 
 class RetrieveDoctorsPatientsService : RetrieveDoctorsPatientsServiceProtocol {
     
-    var patientObjMapper:PatientObjMapper
+    var customerObjMapper:ServiceProviderCustomerProfileObjectMapper
     
-    init(patientObjMapper:PatientObjMapper = PatientObjMapper()) {
-        self.patientObjMapper = patientObjMapper
+    init(customerObjMapper:ServiceProviderCustomerProfileObjectMapper = ServiceProviderCustomerProfileObjectMapper()) {
+        self.customerObjMapper = customerObjMapper
     }
 
     
-    func getDoctorsPatients(_ completion: @escaping (([Patient]?) -> ())) {
+    func getDoctorsPatients(_ completion: @escaping (([ServiceProviderCustomerProfile]?) -> ())) {
                 
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         
         // Provide the connection to the generated client.
-        let patientClient = Nambadoctor_V1_PatientWorkerV1Client(channel: channel)
+        let patientClient = Nd_V1_ServiceProviderCustomerWorkerV1Client(channel: channel)
 
-        let request = Nambadoctor_V1_DoctorsRequest.with {
-            $0.doctorID = doctor!.doctorID
+        let request = Nd_V1_IdMessage.with {
+            $0.id = "".toProto
         }
 
-        let getDoctorsPatients = patientClient.getListOfDoctorsPatients(request, callOptions: callOptions)
+        let getDoctorsPatients = patientClient.getCustomers(request, callOptions: callOptions)
 
         DispatchQueue.main.async {
             do {
                 let response = try getDoctorsPatients.response.wait()
-                let patientList = self.patientObjMapper.grpcPatientsListToLocal(patientList: response.patientObject)
+                let patientList = self.customerObjMapper.grpcCustomerToLocal(customer: response.customers)
                 print("Doctors Patients received: success")
                 completion(patientList)
             } catch {

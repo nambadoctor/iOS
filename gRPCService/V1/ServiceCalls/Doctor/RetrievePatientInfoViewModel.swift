@@ -10,63 +10,64 @@ import SwiftUI
 
 class RetrievePatientInfoViewModel: RetrievePatientInfoProtocol {
     
-    var appointmentObjMapper:AppointmentObjMapper
-    var patientObjMapper:PatientObjMapper
-    var reportObjMapper:ReportObjMapper
+    var appointmentObjMapper:ServiceProviderAppointmentObjectMapper
+    var customerObjMapper:ServiceProviderCustomerProfileObjectMapper
+    var reportObjMapper:ServiceProviderReportMapper
     
-    init(appointmentObjMapper:AppointmentObjMapper = AppointmentObjMapper(),
-         patientObjMapper:PatientObjMapper = PatientObjMapper(),
-         reportObjMapper:ReportObjMapper = ReportObjMapper()) {
+    init(
+        appointmentObjMapper:ServiceProviderAppointmentObjectMapper = ServiceProviderAppointmentObjectMapper(),
+        customerObjMapper:ServiceProviderCustomerProfileObjectMapper = ServiceProviderCustomerProfileObjectMapper(),
+        reportObjMapper:ServiceProviderReportMapper = ServiceProviderReportMapper()) {
         self.appointmentObjMapper = appointmentObjMapper
-        self.patientObjMapper = patientObjMapper
+        self.customerObjMapper = customerObjMapper
         self.reportObjMapper = reportObjMapper
     }
-
-    func getPatientProfile(patientId: String, _ completion: @escaping ((Patient?) -> ())) {
-                
+    
+    func getPatientProfile(patientId: String, _ completion: @escaping ((ServiceProviderCustomerProfile?) -> ())) {
+        
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         
         // Provide the connection to the generated client.
-        let patientClient = Nambadoctor_V1_PatientWorkerV1Client(channel: channel)
-
-        let request = Nambadoctor_V1_PatientRequest.with {
-            $0.patientID = patientId
+        let patientClient = Nd_V1_ServiceProviderCustomerWorkerV1Client(channel: channel)
+        
+        let request = Nd_V1_IdMessage.with {
+            $0.id = patientId.toProto
         }
-
-        let getPatientObject = patientClient.getPatientObject(request, callOptions: callOptions)
-
+        
+        let getPatientObject = patientClient.getCustomerProfile(request, callOptions: callOptions)
+        
         DispatchQueue.main.async {
             do {
                 let response = try getPatientObject.response.wait()
-                let patient = self.patientObjMapper.grpcToLocalPatientObject(patient: response)
-                print("Patient Client received: \(response.patientID)")
-                completion(patient)
+                let customer = self.customerObjMapper.grpcCustomerToLocal(customer: response)
+                print("Customer Client received: \(response.customerID)")
+                completion(customer)
             } catch {
-                print("Patient Client failed: \(error)")
+                print("Customer Client failed: \(error)")
                 completion(nil)
             }
         }
     }
     
-    func getPatientAppointmentList(patientId: String, _ completion: @escaping (([Appointment]?) -> ())) {
-                
+    func getPatientAppointmentList(patientId: String, _ completion: @escaping (([ServiceProviderAppointment]?) -> ())) {
+        
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         
         // Provide the connection to the generated client.
-        let appointmentsClient = Nambadoctor_V1_AppointmentWorkerV1Client(channel: channel)
-
-        let request = Nambadoctor_V1_AppointmentPatientRequest.with {
-            $0.patientID = patientId
+        let appointmentsClient = Nd_V1_ServiceProviderAppointmentWorkerV1Client(channel: channel)
+        
+        let request = Nd_V1_IdMessage.with {
+            $0.id = patientId.toProto
         }
-
-        let getPatientAppointments = appointmentsClient.getAllPatientAppointments(request, callOptions: callOptions)
-
+        
+        let getPatientAppointments = appointmentsClient.getCustomerAppointments(request, callOptions: callOptions)
+        
         DispatchQueue.main.async {
             do {
                 let response = try getPatientAppointments.response.wait()
-                let appointmentList = self.appointmentObjMapper.grpcAppointmentListToLocalAppointmentList(appointmentList: response.appointmentResponse)
+                let appointmentList = self.appointmentObjMapper.grpcAppointmentToLocal(appointment: response.appointments)
                 print("Patient Appointments received")
                 completion(appointmentList)
             } catch {
@@ -75,25 +76,25 @@ class RetrievePatientInfoViewModel: RetrievePatientInfoProtocol {
             }
         }
     }
-
-    func getUploadedReportList(appointment: Appointment, _ completion: @escaping (([Report]?) -> ())) {
-                
+    
+    func getUploadedReportList(customerId:String, _ completion: @escaping (([Report]?) -> ())) {
+        
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         
         // Provide the connection to the generated client.
-        let reportsClient = Nambadoctor_V1_ReportWorkerV1Client(channel: channel)
-
-        let request = Nambadoctor_V1_ReportPatRequest.with {
-            $0.patientID = appointment.requestedBy
+        let reportsClient = Nd_V1_ServiceProviderReportWorkerV1Client(channel: channel)
+        
+        let request = Nd_V1_IdMessage.with {
+            $0.id = customerId.toProto
         }
-
-        let getPatientReports = reportsClient.getAllPatientReports(request, callOptions:callOptions)
-
+        
+        let getPatientReports = reportsClient.getCustomerReports(request,callOptions: callOptions)
+        
         DispatchQueue.main.async {
             do {
                 let response = try getPatientReports.response.wait()
-                let reportList = self.reportObjMapper.grpcReportToLocalList(reportList: response.reports)
+                let reportList = self.reportObjMapper.grpcReportToLocal(report: response.reports)
                 print("Patient Reports received")
                 completion(reportList)
             } catch {
@@ -104,24 +105,24 @@ class RetrievePatientInfoViewModel: RetrievePatientInfoProtocol {
     }
     
     func getReportImage(reportId: String, _ completion: @escaping (UIImage?) -> ()) {
-                
+        
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         
         // Provide the connection to the generated client.
-        let reportImageClient = Nambadoctor_V1_ReportWorkerV1Client(channel: channel)
-
-        let request = Nambadoctor_V1_MediaName.with {
-            $0.name = reportId
+        let reportImageClient = Nd_V1_ServiceProviderReportWorkerV1Client(channel: channel)
+        
+        let request = Nd_V1_IdMessage.with {
+            $0.id = reportId.toProto
         }
-
-        let getPatientReports = reportImageClient.downloadReportMedia(request, callOptions:callOptions)
-
+        
+        let getPatientReports = reportImageClient.downloadReportMedia(request,callOptions: callOptions)
+        
         DispatchQueue.main.async {
             do {
                 let response = try getPatientReports.response.wait()
                 print("Patient Reports received \(response.mediaFile)")
-                completion(Helpers.convertB64ToUIImage(b64Data: response.mediaFile.base64EncodedString()))
+                completion(Helpers.convertB64ToUIImage(b64Data: response.mediaFile.toString))
             } catch {
                 print("Patient Reports failed: \(error)")
                 completion(nil)

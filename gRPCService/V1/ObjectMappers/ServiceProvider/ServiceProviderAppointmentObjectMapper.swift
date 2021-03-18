@@ -8,7 +8,7 @@
 import Foundation
 
 class ServiceProviderAppointmentObjectMapper {
-    static func grpcAppointmentToLocal (appointment:Nd_V1_ServiceProviderAppointmentMessage) -> ServiceProviderAppointment {
+    func grpcAppointmentToLocal (appointment:Nd_V1_ServiceProviderAppointmentMessage) -> ServiceProviderAppointment {
         return ServiceProviderAppointment(
             appointmentID: appointment.appointmentID.toString,
             serviceRequestID: appointment.serviceRequestID.toString,
@@ -32,7 +32,17 @@ class ServiceProviderAppointmentObjectMapper {
             noOfReports: appointment.noOfReports.toInt32)
     }
     
-    static func localAppointmentToGrpc (appointment:ServiceProviderAppointment) -> Nd_V1_ServiceProviderAppointmentMessage {
+    func grpcAppointmentToLocal (appointment:[Nd_V1_ServiceProviderAppointmentMessage]) -> [ServiceProviderAppointment] {
+        var appointmentList:[ServiceProviderAppointment] = [ServiceProviderAppointment]()
+        
+        for app in appointment {
+            appointmentList.append(grpcAppointmentToLocal(appointment: app))
+        }
+        
+        return appointmentList
+    }
+    
+    func localAppointmentToGrpc (appointment:ServiceProviderAppointment) -> Nd_V1_ServiceProviderAppointmentMessage {
         return Nd_V1_ServiceProviderAppointmentMessage.with {
             $0.appointmentID = appointment.appointmentID.toProto
             $0.serviceRequestID = appointment.serviceRequestID.toProto

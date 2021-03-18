@@ -8,7 +8,7 @@
 import Foundation
 
 class ServiceProviderProfileMapper {
-    static func grpcProfileToLocal (profile:Nd_V1_ServiceProviderProfileMessage) -> ServiceProviderProfile {
+    func grpcProfileToLocal (profile:Nd_V1_ServiceProviderProfileMessage) -> ServiceProviderProfile {
         return ServiceProviderProfile(
             serviceProviderID: profile.serviceProviderID.toString,
             serviceProviderType: profile.serviceProviderType.toString,
@@ -39,7 +39,7 @@ class ServiceProviderProfileMapper {
             lastSlotEndTime: profile.latestSlotEndTime.toInt64)
     }
     
-    static func localProfileToGrpc (profile: ServiceProviderProfile) -> Nd_V1_ServiceProviderProfileMessage {
+    func localProfileToGrpc (profile: ServiceProviderProfile) -> Nd_V1_ServiceProviderProfileMessage {
         return Nd_V1_ServiceProviderProfileMessage.with {
             $0.serviceProviderID = profile.serviceProviderID.toProto
             $0.serviceProviderType = profile.serviceProviderType.toProto

@@ -8,7 +8,7 @@
 import Foundation
 
 class ServiceProviderReportMapper {
-    static func grpcReportToLocal(report:Nd_V1_ServiceProviderReportMessage) -> ServiceProviderReport {
+    func grpcReportToLocal(report:Nd_V1_ServiceProviderReportMessage) -> ServiceProviderReport {
         return ServiceProviderReport(
             reportID: report.reportID.toString,
             fileName: report.fileName.toString,
@@ -16,7 +16,17 @@ class ServiceProviderReportMapper {
             fileType: report.fileType.toString)
     }
     
-    static func localReportToGrpc(report:ServiceProviderReport) -> Nd_V1_ServiceProviderReportMessage {
+    func grpcReportToLocal(report:[Nd_V1_ServiceProviderReportMessage]) -> [ServiceProviderReport] {
+        var reportList:[ServiceProviderReport] = [ServiceProviderReport]()
+        
+        for rep in report {
+            reportList.append(grpcReportToLocal(report: rep))
+        }
+        
+        return reportList
+    }
+    
+    func localReportToGrpc(report:ServiceProviderReport) -> Nd_V1_ServiceProviderReportMessage {
         return Nd_V1_ServiceProviderReportMessage.with {
             $0.reportID = report.reportID.toProto
             $0.fileName = report.fileName.toProto

@@ -9,28 +9,28 @@ import Foundation
 
 class RetrieveDocObj {
     
-    var doctorObjectMapper:DoctorObjectMapper
+    var serviceProviderMapper:ServiceProviderProfileMapper
     
-    init(doctorObjectMapper:DoctorObjectMapper = DoctorObjectMapper()) {
-        self.doctorObjectMapper = doctorObjectMapper
+    init(serviceProviderMapper:ServiceProviderProfileMapper = ServiceProviderProfileMapper()) {
+        self.serviceProviderMapper = serviceProviderMapper
     }
     
-    func getDoc (doctorId:String, _ completion : @escaping (_ DoctorObj:Doctor)->()) {
+    func getDoc (serviceProviderId:String, _ completion : @escaping (_ DoctorObj:ServiceProviderProfile)->()) {
         
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         
-        let doctorClient = Nambadoctor_V1_DoctorWorkerv1Client(channel: channel)
+        let doctorClient = Nd_V1_ServiceProviderWorkerV1Client(channel: channel)
         
-        let request = Nambadoctor_V1_DoctorRequest.with {
-            $0.doctorID = doctorId
+        let request = Nd_V1_IdMessage.with {
+            $0.id = serviceProviderId.toProto
         }
 
-        let getDoctor = doctorClient.getDoctor(request, callOptions: callOptions)
+        let getServiceProvider = doctorClient.getServiceProviderProfile(request, callOptions: callOptions)
 
         do {
-            let response = try getDoctor.response.wait()
-            let doctor = doctorObjectMapper.grpcToLocalDoctorObject(doctor: response)
+            let response = try getServiceProvider.response.wait()
+            let doctor = serviceProviderMapper.grpcProfileToLocal(profile: response)
             print("Get Doctor Client Success")
             completion(doctor)
         } catch {
