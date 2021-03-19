@@ -12,7 +12,7 @@ class RetrievePatientInfoServiceTest: XCTestCase {
     var retrievePatientInfoService:RetrievePatientInfoProtocol!
     
     override func setUp() {
-        self.retrievePatientInfoService = RetrievePatientInfoViewModel()
+        self.retrievePatientInfoService = CustomerGetSetServiceCalls()
     }
     
     func testRetrievePatientProfileSuccess () {

@@ -20,7 +20,7 @@ struct WritePrescriptionView: View {
 
     var body: some View {
         VStack {
-            if prescriptionVM.prescription == nil {
+            if prescriptionVM.serviceRequest == nil {
                 Indicator()
             } else {
                 tabbedHeaders
@@ -39,12 +39,10 @@ struct WritePrescriptionView: View {
                         }
                     } else if tabNavigationIndex == 2 {
 
-                        Section(header: Text("Advise for patient: ")) {
-                            TextEditor(text: $prescriptionVM.prescription.advice)
-                                .frame(width: UIScreen.main.bounds.width-60, height: 100) }
+//                        Section(header: Text("Advise for patient: ")) {
+//                            TextEditor(text: $prescriptionVM.serviceRequest.advice)
+//                                .frame(width: UIScreen.main.bounds.width-60, height: 100) }
 
-                        MakeFollowUpAppointmentView(followUpAppointmentVM: prescriptionVM.FollowUpVM)
-                        
                         reviewAndSubmitView
                     }
                 }

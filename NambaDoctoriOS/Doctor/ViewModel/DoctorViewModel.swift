@@ -8,52 +8,48 @@
 import Foundation
 
 class DoctorViewModel: ObservableObject {
-    @Published private var doctor:ServiceProviderProfile?
+    @Published private var doctor:ServiceProviderProfile!
     @Published var upcomingAppointments:[ServiceProviderAppointment] = [ServiceProviderAppointment]()
     @Published var finishedAppointments:[ServiceProviderAppointment] = [ServiceProviderAppointment]()
     
     @Published var noUpcomingAppointments:Bool = false
     @Published var noFinishedAppointments:Bool = false
-    
+
     @Published var doctorLoggedIn:Bool = false
     
     var authenticateService:AuthenticateServiceProtocol
-    var doctorAppointmentViewModel:DoctorAppointmentViewModelProtocol
+    var serviceProviderServiceCall:ServiceProviderGetSetServiceCallProtocol
+    var doctorAppointmentViewModel:AppointmentGetSetServiceCallProtocol
 
     init(authenticateService:AuthenticateServiceProtocol = AuthenticateService(),
-         doctorAptVM:DoctorAppointmentViewModelProtocol = DoctorAppointmentViewModel()) {
+         serviceProviderServiceCall:ServiceProviderGetSetServiceCallProtocol = ServiceProviderGetSetServiceCall(),
+         doctorAptVM:AppointmentGetSetServiceCallProtocol = AppointmentGetSetServiceCall()) {
         self.authenticateService = authenticateService
+        self.serviceProviderServiceCall = serviceProviderServiceCall
         self.doctorAppointmentViewModel = doctorAptVM
-        fetchDoctor()
-        retrieveAppointments()
     }
     
     func fetchDoctor () {
-        GetServiceProviderObject().fetchServiceProvider(userId: authenticateService.getUserId()) { (serviceProviderObj) in
-            self.doctor = serviceProviderObj
-            self.doctorLoggedIn = true
+        let userId = authenticateService.getUserId()
+        serviceProviderServiceCall.getServiceProvider(serviceProviderId: userId) { (serviceProviderObj) in
+            if serviceProviderObj != nil {
+                self.doctor = serviceProviderObj!
+                self.doctorLoggedIn = true
+                self.retrieveAppointments()
+            }
         }
     }
 
     var authTokenId:String? {
-        guard !AuthTokenId.isEmpty else {
-            RetrieveAuthTokenId.getToken { _ in }
-            return nil
-        }
-        
-        return AuthTokenId
+        return doctor.applicationInfo.authID
     }
     
     var fcmTokenId:String? {
-        guard !FCMTokenId.isEmpty else {
-            RetrieveAuthTokenId.getToken { _ in }
-            return nil
-        }
-        return AuthTokenId
+        return doctor.applicationInfo.deviceToken
     }
     
     func retrieveAppointments () {
-        doctorAppointmentViewModel.retrieveDocAppointmentList { (appointments) in
+        doctorAppointmentViewModel.getDocAppointments(serviceProviderId: doctor.serviceProviderID) { (appointments) in
             guard appointments != nil else {return}
             for appointment in appointments! {
                 switch CheckAppointmentStatus.checkStatus(appointmentStatus: appointment.status) {

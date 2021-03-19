@@ -9,12 +9,10 @@ import Foundation
 import SwiftUI
 
 protocol RetrievePatientInfoProtocol {
+    
+    func setPatientProfile (customerProfile:ServiceProviderCustomerProfile,
+                            completion: @escaping (_ returnId:String?) -> ())
 
-    func getPatientProfile(patientId: String, _ completion: @escaping ((ServiceProviderCustomerProfile?) -> ()))
-    
-    func getPatientAppointmentList (patientId: String, _ completion: @escaping ((_ appointmentList:[ServiceProviderAppointment]?)->()))
-    
-    func getUploadedReportList (appointment: ServiceProviderAppointment, _ completion: @escaping ((_ docList:[ServiceProviderReport]?)->()))
-    
-    func getReportImage (reportId:String, _ completion: @escaping ((_ docList:UIImage?)->()))
+    func getPatientProfile(patientId: String,
+                           completion: @escaping (_ profile:ServiceProviderCustomerProfile?) -> ())
 }

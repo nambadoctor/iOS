@@ -10,13 +10,13 @@ import Foundation
 class SubmitPrescriptionViewModel: ObservableObject {
     var prescriptionVM:ServiceRequestViewModel
     
-    var putPrescriptionVM:PutPrescriptionViewModelProtocol
+    var putPrescriptionVM:PrescriptionGetSetServiceCallProtocol
     var updateAptStatusVM:UpdateAppointmentStatusProtocol
     var docAlertHelpers:DoctorAlertHelpersProtocol
     
     init(prescriptionVM:ServiceRequestViewModel,
-         putPrescriptionVM:PutPrescriptionViewModelProtocol = PutPrescriptionViewModel(),
-         updateAptStatusVM:UpdateAppointmentStatusProtocol = UpdateAppointmentStatusViewModel(),
+         putPrescriptionVM:PrescriptionGetSetServiceCallProtocol = PrescriptionGetSetServiceCall(),
+         updateAptStatusVM:UpdateAppointmentStatusProtocol = UpdateAppointmentStatusHelper(),
          docAlertHelpers:DoctorAlertHelpersProtocol = DoctorAlertHelpers()) {
         
         self.prescriptionVM = prescriptionVM
@@ -31,11 +31,7 @@ class SubmitPrescriptionViewModel: ObservableObject {
     var updateStatusDone:Bool = false
 
     func submitPrescription () {
-        prescriptionVM.prescription.medicines = prescriptionVM.MedicineVM.medicineArr
-
         putPrescription()
-        putFollowUp()
-        putAllergies()
         updateAptSatus()
     }
     
@@ -47,27 +43,7 @@ class SubmitPrescriptionViewModel: ObservableObject {
             checkIfAllWritesDone()
         }
 
-        putPrescriptionVM.writePrescriptionToDB(prescriptionViewModel: prescriptionVM) { (success) in
-            if success {
-                toggleToTrue()
-            } else {
-                GlobalPopupHelpers.setErrorAlert()
-            }
-        }
-    }
-    
-    private func putFollowUp () {
-        
-        func toggleToTrue () {
-            self.followUpDone = true
-            checkIfAllWritesDone()
-        }
-        
-        guard prescriptionVM.FollowUpVM.needFollowUp else {
-            toggleToTrue()
-            return
-        }
-        putFollowUpVM.makeFollowUpAppointment(prescriptionVM: prescriptionVM) { (success) in
+        putPrescriptionVM.setPrescription(medicineViewModel: prescriptionVM.MedicineVM) { (success) in
             if success {
                 toggleToTrue()
             } else {
@@ -76,27 +52,6 @@ class SubmitPrescriptionViewModel: ObservableObject {
         }
     }
 
-    private func putAllergies () {
-        
-        func toggleToTrue () {
-            self.allergiesDone = true
-            checkIfAllWritesDone()
-        }
-        
-        guard prescriptionVM.patientAllergies != "none" else {
-            toggleToTrue()
-            return
-        }
-        
-        putAllergiesVM.putPatientAllergiesForAppointment(prescriptionVM: prescriptionVM) { (success) in
-            if success {
-                toggleToTrue()
-            } else {
-                GlobalPopupHelpers.setErrorAlert()
-            }
-        }
-    }
-    
     private func updateAptSatus() {
         
         func toggleToTrue () {

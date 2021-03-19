@@ -41,10 +41,10 @@ struct PatientInfoView: View {
     var basicDetails : some View {
         VStack (alignment: .leading) {
             Text("Patient Details")
-            Text("Name: \(patientInfoVM.patientObj.fullName)")
+            Text("Name: \(patientInfoVM.patientObj.firstName) \(patientInfoVM.patientObj.lastName)")
             Text("Age: \(patientInfoVM.patientObj.age)")
             Text("Gender: \(patientInfoVM.patientObj.gender)")
-            Text("Preferred Language: \(patientInfoVM.patientObj.language)")
+            Text("Preferred Language: \(patientInfoVM.patientObj.languages[0])")
             Text("Allergies: \(patientInfoVM.patientAllergies)")
         }
     }
@@ -53,7 +53,7 @@ struct PatientInfoView: View {
         VStack (alignment: .leading) {
             Text("PATIENT REPORTS").bold()
             if !patientInfoVM.ReportList.isEmpty {
-                ForEach (patientInfoVM.ReportList, id: \.id) { report in
+                ForEach (patientInfoVM.ReportList, id: \.reportID) { report in
                     NavigationLink(destination: PatientReportView(report: report)) {
                         Text(report.name)
                     }
@@ -67,7 +67,7 @@ struct PatientInfoView: View {
             if patientInfoVM.AppointmentList != nil {
                 ForEach (patientInfoVM.AppointmentList, id: \.appointmentID) { appointment in
                     NavigationLink(destination: ViewPrescription(prescriptionVM: patientInfoVM.getPrescriptionVMToNavigate())) {
-                        Text("\(appointment.requestedTime)")
+                        Text("\(appointment.scheduledAppointmentStartTime)")
                     }
                 }
             }

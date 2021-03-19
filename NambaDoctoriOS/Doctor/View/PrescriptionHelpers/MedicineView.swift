@@ -12,7 +12,7 @@ struct MedicineView: View {
     @ObservedObject var medicineVM:MedicineViewModel
     
     var body: some View {
-        ForEach(medicineVM.medicineArr, id: \.medicineName) { medicine in
+        ForEach(medicineVM.prescription.medicineList, id: \.medicineName) { medicine in
             VStack (alignment: .leading) {
 
                 Text("\(medicine.medicineName) - \(medicine.dosage)")

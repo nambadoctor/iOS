@@ -13,18 +13,18 @@ class PatientReportViewModel : ObservableObject {
     @Published var mediaObject:UIImage?
     @Published var displayImage:ImageDisplayEnum = .loading
     
-    private var retrievePatientInfo:RetrievePatientInfoProtocol
+    private var reportServiceCall:ReportGetSetServiceCallProtocol
     
     init(report:ServiceProviderReport,
-         retrievePatientInfo:RetrievePatientInfoProtocol = RetrievePatientInfoViewModel()) {
+         reportServiceCall:ReportGetSetServiceCallProtocol = ReportGetSetServiceCall()) {
         self.report = report
-        self.retrievePatientInfo = retrievePatientInfo
+        self.reportServiceCall = reportServiceCall
         
         getImageObj()
     }
     
     func getImageObj () {
-        retrievePatientInfo.getReportImage(reportId: report.id) { (reportImage) in
+        reportServiceCall.getReportImage(reportId: report.reportID) { (reportImage) in
             if reportImage != nil {
                 self.mediaObject = reportImage
                 self.displayImage = .display

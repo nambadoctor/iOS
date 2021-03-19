@@ -52,7 +52,13 @@ class PreRegisteredUserVM:ObservableObject {
 
     func loginUser () {
         self.userLoggedIn = true
-        findDocOrPatientVM.logonUser { (patientOrDoc) in
+        
+        let custPhNumber = Nd_V1_CustomerPhoneNumber.with {
+            $0.countryCode = user.phNumberObj.countryCode.toProto
+            $0.number = user.phNumberObj.number.text.toProto
+        }
+
+        findDocOrPatientVM.logonUser(phoneNumber: custPhNumber) { (patientOrDoc) in
             CommonDefaultModifiers.hideLoader()
 
             switch patientOrDoc {

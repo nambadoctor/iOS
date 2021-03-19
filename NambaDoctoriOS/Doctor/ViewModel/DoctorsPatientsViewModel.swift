@@ -10,17 +10,15 @@ import Foundation
 class DoctorsPatientsViewModel: ObservableObject {
     @Published var patientList:[ServiceProviderCustomerProfile]?
     
-    private var retrieveDoctorsPatientsService:RetrieveDoctorsPatientsServiceProtocol
+    private let ServiceProviderServiceCall:ServiceProviderGetSetServiceCallProtocol
     
-    init(retrieveDoctorsPatientsService:RetrieveDoctorsPatientsServiceProtocol = RetrieveDoctorsPatientsService()) {
+    init(ServiceProviderServiceCall:ServiceProviderGetSetServiceCallProtocol = ServiceProviderGetSetServiceCall()) {
         
-        self.retrieveDoctorsPatientsService = retrieveDoctorsPatientsService
-        
-        getPatients()
+        self.ServiceProviderServiceCall = ServiceProviderServiceCall
     }
 
-    func getPatients () {
-        self.retrieveDoctorsPatientsService.getDoctorsPatients { (patientList) in
+    func getPatients (serviceProviderId:String) {
+        self.ServiceProviderServiceCall.getListOfPatients(serviceProviderId: serviceProviderId) { (patientList) in
             self.patientList = patientList
         }
     }

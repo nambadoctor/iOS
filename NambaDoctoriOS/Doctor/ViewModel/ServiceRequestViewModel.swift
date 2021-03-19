@@ -11,28 +11,27 @@ import SwiftUI
 class ServiceRequestViewModel: ObservableObject {
     var appointment:ServiceProviderAppointment
     var isNewPrescription:Bool
-    var loggedInDoctor:ServiceProviderProfile = serviceProvider!
 
     @Published var serviceRequest:ServiceProviderServiceRequest!
     @Published var errorInRetrievingPrescription:Bool = false
     @Published var navigateToReviewPrescription:Bool = false
     @Published var dismissAllViews:Bool = false
 
-    @Published var MedicineVM:MedicineViewModel = MedicineViewModel()
+    @Published var MedicineVM:MedicineViewModel
     @Published var InvestigationsVM:InvestigationsViewModel = InvestigationsViewModel()
-    @Published var FollowUpVM:FollowUpAppointmentViewModel = FollowUpAppointmentViewModel()
     @Published var MedicineEntryVM:MedicineEntryViewModel = MedicineEntryViewModel()
     @Published var patientAllergies:String = ""
 
-    private var retrieveServiceRequesthelper:RetrieveServiceRequestProtocol
+    private var retrieveServiceRequesthelper:ServiceRequestGetSetCallProtocol
     private var docSheetHelper:DoctorSheetHelpers = DoctorSheetHelpers()
     private var docAlertHelper:DoctorAlertHelpers = DoctorAlertHelpers()
     
     init(appointment:ServiceProviderAppointment,
          isNewPrescription:Bool,
-         retrieveServiceRequesthelper:RetrieveServiceRequestProtocol = RetrieveServiceRequestViewModel()) {
+         retrieveServiceRequesthelper:ServiceRequestGetSetCallProtocol = ServiceRequestGetSetCall()) {
         
         self.appointment = appointment
+        self.MedicineVM = MedicineViewModel(appointment: appointment)
         self.isNewPrescription = isNewPrescription
         self.retrieveServiceRequesthelper = retrieveServiceRequesthelper
     }
@@ -54,7 +53,7 @@ class ServiceRequestViewModel: ObservableObject {
     }
 
     var hasMedicines:Bool {
-        if MedicineVM.medicineArr.isEmpty {
+        if MedicineVM.prescription.medicineList.isEmpty {
             return false
         } else {
             return true
@@ -102,9 +101,8 @@ class ServiceRequestViewModel: ObservableObject {
         let storedPrescription:ServiceProviderServiceRequest? = LocalDecoder.decode(modelType: ServiceProviderServiceRequest.self, from: "stored_prescriptions:\(self.appointment.appointmentID)")
 
         if storedPrescription == nil {
-            self.prescription = MakeEmptyPrescription()
             self.serviceRequest.appointmentID = appointment.appointmentID
-            self.serviceRequest.serviceProviderID = loggedInDoctor.serviceProviderID
+            self.serviceRequest.serviceProviderID = appointment.serviceProviderID
             self.serviceRequest.customerID = appointment.customerID
         } else {
             self.mapPrescriptionValues(serviceRequest: storedPrescription!)

@@ -9,17 +9,17 @@ import SwiftUI
 
 struct UpcomingAppointmentsView: View {
     
-    @ObservedObject var doctor:DoctorViewModel
+    @EnvironmentObject var doctorViewModel:DoctorViewModel
     
     var body: some View {
         VStack {
-            if self.doctor.noUpcomingAppointments {
+            if self.doctorViewModel.noUpcomingAppointments {
                 Text("There are currently no upcoming appointments").padding()
-            } else if self.doctor.upcomingAppointments.isEmpty {
+            } else if self.doctorViewModel.upcomingAppointments.isEmpty {
                 Indicator()
             } else {
                 ScrollView {
-                    ForEach(doctor.upcomingAppointments, id: \.appointmentID) { appointment in
+                    ForEach(doctorViewModel.upcomingAppointments, id: \.appointmentID) { appointment in
                         UpcomingAppointmentCard(appointment: appointment)
                     }
                 }

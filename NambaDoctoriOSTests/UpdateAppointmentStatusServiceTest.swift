@@ -12,7 +12,7 @@ class UpdateAppointmentStatusServiceTest: XCTestCase {
     var updateAppointmentService:UpdateAppointmentStatusProtocol!
     
     override func setUp() {
-        self.updateAppointmentService = UpdateAppointmentStatusViewModel()
+        self.updateAppointmentService = UpdateAppointmentStatusHelper()
     }
     
     func testUpdateAppointmentStatusSuccessful () {

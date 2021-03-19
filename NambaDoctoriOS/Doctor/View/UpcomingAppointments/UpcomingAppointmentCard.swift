@@ -17,7 +17,7 @@ struct UpcomingAppointmentCard: View {
 
     var body: some View {
         VStack (alignment: .leading, spacing: 10) {
-            Text(AppointmentVM.appointment.patientName)
+            Text(AppointmentVM.appointment.customerName)
             Text("On: \(AppointmentVM.LocalTime)")
             
             HStack (alignment: .center) {

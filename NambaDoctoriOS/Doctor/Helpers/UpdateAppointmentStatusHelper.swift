@@ -9,12 +9,18 @@ import Foundation
 
 class UpdateAppointmentStatusHelper:UpdateAppointmentStatusProtocol {
     
+    let AppointmentServiceCalls:AppointmentGetSetServiceCallProtocol
+    
+    init(AppointmentServiceCalls:AppointmentGetSetServiceCallProtocol = AppointmentGetSetServiceCall()) {
+        self.AppointmentServiceCalls = AppointmentServiceCalls
+    }
+
     func toCancelled (appointment:inout ServiceProviderAppointment, completion: @escaping (_ success:Bool) -> ()) {
         appointment.status = "Cancelled"
         
         CommonDefaultModifiers.showLoader()
         
-        makeAppointmentUpdate(appointment: appointment) { (updated) in
+        AppointmentServiceCalls.setAppointment(appointment: appointment) { (updated) in
             if updated {
                 CommonDefaultModifiers.hideLoader()
                 completion(true)
@@ -26,7 +32,7 @@ class UpdateAppointmentStatusHelper:UpdateAppointmentStatusProtocol {
         
         appointment.status = "StartedConsultation"
         
-        makeAppointmentUpdate(appointment: appointment) { (updated) in
+        AppointmentServiceCalls.setAppointment(appointment: appointment) { (updated) in
             if updated { completion(true) } else { }
         }
     }
@@ -35,7 +41,7 @@ class UpdateAppointmentStatusHelper:UpdateAppointmentStatusProtocol {
         
         appointment.status = "Finished"
         
-        makeAppointmentUpdate(appointment: appointment) { (updated) in
+        AppointmentServiceCalls.setAppointment(appointment: appointment) { (updated) in
             if updated { completion(true) } else { }
         }
     }
@@ -44,7 +50,7 @@ class UpdateAppointmentStatusHelper:UpdateAppointmentStatusProtocol {
         
         appointment.status = "FinishedAppointment"
         
-        makeAppointmentUpdate(appointment: appointment) { (updated) in
+        AppointmentServiceCalls.setAppointment(appointment: appointment) { (updated) in
             if updated { completion(true) } else { }
         }
     }

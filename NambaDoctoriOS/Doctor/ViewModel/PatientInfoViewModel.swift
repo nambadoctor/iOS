@@ -15,11 +15,19 @@ class PatientInfoViewModel: ObservableObject {
     @Published var ReportList:[ServiceProviderReport]!
     
     var appointment:ServiceProviderAppointment
-    private var retrievePatientInfoHelper:RetrievePatientInfoProtocol
+    private var customerServiceCall:CustomerGetSetServiceCallProtocol
+    private var reportServiceCall:ReportGetSetServiceCallProtocol
+    private var appointmentServiceCall:AppointmentGetSetServiceCallProtocol
 
-    init(appointment:ServiceProviderAppointment) {
+    init(appointment:ServiceProviderAppointment,
+         reportServiceCall:ReportGetSetServiceCallProtocol = ReportGetSetServiceCall(),
+         appointmentServiceCall:AppointmentGetSetServiceCallProtocol = AppointmentGetSetServiceCall(),
+         customerServiceCall:CustomerGetSetServiceCallProtocol = CustomerGetSetServiceCall()) {
+        
         self.appointment = appointment
-        retrievePatientInfoHelper = RetrievePatientInfoViewModel()
+        self.customerServiceCall = customerServiceCall
+        self.reportServiceCall = reportServiceCall
+        self.appointmentServiceCall = appointmentServiceCall
         
         DispatchQueue.main.async {
             self.retrievePatientObj()
@@ -29,19 +37,19 @@ class PatientInfoViewModel: ObservableObject {
     }
 
     private func retrievePatientObj () {
-        retrievePatientInfoHelper.getPatientProfile(patientId: self.appointment.requestedBy) { (patient) in
+        customerServiceCall.getPatientProfile(patientId: self.appointment.requestedBy) { (patient) in
             self.patientObj = patient
         }
     }
 
     private func retrieveAppointmentList () {
-        retrievePatientInfoHelper.getPatientAppointmentList(patientId: appointment.requestedBy) { (aptList) in
+        appointmentServiceCall.getCustomerAppointmentList(patientId: appointment.requestedBy) { (aptList) in
             self.AppointmentList = aptList
         }
     }
 
     private func retrieveUploadedDocumentList () {
-        retrievePatientInfoHelper.getUploadedReportList(appointment: appointment) { (uploadedDocList) in
+        reportServiceCall.getUploadedReportList(customerId: appointment.customerID) { (uploadedDocList) in
             self.ReportList = uploadedDocList
         }
     }

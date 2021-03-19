@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ServiceProviderMedicine {
+struct ServiceProviderMedicine : Codable {
     var medicineName:String
     var dosage:String
     var routeOfAdministration:String

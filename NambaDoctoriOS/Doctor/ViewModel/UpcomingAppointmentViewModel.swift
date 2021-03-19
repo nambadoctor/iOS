@@ -22,24 +22,26 @@ class UpcomingAppointmentViewModel: ObservableObject {
 
     private var patientTokenId:String = ""
     private var docSheetHelper:DoctorSheetHelpers = DoctorSheetHelpers()
+    private var docNotifHelper:DocNotifHelpers
 
     private var updateAppointmentStatus:UpdateAppointmentStatusProtocol
     private var doctorAlertHelper:DoctorAlertHelpersProtocol
 
     init(appointment:ServiceProviderAppointment,
-         updateAppointmentStatus:UpdateAppointmentStatusProtocol = UpdateAppointmentStatusViewModel(),
+         updateAppointmentStatus:UpdateAppointmentStatusProtocol = UpdateAppointmentStatusHelper(),
          doctorAlertHelper:DoctorAlertHelpersProtocol = DoctorAlertHelpers()) {
         
         self.appointment = appointment
         self.updateAppointmentStatus = updateAppointmentStatus
         self.doctorAlertHelper = doctorAlertHelper
+        self.docNotifHelper = DocNotifHelpers(appointment: appointment)
         checkIfConsultationStarted()
         checkToShowCancelButton()
         checkIfConsultationDone()
     }
 
     var LocalTime:String {
-        return Helpers.getTimeFromTimeStamp(timeStamp: self.appointment.requestedTime)
+        return Helpers.getTimeFromTimeStamp(timeStamp: self.appointment.scheduledAppointmentStartTime)
     }
 
     var appointmentId:String {
@@ -72,7 +74,7 @@ class UpcomingAppointmentViewModel: ObservableObject {
         doctorAlertHelper.cancelAppointmentAlert { (cancel) in
             self.updateAppointmentStatus.toCancelled(appointment: &self.appointment) { (success) in
                 if success {
-                    DocNotifHelpers.sharedNotifHelpers.fireCancelNotif(requestedBy: self.appointment.requestedBy, appointmentTime: self.appointment.requestedTime)
+                    self.docNotifHelper.fireCancelNotif(requestedBy: self.appointment.customerID, appointmentTime: self.appointment.scheduledAppointmentStartTime)
                     DoctorDefaultModifiers.refreshAppointments()
                     self.checkToShowCancelButton()
                 } else {
@@ -94,7 +96,7 @@ class UpcomingAppointmentViewModel: ObservableObject {
             self.updateAppointmentStatus.updateToFinishedAppointment(appointment: &self.appointment)
                 { _ in }
 
-            DocNotifHelpers.sharedNotifHelpers.fireAppointmentOverNotif(requestedBy: self.appointment.requestedBy)
+            self.docNotifHelper.fireAppointmentOverNotif(requestedBy: self.appointment.requestedBy)
 
         }
     }

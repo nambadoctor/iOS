@@ -21,7 +21,7 @@ class FinishedAppointmentViewModel: ObservableObject {
     }
 
     var LocalTime:String {
-        return Helpers.getTimeFromTimeStamp(timeStamp: self.appointment.requestedTime)
+        return Helpers.getTimeFromTimeStamp(timeStamp: self.appointment.scheduledAppointmentStartTime)
     }
 
     func takeToViewPrescription () {

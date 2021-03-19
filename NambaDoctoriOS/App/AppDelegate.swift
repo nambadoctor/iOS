@@ -42,10 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         application.registerForRemoteNotifications()
         
         // [END register_for_notifications]
-        
-        //REFRESH AUTH TOKEN ID
-        RetrieveAuthTokenId.getToken { (success) in }
-
+ 
         return true
     }
     

@@ -9,7 +9,7 @@ import Foundation
 
 class MedicineViewModel: ObservableObject {
     var appointment:ServiceProviderAppointment
-    @Published var prescription:ServiceProviderPrescription?
+    @Published var prescription:ServiceProviderPrescription = MakeEmptyPrescription()
     @Published var tempMedicine:ServiceProviderMedicine = MakeEmptyMedicine()
     @Published var medicineEntryVM:MedicineEntryViewModel = MedicineEntryViewModel()
     
@@ -17,11 +17,11 @@ class MedicineViewModel: ObservableObject {
     @Published var showLocalAlert:Bool = false
 
     var generalDoctorHelpers:GeneralDoctorHelpersProtocol!
-    private var retrieveMedicineHelper:RetrievePrescriptionForAppointmentProtocol
+    private var retrieveMedicineHelper:PrescriptionGetSetServiceCallProtocol
     
     init(appointment:ServiceProviderAppointment,
         generalDoctorHelpers:GeneralDoctorHelpersProtocol = GeneralDoctorHelpers(),
-         retrieveMedicineHelper:RetrievePrescriptionForAppointmentProtocol = RetrievePrescriptionForAppointmentViewModel()) {
+         retrieveMedicineHelper:PrescriptionGetSetServiceCallProtocol = PrescriptionGetSetServiceCall()) {
         self.appointment = appointment
         self.generalDoctorHelpers = generalDoctorHelpers
         self.retrieveMedicineHelper = retrieveMedicineHelper
@@ -75,12 +75,12 @@ class MedicineViewModel: ObservableObject {
     }
     
     func removeMedicineManually (medicine:ServiceProviderMedicine) {
-        let index = generalDoctorHelpers.getMedicineIndex(medicineArr: prescription!.medicineList, medicine: medicine)
-        prescription!.medicineList.remove(at: index)
+        let index = generalDoctorHelpers.getMedicineIndex(medicineArr: prescription.medicineList, medicine: medicine)
+        prescription.medicineList.remove(at: index)
     }
 
     func removeMedicineRowsBySwiping(at offsets: IndexSet) {
-        prescription!.medicineList.remove(atOffsets: offsets)
+        prescription.medicineList.remove(atOffsets: offsets)
     }
 
     func dismissMedicineEntrySheet () {
@@ -98,10 +98,10 @@ class MedicineViewModel: ObservableObject {
         mapMedicineValuesToTemp()
 
         if isNewMedicine {
-            prescription!.medicineList.append(tempMedicine)
+            prescription.medicineList.append(tempMedicine)
         } else {
-            let indexOfmed = generalDoctorHelpers.getMedicineIndex(medicineArr: prescription!.medicineList, medicine: tempMedicine)
-            prescription!.medicineList[indexOfmed == 0 ? indexOfmed : indexOfmed-1] = tempMedicine
+            let indexOfmed = generalDoctorHelpers.getMedicineIndex(medicineArr: prescription.medicineList, medicine: tempMedicine)
+            prescription.medicineList[indexOfmed == 0 ? indexOfmed : indexOfmed-1] = tempMedicine
         }
         
         tempMedicine = MakeEmptyMedicine()

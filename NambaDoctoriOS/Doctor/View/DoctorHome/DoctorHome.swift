@@ -22,13 +22,13 @@ struct DoctorHome: View {
             } else {
                 ZStack {
                     TabView (selection: self.$tabSelection) {
-                        UpcomingAppointmentsView(doctor: doctorViewModel).tabItem {
+                        UpcomingAppointmentsView().tabItem {
                             //Image("list.dash")
                             Text("Upcoming")
                             Text("Appointments")
                         }.tag(1)
 
-                        FinishedAppointmentsView(doctor: doctorViewModel).tabItem {
+                        FinishedAppointmentsView().tabItem {
                             //Image("timer")
                             Text("Finished")
                             Text("Appointments")
@@ -41,8 +41,8 @@ struct DoctorHome: View {
                         }.tag(3)
                     }
                 }
+                .environmentObject(doctorViewModel)
                 .navigationBarTitle("NambaDoctor", displayMode: .inline)
-                .navigationBarItems(trailing: addPatientButton)
             }
         }.onAppear() {
             showAlertListener()
@@ -57,21 +57,6 @@ struct DoctorHome: View {
                 if sheetItem.appointment != nil {
                     PatientInfoView(appointment: sheetItem.appointment!)
                 }
-                
-                if sheetItem.showAddPatient != nil {
-                    AddPatientView()
-                }
-            }
-        }
-    }
-
-    var addPatientButton : some View {
-        Button {
-            DoctorSheetHelpers().showAddPatientSheet()
-        } label: {
-            VStack {
-                Text("Add")
-                Text("Patient")
             }
         }
     }

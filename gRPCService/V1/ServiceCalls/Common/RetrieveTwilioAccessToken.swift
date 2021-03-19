@@ -11,15 +11,9 @@ import Foundation
 var TwilioAccessTokenString = ""
 
 class RetrieveTwilioAccessToken : TwilioAccessTokenProtocol {
-    
-    var getServiceProviderHelper:GetServiceProviderObjectProtocol
-    
-    init(getServiceProviderHelper:GetServiceProviderObjectProtocol = GetServiceProviderObject()) {
-        self.getServiceProviderHelper = getServiceProviderHelper
-    }
-    
     func retrieveToken (appointmentId:String,
-                               _ completion: @escaping ((_ success:Bool, _ twilioToke:String?)->())) {
+                        serviceProviderId:String,
+                        completion: @escaping ((_ success:Bool, _ twilioToke:String?)->())) {
                 
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
@@ -27,7 +21,7 @@ class RetrieveTwilioAccessToken : TwilioAccessTokenProtocol {
         
         let request = Nd_V1_TwilioAuthRequest.with {
             $0.roomID = appointmentId.toProto
-            $0.userID = getServiceProviderHelper.getServiceProvider().serviceProviderID.toProto
+            $0.userID = serviceProviderId.toProto
         }
 
         let getTwilioToken = twilioClient.getTwilioVideoAuthToken(request, callOptions: callOptions)

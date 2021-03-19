@@ -7,7 +7,7 @@
 
 import Foundation
 
-class RetrieveServiceRequestViewModel : RetrieveServiceRequestProtocol {
+class ServiceRequestGetSetCall : ServiceRequestGetSetCallProtocol {
     
     var serviceRequestMapper:ServiceProviderServiceRequestMapper
     
@@ -15,10 +15,11 @@ class RetrieveServiceRequestViewModel : RetrieveServiceRequestProtocol {
         self.serviceRequestMapper = serviceRequestMapper
     }
     
-    func getServiceRequest (appointmentId:String, serviceRequestId:String, customerId:String, _ completion: @escaping ((_ serviceRequest:ServiceProviderServiceRequest?)->())) {
+    func getServiceRequest (appointmentId:String,
+                            serviceRequestId:String,
+                            customerId:String,
+                            completion: @escaping ((_ serviceRequest:ServiceProviderServiceRequest?)->())) {
         
-        CommonDefaultModifiers.showLoader()
-
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         
@@ -40,6 +41,26 @@ class RetrieveServiceRequestViewModel : RetrieveServiceRequestProtocol {
             completion(serviceRequest)
         } catch {
             print("ServiceRequestClient failed: \(error)")
+        }
+    }
+    
+    func setServiceRequest (serviceRequest:ServiceProviderServiceRequest,
+                            completion: @escaping ((_ responseId:String?)->())) {
+        let channel = ChannelManager.sharedChannelManager.getChannel()
+        let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
+        
+        let serviceRequestClient = Nd_V1_ServiceProviderServiceRequestWorkerV1Client(channel: channel)
+        
+        let request = serviceRequestMapper.localServiceRequestToGrpc(serviceRequest: serviceRequest)
+
+        let getServiceRequestObj = serviceRequestClient.setServiceRequest(request, callOptions: callOptions)
+        
+        do {
+            let response = try getServiceRequestObj.response.wait()
+            print("ServiceRequest Set Client received: \(response.id.toString)")
+            completion(response.id.toString)
+        } catch {
+            print("ServiceRequest Set Client failed: \(error)")
         }
     }
 }

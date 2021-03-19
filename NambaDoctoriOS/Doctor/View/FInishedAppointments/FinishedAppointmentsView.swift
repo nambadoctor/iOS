@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct FinishedAppointmentsView: View {
-    @ObservedObject var doctor:DoctorViewModel
+    @EnvironmentObject var doctorViewModel:DoctorViewModel
     
     var body: some View {
         VStack {
-            if self.doctor.noFinishedAppointments {
+            if self.doctorViewModel.noFinishedAppointments {
                 Text("There are currently no finished appointments").padding()
-            } else if self.doctor.finishedAppointments.isEmpty {
+            } else if self.doctorViewModel.finishedAppointments.isEmpty {
                 Indicator()
             } else {
                 ScrollView {
-                    ForEach(doctor.finishedAppointments, id: \.appointmentID) { appointment in
+                    ForEach(doctorViewModel.finishedAppointments, id: \.appointmentID) { appointment in
                         FinishedAppointmentCard(appointment: appointment)
                     }
                 }

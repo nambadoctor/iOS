@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ServiceProviderPrescription {
+struct ServiceProviderPrescription : Codable {
     var prescriptionID:String
     var serviceRequestID:String
     var customerID:String

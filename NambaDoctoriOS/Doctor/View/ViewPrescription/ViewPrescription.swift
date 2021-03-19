@@ -15,7 +15,7 @@ struct ViewPrescription: View {
         VStack {
             if prescriptionVM.errorInRetrievingPrescription {
                 Text("Prescription could not be retrieved")
-            } else if prescriptionVM.prescription == nil {
+            } else if prescriptionVM.serviceRequest == nil {
                 Indicator()
             } else {
                 ViewPrescriptionForm
@@ -26,11 +26,11 @@ struct ViewPrescription: View {
     
     var ViewPrescriptionForm : some View {
         Form {
-            Section(header: Text("History")) { Text(prescriptionVM.prescription.history) }
-            Section(header: Text("Examination")) { Text(prescriptionVM.prescription.examination) }
-            Section(header: Text("Diagnosis")) { Text(prescriptionVM.prescription.diagnosis) }
-            Section(header: Text("Advise")) { Text(prescriptionVM.prescription.advice) }
-            Section(header: Text("Patient Allergies")) { Text(prescriptionVM.patientAllergies) }
+            //Section(header: Text("History")) { Text(prescriptionVM.serviceRequest.history) }
+            Section(header: Text("Examination")) { Text(prescriptionVM.serviceRequest.examination) }
+            Section(header: Text("Diagnosis")) { Text(prescriptionVM.serviceRequest.diagnosis.name) }
+            Section(header: Text("Advise")) { Text(prescriptionVM.serviceRequest.advice) }
+            //Section(header: Text("Patient Allergies")) { Text(prescriptionVM.patientAllergies) }
 
             Section(header: Text("Investigations")) {
                 if !prescriptionVM.InvestigationsVM.investigations.isEmpty {
@@ -54,14 +54,14 @@ struct ViewPrescription: View {
                 }
             }
 
-            Section(header: Text("Follow Up")) {
-                if prescriptionVM.FollowUpVM.needFollowUp {
-                    Text("In: \(prescriptionVM.FollowUpVM.validityDaysDisplay)")
-                    Text("Fee: \(prescriptionVM.FollowUpVM.nextFeeDisplay)")
-                } else {
-                    Text("No Follow up")
-                }
-            }
+//            Section(header: Text("Follow Up")) {
+//                if prescriptionVM.FollowUpVM.needFollowUp {
+//                    Text("In: \(prescriptionVM.FollowUpVM.validityDaysDisplay)")
+//                    Text("Fee: \(prescriptionVM.FollowUpVM.nextFeeDisplay)")
+//                } else {
+//                    Text("No Follow up")
+//                }
+//            }
 
         }
     }
