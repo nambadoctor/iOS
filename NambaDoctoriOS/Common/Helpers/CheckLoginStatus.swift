@@ -10,10 +10,10 @@ import Foundation
 class CheckLoginStatus {
     static func checkStatus (loggedInStatus:String) -> UserLoginStatus {
         switch loggedInStatus {
-        case UserLoginStatus.Doctor.rawValue:
-            return .Doctor
-        case UserLoginStatus.Patient.rawValue:
-            return .Patient
+        case UserLoginStatus.ServiceProvider.rawValue:
+            return .ServiceProvider
+        case UserLoginStatus.Customer.rawValue:
+            return .ServiceProvider
         default:
             return .NotSignedIn
         }

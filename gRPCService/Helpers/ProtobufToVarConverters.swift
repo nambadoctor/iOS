@@ -9,7 +9,7 @@ import Foundation
 import SwiftProtobuf
 
 extension SwiftProtobuf.Google_Protobuf_StringValue {
-    var toString:String {return "\(self)"}
+    var toString:String {return self.value}
 }
 
 extension Array where Element == SwiftProtobuf.Google_Protobuf_StringValue {
@@ -33,23 +33,28 @@ extension SwiftProtobuf.Google_Protobuf_BoolValue {
 }
 
 extension SwiftProtobuf.Google_Protobuf_Int64Value {
-    var toInt64:Int64 {return Int64("\(self)") ?? 0}
+    var toInt64:Int64 {return Int64(self.value)}
 }
 
 extension SwiftProtobuf.Google_Protobuf_Int32Value {
-    var toInt32:Int32 {return Int32("\(self)") ?? 0}
+    var toInt32:Int32 {return Int32(self.value)}
 }
 
 extension SwiftProtobuf.Google_Protobuf_BytesValue {
-    var toString:String {return "\(self)"}
+    var toBase64String:String {return self.value.base64EncodedString()}
 }
 
 extension SwiftProtobuf.Google_Protobuf_DoubleValue {
-    var toDouble:Double {return Double("\(self)") ?? 0}
+    var toDouble:Double {return Double(self.value)}
 }
 
 extension String {
-    var toProto:SwiftProtobuf.Google_Protobuf_StringValue {return SwiftProtobuf.Google_Protobuf_StringValue(self)}
+    var toProto:SwiftProtobuf.Google_Protobuf_StringValue {
+        return SwiftProtobuf.Google_Protobuf_StringValue(self)}
+    
+    var toProtoByes:SwiftProtobuf.Google_Protobuf_BytesValue {
+        return SwiftProtobuf.Google_Protobuf_BytesValue(Data(base64Encoded: self)!)
+    }
 }
 
 extension Array where Element == String {

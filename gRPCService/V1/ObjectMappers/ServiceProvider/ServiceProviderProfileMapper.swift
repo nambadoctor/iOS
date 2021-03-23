@@ -32,11 +32,8 @@ class ServiceProviderProfileMapper {
             status: profile.status.toString,
             registrationNumber: profile.registrationNumber.toString,
             isActive: profile.isActive.toBool,
-            availabilities: ServiceProviderAvailaibilityObjectMapper.grpcAvailabilityToLocal(availability: profile.availabilities),
             createdDate: profile.createdDate.toInt64,
-            lastModifiedDate: profile.lastModifedDate.toInt64,
-            latestSlotStartTime: profile.latestSlotStartTime.toInt64,
-            lastSlotEndTime: profile.latestSlotEndTime.toInt64)
+            lastModifiedDate: profile.lastModifedDate.toInt64)
     }
     
     func localProfileToGrpc (profile: ServiceProviderProfile) -> Nd_V1_ServiceProviderProfileMessage {
@@ -63,11 +60,8 @@ class ServiceProviderProfileMapper {
             $0.status = profile.status.toProto
             $0.registrationNumber = profile.registrationNumber.toProto
             $0.isActive = profile.isActive.toProto
-            $0.availabilities = ServiceProviderAvailaibilityObjectMapper.localAvailabilityToGrpc(availability: profile.availabilities)
             $0.createdDate = profile.createdDate.toProto
             $0.lastModifedDate = profile.lastModifiedDate.toProto
-            $0.latestSlotStartTime = profile.latestSlotStartTime.toProto
-            $0.latestSlotEndTime = profile.lastSlotEndTime.toProto
         }
     }
 }

@@ -49,13 +49,17 @@ class ServiceProviderGetSetServiceCall : ServiceProviderGetSetServiceCallProtoco
     
     func getServiceProvider (serviceProviderId:String, _ completion : @escaping (_ DoctorObj:ServiceProviderProfile?)->()) {
         
+        print("Getting service provider")
+        
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         
         let doctorClient = Nd_V1_ServiceProviderWorkerV1Client(channel: channel)
+        print(serviceProviderId)
         
         let request = Nd_V1_IdMessage.with {
-            $0.id = serviceProviderId.toProto
+            //replace with serviceProviderId
+            $0.id = "60554422a30a3a82f677ecb0".toProto
         }
 
         let getServiceProvider = doctorClient.getServiceProviderProfile(request, callOptions: callOptions)

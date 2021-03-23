@@ -8,7 +8,7 @@
 import Foundation
 
 enum UserLoginStatus: String {
-    case Patient
-    case Doctor
+    case Customer
+    case ServiceProvider
     case NotSignedIn
 }

@@ -17,9 +17,7 @@ class UpdateAppointmentStatusHelper:UpdateAppointmentStatusProtocol {
 
     func toCancelled (appointment:inout ServiceProviderAppointment, completion: @escaping (_ success:Bool) -> ()) {
         appointment.status = "Cancelled"
-        
-        CommonDefaultModifiers.showLoader()
-        
+                
         AppointmentServiceCalls.setAppointment(appointment: appointment) { (updated) in
             if updated {
                 CommonDefaultModifiers.hideLoader()

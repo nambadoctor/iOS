@@ -15,7 +15,6 @@ extension AppDelegate : MessagingDelegate {
   func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
     print("Firebase registration token: \(fcmToken ?? "")")
     FCMTokenId = fcmToken ?? ""
-    Logon().logonUser { _ in } //updates FCMTokenID
   }
   // [END refresh_token]
 }

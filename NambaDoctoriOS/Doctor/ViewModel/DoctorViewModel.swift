@@ -9,12 +9,9 @@ import Foundation
 
 class DoctorViewModel: ObservableObject {
     @Published private var doctor:ServiceProviderProfile!
-    @Published var upcomingAppointments:[ServiceProviderAppointment] = [ServiceProviderAppointment]()
-    @Published var finishedAppointments:[ServiceProviderAppointment] = [ServiceProviderAppointment]()
+    @Published var appointments:[ServiceProviderAppointment] = [ServiceProviderAppointment]()
     
-    @Published var noUpcomingAppointments:Bool = false
-    @Published var noFinishedAppointments:Bool = false
-
+    @Published var noAppointments:Bool = false
     @Published var doctorLoggedIn:Bool = false
     
     var authenticateService:AuthenticateServiceProtocol
@@ -27,6 +24,7 @@ class DoctorViewModel: ObservableObject {
         self.authenticateService = authenticateService
         self.serviceProviderServiceCall = serviceProviderServiceCall
         self.doctorAppointmentViewModel = doctorAptVM
+        fetchDoctor()
     }
     
     func fetchDoctor () {
@@ -50,32 +48,21 @@ class DoctorViewModel: ObservableObject {
     
     func retrieveAppointments () {
         doctorAppointmentViewModel.getDocAppointments(serviceProviderId: doctor.serviceProviderID) { (appointments) in
-            guard appointments != nil else {return}
-            for appointment in appointments! {
-                switch CheckAppointmentStatus.checkStatus(appointmentStatus: appointment.status) {
-                case .Confirmed, .FinishedAppointment, .StartedConsultation:
-                    self.upcomingAppointments.append(appointment)
-                case .Finished:
-                    self.finishedAppointments.append(appointment)
-                }
+            if appointments != nil {
+                self.appointments = appointments!
             }
             self.checkForEmptyList()
         }
     }
     
     func checkForEmptyList () {
-        if upcomingAppointments.isEmpty {
-            self.noUpcomingAppointments = true
-        }
-        
-        if finishedAppointments.isEmpty {
-            self.noFinishedAppointments = true
+        if appointments.isEmpty {
+            self.noAppointments = true
         }
     }
     
     func refreshAppointments () {
-        self.upcomingAppointments.removeAll()
-        self.finishedAppointments.removeAll()
+        self.appointments.removeAll()
         self.retrieveAppointments()
     }
 }

@@ -17,7 +17,6 @@ class PrescriptionGetSetServiceCall : PrescriptionGetSetServiceCallProtocol {
     
     func getPrescription (appointmentId:String, serviceRequestId:String, customerId:String, _ completion: @escaping ((_ prescription:ServiceProviderPrescription?)->())) {
         
-        CommonDefaultModifiers.showLoader()
 
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
@@ -36,7 +35,6 @@ class PrescriptionGetSetServiceCall : PrescriptionGetSetServiceCallProtocol {
             let response = try getPrescriptionObj.response.wait()
             let prescription = prescriptionObjectMapper.grpcPrescriptionToLocal(prescription: response)
             print("PrescriptionClient received: \(response)")
-            CommonDefaultModifiers.hideLoader()
             completion(prescription)
         } catch {
             print("PrescriptionClient failed: \(error)")
@@ -44,9 +42,7 @@ class PrescriptionGetSetServiceCall : PrescriptionGetSetServiceCallProtocol {
     }
     
     func setPrescription(medicineViewModel:MedicineViewModel, _ completion : @escaping ((_ successfull:Bool)->())) {
-        
-        CommonDefaultModifiers.showLoader()
-        
+                
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         
@@ -59,7 +55,6 @@ class PrescriptionGetSetServiceCall : PrescriptionGetSetServiceCallProtocol {
         do {
             let response = try makePrescription.response.wait()
             print("Prescription Write Client Successfull: \(response.id)")
-            CommonDefaultModifiers.hideLoader()
             completion(true)
         } catch {
             print("Prescription Write Client Failed: \(error)")

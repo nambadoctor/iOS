@@ -66,7 +66,7 @@ class ReportGetSetServiceCall : ReportGetSetServiceCallProtocol {
             do {
                 let response = try getPatientReports.response.wait()
                 print("Patient Reports received \(response.mediaFile)")
-                completion(Helpers.convertB64ToUIImage(b64Data: response.mediaFile.toString))
+                completion(Helpers.convertB64ToUIImage(b64Data: response.mediaFile.toBase64String))
             } catch {
                 print("Patient Reports failed: \(error)")
                 completion(nil)

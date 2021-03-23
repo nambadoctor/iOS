@@ -25,7 +25,7 @@ class ServiceProviderReportMapper {
         
         return reportList
     }
-    
+
     func localReportToGrpc(report:ServiceProviderReport) -> Nd_V1_ServiceProviderReportMessage {
         return Nd_V1_ServiceProviderReportMessage.with {
             $0.reportID = report.reportID.toProto

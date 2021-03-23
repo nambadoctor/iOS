@@ -12,5 +12,9 @@ func MakeEmptyMedicine() -> ServiceProviderMedicine {
 }
 
 func MakeEmptyPrescription() -> ServiceProviderPrescription {
-    return ServiceProviderPrescription(prescriptionID: "", serviceRequestID: "", customerID: "", createdDateTime: 0, medicineList: [ServiceProviderMedicine](), prescriptionImageURL: "")
+    return ServiceProviderPrescription(prescriptionID: "", serviceRequestID: "", customerID: "", createdDateTime: 0, medicineList: [ServiceProviderMedicine](), fileInfo: MakeEmptyFileInfoObj())
+}
+
+func MakeEmptyFileInfoObj() -> ServiceProviderFileInfo {
+    return ServiceProviderFileInfo(FileName: "", FileType: "", MediaImage: "")
 }

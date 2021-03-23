@@ -32,7 +32,6 @@ struct OTPVerificationView: View {
 
                 Button (action: {
                     EndEditingHelper.endEditing()
-                    CommonDefaultModifiers.showLoader()
                     preRegUser.registerUser()
                 }) {
                     Text("Confirm OTP").frame(width: UIScreen.main.bounds.width - 30,height: 50)

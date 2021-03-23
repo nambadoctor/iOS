@@ -49,12 +49,14 @@ class Helpers {
 
          formatter.timeZone = TimeZone.current
 
-         formatter.dateFormat = "dd-MMM, h:mm a"
+         formatter.dateFormat = "dd MMM, h:mm a"
          formatter.amSymbol = "AM"
          formatter.pmSymbol = "PM"
 
          let dateString = formatter.string(from: Date(milliseconds: timeStamp))
-         
-         return dateString
+        
+        
+         var day = DateFormatter().weekdaySymbols[Calendar.current.component(.weekday, from: Date(milliseconds: timeStamp)) - 1]
+         return "\(day), \(dateString)"
      }
 }

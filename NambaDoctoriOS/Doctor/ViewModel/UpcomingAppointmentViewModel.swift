@@ -20,7 +20,6 @@ class UpcomingAppointmentViewModel: ObservableObject {
 
     @Published var showCancelButton:Bool = false
 
-    private var patientTokenId:String = ""
     private var docSheetHelper:DoctorSheetHelpers = DoctorSheetHelpers()
     private var docNotifHelper:DocNotifHelpers
 

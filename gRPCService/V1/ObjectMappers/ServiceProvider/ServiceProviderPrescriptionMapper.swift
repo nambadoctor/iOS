@@ -15,7 +15,7 @@ class ServiceProviderPrescriptionMapper {
             customerID: prescription.customerID.toString,
             createdDateTime: prescription.createdDateTime.toInt64,
             medicineList: ServiceProviderMedicineMapper.grpcMedicineToLocal(medicines: prescription.medicineList),
-            prescriptionImageURL: prescription.prescriptionImageURL.toString)
+            fileInfo: MakeEmptyFileInfoObj())
     }
     
     func localPrescriptionToGrpc (prescription: ServiceProviderPrescription) -> Nd_V1_ServiceProviderPrescriptionMessage {
@@ -25,7 +25,6 @@ class ServiceProviderPrescriptionMapper {
             $0.customerID = prescription.customerID.toProto
             $0.createdDateTime = prescription.createdDateTime.toProto
             $0.medicineList = ServiceProviderMedicineMapper.localMedicineToGrpc(medicines: prescription.medicineList)
-            $0.prescriptionImageURL = prescription.prescriptionImageURL.toProto
         }
     }
 }

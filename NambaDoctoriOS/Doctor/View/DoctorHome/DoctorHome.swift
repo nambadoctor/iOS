@@ -22,18 +22,12 @@ struct DoctorHome: View {
             } else {
                 ZStack {
                     TabView (selection: self.$tabSelection) {
-                        UpcomingAppointmentsView().tabItem {
+                        AppointmentsView().tabItem {
                             //Image("list.dash")
                             Text("Upcoming")
                             Text("Appointments")
                         }.tag(1)
-
-                        FinishedAppointmentsView().tabItem {
-                            //Image("timer")
-                            Text("Finished")
-                            Text("Appointments")
-                        }.tag(2)
-                        
+                         
                         DoctorsPatientsView().tabItem {
                             //Image("timer")
                             Text("My")

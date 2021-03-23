@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct ServiceProviderPrescription : Codable {
     var prescriptionID:String
@@ -13,5 +14,5 @@ struct ServiceProviderPrescription : Codable {
     var customerID:String
     var createdDateTime:Int64
     var medicineList:[ServiceProviderMedicine]
-    var prescriptionImageURL:String
+    var fileInfo:ServiceProviderFileInfo
 }

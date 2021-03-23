@@ -31,7 +31,6 @@ struct PhoneVerificationview: View {
                     PhoneNumberEntryView(numberObj: $preRegUser.user.phNumberObj)
                     
                     Button (action: {
-                        CommonDefaultModifiers.showLoader()
                         EndEditingHelper.endEditing()
                         preRegUser.validateNumWithFirebase()
                     }) {

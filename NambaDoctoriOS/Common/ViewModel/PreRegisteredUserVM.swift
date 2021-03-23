@@ -43,6 +43,7 @@ class PreRegisteredUserVM:ObservableObject {
     func registerUser () {
         AuthService.verifyUser(verificationId: self.user.verificationId, otp: self.otp) { (verified) in
             if verified == true {
+                print("user verified")
                 self.loginUser()
             } else {
                 GlobalPopupHelpers.incorrectOTPAlert()
@@ -53,18 +54,12 @@ class PreRegisteredUserVM:ObservableObject {
     func loginUser () {
         self.userLoggedIn = true
         
-        let custPhNumber = Nd_V1_CustomerPhoneNumber.with {
-            $0.countryCode = user.phNumberObj.countryCode.toProto
-            $0.number = user.phNumberObj.number.text.toProto
-        }
-
-        findDocOrPatientVM.logonUser(phoneNumber: custPhNumber) { (patientOrDoc) in
+        findDocOrPatientVM.logonUser() { (patientOrDoc) in
             CommonDefaultModifiers.hideLoader()
-
             switch patientOrDoc {
-            case .Doctor:
+            case .ServiceProvider:
                 LoginDefaultModifiers.signInDoctor(userId: self.AuthService.getUserId())
-            case .Patient:
+            case .Customer:
                 LoginDefaultModifiers.signInPatient(userId: self.AuthService.getUserId())
             case .NotSignedIn:
                 return

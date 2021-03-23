@@ -30,9 +30,6 @@ struct ServiceProviderProfile {
     var status:String
     var registrationNumber:String
     var isActive:Bool
-    var availabilities:[ServiceProviderAvailability]
     var createdDate:Int64
     var lastModifiedDate:Int64
-    var latestSlotStartTime:Int64
-    var lastSlotEndTime:Int64
 }

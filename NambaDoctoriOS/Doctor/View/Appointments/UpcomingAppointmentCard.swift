@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct UpcomingAppointmentCard: View {
+struct \
 
     @ObservedObject private var AppointmentVM:UpcomingAppointmentViewModel
 
@@ -41,7 +41,7 @@ struct UpcomingAppointmentCard: View {
             NavigationLink("",
                            destination: WritePrescriptionView(appointment: AppointmentVM.appointment, isNewPrescription: true),
                            isActive: $AppointmentVM.takeToWritePrescription)
-            
+
             NavigationLink("",
                            destination: DoctorTwilioManager(appointment: AppointmentVM.appointment),
                            isActive: $AppointmentVM.takeToTwilioRoom)
@@ -89,7 +89,7 @@ struct UpcomingAppointmentCard: View {
             }
         }
     }
-    
+
     var startConsultationButton : some View {
         Button (action: {
             AppointmentVM.startConsultation()

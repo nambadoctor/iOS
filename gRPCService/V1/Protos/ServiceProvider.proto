@@ -1,7 +1,9 @@
 syntax = "proto3";
 import "google/protobuf/wrappers.proto";
 
+
 package nd.v1;
+
 
 message BoolMessage {
 	google.protobuf.BoolValue Status = 1;
@@ -31,23 +33,7 @@ message TwilioAuthRequest{
 	google.protobuf.StringValue UserId = 2;
 }
 
-message UserTypeRequest{
-
-	google.protobuf.StringValue AuthId = 1;
-
-	CustomerPhoneNumber PhoneNumber = 2;
-}
-
-message CustomerPhoneNumber{
-
-	google.protobuf.StringValue CountryCode = 1;
-
-	google.protobuf.StringValue Number = 2;
-
-	google.protobuf.StringValue Type = 3;
-
-	google.protobuf.StringValue PhoneNumberId = 4;
-
+message VoidMessage {
 }
 
 message ServiceProviderAddress{
@@ -108,6 +94,7 @@ message ServiceProviderAppointmentMessage{
 	google.protobuf.Int32Value NoOfReports = 20;
 }
 
+
 message ServiceProviderAppointmentList{
 	repeated ServiceProviderAppointmentMessage Appointments = 1;
 }
@@ -128,6 +115,7 @@ message ServiceProviderAppInfo{
     google.protobuf.StringValue DeviceToken = 3;
 
     google.protobuf.StringValue AppInfoId = 4;
+
 }
 
 message ServiceProviderAvailability{
@@ -141,9 +129,11 @@ message ServiceProviderAvailability{
     google.protobuf.StringValue AvailabilityConfigId = 4;
 }
 
+
 message ServiceProviderAvailabilityConfigList{
     repeated ServiceProviderAvailability AvailabilityList= 1;
 }
+
 
 message ServiceProviderAvailabilityRequest{
     repeated ServiceProviderAvailability AvailabilityList = 1;
@@ -189,6 +179,7 @@ message ServiceProviderCustomerProfileMessage {
 	google.protobuf.Int64Value CreatedDate = 18;
 }
 
+
 message ServiceProviderCustomerProfileListMessage{
 	repeated ServiceProviderCustomerProfileMessage Customers = 1;
 }
@@ -213,7 +204,7 @@ message ServiceProviderEducation{
     google.protobuf.StringValue University  = 5;
 
     google.protobuf.StringValue EducationId = 6;
-}
+    }
 
 message ServiceProviderWorkExperience{
 
@@ -249,6 +240,11 @@ message ServiceProviderGeneratedSlotMessage{
 	google.protobuf.Int64Value EndStartDateTime = 2;
 
 	google.protobuf.Int32Value Duration = 3;
+}
+
+
+message ServiceProviderGeneratedSlotListMessage{
+	repeated ServiceProviderGeneratedSlotMessage Slots = 1;
 }
 
 message ServiceProviderMediaMessage{
@@ -297,6 +293,7 @@ message ServiceProviderPaymentInfoMessage{
     google.protobuf.StringValue CustomerName = 10;
 }
 
+
 message ServiceProviderPaymentListMessage{
     repeated ServiceProviderPaymentInfoMessage Payments = 1;
 }
@@ -310,6 +307,7 @@ message ServiceProviderPhoneNumber{
 	google.protobuf.StringValue Type = 3;
 
 	google.protobuf.StringValue PhoneNumberId = 4;
+
 }
 
 message ServiceProviderPrescriptionMessage{
@@ -324,7 +322,13 @@ message ServiceProviderPrescriptionMessage{
 
     repeated ServiceProviderMedicineMessage MedicineList = 5;
 
-    google.protobuf.StringValue PrescriptionImageUrl = 6;
+	google.protobuf.StringValue PrescriptionImageUrl = 6;
+
+    google.protobuf.BytesValue PrescriptionImageMediaFile = 7;
+
+	google.protobuf.StringValue FileName = 8;
+
+	google.protobuf.StringValue FileType = 9;
 }
 
 message ServiceProviderReportMessage{
@@ -337,6 +341,7 @@ message ServiceProviderReportMessage{
 
     google.protobuf.StringValue FileType = 4;
 }
+
 
 message ServiceProviderReportListMessage{
     repeated ServiceProviderReportMessage Reports = 1;
@@ -405,15 +410,10 @@ message ServiceProviderProfileMessage{
     
 	google.protobuf.BoolValue IsActive = 22;
 
-	repeated ServiceProviderAvailability Availabilities= 23;
+	google.protobuf.Int64Value CreatedDate = 23;
 
-	google.protobuf.Int64Value CreatedDate = 24;
+    google.protobuf.Int64Value LastModifedDate = 24;
 
-    google.protobuf.Int64Value LastModifedDate = 25;
-
-	google.protobuf.Int64Value LatestSlotStartTime = 26;
-
-	google.protobuf.Int64Value LatestSlotEndTime = 27;
 }
 
 message ServiceProviderServiceRequestMessage{
@@ -477,7 +477,7 @@ service TwilioWorkerV1{
 
 service UserTypeWorkerV1{
 
-	rpc GetUserType (UserTypeRequest) returns (StringMessage);
+	rpc GetUserType (VoidMessage) returns (StringMessage);
 
 }
 
@@ -518,11 +518,11 @@ service ServiceProviderCustomerWorkerV1 {
 
 
 service ServiceProviderPrescriptionWorkerV1{
-
 	rpc GetPrescription(ServiceProviderServiceRequestRequestMessage) returns (ServiceProviderPrescriptionMessage);
 
 	rpc SetPrescription(ServiceProviderPrescriptionMessage) returns (IdMessage);
 
+	rpc DownloadPrescriptionMedia (IdMessage) returns (ServiceProviderMediaMessage);
 }
 
 

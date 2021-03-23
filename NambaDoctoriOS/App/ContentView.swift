@@ -16,11 +16,13 @@ struct ContentView: View {
         ZStack {
             VStack {
                 switch loginStatus {
-                case .Doctor:
+                case .ServiceProvider:
                     DoctorHome(doctorViewModel: .init())
-                case .Patient:
+                case .Customer:
                     Text("PATIENT HOME")
                 case .NotSignedIn:
+                    PhoneVerificationview(preRegUser: .init())
+                default:
                     PhoneVerificationview(preRegUser: .init())
                 }
             }
@@ -39,7 +41,7 @@ extension ContentView {
         //Opening value check
         let status = UserDefaults.standard.value(forKey: "\(SimpleStateK.loginStatus)") ?? ""
         loginStatus = CheckLoginStatus.checkStatus(loggedInStatus: status as! String)
-        
+        print("LOGIN STATUS: \(loginStatus)")
         NotificationCenter.default
             .addObserver(forName: NSNotification.Name("\(SimpleStateK.loginStatusChange)"),
                          object: nil,
