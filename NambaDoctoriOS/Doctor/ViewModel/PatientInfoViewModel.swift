@@ -10,9 +10,12 @@ import Foundation
 class PatientInfoViewModel: ObservableObject {
     
     @Published var patientObj:ServiceProviderCustomerProfile!
-    @Published var patientAllergies:String = ""
-    @Published var AppointmentList:[ServiceProviderAppointment]!
-    @Published var ReportList:[ServiceProviderReport]!
+    
+    var patientAllergies:String = ""
+    var patientMedicalHistory:String = ""
+    
+    @Published var AppointmentList:[ServiceProviderAppointment]? = nil
+    @Published var ReportList:[ServiceProviderReport]? = nil
     
     var appointment:ServiceProviderAppointment
     private var customerServiceCall:CustomerGetSetServiceCallProtocol
@@ -23,7 +26,7 @@ class PatientInfoViewModel: ObservableObject {
          reportServiceCall:ReportGetSetServiceCallProtocol = ReportGetSetServiceCall(),
          appointmentServiceCall:AppointmentGetSetServiceCallProtocol = AppointmentGetSetServiceCall(),
          customerServiceCall:CustomerGetSetServiceCallProtocol = CustomerGetSetServiceCall()) {
-        
+
         self.appointment = appointment
         self.customerServiceCall = customerServiceCall
         self.reportServiceCall = reportServiceCall
@@ -37,24 +40,28 @@ class PatientInfoViewModel: ObservableObject {
     }
 
     private func retrievePatientObj () {
-        customerServiceCall.getPatientProfile(patientId: self.appointment.requestedBy) { (patient) in
-            self.patientObj = patient
+        customerServiceCall.getPatientProfile(patientId: self.appointment.requestedBy) { (customer) in
+            if customer != nil {
+                self.patientObj = customer
+                self.patientAllergies = customer?.allergies.last ?? ""
+                self.patientMedicalHistory = customer?.medicalHistory.last ?? ""
+            }
         }
     }
 
     private func retrieveAppointmentList () {
         appointmentServiceCall.getCustomerAppointmentList(patientId: appointment.requestedBy) { (aptList) in
-            self.AppointmentList = aptList
+            if aptList != nil {
+                self.AppointmentList = aptList
+            }
         }
     }
 
     private func retrieveUploadedDocumentList () {
-        reportServiceCall.getUploadedReportList(customerId: appointment.customerID) { (uploadedDocList) in
-            self.ReportList = uploadedDocList
+        reportServiceCall.getUploadedReportList(customerId: appointment.customerID) { (uploadedDocumentList) in
+            if uploadedDocumentList != nil {
+                self.ReportList = uploadedDocumentList
+            }
         }
-    }
-
-    func getPrescriptionVMToNavigate() -> ServiceRequestViewModel  {
-        return ServiceRequestViewModel(appointment: appointment, isNewPrescription: false)
     }
 }

@@ -9,7 +9,7 @@ import XCTest
 @testable import NambaDoctoriOS
 
 class UpcomingAppointmentsViewModelTests: XCTestCase {
-    var appointmentsVM:UpcomingAppointmentViewModel!
+    var appointmentsVM:AppointmentViewModel!
     var mockUpdateStatus:MockUpdateAptStatusService!
     var mockTwilioAccessTokenService:MockTwilioTokenAccessService!
     var mockDocNotifHelper:MockDoctorNotifHelper!

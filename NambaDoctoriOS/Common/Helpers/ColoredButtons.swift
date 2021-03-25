@@ -25,7 +25,7 @@ struct LargeButtonStyle: ButtonStyle {
             .overlay(
                 RoundedRectangle(cornerRadius: 6)
                     .stroke(currentForegroundColor, lineWidth: 1)
-        )
+            )
             .padding([.top, .bottom], 10)
             .font(Font.system(size: 19, weight: .semibold))
     }
@@ -65,7 +65,7 @@ struct LargeButton: View {
             .buttonStyle(LargeButtonStyle(backgroundColor: backgroundColor,
                                           foregroundColor: foregroundColor,
                                           isDisabled: disabled))
-                .disabled(self.disabled)
+            .disabled(self.disabled)
         }
         .frame(maxWidth:.infinity)
     }

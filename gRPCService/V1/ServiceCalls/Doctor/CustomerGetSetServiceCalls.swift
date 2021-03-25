@@ -45,7 +45,7 @@ class CustomerGetSetServiceCall: CustomerGetSetServiceCallProtocol {
                 print("Customer Client Set Success: \(response.id)")
                 completion(response.id.toString)
             } catch {
-                print("Customer Client Set failed: \(error)")
+                print("Customer Client Set failed: \(error.localizedDescription)")
                 completion(nil)
             }
         }
@@ -73,7 +73,7 @@ class CustomerGetSetServiceCall: CustomerGetSetServiceCallProtocol {
                 print("Customer Client received: \(response.customerID)")
                 completion(customer)
             } catch {
-                print("Customer Client failed: \(error)")
+                print("Customer Client failed: \(error.localizedDescription)")
                 completion(nil)
             }
         }

@@ -25,7 +25,7 @@ struct DoctorTwilioManager: View {
                 TwilioViewHelper(appointmentId: DoctorTwilioVM.appointment.appointmentID)
                     .navigationBarItems(trailing: navBarTrailing)
             case .finished:
-                WritePrescriptionView(appointment: DoctorTwilioVM.appointment, isNewPrescription: true)
+                Text("Finished").onAppear(){self.killView()}
             case .disconnected:
                 Text("Disconnected").onAppear(){self.killView()}
             case .done:

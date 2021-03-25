@@ -46,12 +46,5 @@ struct DoctorHome: View {
         .alert(item: $alertItem) { alertItem in
             alertToShow(alertItem: alertItem)
         }
-        .sheet(item: $sheetItem) { sheetItem in
-            NavigationView {
-                if sheetItem.appointment != nil {
-                    PatientInfoView(appointment: sheetItem.appointment!)
-                }
-            }
-        }
     }
 }

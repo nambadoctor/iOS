@@ -9,27 +9,27 @@ import SwiftUI
 
 struct InvestigationsView: View {
     
-    @ObservedObject var investigationsVM:InvestigationsViewModel
+    @ObservedObject var serviceRequestVM:ServiceRequestViewModel
     
     var body: some View {
         Section(header: Text("Investigations (swipe to delete)")) {
             
-            ForEach(Array(investigationsVM.investigations.enumerated()), id: \.0) { i, _ in
+            ForEach(Array(serviceRequestVM.investigations.enumerated()), id: \.0) { i, _ in
                 HStack {
-                    TextField("", text: $investigationsVM.investigations[i])
+                    TextField("", text: $serviceRequestVM.investigations[i])
                     
                     Button {
-                        investigationsVM.removeInvestigationManually(index: i)
+                        serviceRequestVM.removeInvestigationManually(index: i)
                     } label: {
                         Image(systemName: "xmark")
                     }
 
                 }
-            }.onDelete(perform: investigationsVM.removeInvestigationBySwiping)
+            }.onDelete(perform: serviceRequestVM.removeInvestigationBySwiping)
 
-            TextField("Enter Investigation", text: $investigationsVM.investigationTemp)
+            TextField("Enter Investigation", text: $serviceRequestVM.investigationTemp)
             Button {
-                investigationsVM.appendInvestigation()
+                serviceRequestVM.appendInvestigation()
             } label: {
                 HStack {
                     Spacer()

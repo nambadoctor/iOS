@@ -8,18 +8,15 @@
 import Foundation
 import SwiftUI
 
-class UpcomingAppointmentViewModel: ObservableObject {
+class AppointmentViewModel: ObservableObject {
     @Published var appointment:ServiceProviderAppointment
 
     @Published var consultationStarted:Bool = false
     @Published var consultationDone:Bool = false
 
     @Published var takeToTwilioRoom:Bool = false
-    @Published var takeToWritePrescription:Bool = false
-    @Published var takeToViewPatientInfo:Bool = false
-
-    @Published var showCancelButton:Bool = false
-
+    @Published var takeToDetailedAppointment:Bool = false
+            
     private var docSheetHelper:DoctorSheetHelpers = DoctorSheetHelpers()
     private var docNotifHelper:DocNotifHelpers
 
@@ -35,7 +32,6 @@ class UpcomingAppointmentViewModel: ObservableObject {
         self.doctorAlertHelper = doctorAlertHelper
         self.docNotifHelper = DocNotifHelpers(appointment: appointment)
         checkIfConsultationStarted()
-        checkToShowCancelButton()
         checkIfConsultationDone()
     }
 
@@ -63,44 +59,11 @@ class UpcomingAppointmentViewModel: ObservableObject {
         }
     }
 
-    func checkToShowCancelButton() {
-        if appointment.status == ConsultStateK.Confirmed.rawValue {
-            self.showCancelButton = true
-        }
-    }
-    
-    func cancelAppointment() {
-        doctorAlertHelper.cancelAppointmentAlert { (cancel) in
-            self.updateAppointmentStatus.toCancelled(appointment: &self.appointment) { (success) in
-                if success {
-                    self.docNotifHelper.fireCancelNotif(requestedBy: self.appointment.customerID, appointmentTime: self.appointment.scheduledAppointmentStartTime)
-                    DoctorDefaultModifiers.refreshAppointments()
-                    self.checkToShowCancelButton()
-                } else {
-                    GlobalPopupHelpers.setErrorAlert()
-                }
-            }
-        }
+    func navigateIntoAppointment () {
+        self.takeToDetailedAppointment = true
     }
 
     func startConsultation() {
         self.takeToTwilioRoom = true
-    }
-
-    func writePrescription() {
-        consultationDone = true
-        doctorAlertHelper.writePrescriptionAlert(appointmentId: appointmentId, requestedBy: appointment.requestedBy) { (navigate) in
-            self.takeToWritePrescription = true
-
-            self.updateAppointmentStatus.updateToFinishedAppointment(appointment: &self.appointment)
-                { _ in }
-
-            self.docNotifHelper.fireAppointmentOverNotif(requestedBy: self.appointment.requestedBy)
-
-        }
-    }
-
-    func viewPatientInfo() {
-        docSheetHelper.showPatientInfoSheet(appointment: appointment)
     }
 }

@@ -9,10 +9,10 @@ import SwiftUI
 
 struct AppointmentCard: View {
 
-    @ObservedObject private var AppointmentVM:UpcomingAppointmentViewModel
+    @ObservedObject private var AppointmentVM:AppointmentViewModel
 
     init(appointment:ServiceProviderAppointment) {
-        AppointmentVM = UpcomingAppointmentViewModel(appointment: appointment)
+        AppointmentVM = AppointmentViewModel(appointment: appointment)
     }
 
     var body: some View {
@@ -20,85 +20,19 @@ struct AppointmentCard: View {
             Text(AppointmentVM.appointment.customerName)
             Text("On: \(AppointmentVM.LocalTime)")
             
-            HStack (alignment: .center) {
-                
-                if AppointmentVM.showCancelButton {
-                    cancelAppointmentButton
-                    Spacer()
-                }
-
-                patientInfoButton
-                Spacer()
-                
-                writePrescriptionButton
-                Spacer()
-                
-                if !AppointmentVM.consultationDone {
-                    startConsultationButton
-                }
+            if self.AppointmentVM.takeToDetailedAppointment {
+                NavigationLink("",
+                               destination: DetailedUpcomingAppointmentView(appointment: self.AppointmentVM.appointment),
+                               isActive: self.$AppointmentVM.takeToDetailedAppointment)
             }
-
+        }
+        .onTapGesture {
+            self.AppointmentVM.navigateIntoAppointment()
         }
         .padding([.leading, .trailing])
         .background(AppointmentVM.cardBackgroundColor)
         .cornerRadius(10)
         .padding(10)
         .shadow(radius: 5)
-    }
-    
-    var cancelAppointmentButton : some View {
-        Button (action: {
-            AppointmentVM.cancelAppointment()
-        }) {
-            VStack (alignment: .center) {
-                Image("xmark.circle")
-                Text("Cancel").font(.system(size: 13))
-                Text("appointment").font(.system(size: 13))
-            }
-        }
-    }
-
-    var patientInfoButton : some View {
-        Button (action: {
-            AppointmentVM.viewPatientInfo()
-        }) {
-            VStack (alignment: .center) {
-                Image("info.circle")
-                Text("patient").font(.system(size: 13))
-                Text("info").font(.system(size: 13))
-            }
-        }
-    }
-
-    var writePrescriptionButton : some View {
-        Button (action: {
-            AppointmentVM.writePrescription()
-        }) {
-            VStack (alignment: .center) {
-                Image("text.badge.checkmark")
-                Text("Write").font(.system(size: 13))
-                Text("Prescription").font(.system(size: 13))
-            }
-        }
-    }
-
-    var startConsultationButton : some View {
-        Button (action: {
-            AppointmentVM.startConsultation()
-        }) {
-            VStack (alignment: .center) {
-                if !AppointmentVM.consultationDone {
-                    Image("arrowshape.turn.up.right.fill")
-                    if AppointmentVM.consultationStarted {
-                        Text("Re-Join").font(.system(size: 13))
-                    } else {
-                        Text("Join").font(.system(size: 13))
-                    }
-                    Text("Consultation").font(.system(size: 13))
-                    Text("Room").font(.system(size: 13))
-                }
-            }
-        }
-
     }
 }

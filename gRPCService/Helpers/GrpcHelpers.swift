@@ -11,6 +11,7 @@ import SwiftUI
 
 class GrpcHelpers {
     static func convertByteStreamToImage(byteStream:Google_Protobuf_BytesValue) -> UIImage {
-        return Helpers.convertB64ToUIImage(b64Data: byteStream.toBase64String)!
+        print(byteStream.data.base64EncodedString())
+        return Helpers.convertB64ToUIImage(b64Data: byteStream.data.base64EncodedString())!
     }
 }

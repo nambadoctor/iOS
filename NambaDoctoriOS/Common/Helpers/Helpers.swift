@@ -37,8 +37,10 @@ class Helpers {
         let newImageData = Data(base64Encoded: b64Data)
         
         if let newImageData = newImageData {
+            print("CONVERTING TO IMAGE \(UIImage(data: newImageData))")
            return UIImage(data: newImageData)
         } else {
+            print("FAILED TO CONVERT TO IMAGE")
             return nil
         }
     }

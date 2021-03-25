@@ -27,14 +27,14 @@ class UpdateAppointmentStatusHelper:UpdateAppointmentStatusProtocol {
     }
     
     func updateToStartedConsultation (appointment:inout ServiceProviderAppointment, completion: @escaping (_ success:Bool) -> ()) {
-        
+
         appointment.status = "StartedConsultation"
         
         AppointmentServiceCalls.setAppointment(appointment: appointment) { (updated) in
             if updated { completion(true) } else { }
         }
     }
-    
+
     func updateToFinished (appointment:inout ServiceProviderAppointment, completion: @escaping (_ success:Bool) -> ()) {
         
         appointment.status = "Finished"

@@ -48,7 +48,7 @@ class PrescriptionGetSetServiceCall : PrescriptionGetSetServiceCallProtocol {
         
         let prescriptionClient = Nd_V1_ServiceProviderPrescriptionWorkerV1Client(channel: channel)
 
-        let request = prescriptionObjectMapper.localPrescriptionToGrpc(prescription: medicineViewModel.prescription)
+        let request = prescriptionObjectMapper.localPrescriptionToGrpc(prescription: medicineViewModel.prescription!)
         
         let makePrescription = prescriptionClient.setPrescription(request, callOptions: callOptions)
         
