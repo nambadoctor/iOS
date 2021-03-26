@@ -93,7 +93,6 @@
 		17424FAA25BACEF600523B94 /* ServiceRequestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17424FA925BACEF600523B94 /* ServiceRequestViewModel.swift */; };
 		17424FDD25BAD14C00523B94 /* DiagnosisTypeK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17424FDC25BAD14C00523B94 /* DiagnosisTypeK.swift */; };
 		17424FE525BAD1B100523B94 /* SideBySideCheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17424FE425BAD1B100523B94 /* SideBySideCheckBox.swift */; };
-		1742503D25BAE26200523B94 /* InvestigationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1742503C25BAE26200523B94 /* InvestigationsView.swift */; };
 		1742504A25BAE39E00523B94 /* GeneralDoctorHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1742504925BAE39E00523B94 /* GeneralDoctorHelpers.swift */; };
 		1742504F25BAE3E700523B94 /* CleanDoubleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1742504E25BAE3E700523B94 /* CleanDoubleExtension.swift */; };
 		1742505925BAE58800523B94 /* MedicineViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1742505825BAE58800523B94 /* MedicineViewModel.swift */; };
@@ -210,6 +209,9 @@
 		17EC75E5260C62190002BA75 /* PatientInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EC75E4260C62190002BA75 /* PatientInfoView.swift */; };
 		17EC75EA260C73AD0002BA75 /* DoctorsSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EC75E9260C73AD0002BA75 /* DoctorsSectionViewModel.swift */; };
 		17EC75EF260C74920002BA75 /* PrescriptionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EC75EE260C74920002BA75 /* PrescriptionsView.swift */; };
+		17EC75F7260CEFAB0002BA75 /* InvestigationsEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EC75F6260CEFAB0002BA75 /* InvestigationsEntryView.swift */; };
+		17EC75FC260CF00C0002BA75 /* InvestigationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EC75FB260CF00C0002BA75 /* InvestigationsViewModel.swift */; };
+		17EC7649260DB5A10002BA75 /* HorizontalDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EC7648260DB5A10002BA75 /* HorizontalDatePicker.swift */; };
 		434CDF5DFA0DF425DF44E2A2 /* Pods_NambaDoctoriOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 435C297907080A241A267BB0 /* Pods_NambaDoctoriOSTests.framework */; };
 		95ACD8DA00B7C0B2D7EA224D /* Pods_NambaDoctoriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 421278E51F7A74B868A7EA69 /* Pods_NambaDoctoriOS.framework */; };
 		B6746684516D05CE4C3163B4 /* Pods_NambaDoctoriOS_NambaDoctoriOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276EFB6904AFFC883BD04BA9 /* Pods_NambaDoctoriOS_NambaDoctoriOSUITests.framework */; };
@@ -332,7 +334,6 @@
 		17424FA925BACEF600523B94 /* ServiceRequestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceRequestViewModel.swift; sourceTree = "<group>"; };
 		17424FDC25BAD14C00523B94 /* DiagnosisTypeK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosisTypeK.swift; sourceTree = "<group>"; };
 		17424FE425BAD1B100523B94 /* SideBySideCheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBySideCheckBox.swift; sourceTree = "<group>"; };
-		1742503C25BAE26200523B94 /* InvestigationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestigationsView.swift; sourceTree = "<group>"; };
 		1742504925BAE39E00523B94 /* GeneralDoctorHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralDoctorHelpers.swift; sourceTree = "<group>"; };
 		1742504E25BAE3E700523B94 /* CleanDoubleExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanDoubleExtension.swift; sourceTree = "<group>"; };
 		1742505825BAE58800523B94 /* MedicineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineViewModel.swift; sourceTree = "<group>"; };
@@ -455,6 +456,9 @@
 		17EC75E4260C62190002BA75 /* PatientInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientInfoView.swift; sourceTree = "<group>"; };
 		17EC75E9260C73AD0002BA75 /* DoctorsSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorsSectionViewModel.swift; sourceTree = "<group>"; };
 		17EC75EE260C74920002BA75 /* PrescriptionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrescriptionsView.swift; sourceTree = "<group>"; };
+		17EC75F6260CEFAB0002BA75 /* InvestigationsEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestigationsEntryView.swift; sourceTree = "<group>"; };
+		17EC75FB260CF00C0002BA75 /* InvestigationsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvestigationsViewModel.swift; sourceTree = "<group>"; };
+		17EC7648260DB5A10002BA75 /* HorizontalDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalDatePicker.swift; sourceTree = "<group>"; };
 		276EFB6904AFFC883BD04BA9 /* Pods_NambaDoctoriOS_NambaDoctoriOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NambaDoctoriOS_NambaDoctoriOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C1F9336480062135B79A499 /* Pods-NambaDoctoriOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NambaDoctoriOS.release.xcconfig"; path = "Target Support Files/Pods-NambaDoctoriOS/Pods-NambaDoctoriOS.release.xcconfig"; sourceTree = "<group>"; };
 		421278E51F7A74B868A7EA69 /* Pods_NambaDoctoriOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NambaDoctoriOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -634,6 +638,7 @@
 			children = (
 				172B84E625AEE39E00C6B035 /* DoctorViewModel.swift */,
 				1748005E25B8BDB000C8E3CC /* AppointmentViewModel.swift */,
+				17EC75FB260CF00C0002BA75 /* InvestigationsViewModel.swift */,
 				17424FA925BACEF600523B94 /* ServiceRequestViewModel.swift */,
 				1742505825BAE58800523B94 /* MedicineViewModel.swift */,
 				174250CA25BAEF4000523B94 /* MedicineEntryViewModel.swift */,
@@ -699,6 +704,7 @@
 		172B852925AEE66600C6B035 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				17EC7647260DB57A0002BA75 /* HorizontalDatePicker */,
 				17424FE925BAD1CA00523B94 /* CommonHelperViews */,
 				172B850B25AEE46700C6B035 /* Login */,
 				172B850825AEE46600C6B035 /* PhoneNumberEntryView */,
@@ -761,14 +767,6 @@
 				173A231A25CBB8F20086342A /* FindUserTypeViewModelProtocol.swift */,
 			);
 			path = Protocols;
-			sourceTree = "<group>";
-		};
-		17424FCE25BAD0C000523B94 /* PrescriptionHelpers */ = {
-			isa = PBXGroup;
-			children = (
-				1742503C25BAE26200523B94 /* InvestigationsView.swift */,
-			);
-			path = PrescriptionHelpers;
 			sourceTree = "<group>";
 		};
 		17424FE925BAD1CA00523B94 /* CommonHelperViews */ = {
@@ -1021,7 +1019,6 @@
 				17E370A025BF196C0004C965 /* DoctorTwilioManager */,
 				1742523425BD987500523B94 /* PatientInfo */,
 				1742514725BCC31300523B94 /* ViewPrescription */,
-				17424FCE25BAD0C000523B94 /* PrescriptionHelpers */,
 				17B5D13425B759EC009D6A42 /* Appointments */,
 			);
 			path = View;
@@ -1220,8 +1217,17 @@
 				17EC75E4260C62190002BA75 /* PatientInfoView.swift */,
 				17EC75E9260C73AD0002BA75 /* DoctorsSectionViewModel.swift */,
 				17EC75EE260C74920002BA75 /* PrescriptionsView.swift */,
+				17EC75F6260CEFAB0002BA75 /* InvestigationsEntryView.swift */,
 			);
 			path = DetailedAppointmentView;
+			sourceTree = "<group>";
+		};
+		17EC7647260DB57A0002BA75 /* HorizontalDatePicker */ = {
+			isa = PBXGroup;
+			children = (
+				17EC7648260DB5A10002BA75 /* HorizontalDatePicker.swift */,
+			);
+			path = HorizontalDatePicker;
 			sourceTree = "<group>";
 		};
 		3F839DD1AF4230490A6B4CE6 /* Frameworks */ = {
@@ -1585,6 +1591,7 @@
 				171647432603261800BB5B5A /* ServiceProviderProfileMapper.swift in Sources */,
 				171648452609300600BB5B5A /* ServiceProviderFileInfoMapper.swift in Sources */,
 				171647782603485F00BB5B5A /* ServiceRequestGetSetCallProtocol.swift in Sources */,
+				17EC75FC260CF00C0002BA75 /* InvestigationsViewModel.swift in Sources */,
 				171647012603111400BB5B5A /* ServiceProviderAppInfoMapper.swift in Sources */,
 				171647BE2604470D00BB5B5A /* PrescriptionGetSetServiceCallProtocol.swift in Sources */,
 				172B851125AEE46700C6B035 /* OTPVerificationView.swift in Sources */,
@@ -1603,8 +1610,8 @@
 				172B84E725AEE39E00C6B035 /* DoctorViewModel.swift in Sources */,
 				17E3707D25BF12AF0004C965 /* DoctorTwilioViewModel.swift in Sources */,
 				171647F026046C0200BB5B5A /* RetrieveAuthId.swift in Sources */,
+				17EC75F7260CEFAB0002BA75 /* InvestigationsEntryView.swift in Sources */,
 				171648682609C0CE00BB5B5A /* RoundedCornerHelper.swift in Sources */,
-				1742503D25BAE26200523B94 /* InvestigationsView.swift in Sources */,
 				17626E0525DA23E000C36A99 /* PinchToZoom.swift in Sources */,
 				1716472F2603226A00BB5B5A /* ServiceProviderMedicineMapper.swift in Sources */,
 				171647732603473000BB5B5A /* ServiceRequestGetSetCall.swift in Sources */,
@@ -1612,6 +1619,7 @@
 				17E869D925CE75E1000B0952 /* PatientReportView.swift in Sources */,
 				1742523E25BD98F400523B94 /* CustomerGetSetServiceCalls.swift in Sources */,
 				1716483826084EDE00BB5B5A /* GrpcHelpers.swift in Sources */,
+				17EC7649260DB5A10002BA75 /* HorizontalDatePicker.swift in Sources */,
 				1716470E260314DE00BB5B5A /* ServiceProviderCustomerProfileObjectMapper.swift in Sources */,
 				1796320F25AEE865002E466C /* KeyboardHeightPublisher.swift in Sources */,
 				17424F7A25BAC62A00523B94 /* TwilioAccessTokenProtocol.swift in Sources */,

@@ -19,7 +19,6 @@ struct PatientInfoView: View {
                 .bold()
             
             ExpandingTextView(text: self.$patientInfoViewModel.patientAllergies)
-            Divider().padding(.bottom)
             
             Text("HISTORY:")
                 .font(.footnote)
@@ -27,12 +26,18 @@ struct PatientInfoView: View {
                 .bold()
             
             ExpandingTextView(text: self.$patientInfoViewModel.patientMedicalHistory)
-            Divider()
+            
+            Text("Reports:")
+                .font(.footnote)
+                .foregroundColor(Color.black.opacity(0.4))
+                .bold()
             
             if self.patientInfoViewModel.ReportList != nil {
                 ForEach (self.patientInfoViewModel.ReportList!, id: \.reportID) { report in
                     PatientReportView(report: report)
                 }
+            } else {
+                Text("There are no reports")
             }
         }
     }

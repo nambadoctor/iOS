@@ -24,6 +24,7 @@ struct WrappedTextView: UIViewRepresentable {
     func updateUIView(_ uiView: UITextView, context: Context) {
         uiView.text = self.text
         uiView.font = .systemFont(ofSize: 14)
+        uiView.backgroundColor = UIColor(Color.gray.opacity(0.09))
         DispatchQueue.main.async {
             self.textDidChange(uiView)
         }
@@ -57,6 +58,7 @@ struct ExpandingTextView: View {
 
     var body: some View {
         WrappedTextView(text: $text, textDidChange: self.textDidChange)
+            .cornerRadius(10)
             .frame(height: textViewHeight ?? minHeight)
     }
 

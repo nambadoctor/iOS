@@ -11,15 +11,13 @@ import SwiftUI
 class ServiceRequestViewModel: ObservableObject {
     var appointment:ServiceProviderAppointment
 
-    var serviceRequest:ServiceProviderServiceRequest
+    @Published var serviceRequest:ServiceProviderServiceRequest
     
     @Published var errorInRetrievingPrescription:Bool = false
     @Published var navigateToReviewPrescription:Bool = false
     @Published var dismissAllViews:Bool = false
     
-    @Published var investigations:[String] = [String]()
-    @Published var investigationTemp:String = ""
-    
+    @Published var investigationsViewModel:InvestigationsViewModel = InvestigationsViewModel()
 
     private var retrieveServiceRequesthelper:ServiceRequestGetSetCallProtocol
     private var docSheetHelper:DoctorSheetHelpers = DoctorSheetHelpers()
@@ -47,35 +45,6 @@ class ServiceRequestViewModel: ObservableObject {
 
     func mapPrescriptionValues (serviceRequest:ServiceProviderServiceRequest) {
         self.serviceRequest = serviceRequest
-        self.investigations = serviceRequest.investigations
+        self.investigationsViewModel.investigations = serviceRequest.investigations
     }
-    
-    func removeInvestigationBySwiping(at offsets: IndexSet) {
-        investigations.remove(atOffsets: offsets)
-    }
-
-    func removeInvestigationManually(index:Int) {
-        self.investigations.remove(at: index)
-    }
-    
-    func appendInvestigation() {
-        guard !investigationTemp.isEmpty else {
-            //show empty field alert locally
-            return
-        }
-
-        addInvestigation()
-    }
-    
-    func addTempIntoArrayWhenFinished () {
-        if !investigationTemp.isEmpty {
-            addInvestigation()
-        }
-    }
-    
-    func addInvestigation () {
-        investigations.append(investigationTemp)
-        investigationTemp = ""
-    }
-
 }

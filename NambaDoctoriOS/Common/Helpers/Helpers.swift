@@ -34,10 +34,11 @@ class Helpers {
     }
     
     static func convertB64ToUIImage (b64Data:String) -> UIImage? {
+        print("encoded string data: \(b64Data)")
         let newImageData = Data(base64Encoded: b64Data)
         
         if let newImageData = newImageData {
-            print("CONVERTING TO IMAGE \(UIImage(data: newImageData))")
+            print("CONVERTING TO IMAGE \(String(describing: UIImage(data: newImageData)))")
            return UIImage(data: newImageData)
         } else {
             print("FAILED TO CONVERT TO IMAGE")
@@ -58,7 +59,37 @@ class Helpers {
          let dateString = formatter.string(from: Date(milliseconds: timeStamp))
         
         
-         var day = DateFormatter().weekdaySymbols[Calendar.current.component(.weekday, from: Date(milliseconds: timeStamp)) - 1]
+         let day = DateFormatter().weekdaySymbols[Calendar.current.component(.weekday, from: Date(milliseconds: timeStamp)) - 1]
          return "\(day), \(dateString)"
      }
+    
+    static func getDatePickerStringFromDate (date:Date) -> [String] {
+        let formatter = DateFormatter()
+
+        formatter.timeZone = TimeZone.current
+
+        formatter.dateFormat = "dd"
+
+        let dateString = formatter.string(from: date)
+        
+        let day = "\(DateFormatter().weekdaySymbols[Calendar.current.component(.weekday, from: date) - 1])"
+        
+        return [day[0], dateString]
+    }
+    
+    static func compareDate (date1:Date, date2:Date) -> Bool {
+        let order = Calendar.current.compare(date1, to: date2, toGranularity: .day)
+
+        if order == .orderedSame {
+            return true
+        } else {
+            return false
+        }
+    }
+}
+
+extension String {
+    subscript(i: Int) -> String {
+        return String(self[index(startIndex, offsetBy: i)])
+    }
 }

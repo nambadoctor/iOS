@@ -20,13 +20,23 @@ struct PatientReportView: View {
             case .loading:
                 Indicator()
             case .notFound:
-                Text("Sorry this image was not found")
+                Text("Report could not load")
+                    .foregroundColor(.yellow)
+                    .bold()
+                    .padding()
             case .display:
                 Image(uiImage: patientReportVM.mediaObject!)
-                    .resizable()
-                    .scaledToFit()
-                    .pinchToZoom()
             }
+        }
+        .frame(width: 100, height: 160)
+        .background(Color.yellow.opacity(0.2))
+        .cornerRadius(10)
+        .padding([.top, .trailing])
+        .sheet(isPresented: self.$patientReportVM.showReportSheet) {
+            Image(uiImage: patientReportVM.mediaObject!)
+                .resizable()
+                .scaledToFit()
+                .pinchToZoom()
         }
     }
 }

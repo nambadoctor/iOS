@@ -16,7 +16,7 @@ class PatientInfoViewModel: ObservableObject {
     
     @Published var AppointmentList:[ServiceProviderAppointment]? = nil
     @Published var ReportList:[ServiceProviderReport]? = nil
-    
+        
     var appointment:ServiceProviderAppointment
     private var customerServiceCall:CustomerGetSetServiceCallProtocol
     private var reportServiceCall:ReportGetSetServiceCallProtocol

@@ -14,7 +14,7 @@ struct DoctorsSectionViewModel: View {
     var body: some View {
         VStack {
             clinicalSummary
-            investigations
+            InvestigationsEntryView(investigationsViewModel: serviceRequestVM.investigationsViewModel)
         }
     }
     
@@ -26,14 +26,15 @@ struct DoctorsSectionViewModel: View {
                 .bold()
 
             ExpandingTextView(text: self.$serviceRequestVM.serviceRequest.examination)
-            Divider().padding(.bottom)
 
             Text("DIAGNOSIS:")
                 .font(.footnote)
                 .foregroundColor(Color.black.opacity(0.4))
                 .bold()
             ExpandingTextView(text: $serviceRequestVM.serviceRequest.diagnosis.name)
-            Divider().padding(.bottom)
+            
+            SideBySideCheckBox(isChecked: $serviceRequestVM.serviceRequest.diagnosis.type, title1: "Provisional", title2: "Definitive")
+                .padding(.bottom)
 
             Text("ADVICE FOR PATIENT:")
                 .font(.footnote)
@@ -42,43 +43,6 @@ struct DoctorsSectionViewModel: View {
             
             ExpandingTextView(text: $serviceRequestVM.serviceRequest.advice)
             Divider()
-        }.padding(.bottom)
-    }
-    
-    var investigations : some View {
-        VStack (alignment: .leading) {
-            Text("INVESTIGATIONS:")
-                .font(.footnote)
-                .foregroundColor(Color.black.opacity(0.4))
-                .bold()
-            
-            HStack (alignment: .top) {
-                VStack {
-                    ExpandingTextView(text: $serviceRequestVM.investigationTemp)
-                    Divider()
-                    
-                    ForEach(self.serviceRequestVM.investigations, id: \.self) { inv in
-                        HStack {
-                            Text(inv)
-                                .font(.callout)
-                                .foregroundColor(Color.green)
-                                .padding()
-                            Spacer()
-                        }
-                        .background(Color.green.opacity(0.3))
-                        .cornerRadius(7)
-                    }
-                }.padding(.trailing)
-
-                Button(action: {
-                    self.serviceRequestVM.appendInvestigation()
-                }, label: {
-                    Image("plus.circle.fill")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .foregroundColor(.green)
-                })
-            }
         }.padding(.bottom)
     }
 }

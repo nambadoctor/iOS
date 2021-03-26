@@ -40,10 +40,6 @@ extension SwiftProtobuf.Google_Protobuf_Int32Value {
     var toInt32:Int32 {return Int32(self.value)}
 }
 
-extension SwiftProtobuf.Google_Protobuf_BytesValue {
-    var data:Data {return self.value.base64EncodedData()}
-}
-
 extension SwiftProtobuf.Google_Protobuf_DoubleValue {
     var toDouble:Double {return Double(self.value)}
 }

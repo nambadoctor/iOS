@@ -12,6 +12,7 @@ class PatientReportViewModel : ObservableObject {
     @Published var report:ServiceProviderReport
     @Published var mediaObject:UIImage?
     @Published var displayImage:ImageDisplayEnum = .loading
+    @Published var showReportSheet:Bool = false
     
     private var reportServiceCall:ReportGetSetServiceCallProtocol
     
@@ -21,6 +22,14 @@ class PatientReportViewModel : ObservableObject {
         self.reportServiceCall = reportServiceCall
         
         getImageObj()
+    }
+    
+    func enableReportSheet() {
+        self.showReportSheet = true
+    }
+    
+    func disableReportSheet() {
+        self.showReportSheet = false
     }
     
     func getImageObj () {
