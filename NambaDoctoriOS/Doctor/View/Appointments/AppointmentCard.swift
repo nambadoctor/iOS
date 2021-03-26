@@ -16,9 +16,29 @@ struct AppointmentCard: View {
     }
 
     var body: some View {
-        VStack (alignment: .leading, spacing: 10) {
-            Text(AppointmentVM.appointment.customerName)
-            Text("On: \(AppointmentVM.LocalTime)")
+        VStack (alignment: .leading ) {
+            HStack {
+                Image("person.crop.circle.fill")
+                    .resizable()
+                    .frame(width: 50, height: 50)
+                
+                VStack (alignment: .leading, spacing: 5) {
+                    Text(AppointmentVM.appointment.customerName)
+                        .font(.system(size: 20))
+                        .foregroundColor(Color.blue)
+                    Text("\(AppointmentVM.appointment.serviceFee.clean)₹")
+                        .font(.subheadline)
+                        .foregroundColor(Color.gray.opacity(0.8))
+                }.padding(.leading, 3)
+            }
+            
+            Divider()
+                .frame(height: 1)
+                .background(Color.blue.opacity(0.1))
+                .padding([.top, .bottom], 10)
+            Text(AppointmentVM.getAppointmentTimeSpan())
+                .font(.system(size: 19))
+                .foregroundColor(Color.blue)
             
             if self.AppointmentVM.takeToDetailedAppointment {
                 NavigationLink("",
@@ -26,13 +46,16 @@ struct AppointmentCard: View {
                                isActive: self.$AppointmentVM.takeToDetailedAppointment)
             }
         }
+        .padding()
+        .background(Color.blue.opacity(0.1))
+        .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.blue.opacity(0.5), lineWidth: 1)
+            )
+        .cornerRadius(10)
+        .frame(width: UIScreen.main.bounds.width - 60)
         .onTapGesture {
             self.AppointmentVM.navigateIntoAppointment()
         }
-        .padding([.leading, .trailing])
-        .background(AppointmentVM.cardBackgroundColor)
-        .cornerRadius(10)
-        .padding(10)
-        .shadow(radius: 5)
     }
 }

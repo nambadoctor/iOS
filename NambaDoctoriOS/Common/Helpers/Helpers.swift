@@ -63,6 +63,21 @@ class Helpers {
          return "\(day), \(dateString)"
      }
     
+    static func getSimpleTimeForAppointment (timeStamp1 : Int64, timeStamp2: Int64) -> String {
+        let formatter = DateFormatter()
+
+        formatter.timeZone = TimeZone.current
+
+        formatter.dateFormat = "h:mm a"
+        formatter.amSymbol = "AM"
+        formatter.pmSymbol = "PM"
+
+        let dateString1 = formatter.string(from: Date(milliseconds: timeStamp1))
+        let dateString2 = formatter.string(from: Date(milliseconds: timeStamp2))
+       
+       return "\(dateString1) - \(dateString2)"
+    }
+    
     static func getDatePickerStringFromDate (date:Date) -> [String] {
         let formatter = DateFormatter()
 

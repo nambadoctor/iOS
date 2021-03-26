@@ -24,7 +24,8 @@ struct AppointmentsView: View {
                         Text("There no appointments for this date").padding()
                     } else {
                         ForEach(doctorViewModel.appointments, id: \.appointmentID) { appointment in
-                            if Helpers.compareDate(timestamp: appointment.scheduledAppointmentStartTime, date2: doctorViewModel.datePickerVM.selectedDate) {
+                            if doctorViewModel.compareCurrentAppointmentTimeWithSelectedDate(appointment: appointment)
+                            {
                                 AppointmentCard(appointment: appointment)
                             }
                         }

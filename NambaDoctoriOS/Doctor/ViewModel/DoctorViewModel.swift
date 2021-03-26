@@ -90,4 +90,8 @@ extension DoctorViewModel : DatePickerChangedDelegate {
         
         return exists
     }
+    
+    func compareCurrentAppointmentTimeWithSelectedDate (appointment:ServiceProviderAppointment) -> Bool {
+        return Helpers.compareDate(timestamp: appointment.scheduledAppointmentStartTime, date2: datePickerVM.selectedDate)
+    }
 }

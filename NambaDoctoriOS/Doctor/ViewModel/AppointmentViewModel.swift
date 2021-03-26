@@ -66,4 +66,8 @@ class AppointmentViewModel: ObservableObject {
     func startConsultation() {
         self.takeToTwilioRoom = true
     }
+    
+    func getAppointmentTimeSpan () -> String {
+        return Helpers.getSimpleTimeForAppointment(timeStamp1: appointment.scheduledAppointmentStartTime, timeStamp2: appointment.scheduledAppointmentEndTime)
+    }
 }
