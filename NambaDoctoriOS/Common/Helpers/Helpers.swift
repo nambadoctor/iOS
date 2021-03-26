@@ -86,6 +86,18 @@ class Helpers {
             return false
         }
     }
+    
+    static func compareDate (timestamp:Int64, date2:Date) -> Bool {
+        let date1 = Date(milliseconds: timestamp)
+        
+        let order = Calendar.current.compare(date1, to: date2, toGranularity: .day)
+
+        if order == .orderedSame {
+            return true
+        } else {
+            return false
+        }
+    }
 }
 
 extension String {

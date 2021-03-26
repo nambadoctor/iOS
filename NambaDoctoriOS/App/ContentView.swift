@@ -17,8 +17,7 @@ struct ContentView: View {
             VStack {
                 switch loginStatus {
                 case .ServiceProvider:
-                    HorizontalDatePicker()
-                    //DoctorHome(doctorViewModel: .init())
+                    DoctorHome(doctorViewModel: .init())
                 case .Customer:
                     Text("PATIENT HOME")
                 case .NotSignedIn:

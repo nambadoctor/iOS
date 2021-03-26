@@ -212,6 +212,7 @@
 		17EC75F7260CEFAB0002BA75 /* InvestigationsEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EC75F6260CEFAB0002BA75 /* InvestigationsEntryView.swift */; };
 		17EC75FC260CF00C0002BA75 /* InvestigationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EC75FB260CF00C0002BA75 /* InvestigationsViewModel.swift */; };
 		17EC7649260DB5A10002BA75 /* HorizontalDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EC7648260DB5A10002BA75 /* HorizontalDatePicker.swift */; };
+		17EC7656260DE8940002BA75 /* DatePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EC7655260DE8940002BA75 /* DatePickerViewModel.swift */; };
 		434CDF5DFA0DF425DF44E2A2 /* Pods_NambaDoctoriOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 435C297907080A241A267BB0 /* Pods_NambaDoctoriOSTests.framework */; };
 		95ACD8DA00B7C0B2D7EA224D /* Pods_NambaDoctoriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 421278E51F7A74B868A7EA69 /* Pods_NambaDoctoriOS.framework */; };
 		B6746684516D05CE4C3163B4 /* Pods_NambaDoctoriOS_NambaDoctoriOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276EFB6904AFFC883BD04BA9 /* Pods_NambaDoctoriOS_NambaDoctoriOSUITests.framework */; };
@@ -459,6 +460,7 @@
 		17EC75F6260CEFAB0002BA75 /* InvestigationsEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestigationsEntryView.swift; sourceTree = "<group>"; };
 		17EC75FB260CF00C0002BA75 /* InvestigationsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvestigationsViewModel.swift; sourceTree = "<group>"; };
 		17EC7648260DB5A10002BA75 /* HorizontalDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalDatePicker.swift; sourceTree = "<group>"; };
+		17EC7655260DE8940002BA75 /* DatePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewModel.swift; sourceTree = "<group>"; };
 		276EFB6904AFFC883BD04BA9 /* Pods_NambaDoctoriOS_NambaDoctoriOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NambaDoctoriOS_NambaDoctoriOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C1F9336480062135B79A499 /* Pods-NambaDoctoriOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NambaDoctoriOS.release.xcconfig"; path = "Target Support Files/Pods-NambaDoctoriOS/Pods-NambaDoctoriOS.release.xcconfig"; sourceTree = "<group>"; };
 		421278E51F7A74B868A7EA69 /* Pods_NambaDoctoriOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NambaDoctoriOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -574,6 +576,7 @@
 			isa = PBXGroup;
 			children = (
 				1728B77925B381E7001D554E /* PreRegisteredUserVM.swift */,
+				17EC7655260DE8940002BA75 /* DatePickerViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1508,6 +1511,7 @@
 				171646C22602B6B700BB5B5A /* ServiceProviderPaymentInfo.swift in Sources */,
 				1742506D25BAE69200523B94 /* PrescriptionFormPickerConstants.swift in Sources */,
 				17424FAA25BACEF600523B94 /* ServiceRequestViewModel.swift in Sources */,
+				17EC7656260DE8940002BA75 /* DatePickerViewModel.swift in Sources */,
 				172B850F25AEE46700C6B035 /* PhoneNumberEntryView.swift in Sources */,
 				17E3709C25BF17600004C965 /* TwilioStateK.swift in Sources */,
 				1742504A25BAE39E00523B94 /* GeneralDoctorHelpers.swift in Sources */,

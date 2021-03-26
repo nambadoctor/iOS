@@ -18,9 +18,16 @@ struct AppointmentsView: View {
             } else if self.doctorViewModel.appointments.isEmpty {
                 Indicator()
             } else {
+                HorizontalDatePicker(datePickerVM: doctorViewModel.datePickerVM)
                 ScrollView {
-                    ForEach(doctorViewModel.appointments, id: \.appointmentID) { appointment in
-                        AppointmentCard(appointment: appointment)
+                    if self.doctorViewModel.noAppointmentsForSelectedDate {
+                        Text("There no appointments for this date").padding()
+                    } else {
+                        ForEach(doctorViewModel.appointments, id: \.appointmentID) { appointment in
+                            if Helpers.compareDate(timestamp: appointment.scheduledAppointmentStartTime, date2: doctorViewModel.datePickerVM.selectedDate) {
+                                AppointmentCard(appointment: appointment)
+                            }
+                        }
                     }
                 }
             }

@@ -14,6 +14,9 @@ class DoctorViewModel: ObservableObject {
     @Published var noAppointments:Bool = false
     @Published var doctorLoggedIn:Bool = false
     
+    @Published var datePickerVM:DatePickerViewModel = DatePickerViewModel()
+    @Published var noAppointmentsForSelectedDate:Bool = false
+    
     var authenticateService:AuthenticateServiceProtocol
     var serviceProviderServiceCall:ServiceProviderGetSetServiceCallProtocol
     var doctorAppointmentViewModel:AppointmentGetSetServiceCallProtocol
@@ -24,6 +27,9 @@ class DoctorViewModel: ObservableObject {
         self.authenticateService = authenticateService
         self.serviceProviderServiceCall = serviceProviderServiceCall
         self.doctorAppointmentViewModel = doctorAptVM
+            
+        self.datePickerVM.datePickerDelegate = self
+        
         fetchDoctor()
     }
     
@@ -64,5 +70,24 @@ class DoctorViewModel: ObservableObject {
     func refreshAppointments () {
         self.appointments.removeAll()
         self.retrieveAppointments()
+    }
+}
+
+extension DoctorViewModel : DatePickerChangedDelegate {
+    func dateChanged(selectedDate: Date) {
+        self.noAppointmentsForSelectedDate = checkIfAppointmentExistForDate(date: selectedDate)
+    }
+    
+    func checkIfAppointmentExistForDate(date:Date) -> Bool {
+        var exists:Bool = true
+        for appoinment in appointments {
+            let order = Calendar.current.compare(date, to: Date(milliseconds: appoinment.scheduledAppointmentStartTime), toGranularity: .day)
+            
+            if order == .orderedSame {
+                exists = false
+            }
+        }
+        
+        return exists
     }
 }
