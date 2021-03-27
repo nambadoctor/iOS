@@ -48,9 +48,7 @@ class ServiceProviderGetSetServiceCall : ServiceProviderGetSetServiceCallProtoco
     
     
     func getServiceProvider (serviceProviderId:String, _ completion : @escaping (_ DoctorObj:ServiceProviderProfile?)->()) {
-        
-        print("Getting service provider")
-        
+                
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         
@@ -67,7 +65,7 @@ class ServiceProviderGetSetServiceCall : ServiceProviderGetSetServiceCallProtoco
         do {
             let response = try getServiceProvider.response.wait()
             let doctor = serviceProviderMapper.grpcProfileToLocal(profile: response)
-            print("Get Doctor Client Success")
+            print("Get Doctor Client Success \(doctor.serviceProviderID)")
             completion(doctor)
         } catch {
             print("Get Doctor Client Failed")

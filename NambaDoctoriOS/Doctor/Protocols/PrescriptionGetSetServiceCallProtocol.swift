@@ -9,5 +9,5 @@ import Foundation
 
 protocol PrescriptionGetSetServiceCallProtocol {
     func getPrescription (appointmentId:String, serviceRequestId:String, customerId:String, _ completion: @escaping ((_ prescription:ServiceProviderPrescription?)->()))
-    func setPrescription(medicineViewModel:MedicineViewModel, _ completion : @escaping ((_ successfull:Bool)->()))
+    func setPrescription(prescription:ServiceProviderPrescription, _ completion : @escaping ((_ successfull:Bool)->()))
 }

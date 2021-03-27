@@ -11,6 +11,9 @@ import SwiftUI
 class DoctorTwilioViewModel: ObservableObject {
     var appointment:ServiceProviderAppointment
     @Published var status:TwilioStateK = .waitingToStart
+    
+    @Published var collapseCall:Bool = false
+    @Published var viewController:ViewController? = nil
 
     private var docAlertHelpers:DoctorAlertHelpersProtocol!
     private var docSheetHelper:DoctorSheetHelpers = DoctorSheetHelpers()
@@ -18,7 +21,7 @@ class DoctorTwilioViewModel: ObservableObject {
 
     private var twilioAccessTokenHelper:TwilioAccessTokenProtocol
     private var updateAppointmentStatus:UpdateAppointmentStatusProtocol
-
+    
     init(appointment:ServiceProviderAppointment,
          twilioAccessTokenHelper:TwilioAccessTokenProtocol = RetrieveTwilioAccessToken(),
          updateAppointmentStatus:UpdateAppointmentStatusProtocol = UpdateAppointmentStatusHelper()) {
@@ -33,6 +36,7 @@ class DoctorTwilioViewModel: ObservableObject {
         DispatchQueue.main.async {
             self.twilioAccessTokenHelper.retrieveToken(appointmentId: self.appointment.appointmentID, serviceProviderId: self.appointment.serviceProviderID) { (success, token) in
                 if success {
+                    self.viewController = UIStoryboard(name: "Twilio", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as! ViewController
                     self.status = .started
                     self.fireStartedNotif()
                 } else {
@@ -79,5 +83,23 @@ class DoctorTwilioViewModel: ObservableObject {
     
     func viewPatientInfoClicked() {
         docSheetHelper.showPatientInfoSheet(appointment: appointment)
+    }
+    
+    func collapseView() {
+        if collapseCall {
+            viewController!.messageLabel.isHidden = false
+            viewController!.disconnectButton.isHidden = false
+            viewController!.micButton.isHidden = false
+            viewController!.videoToggleButton.isHidden = false
+            viewController!.previewView.isHidden = false
+            self.collapseCall = false
+        } else {
+            viewController!.messageLabel.isHidden = true
+            viewController!.disconnectButton.isHidden = true
+            viewController!.micButton.isHidden = true
+            viewController!.videoToggleButton.isHidden = true
+            viewController! .previewView.isHidden = true
+            self.collapseCall = true
+        }
     }
 }

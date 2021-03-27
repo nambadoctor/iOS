@@ -22,8 +22,20 @@ struct DoctorTwilioManager: View {
             case .waitingToStart:
                 Text("loading...").onAppear(){DoctorTwilioVM.startRoom()}
             case .started:
-                TwilioViewHelper(appointmentId: DoctorTwilioVM.appointment.appointmentID)
-                    .navigationBarItems(trailing: navBarTrailing)
+                VStack {
+                    if DoctorTwilioVM.collapseCall {
+                        Spacer()
+                    }
+                    HStack {
+                        if DoctorTwilioVM.collapseCall {
+                            Spacer()
+                        }
+                        TwilioViewHelper(doctorTwilioVM: DoctorTwilioVM)
+                            .navigationBarItems(trailing: collapseCall)
+                            .frame(width: DoctorTwilioVM.collapseCall ? 100 : UIScreen.main.bounds.width,
+                                   height: DoctorTwilioVM.collapseCall ? 180 : UIScreen.main.bounds.height - 55)
+                    }
+                }
             case .finished:
                 Text("Finished").onAppear(){self.killView()}
             case .disconnected:
@@ -36,32 +48,11 @@ struct DoctorTwilioManager: View {
         .navigationBarBackButtonHidden(true)
     }
 
-    var navPatientInfo : some View {
+    var collapseCall : some View {
         Button {
-            DoctorTwilioVM.viewPatientInfoClicked()
+            DoctorTwilioVM.collapseView()
         } label: {
-            VStack {
-                Text("Patient")
-                Text("Info")
-            }
-        }
-    }
-    
-    var navEndConsultation : some View {
-        Button {
-            DoctorTwilioVM.endConsultation()
-        } label: {
-            VStack {
-                Text("End")
-                Text("Consultation")
-            }
-        }
-    }
-    
-    var navBarTrailing : some View {
-        HStack {
-            navPatientInfo
-            navEndConsultation
+            Text(DoctorTwilioVM.collapseCall ? "Expand Call" : "Collapse Call")
         }
     }
 

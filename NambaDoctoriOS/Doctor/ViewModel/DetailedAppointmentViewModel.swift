@@ -14,6 +14,10 @@ class DetailedAppointmentViewModel : ObservableObject {
     @Published var serviceRequestVM:ServiceRequestViewModel
     @Published var prescriptionVM:MedicineViewModel
     @Published var patientInfoViewModel:PatientInfoViewModel
+    @Published var doctorTwilioManagerViewModel:DoctorTwilioViewModel
+
+    @Published var openTwilioRoom:Bool = false
+    @Published var collapseTwilioRoom:Bool = false
         
     private var updateAppointmentStatus:UpdateAppointmentStatusProtocol
     private var docNotifHelper:DocNotifHelpers
@@ -31,6 +35,8 @@ class DetailedAppointmentViewModel : ObservableObject {
         self.patientInfoViewModel = PatientInfoViewModel(appointment: appointment)
         self.serviceRequestVM = ServiceRequestViewModel(appointment: appointment)
         self.prescriptionVM = MedicineViewModel(appointment: appointment)
+        
+        self.doctorTwilioManagerViewModel = DoctorTwilioViewModel(appointment: appointment)
     }
     
     var appointmentTime:String {
@@ -41,17 +47,36 @@ class DetailedAppointmentViewModel : ObservableObject {
         return "\(appointment.customerName)"
     }
 
-    func cancelAppointment() {
+    func cancelAppointment(completion: @escaping (_ successfullyCancelled:Bool)->()) {
         doctorAlertHelper.cancelAppointmentAlert { (cancel) in
             self.updateAppointmentStatus.toCancelled(appointment: &self.appointment) { (success) in
                 if success {
                     self.docNotifHelper.fireCancelNotif(requestedBy: self.appointment.customerID, appointmentTime: self.appointment.scheduledAppointmentStartTime)
                     DoctorDefaultModifiers.refreshAppointments()
-                    //self.checkToShowCancelButton()
+                    completion(success)
                 } else {
                     GlobalPopupHelpers.setErrorAlert()
+                    completion(success)
                 }
             }
         }
     }
-}
+    
+    func startConsultation() {
+        self.openTwilioRoom = true
+    }
+    
+    func sendToPatient () {
+        serviceRequestVM.sendToPatient { (success) in
+            
+        }
+        
+        prescriptionVM.sendToPatient { (success) in
+            
+        }
+        
+        patientInfoViewModel.sendToPatient { (success) in
+            
+        }
+    }
+} 

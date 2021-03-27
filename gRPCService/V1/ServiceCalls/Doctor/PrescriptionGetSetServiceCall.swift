@@ -41,17 +41,17 @@ class PrescriptionGetSetServiceCall : PrescriptionGetSetServiceCallProtocol {
         }
     }
     
-    func setPrescription(medicineViewModel:MedicineViewModel, _ completion : @escaping ((_ successfull:Bool)->())) {
+    func setPrescription(prescription:ServiceProviderPrescription, _ completion : @escaping ((_ successfull:Bool)->())) {
                 
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         
         let prescriptionClient = Nd_V1_ServiceProviderPrescriptionWorkerV1Client(channel: channel)
 
-        let request = prescriptionObjectMapper.localPrescriptionToGrpc(prescription: medicineViewModel.prescription!)
+        let request = prescriptionObjectMapper.localPrescriptionToGrpc(prescription: prescription)
         
         let makePrescription = prescriptionClient.setPrescription(request, callOptions: callOptions)
-        
+
         do {
             let response = try makePrescription.response.wait()
             print("Prescription Write Client Successfull: \(response.id)")

@@ -13,7 +13,7 @@ class PatientInfoViewModel: ObservableObject {
     
     var patientAllergies:String = ""
     var patientMedicalHistory:String = ""
-    
+
     @Published var AppointmentList:[ServiceProviderAppointment]? = nil
     @Published var ReportList:[ServiceProviderReport]? = nil
         
@@ -61,6 +61,25 @@ class PatientInfoViewModel: ObservableObject {
         reportServiceCall.getUploadedReportList(customerId: appointment.customerID) { (uploadedDocumentList) in
             if uploadedDocumentList != nil {
                 self.ReportList = uploadedDocumentList
+            }
+        }
+    }
+    
+    func sendToPatient (completion: @escaping (_ success:Bool)->()) {
+        if patientObj.allergies.last != patientAllergies {
+            patientObj.allergies.append(patientAllergies)
+        }
+        
+        if patientObj.medicalHistory.last != patientMedicalHistory {
+            patientObj.medicalHistory.append(patientMedicalHistory)
+        }
+        
+        print("PatientObject: \(patientObj)")
+        customerServiceCall.setPatientProfile(customerProfile: patientObj) { (response) in
+            if response != nil {
+                completion(true)
+            } else {
+                completion(false)
             }
         }
     }

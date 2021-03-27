@@ -11,10 +11,10 @@ import UIKit
 
 struct TwilioViewHelper: UIViewControllerRepresentable {
     
-    var appointmentId:String
+    @ObservedObject var doctorTwilioVM:DoctorTwilioViewModel
 
     func makeUIViewController(context: Context) -> ViewController {
-        return UIStoryboard(name: "Twilio", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as! ViewController
+        return doctorTwilioVM.viewController!
     }
     
     func updateUIViewController(_ uiViewController: ViewController, context: Context) {

@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var disconnectButton: UIButton!
     @IBOutlet weak var micButton: UIButton!
     @IBOutlet weak var videoToggleButton: UIButton!
-
+    
     deinit {
         // We are done with camera
         if let camera = self.camera {

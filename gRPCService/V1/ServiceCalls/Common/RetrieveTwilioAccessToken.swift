@@ -30,8 +30,8 @@ class RetrieveTwilioAccessToken : TwilioAccessTokenProtocol {
             let response = try getTwilioToken.response.wait()
             let twilioToken = response.message.toString
             print("TwilioToken received: \(twilioToken)")
-            completion(true, twilioToken)
             TwilioAccessTokenString = twilioToken
+            completion(true, twilioToken)
         } catch {
             print("TwilioToken failed: \(error)")
             completion(false, nil)

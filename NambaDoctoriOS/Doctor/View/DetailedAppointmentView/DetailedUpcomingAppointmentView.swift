@@ -9,42 +9,59 @@ import SwiftUI
 
 struct DetailedUpcomingAppointmentView: View {
     
+    @Environment(\.presentationMode) var presentationMode
     @ObservedObject var detailedAppointmentVM:DetailedAppointmentViewModel
     
     init(appointment:ServiceProviderAppointment) {
+        print("Detailed AppointmentId: \(appointment.appointmentID)")
         detailedAppointmentVM = DetailedAppointmentViewModel(appointment: appointment)
     }
     
     var body: some View {
-        ScrollView (.vertical) {
-            VStack {
-                header
-                Divider().background(Color.blue.opacity(0.4))
-                actionButtons
+        ZStack {
+            ScrollView (.vertical) {
+                VStack {
+                    header
+                    Divider().background(Color.blue.opacity(0.4))
+                    actionButtons
+                }
+                .background(Color.blue.opacity(0.1))
+                .cornerRadius(10)
+                
+                VStack (alignment: .leading) {
+                    
+                    PatientInfoView(patientInfoViewModel: detailedAppointmentVM.patientInfoViewModel)
+                    
+                    Text("Doctor's Section")
+                        .font(.title)
+                        .bold()
+                        .padding([.top, .bottom])
+                    
+                    DoctorsSectionViewModel(serviceRequestVM: detailedAppointmentVM.serviceRequestVM)
+                    PrescriptionsView(prescriptionsVM: self.detailedAppointmentVM.prescriptionVM)
+                    
+                }
+                .padding(.top)
+                .padding(.leading, 2)
+                
+                Spacer()
+                
             }
-            .background(Color.blue.opacity(0.1))
-            .cornerRadius(10)
+            .padding([.leading, .trailing])
             
-            VStack (alignment: .leading) {
-                
-                PatientInfoView(patientInfoViewModel: detailedAppointmentVM.patientInfoViewModel)
-                
-                Text("Doctor's Section")
-                    .font(.title)
-                    .bold()
-                    .padding([.top, .bottom])
-                
-                DoctorsSectionViewModel(serviceRequestVM: detailedAppointmentVM.serviceRequestVM)
-                PrescriptionsView(prescriptionsVM: self.detailedAppointmentVM.prescriptionVM)
-                
+            if detailedAppointmentVM.openTwilioRoom {
+                DoctorTwilioManager(appointment: detailedAppointmentVM.appointment)
             }
-            .padding(.top)
-            .padding(.leading, 2)
-            
-            Spacer()
-            
         }
-        .padding([.leading, .trailing])
+    }
+    
+    var sendToPatient : some View {
+        VStack {
+            LargeButton(title: "Send to Patient",
+                        backgroundColor: Color.blue) {
+                detailedAppointmentVM.sendToPatient()
+            }
+        }
     }
     
     var header : some View {
@@ -71,7 +88,11 @@ struct DetailedUpcomingAppointmentView: View {
         HStack {
             
             Button(action: {
-                
+                detailedAppointmentVM.cancelAppointment { success in
+                    if success {
+                        killView()
+                    }
+                }
             }, label: {
                 Text("Cancel")
                     .padding([.top, .bottom], 7)
@@ -91,7 +112,7 @@ struct DetailedUpcomingAppointmentView: View {
             })
             Spacer()
             Button(action: {
-                
+                detailedAppointmentVM.startConsultation()
             }, label: {
                 VStack (alignment: .center) {
                     Image(systemName: "video")
@@ -102,5 +123,9 @@ struct DetailedUpcomingAppointmentView: View {
         .padding([.leading, .trailing], 50)
         .padding(.top, 10)
         .padding(.bottom, 18)
+    }
+    
+    private func killView () {
+        self.presentationMode.wrappedValue.dismiss()
     }
 }

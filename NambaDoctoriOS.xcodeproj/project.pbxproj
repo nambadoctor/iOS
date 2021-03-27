@@ -213,6 +213,9 @@
 		17EC75FC260CF00C0002BA75 /* InvestigationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EC75FB260CF00C0002BA75 /* InvestigationsViewModel.swift */; };
 		17EC7649260DB5A10002BA75 /* HorizontalDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EC7648260DB5A10002BA75 /* HorizontalDatePicker.swift */; };
 		17EC7656260DE8940002BA75 /* DatePickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EC7655260DE8940002BA75 /* DatePickerViewModel.swift */; };
+		17EC7670260EE9D60002BA75 /* MedicineEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EC766F260EE9D50002BA75 /* MedicineEntryView.swift */; };
+		17EC7675260EEBB20002BA75 /* BubbledSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EC7674260EEBB20002BA75 /* BubbledSelector.swift */; };
+		17EC767B260F05140002BA75 /* TagCloudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EC767A260F05140002BA75 /* TagCloudView.swift */; };
 		434CDF5DFA0DF425DF44E2A2 /* Pods_NambaDoctoriOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 435C297907080A241A267BB0 /* Pods_NambaDoctoriOSTests.framework */; };
 		95ACD8DA00B7C0B2D7EA224D /* Pods_NambaDoctoriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 421278E51F7A74B868A7EA69 /* Pods_NambaDoctoriOS.framework */; };
 		B6746684516D05CE4C3163B4 /* Pods_NambaDoctoriOS_NambaDoctoriOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276EFB6904AFFC883BD04BA9 /* Pods_NambaDoctoriOS_NambaDoctoriOSUITests.framework */; };
@@ -461,6 +464,9 @@
 		17EC75FB260CF00C0002BA75 /* InvestigationsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InvestigationsViewModel.swift; sourceTree = "<group>"; };
 		17EC7648260DB5A10002BA75 /* HorizontalDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HorizontalDatePicker.swift; sourceTree = "<group>"; };
 		17EC7655260DE8940002BA75 /* DatePickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerViewModel.swift; sourceTree = "<group>"; };
+		17EC766F260EE9D50002BA75 /* MedicineEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineEntryView.swift; sourceTree = "<group>"; };
+		17EC7674260EEBB20002BA75 /* BubbledSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbledSelector.swift; sourceTree = "<group>"; };
+		17EC767A260F05140002BA75 /* TagCloudView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCloudView.swift; sourceTree = "<group>"; };
 		276EFB6904AFFC883BD04BA9 /* Pods_NambaDoctoriOS_NambaDoctoriOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NambaDoctoriOS_NambaDoctoriOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C1F9336480062135B79A499 /* Pods-NambaDoctoriOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NambaDoctoriOS.release.xcconfig"; path = "Target Support Files/Pods-NambaDoctoriOS/Pods-NambaDoctoriOS.release.xcconfig"; sourceTree = "<group>"; };
 		421278E51F7A74B868A7EA69 /* Pods_NambaDoctoriOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NambaDoctoriOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -775,9 +781,11 @@
 		17424FE925BAD1CA00523B94 /* CommonHelperViews */ = {
 			isa = PBXGroup;
 			children = (
+				17EC7679260F05090002BA75 /* BubbleSelector */,
 				17B5D16825B75EE9009D6A42 /* Indicator.swift */,
 				17424FE425BAD1B100523B94 /* SideBySideCheckBox.swift */,
 				17626CAC25D5BAC200C36A99 /* LoadingScreen.swift */,
+				17EC7674260EEBB20002BA75 /* BubbledSelector.swift */,
 			);
 			path = CommonHelperViews;
 			sourceTree = "<group>";
@@ -1221,6 +1229,7 @@
 				17EC75E9260C73AD0002BA75 /* DoctorsSectionViewModel.swift */,
 				17EC75EE260C74920002BA75 /* PrescriptionsView.swift */,
 				17EC75F6260CEFAB0002BA75 /* InvestigationsEntryView.swift */,
+				17EC766F260EE9D50002BA75 /* MedicineEntryView.swift */,
 			);
 			path = DetailedAppointmentView;
 			sourceTree = "<group>";
@@ -1231,6 +1240,14 @@
 				17EC7648260DB5A10002BA75 /* HorizontalDatePicker.swift */,
 			);
 			path = HorizontalDatePicker;
+			sourceTree = "<group>";
+		};
+		17EC7679260F05090002BA75 /* BubbleSelector */ = {
+			isa = PBXGroup;
+			children = (
+				17EC767A260F05140002BA75 /* TagCloudView.swift */,
+			);
+			path = BubbleSelector;
 			sourceTree = "<group>";
 		};
 		3F839DD1AF4230490A6B4CE6 /* Frameworks */ = {
@@ -1534,9 +1551,11 @@
 				1748011025B8E12500C8E3CC /* DocViewStatesK.swift in Sources */,
 				17AE6D1825E24B2200B18292 /* DoctorsPatientsView.swift in Sources */,
 				17EC75EF260C74920002BA75 /* PrescriptionsView.swift in Sources */,
+				17EC7670260EE9D60002BA75 /* MedicineEntryView.swift in Sources */,
 				17EC75EA260C73AD0002BA75 /* DoctorsSectionViewModel.swift in Sources */,
 				171647C32604479900BB5B5A /* AppointmentGetSetServiceCall.swift in Sources */,
 				17626CCD25D5C02F00C36A99 /* DoctorHomeListeners.swift in Sources */,
+				17EC767B260F05140002BA75 /* TagCloudView.swift in Sources */,
 				1716484026092D5800BB5B5A /* ServiceProviderFileInfo.swift in Sources */,
 				171647B32604468500BB5B5A /* PrescriptionGetSetServiceCall.swift in Sources */,
 				1748010B25B8DFC100C8E3CC /* DoctorDefaultModifiers.swift in Sources */,
@@ -1623,6 +1642,7 @@
 				17E869D925CE75E1000B0952 /* PatientReportView.swift in Sources */,
 				1742523E25BD98F400523B94 /* CustomerGetSetServiceCalls.swift in Sources */,
 				1716483826084EDE00BB5B5A /* GrpcHelpers.swift in Sources */,
+				17EC7675260EEBB20002BA75 /* BubbledSelector.swift in Sources */,
 				17EC7649260DB5A10002BA75 /* HorizontalDatePicker.swift in Sources */,
 				1716470E260314DE00BB5B5A /* ServiceProviderCustomerProfileObjectMapper.swift in Sources */,
 				1796320F25AEE865002E466C /* KeyboardHeightPublisher.swift in Sources */,

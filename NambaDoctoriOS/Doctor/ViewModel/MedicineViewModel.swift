@@ -16,14 +16,18 @@ class MedicineViewModel: ObservableObject {
 
     var generalDoctorHelpers:GeneralDoctorHelpersProtocol!
     private var retrievePrescriptionHelper:PrescriptionGetSetServiceCallProtocol
+    var prescriptionServiceCalls:PrescriptionGetSetServiceCallProtocol
     
     init(appointment:ServiceProviderAppointment,
         generalDoctorHelpers:GeneralDoctorHelpersProtocol = GeneralDoctorHelpers(),
-        retrievePrescriptionHelper:PrescriptionGetSetServiceCallProtocol = PrescriptionGetSetServiceCall()) {
+        retrievePrescriptionHelper:PrescriptionGetSetServiceCallProtocol = PrescriptionGetSetServiceCall(),
+        prescriptionServiceCalls:PrescriptionGetSetServiceCallProtocol = PrescriptionGetSetServiceCall()) {
+        
         self.appointment = appointment
         self.generalDoctorHelpers = generalDoctorHelpers
         self.retrievePrescriptionHelper = retrievePrescriptionHelper
-            
+        self.prescriptionServiceCalls = prescriptionServiceCalls
+        
         DispatchQueue.main.async {
             self.retrievePrescriptions()
         }
@@ -39,4 +43,10 @@ class MedicineViewModel: ObservableObject {
         }
     }
 
+    func sendToPatient (completion: @escaping (_ success:Bool)->()) {
+        print("Prescription: \(prescription)")
+        prescriptionServiceCalls.setPrescription(prescription: self.prescription!) { (response) in
+            completion(response)
+        }
+    }
 }

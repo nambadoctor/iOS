@@ -6,11 +6,9 @@
 //
 
 import SwiftUI
-
 struct PatientInfoView: View {
     
     @ObservedObject var patientInfoViewModel:PatientInfoViewModel
-    
     var body: some View {
         VStack (alignment: .leading) {
             Text("ALLERGIES:")
