@@ -66,14 +66,22 @@ class PatientInfoViewModel: ObservableObject {
     }
     
     func sendToPatient (completion: @escaping (_ success:Bool)->()) {
+        var allergiesOrHistoryChanged:Bool = false
+        
         if patientObj.allergies.last != patientAllergies {
             patientObj.allergies.append(patientAllergies)
+            allergiesOrHistoryChanged = true
         }
         
         if patientObj.medicalHistory.last != patientMedicalHistory {
             patientObj.medicalHistory.append(patientMedicalHistory)
+            allergiesOrHistoryChanged = true
         }
         
+        guard allergiesOrHistoryChanged else {
+            completion(true)
+            return
+        }
         print("PatientObject: \(patientObj)")
         customerServiceCall.setPatientProfile(customerProfile: patientObj) { (response) in
             if response != nil {

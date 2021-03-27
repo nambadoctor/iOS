@@ -21,7 +21,7 @@ class MedicineViewModel: ObservableObject {
     var generalDoctorHelpers:GeneralDoctorHelpersProtocol!
     private var retrievePrescriptionHelper:PrescriptionGetSetServiceCallProtocol
     var prescriptionServiceCalls:PrescriptionGetSetServiceCallProtocol
-    
+
     init(appointment:ServiceProviderAppointment,
         generalDoctorHelpers:GeneralDoctorHelpersProtocol = GeneralDoctorHelpers(),
         retrievePrescriptionHelper:PrescriptionGetSetServiceCallProtocol = PrescriptionGetSetServiceCall(),
@@ -91,6 +91,11 @@ class MedicineViewModel: ObservableObject {
     }
     
     func sendToPatient (completion: @escaping (_ success:Bool)->()) {
+        guard !prescription.medicineList.isEmpty, !prescription.fileInfo.MediaImage.isEmpty else {
+            completion(true)
+            return
+        nt
+        
         print("Prescription: \(prescription)")
         prescriptionServiceCalls.setPrescription(prescription: self.prescription) { (response) in
             completion(response)

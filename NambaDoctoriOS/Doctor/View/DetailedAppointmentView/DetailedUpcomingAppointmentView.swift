@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DetailedUpcomingAppointmentView: View {
-    
+
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var detailedAppointmentVM:DetailedAppointmentViewModel
     
@@ -46,10 +46,8 @@ struct DetailedUpcomingAppointmentView: View {
                 
                 Spacer()
                 
-                LargeButton(title: "Send To Patient") {
-                    detailedAppointmentVM.sendToPatient()
-                }
-                
+                sendToPatient
+
             }
             .padding([.leading, .trailing])
             
@@ -57,6 +55,11 @@ struct DetailedUpcomingAppointmentView: View {
                 DoctorTwilioManager(appointment: detailedAppointmentVM.appointment)
             }
         }
+        .alert(isPresented: $detailedAppointmentVM.showOnSuccessAlert, content: {
+            Alert(title: Text("Prescription Sent Successfully"), dismissButton: .default(Text("Ok"), action: {
+                self.killView()
+            }))
+        })
         .onTapGesture {
             EndEditingHelper.endEditing()
         }
@@ -64,7 +67,7 @@ struct DetailedUpcomingAppointmentView: View {
     
     var sendToPatient : some View {
         VStack {
-            LargeButton(title: "Send to Patient",
+            LargeButton(title: "Confirm and Send to Patient",
                         backgroundColor: Color.blue) {
                 detailedAppointmentVM.sendToPatient()
             }

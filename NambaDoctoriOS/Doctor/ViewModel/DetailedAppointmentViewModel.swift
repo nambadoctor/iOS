@@ -8,7 +8,6 @@
 import Foundation
 
 class DetailedAppointmentViewModel : ObservableObject {
-    
     @Published var appointment:ServiceProviderAppointment
 
     @Published var serviceRequestVM:ServiceRequestViewModel
@@ -20,6 +19,8 @@ class DetailedAppointmentViewModel : ObservableObject {
     @Published var collapseTwilioRoom:Bool = false
     
     @Published var toggleAddMedicineSheet:Bool = false
+    
+    @Published var showOnSuccessAlert:Bool = false
         
     private var updateAppointmentStatus:UpdateAppointmentStatusProtocol
     private var docNotifHelper:DocNotifHelpers
@@ -73,16 +74,26 @@ class DetailedAppointmentViewModel : ObservableObject {
     }
     
     func sendToPatient () {
-        serviceRequestVM.sendToPatient { (success) in
+        var allSendsDone:[Bool] = [Bool]()
+        
+        func onCompletion(success:Bool) {
+            allSendsDone.append(success)
             
+            if allSendsDone.count == 3 && !allSendsDone.contains(false) {
+                self.showOnSuccessAlert = true
+            }
+        }
+        
+        serviceRequestVM.sendToPatient { (success) in
+            onCompletion(success: success)
         }
         
         prescriptionVM.sendToPatient { (success) in
-            
+            onCompletion(success: success)
         }
         
         patientInfoViewModel.sendToPatient { (success) in
-            
+            onCompletion(success: success)
         }
     }
 } 
