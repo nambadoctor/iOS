@@ -46,12 +46,19 @@ struct DetailedUpcomingAppointmentView: View {
                 
                 Spacer()
                 
+                LargeButton(title: "Send To Patient") {
+                    detailedAppointmentVM.sendToPatient()
+                }
+                
             }
             .padding([.leading, .trailing])
             
             if detailedAppointmentVM.openTwilioRoom {
                 DoctorTwilioManager(appointment: detailedAppointmentVM.appointment)
             }
+        }
+        .onTapGesture {
+            EndEditingHelper.endEditing()
         }
     }
     
