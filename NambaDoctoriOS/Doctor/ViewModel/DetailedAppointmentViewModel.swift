@@ -18,6 +18,8 @@ class DetailedAppointmentViewModel : ObservableObject {
 
     @Published var openTwilioRoom:Bool = false
     @Published var collapseTwilioRoom:Bool = false
+    
+    @Published var toggleAddMedicineSheet:Bool = false
         
     private var updateAppointmentStatus:UpdateAppointmentStatusProtocol
     private var docNotifHelper:DocNotifHelpers
@@ -60,6 +62,10 @@ class DetailedAppointmentViewModel : ObservableObject {
                 }
             }
         }
+    }
+    
+    func showAddMedicineDisplay () {
+        self.toggleAddMedicineSheet = true
     }
     
     func startConsultation() {

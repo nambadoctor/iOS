@@ -8,18 +8,49 @@
 import SwiftUI
 
 struct BubbledSelector: View {
-    var array:[String] = foodSelectionArray
-    @State var selected:String = "AnyTime"
+    var title:String
+    var array:[String]
+    @Binding var selected:String
+    @State var limitToFour:Bool
     
     var body: some View {
         VStack {
-            TagCloudView(tags: ["Apple", "Google", "Amazon", "Microsoft", "Oracle", "Facebook"])
+            
+            HStack {
+                Text("\(title):")
+                    .font(.footnote)
+                    .foregroundColor(Color.black.opacity(0.4))
+                    .bold()
+                Spacer()
+                
+                if array.count > 4 {
+                    Button (action: {
+                        self.limitToFour.toggle()
+                    }, label: {
+                        Text(limitToFour ? "show more" : "show less")
+                            .font(.footnote)
+                    })
+                }
+            }
+            
+            if array.count < 4 {
+                TagCloudView(tags: array, selectedTag: $selected)
+            } else {
+                if limitToFour {
+                    TagCloudView(tags: getLimitedTo4Array(), selectedTag: $selected)
+                } else {
+                    TagCloudView(tags: array, selectedTag: $selected)
+                }
+            }
         }
     }
-}
-
-struct BubbledSelector_Previews: PreviewProvider {
-    static var previews: some View {
-        BubbledSelector()
+    
+    func getLimitedTo4Array () -> [String] {
+        var arr:[String] = [String]()
+        for n in 0...3 {
+            arr.append(array[n])
+        }
+        
+        return arr
     }
 }

@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct TagCloudView: View {
+    
     var tags: [String]
-
+    @Binding var selectedTag:String
+    
     @State private var totalHeight
           = CGFloat.zero       // << variant for ScrollView/List
     //    = CGFloat.infinity   // << variant for VStack
-
+    
+    
     var body: some View {
         VStack {
             GeometryReader { geometry in
@@ -28,7 +31,7 @@ struct TagCloudView: View {
         var width = CGFloat.zero
         var height = CGFloat.zero
 
-        return VStack(alignment: .topLeading) {
+        return ZStack(alignment: .topLeading) {
             ForEach(self.tags, id: \.self) { tag in
                 self.item(for: tag)
                     .padding([.horizontal, .vertical], 4)
@@ -60,10 +63,13 @@ struct TagCloudView: View {
     private func item(for text: String) -> some View {
         Text(text)
             .padding(.all, 5)
-            .font(.body)
-            .background(Color.blue)
-            .foregroundColor(Color.white)
+            .font(.system(size: 14))
+            .background(selectedTag == text ? Color.blue : Color.blue.opacity(0.1))
+            .foregroundColor(selectedTag == text ? Color.white : Color.blue)
             .cornerRadius(5)
+            .onTapGesture {
+                selectedTag = text
+            }
     }
 
     private func viewHeightReader(_ binding: Binding<CGFloat>) -> some View {
