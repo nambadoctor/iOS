@@ -31,12 +31,6 @@ struct DoctorHome: View {
                             Image("person.2.fill")
                             Text("My Patients")
                         }.tag(2)
-
-                        DoctorProfile()
-                            .tabItem {
-                                Image("person.crop.circle.fill")
-                                Text("Profile")
-                            }.tag(2)
                     }
                 }
                 .environmentObject(doctorViewModel)
