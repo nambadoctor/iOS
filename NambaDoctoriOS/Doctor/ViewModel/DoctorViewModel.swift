@@ -8,10 +8,12 @@
 import Foundation
 
 class DoctorViewModel: ObservableObject {
-    @Published private var doctor:ServiceProviderProfile!
+    @Published var doctor:ServiceProviderProfile!
     @Published var appointments:[ServiceProviderAppointment] = [ServiceProviderAppointment]()
+    @Published var myPatients:[ServiceProviderCustomerProfile] = [ServiceProviderCustomerProfile]()
     
     @Published var noAppointments:Bool = false
+    @Published var noPatients:Bool = false
     @Published var doctorLoggedIn:Bool = false
     
     @Published var datePickerVM:DatePickerViewModel = DatePickerViewModel()
@@ -40,6 +42,7 @@ class DoctorViewModel: ObservableObject {
                 self.doctor = serviceProviderObj!
                 self.doctorLoggedIn = true
                 self.retrieveAppointments()
+                self.getMyPatients()
             }
         }
     }
@@ -60,7 +63,7 @@ class DoctorViewModel: ObservableObject {
             self.checkForEmptyList()
         }
     }
-    
+
     func checkForEmptyList () {
         if appointments.isEmpty {
             self.noAppointments = true
@@ -70,6 +73,16 @@ class DoctorViewModel: ObservableObject {
     func refreshAppointments () {
         self.appointments.removeAll()
         self.retrieveAppointments()
+    }
+    
+    func getMyPatients () {
+        serviceProviderServiceCall.getListOfPatients(serviceProviderId: self.doctor.serviceProviderID) { (listOfPatients) in
+            if listOfPatients != nil {
+                self.myPatients = listOfPatients!
+            } else {
+                self.noPatients = true
+            }
+        }
     }
 }
 

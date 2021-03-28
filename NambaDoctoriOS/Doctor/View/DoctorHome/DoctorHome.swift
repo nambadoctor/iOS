@@ -23,16 +23,20 @@ struct DoctorHome: View {
                 ZStack {
                     TabView (selection: self.$tabSelection) {
                         AppointmentsView().tabItem {
-                            //Image("list.dash")
-                            Text("Upcoming")
+                            Image("list.triangle")
                             Text("Appointments")
                         }.tag(1)
                          
                         DoctorsPatientsView().tabItem {
-                            //Image("timer")
-                            Text("My")
-                            Text("Patients")
-                        }.tag(3)
+                            Image("person.2.fill")
+                            Text("My Patients")
+                        }.tag(2)
+
+                        DoctorProfile()
+                            .tabItem {
+                                Image("person.crop.circle.fill")
+                                Text("Profile")
+                            }.tag(2)
                     }
                 }
                 .environmentObject(doctorViewModel)

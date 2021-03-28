@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DetailedUpcomingAppointmentView: View {
-
+    
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var detailedAppointmentVM:DetailedAppointmentViewModel
     
@@ -27,6 +27,10 @@ struct DetailedUpcomingAppointmentView: View {
                 }
                 .background(Color.blue.opacity(0.1))
                 .cornerRadius(10)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.blue.opacity(0.5), lineWidth: 1)
+                )
                 
                 VStack (alignment: .leading) {
                     
@@ -47,7 +51,7 @@ struct DetailedUpcomingAppointmentView: View {
                 Spacer()
                 
                 sendToPatient
-
+                
             }
             .padding([.leading, .trailing])
             

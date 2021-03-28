@@ -12,6 +12,10 @@ extension SwiftProtobuf.Google_Protobuf_StringValue {
     var toString:String {return self.value}
 }
 
+extension SwiftProtobuf.Google_Protobuf_BytesValue {
+    var toString:String {return self.value.base64EncodedString()}
+}
+
 extension Array where Element == SwiftProtobuf.Google_Protobuf_StringValue {
     func convert() -> [String] {
         var arr:[String] = [String]()
@@ -48,7 +52,7 @@ extension String {
     var toProto:SwiftProtobuf.Google_Protobuf_StringValue {
         return SwiftProtobuf.Google_Protobuf_StringValue(self)}
     
-    var toProtoByes:SwiftProtobuf.Google_Protobuf_BytesValue {
+    var toProtoBytes:SwiftProtobuf.Google_Protobuf_BytesValue {
         return SwiftProtobuf.Google_Protobuf_BytesValue(Data(base64Encoded: self)!)
     }
 }

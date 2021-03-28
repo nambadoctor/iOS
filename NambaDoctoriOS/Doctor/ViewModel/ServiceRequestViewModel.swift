@@ -41,20 +41,27 @@ class ServiceRequestViewModel: ObservableObject {
 
     func retrieveServiceRequest() {
         retrieveServiceRequesthelper.getServiceRequest(appointmentId: self.appointment.appointmentID, serviceRequestId: appointment.serviceRequestID, customerId: self.appointment.customerID) { (serviceRequest) in
-            if serviceRequest != nil && serviceRequest?.serviceRequestID != "000000000000000000000000" {
+            if serviceRequest != nil {
                 self.mapPrescriptionValues(serviceRequest: serviceRequest!)
                 CommonDefaultModifiers.hideLoader()
             }
         }
     }
-    
-    func mapPrescriptionValues (serviceRequest:ServiceProviderServiceRequest) {
-        self.serviceRequest = serviceRequest
+
+    func mapPrescriptionValues (serviceRequest:ServiceProviderServiceRequest) {        self.serviceRequest = serviceRequest
+
+        //need to optimize this in service. DO AFTER INITIAL LAUNCH!
+        self.serviceRequest.customerID = appointment.customerID
+        self.serviceRequest.appointmentID = appointment.appointmentID
+        self.serviceRequest.serviceProviderID = appointment.serviceProviderID
+        //end
+
         self.investigationsViewModel.investigations = serviceRequest.investigations
     }
 
     func sendToPatient (completion: @escaping (_ success:Bool,_ serviceRequestId:String?)->()) {
         print("ServiceRequest: \(serviceRequest)")
+        serviceRequest.investigations = investigationsViewModel.investigations
         serviceRequestServiceCalls.setServiceRequest(serviceRequest: serviceRequest) { (response) in
             if response != nil {
                 completion(true, response)

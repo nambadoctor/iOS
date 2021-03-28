@@ -16,6 +16,7 @@ class MedicineViewModel: ObservableObject {
     
     @Published var showMedicineEntrySheet:Bool = false
     @Published var medicineEntryVM:MedicineEntryViewModel = MedicineEntryViewModel(medicine: MakeEmptyMedicine(), isNew: true)
+    @Published var imagePickerVM:ImagePickerViewModel = ImagePickerViewModel()
     var medicineBeingEdited:Int? = nil
     
     var generalDoctorHelpers:GeneralDoctorHelpersProtocol!
@@ -82,8 +83,12 @@ class MedicineViewModel: ObservableObject {
     
     func retrievePrescriptions () {
         retrievePrescriptionHelper.getPrescription(appointmentId: self.appointment.appointmentID, serviceRequestId: self.appointment.serviceRequestID, customerId: self.appointment.customerID) { (prescription) in
-            if prescription != nil && !prescription!.prescriptionID.isEmpty {
+            if prescription != nil {
                 self.prescription = prescription!
+                //need to optimize in service side
+                self.prescription.customerID = self.appointment.customerID
+                self.prescription.serviceRequestID = self.appointment.serviceRequestID
+                //end
             } else {
                 self.prescription = MakeEmptyPrescription(appointment: self.appointment)
             }
@@ -98,6 +103,12 @@ class MedicineViewModel: ObservableObject {
             return
         }
         
+        if imagePickerVM.image != nil {
+            self.prescription.fileInfo.FileName = ""
+            self.prescription.fileInfo.FileType = "png"
+            self.prescription.fileInfo.MediaImage = imagePickerVM.image!.pngData()!.base64EncodedString()
+        }
+
         print("Prescription: \(prescription)")
         prescriptionServiceCalls.setPrescription(prescription: self.prescription) { (response) in
             completion(response)

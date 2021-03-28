@@ -11,7 +11,7 @@ class ServiceProviderFileInfoMapper {
     static func grpcFileInfoToLocal (fileInfo:Nd_V1_ServiceProviderFileInfoMessage) -> ServiceProviderFileInfo {
         return ServiceProviderFileInfo(FileName: fileInfo.fileName.toString,
                                        FileType: fileInfo.fileType.toString,
-                                       MediaImage: ""//fileInfo.mediaImage.data
+                                       MediaImage: fileInfo.mediaImage.toString
         )
     }
     
@@ -19,7 +19,7 @@ class ServiceProviderFileInfoMapper {
         return Nd_V1_ServiceProviderFileInfoMessage.with {
             $0.fileName = fileInfo.FileName.toProto
             $0.fileType = fileInfo.FileType.toProto
-            $0.mediaImage = fileInfo.MediaImage.toProtoByes
+            $0.mediaImage = fileInfo.MediaImage.toProtoBytes
         }
     }
 }

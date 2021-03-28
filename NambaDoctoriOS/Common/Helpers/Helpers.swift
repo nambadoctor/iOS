@@ -45,6 +45,17 @@ class Helpers {
             return nil
         }
     }
+    
+    static func showImagePickerAlert (_ completion: @escaping ((_ sourceType:UIImagePickerController.SourceType) -> ())) -> Alert {
+        let alert = Alert(title: Text("Choose Image"),
+                          message: Text("How would you like to select your image?"),
+                          primaryButton: .default(Text("Camera")) {
+                            completion(.camera)},
+                          secondaryButton: Alert.Button.default(Text("Gallery"), action: {
+                            completion(.photoLibrary)
+                          }))
+        return alert
+    }
 
     static func getTimeFromTimeStamp(timeStamp : Int64) -> String {
 

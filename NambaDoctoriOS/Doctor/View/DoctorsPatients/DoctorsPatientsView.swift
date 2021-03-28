@@ -8,15 +8,27 @@
 import SwiftUI
 
 struct DoctorsPatientsView: View {
-    @ObservedObject var doctorsPatientsView = DoctorsPatientsViewModel()
+    @EnvironmentObject var doctorViewModel:DoctorViewModel
+    
+    private var gridItemLayout = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
+    
     var body: some View {
         VStack {
-            if doctorsPatientsView.patientList == nil {
+            if doctorViewModel.myPatients.isEmpty {
                 Indicator()
+            } else if doctorViewModel.noPatients {
+                Text("Looks like you dont have any patients yet")
             } else {
-                ForEach(self.doctorsPatientsView.patientList!, id: \.customerID) { patient in
-                    DoctorsPatientsCardView(patientObj: patient)
+                ScrollView {
+                    GeometryReader { geo in
+                        LazyVGrid(columns: gridItemLayout, spacing: 20) {
+                            ForEach(self.doctorViewModel.myPatients, id: \.customerID) { patient in
+                                DoctorsPatientsCardView(patientObj: patient)
+                            }
+                        }
+                    }
                 }
+                .padding()
             }
         }
     }

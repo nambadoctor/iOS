@@ -65,13 +65,26 @@ struct PrescriptionsView: View {
                                 .foregroundColor(Color.green)
                         }
                     }
-
+                    
                 }
                 .padding()
                 .background(Color.green.opacity(0.1))
                 .cornerRadius(7)
             }
             
+            if prescriptionsVM.imagePickerVM.image != nil {
+                HStack {
+                    Spacer()
+                    Image(uiImage: prescriptionsVM.imagePickerVM.image!)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 150, height: 200)
+                        .cornerRadius(10)
+                        .shadow(radius: 10)
+                    Spacer()
+                }
+            }
+
             HStack {
                 
                 LargeButton(title: "Add Manually",
@@ -79,15 +92,16 @@ struct PrescriptionsView: View {
                             foregroundColor: Color.yellow) {
                     prescriptionsVM.uploadManually()
                 }
+                .sheet(isPresented: $prescriptionsVM.showMedicineEntrySheet) {
+                    MedicineEntryView(medicineVM: prescriptionsVM)
+                }
                 
                 LargeButton(title: "Upload Image",
                             backgroundColor: Color.green) {
-                    print("Hello World")
+                    prescriptionsVM.imagePickerVM.showActionSheet()
                 }
+                .modifier(ImagePickerModifier(imagePickerVM: self.prescriptionsVM.imagePickerVM))
             }
-        }
-        .sheet(isPresented: $prescriptionsVM.showMedicineEntrySheet) {
-            MedicineEntryView(medicineVM: prescriptionsVM)
         }
     }
 }
