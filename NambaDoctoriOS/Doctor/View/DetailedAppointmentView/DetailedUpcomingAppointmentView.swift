@@ -96,7 +96,6 @@ struct DetailedUpcomingAppointmentView: View {
     
     var actionButtons : some View {
         HStack {
-            
             Button(action: {
                 detailedAppointmentVM.cancelAppointment { success in
                     if success {

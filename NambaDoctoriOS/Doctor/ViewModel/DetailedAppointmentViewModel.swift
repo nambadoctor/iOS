@@ -40,6 +40,7 @@ class DetailedAppointmentViewModel : ObservableObject {
         self.prescriptionVM = MedicineViewModel(appointment: appointment)
         
         self.doctorTwilioManagerViewModel = DoctorTwilioViewModel(appointment: appointment)
+        CommonDefaultModifiers.showLoader()
     }
     
     var appointmentTime:String {
@@ -52,13 +53,16 @@ class DetailedAppointmentViewModel : ObservableObject {
 
     func cancelAppointment(completion: @escaping (_ successfullyCancelled:Bool)->()) {
         doctorAlertHelper.cancelAppointmentAlert { (cancel) in
+            CommonDefaultModifiers.showLoader()
             self.updateAppointmentStatus.toCancelled(appointment: &self.appointment) { (success) in
                 if success {
                     self.docNotifHelper.fireCancelNotif(requestedBy: self.appointment.customerID, appointmentTime: self.appointment.scheduledAppointmentStartTime)
                     DoctorDefaultModifiers.refreshAppointments()
+                    CommonDefaultModifiers.hideLoader()
                     completion(success)
                 } else {
                     GlobalPopupHelpers.setErrorAlert()
+                    CommonDefaultModifiers.hideLoader()
                     completion(success)
                 }
             }
@@ -74,24 +78,30 @@ class DetailedAppointmentViewModel : ObservableObject {
     }
     
     func sendToPatient () {
+        CommonDefaultModifiers.showLoader()
         var allSendsDone:[Bool] = [Bool]()
         
         func onCompletion(success:Bool) {
             allSendsDone.append(success)
             
             if allSendsDone.count == 3 && !allSendsDone.contains(false) {
+                CommonDefaultModifiers.hideLoader()
                 self.showOnSuccessAlert = true
             }
         }
-        
-        serviceRequestVM.sendToPatient { (success) in
+
+        serviceRequestVM.sendToPatient { (success, serviceRequestId) in
+            
+            if success {
+                self.prescriptionVM.prescription.serviceRequestID = serviceRequestId!
+                self.prescriptionVM.sendToPatient { (success) in
+                    onCompletion(success: success)
+                }
+            }
+            
             onCompletion(success: success)
         }
-        
-        prescriptionVM.sendToPatient { (success) in
-            onCompletion(success: success)
-        }
-        
+
         patientInfoViewModel.sendToPatient { (success) in
             onCompletion(success: success)
         }

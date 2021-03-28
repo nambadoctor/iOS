@@ -60,7 +60,7 @@ class ServiceRequestGetSetCall : ServiceRequestGetSetCallProtocol {
             print("ServiceRequest Set Client received: \(response.id.toString)")
             completion(response.id.toString)
         } catch {
-            print("ServiceRequest Set Client failed: \(error)")
+            print("ServiceRequest Set Client failed: \(error.localizedDescription)")
         }
     }
 }

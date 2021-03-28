@@ -17,15 +17,15 @@ class MedicineViewModel: ObservableObject {
     @Published var showMedicineEntrySheet:Bool = false
     @Published var medicineEntryVM:MedicineEntryViewModel = MedicineEntryViewModel(medicine: MakeEmptyMedicine(), isNew: true)
     var medicineBeingEdited:Int? = nil
-
+    
     var generalDoctorHelpers:GeneralDoctorHelpersProtocol!
     private var retrievePrescriptionHelper:PrescriptionGetSetServiceCallProtocol
     var prescriptionServiceCalls:PrescriptionGetSetServiceCallProtocol
-
+    
     init(appointment:ServiceProviderAppointment,
-        generalDoctorHelpers:GeneralDoctorHelpersProtocol = GeneralDoctorHelpers(),
-        retrievePrescriptionHelper:PrescriptionGetSetServiceCallProtocol = PrescriptionGetSetServiceCall(),
-        prescriptionServiceCalls:PrescriptionGetSetServiceCallProtocol = PrescriptionGetSetServiceCall()) {
+         generalDoctorHelpers:GeneralDoctorHelpersProtocol = GeneralDoctorHelpers(),
+         retrievePrescriptionHelper:PrescriptionGetSetServiceCallProtocol = PrescriptionGetSetServiceCall(),
+         prescriptionServiceCalls:PrescriptionGetSetServiceCallProtocol = PrescriptionGetSetServiceCall()) {
         
         self.appointment = appointment
         self.generalDoctorHelpers = generalDoctorHelpers
@@ -78,23 +78,25 @@ class MedicineViewModel: ObservableObject {
             showMedicineEntrySheet = false
         }
     }
-
-
+    
+    
     func retrievePrescriptions () {
         retrievePrescriptionHelper.getPrescription(appointmentId: self.appointment.appointmentID, serviceRequestId: self.appointment.serviceRequestID, customerId: self.appointment.customerID) { (prescription) in
-            if prescription != nil {
+            if prescription != nil && !prescription!.prescriptionID.isEmpty {
                 self.prescription = prescription!
             } else {
                 self.prescription = MakeEmptyPrescription(appointment: self.appointment)
             }
+            CommonDefaultModifiers.hideLoader()
         }
     }
     
     func sendToPatient (completion: @escaping (_ success:Bool)->()) {
-        guard !prescription.medicineList.isEmpty, !prescription.fileInfo.MediaImage.isEmpty else {
+        guard !prescription.medicineList.isEmpty || !prescription.fileInfo.MediaImage.isEmpty else {
+            print("nothing to add for prescription")
             completion(true)
             return
-        nt
+        }
         
         print("Prescription: \(prescription)")
         prescriptionServiceCalls.setPrescription(prescription: self.prescription) { (response) in
@@ -102,3 +104,4 @@ class MedicineViewModel: ObservableObject {
         }
     }
 }
+

@@ -45,6 +45,8 @@ struct AppointmentCard: View {
                                destination: DetailedUpcomingAppointmentView(appointment: self.AppointmentVM.appointment),
                                isActive: self.$AppointmentVM.takeToDetailedAppointment)
             }
+            
+            
         }
         .padding()
         .background(Color.blue.opacity(0.1))

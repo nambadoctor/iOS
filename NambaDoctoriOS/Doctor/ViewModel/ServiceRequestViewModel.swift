@@ -38,11 +38,12 @@ class ServiceRequestViewModel: ObservableObject {
             self.retrieveServiceRequest()
         }
     }
-    
+
     func retrieveServiceRequest() {
         retrieveServiceRequesthelper.getServiceRequest(appointmentId: self.appointment.appointmentID, serviceRequestId: appointment.serviceRequestID, customerId: self.appointment.customerID) { (serviceRequest) in
-            if serviceRequest != nil {
+            if serviceRequest != nil && serviceRequest?.serviceRequestID != "000000000000000000000000" {
                 self.mapPrescriptionValues(serviceRequest: serviceRequest!)
+                CommonDefaultModifiers.hideLoader()
             }
         }
     }
@@ -51,14 +52,14 @@ class ServiceRequestViewModel: ObservableObject {
         self.serviceRequest = serviceRequest
         self.investigationsViewModel.investigations = serviceRequest.investigations
     }
-    
-    func sendToPatient (completion: @escaping (_ success:Bool)->()) {
+
+    func sendToPatient (completion: @escaping (_ success:Bool,_ serviceRequestId:String?)->()) {
         print("ServiceRequest: \(serviceRequest)")
         serviceRequestServiceCalls.setServiceRequest(serviceRequest: serviceRequest) { (response) in
             if response != nil {
-                completion(true)
+                completion(true, response)
             } else {
-                completion(false)
+                completion(false, nil)
             }
         }
     }
