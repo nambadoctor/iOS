@@ -40,6 +40,7 @@ class DetailedAppointmentViewModel : ObservableObject {
         self.prescriptionVM = MedicineViewModel(appointment: appointment)
         
         self.doctorTwilioManagerViewModel = DoctorTwilioViewModel(appointment: appointment)
+        doctorTwilioManagerViewModel.twilioDelegate = self
         CommonDefaultModifiers.showLoader()
     }
     
@@ -106,4 +107,11 @@ class DetailedAppointmentViewModel : ObservableObject {
             onCompletion(success: success)
         }
     }
-} 
+}
+
+extension DetailedAppointmentViewModel : TwilioDelegate {
+    func leftRoom() {
+        print("DELEGATE ROOM WORKING")
+        self.openTwilioRoom.toggle()
+    }
+}

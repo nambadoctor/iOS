@@ -11,7 +11,7 @@ struct DoctorTwilioManager: View {
 
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var DoctorTwilioVM:DoctorTwilioViewModel
-    
+
     var body: some View {
         ZStack {
             VStack {
@@ -23,9 +23,9 @@ struct DoctorTwilioManager: View {
                         Spacer()
                     }
                     TwilioViewHelper(doctorTwilioVM: DoctorTwilioVM)
-                        .navigationBarItems(trailing: collapseCall)
-                        .frame(width: DoctorTwilioVM.collapseCall ? 100 : UIScreen.main.bounds.width,
-                               height: DoctorTwilioVM.collapseCall ? 180 : UIScreen.main.bounds.height - 55)
+                        .onTapGesture { DoctorTwilioVM.toggleTwilioViewSize() }
+                        .frame(width: DoctorTwilioVM.collapseCall ? 140 : UIScreen.main.bounds.width,
+                               height: DoctorTwilioVM.collapseCall ? 200 : UIScreen.main.bounds.height - 20)
                 }
             }
 
@@ -33,20 +33,21 @@ struct DoctorTwilioManager: View {
                 twilioButtonsLayout
             }
         }
+        .navigationTitle("")
+        .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
     }
 
-    var collapseCall : some View {
-        Button {
-            DoctorTwilioVM.collapseView()
-        } label: {
-            Text(DoctorTwilioVM.collapseCall ? "Expand Call" : "Collapse Call")
+    var collapseCallButton : some View {
+        LargeButton(title: DoctorTwilioVM.collapseCall ? "Expand Call" : "Collapse Call") {
+            DoctorTwilioVM.toggleTwilioViewSize()
         }
     }
     
     var twilioButtonsLayout : some View {
         ZStack (alignment: .bottomLeading) {
-            VStack {
+            VStack (alignment: .leading) {
+                collapseCallButton.frame(width: 150).padding(.top)
                 Spacer()
                 HStack {
                     Spacer()

@@ -8,6 +8,10 @@
 import Foundation
 import SwiftUI
 
+protocol TwilioDelegate {
+    func leftRoom()
+}
+
 class DoctorTwilioViewModel: ObservableObject {
     var appointment:ServiceProviderAppointment
     @Published var status:TwilioStateK = .waitingToStart
@@ -21,6 +25,8 @@ class DoctorTwilioViewModel: ObservableObject {
     private var docAlertHelpers:DoctorAlertHelpersProtocol!
     private var docSheetHelper:DoctorSheetHelpers = DoctorSheetHelpers()
     private var docNotificationHelpers:DocNotifHelpersProtocol
+    
+    var twilioDelegate:TwilioDelegate? = nil
 
     private var twilioAccessTokenHelper:TwilioAccessTokenProtocol
     private var updateAppointmentStatus:UpdateAppointmentStatusProtocol
@@ -74,9 +80,10 @@ class DoctorTwilioViewModel: ObservableObject {
     
     func leaveRoom () {
         self.viewController?.disconnect(sender: self)
+        twilioDelegate?.leftRoom()
     }
     
-    func collapseView() {
+    func toggleTwilioViewSize() {
         if collapseCall {
             viewController!.messageLabel.isHidden = false
             viewController!.previewView.isHidden = false
