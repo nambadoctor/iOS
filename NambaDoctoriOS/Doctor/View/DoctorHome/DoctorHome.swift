@@ -27,9 +27,14 @@ struct DoctorHome: View {
                             Text("Appointments")
                         }.tag(1)
                          
-                        DoctorsPatientsView().tabItem {
-                            Image("person.2.fill")
-                            Text("My Patients")
+//                        DoctorsPatientsView().tabItem {
+//                            Image("person.2.fill")
+//                            Text("My Patients")
+//                        }.tag(2)
+//
+                        DoctorProfile().tabItem {
+                            Image("person.crop.circle.fill")
+                            Text("My Profile")
                         }.tag(2)
                     }
                 }

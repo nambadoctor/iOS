@@ -13,7 +13,9 @@ import NIOHTTP1
 import NIOHTTP2
 
 class ChannelManager {
-    static let sharedChannelManager = ChannelManager(host: "52.233.76.64", port: 80)
+    //production ip:- 52.182.227.174
+    //testing ip:- 52.233.76.64
+    static let sharedChannelManager = ChannelManager(host: "52.182.227.174", port: 80)
     private var channel:ClientConnection?
     private var callOptions:CallOptions?
     

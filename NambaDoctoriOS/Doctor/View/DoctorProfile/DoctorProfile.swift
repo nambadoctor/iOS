@@ -8,30 +8,63 @@
 import SwiftUI
 
 struct DoctorProfile: View {
-    var doctor:ServiceProviderProfile = sampleServiceProvider
-    @State var editProfile:Bool = false
-    
+    @EnvironmentObject var doctorViewModel:DoctorViewModel
+
     var body: some View {
+        
         ScrollView {
+
+            title
             
-            if editProfile {
+            if doctorViewModel.showEdit {
+                EditableDoctorProfile(editDoctorVM: doctorViewModel.editDoctorVM, doctor: $doctorViewModel.doctor)
             } else {
+                doctorInfoHeader
+                Divider()
+                appointmentInfo
+                Divider()
             }
             
-            doctorInfoHeader
-            Divider()
-            appointmentInfo
-            Divider()
-            phoneNumbers
-            Divider()
-            addresses
-            Divider()
+            //will have edit option in future
+            Group {
+                phoneNumbers
+                Divider()
+                addresses
+                Divider()
+            }
             
-            //non editable
+            //non editable | need to contact nambadoctor team to edit
             Group {
                 workExperience
                 Divider()
                 education
+            }
+        }.padding()
+    }
+    
+    var title : some View {
+        HStack {
+            Text("My Profile")
+                .font(.title)
+                .padding(.trailing)
+            
+            if !self.doctorViewModel.showEdit {
+                Button(action: {
+                    self.doctorViewModel.showEdit.toggle()
+                }, label: {
+                    Image("pencil")
+                        .scaleEffect(1.5)
+                })
+            }
+            
+            Spacer()
+            
+            if self.doctorViewModel.showEdit {
+                LargeButton(title: "Save Changes") {
+                    self.doctorViewModel.showEdit.toggle()
+                    self.doctorViewModel.commitEdits()
+                }
+                .frame(height: 50)
             }
         }.padding()
     }
@@ -42,7 +75,7 @@ struct DoctorProfile: View {
                 .font(.footnote)
                 .bold()
                 .foregroundColor(.gray)
-            ForEach(doctor.educations, id: \.educationID) { education in
+            ForEach(doctorViewModel.doctor.educations, id: \.educationID) { education in
                 HStack {
                     VStack (alignment: .leading, spacing: 5) {
                         Text("\(education.course)")
@@ -68,7 +101,7 @@ struct DoctorProfile: View {
                 .font(.footnote)
                 .bold()
                 .foregroundColor(.gray)
-            ForEach(doctor.experiences, id: \.workExperienceID) { experience in
+            ForEach(doctorViewModel.doctor.experiences, id: \.workExperienceID) { experience in
                 HStack {
                     VStack (alignment: .leading, spacing: 5) {
                         Text("\(experience.organization)")
@@ -94,7 +127,7 @@ struct DoctorProfile: View {
                 .font(.footnote)
                 .bold()
                 .foregroundColor(.gray)
-            ForEach(doctor.addresses, id: \.addressID) { address in
+            ForEach(doctorViewModel.doctor.addresses, id: \.addressID) { address in
                 HStack {
                     VStack (alignment: .leading, spacing: 5) {
                         Text("\(address.streetAddress), \(address.state), \(address.country)")
@@ -120,7 +153,7 @@ struct DoctorProfile: View {
                 .font(.footnote)
                 .bold()
                 .foregroundColor(.gray)
-            ForEach(doctor.phoneNumbers, id: \.phoneNumberID) { phoneNumber in
+            ForEach(doctorViewModel.doctor.phoneNumbers, id: \.phoneNumberID) { phoneNumber in
                 HStack {
                     VStack (alignment: .leading, spacing: 5) {
                         Text("\(phoneNumber.countryCode)\(phoneNumber.number)")
@@ -149,7 +182,7 @@ struct DoctorProfile: View {
                     .font(.footnote)
                     .bold()
                     .foregroundColor(.gray)
-                Text("\(doctor.serviceFee.clean)₹")
+                Text("\(doctorViewModel.doctor.serviceFee.clean)₹")
             }
             
             VStack (alignment: .leading, spacing: 3) {
@@ -157,7 +190,7 @@ struct DoctorProfile: View {
                     .font(.footnote)
                     .bold()
                     .foregroundColor(.gray)
-                Text("\(doctor.followUpServiceFee.clean)₹")
+                Text("\(doctorViewModel.doctor.followUpServiceFee.clean)₹")
             }
             
             VStack (alignment: .leading, spacing: 3) {
@@ -165,7 +198,7 @@ struct DoctorProfile: View {
                     .font(.footnote)
                     .bold()
                     .foregroundColor(.gray)
-                Text("\(doctor.appointmentDuration) minutes")
+                Text("\(doctorViewModel.doctor.appointmentDuration) minutes")
             }
             
             VStack (alignment: .leading, spacing: 3) {
@@ -173,14 +206,14 @@ struct DoctorProfile: View {
                     .font(.footnote)
                     .bold()
                     .foregroundColor(.gray)
-                Text("\(doctor.intervalBetweenAppointment) minutes")
+                Text("\(doctorViewModel.doctor.intervalBetweenAppointment) minutes")
             }
         }.padding(.horizontal)
     }
     
     var doctorInfoHeader : some View {
         HStack {
-            ImageView(withURL: doctor.profilePictureURL)
+            ImageView(withURL: doctorViewModel.doctor.profilePictureURL)
             
             VStack (alignment: .leading, spacing: 10) {
                 VStack (alignment: .leading, spacing: 3) {
@@ -188,7 +221,7 @@ struct DoctorProfile: View {
                         .font(.footnote)
                         .bold()
                         .foregroundColor(.gray)
-                    Text("\(doctor.firstName) \(doctor.lastName)")
+                    Text("\(doctorViewModel.doctor.firstName) \(doctorViewModel.doctor.lastName)")
                 }
                 
                 VStack (alignment: .leading, spacing: 3) {
@@ -196,7 +229,7 @@ struct DoctorProfile: View {
                         .font(.footnote)
                         .bold()
                         .foregroundColor(.gray)
-                    Text("\(doctor.registrationNumber)")
+                    Text("\(doctorViewModel.doctor.registrationNumber)")
                 }
                 
                 VStack (alignment: .leading, spacing: 3) {
@@ -204,14 +237,9 @@ struct DoctorProfile: View {
                         .font(.footnote)
                         .bold()
                         .foregroundColor(.gray)
-                    Text("\(doctor.emailAddress)")
+                    Text("\(doctorViewModel.doctor.emailAddress)")
                 }
             }.padding()
         }
-    }
-}
-struct DoctorProfile_Previews: PreviewProvider {
-    static var previews: some View {
-        DoctorProfile()
     }
 }
