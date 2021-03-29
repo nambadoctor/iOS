@@ -66,6 +66,7 @@
 		171648722609DFC400BB5B5A /* ColoredButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171648712609DFC400BB5B5A /* ColoredButtons.swift */; };
 		1716487D260A824100BB5B5A /* DetailedAppointmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1716487C260A824100BB5B5A /* DetailedAppointmentViewModel.swift */; };
 		171B8AE126109792007E722C /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171B8AE026109792007E722C /* ImagePicker.swift */; };
+		171B8AE7261154C6007E722C /* DoctorProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171B8AE6261154C6007E722C /* DoctorProfile.swift */; };
 		1728B76D25B38156001D554E /* Logon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728B76C25B38156001D554E /* Logon.swift */; };
 		1728B77525B381D1001D554E /* PreRegisteredUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728B77425B381D1001D554E /* PreRegisteredUser.swift */; };
 		1728B77A25B381E7001D554E /* PreRegisteredUserVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728B77925B381E7001D554E /* PreRegisteredUserVM.swift */; };
@@ -314,6 +315,7 @@
 		171648712609DFC400BB5B5A /* ColoredButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredButtons.swift; sourceTree = "<group>"; };
 		1716487C260A824100BB5B5A /* DetailedAppointmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedAppointmentViewModel.swift; sourceTree = "<group>"; };
 		171B8AE026109792007E722C /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		171B8AE6261154C6007E722C /* DoctorProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorProfile.swift; sourceTree = "<group>"; };
 		1728B76C25B38156001D554E /* Logon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logon.swift; sourceTree = "<group>"; };
 		1728B77425B381D1001D554E /* PreRegisteredUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreRegisteredUser.swift; sourceTree = "<group>"; };
 		1728B77925B381E7001D554E /* PreRegisteredUserVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreRegisteredUserVM.swift; sourceTree = "<group>"; };
@@ -580,6 +582,14 @@
 				171646EC260300BD00BB5B5A /* ProtobufToVarConverters.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		171B8AE5261154BB007E722C /* DoctorProfile */ = {
+			isa = PBXGroup;
+			children = (
+				171B8AE6261154C6007E722C /* DoctorProfile.swift */,
+			);
+			path = DoctorProfile;
 			sourceTree = "<group>";
 		};
 		1728B76B25B38138001D554E /* ViewModel */ = {
@@ -900,13 +910,6 @@
 			name = MockViewModels;
 			sourceTree = "<group>";
 		};
-		17626E0F25DB0EAE00C36A99 /* Patient */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Patient;
-			sourceTree = "<group>";
-		};
 		17626E1825DB0FC600C36A99 /* ObjectMappers */ = {
 			isa = PBXGroup;
 			children = (
@@ -1038,6 +1041,7 @@
 		17B5D11625B74B29009D6A42 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				171B8AE5261154BB007E722C /* DoctorProfile */,
 				17EC75E3260C61EF0002BA75 /* DetailedAppointmentView */,
 				17626CCB25D5C01A00C36A99 /* DoctorHome */,
 				17AE6D1525E24B0B00B18292 /* DoctorsPatients */,
@@ -1195,7 +1199,6 @@
 				172B847525AED21600C6B035 /* App */,
 				172B84C225AEDBC000C6B035 /* Common */,
 				172B84C125AEDBBA00C6B035 /* Doctor */,
-				17626E0F25DB0EAE00C36A99 /* Patient */,
 				172B847F25AED22700C6B035 /* Resources */,
 				17E5186125AED16C001F1A80 /* Info.plist */,
 				1772338C25B726A6002B814A /* GoogleService-Info.plist */,
@@ -1542,6 +1545,7 @@
 				1772339825B72FF2002B814A /* CheckLoginStatus.swift in Sources */,
 				1796320525AEE7B5002E466C /* Helpers.swift in Sources */,
 				179BD39E25DE452D0076F391 /* LocalNotificationSender.swift in Sources */,
+				171B8AE7261154C6007E722C /* DoctorProfile.swift in Sources */,
 				171646A62602B5DA00BB5B5A /* ServiceProviderWorkExperience.swift in Sources */,
 				17626CD225D5C06200C36A99 /* DoctorHomeShowAlert.swift in Sources */,
 				1728B77525B381D1001D554E /* PreRegisteredUser.swift in Sources */,
