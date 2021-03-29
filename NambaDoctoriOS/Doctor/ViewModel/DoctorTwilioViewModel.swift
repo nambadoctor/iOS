@@ -11,9 +11,12 @@ import SwiftUI
 class DoctorTwilioViewModel: ObservableObject {
     var appointment:ServiceProviderAppointment
     @Published var status:TwilioStateK = .waitingToStart
-    
+        
     @Published var collapseCall:Bool = false
     @Published var viewController:ViewController? = nil
+    
+    @Published var videoEnabled:Bool = false
+    @Published var micEnabled:Bool = false
 
     private var docAlertHelpers:DoctorAlertHelpersProtocol!
     private var docSheetHelper:DoctorSheetHelpers = DoctorSheetHelpers()
@@ -30,14 +33,16 @@ class DoctorTwilioViewModel: ObservableObject {
         self.updateAppointmentStatus = updateAppointmentStatus
         self.docNotificationHelpers = DocNotifHelpers(appointment: self.appointment)
         docAlertHelpers = DoctorAlertHelpers()
+        
+        startRoom()
     }
 
     func startRoom() {
         DispatchQueue.main.async {
             self.twilioAccessTokenHelper.retrieveToken(appointmentId: self.appointment.appointmentID, serviceProviderId: self.appointment.serviceProviderID) { (success, token) in
                 if success {
+                    print("MAKING VIEW CONTROLLER NOW")
                     self.viewController = UIStoryboard(name: "Twilio", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as! ViewController
-                    self.status = .started
                     self.fireStartedNotif()
                 } else {
                     //show failed alert
@@ -54,50 +59,30 @@ class DoctorTwilioViewModel: ObservableObject {
             }
         }
     }
-
-    func toggleStatus (defaultChangeString: String) {
-        switch defaultChangeString {
-        case TwilioStateK.started.rawValue:
-            status = .started
-        case TwilioStateK.done.rawValue:
-            status = .done
-        case TwilioStateK.finished.rawValue:
-            status = .finished
-        case TwilioStateK.disconnected.rawValue:
-            self.disconnect()
-        default:
-            status = .started
+    
+    func toggleVideo () {
+        self.viewController?.toggleVideo(sender: self) { _ in
+            self.videoEnabled.toggle()
         }
     }
-
-    func disconnect() {
-        self.status = .disconnected
-    }
     
-    func endConsultation() {
-        docAlertHelpers.endConsultationAlert { (endConsultation) in
-            self.status = .finished
+    func toggleMic () {
+        self.viewController?.toggleMic(sender: self) { _ in
+            self.micEnabled.toggle()
         }
-        //DoctorDefaultModifiers.endConsultAlertDoNotShow()
     }
     
-    func viewPatientInfoClicked() {
-        docSheetHelper.showPatientInfoSheet(appointment: appointment)
+    func leaveRoom () {
+        self.viewController?.disconnect(sender: self)
     }
     
     func collapseView() {
         if collapseCall {
             viewController!.messageLabel.isHidden = false
-            viewController!.disconnectButton.isHidden = false
-            viewController!.micButton.isHidden = false
-            viewController!.videoToggleButton.isHidden = false
             viewController!.previewView.isHidden = false
             self.collapseCall = false
         } else {
             viewController!.messageLabel.isHidden = true
-            viewController!.disconnectButton.isHidden = true
-            viewController!.micButton.isHidden = true
-            viewController!.videoToggleButton.isHidden = true
             viewController! .previewView.isHidden = true
             self.collapseCall = true
         }

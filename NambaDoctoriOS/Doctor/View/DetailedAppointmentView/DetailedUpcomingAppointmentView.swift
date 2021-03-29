@@ -56,8 +56,9 @@ struct DetailedUpcomingAppointmentView: View {
             .padding([.leading, .trailing])
             
             if detailedAppointmentVM.openTwilioRoom {
-                DoctorTwilioManager(appointment: detailedAppointmentVM.appointment)
+                DoctorTwilioManager(DoctorTwilioVM: detailedAppointmentVM.doctorTwilioManagerViewModel)
             }
+            
         }
         .alert(isPresented: $detailedAppointmentVM.showOnSuccessAlert, content: {
             Alert(title: Text("Prescription Sent Successfully"), dismissButton: .default(Text("Ok"), action: {

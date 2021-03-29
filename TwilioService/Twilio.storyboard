@@ -3,7 +3,6 @@
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -27,50 +26,6 @@
                                     <constraint firstAttribute="height" constant="160" id="xHd-CS-Rgz"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rwp-9E-VzS" userLabel="Mic Button">
-                                <rect key="frame" x="136" y="562" width="62" height="29"/>
-                                <color key="backgroundColor" systemColor="linkColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="29" id="O0w-f2-VzL"/>
-                                    <constraint firstAttribute="width" constant="62" id="RqW-M0-Ldy"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="tintColor" systemColor="systemGreenColor"/>
-                                <state key="normal" title="Mute">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="toggleMicWithSender:" destination="jSN-F6-Q4K" eventType="touchUpInside" id="WeT-d9-6OE"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cUG-to-JWS">
-                                <rect key="frame" x="16" y="562" width="112" height="30"/>
-                                <color key="backgroundColor" systemColor="systemPinkColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="112" id="FB2-jD-gN3"/>
-                                    <constraint firstAttribute="height" constant="30" id="XN5-Uh-nS5"/>
-                                </constraints>
-                                <state key="normal" title="Enable Video">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <connections>
-                                    <action selector="toggleVideoWithSender:" destination="jSN-F6-Q4K" eventType="touchUpInside" id="i5r-Dz-w6W"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="krA-sT-Z3g">
-                                <rect key="frame" x="16" y="600" width="182" height="47"/>
-                                <color key="backgroundColor" systemColor="systemGreenColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="182" id="JrM-Km-Igw"/>
-                                    <constraint firstAttribute="height" constant="47" id="XcT-5K-t7n"/>
-                                </constraints>
-                                <state key="normal" title="Leave Room">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="disconnectWithSender:" destination="jSN-F6-Q4K" eventType="touchUpInside" id="PjE-WV-6Eg"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waiting for Patient..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5sC-Fe-a2M">
                                 <rect key="frame" x="85" y="319" width="204" height="29"/>
                                 <constraints>
@@ -84,27 +39,18 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="krA-sT-Z3g" firstAttribute="top" secondItem="rwp-9E-VzS" secondAttribute="bottom" constant="9" id="4Lx-9R-eHY"/>
                             <constraint firstItem="tZu-uw-hgi" firstAttribute="top" secondItem="6X6-cD-Bcg" secondAttribute="bottom" constant="10" id="AhO-gk-BTV"/>
                             <constraint firstItem="5sC-Fe-a2M" firstAttribute="top" secondItem="3Bh-pO-6uY" secondAttribute="topMargin" constant="275" id="McV-Dr-hCI"/>
                             <constraint firstItem="5sC-Fe-a2M" firstAttribute="leading" secondItem="3Bh-pO-6uY" secondAttribute="leadingMargin" constant="69" id="NGR-D6-T97"/>
-                            <constraint firstItem="cUG-to-JWS" firstAttribute="leading" secondItem="3Bh-pO-6uY" secondAttribute="leadingMargin" id="QWo-2i-q0b"/>
-                            <constraint firstItem="6X6-cD-Bcg" firstAttribute="leading" secondItem="krA-sT-Z3g" secondAttribute="trailing" constant="46" id="bim-ys-wkj"/>
                             <constraint firstAttribute="trailing" secondItem="6X6-cD-Bcg" secondAttribute="trailing" constant="11" id="goF-RB-oaq"/>
-                            <constraint firstItem="tZu-uw-hgi" firstAttribute="top" secondItem="krA-sT-Z3g" secondAttribute="bottom" constant="20" id="mSC-vJ-mPL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="5sC-Fe-a2M" secondAttribute="trailing" constant="70" id="mbN-x5-8RJ"/>
                             <constraint firstAttribute="bottomMargin" secondItem="5sC-Fe-a2M" secondAttribute="bottom" constant="319" id="rqQ-gC-9Mn"/>
-                            <constraint firstItem="6X6-cD-Bcg" firstAttribute="leading" secondItem="rwp-9E-VzS" secondAttribute="trailing" constant="46" id="yio-Hg-73B"/>
-                            <constraint firstItem="krA-sT-Z3g" firstAttribute="top" secondItem="cUG-to-JWS" secondAttribute="bottom" constant="8" id="zXI-bT-7Qs"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="9M3-8C-vjE"/>
                     <connections>
-                        <outlet property="disconnectButton" destination="krA-sT-Z3g" id="bY5-b1-Kgm"/>
                         <outlet property="messageLabel" destination="5sC-Fe-a2M" id="ln9-gM-V6e"/>
-                        <outlet property="micButton" destination="rwp-9E-VzS" id="SW4-po-OHw"/>
                         <outlet property="previewView" destination="6X6-cD-Bcg" id="y1o-u0-FtS"/>
-                        <outlet property="videoToggleButton" destination="cUG-to-JWS" id="B76-WZ-GOL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JfB-JL-3y4" sceneMemberID="firstResponder"/>
@@ -130,15 +76,4 @@
             <point key="canvasLocation" x="-116" y="367"/>
         </scene>
     </scenes>
-    <resources>
-        <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-    </resources>
 </document>

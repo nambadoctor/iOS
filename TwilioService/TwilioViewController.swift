@@ -1,5 +1,6 @@
 import UIKit
 import TwilioVideo
+import Foundation
 
 class ViewController: UIViewController {
 
@@ -21,9 +22,6 @@ class ViewController: UIViewController {
     // `VideoView` created from a storyboard
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak  var previewView: VideoView!
-    @IBOutlet weak var disconnectButton: UIButton!
-    @IBOutlet weak var micButton: UIButton!
-    @IBOutlet weak var videoToggleButton: UIButton!
     
     deinit {
         // We are done with camera
@@ -139,34 +137,22 @@ class ViewController: UIViewController {
         self.showRoomUI(inRoom: true)
     }
 
-    @IBAction func disconnect(sender: AnyObject) {
+    func disconnect(sender: AnyObject) {
         self.room!.disconnect()
         logMessage(messageText: "Attempting to disconnect from room \(room!.name)")
     }
 
-    @IBAction func toggleMic(sender: AnyObject) {
+    func toggleMic(sender: AnyObject, completion: @escaping (_ success:Bool)->()) {
         if (self.localAudioTrack != nil) {
             self.localAudioTrack?.isEnabled = !(self.localAudioTrack?.isEnabled)!
-            
-            // Update the button title
-            if (self.localAudioTrack?.isEnabled == true) {
-                self.micButton.setTitle("Mute", for: .normal)
-            } else {
-                self.micButton.setTitle("Unmute", for: .normal)
-            }
+            completion(true)
         }
     }
 
-    @IBAction func toggleVideo (sender: AnyObject) {
+    func toggleVideo (sender: AnyObject, completion: @escaping (_ success:Bool)->()) {
         if (self.localVideoTrack != nil) {
             self.localVideoTrack?.isEnabled = !(self.localVideoTrack?.isEnabled)!
-            
-            // Update the button title
-            if (self.localVideoTrack?.isEnabled == true) {
-                self.videoToggleButton.setTitle("Disable Video", for: .normal)
-            } else {
-                self.videoToggleButton.setTitle("Enable Video", for: .normal)
-            }
+            completion(true)
         }
     }
 
@@ -258,8 +244,6 @@ class ViewController: UIViewController {
 
     // Update our UI based upon if we are in a Room or not
     func showRoomUI(inRoom: Bool) {
-        self.micButton.isHidden = !inRoom
-        self.disconnectButton.isHidden = !inRoom
         self.navigationController?.setNavigationBarHidden(inRoom, animated: true)
         UIApplication.shared.isIdleTimerDisabled = inRoom
 

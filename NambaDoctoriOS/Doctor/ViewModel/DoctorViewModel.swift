@@ -48,8 +48,8 @@ class DoctorViewModel: ObservableObject {
                 self.getMyPatients()
                 
                 //update FCM Token
-                self.doctor.applicationInfo.deviceToken = FCMTokenId
-                self.updateDoctor()
+                //self.doctor.applicationInfo.deviceToken = FCMTokenId
+                //self.updateDoctor()
             }
         }
     }
