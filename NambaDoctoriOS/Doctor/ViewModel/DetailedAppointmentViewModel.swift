@@ -6,8 +6,11 @@
 //
 
 import Foundation
+import UIKit
 
 class DetailedAppointmentViewModel : ObservableObject {
+    @Published var killView:Bool = false
+    
     @Published var appointment:ServiceProviderAppointment
 
     @Published var serviceRequestVM:ServiceRequestViewModel
@@ -15,8 +18,7 @@ class DetailedAppointmentViewModel : ObservableObject {
     @Published var patientInfoViewModel:PatientInfoViewModel
     @Published var doctorTwilioManagerViewModel:DoctorTwilioViewModel
 
-    @Published var openTwilioRoom:Bool = false
-    @Published var collapseTwilioRoom:Bool = false
+    @Published var showTwilioRoom:Bool = false
     
     @Published var toggleAddMedicineSheet:Bool = false
     
@@ -75,24 +77,21 @@ class DetailedAppointmentViewModel : ObservableObject {
     }
     
     func startConsultation() {
-        self.openTwilioRoom = true
+        self.showTwilioRoom = true
     }
     
-    func sendToPatient () {
-        CommonDefaultModifiers.showLoader()
+    func savePrescription(completion: @escaping (_ success:Bool)->()) {
         var allSendsDone:[Bool] = [Bool]()
         
         func onCompletion(success:Bool) {
             allSendsDone.append(success)
             
             if allSendsDone.count == 3 && !allSendsDone.contains(false) {
-                CommonDefaultModifiers.hideLoader()
-                self.showOnSuccessAlert = true
+                completion(true)
             }
         }
 
         serviceRequestVM.sendToPatient { (success, serviceRequestId) in
-            
             if success {
                 self.prescriptionVM.prescription.serviceRequestID = serviceRequestId!
                 self.prescriptionVM.sendToPatient { (success) in
@@ -107,11 +106,24 @@ class DetailedAppointmentViewModel : ObservableObject {
             onCompletion(success: success)
         }
     }
+    
+    func sendToPatient () {
+        CommonDefaultModifiers.showLoader()
+        savePrescription { (success) in
+            self.updateAppointmentStatus.updateToFinished(appointment: &self.appointment) { (success) in
+                CommonDefaultModifiers.hideLoader()
+                DoctorDefaultModifiers.refreshAppointments()
+                self.showOnSuccessAlert = true
+            }
+        }
+    }
 }
 
 extension DetailedAppointmentViewModel : TwilioDelegate {
     func leftRoom() {
-        print("DELEGATE ROOM WORKING")
-        self.openTwilioRoom.toggle()
+        if appointment.status == "Finished" {
+            killView = true
+        }
+        self.showTwilioRoom.toggle()
     }
 }

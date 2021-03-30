@@ -83,6 +83,17 @@ struct PrescriptionsView: View {
                         .shadow(radius: 10)
                     Spacer()
                 }
+            } else if !prescriptionsVM.prescription.fileInfo.MediaImage.isEmpty {
+                HStack {
+                    Spacer()
+                    Image(uiImage: UIImage(data: Data(base64Encoded: prescriptionsVM.prescription.fileInfo.MediaImage)!)!)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 150, height: 200)
+                        .cornerRadius(10)
+                        .shadow(radius: 10)
+                    Spacer()
+                }
             }
 
             HStack {

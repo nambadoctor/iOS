@@ -11,23 +11,21 @@ struct DoctorTwilioManager: View {
 
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var DoctorTwilioVM:DoctorTwilioViewModel
-
+    @State private var twilioPosition = CGPoint(x: 50, y: 50)
+    
     var body: some View {
         ZStack {
-            VStack {
-                if DoctorTwilioVM.collapseCall {
-                    Spacer()
-                }
-                HStack {
+            TwilioViewHelper(doctorTwilioVM: DoctorTwilioVM)
+                .position(DoctorTwilioVM.collapseCall ? twilioPosition : CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2))
+                .gesture(DragGesture().onChanged({ value in
                     if DoctorTwilioVM.collapseCall {
-                        Spacer()
+                        self.twilioPosition = value.location
                     }
-                    TwilioViewHelper(doctorTwilioVM: DoctorTwilioVM)
-                        .onTapGesture { DoctorTwilioVM.toggleTwilioViewSize() }
-                        .frame(width: DoctorTwilioVM.collapseCall ? 140 : UIScreen.main.bounds.width,
-                               height: DoctorTwilioVM.collapseCall ? 200 : UIScreen.main.bounds.height - 20)
-                }
-            }
+                }))
+                .onTapGesture { DoctorTwilioVM.toggleTwilioViewSize() }
+                .frame(width: DoctorTwilioVM.collapseCall ? 140 : UIScreen.main.bounds.width,
+                       height: DoctorTwilioVM.collapseCall ? 200 : UIScreen.main.bounds.height - 20)
+                .cornerRadius(10)
 
             if DoctorTwilioVM.viewController != nil && !DoctorTwilioVM.collapseCall {
                 twilioButtonsLayout
@@ -39,9 +37,18 @@ struct DoctorTwilioManager: View {
     }
 
     var collapseCallButton : some View {
-        LargeButton(title: DoctorTwilioVM.collapseCall ? "Expand Call" : "Collapse Call") {
+        Button {
             DoctorTwilioVM.toggleTwilioViewSize()
+        } label: {
+            ZStack (alignment: .center) {
+                Circle().frame(width: 75, height: 75)
+                    .foregroundColor(.white)
+                Image(systemName: "arrow.down.forward.and.arrow.up.backward")
+                    .foregroundColor(.blue)
+                    .scaleEffect(2)
+            }
         }
+
     }
     
     var twilioButtonsLayout : some View {

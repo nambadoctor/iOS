@@ -20,6 +20,8 @@ class ServiceProviderGetSetServiceCall : ServiceProviderGetSetServiceCallProtoco
     var serviceProviderMapper:ServiceProviderProfileMapper
     var customerObjectMapper:ServiceProviderCustomerProfileObjectMapper
     
+    private var stopwatch = StopwatchManager()
+    
     init(serviceProviderMapper:ServiceProviderProfileMapper = ServiceProviderProfileMapper(),
          customerObjectMapper:ServiceProviderCustomerProfileObjectMapper = ServiceProviderCustomerProfileObjectMapper()) {
         self.serviceProviderMapper = serviceProviderMapper
@@ -45,10 +47,8 @@ class ServiceProviderGetSetServiceCall : ServiceProviderGetSetServiceCallProtoco
             completion(nil)
         }
     }
-    
-    
+
     func getServiceProvider (serviceProviderId:String, _ completion : @escaping (_ DoctorObj:ServiceProviderProfile?)->()) {
-                
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         
@@ -63,7 +63,9 @@ class ServiceProviderGetSetServiceCall : ServiceProviderGetSetServiceCallProtoco
         let getServiceProvider = doctorClient.getServiceProviderProfile(request, callOptions: callOptions)
 
         do {
+            stopwatch.start()
             let response = try getServiceProvider.response.wait()
+            stopwatch.stop()
             let doctor = serviceProviderMapper.grpcProfileToLocal(profile: response)
             print("Get Doctor Client Success \(doctor.serviceProviderID)")
             completion(doctor)
@@ -72,8 +74,8 @@ class ServiceProviderGetSetServiceCall : ServiceProviderGetSetServiceCallProtoco
             completion(nil)
         }
     }
-    
-    
+
+
     func getListOfPatients(serviceProviderId:String, _ completion: @escaping (([ServiceProviderCustomerProfile]?) -> ())) {
                 
         let channel = ChannelManager.sharedChannelManager.getChannel()

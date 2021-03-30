@@ -88,6 +88,7 @@ class MedicineViewModel: ObservableObject {
                 //need to optimize in service side
                 self.prescription.customerID = self.appointment.customerID
                 self.prescription.serviceRequestID = self.appointment.serviceRequestID
+                self.downloadPrescription()
                 //end
             } else {
                 self.prescription = MakeEmptyPrescription(appointment: self.appointment)
@@ -96,20 +97,29 @@ class MedicineViewModel: ObservableObject {
         }
     }
     
+    func downloadPrescription () {
+        retrievePrescriptionHelper.downloadPrescription(prescriptionID: prescription.prescriptionID) { (imageData) in
+            if imageData != nil {
+                self.prescription.fileInfo.MediaImage = imageData!
+            }
+        }
+    }
+    
     func sendToPatient (completion: @escaping (_ success:Bool)->()) {
-        guard !prescription.medicineList.isEmpty || !prescription.fileInfo.MediaImage.isEmpty else {
+        guard !prescription.medicineList.isEmpty || imagePickerVM.image != nil else {
             print("nothing to add for prescription")
             completion(true)
             return
         }
         
+        prescription.prescriptionID = "" //service will make new prescription ID to update not overwrite
+        
         if imagePickerVM.image != nil {
             self.prescription.fileInfo.FileName = ""
             self.prescription.fileInfo.FileType = "png"
-            self.prescription.fileInfo.MediaImage = imagePickerVM.image!.pngData()!.base64EncodedString()
+            self.prescription.fileInfo.MediaImage = imagePickerVM.image!.jpegData(compressionQuality: 0.1)!.base64EncodedString()
         }
 
-        print("Prescription: \(prescription)")
         prescriptionServiceCalls.setPrescription(prescription: self.prescription) { (response) in
             completion(response)
         }

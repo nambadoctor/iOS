@@ -21,7 +21,7 @@ class DoctorViewModel: ObservableObject {
     
     @Published var datePickerVM:DatePickerViewModel = DatePickerViewModel()
     @Published var noAppointmentsForSelectedDate:Bool = false
-    
+        
     var authenticateService:AuthenticateServiceProtocol
     var serviceProviderServiceCall:ServiceProviderGetSetServiceCallProtocol
     var doctorAppointmentViewModel:AppointmentGetSetServiceCallProtocol

@@ -11,10 +11,15 @@ import Firebase
 var AuthTokenId:String = ""
 
 class RetrieveAuthId {
-    static func getAuthId (_ completion: @escaping (_ success:Bool)->()) {
+    
+    private var stopwatch = StopwatchManager()
+    
+    func getAuthId (_ completion: @escaping (_ success:Bool)->()) {
+        stopwatch.start()
         if Auth.auth().currentUser != nil {
             Auth.auth().currentUser?.getIDToken(completion: { (token, err) in
                 if err == nil {
+                    self.stopwatch.stop()
                     AuthTokenId = token!
                     print("AUTH ID:")
                     print(AuthTokenId)

@@ -25,6 +25,7 @@ class ServiceProviderPrescriptionMapper {
             $0.customerID = prescription.customerID.toProto
             $0.createdDateTime = prescription.createdDateTime.toProto
             $0.medicineList = ServiceProviderMedicineMapper.localMedicineToGrpc(medicines: prescription.medicineList)
+            $0.fileInfo = ServiceProviderFileInfoMapper.localFileInfoToGrpc(fileInfo: prescription.fileInfo)
         }
     }
 }

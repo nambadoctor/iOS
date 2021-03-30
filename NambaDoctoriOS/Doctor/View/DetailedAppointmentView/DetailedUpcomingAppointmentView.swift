@@ -11,6 +11,7 @@ struct DetailedUpcomingAppointmentView: View {
     
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var detailedAppointmentVM:DetailedAppointmentViewModel
+    @State var toggleNavBarProgressView:Bool = false
     
     init(appointment:ServiceProviderAppointment) {
         print("Detailed AppointmentId: \(appointment.appointmentID)")
@@ -51,28 +52,48 @@ struct DetailedUpcomingAppointmentView: View {
                 Spacer()
                 
                 sendToPatient
-                
             }
             .padding([.leading, .trailing])
             
-            if detailedAppointmentVM.openTwilioRoom {
+            if detailedAppointmentVM.showTwilioRoom {
                 DoctorTwilioManager(DoctorTwilioVM: detailedAppointmentVM.doctorTwilioManagerViewModel)
             }
             
+            //remote kill view trigger
+            if detailedAppointmentVM.killView {
+                Text("You are done").onAppear() { killView() }
+            }
+            
         }
+        .navigationBarItems(trailing: saveButton)
         .alert(isPresented: $detailedAppointmentVM.showOnSuccessAlert, content: {
-            Alert(title: Text("Prescription Sent Successfully"), dismissButton: .default(Text("Ok"), action: {
-                self.killView()
-            }))
+            Alert(title: Text("Prescription Sent Successfully"), dismissButton: .default(Text("Ok")))
         })
         .onTapGesture {
             EndEditingHelper.endEditing()
         }
     }
     
+    var saveButton : some View {
+        Button(action: {
+            self.toggleNavBarProgressView.toggle()
+            detailedAppointmentVM.savePrescription { _ in
+                self.toggleNavBarProgressView.toggle()
+            }
+        }, label: {
+            HStack {
+                if toggleNavBarProgressView {
+                    ProgressView()
+                        .progressViewStyle(CircularProgressViewStyle())
+                }
+                Text("Save")
+            }
+        })
+    }
+    
     var sendToPatient : some View {
         VStack {
-            LargeButton(title: "Confirm and Send to Patient",
+            LargeButton(title: "Send to Patient",
                         backgroundColor: Color.blue) {
                 detailedAppointmentVM.sendToPatient()
             }

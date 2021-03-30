@@ -48,8 +48,8 @@ class ServiceRequestViewModel: ObservableObject {
         }
     }
 
-    func mapPrescriptionValues (serviceRequest:ServiceProviderServiceRequest) {        self.serviceRequest = serviceRequest
-
+    func mapPrescriptionValues (serviceRequest:ServiceProviderServiceRequest) {
+        self.serviceRequest = serviceRequest
         //need to optimize this in service. DO AFTER INITIAL LAUNCH!
         self.serviceRequest.customerID = appointment.customerID
         self.serviceRequest.appointmentID = appointment.appointmentID
