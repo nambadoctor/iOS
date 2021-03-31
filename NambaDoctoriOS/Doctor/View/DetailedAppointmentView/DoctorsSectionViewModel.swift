@@ -14,12 +14,22 @@ struct DoctorsSectionViewModel: View {
     var body: some View {
         VStack {
             clinicalSummary
+                .padding()
+                .background(Color.white)
+            
             InvestigationsEntryView(investigationsViewModel: serviceRequestVM.investigationsViewModel)
+                .padding()
+                .background(Color.white)
         }
     }
     
     var clinicalSummary : some View {
         VStack (alignment: .leading) {
+//            Text("Doctor's Section")
+//                .font(.title)
+//                .bold()
+//                .padding([.top, .bottom])
+
             Text("EXAMINATION:")
                 .font(.footnote)
                 .foregroundColor(Color.black.opacity(0.4))
@@ -42,7 +52,6 @@ struct DoctorsSectionViewModel: View {
                 .bold()
             
             ExpandingTextView(text: $serviceRequestVM.serviceRequest.advice)
-            Divider()
         }.padding(.bottom)
     }
 }

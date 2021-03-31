@@ -31,8 +31,12 @@ struct PatientInfoView: View {
                 .bold()
             
             if self.patientInfoViewModel.ReportList != nil {
-                ForEach (self.patientInfoViewModel.ReportList!, id: \.reportID) { report in
-                    PatientReportView(report: report)
+                ScrollView (.horizontal) {
+                    HStack {
+                        ForEach (self.patientInfoViewModel.ReportList!, id: \.reportID) { report in
+                            PatientReportView(report: report)
+                        }
+                    }
                 }
             } else {
                 Text("There are no reports")

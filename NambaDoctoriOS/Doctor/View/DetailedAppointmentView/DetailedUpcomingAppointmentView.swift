@@ -17,43 +17,35 @@ struct DetailedUpcomingAppointmentView: View {
         print("Detailed AppointmentId: \(appointment.appointmentID)")
         detailedAppointmentVM = DetailedAppointmentViewModel(appointment: appointment)
     }
-    
+
     var body: some View {
         ZStack {
             ScrollView (.vertical) {
+                
                 VStack {
                     header
                     Divider().background(Color.blue.opacity(0.4))
                     actionButtons
                 }
-                .background(Color.blue.opacity(0.1))
-                .cornerRadius(10)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.blue.opacity(0.5), lineWidth: 1)
-                )
+                .background(Color.white)
+                .border(Color.blue, width: 1)
+                .padding(.top, 5)
                 
-                VStack (alignment: .leading) {
-                    
-                    PatientInfoView(patientInfoViewModel: detailedAppointmentVM.patientInfoViewModel)
-                    
-                    Text("Doctor's Section")
-                        .font(.title)
-                        .bold()
-                        .padding([.top, .bottom])
-                    
-                    DoctorsSectionViewModel(serviceRequestVM: detailedAppointmentVM.serviceRequestVM)
-                    PrescriptionsView(prescriptionsVM: self.detailedAppointmentVM.prescriptionVM)
-                    
-                }
-                .padding(.top)
-                .padding(.leading, 2)
+                PatientInfoView(patientInfoViewModel: detailedAppointmentVM.patientInfoViewModel)
+                    .padding()
+                    .background(Color.white)
+                
+                DoctorsSectionViewModel(serviceRequestVM: detailedAppointmentVM.serviceRequestVM)
+                
+                
+                PrescriptionsView(prescriptionsVM: self.detailedAppointmentVM.prescriptionVM)
+                    .padding()
+                    .background(Color.white)
                 
                 Spacer()
                 
                 sendToPatient
             }
-            .padding([.leading, .trailing])
             
             if detailedAppointmentVM.showTwilioRoom {
                 DoctorTwilioManager(DoctorTwilioVM: detailedAppointmentVM.doctorTwilioManagerViewModel)
@@ -65,6 +57,7 @@ struct DetailedUpcomingAppointmentView: View {
             }
             
         }
+        .background(Color.gray.opacity(0.3))
         .navigationBarItems(trailing: saveButton)
         .alert(isPresented: $detailedAppointmentVM.showOnSuccessAlert, content: {
             Alert(title: Text("Prescription Sent Successfully"), dismissButton: .default(Text("Ok")))
@@ -122,21 +115,25 @@ struct DetailedUpcomingAppointmentView: View {
     
     var actionButtons : some View {
         HStack {
-            Button(action: {
-                detailedAppointmentVM.cancelAppointment { success in
-                    if success {
-                        killView()
-                    }
-                }
-            }, label: {
-                Text("Cancel")
-                    .padding([.top, .bottom], 7)
-                    .padding([.leading, .trailing], 10)
-                    .overlay(RoundedRectangle(cornerRadius: 6)
-                                .stroke(Color.blue, lineWidth: 2))
-            })
             
-            Spacer()
+            if !detailedAppointmentVM.consultationHappened {
+                Button(action: {
+                    detailedAppointmentVM.cancelAppointment { success in
+                        if success {
+                            killView()
+                        }
+                    }
+                }, label: {
+                    Text("Cancel")
+                        .padding([.top, .bottom], 7)
+                        .padding([.leading, .trailing], 10)
+                        .overlay(RoundedRectangle(cornerRadius: 6)
+                                    .stroke(Color.blue, lineWidth: 2))
+                })
+                
+                Spacer()
+            }
+
             Button(action: {
                 
             }, label: {

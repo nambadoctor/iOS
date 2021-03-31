@@ -19,10 +19,12 @@ class DetailedAppointmentViewModel : ObservableObject {
     @Published var doctorTwilioManagerViewModel:DoctorTwilioViewModel
 
     @Published var showTwilioRoom:Bool = false
+    @Published var consultationHappened:Bool = false
     
     @Published var toggleAddMedicineSheet:Bool = false
     
     @Published var showOnSuccessAlert:Bool = false
+    
         
     private var updateAppointmentStatus:UpdateAppointmentStatusProtocol
     private var docNotifHelper:DocNotifHelpers
@@ -44,6 +46,7 @@ class DetailedAppointmentViewModel : ObservableObject {
         self.doctorTwilioManagerViewModel = DoctorTwilioViewModel(appointment: appointment)
         doctorTwilioManagerViewModel.twilioDelegate = self
         CommonDefaultModifiers.showLoader()
+        checkIfConsultationHappened()
     }
     
     var appointmentTime:String {
@@ -52,6 +55,13 @@ class DetailedAppointmentViewModel : ObservableObject {
     
     var customerName:String {
         return "\(appointment.customerName)"
+    }
+    
+    func checkIfConsultationHappened() {
+        if appointment.status == ConsultStateK.StartedConsultation.rawValue || appointment.status == ConsultStateK.Finished.rawValue || appointment.status == ConsultStateK.FinishedAppointment.rawValue {
+            print("Consultation Happened")
+            consultationHappened = true
+        }
     }
 
     func cancelAppointment(completion: @escaping (_ successfullyCancelled:Bool)->()) {
