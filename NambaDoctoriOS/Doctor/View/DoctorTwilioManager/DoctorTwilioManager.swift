@@ -11,13 +11,13 @@ struct DoctorTwilioManager: View {
 
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var DoctorTwilioVM:DoctorTwilioViewModel
-    @State private var twilioPosition = CGPoint(x: 50, y: 50)
+    @State private var twilioPosition = CGPoint(x: 100, y: 100)
     
     var body: some View {
         ZStack {
             TwilioViewHelper(doctorTwilioVM: DoctorTwilioVM)
                 .frame(width: DoctorTwilioVM.collapseCall ? 140 : UIScreen.main.bounds.width,
-                       height: DoctorTwilioVM.collapseCall ? 200 : UIScreen.main.bounds.height - 20)
+                       height: DoctorTwilioVM.collapseCall ? 200 : UIScreen.main.bounds.height)
                 .position(DoctorTwilioVM.collapseCall ? twilioPosition : CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2))
                 .gesture(DragGesture().onChanged({ value in
                     if DoctorTwilioVM.collapseCall {
@@ -41,11 +41,11 @@ struct DoctorTwilioManager: View {
             DoctorTwilioVM.toggleTwilioViewSize()
         } label: {
             ZStack (alignment: .center) {
-                Circle().frame(width: 75, height: 75)
+                Circle().frame(width: 60, height: 60)
                     .foregroundColor(.white)
                 Image(systemName: "arrow.down.forward.and.arrow.up.backward")
                     .foregroundColor(.blue)
-                    .scaleEffect(2)
+                    .scaleEffect(1.5)
             }
         }
 
@@ -54,7 +54,7 @@ struct DoctorTwilioManager: View {
     var twilioButtonsLayout : some View {
         ZStack (alignment: .bottomLeading) {
             VStack (alignment: .leading) {
-                collapseCallButton.frame(width: 150).padding(.top)
+                collapseCallButton.frame(width: 100).padding(.top)
                 Spacer()
                 HStack {
                     Spacer()
@@ -71,6 +71,19 @@ struct DoctorTwilioManager: View {
                     .padding()
                     .frame(width: 200)
             }
+            
+            HStack {
+                Spacer()
+                if !DoctorTwilioVM.videoEnabled {
+                    Text("Your video and mic are currently disabled")
+                        .foregroundColor(.black)
+                        .bold()
+                        .frame(width: 100)
+                        .padding()
+                        .background(Color.white.opacity(0.5))
+                        .padding()
+                }
+            }
             .padding()
         }
     }
@@ -80,15 +93,15 @@ struct DoctorTwilioManager: View {
             self.DoctorTwilioVM.toggleVideo()
         } label: {
             ZStack (alignment: .center) {
-                Circle().frame(width: 75, height: 75)
+                Circle().frame(width: 60, height: 60)
                     .foregroundColor(.white)
-                if DoctorTwilioVM.videoEnabled {
+                if !DoctorTwilioVM.videoEnabled {
                     Image(systemName: "video.slash.fill")
                         .foregroundColor(.gray)
-                        .scaleEffect(2)
+                        .scaleEffect(1.5)
                 } else {
                     Image(systemName: "video.fill")
-                        .scaleEffect(2)
+                        .scaleEffect(1.5)
                 }
             }
         }
@@ -99,15 +112,15 @@ struct DoctorTwilioManager: View {
             self.DoctorTwilioVM.toggleMic()
         } label: {
             ZStack (alignment: .center) {
-                Circle().frame(width: 75, height: 75)
+                Circle().frame(width: 60, height: 60)
                     .foregroundColor(.white)
-                if DoctorTwilioVM.micEnabled {
+                if !DoctorTwilioVM.micEnabled {
                     Image("mic.slash.fill")
                         .foregroundColor(.gray)
-                        .scaleEffect(2)
+                        .scaleEffect(1.5)
                 } else {
                     Image("mic.fill")
-                        .scaleEffect(2)
+                        .scaleEffect(1.5)
                 }
             }
         }

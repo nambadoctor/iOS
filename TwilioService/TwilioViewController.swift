@@ -306,6 +306,9 @@ extension ViewController : RoomDelegate {
         self.cleanupRemoteParticipant()
         self.room = nil
         
+        self.localVideoTrack = nil
+        self.localAudioTrack = nil
+
         TwilioDefaultModifiers.twilioSetToDisconnected()
         
         self.showRoomUI(inRoom: false)
@@ -410,7 +413,6 @@ extension ViewController : RemoteParticipantDelegate {
 
     func remoteParticipantDidEnableVideoTrack(participant: RemoteParticipant, publication: RemoteVideoTrackPublication) {
         logMessage(messageText: "Participant \(participant.identity) enabled \(publication.trackName) video track")
-        self.messageLabel.text = ""
     }
 
     func remoteParticipantDidDisableVideoTrack(participant: RemoteParticipant, publication: RemoteVideoTrackPublication) {
@@ -419,7 +421,6 @@ extension ViewController : RemoteParticipantDelegate {
 
     func remoteParticipantDidEnableAudioTrack(participant: RemoteParticipant, publication: RemoteAudioTrackPublication) {
         logMessage(messageText: "Participant \(participant.identity) enabled \(publication.trackName) audio track")
-        self.messageLabel.text = ""
     }
 
     func remoteParticipantDidDisableAudioTrack(participant: RemoteParticipant, publication: RemoteAudioTrackPublication) {
