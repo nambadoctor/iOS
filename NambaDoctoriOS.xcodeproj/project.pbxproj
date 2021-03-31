@@ -70,6 +70,8 @@
 		171B8AEF26116D57007E722C /* EditServiceProviderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171B8AEE26116D57007E722C /* EditServiceProviderViewModel.swift */; };
 		171B8AF426116FA7007E722C /* EditableDoctorProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171B8AF326116FA7007E722C /* EditableDoctorProfile.swift */; };
 		171B8B012612966D007E722C /* StopwatchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171B8B002612966D007E722C /* StopwatchManager.swift */; };
+		171B8B0E261481D1007E722C /* FollowUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171B8B0D261481D1007E722C /* FollowUpViewModel.swift */; };
+		171B8B13261481E7007E722C /* FollowUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171B8B12261481E7007E722C /* FollowUpView.swift */; };
 		1728B76D25B38156001D554E /* Logon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728B76C25B38156001D554E /* Logon.swift */; };
 		1728B77525B381D1001D554E /* PreRegisteredUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728B77425B381D1001D554E /* PreRegisteredUser.swift */; };
 		1728B77A25B381E7001D554E /* PreRegisteredUserVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728B77925B381E7001D554E /* PreRegisteredUserVM.swift */; };
@@ -322,6 +324,8 @@
 		171B8AEE26116D57007E722C /* EditServiceProviderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditServiceProviderViewModel.swift; sourceTree = "<group>"; };
 		171B8AF326116FA7007E722C /* EditableDoctorProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableDoctorProfile.swift; sourceTree = "<group>"; };
 		171B8B002612966D007E722C /* StopwatchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchManager.swift; sourceTree = "<group>"; };
+		171B8B0D261481D1007E722C /* FollowUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowUpViewModel.swift; sourceTree = "<group>"; };
+		171B8B12261481E7007E722C /* FollowUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowUpView.swift; sourceTree = "<group>"; };
 		1728B76C25B38156001D554E /* Logon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logon.swift; sourceTree = "<group>"; };
 		1728B77425B381D1001D554E /* PreRegisteredUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreRegisteredUser.swift; sourceTree = "<group>"; };
 		1728B77925B381E7001D554E /* PreRegisteredUserVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreRegisteredUserVM.swift; sourceTree = "<group>"; };
@@ -677,6 +681,7 @@
 				17E869E525CE771E000B0952 /* PatientReportViewModel.swift */,
 				1716487C260A824100BB5B5A /* DetailedAppointmentViewModel.swift */,
 				171B8AEE26116D57007E722C /* EditServiceProviderViewModel.swift */,
+				171B8B0D261481D1007E722C /* FollowUpViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1256,6 +1261,7 @@
 				17EC75EE260C74920002BA75 /* PrescriptionsView.swift */,
 				17EC75F6260CEFAB0002BA75 /* InvestigationsEntryView.swift */,
 				17EC766F260EE9D50002BA75 /* MedicineEntryView.swift */,
+				171B8B12261481E7007E722C /* FollowUpView.swift */,
 			);
 			path = DetailedAppointmentView;
 			sourceTree = "<group>";
@@ -1585,6 +1591,7 @@
 				171647252603217A00BB5B5A /* ServiceProviderFollowUpMapper.swift in Sources */,
 				17E370AD25BF19B40004C965 /* DoctorTwilioManager.swift in Sources */,
 				174250F725BC44BE00523B94 /* GeneralDoctorHelpersProtocol.swift in Sources */,
+				171B8B0E261481D1007E722C /* FollowUpViewModel.swift in Sources */,
 				1716474826032B5F00BB5B5A /* ServiceProviderServiceRequestMapper.swift in Sources */,
 				171648632609B93600BB5B5A /* DetailedUpcomingAppointmentView.swift in Sources */,
 				171646D92602B7AC00BB5B5A /* ServiceProviderProfile.swift in Sources */,
@@ -1699,6 +1706,7 @@
 				17164706260312DC00BB5B5A /* ServiceProviderAvailaibilityObjectMapper.swift in Sources */,
 				171646CC2602B73C00BB5B5A /* ServiceProviderReport.swift in Sources */,
 				1728B77F25B3838E001D554E /* LoginStatusEnum.swift in Sources */,
+				171B8B13261481E7007E722C /* FollowUpView.swift in Sources */,
 				172B850E25AEE46700C6B035 /* CountryPickerView.swift in Sources */,
 				17626ECE25DB4CB100C36A99 /* LogAnalytics.swift in Sources */,
 				171647CE2604499400BB5B5A /* ServiceProviderGetSetServiceCall.swift in Sources */,
