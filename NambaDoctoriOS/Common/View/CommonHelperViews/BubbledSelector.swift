@@ -17,10 +17,13 @@ struct BubbledSelector: View {
         VStack {
             
             HStack {
-                Text("\(title):")
-                    .font(.footnote)
-                    .foregroundColor(Color.black.opacity(0.4))
-                    .bold()
+                if !title.isEmpty {
+                    Text("\(title):")
+                        .font(.footnote)
+                        .foregroundColor(Color.black.opacity(0.4))
+                        .bold()
+                }
+                
                 Spacer()
                 
                 if array.count > 4 {

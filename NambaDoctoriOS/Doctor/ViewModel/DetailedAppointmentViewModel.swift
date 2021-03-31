@@ -8,6 +8,13 @@
 import Foundation
 import UIKit
 
+class FollowUpViewModel : ObservableObject {
+    @Published var toggleFollowUp:Bool = false
+    @Published var followUpDays:String = ""
+    @Published var daysArr:[String] = ["Days", "Weeks", "Months"]
+    @Published var selectedDay:String = ""
+}
+
 class DetailedAppointmentViewModel : ObservableObject {
     @Published var killView:Bool = false
     
@@ -17,6 +24,7 @@ class DetailedAppointmentViewModel : ObservableObject {
     @Published var prescriptionVM:MedicineViewModel
     @Published var patientInfoViewModel:PatientInfoViewModel
     @Published var doctorTwilioManagerViewModel:DoctorTwilioViewModel
+    @Published var followUpViewModel:FollowUpViewModel
 
     @Published var showTwilioRoom:Bool = false
     @Published var consultationHappened:Bool = false
@@ -42,6 +50,7 @@ class DetailedAppointmentViewModel : ObservableObject {
         self.patientInfoViewModel = PatientInfoViewModel(appointment: appointment)
         self.serviceRequestVM = ServiceRequestViewModel(appointment: appointment)
         self.prescriptionVM = MedicineViewModel(appointment: appointment)
+        self.followUpViewModel = FollowUpViewModel()
         
         self.doctorTwilioManagerViewModel = DoctorTwilioViewModel(appointment: appointment)
         doctorTwilioManagerViewModel.twilioDelegate = self
