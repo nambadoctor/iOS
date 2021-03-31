@@ -40,9 +40,13 @@ class AppointmentViewModel: ObservableObject {
     var appointmentId:String {
         return self.appointment.appointmentID
     }
-
-    var cardBackgroundColor:Color {
-        return appointment.status == ConsultStateK.StartedConsultation.rawValue ? Color(UIColor.green).opacity(0.5) : Color.white
+    
+    var paymentStatus:String {
+        if self.appointment.isPaid {
+            return "Paid"
+        } else {
+            return "Payment Pending"
+        }
     }
 
     func checkIfConsultationHappened() {
@@ -60,7 +64,7 @@ class AppointmentViewModel: ObservableObject {
     }
     
     func getAppointmentTime () -> String {
-        return Helpers.getTimeFromTimeStamp(timeStamp: appointment.scheduledAppointmentStartTime)
+        return Helpers.getSimpleTimeForAppointment(timeStamp1: appointment.scheduledAppointmentStartTime)
     }
     
     func getAppointmentTimeSpan () -> String {
