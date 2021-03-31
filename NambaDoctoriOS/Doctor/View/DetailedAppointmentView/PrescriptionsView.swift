@@ -86,7 +86,7 @@ struct PrescriptionsView: View {
             } else if !prescriptionsVM.prescription.fileInfo.MediaImage.isEmpty {
                 HStack {
                     Spacer()
-                    Image(uiImage: UIImage(data: Data(base64Encoded: prescriptionsVM.prescription.fileInfo.MediaImage)!)!)
+                    Image(uiImage: UIImage(data: Data(base64Encoded: prescriptionsVM.prescription.fileInfo.MediaImage)!) ?? UIImage())
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 150, height: 200)

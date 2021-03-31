@@ -16,6 +16,8 @@ struct DoctorTwilioManager: View {
     var body: some View {
         ZStack {
             TwilioViewHelper(doctorTwilioVM: DoctorTwilioVM)
+                .frame(width: DoctorTwilioVM.collapseCall ? 140 : UIScreen.main.bounds.width,
+                       height: DoctorTwilioVM.collapseCall ? 200 : UIScreen.main.bounds.height - 20)
                 .position(DoctorTwilioVM.collapseCall ? twilioPosition : CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2))
                 .gesture(DragGesture().onChanged({ value in
                     if DoctorTwilioVM.collapseCall {
@@ -23,8 +25,6 @@ struct DoctorTwilioManager: View {
                     }
                 }))
                 .onTapGesture { DoctorTwilioVM.toggleTwilioViewSize() }
-                .frame(width: DoctorTwilioVM.collapseCall ? 140 : UIScreen.main.bounds.width,
-                       height: DoctorTwilioVM.collapseCall ? 200 : UIScreen.main.bounds.height - 20)
                 .cornerRadius(10)
 
             if DoctorTwilioVM.viewController != nil && !DoctorTwilioVM.collapseCall {
