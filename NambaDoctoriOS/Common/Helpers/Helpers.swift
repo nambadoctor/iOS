@@ -24,7 +24,7 @@ class Helpers {
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
         dateFormatter.timeZone = NSTimeZone(name: "UTC") as TimeZone?
         let date = dateFormatter.date(from: dateStr)// create   date from string
-                                             
+        
         // change to a readable time format and change to local time zone
         dateFormatter.dateFormat = "EEE, MMM d, yyyy - h:mm a"
         dateFormatter.timeZone = NSTimeZone.local
@@ -39,7 +39,7 @@ class Helpers {
         
         if let newImageData = newImageData {
             print("CONVERTING TO IMAGE \(String(describing: UIImage(data: newImageData)))")
-           return UIImage(data: newImageData)
+            return UIImage(data: newImageData)
         } else {
             print("FAILED TO CONVERT TO IMAGE")
             return nil
@@ -56,46 +56,62 @@ class Helpers {
                           }))
         return alert
     }
-
-    static func getTimeFromTimeStamp(timeStamp : Int64) -> String {
-
-         let formatter = DateFormatter()
-
-         formatter.timeZone = TimeZone.current
-
-         formatter.dateFormat = "dd MMM, h:mm a"
-         formatter.amSymbol = "AM"
-         formatter.pmSymbol = "PM"
-
-         let dateString = formatter.string(from: Date(milliseconds: timeStamp))
-        
-        
-         let day = DateFormatter().weekdaySymbols[Calendar.current.component(.weekday, from: Date(milliseconds: timeStamp)) - 1]
-         return "\(day), \(dateString)"
-     }
     
-    static func getSimpleTimeForAppointment (timeStamp1 : Int64, timeStamp2: Int64) -> String {
+    static func getTimeFromTimeStamp(timeStamp : Int64) -> String {
+        
         let formatter = DateFormatter()
-
+        
         formatter.timeZone = TimeZone.current
-
+        
+        formatter.dateFormat = "dd MMM, h:mm a"
+        formatter.amSymbol = "AM"
+        formatter.pmSymbol = "PM"
+        
+        let dateString = formatter.string(from: Date(milliseconds: timeStamp))
+        
+        
+        let day = DateFormatter().weekdaySymbols[Calendar.current.component(.weekday, from: Date(milliseconds: timeStamp)) - 1]
+        return "\(day), \(dateString)"
+    }
+    
+    
+    
+    static func getSimpleTimeSpanForAppointment (timeStamp1 : Int64, timeStamp2: Int64) -> String {
+        let formatter = DateFormatter()
+        
+        formatter.timeZone = TimeZone.current
+        
         formatter.dateFormat = "h:mm a"
         formatter.amSymbol = "AM"
         formatter.pmSymbol = "PM"
-
+        
         let dateString1 = formatter.string(from: Date(milliseconds: timeStamp1))
         let dateString2 = formatter.string(from: Date(milliseconds: timeStamp2))
-       
-       return "\(dateString1) - \(dateString2)"
+        
+        return "\(dateString1) - \(dateString2)"
+    }
+    
+    static func getSimpleTimeForAppointment (timeStamp1 : Int64) -> String {
+        let formatter = DateFormatter()
+        
+        formatter.timeZone = TimeZone.current
+        
+        formatter.dateFormat = "h:mm a"
+        formatter.amSymbol = "AM"
+        formatter.pmSymbol = "PM"
+        
+        let dateString1 = formatter.string(from: Date(milliseconds: timeStamp1))
+        
+        return "\(dateString1)"
     }
     
     static func getDatePickerStringFromDate (date:Date) -> [String] {
         let formatter = DateFormatter()
-
+        
         formatter.timeZone = TimeZone.current
-
+        
         formatter.dateFormat = "dd"
-
+        
         let dateString = formatter.string(from: date)
         
         let day = "\(DateFormatter().weekdaySymbols[Calendar.current.component(.weekday, from: date) - 1])"
@@ -105,7 +121,7 @@ class Helpers {
     
     static func compareDate (date1:Date, date2:Date) -> Bool {
         let order = Calendar.current.compare(date1, to: date2, toGranularity: .day)
-
+        
         if order == .orderedSame {
             return true
         } else {
@@ -117,12 +133,24 @@ class Helpers {
         let date1 = Date(milliseconds: timestamp)
         
         let order = Calendar.current.compare(date1, to: date2, toGranularity: .day)
-
+        
         if order == .orderedSame {
             return true
         } else {
             return false
         }
+    }
+
+    static func getDisplayForDateSelector (date : Date) -> String {
+        let formatter = DateFormatter()
+        
+        formatter.timeZone = TimeZone.current
+        
+        formatter.dateFormat = "MMMM, dd"
+        
+        let dateString1 = formatter.string(from: date)
+        
+        return "\(dateString1)"
     }
 }
 

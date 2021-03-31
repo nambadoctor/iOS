@@ -46,7 +46,7 @@ class AppointmentViewModel: ObservableObject {
     }
 
     func checkIfConsultationHappened() {
-        if appointment.status == ConsultStateK.StartedConsultation.rawValue {
+        if appointment.status == ConsultStateK.StartedConsultation.rawValue || appointment.status == ConsultStateK.Finished.rawValue || appointment.status == ConsultStateK.FinishedAppointment.rawValue {
             consultationHappened = true
         }
     }
@@ -59,7 +59,11 @@ class AppointmentViewModel: ObservableObject {
         self.takeToTwilioRoom = true
     }
     
+    func getAppointmentTime () -> String {
+        return Helpers.getTimeFromTimeStamp(timeStamp: appointment.scheduledAppointmentStartTime)
+    }
+    
     func getAppointmentTimeSpan () -> String {
-        return Helpers.getSimpleTimeForAppointment(timeStamp1: appointment.scheduledAppointmentStartTime, timeStamp2: appointment.scheduledAppointmentEndTime)
+        return Helpers.getSimpleTimeSpanForAppointment(timeStamp1: appointment.scheduledAppointmentStartTime, timeStamp2: appointment.scheduledAppointmentEndTime)
     }
 }

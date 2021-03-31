@@ -25,7 +25,7 @@ struct AppointmentCard: View {
                 VStack (alignment: .leading, spacing: 5) {
                     Text(AppointmentVM.appointment.customerName)
                         .font(.system(size: 20))
-                        .foregroundColor(Color.blue)
+                        .foregroundColor(AppointmentVM.consultationHappened ? Color.red : Color.blue)
                     Text("\(AppointmentVM.appointment.serviceFee.clean)₹")
                         .font(.subheadline)
                         .foregroundColor(Color.gray.opacity(0.8))
@@ -34,19 +34,16 @@ struct AppointmentCard: View {
             
             Divider()
                 .frame(height: 1)
-                .background(Color.blue.opacity(0.1))
+                .background(AppointmentVM.consultationHappened ? Color.red.opacity(0.1) : Color.blue.opacity(0.1))
                 .padding([.top, .bottom], 10)
             
             if AppointmentVM.consultationHappened {
                 Text("Consultation Done")
                     .font(.system(size: 19))
-                    .foregroundColor(Color.white)
-                    .padding()
-                    .background(Color.red)
-                    .cornerRadius(10)
+                    .foregroundColor(Color.red)
 
             } else {
-                Text(AppointmentVM.getAppointmentTimeSpan())
+                Text(AppointmentVM.getAppointmentTime())
                     .font(.system(size: 19))
                     .foregroundColor(Color.blue)
             }
@@ -60,10 +57,10 @@ struct AppointmentCard: View {
             
         }
         .padding()
-        .background(Color.blue.opacity(0.1))
+        .background(AppointmentVM.consultationHappened ? Color.red.opacity(0.1) : Color.blue.opacity(0.1))
         .overlay(
                 RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color.blue.opacity(0.5), lineWidth: 1)
+                    .stroke(AppointmentVM.consultationHappened ? Color.red.opacity(0.5) : Color.blue.opacity(0.5), lineWidth: 1)
             )
         .cornerRadius(10)
         .frame(width: UIScreen.main.bounds.width - 60)

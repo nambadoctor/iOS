@@ -19,6 +19,10 @@ struct HorizontalDatePicker: View {
                     Text("Today")
                         .foregroundColor(.black)
                         .bold()
+                } else {
+                    Text("\(Helpers.getDisplayForDateSelector(date: datePickerVM.selectedDate))")
+                        .foregroundColor(.black)
+                        .bold()
                 }
 
                 ScrollViewReader { scrollview in
