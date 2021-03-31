@@ -36,9 +36,20 @@ struct AppointmentCard: View {
                 .frame(height: 1)
                 .background(Color.blue.opacity(0.1))
                 .padding([.top, .bottom], 10)
-            Text(AppointmentVM.getAppointmentTimeSpan())
-                .font(.system(size: 19))
-                .foregroundColor(Color.blue)
+            
+            if AppointmentVM.consultationHappened {
+                Text("Consultation Done")
+                    .font(.system(size: 19))
+                    .foregroundColor(Color.white)
+                    .padding()
+                    .background(Color.red)
+                    .cornerRadius(10)
+
+            } else {
+                Text(AppointmentVM.getAppointmentTimeSpan())
+                    .font(.system(size: 19))
+                    .foregroundColor(Color.blue)
+            }
             
             if self.AppointmentVM.takeToDetailedAppointment {
                 NavigationLink("",

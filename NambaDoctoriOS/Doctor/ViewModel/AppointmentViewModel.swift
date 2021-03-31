@@ -11,8 +11,7 @@ import SwiftUI
 class AppointmentViewModel: ObservableObject {
     @Published var appointment:ServiceProviderAppointment
 
-    @Published var consultationStarted:Bool = false
-    @Published var consultationDone:Bool = false
+    @Published var consultationHappened:Bool = false
 
     @Published var takeToTwilioRoom:Bool = false
     @Published var takeToDetailedAppointment:Bool = false
@@ -31,8 +30,7 @@ class AppointmentViewModel: ObservableObject {
         self.updateAppointmentStatus = updateAppointmentStatus
         self.doctorAlertHelper = doctorAlertHelper
         self.docNotifHelper = DocNotifHelpers(appointment: appointment)
-        checkIfConsultationStarted()
-        checkIfConsultationDone()
+        checkIfConsultationHappened()
     }
 
     var LocalTime:String {
@@ -47,15 +45,9 @@ class AppointmentViewModel: ObservableObject {
         return appointment.status == ConsultStateK.StartedConsultation.rawValue ? Color(UIColor.green).opacity(0.5) : Color.white
     }
 
-    func checkIfConsultationStarted() {
+    func checkIfConsultationHappened() {
         if appointment.status == ConsultStateK.StartedConsultation.rawValue {
-            consultationStarted = true
-        }
-    }
-    
-    func checkIfConsultationDone() {
-        if appointment.status == ConsultStateK.FinishedAppointment.rawValue {
-            consultationDone = true
+            consultationHappened = true
         }
     }
 
