@@ -121,11 +121,13 @@ class DetailedAppointmentViewModel : ObservableObject {
     
     func sendToPatient () {
         CommonDefaultModifiers.showLoader()
-        savePrescription { (success) in
-            self.updateAppointmentStatus.updateToFinished(appointment: &self.appointment) { (success) in
-                CommonDefaultModifiers.hideLoader()
-                DoctorDefaultModifiers.refreshAppointments()
-                self.showOnSuccessAlert = true
+        DispatchQueue.global().async {
+            self.savePrescription { (success) in
+                self.updateAppointmentStatus.updateToFinished(appointment: &self.appointment) { (success) in
+                    CommonDefaultModifiers.hideLoader()
+                    DoctorDefaultModifiers.refreshAppointments()
+                    self.showOnSuccessAlert = true
+                }
             }
         }
     }

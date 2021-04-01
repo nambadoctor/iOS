@@ -32,7 +32,7 @@ class PatientInfoViewModel: ObservableObject {
         self.reportServiceCall = reportServiceCall
         self.appointmentServiceCall = appointmentServiceCall
         
-        DispatchQueue.main.async {
+        DispatchQueue.global().async {
             self.retrievePatientObj()
             self.retrieveAppointmentList()
             self.retrieveUploadedDocumentList()

@@ -32,7 +32,6 @@ struct ContentView: View {
             showLoaderListener()
         }
     }
-    
 }
 
 //MARK: STATE CHANGE OBSERVERS
