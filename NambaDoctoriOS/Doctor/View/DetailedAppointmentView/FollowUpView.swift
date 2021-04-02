@@ -12,6 +12,7 @@ struct FollowUpView : View {
     var body : some View {
         VStack {
             Toggle("Set Follow-Up for patient", isOn: $followUpVM.toggleFollowUp)
+                .padding(.bottom, 5)
             
             if followUpVM.toggleFollowUp  {
                 HStack {
@@ -22,7 +23,7 @@ struct FollowUpView : View {
                         .background(Color.gray.opacity(0.2))
                         .cornerRadius(10)
                         .padding(.trailing)
-                    
+
                     BubbledSelector(title: "", array: followUpVM.daysArr, selected: $followUpVM.selectedDay, limitToFour: false)
                 }
             }

@@ -98,9 +98,9 @@ class MedicineViewModel: ObservableObject {
     }
     
     func downloadPrescription () {
-        retrievePrescriptionHelper.downloadPrescription(prescriptionID: prescription.prescriptionID) { (imageData) in
-            if imageData != nil {
-                self.prescription.fileInfo.MediaImage = imageData!
+        retrievePrescriptionHelper.downloadPrescription(prescriptionID: prescription.prescriptionID) { (imageDataURL) in
+            if imageDataURL != nil {
+                self.prescription.fileInfo.MediaImage = imageDataURL!
             }
         }
     }

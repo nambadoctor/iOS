@@ -21,7 +21,7 @@ struct PrescriptionsView: View {
                 .font(.footnote)
                 .foregroundColor(Color.black.opacity(0.4))
                 .bold()
-            
+
             ForEach (prescriptionsVM.prescription.medicineList, id: \.medicineName) { medicine in
                 HStack {
                     VStack (alignment: .leading, spacing: 5) {
@@ -71,7 +71,7 @@ struct PrescriptionsView: View {
                 .background(Color.green.opacity(0.1))
                 .cornerRadius(7)
             }
-            
+
             if prescriptionsVM.imagePickerVM.image != nil {
                 HStack {
                     Spacer()
@@ -86,9 +86,7 @@ struct PrescriptionsView: View {
             } else if !prescriptionsVM.prescription.fileInfo.MediaImage.isEmpty {
                 HStack {
                     Spacer()
-                    Image(uiImage: UIImage(data: Data(base64Encoded: prescriptionsVM.prescription.fileInfo.MediaImage)!) ?? UIImage())
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
+                    ImageView(withURL: prescriptionsVM.prescription.fileInfo.MediaImage)
                         .frame(width: 150, height: 200)
                         .cornerRadius(10)
                         .shadow(radius: 10)

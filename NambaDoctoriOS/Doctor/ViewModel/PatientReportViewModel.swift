@@ -10,9 +10,8 @@ import UIKit
 
 class PatientReportViewModel : ObservableObject {
     @Published var report:ServiceProviderReport
-    @Published var mediaObject:UIImage?
+    @Published var mediaURL:String?
     @Published var displayImage:ImageDisplayEnum = .loading
-    @Published var showReportSheet:Bool = false
     
     private var reportServiceCall:ReportGetSetServiceCallProtocol
     
@@ -24,18 +23,10 @@ class PatientReportViewModel : ObservableObject {
         getImageObj()
     }
     
-    func enableReportSheet() {
-        self.showReportSheet = true
-    }
-    
-    func disableReportSheet() {
-        self.showReportSheet = false
-    }
-    
     func getImageObj () {
-        reportServiceCall.getReportImage(reportId: report.reportID) { (reportImage) in
-            if reportImage != nil {
-                self.mediaObject = reportImage
+        reportServiceCall.getReportImage(reportId: report.reportID) { (reportImageURL) in
+            if reportImageURL != nil {
+                self.mediaURL = reportImageURL
                 self.displayImage = .display
             } else {
                 self.displayImage = .notFound

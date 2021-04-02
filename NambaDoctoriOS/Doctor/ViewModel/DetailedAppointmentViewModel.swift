@@ -18,6 +18,7 @@ class DetailedAppointmentViewModel : ObservableObject {
     @Published var patientInfoViewModel:PatientInfoViewModel
     @Published var doctorTwilioManagerViewModel:DoctorTwilioViewModel
     @Published var followUpViewModel:FollowUpViewModel
+    @Published var modifyFeeViewModel:ModifyFeeViewModel
 
     @Published var showTwilioRoom:Bool = false
     @Published var consultationHappened:Bool = false
@@ -44,7 +45,8 @@ class DetailedAppointmentViewModel : ObservableObject {
         self.serviceRequestVM = ServiceRequestViewModel(appointment: appointment)
         self.prescriptionVM = MedicineViewModel(appointment: appointment)
         self.followUpViewModel = FollowUpViewModel()
-        
+        self.modifyFeeViewModel = ModifyFeeViewModel(fee: appointment.serviceFee.clean)
+
         self.doctorTwilioManagerViewModel = DoctorTwilioViewModel(appointment: appointment)
         doctorTwilioManagerViewModel.twilioDelegate = self
         CommonDefaultModifiers.showLoader()
@@ -89,9 +91,15 @@ class DetailedAppointmentViewModel : ObservableObject {
     }
     
     func startConsultation() {
+        doctorTwilioManagerViewModel.fireStartedNotif()
         self.showTwilioRoom = true
     }
     
+    func callPatient () {
+        guard let number = URL(string: "tel://" + patientInfoViewModel.phoneNumber) else { return }
+        UIApplication.shared.open(number)
+    }
+
     func savePrescription(completion: @escaping (_ success:Bool)->()) {
         var allSendsDone:[Bool] = [Bool]()
         
@@ -101,6 +109,10 @@ class DetailedAppointmentViewModel : ObservableObject {
             if allSendsDone.count == 3 && !allSendsDone.contains(false) {
                 completion(true)
             }
+        }
+        
+        if modifyFeeViewModel.feeModified || modifyFeeViewModel.feeWaived {
+            self.appointment.serviceFee = Double(modifyFeeViewModel.fee)!
         }
 
         serviceRequestVM.sendToPatient { (success, serviceRequestId) in

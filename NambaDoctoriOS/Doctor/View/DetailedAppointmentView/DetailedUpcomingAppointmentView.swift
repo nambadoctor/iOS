@@ -46,6 +46,10 @@ struct DetailedUpcomingAppointmentView: View {
                     .padding()
                     .background(Color.white)
                 
+                ModifyFeeView(modifyFeeVM: self.detailedAppointmentVM.modifyFeeViewModel)
+                    .padding()
+                    .background(Color.white)
+
                 Spacer()
                 
                 sendToPatient
@@ -59,7 +63,7 @@ struct DetailedUpcomingAppointmentView: View {
             if detailedAppointmentVM.killView {
                 Text("You are done").onAppear() { killView() }
             }
-            
+
         }
         .background(Color.gray.opacity(0.3))
         .navigationBarItems(trailing: saveButton)
@@ -70,7 +74,7 @@ struct DetailedUpcomingAppointmentView: View {
             EndEditingHelper.endEditing()
         }
     }
-    
+
     var saveButton : some View {
         Button(action: {
             self.toggleNavBarProgressView.toggle()
@@ -139,7 +143,7 @@ struct DetailedUpcomingAppointmentView: View {
             }
 
             Button(action: {
-                
+                detailedAppointmentVM.callPatient()
             }, label: {
                 VStack (alignment: .center) {
                     Image("phone")

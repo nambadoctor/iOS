@@ -39,6 +39,10 @@ class PatientInfoViewModel: ObservableObject {
         }
     }
     
+    var phoneNumber:String {
+        return "\(patientObj.phoneNumbers[0].number)"
+    }
+    
     private func retrievePatientObj () {
         customerServiceCall.getPatientProfile(patientId: self.appointment.requestedBy) { (customer) in
             if customer != nil {
@@ -49,7 +53,7 @@ class PatientInfoViewModel: ObservableObject {
             }
         }
     }
-    
+ 
     private func retrieveAppointmentList () {
         appointmentServiceCall.getCustomerAppointmentList(patientId: appointment.requestedBy) { (aptList) in
             if aptList != nil {

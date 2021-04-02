@@ -11,7 +11,7 @@ import SwiftUI
 protocol ReportGetSetServiceCallProtocol {
     func getUploadedReportList(customerId:String, _ completion: @escaping (([ServiceProviderReport]?) -> ()))
     
-    func getReportImage(reportId: String, _ completion: @escaping (UIImage?) -> ())
+    func getReportImage(reportId: String, _ completion: @escaping (String?) -> ())
 }
 
 class ReportGetSetServiceCall : ReportGetSetServiceCallProtocol {
@@ -48,7 +48,7 @@ class ReportGetSetServiceCall : ReportGetSetServiceCallProtocol {
         }
     }
     
-    func getReportImage(reportId: String, _ completion: @escaping (UIImage?) -> ()) {
+    func getReportImage(reportId: String, _ completion: @escaping (String?) -> ()) {
         
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
@@ -65,8 +65,8 @@ class ReportGetSetServiceCall : ReportGetSetServiceCallProtocol {
         DispatchQueue.main.async {
             do {
                 let response = try getPatientReports.response.wait()
-                print("Patient Reports received \(response.mediaFile)")
-                completion(GrpcHelpers.convertByteStreamToImage(byteStream: response.mediaFile))
+                print("Patient Reports received \(response.message)")
+                completion(response.message.toString)
             } catch {
                 print("Patient Reports failed: \(error)")
                 completion(nil)

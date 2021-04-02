@@ -140,7 +140,7 @@ class Helpers {
             return false
         }
     }
-
+    
     static func getDisplayForDateSelector (date : Date) -> String {
         let formatter = DateFormatter()
         

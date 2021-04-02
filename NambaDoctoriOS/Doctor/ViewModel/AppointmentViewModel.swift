@@ -19,15 +19,12 @@ class AppointmentViewModel: ObservableObject {
     private var docSheetHelper:DoctorSheetHelpers = DoctorSheetHelpers()
     private var docNotifHelper:DocNotifHelpers
 
-    private var updateAppointmentStatus:UpdateAppointmentStatusProtocol
     private var doctorAlertHelper:DoctorAlertHelpersProtocol
 
     init(appointment:ServiceProviderAppointment,
-         updateAppointmentStatus:UpdateAppointmentStatusProtocol = UpdateAppointmentStatusHelper(),
          doctorAlertHelper:DoctorAlertHelpersProtocol = DoctorAlertHelpers()) {
         
         self.appointment = appointment
-        self.updateAppointmentStatus = updateAppointmentStatus
         self.doctorAlertHelper = doctorAlertHelper
         self.docNotifHelper = DocNotifHelpers(appointment: appointment)
         checkIfConsultationHappened()

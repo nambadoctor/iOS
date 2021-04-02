@@ -49,14 +49,13 @@ class DoctorTwilioViewModel: ObservableObject {
                 if success {
                     print("MAKING VIEW CONTROLLER NOW")
                     self.viewController = UIStoryboard(name: "Twilio", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as! ViewController
-                    self.fireStartedNotif()
                 } else {
                     //show failed alert
                 }
             }
         }
     }
-    
+
     func fireStartedNotif () {
         let replicatedAppointment = self.appointment //cannot do simultanueous access...
         self.updateAppointmentStatus.updateToStartedConsultation(appointment: &self.appointment) { (success) in

@@ -12,6 +12,7 @@ pod 'Firebase/Auth'
 pod 'Firebase/Analytics'
 pod 'Firebase/Messaging'
 pod 'TwilioVideo', '~> 3.7'
+pod 'ActivityIndicatorView'
 
   target 'NambaDoctoriOSTests' do
     inherit! :search_paths

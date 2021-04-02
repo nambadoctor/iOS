@@ -77,11 +77,11 @@ class PrescriptionGetSetServiceCall : PrescriptionGetSetServiceCallProtocol {
 
         do {
             let response = try downloadPrescription.response.wait()
-            print("Prescription Download Client Successfull: \(response.mediaFile)")
-            if response.mediaFile.toString.isEmpty {
+            print("Prescription Download Client Successfull: \(response.message)")
+            if response.message.toString.isEmpty {
                 completion(nil)
             } else {
-                completion(response.mediaFile.toString)
+                completion(response.message.toString)
             }
         } catch {
             print("Prescription Download Client Failed: \(error)")

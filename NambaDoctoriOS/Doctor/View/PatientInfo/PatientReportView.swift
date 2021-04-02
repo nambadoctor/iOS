@@ -25,18 +25,12 @@ struct PatientReportView: View {
                     .bold()
                     .padding()
             case .display:
-                Image(uiImage: patientReportVM.mediaObject!)
+                ImageView(withURL: patientReportVM.mediaURL!)
             }
         }
         .frame(width: 100, height: 160)
         .background(Color.yellow.opacity(0.2))
         .cornerRadius(10)
         .padding([.top, .trailing])
-        .sheet(isPresented: self.$patientReportVM.showReportSheet) {
-            Image(uiImage: patientReportVM.mediaObject!)
-                .resizable()
-                .scaledToFit()
-                .pinchToZoom()
-        }
     }
 }
