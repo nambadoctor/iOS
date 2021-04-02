@@ -164,6 +164,8 @@
 		1772755D25B8A4880012B9DE /* MockAuthenticateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1772755C25B8A4880012B9DE /* MockAuthenticateService.swift */; };
 		1772756525B8A7DB0012B9DE /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1772756425B8A7DB0012B9DE /* LoginViewModelTests.swift */; };
 		1785A5012616E193009667D1 /* ModifyFeeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1785A5002616E193009667D1 /* ModifyFeeViewModel.swift */; };
+		1785A53D2616FB52009667D1 /* serviceprovider.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1785A53C2616FB52009667D1 /* serviceprovider.pb.swift */; };
+		1785A5422616FB58009667D1 /* serviceprovider.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1785A5412616FB58009667D1 /* serviceprovider.grpc.swift */; };
 		1796320525AEE7B5002E466C /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796320425AEE7B5002E466C /* Helpers.swift */; };
 		1796320E25AEE865002E466C /* UIResponder+Current.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796320A25AEE865002E466C /* UIResponder+Current.swift */; };
 		1796320F25AEE865002E466C /* KeyboardHeightPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796320B25AEE865002E466C /* KeyboardHeightPublisher.swift */; };
@@ -417,6 +419,8 @@
 		1772755C25B8A4880012B9DE /* MockAuthenticateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthenticateService.swift; sourceTree = "<group>"; };
 		1772756425B8A7DB0012B9DE /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
 		1785A5002616E193009667D1 /* ModifyFeeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyFeeViewModel.swift; sourceTree = "<group>"; };
+		1785A53C2616FB52009667D1 /* serviceprovider.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = serviceprovider.pb.swift; sourceTree = "<group>"; };
+		1785A5412616FB58009667D1 /* serviceprovider.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = serviceprovider.grpc.swift; sourceTree = "<group>"; };
 		1796320425AEE7B5002E466C /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		1796320A25AEE865002E466C /* UIResponder+Current.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIResponder+Current.swift"; sourceTree = "<group>"; };
 		1796320B25AEE865002E466C /* KeyboardHeightPublisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardHeightPublisher.swift; sourceTree = "<group>"; };
@@ -786,6 +790,7 @@
 		173A22BB25CAF8BC0086342A /* ServiceImplementations */ = {
 			isa = PBXGroup;
 			children = (
+				1785A5412616FB58009667D1 /* serviceprovider.grpc.swift */,
 			);
 			path = ServiceImplementations;
 			sourceTree = "<group>";
@@ -793,6 +798,7 @@
 		173A22BC25CAF8C60086342A /* ModelImplementations */ = {
 			isa = PBXGroup;
 			children = (
+				1785A53C2616FB52009667D1 /* serviceprovider.pb.swift */,
 			);
 			path = ModelImplementations;
 			sourceTree = "<group>";
@@ -1563,6 +1569,7 @@
 				171646A62602B5DA00BB5B5A /* ServiceProviderWorkExperience.swift in Sources */,
 				17626CD225D5C06200C36A99 /* DoctorHomeShowAlert.swift in Sources */,
 				171B8B012612966D007E722C /* StopwatchManager.swift in Sources */,
+				1785A53D2616FB52009667D1 /* serviceprovider.pb.swift in Sources */,
 				1728B77525B381D1001D554E /* PreRegisteredUser.swift in Sources */,
 				171B8AE126109792007E722C /* ImagePicker.swift in Sources */,
 				17EC75E5260C62190002BA75 /* PatientInfoView.swift in Sources */,
@@ -1600,6 +1607,7 @@
 				17B5D13725B75A04009D6A42 /* AppointmentsView.swift in Sources */,
 				171646FC26030C6300BB5B5A /* ServiceProviderAppointmentObjectMapper.swift in Sources */,
 				1728B76D25B38156001D554E /* Logon.swift in Sources */,
+				1785A5422616FB58009667D1 /* serviceprovider.grpc.swift in Sources */,
 				17AE6D3325E24DA400B18292 /* RetrieveDoctorsPatientsServiceProtocol.swift in Sources */,
 				17E3707025BF123F0004C965 /* Settings.swift in Sources */,
 				171646732602B28F00BB5B5A /* NotificationRequest.swift in Sources */,
