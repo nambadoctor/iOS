@@ -90,16 +90,14 @@ class ServiceProviderGetSetServiceCall : ServiceProviderGetSetServiceCallProtoco
 
         let getDoctorsPatients = patientClient.getCustomers(request, callOptions: callOptions)
 
-        DispatchQueue.main.async {
-            do {
-                let response = try getDoctorsPatients.response.wait()
-                let patientList = self.customerObjectMapper.grpcCustomerToLocal(customer: response.customers)
-                print("Doctors Patients received: success")
-                completion(patientList)
-            } catch {
-                print("Doctors Patients received failed: \(error)")
-                completion(nil)
-            }
+        do {
+            let response = try getDoctorsPatients.response.wait()
+            let patientList = self.customerObjectMapper.grpcCustomerToLocal(customer: response.customers)
+            print("Doctors Patients received: success")
+            completion(patientList)
+        } catch {
+            print("Doctors Patients received failed: \(error)")
+            completion(nil)
         }
     }
 

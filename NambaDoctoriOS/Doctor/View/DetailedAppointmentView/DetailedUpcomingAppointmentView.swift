@@ -42,9 +42,9 @@ struct DetailedUpcomingAppointmentView: View {
                     .padding()
                     .background(Color.white)
                 
-                FollowUpView(followUpVM: self.detailedAppointmentVM.followUpViewModel)
-                    .padding()
-                    .background(Color.white)
+//                FollowUpView(followUpVM: self.detailedAppointmentVM.followUpViewModel)
+//                    .padding()
+//                    .background(Color.white)
                 
                 ModifyFeeView(modifyFeeVM: self.detailedAppointmentVM.modifyFeeViewModel)
                     .padding()

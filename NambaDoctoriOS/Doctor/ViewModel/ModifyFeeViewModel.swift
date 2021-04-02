@@ -11,7 +11,6 @@ class ModifyFeeViewModel:ObservableObject {
     @Published var fee:String
     var feeWaived:Bool = false
     var feeModified:Bool = false
-    @Published var toggleModify:Bool = false
     
     init(fee:String) {
         self.fee = String(fee)
@@ -24,5 +23,10 @@ class ModifyFeeViewModel:ObservableObject {
     func waiveFee () {
         fee = "0"
         feeWaived = true
+    }
+    
+    func convertFeeToDouble() -> Double {
+        print("DOUBLE VAL \(Double(fee)!)")
+        return Double(fee)!
     }
 }

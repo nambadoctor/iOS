@@ -111,9 +111,7 @@ class DetailedAppointmentViewModel : ObservableObject {
             }
         }
         
-        if modifyFeeViewModel.feeModified || modifyFeeViewModel.feeWaived {
-            self.appointment.serviceFee = Double(modifyFeeViewModel.fee)!
-        }
+        self.appointment.serviceFee = modifyFeeViewModel.convertFeeToDouble()
 
         serviceRequestVM.sendToPatient { (success, serviceRequestId) in
             if success {
@@ -133,13 +131,11 @@ class DetailedAppointmentViewModel : ObservableObject {
     
     func sendToPatient () {
         CommonDefaultModifiers.showLoader()
-        DispatchQueue.global().async {
-            self.savePrescription { (success) in
-                self.updateAppointmentStatus.updateToFinished(appointment: &self.appointment) { (success) in
-                    CommonDefaultModifiers.hideLoader()
-                    DoctorDefaultModifiers.refreshAppointments()
-                    self.showOnSuccessAlert = true
-                }
+        self.savePrescription { (success) in
+            self.updateAppointmentStatus.updateToFinished(appointment: &self.appointment) { (success) in
+                CommonDefaultModifiers.hideLoader()
+                DoctorDefaultModifiers.refreshAppointments()
+                self.showOnSuccessAlert = true
             }
         }
     }

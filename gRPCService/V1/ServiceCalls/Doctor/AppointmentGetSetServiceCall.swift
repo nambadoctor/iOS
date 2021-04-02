@@ -63,16 +63,14 @@ class AppointmentGetSetServiceCall : AppointmentGetSetServiceCallProtocol {
         
         let getPatientAppointments = appointmentsClient.getCustomerAppointments(request, callOptions: callOptions)
         
-        DispatchQueue.main.async {
-            do {
-                let response = try getPatientAppointments.response.wait()
-                let appointmentList = self.appointmentObjectMapper.grpcAppointmentToLocal(appointment: response.appointments)
-                print("Patient Appointments received")
-                completion(appointmentList)
-            } catch {
-                print("Patient Appointments failed: \(error)")
-                completion(nil)
-            }
+        do {
+            let response = try getPatientAppointments.response.wait()
+            let appointmentList = self.appointmentObjectMapper.grpcAppointmentToLocal(appointment: response.appointments)
+            print("Patient Appointments received")
+            completion(appointmentList)
+        } catch {
+            print("Patient Appointments failed: \(error)")
+            completion(nil)
         }
     }
 
@@ -89,15 +87,13 @@ class AppointmentGetSetServiceCall : AppointmentGetSetServiceCallProtocol {
         
         let setAptStatus = appointmentClient.setAppointment(request, callOptions: callOptions)
         
-        DispatchQueue.main.async {
-            do {
-                let response = try setAptStatus.response.wait()
-                print("Set Appointment Success for \(response.id)")
-                completion(true)
-            } catch {
-                print("Set Appointment \(appointment.appointmentID) Failure")
-                completion(false)
-            }
+        do {
+            let response = try setAptStatus.response.wait()
+            print("Set Appointment Success for \(response.id)")
+            completion(true)
+        } catch {
+            print("Set Appointment \(appointment.appointmentID) Failure")
+            completion(false)
         }
     }
     
