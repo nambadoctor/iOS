@@ -91,7 +91,7 @@ struct DetailedUpcomingAppointmentView: View {
             }
         })
     }
-    
+
     var sendToPatient : some View {
         VStack {
             LargeButton(title: "Send to Patient",
