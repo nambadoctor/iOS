@@ -8,8 +8,13 @@
 import Foundation
 
 class StopwatchManager {
-    var startTime:DispatchTime = DispatchTime.now()
-    var stopTime:DispatchTime = DispatchTime.now()
+    private var startTime:DispatchTime = DispatchTime.now()
+    private var stopTime:DispatchTime = DispatchTime.now()
+    private var callingClass:String
+    
+    init(callingClass:String) {
+        self.callingClass = callingClass
+    }
     
     func start() {
         startTime = DispatchTime.now()
@@ -19,9 +24,9 @@ class StopwatchManager {
         stopTime = DispatchTime.now()
         let elapsedTime = (stopTime.uptimeNanoseconds - startTime.uptimeNanoseconds)/1000000
         if elapsedTime > 1000 {
-            print("ELAPSED TIME: \(elapsedTime/1000)")
+            print("ELAPSED TIME \(callingClass): \(elapsedTime/1000)")
         } else {
-            print("ELAPSED TIME: \(elapsedTime)")
+            print("ELAPSED TIME \(callingClass): \(elapsedTime)")
         }
     }
 }

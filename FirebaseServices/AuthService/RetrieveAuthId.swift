@@ -12,7 +12,7 @@ var AuthTokenId:String = ""
 
 class RetrieveAuthId {
     
-    private var stopwatch = StopwatchManager()
+    private var stopwatch = StopwatchManager(callingClass: "RETRIEVE_AUTH_TOKEN")
     
     func getAuthId (_ completion: @escaping (_ success:Bool)->()) {
         stopwatch.start()

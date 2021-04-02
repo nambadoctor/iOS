@@ -20,7 +20,7 @@ class ServiceProviderGetSetServiceCall : ServiceProviderGetSetServiceCallProtoco
     var serviceProviderMapper:ServiceProviderProfileMapper
     var customerObjectMapper:ServiceProviderCustomerProfileObjectMapper
     
-    private var stopwatch = StopwatchManager()
+    private var stopwatch = StopwatchManager(callingClass: "SERVICE_PROVIDER_GET")
     
     init(serviceProviderMapper:ServiceProviderProfileMapper = ServiceProviderProfileMapper(),
          customerObjectMapper:ServiceProviderCustomerProfileObjectMapper = ServiceProviderCustomerProfileObjectMapper()) {

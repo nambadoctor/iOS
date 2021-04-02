@@ -44,17 +44,22 @@ class DoctorTwilioViewModel: ObservableObject {
     }
 
     func startRoom() {
-        DispatchQueue.main.async {
-            self.twilioAccessTokenHelper.retrieveToken(appointmentId: self.appointment.appointmentID, serviceProviderId: self.appointment.serviceProviderID) { (success, token) in
-                if success {
-                    print("MAKING VIEW CONTROLLER NOW")
-                    self.viewController = UIStoryboard(name: "Twilio", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as! ViewController
-                } else {
-                    //show failed alert
+        if TwilioAccessTokenString.isEmpty {
+            DispatchQueue.main.async {
+                self.twilioAccessTokenHelper.retrieveToken(appointmentId: self.appointment.appointmentID, serviceProviderId: self.appointment.serviceProviderID) { (success, token) in
+                    if success {
+                        self.viewController = UIStoryboard(name: "Twilio", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as! ViewController
+                    } else {
+                        //show failed alert
+                    }
                 }
             }
+        } else {
+            self.viewController = UIStoryboard(name: "Twilio", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as! ViewController
         }
     }
+    
+    
 
     func fireStartedNotif () {
         let replicatedAppointment = self.appointment //cannot do simultanueous access...
@@ -89,7 +94,7 @@ class DoctorTwilioViewModel: ObservableObject {
             self.collapseCall = false
         } else {
             viewController!.messageLabel.isHidden = true
-            viewController! .previewView.isHidden = true
+            viewController!.previewView.isHidden = true
             self.collapseCall = true
         }
     }

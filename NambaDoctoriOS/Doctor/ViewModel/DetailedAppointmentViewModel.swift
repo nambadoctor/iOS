@@ -91,6 +91,7 @@ class DetailedAppointmentViewModel : ObservableObject {
     }
     
     func startConsultation() {
+        doctorTwilioManagerViewModel.startRoom()
         doctorTwilioManagerViewModel.fireStartedNotif()
         self.showTwilioRoom = true
     }
