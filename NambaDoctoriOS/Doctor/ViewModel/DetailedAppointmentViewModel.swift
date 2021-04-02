@@ -95,7 +95,7 @@ class DetailedAppointmentViewModel : ObservableObject {
         doctorTwilioManagerViewModel.fireStartedNotif()
         self.showTwilioRoom = true
     }
-    
+
     func callPatient () {
         guard let number = URL(string: "tel://" + patientInfoViewModel.phoneNumber) else { return }
         UIApplication.shared.open(number)

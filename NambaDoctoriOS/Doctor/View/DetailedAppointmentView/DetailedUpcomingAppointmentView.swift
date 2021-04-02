@@ -95,7 +95,7 @@ struct DetailedUpcomingAppointmentView: View {
     var sendToPatient : some View {
         VStack {
             LargeButton(title: "Send to Patient",
-                        backgroundColor: Color.blue) {
+                        backgroundColor: Color.green) {
                 detailedAppointmentVM.sendToPatient()
             }
         }

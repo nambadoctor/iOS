@@ -55,14 +55,14 @@ struct PrescriptionsView: View {
                             prescriptionsVM.editPrescription(medicine: medicine)
                         } label: {
                             Image("pencil")
-                                .foregroundColor(Color.green)
+                                .foregroundColor(Color.blue)
                         }
                         
                         Button {
                             prescriptionsVM.removePrescription(medicine: medicine)
                         } label: {
                             Image("xmark.circle")
-                                .foregroundColor(Color.green)
+                                .foregroundColor(Color.blue)
                         }
                     }
                     
@@ -98,7 +98,7 @@ struct PrescriptionsView: View {
                 
                 LargeButton(title: "Add Manually",
                             backgroundColor: Color.white,
-                            foregroundColor: Color.yellow) {
+                            foregroundColor: Color.blue) {
                     prescriptionsVM.uploadManually()
                 }
                 .sheet(isPresented: $prescriptionsVM.showMedicineEntrySheet) {
@@ -106,7 +106,7 @@ struct PrescriptionsView: View {
                 }
                 
                 LargeButton(title: "Upload Image",
-                            backgroundColor: Color.green) {
+                            backgroundColor: Color.blue) {
                     prescriptionsVM.imagePickerVM.showActionSheet()
                 }
                 .modifier(ImagePickerModifier(imagePickerVM: self.prescriptionsVM.imagePickerVM))

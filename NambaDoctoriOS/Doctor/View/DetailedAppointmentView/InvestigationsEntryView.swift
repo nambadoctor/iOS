@@ -29,11 +29,11 @@ struct InvestigationsEntryView: View {
                         HStack {
                             Text(inv)
                                 .font(.callout)
-                                .foregroundColor(Color.green)
+                                .foregroundColor(Color.blue)
                                 .padding()
                             Spacer()
                         }
-                        .background(Color.green.opacity(0.3))
+                        .background(Color.blue.opacity(0.2))
                         .cornerRadius(7)
                     }
                 }.padding(.trailing)
@@ -44,7 +44,7 @@ struct InvestigationsEntryView: View {
                     Image("plus.circle.fill")
                         .resizable()
                         .frame(width: 30, height: 30)
-                        .foregroundColor(.green)
+                        .foregroundColor(.blue)
                 })
             }
         }.padding(.bottom)

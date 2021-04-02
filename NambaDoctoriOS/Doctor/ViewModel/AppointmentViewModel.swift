@@ -29,6 +29,10 @@ class AppointmentViewModel: ObservableObject {
         self.docNotifHelper = DocNotifHelpers(appointment: appointment)
         checkIfConsultationHappened()
     }
+    
+    var firstLetterOfCustomer : String {
+        return appointment.customerName[0]
+    }
 
     var LocalTime:String {
         return Helpers.getTimeFromTimeStamp(timeStamp: self.appointment.scheduledAppointmentStartTime)

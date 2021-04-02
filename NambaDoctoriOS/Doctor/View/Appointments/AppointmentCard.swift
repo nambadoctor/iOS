@@ -16,48 +16,52 @@ struct AppointmentCard: View {
     }
 
     var body: some View {
-        VStack (alignment: .leading ) {
+        ZStack (alignment: .leading ) {
+            
+            VStack {
+                Spacer()
+                HStack {Spacer()}
+            }.background(Color.white)
+            .cornerRadius(10)
+            .shadow(radius: 5)
+            
             HStack {
-                Image("person.crop.circle.fill")
-                    .resizable()
-                    .frame(width: 50, height: 50)
+                Text(AppointmentVM.firstLetterOfCustomer)
+                    .font(.system(size: 27))
+                    .foregroundColor(.white)
+                    .frame(width: 55, height: 55)
+                    .background(Circle().fill(Color.blue))
                 
                 VStack (alignment: .leading, spacing: 5) {
                     HStack {
                         Spacer()
                     }
                     Text(AppointmentVM.appointment.customerName)
-                        .font(.system(size: 22))
+                        .font(.system(size: 20))
                         .bold()
-                        .foregroundColor(AppointmentVM.consultationHappened ? Color.red : Color.blue)
                     
                     if AppointmentVM.consultationHappened {
                         Text("\(AppointmentVM.paymentStatus)")
-                            .font(.system(size: 18))
-                            .foregroundColor(Color.red)
+                            .font(.system(size: 15))
+                            .foregroundColor(Color.gray)
                     } else {
                         Text(AppointmentVM.getAppointmentTime())
-                            .font(.system(size: 18))
-                            .foregroundColor(Color.blue)
+                            .font(.system(size: 17))
+                            .foregroundColor(Color.gray)
                     }
                     
                 }.padding(.leading, 3)
-            }
+            }.padding()
             
             if self.AppointmentVM.takeToDetailedAppointment {
                 NavigationLink("",
                                destination: DetailedUpcomingAppointmentView(appointment: self.AppointmentVM.appointment),
                                isActive: self.$AppointmentVM.takeToDetailedAppointment)
             }
+            
         }
+        .frame(width: UIScreen.main.bounds.width-30, height: 70)
         .padding()
-        .background(AppointmentVM.consultationHappened ? Color.red.opacity(0.1) : Color.blue.opacity(0.1))
-        .overlay(
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(AppointmentVM.consultationHappened ? Color.red.opacity(0.5) : Color.blue.opacity(0.5), lineWidth: 1)
-            )
-        .cornerRadius(10)
-        .frame(width: UIScreen.main.bounds.width - 60)
         .onTapGesture {
             self.AppointmentVM.navigateIntoAppointment()
         }
