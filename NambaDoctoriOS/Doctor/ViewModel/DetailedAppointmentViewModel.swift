@@ -27,7 +27,6 @@ class DetailedAppointmentViewModel : ObservableObject {
     
     @Published var showOnSuccessAlert:Bool = false
     
-        
     private var updateAppointmentStatus:UpdateAppointmentStatusProtocol
     private var docNotifHelper:DocNotifHelpers
     private var doctorAlertHelper:DoctorAlertHelpersProtocol
@@ -66,6 +65,13 @@ class DetailedAppointmentViewModel : ObservableObject {
             print("Consultation Happened")
             consultationHappened = true
         }
+    }
+    
+    func checkIfAppointmentFinished () -> Bool {
+        if appointment.status == ConsultStateK.Finished.rawValue {
+            return true
+        }
+        return false
     }
 
     func cancelAppointment(completion: @escaping (_ successfullyCancelled:Bool)->()) {

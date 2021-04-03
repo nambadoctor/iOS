@@ -31,12 +31,13 @@ struct DetailedUpcomingAppointmentView: View {
                 .border(Color.blue, width: 1)
                 .padding(.top, 5)
                 
+                prescriptionAlreadySentView
+                
                 PatientInfoView(patientInfoViewModel: detailedAppointmentVM.patientInfoViewModel)
                     .padding()
                     .background(Color.white)
                 
                 DoctorsSectionViewModel(serviceRequestVM: detailedAppointmentVM.serviceRequestVM)
-                
                 
                 PrescriptionsView(prescriptionsVM: self.detailedAppointmentVM.prescriptionVM)
                     .padding()
@@ -51,19 +52,19 @@ struct DetailedUpcomingAppointmentView: View {
                     .background(Color.white)
 
                 Spacer()
-                
+
                 sendToPatient
             }
-            
+
             if detailedAppointmentVM.showTwilioRoom {
                 DoctorTwilioManager(DoctorTwilioVM: detailedAppointmentVM.doctorTwilioManagerViewModel)
             }
-            
+
             //remote kill view trigger
             if detailedAppointmentVM.killView {
                 Text("You are done").onAppear() { killView() }
             }
-
+            
         }
         .background(Color.gray.opacity(0.3))
         .navigationBarItems(trailing: saveButton)
@@ -74,6 +75,25 @@ struct DetailedUpcomingAppointmentView: View {
             EndEditingHelper.endEditing()
         }
     }
+    
+    var prescriptionAlreadySentView : some View {
+        VStack {
+            if detailedAppointmentVM.checkIfAppointmentFinished() {
+                HStack {
+                    Image("checkmark.circle.fill")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                        .foregroundColor(Color.green)
+                        .padding(.trailing)
+                    
+                    Text("Prescription Already Sent")
+                    Spacer()
+                }
+                .padding()
+                .background(Color.white)
+            }
+        }
+    }
 
     var saveButton : some View {
         Button(action: {
@@ -82,21 +102,35 @@ struct DetailedUpcomingAppointmentView: View {
                 self.toggleNavBarProgressView.toggle()
             }
         }, label: {
-            HStack {
-                if toggleNavBarProgressView {
-                    ProgressView()
-                        .progressViewStyle(CircularProgressViewStyle())
+            if !detailedAppointmentVM.checkIfAppointmentFinished() {
+                HStack {
+                    if toggleNavBarProgressView {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle())
+                    }
+                    Text("Save")
                 }
-                Text("Save")
             }
         })
     }
 
     var sendToPatient : some View {
         VStack {
-            LargeButton(title: "Send to Patient",
-                        backgroundColor: Color.green) {
+            Button {
                 detailedAppointmentVM.sendToPatient()
+            } label: {
+                HStack {
+                    Spacer()
+                    Text(detailedAppointmentVM.checkIfAppointmentFinished() ? "Amend and Send to Patient" : "Send to Patient")
+                        .font(.system(size: 22))
+                        .bold()
+                        .foregroundColor(.white)
+                    Spacer()
+                }
+                .padding()
+                .background(Color.green)
+                .cornerRadius(10)
+                .padding()
             }
         }
     }
@@ -150,6 +184,7 @@ struct DetailedUpcomingAppointmentView: View {
                         .scaleEffect(1.5)
                 }
             })
+            
             Spacer()
             Button(action: {
                 detailedAppointmentVM.startConsultation()
