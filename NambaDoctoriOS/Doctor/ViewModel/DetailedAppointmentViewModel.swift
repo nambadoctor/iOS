@@ -132,6 +132,7 @@ class DetailedAppointmentViewModel : ObservableObject {
     
     func sendToPatient () {
         CommonDefaultModifiers.showLoader()
+        
         self.savePrescription { (success) in
             self.updateAppointmentStatus.updateToFinished(appointment: &self.appointment) { (success) in
                 CommonDefaultModifiers.hideLoader()

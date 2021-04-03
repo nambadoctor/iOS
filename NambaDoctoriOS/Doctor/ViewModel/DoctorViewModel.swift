@@ -55,9 +55,14 @@ class DoctorViewModel: ObservableObject {
     }
     
     func updateDoctor () {
-        serviceProviderServiceCall.setServiceProvider(serviceProvider: self.doctor) { (response) in
-            if response != nil {
-                print("SERVICE PROVIDER UPDATE SUCCESS \(response)")
+        DispatchQueue.global().async {
+            self.serviceProviderServiceCall.setServiceProvider(serviceProvider: self.doctor) { (response) in
+                if response != nil {
+                    print("SERVICE PROVIDER UPDATE SUCCESS \(response)")
+                }
+                DispatchQueue.main.async {
+                    CommonDefaultModifiers.hideLoader()
+                }
             }
         }
     }
@@ -101,6 +106,9 @@ class DoctorViewModel: ObservableObject {
     }
     
     func commitEdits () {
+        
+        CommonDefaultModifiers.showLoader()
+        
         if editDoctorVM.imagePickerViewModel.image != nil {
             //upload to firebase and update url here...
         }
