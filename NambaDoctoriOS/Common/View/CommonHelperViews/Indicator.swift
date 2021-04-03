@@ -6,14 +6,13 @@
 //
 
 import SwiftUI
+import ActivityIndicatorView
 
-struct Indicator: UIViewRepresentable {
-    func makeUIView(context: Context) -> UIActivityIndicatorView {
-        let view = UIActivityIndicatorView(style: .large)
-        view.startAnimating()
-        return view
-    }
-    
-    func updateUIView(_ uiView: UIActivityIndicatorView, context: Context) {
+struct Indicator: View {
+    @State var loadState:Bool = true
+    var body: some View {
+        ActivityIndicatorView(isVisible: $loadState, type: .flickeringDots)
+             .frame(width: 50.0, height: 50.0)
+             .foregroundColor(.blue)
     }
 }

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ActivityIndicatorView
 
 struct LoadingScreen: View {
     
@@ -17,10 +18,9 @@ struct LoadingScreen: View {
                 Spacer()
                 HStack {
                     Spacer()
-                    ProgressView("Loading...")
-                        .scaleEffect(1.5, anchor: .center)
-                        .progressViewStyle(CircularProgressViewStyle(tint: .blue))
-                        .foregroundColor(.blue)
+                    ActivityIndicatorView(isVisible: $showLoader, type: .flickeringDots)
+                         .frame(width: 50.0, height: 50.0)
+                         .foregroundColor(.blue)
                     Spacer()
                 }
                 Spacer()
