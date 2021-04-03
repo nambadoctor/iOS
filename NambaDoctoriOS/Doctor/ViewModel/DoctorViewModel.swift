@@ -79,6 +79,7 @@ class DoctorViewModel: ObservableObject {
         doctorAppointmentViewModel.getDocAppointments(serviceProviderId: doctor.serviceProviderID) { (appointments) in
             if appointments != nil {
                 self.appointments = appointments!
+                self.datePickerVM.setDatesWithAppointments(appointments: appointments!)
             }
             self.checkForEmptyList()
         }

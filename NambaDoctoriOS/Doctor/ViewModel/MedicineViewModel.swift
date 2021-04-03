@@ -66,7 +66,7 @@ class MedicineViewModel: ObservableObject {
         }
         return nil
     }
-    
+
     func makeMedicineObjAndAdd () {
         let medicine = ServiceProviderMedicine(medicineName: medicineEntryVM.medicineName, dosage: medicineEntryVM.dosage, routeOfAdministration: medicineEntryVM.routeOfAdmin, intake: medicineEntryVM.intake, duration: 0, timings: "", specialInstructions: medicineEntryVM.frequency, medicineID: "")
         
@@ -78,6 +78,8 @@ class MedicineViewModel: ObservableObject {
             prescription.medicineList.append(medicine)
             showMedicineEntrySheet = false
         }
+        
+        self.medicineEntryVM.clearValues()
     }
     
     

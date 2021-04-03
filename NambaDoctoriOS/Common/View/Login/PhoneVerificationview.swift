@@ -14,7 +14,7 @@ struct PhoneVerificationview: View {
     //User Interface
     var body: some View {
         NavigationView {
-            ZStack {
+            ScrollView {
                 VStack(spacing: 0){
                     
                     HStack {
@@ -49,7 +49,7 @@ struct PhoneVerificationview: View {
 
                     Spacer()
 
-                }.keyboardAdaptive(specificOffSet: 0)
+                }
             }
         }
     }

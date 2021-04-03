@@ -15,13 +15,13 @@ struct SideBySideCheckBox: View {
     var body: some View {
         HStack {
             HStack{
-                Image(systemName: isChecked == title1 ? "checkmark.square": "square")
+                Image(systemName: isChecked == title1 ? "smallcircle.fill.circle": "circle")
                 Text(title1)
                     .font(.system(size: 14))
             }.padding(.trailing)
                         
             HStack{
-                Image(systemName: isChecked == title2 ? "checkmark.square": "square")
+                Image(systemName: isChecked == title2 ? "smallcircle.fill.circle": "circle")
                 Text(title2)
                     .font(.system(size: 14))
             }.padding(.leading)

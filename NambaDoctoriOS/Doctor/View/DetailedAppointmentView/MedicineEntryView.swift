@@ -17,6 +17,17 @@ struct MedicineEntryView: View {
     var body: some View {
         ScrollView {
             VStack (alignment: .leading) {
+                HStack {
+                    Spacer()
+                    Button {
+                        medicineVM.showMedicineEntrySheet.toggle()
+                    } label: {
+                        Image("xmark.circle")
+                            .resizable()
+                            .frame(width: 35, height: 35)
+                            .foregroundColor(.blue)
+                    }
+                }
                 Text("Medicine Name:")
                     .font(.footnote)
                     .foregroundColor(Color.black.opacity(0.4))

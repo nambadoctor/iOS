@@ -58,8 +58,6 @@ class DoctorTwilioViewModel: ObservableObject {
             self.viewController = UIStoryboard(name: "Twilio", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as! ViewController
         }
     }
-    
-    
 
     func fireStartedNotif () {
         let replicatedAppointment = self.appointment //cannot do simultanueous access...

@@ -26,10 +26,9 @@
                                     <constraint firstAttribute="height" constant="160" id="ok0-QW-DSk"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Waiting for Patient..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5sC-Fe-a2M">
-                                <rect key="frame" x="85" y="239" width="204" height="29"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Waiting for Patient..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5sC-Fe-a2M">
+                                <rect key="frame" x="16" y="239" width="343" height="29"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="204" id="6Cg-FR-kGc"/>
                                     <constraint firstAttribute="height" constant="29" id="Fzh-1e-FcE"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -40,7 +39,6 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="6X6-cD-Bcg" secondAttribute="trailing" constant="11" id="Pvs-sL-c9V"/>
-                            <constraint firstItem="5sC-Fe-a2M" firstAttribute="leading" secondItem="3Bh-pO-6uY" secondAttribute="leadingMargin" constant="69" id="Wqs-jY-JEq"/>
                             <constraint firstItem="6X6-cD-Bcg" firstAttribute="top" secondItem="5sC-Fe-a2M" secondAttribute="bottom" constant="139" id="crV-B9-eyG"/>
                             <constraint firstItem="tZu-uw-hgi" firstAttribute="top" secondItem="6X6-cD-Bcg" secondAttribute="bottom" constant="100" id="qbi-gU-RqV"/>
                             <constraint firstAttribute="trailingMargin" secondItem="5sC-Fe-a2M" secondAttribute="trailing" constant="70" id="xGF-bg-jRC"/>

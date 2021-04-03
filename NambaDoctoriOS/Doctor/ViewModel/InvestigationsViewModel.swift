@@ -15,8 +15,9 @@ class InvestigationsViewModel:ObservableObject {
         investigations.remove(atOffsets: offsets)
     }
 
-    func removeInvestigationManually(index:Int) {
-        self.investigations.remove(at: index)
+    func removeInvestigationManually(investigation:String) {
+        let index = investigations.firstIndex(of: investigation)
+        self.investigations.remove(at: index!)
     }
 
     func appendInvestigation() {

@@ -32,11 +32,28 @@ struct ImageView: View {
                 showEnlarged = true
             }
             .sheet(isPresented: self.$showEnlarged, content: {
-                Image(uiImage: image)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .pinchToZoom()
-                    .onDisappear() {showEnlarged = false}
+                ZStack (alignment: .center) {
+                    VStack{
+                        HStack {
+                            Spacer()
+                            Button {
+                                self.showEnlarged.toggle()
+                            } label: {
+                                Image("xmark.circle")
+                                    .resizable()
+                                    .frame(width: 35, height: 35)
+                                    .foregroundColor(.blue)
+                            }.padding()
+                        }
+                        Spacer()
+                    }
+
+                    Image(uiImage: image)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .pinchToZoom()
+                        .onDisappear() {showEnlarged = false}
+                }
             })
     }
 }

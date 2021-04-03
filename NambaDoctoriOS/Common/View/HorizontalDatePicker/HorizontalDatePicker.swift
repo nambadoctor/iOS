@@ -29,15 +29,30 @@ struct HorizontalDatePicker: View {
                     ScrollView (.horizontal, showsIndicators: false) {
                         HStack {
                             ForEach (0..<datePickerVM.datesCount) { index in
-                                VStack {
-                                    Text(datePickerVM.getDateLetter(index: index))
-                                        .foregroundColor(datePickerVM.compareDate(index: index) ? Color.white : Color.black)
-                                        .bold()
-                                        .padding(.bottom, 5)
-                                    Text(datePickerVM.getDateNumber(index: index))
-                                        .foregroundColor(datePickerVM.compareDate(index: index) ? Color.white : Color.black)
-                                        .bold()
-                                }.id(index)
+                                ZStack {
+                                    VStack {
+                                        Text(datePickerVM.getDateLetter(index: index))
+                                            .foregroundColor(datePickerVM.compareDate(index: index) ? Color.white : Color.black)
+                                            .bold()
+                                            .padding(.bottom, 5)
+                                        Text(datePickerVM.getDateNumber(index: index))
+                                            .foregroundColor(datePickerVM.compareDate(index: index) ? Color.white : Color.black)
+                                            .bold()
+                                        
+                                    }
+                                    
+                                    if datePickerVM.ifHasAppointment(index: index) {
+                                        VStack {
+                                            Spacer()
+                                            Image("circle.fill")
+                                                .frame(width: 1, height: 1)
+                                                .foregroundColor(datePickerVM.ifIsUpcoming(index: index) ? .blue : .gray)
+                                        }
+                                    }
+                                    
+                                }
+                                .frame(height: 70)
+                                .id(index)
                                 .padding()
                                 .background(datePickerVM.compareDate(index: index) ? Color.black : Color.white)
                                 .cornerRadius(50)
@@ -51,9 +66,6 @@ struct HorizontalDatePicker: View {
             }
         }
         .padding([.top, .bottom])
-        .onAppear() {
-            datePickerVM.setArrayOfDatesToSelect()
-        }
     }
 
 }

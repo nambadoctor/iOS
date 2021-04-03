@@ -32,9 +32,18 @@ struct InvestigationsEntryView: View {
                                 .foregroundColor(Color.blue)
                                 .padding()
                             Spacer()
+                            
+                            Button {
+                                investigationsViewModel.removeInvestigationManually(investigation: inv)
+                            } label: {
+                                Image("xmark.circle")
+                                    .foregroundColor(Color.blue)
+                                    .padding(.trailing)
+                            }
                         }
                         .background(Color.blue.opacity(0.2))
                         .cornerRadius(7)
+                        .padding(.top, 1)
                     }
                 }.padding(.trailing)
 
