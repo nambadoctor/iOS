@@ -15,7 +15,7 @@ class AppointmentViewModel: ObservableObject {
 
     @Published var takeToTwilioRoom:Bool = false
     @Published var takeToDetailedAppointment:Bool = false
-            
+
     private var docSheetHelper:DoctorSheetHelpers = DoctorSheetHelpers()
     private var docNotifHelper:DocNotifHelpers
 

@@ -30,7 +30,7 @@ struct AppointmentCard: View {
                     .font(.system(size: 27))
                     .foregroundColor(.white)
                     .frame(width: 55, height: 55)
-                    .background(Circle().fill(Color.blue))
+                    .background(Circle().fill(AppointmentVM.consultationHappened ? Color.gray : Color.blue))
                 
                 VStack (alignment: .leading, spacing: 5) {
                     HStack {

@@ -99,6 +99,7 @@ class Helpers {
         formatter.dateFormat = "h:mm a"
         formatter.amSymbol = "AM"
         formatter.pmSymbol = "PM"
+        formatter.timeZone = .current
         
         let dateString1 = formatter.string(from: Date(milliseconds: timeStamp1))
         
