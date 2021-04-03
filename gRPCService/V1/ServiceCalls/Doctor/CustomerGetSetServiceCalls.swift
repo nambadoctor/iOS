@@ -48,7 +48,9 @@ class CustomerGetSetServiceCall: CustomerGetSetServiceCallProtocol {
                 }
             } catch {
                 print("Customer Client Set failed: \(error.localizedDescription)")
-                completion(nil)
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
             }
         }
     }
@@ -78,7 +80,9 @@ class CustomerGetSetServiceCall: CustomerGetSetServiceCallProtocol {
                 }
             } catch {
                 print("Customer Client failed: \(error.localizedDescription)")
-                completion(nil)
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
             }
         }
     }

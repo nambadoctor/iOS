@@ -31,14 +31,18 @@ class PrescriptionGetSetServiceCall : PrescriptionGetSetServiceCallProtocol {
 
         let getPrescriptionObj = prescriptionClient.getPrescription(request, callOptions: callOptions)
         
-        do {
-            let response = try getPrescriptionObj.response.wait()
-            let prescription = prescriptionObjectMapper.grpcPrescriptionToLocal(prescription: response)
-            print("RETRIEVED PRESCRIPTION: \(prescription.fileInfo)")
-            print("PrescriptionClient received: \(response)")
-            completion(prescription)
-        } catch {
-            print("PrescriptionClient failed: \(error)")
+        DispatchQueue.global().async {
+            do {
+                let response = try getPrescriptionObj.response.wait()
+                let prescription = self.prescriptionObjectMapper.grpcPrescriptionToLocal(prescription: response)
+                print("RETRIEVED PRESCRIPTION: \(prescription.fileInfo)")
+                print("PrescriptionClient received: \(response)")
+                DispatchQueue.main.async {
+                    completion(prescription)
+                }
+            } catch {
+                print("PrescriptionClient failed: \(error)")
+            }
         }
     }
     
@@ -53,13 +57,19 @@ class PrescriptionGetSetServiceCall : PrescriptionGetSetServiceCallProtocol {
         
         let makePrescription = prescriptionClient.setPrescription(request, callOptions: callOptions)
 
-        do {
-            let response = try makePrescription.response.wait()
-            print("Prescription Write Client Successfull: \(response.id)")
-            completion(true)
-        } catch {
-            print("Prescription Write Client Failed: \(error)")
-            completion(false)
+        DispatchQueue.global().async {
+            do {
+                let response = try makePrescription.response.wait()
+                print("Prescription Write Client Successfull: \(response.id)")
+                DispatchQueue.main.async {
+                    completion(true)
+                }
+            } catch {
+                print("Prescription Write Client Failed: \(error)")
+                DispatchQueue.main.async {
+                    completion(false)
+                }
+            }
         }
     }
     
@@ -75,17 +85,23 @@ class PrescriptionGetSetServiceCall : PrescriptionGetSetServiceCallProtocol {
         
         let downloadPrescription = prescriptionClient.downloadPrescriptionMedia(request, callOptions: callOptions)
 
-        do {
-            let response = try downloadPrescription.response.wait()
-            print("Prescription Download Client Successfull: \(response.message)")
-            if response.message.toString.isEmpty {
-                completion(nil)
-            } else {
-                completion(response.message.toString)
+        DispatchQueue.global().async {
+            do {
+                let response = try downloadPrescription.response.wait()
+                print("Prescription Download Client Successfull: \(response.message)")
+                DispatchQueue.main.async {
+                    if response.message.toString.isEmpty {
+                        completion(nil)
+                    } else {
+                        completion(response.message.toString)
+                    }
+                }
+            } catch {
+                print("Prescription Download Client Failed: \(error)")
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
             }
-        } catch {
-            print("Prescription Download Client Failed: \(error)")
-            completion(nil)
         }
     }
 }

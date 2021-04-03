@@ -35,14 +35,20 @@ class ReportGetSetServiceCall : ReportGetSetServiceCallProtocol {
         
         let getPatientReports = reportsClient.getCustomerReports(request,callOptions: callOptions)
         
-        do {
-            let response = try getPatientReports.response.wait()
-            let reportList = self.reportObjMapper.grpcReportToLocal(report: response.reports)
-            print("Patient Reports received")
-            completion(reportList)
-        } catch {
-            print("Patient Reports failed: \(error)")
-            completion(nil)
+        DispatchQueue.global().async {
+            do {
+                let response = try getPatientReports.response.wait()
+                let reportList = self.reportObjMapper.grpcReportToLocal(report: response.reports)
+                print("Patient Reports received")
+                DispatchQueue.main.async {
+                    completion(reportList)
+                }
+            } catch {
+                print("Patient Reports failed: \(error)")
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            }
         }
     }
     
@@ -60,13 +66,19 @@ class ReportGetSetServiceCall : ReportGetSetServiceCallProtocol {
         
         let getPatientReports = reportImageClient.downloadReportMedia(request,callOptions: callOptions)
         
-        do {
-            let response = try getPatientReports.response.wait()
-            print("Patient Reports received \(response.message)")
-            completion(response.message.toString)
-        } catch {
-            print("Patient Reports failed: \(error)")
-            completion(nil)
+        DispatchQueue.global().async {
+            do {
+                let response = try getPatientReports.response.wait()
+                print("Patient Reports received \(response.message)")
+                DispatchQueue.main.async {
+                    completion(response.message.toString)
+                }
+            } catch {
+                print("Patient Reports failed: \(error)")
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            }
         }
     }
 }

@@ -33,14 +33,17 @@ class ServiceRequestGetSetCall : ServiceRequestGetSetCallProtocol {
 
         let getServiceRequestObj = serviceRequestClient.getServiceRequest(request, callOptions: callOptions)
         
-        do {
-            let response = try getServiceRequestObj.response.wait()
-            let serviceRequest = serviceRequestMapper.grpcServiceRequestToLocal(serviceRequest: response)
-            print("ServiceRequestClient received: \(response)")
-            CommonDefaultModifiers.hideLoader()
-            completion(serviceRequest)
-        } catch {
-            print("ServiceRequestClient failed: \(error)")
+        DispatchQueue.global().async {
+            do {
+                let response = try getServiceRequestObj.response.wait()
+                let serviceRequest = self.serviceRequestMapper.grpcServiceRequestToLocal(serviceRequest: response)
+                print("ServiceRequestClient received: \(response)")
+                DispatchQueue.main.async {
+                    completion(serviceRequest)
+                }
+            } catch {
+                print("ServiceRequestClient failed: \(error)")
+            }
         }
     }
     
@@ -55,12 +58,19 @@ class ServiceRequestGetSetCall : ServiceRequestGetSetCallProtocol {
 
         let getServiceRequestObj = serviceRequestClient.setServiceRequest(request, callOptions: callOptions)
         
-        do {
-            let response = try getServiceRequestObj.response.wait()
-            print("ServiceRequest Set Client received: \(response.id.toString)")
-            completion(response.id.toString)
-        } catch {
-            print("ServiceRequest Set Client failed: \(error.localizedDescription)")
+        DispatchQueue.global().async {
+            do {
+                let response = try getServiceRequestObj.response.wait()
+                print("ServiceRequest Set Client received: \(response.id.toString)")
+                DispatchQueue.main.async {
+                    completion(response.id.toString)
+                }
+            } catch {
+                print("ServiceRequest Set Client failed: \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            }
         }
     }
 }

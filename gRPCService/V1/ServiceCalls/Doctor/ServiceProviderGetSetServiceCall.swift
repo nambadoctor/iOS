@@ -38,13 +38,19 @@ class ServiceProviderGetSetServiceCall : ServiceProviderGetSetServiceCallProtoco
         
         let getServiceProvider = doctorClient.setServiceProviderProfile(request, callOptions: callOptions)
         
-        do {
-            let response = try getServiceProvider.response.wait()
-            print("Set Service Provider Success \(response.id)")
-            completion(response.id.toString)
-        } catch {
-            print("Set Service Provider Failed")
-            completion(nil)
+        DispatchQueue.global().async {
+            do {
+                let response = try getServiceProvider.response.wait()
+                print("Set Service Provider Success \(response.id)")
+                DispatchQueue.main.async {
+                    completion(response.id.toString)
+                }
+            } catch {
+                print("Set Service Provider Failed")
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            }
         }
     }
 
@@ -62,16 +68,22 @@ class ServiceProviderGetSetServiceCall : ServiceProviderGetSetServiceCallProtoco
 
         let getServiceProvider = doctorClient.getServiceProviderProfile(request, callOptions: callOptions)
 
-        do {
-            stopwatch.start()
-            let response = try getServiceProvider.response.wait()
-            stopwatch.stop()
-            let doctor = serviceProviderMapper.grpcProfileToLocal(profile: response)
-            print("Get Doctor Client Success \(doctor.serviceProviderID)")
-            completion(doctor)
-        } catch {
-            print("Get Doctor Client Failed")
-            completion(nil)
+        DispatchQueue.global().async {
+            do {
+                self.stopwatch.start()
+                let response = try getServiceProvider.response.wait()
+                self.stopwatch.stop()
+                let doctor = self.serviceProviderMapper.grpcProfileToLocal(profile: response)
+                print("Get Doctor Client Success \(doctor.serviceProviderID)")
+                DispatchQueue.main.async {
+                    completion(doctor)
+                }
+            } catch {
+                print("Get Doctor Client Failed")
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            }
         }
     }
 
@@ -90,14 +102,20 @@ class ServiceProviderGetSetServiceCall : ServiceProviderGetSetServiceCallProtoco
 
         let getDoctorsPatients = patientClient.getCustomers(request, callOptions: callOptions)
 
-        do {
-            let response = try getDoctorsPatients.response.wait()
-            let patientList = self.customerObjectMapper.grpcCustomerToLocal(customer: response.customers)
-            print("Doctors Patients received: success")
-            completion(patientList)
-        } catch {
-            print("Doctors Patients received failed: \(error)")
-            completion(nil)
+        DispatchQueue.global().async {
+            do {
+                let response = try getDoctorsPatients.response.wait()
+                let patientList = self.customerObjectMapper.grpcCustomerToLocal(customer: response.customers)
+                print("Doctors Patients received: success")
+                DispatchQueue.main.async {
+                    completion(patientList)
+                }
+            } catch {
+                print("Doctors Patients received failed: \(error)")
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            }
         }
     }
 

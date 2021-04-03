@@ -38,14 +38,21 @@ class AppointmentGetSetServiceCall : AppointmentGetSetServiceCallProtocol {
 
         let getDoctorsAppointment = appointmentClient.getAppointments(request, callOptions: callOptions)
         
-        do {
-            let response = try getDoctorsAppointment.response.wait()
-            let appointmentList = self.appointmentObjectMapper.grpcAppointmentToLocal(appointment: response.appointments)
-            print("Doctor Appointment Client Success")
-            completion(appointmentList)
-        } catch {
-            print("Doctor Appointment Client Failed")
-            completion(nil)
+        DispatchQueue.global().async {
+            do {
+                let response = try getDoctorsAppointment.response.wait()
+                var appointmentList = self.appointmentObjectMapper.grpcAppointmentToLocal(appointment: response.appointments)
+                appointmentList.sort(by: { $0.scheduledAppointmentStartTime < $1.scheduledAppointmentStartTime })
+                print("Doctor Appointment Client Success")
+                DispatchQueue.main.async {
+                    completion(appointmentList)
+                }
+            } catch {
+                print("Doctor Appointment Client Failed")
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            }
         }
     }
     
@@ -63,14 +70,20 @@ class AppointmentGetSetServiceCall : AppointmentGetSetServiceCallProtocol {
         
         let getPatientAppointments = appointmentsClient.getCustomerAppointments(request, callOptions: callOptions)
         
-        do {
-            let response = try getPatientAppointments.response.wait()
-            let appointmentList = self.appointmentObjectMapper.grpcAppointmentToLocal(appointment: response.appointments)
-            print("Patient Appointments received")
-            completion(appointmentList)
-        } catch {
-            print("Patient Appointments failed: \(error)")
-            completion(nil)
+        DispatchQueue.global().async {
+            do {
+                let response = try getPatientAppointments.response.wait()
+                let appointmentList = self.appointmentObjectMapper.grpcAppointmentToLocal(appointment: response.appointments)
+                print("Patient Appointments received")
+                DispatchQueue.main.async {
+                    completion(appointmentList)
+                }
+            } catch {
+                print("Patient Appointments failed: \(error)")
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            }
         }
     }
 
@@ -87,13 +100,19 @@ class AppointmentGetSetServiceCall : AppointmentGetSetServiceCallProtocol {
         
         let setAptStatus = appointmentClient.setAppointment(request, callOptions: callOptions)
         
-        do {
-            let response = try setAptStatus.response.wait()
-            print("Set Appointment Success for \(response.id)")
-            completion(true)
-        } catch {
-            print("Set Appointment \(appointment.appointmentID) Failure")
-            completion(false)
+        DispatchQueue.global().async {
+            do {
+                let response = try setAptStatus.response.wait()
+                print("Set Appointment Success for \(response.id)")
+                DispatchQueue.main.async {
+                    completion(true)
+                }
+            } catch {
+                print("Set Appointment \(appointment.appointmentID) Failure")
+                DispatchQueue.main.async {
+                    completion(false)
+                }
+            }
         }
     }
     
