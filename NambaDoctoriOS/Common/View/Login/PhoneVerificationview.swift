@@ -17,16 +17,19 @@ struct PhoneVerificationview: View {
             ZStack {
                 VStack(spacing: 0){
                     
-                    Text("NambaDoctor").font(.custom("Roboto-Black", size: 70)).foregroundColor(Color(UIColor.DarkBlue))
+                    HStack {
+                        Spacer()
+                        Image("logo").resizable().frame(width: 200, height: 200)
+                        Spacer()
+                    }
+                    
+                    Text("NambaDoctor").font(.custom("Roboto-Black", size: 50)).fontWeight(.bold).fontWeight(.heavy).foregroundColor(Color.blue).bold()
 
-                    Text("Reaching the unreachable").font(Font.system(size:13)).foregroundColor(.gray)
-
-                    Text("Verify Your Number").font(Font.system(size:25).weight(.bold)).fontWeight(.heavy).padding(.top, 70)
-
-                    Text("Please Enter Your Number To Verify Your Account")
+                    Text("Medical Care With No Boundaries")
                         .font(Font.system(size:13))
                         .foregroundColor(.gray)
-                        .padding(.top, 12)
+
+                    Text("Enter Your Number").font(Font.system(size:25)).padding(.top, 70)
                     
                     PhoneNumberEntryView(numberObj: $preRegUser.user.phNumberObj)
                     
