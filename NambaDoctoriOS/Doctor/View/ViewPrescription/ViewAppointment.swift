@@ -7,12 +7,20 @@
 
 import SwiftUI
 
-struct ViewPrescription: View {
-
+struct ViewAppointment: View {
+    
+    @ObservedObject var intermediateVM: IntermediateAppointmentViewModel
     @ObservedObject var serviceRequestVM: ServiceRequestViewModel
     @ObservedObject var investigationsVM: InvestigationsViewModel
     @ObservedObject var medicineVM: MedicineViewModel
-
+    
+    init(intermediateVM:IntermediateAppointmentViewModel) {
+        self.intermediateVM = intermediateVM
+        self.serviceRequestVM = intermediateVM.serviceRequestVM
+        self.investigationsVM = intermediateVM.serviceRequestVM.investigationsViewModel
+        self.medicineVM = intermediateVM.prescriptionVM
+    }
+    
     var body: some View {
         VStack {
             ViewPrescriptionForm
@@ -27,7 +35,7 @@ struct ViewPrescription: View {
 
             Section(header: Text("Investigations")) {
                 if !investigationsVM.investigations.isEmpty {
-                    ForEach(Array(investigationsVM.investigations.enumerated()), id: \.0) { i, _ in
+                    ForEach(Array( investigationsVM.investigations.enumerated()), id: \.0) { i, _ in
                         if !investigationsVM.investigations[i].isEmpty {
                             HStack {
                                 Text("\(self.investigationsVM.investigations[i])")
@@ -88,5 +96,15 @@ struct ViewPrescription: View {
 
             }
         }
+        .navigationBarItems(trailing: endAndAmendButton)
+    }
+    
+    var endAndAmendButton : some View {
+        Button {
+            intermediateVM.takeToDetailed()
+        } label: {
+            Text("Edit")
+        }
+
     }
 }

@@ -55,7 +55,7 @@ struct AppointmentCard: View {
             
             if self.AppointmentVM.takeToDetailedAppointment {
                 NavigationLink("",
-                               destination: DetailedUpcomingAppointmentView(appointment: self.AppointmentVM.appointment),
+                               destination: IntermediateView(appointment: AppointmentVM.appointment),
                                isActive: self.$AppointmentVM.takeToDetailedAppointment)
             }
             

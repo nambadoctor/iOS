@@ -31,25 +31,28 @@ class DetailedAppointmentViewModel : ObservableObject {
     private var docNotifHelper:DocNotifHelpers
     private var doctorAlertHelper:DoctorAlertHelpersProtocol
 
-    init(appointment:ServiceProviderAppointment,
+    init(intermediateVM:IntermediateAppointmentViewModel,
          updateAppointmentStatus:UpdateAppointmentStatusProtocol = UpdateAppointmentStatusHelper(),
          doctorAlertHelper:DoctorAlertHelpersProtocol = DoctorAlertHelpers()) {
 
-        self.appointment = appointment
+        self.appointment = intermediateVM.appointment
         self.updateAppointmentStatus = updateAppointmentStatus
         self.doctorAlertHelper = doctorAlertHelper
-        self.docNotifHelper = DocNotifHelpers(appointment: appointment)
+        self.docNotifHelper = DocNotifHelpers(appointment: intermediateVM.appointment)
 
-        self.patientInfoViewModel = PatientInfoViewModel(appointment: appointment)
-        self.serviceRequestVM = ServiceRequestViewModel(appointment: appointment)
-        self.prescriptionVM = MedicineViewModel(appointment: appointment)
+        self.patientInfoViewModel = intermediateVM.patientInfoViewModel
+        self.serviceRequestVM = intermediateVM.serviceRequestVM
+        self.prescriptionVM = intermediateVM.prescriptionVM
         self.followUpViewModel = FollowUpViewModel()
-        self.modifyFeeViewModel = ModifyFeeViewModel(fee: appointment.serviceFee.clean)
+        self.modifyFeeViewModel = ModifyFeeViewModel(fee: intermediateVM.appointment.serviceFee.clean)
 
-        self.doctorTwilioManagerViewModel = DoctorTwilioViewModel(appointment: appointment)
+        self.doctorTwilioManagerViewModel = DoctorTwilioViewModel(appointment: intermediateVM.appointment)
         doctorTwilioManagerViewModel.twilioDelegate = self
-        CommonDefaultModifiers.showLoader()
         checkIfConsultationHappened()
+        
+        if serviceRequestVM.serviceRequest == nil {
+            CommonDefaultModifiers.showLoader()
+        }
     }
     
     var appointmentServiceFee : String {

@@ -13,15 +13,14 @@ struct DetailedUpcomingAppointmentView: View {
     @ObservedObject var detailedAppointmentVM:DetailedAppointmentViewModel
     @State var toggleNavBarProgressView:Bool = false
     
-    init(appointment:ServiceProviderAppointment) {
-        print("Detailed AppointmentId: \(appointment.appointmentID)")
-        detailedAppointmentVM = DetailedAppointmentViewModel(appointment: appointment)
+    init(intermediateVM:IntermediateAppointmentViewModel) {
+        detailedAppointmentVM = DetailedAppointmentViewModel(intermediateVM: intermediateVM)
     }
 
     var body: some View {
         ZStack {
             
-            
+            detailedUpcomingAppointment
             
             if detailedAppointmentVM.showTwilioRoom {
                 DoctorTwilioManager(DoctorTwilioVM: detailedAppointmentVM.doctorTwilioManagerViewModel)

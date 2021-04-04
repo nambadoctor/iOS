@@ -11,7 +11,7 @@ import SwiftUI
 class ServiceRequestViewModel: ObservableObject {
     var appointment:ServiceProviderAppointment
     
-    @Published var serviceRequest:ServiceProviderServiceRequest
+    @Published var serviceRequest:ServiceProviderServiceRequest!
     
     @Published var errorInRetrievingPrescription:Bool = false
     @Published var navigateToReviewPrescription:Bool = false
