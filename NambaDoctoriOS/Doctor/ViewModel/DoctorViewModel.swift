@@ -34,7 +34,7 @@ class DoctorViewModel: ObservableObject {
         self.doctorAppointmentViewModel = doctorAptVM
             
         self.datePickerVM.datePickerDelegate = self
-        
+
         fetchDoctor()
     }
 
@@ -47,13 +47,20 @@ class DoctorViewModel: ObservableObject {
                 self.retrieveAppointments()
                 self.getMyPatients()
                 
-                //update FCM Token
-                //self.doctor.applicationInfo.deviceToken = FCMTokenId
-                //self.updateDoctor()
+                self.updateFCMToken()
             }
         }
     }
     
+    func updateFCMToken () {
+        //update FCM Token
+        guard self.doctor != nil else { return }
+        if !FCMTokenId.isEmpty {
+            self.doctor.applicationInfo.deviceToken = FCMTokenId
+            self.updateDoctor()
+        }
+    }
+
     func updateDoctor () {
         DispatchQueue.global().async {
             self.serviceProviderServiceCall.setServiceProvider(serviceProvider: self.doctor) { (response) in
@@ -151,7 +158,7 @@ extension DoctorViewModel : DatePickerChangedDelegate {
         
         return exists
     }
-    
+
     func compareCurrentAppointmentTimeWithSelectedDate (appointment:ServiceProviderAppointment) -> Bool {
         return Helpers.compareDate(timestamp: appointment.scheduledAppointmentStartTime, date2: datePickerVM.selectedDate)
     }

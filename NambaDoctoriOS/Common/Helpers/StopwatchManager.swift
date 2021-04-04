@@ -23,10 +23,6 @@ class StopwatchManager {
     func stop() {
         stopTime = DispatchTime.now()
         let elapsedTime = (stopTime.uptimeNanoseconds - startTime.uptimeNanoseconds)/1000000
-        if elapsedTime > 1000 {
-            print("ELAPSED TIME \(callingClass): \(elapsedTime/1000)")
-        } else {
-            print("ELAPSED TIME \(callingClass): \(elapsedTime)")
-        }
+        print("ELAPSED TIME \(callingClass): \(elapsedTime)")
     }
 }

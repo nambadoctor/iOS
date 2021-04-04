@@ -15,13 +15,13 @@ enum DocViewStatesK:String {
     case toRefreshAppointments
     case refreshAppointmentsChange
 
-    case showPatientInfo
-    case patientInfo
-    
     case endConsultationAlert
     case endConsultationAlertChange
     
     case refreshDocsPatients
-    case torefreshDocsPatients
+    case refreshDocsPatientsChange
+    
+    case FCMTokenUpdate
+    case FCMTokenUpdateChange
 
 }

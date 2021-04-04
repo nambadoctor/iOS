@@ -39,6 +39,10 @@ class PatientInfoViewModel: ObservableObject {
         }
     }
     
+    var patientAgeGenderInfo : String {
+        return "\(patientObj?.age ?? ""), \(patientObj?.gender ?? "")"
+    }
+    
     var phoneNumber:String {
         return "\(patientObj.phoneNumbers[0].number)"
     }

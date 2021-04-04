@@ -31,4 +31,10 @@ extension DoctorHome {
             doctorViewModel.refreshAppointments()
         }
     }
+    
+    func refreshFCMToken () {
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("\(DocViewStatesK.FCMTokenUpdateChange)"), object: nil, queue: .main) { (_) in
+            doctorViewModel.updateFCMToken()
+        }
+    }
 }

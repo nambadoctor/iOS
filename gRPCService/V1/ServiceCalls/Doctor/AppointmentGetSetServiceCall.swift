@@ -19,14 +19,14 @@ protocol AppointmentGetSetServiceCallProtocol {
 class AppointmentGetSetServiceCall : AppointmentGetSetServiceCallProtocol {
     
     var appointmentObjectMapper:ServiceProviderAppointmentObjectMapper
-    
+        
     init(appointmentObjMapper:ServiceProviderAppointmentObjectMapper = ServiceProviderAppointmentObjectMapper()) {
         self.appointmentObjectMapper = appointmentObjMapper
     }
     
     func getDocAppointments (serviceProviderId:String,
                              completion: @escaping ((_ appointmentList:[ServiceProviderAppointment]?)->())) {
-        
+        let stopwatch = StopwatchManager(callingClass: "SERVICE_PROVIDER_GET_APPOINTMENTS")
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         
@@ -40,10 +40,12 @@ class AppointmentGetSetServiceCall : AppointmentGetSetServiceCallProtocol {
         
         DispatchQueue.global().async {
             do {
+                stopwatch.start()
                 let response = try getDoctorsAppointment.response.wait()
+                stopwatch.stop()
                 var appointmentList = self.appointmentObjectMapper.grpcAppointmentToLocal(appointment: response.appointments)
                 appointmentList.sort(by: { $0.scheduledAppointmentStartTime < $1.scheduledAppointmentStartTime })
-                print("Doctor Appointment Client Success")
+                print("Doctor Appointment Client Success \(appointmentList.count)")
                 DispatchQueue.main.async {
                     completion(appointmentList)
                 }

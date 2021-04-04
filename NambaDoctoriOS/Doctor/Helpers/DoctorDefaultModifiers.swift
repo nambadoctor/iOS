@@ -14,6 +14,11 @@ class DoctorDefaultModifiers {
         NotificationCenter.default.post(name: NSNotification.Name(DocViewStatesK.refreshAppointmentsChange.rawValue), object: nil)
     }
     
+    static func updateFCMToken () {
+        UserDefaults.standard.set(true, forKey: DocViewStatesK.FCMTokenUpdate.rawValue)
+        NotificationCenter.default.post(name: NSNotification.Name(DocViewStatesK.FCMTokenUpdate.rawValue), object: nil)
+    }
+    
     //MARK: DO NOT SHOW FOR END CONSULTATION ALERT
     static func endConsultAlertDoNotShow () {
         UserDefaults.standard.set(true, forKey: "\(DocViewStatesK.endConsultationAlert)")

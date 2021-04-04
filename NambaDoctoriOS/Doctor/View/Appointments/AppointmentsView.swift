@@ -13,12 +13,12 @@ struct AppointmentsView: View {
     
     var body: some View {
         VStack {
+            HorizontalDatePicker(datePickerVM: doctorViewModel.datePickerVM)
             if self.doctorViewModel.noAppointments {
                 Text("There are currently no appointments").padding()
             } else if self.doctorViewModel.appointments.isEmpty {
                 Indicator()
             } else {
-                HorizontalDatePicker(datePickerVM: doctorViewModel.datePickerVM)
                 ScrollView {
                     if self.doctorViewModel.noAppointmentsForSelectedDate {
                         Text("There no appointments for this date").padding()
@@ -32,6 +32,7 @@ struct AppointmentsView: View {
                     }
                 }
             }
+            Spacer()
         }
     }
 }

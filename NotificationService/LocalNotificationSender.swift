@@ -17,8 +17,6 @@ class LocalNotificationSender {
 
         guard body != nil, title != nil else { return }
 
-        DoctorDefaultModifiers.refreshAppointments()
-
         fireLocalNotif(title: title as! String, subtitle: body as! String)
     }
 
@@ -36,5 +34,7 @@ class LocalNotificationSender {
 
         // add our notification request
         UNUserNotificationCenter.current().add(request)
+        
+        DoctorDefaultModifiers.refreshAppointments()
     }
 }

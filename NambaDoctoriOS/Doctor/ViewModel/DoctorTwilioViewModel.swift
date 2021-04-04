@@ -18,7 +18,7 @@ class DoctorTwilioViewModel: ObservableObject {
         
     @Published var collapseCall:Bool = false
     @Published var viewController:ViewController? = nil
-    
+
     @Published var videoEnabled:Bool = false
     @Published var micEnabled:Bool = false
 
@@ -81,10 +81,12 @@ class DoctorTwilioViewModel: ObservableObject {
     }
     
     func leaveRoom () {
+        self.videoEnabled = false
+        self.micEnabled = false
         self.viewController?.disconnect(sender: self)
         twilioDelegate?.leftRoom()
     }
-    
+
     func toggleTwilioViewSize() {
         if collapseCall {
             viewController!.messageLabel.isHidden = false

@@ -38,10 +38,9 @@ struct HorizontalDatePicker: View {
                                         Text(datePickerVM.getDateNumber(index: index))
                                             .foregroundColor(datePickerVM.compareDate(index: index) ? Color.white : Color.black)
                                             .bold()
-                                        
                                     }
                                     
-                                    if datePickerVM.ifHasAppointment(index: index) {
+                                    if datePickerVM.ifHasAppointment(index: index) && !datePickerVM.compareDate(index: index) {
                                         VStack {
                                             Spacer()
                                             Image("circle.fill")

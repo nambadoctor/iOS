@@ -52,12 +52,20 @@ class DetailedAppointmentViewModel : ObservableObject {
         checkIfConsultationHappened()
     }
     
+    var appointmentServiceFee : String {
+        return "Fee: ₹\(String(appointment.serviceFee.clean))"
+    }
+    
     var appointmentTime:String {
         return "\(Helpers.getTimeFromTimeStamp(timeStamp: appointment.scheduledAppointmentStartTime))"
     }
     
     var customerName:String {
         return "\(appointment.customerName)"
+    }
+    
+    func showViewOrDetailed () {
+        
     }
     
     func checkIfConsultationHappened() {
@@ -142,6 +150,7 @@ class DetailedAppointmentViewModel : ObservableObject {
         self.savePrescription { (success) in
             self.updateAppointmentStatus.updateToFinished(appointment: &self.appointment) { (success) in
                 CommonDefaultModifiers.hideLoader()
+                self.docNotifHelper.fireAppointmentOverNotif(requestedBy: self.appointment.customerID)
                 DoctorDefaultModifiers.refreshAppointments()
                 self.showOnSuccessAlert = true
             }

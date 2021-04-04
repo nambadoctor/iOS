@@ -8,60 +8,85 @@
 import SwiftUI
 
 struct ViewPrescription: View {
-    
-    @ObservedObject var prescriptionVM: ServiceRequestViewModel
+
+    @ObservedObject var serviceRequestVM: ServiceRequestViewModel
+    @ObservedObject var investigationsVM: InvestigationsViewModel
+    @ObservedObject var medicineVM: MedicineViewModel
 
     var body: some View {
         VStack {
-            if prescriptionVM.errorInRetrievingPrescription {
-                Text("Prescription could not be retrieved")
-            } else if prescriptionVM.serviceRequest == nil {
-                Indicator()
-            } else {
-                //ViewPrescriptionForm
+            ViewPrescriptionForm
+        }
+    }
+
+    var ViewPrescriptionForm : some View {
+        Form {
+            Section(header: Text("Examination")) { Text(serviceRequestVM.serviceRequest.examination) }
+            Section(header: Text("Diagnosis")) { Text(serviceRequestVM.serviceRequest.diagnosis.name) }
+            Section(header: Text("Advise")) { Text(serviceRequestVM.serviceRequest.advice) }
+
+            Section(header: Text("Investigations")) {
+                if !investigationsVM.investigations.isEmpty {
+                    ForEach(Array(investigationsVM.investigations.enumerated()), id: \.0) { i, _ in
+                        if !investigationsVM.investigations[i].isEmpty {
+                            HStack {
+                                Text("\(self.investigationsVM.investigations[i])")
+                            }
+                        }
+                    }
+                } else {
+                    Text("No Investigations")
+                }
+            }
+            
+            Section(header: Text("Prescription")) {
+                
+                ForEach (medicineVM.prescription.medicineList, id: \.medicineName) { medicine in
+                    HStack {
+                        VStack (alignment: .leading, spacing: 5) {
+                            Text("\(medicine.medicineName) - \(medicine.dosage)")
+                                .font(.callout)
+                                .bold()
+                                .foregroundColor(Color.green)
+                            
+                            if !medicine.routeOfAdministration.isEmpty {
+                                Text("\(medicine.routeOfAdministration)")
+                                    .font(.callout)
+                                    .foregroundColor(Color.green)
+                            }
+                            
+                            if !medicine.intake.isEmpty {
+                                Text("\(medicine.intake)")
+                                    .font(.callout)
+                                    .foregroundColor(Color.green)
+                            }
+                            
+                            if !medicine.specialInstructions.isEmpty {
+                                Text("\(medicine.specialInstructions)")
+                                    .font(.callout)
+                                    .foregroundColor(Color.green)
+                            }
+                        }
+                        Spacer()
+                        
+                    }
+                    .padding()
+                    .background(Color.green.opacity(0.1))
+                    .cornerRadius(7)
+                }
+
+                if !medicineVM.prescription.fileInfo.MediaImage.isEmpty {
+                    HStack {
+                        Spacer()
+                        ImageView(withURL: medicineVM.prescription.fileInfo.MediaImage)
+                            .frame(width: 150, height: 200)
+                            .cornerRadius(10)
+                            .shadow(radius: 10)
+                        Spacer()
+                    }
+                }
+
             }
         }
     }
-    
-//    var ViewPrescriptionForm : some View {
-//        Form {
-//            //Section(header: Text("History")) { Text(prescriptionVM.serviceRequest.history) }
-//            Section(header: Text("Examination")) { Text(prescriptionVM.serviceRequest.examination) }
-//            Section(header: Text("Diagnosis")) { Text(prescriptionVM.serviceRequest.diagnosis.name) }
-//            Section(header: Text("Advise")) { Text(prescriptionVM.serviceRequest.advice) }
-//            //Section(header: Text("Patient Allergies")) { Text(prescriptionVM.patientAllergies) }
-//
-//            Section(header: Text("Investigations")) {
-//                if !prescriptionVM.InvestigationsVM.investigations.isEmpty {
-//                    ForEach(Array(prescriptionVM.InvestigationsVM.investigations.enumerated()), id: \.0) { i, _ in
-//                        if !prescriptionVM.InvestigationsVM.investigations[i].isEmpty {
-//                            HStack {
-//                                Text("\(self.prescriptionVM.InvestigationsVM.investigations[i])")
-//                            }
-//                        }
-//                    }
-//                } else {
-//                    Text("No Investigations")
-//                }
-//            }
-//
-//            Section(header: Text("Prescriptions")) {
-//                if prescriptionVM.hasMedicines {
-//                    MedicineView(medicineVM: prescriptionVM.MedicineVM)
-//                } else {
-//                    Text("No Medicines Prescribed")
-//                }
-//            }
-//
-////            Section(header: Text("Follow Up")) {
-////                if prescriptionVM.FollowUpVM.needFollowUp {
-////                    Text("In: \(prescriptionVM.FollowUpVM.validityDaysDisplay)")
-////                    Text("Fee: \(prescriptionVM.FollowUpVM.nextFeeDisplay)")
-////                } else {
-////                    Text("No Follow up")
-////                }
-////            }
-//
-//        }
-//    }
 }

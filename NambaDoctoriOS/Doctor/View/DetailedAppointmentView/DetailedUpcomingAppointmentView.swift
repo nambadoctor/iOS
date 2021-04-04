@@ -20,42 +20,9 @@ struct DetailedUpcomingAppointmentView: View {
 
     var body: some View {
         ZStack {
-            ScrollView (.vertical) {
-                
-                VStack {
-                    header
-                    Divider().background(Color.blue.opacity(0.4))
-                    actionButtons
-                }
-                .background(Color.white)
-                .border(Color.blue, width: 1)
-                .padding(.top, 5)
-                
-                prescriptionAlreadySentView
-                
-                PatientInfoView(patientInfoViewModel: detailedAppointmentVM.patientInfoViewModel)
-                    .padding()
-                    .background(Color.white)
-                
-                DoctorsSectionViewModel(serviceRequestVM: detailedAppointmentVM.serviceRequestVM)
-                
-                PrescriptionsView(prescriptionsVM: self.detailedAppointmentVM.prescriptionVM)
-                    .padding()
-                    .background(Color.white)
-                
-//                FollowUpView(followUpVM: self.detailedAppointmentVM.followUpViewModel)
-//                    .padding()
-//                    .background(Color.white)
-                
-                ModifyFeeView(modifyFeeVM: self.detailedAppointmentVM.modifyFeeViewModel)
-                    .padding()
-                    .background(Color.white)
-
-                Spacer()
-
-                sendToPatient
-            }
-
+            
+            
+            
             if detailedAppointmentVM.showTwilioRoom {
                 DoctorTwilioManager(DoctorTwilioVM: detailedAppointmentVM.doctorTwilioManagerViewModel)
             }
@@ -64,7 +31,7 @@ struct DetailedUpcomingAppointmentView: View {
             if detailedAppointmentVM.killView {
                 Text("You are done").onAppear() { killView() }
             }
-            
+
         }
         .background(Color.gray.opacity(0.3))
         .navigationBarItems(trailing: saveButton)
@@ -73,6 +40,44 @@ struct DetailedUpcomingAppointmentView: View {
         })
         .onTapGesture {
             EndEditingHelper.endEditing()
+        }
+    }
+    
+    var detailedUpcomingAppointment : some View {
+        ScrollView (.vertical) {
+            
+            VStack {
+                header
+                Divider().background(Color.blue.opacity(0.4))
+                actionButtons
+            }
+            .background(Color.white)
+            .border(Color.blue, width: 1)
+            .padding(.top, 5)
+            
+            prescriptionAlreadySentView
+            
+            PatientInfoView(patientInfoViewModel: detailedAppointmentVM.patientInfoViewModel)
+                .padding()
+                .background(Color.white)
+            
+            DoctorsSectionViewModel(serviceRequestVM: detailedAppointmentVM.serviceRequestVM)
+            
+            PrescriptionsView(prescriptionsVM: self.detailedAppointmentVM.prescriptionVM)
+                .padding()
+                .background(Color.white)
+            
+//                FollowUpView(followUpVM: self.detailedAppointmentVM.followUpViewModel)
+//                    .padding()
+//                    .background(Color.white)
+
+            ModifyFeeView(modifyFeeVM: self.detailedAppointmentVM.modifyFeeViewModel)
+                .padding()
+                .background(Color.white)
+
+            Spacer()
+
+            sendToPatient
         }
     }
     
@@ -117,6 +122,7 @@ struct DetailedUpcomingAppointmentView: View {
     var sendToPatient : some View {
         VStack {
             Button {
+                EndEditingHelper.endEditing()
                 detailedAppointmentVM.sendToPatient()
             } label: {
                 HStack {
@@ -137,7 +143,7 @@ struct DetailedUpcomingAppointmentView: View {
     
     var header : some View {
         VStack (alignment: .leading) {
-            Text(detailedAppointmentVM.appointmentTime)
+            Text("Appointment On: \(detailedAppointmentVM.appointmentTime)")
                 .foregroundColor(.blue)
                 .bold()
             HStack (alignment: .top) {
@@ -146,9 +152,9 @@ struct DetailedUpcomingAppointmentView: View {
                     .frame(width: 70, height: 70)
                 VStack (alignment: .leading, spacing: 5) {
                     Text(detailedAppointmentVM.customerName)
-                    Text("22, Male")
+                    Text(detailedAppointmentVM.patientInfoViewModel.patientAgeGenderInfo)
                     
-                    Text("Fee: Rs. 550")
+                    Text(detailedAppointmentVM.appointmentServiceFee)
                 }
                 Spacer()
             }
