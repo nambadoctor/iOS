@@ -12,14 +12,15 @@ class DetailedAppointmentViewModel : ObservableObject {
     @Published var killView:Bool = false
     
     @Published var appointment:ServiceProviderAppointment
-
+    @Published var intermediateVM:IntermediateAppointmentViewModel
+    
     @Published var serviceRequestVM:ServiceRequestViewModel
     @Published var prescriptionVM:MedicineViewModel
     @Published var patientInfoViewModel:PatientInfoViewModel
     @Published var doctorTwilioManagerViewModel:DoctorTwilioViewModel
     @Published var followUpViewModel:FollowUpViewModel
     @Published var modifyFeeViewModel:ModifyFeeViewModel
-
+    
     @Published var showTwilioRoom:Bool = false
     @Published var consultationHappened:Bool = false
     
@@ -36,6 +37,8 @@ class DetailedAppointmentViewModel : ObservableObject {
          doctorAlertHelper:DoctorAlertHelpersProtocol = DoctorAlertHelpers()) {
 
         self.appointment = intermediateVM.appointment
+        self.intermediateVM = intermediateVM
+        
         self.updateAppointmentStatus = updateAppointmentStatus
         self.doctorAlertHelper = doctorAlertHelper
         self.docNotifHelper = DocNotifHelpers(appointment: intermediateVM.appointment)
@@ -158,6 +161,10 @@ class DetailedAppointmentViewModel : ObservableObject {
                 self.showOnSuccessAlert = true
             }
         }
+    }
+    
+    func takeToViewScreen () {
+        self.intermediateVM.takeToView()
     }
 }
 

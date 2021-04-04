@@ -35,7 +35,7 @@ struct DetailedUpcomingAppointmentView: View {
         .background(Color.gray.opacity(0.3))
         .navigationBarItems(trailing: saveButton)
         .alert(isPresented: $detailedAppointmentVM.showOnSuccessAlert, content: {
-            Alert(title: Text("Prescription Sent Successfully"), dismissButton: .default(Text("Ok")))
+            Alert(title: Text("Prescription Sent Successfully"), dismissButton: .default(Text("Ok"), action: { detailedAppointmentVM.takeToViewScreen() }))
         })
         .onTapGesture {
             EndEditingHelper.endEditing()
@@ -139,7 +139,7 @@ struct DetailedUpcomingAppointmentView: View {
             }
         }
     }
-    
+
     var header : some View {
         VStack (alignment: .leading) {
             Text("Appointment On: \(detailedAppointmentVM.appointmentTime)")

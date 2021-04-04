@@ -23,16 +23,60 @@ struct ViewAppointment: View {
     
     var body: some View {
         VStack {
+            header
+                .background(Color.white)
+                .border(Color.blue, width: 1)
+                .padding([.top, .bottom], 5)
+            
+            
             ViewPrescriptionForm
         }
     }
-
+    
+    var header : some View {
+        VStack (alignment: .leading) {
+            Text("Appointment On: \(Helpers.getTimeFromTimeStamp(timeStamp: intermediateVM.appointment.actualAppointmentStartTime))")
+                .foregroundColor(.blue)
+                .bold()
+            
+            HStack (alignment: .top) {
+                Image("person.crop.circle.fill")
+                    .resizable()
+                    .frame(width: 70, height: 70)
+                VStack (alignment: .leading, spacing: 5) {
+                    Text(intermediateVM.appointment.customerName)
+                    //Text(patientInfoViewModel.patientAgeGenderInfo)
+                    
+                    Text("Fee: ₹\(String(intermediateVM.appointment.serviceFee.clean))")
+                }
+                Spacer()
+            }
+        }.padding()
+    }
+    
+    
     var ViewPrescriptionForm : some View {
         Form {
+            
+            Section {
+                HStack {
+                    Image("checkmark.circle.fill")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                        .foregroundColor(Color.green)
+                        .padding(.trailing)
+                    
+                    Text("Prescription Sent on \(Helpers.getTimeFromTimeStamp(timeStamp: medicineVM.prescription.createdDateTime))")
+
+                    Spacer()
+                }
+                .padding()
+            }
+            
             Section(header: Text("Examination")) { Text(serviceRequestVM.serviceRequest.examination) }
             Section(header: Text("Diagnosis")) { Text(serviceRequestVM.serviceRequest.diagnosis.name) }
             Section(header: Text("Advise")) { Text(serviceRequestVM.serviceRequest.advice) }
-
+            
             Section(header: Text("Investigations")) {
                 if !investigationsVM.investigations.isEmpty {
                     ForEach(Array( investigationsVM.investigations.enumerated()), id: \.0) { i, _ in
@@ -82,7 +126,7 @@ struct ViewAppointment: View {
                     .background(Color.green.opacity(0.1))
                     .cornerRadius(7)
                 }
-
+                
                 if !medicineVM.prescription.fileInfo.MediaImage.isEmpty {
                     HStack {
                         Spacer()
@@ -93,7 +137,7 @@ struct ViewAppointment: View {
                         Spacer()
                     }
                 }
-
+                
             }
         }
         .navigationBarItems(trailing: endAndAmendButton)
@@ -105,6 +149,6 @@ struct ViewAppointment: View {
         } label: {
             Text("Edit")
         }
-
+        
     }
 }
