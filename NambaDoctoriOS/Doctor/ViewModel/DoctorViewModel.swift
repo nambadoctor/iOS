@@ -12,7 +12,7 @@ class DoctorViewModel: ObservableObject {
     @Published var appointments:[ServiceProviderAppointment] = [ServiceProviderAppointment]()
     @Published var myPatients:[ServiceProviderCustomerProfile] = [ServiceProviderCustomerProfile]()
     
-    @Published var noAppointments:Bool = false
+    @Published var hasAppointments:Bool = false
     @Published var noPatients:Bool = false
     @Published var doctorLoggedIn:Bool = false
     
@@ -21,7 +21,6 @@ class DoctorViewModel: ObservableObject {
     @Published var imageLoader:ImageLoader? = nil
     
     @Published var datePickerVM:DatePickerViewModel = DatePickerViewModel()
-    @Published var noAppointmentsForSelectedDate:Bool = false
     
     var authenticateService:AuthenticateServiceProtocol
     var serviceProviderServiceCall:ServiceProviderGetSetServiceCallProtocol
@@ -87,8 +86,10 @@ class DoctorViewModel: ObservableObject {
     func retrieveAppointments () {
         doctorAppointmentViewModel.getDocAppointments(serviceProviderId: doctor.serviceProviderID) { (appointments) in
             if appointments != nil {
+                self.appointments.removeAll()
                 self.appointments = appointments!
                 self.datePickerVM.setDatesWithAppointments(appointments: appointments!)
+                self.checkIfAppointmentExistForDate(date: self.datePickerVM.selectedDate)
             }
             self.checkForEmptyList()
         }
@@ -96,12 +97,11 @@ class DoctorViewModel: ObservableObject {
     
     func checkForEmptyList () {
         if appointments.isEmpty {
-            self.noAppointments = true
+            self.hasAppointments = false
         }
     }
     
     func refreshAppointments () {
-        self.appointments.removeAll()
         self.retrieveAppointments()
     }
     
@@ -145,19 +145,18 @@ class DoctorViewModel: ObservableObject {
 
 extension DoctorViewModel : DatePickerChangedDelegate {
     func dateChanged(selectedDate: Date) {
-        self.noAppointmentsForSelectedDate = checkIfAppointmentExistForDate(date: selectedDate)
+        self.hasAppointments = checkIfAppointmentExistForDate(date: selectedDate)
     }
     
     func checkIfAppointmentExistForDate(date:Date) -> Bool {
-        var exists:Bool = true
+        var exists:Bool = false
         for appoinment in appointments {
             let order = Calendar.current.compare(date, to: Date(milliseconds: appoinment.scheduledAppointmentStartTime), toGranularity: .day)
             
             if order == .orderedSame {
-                exists = false
+                exists = true
             }
         }
-        
         return exists
     }
     

@@ -14,22 +14,16 @@ struct AppointmentsView: View {
     var body: some View {
         VStack {
             HorizontalDatePicker(datePickerVM: doctorViewModel.datePickerVM)
-            if self.doctorViewModel.noAppointments {
-                Text("There are currently no appointments").padding()
-            } else if self.doctorViewModel.appointments.isEmpty {
-                Indicator()
-            } else {
-                ScrollView {
-                    if self.doctorViewModel.noAppointmentsForSelectedDate {
-                        Text("There no appointments for this date").padding()
-                    } else {
-                        ForEach(doctorViewModel.appointments, id: \.appointmentID) { appointment in
-                            if doctorViewModel.compareCurrentAppointmentTimeWithSelectedDate(appointment: appointment)
-                            {
-                                AppointmentCard(appointment: appointment)
-                            }
+            ScrollView {
+                if self.doctorViewModel.hasAppointments {
+                    ForEach(doctorViewModel.appointments, id: \.appointmentID) { appointment in
+                        if doctorViewModel.compareCurrentAppointmentTimeWithSelectedDate(appointment: appointment)
+                        {
+                            AppointmentCard(appointment: appointment)
                         }
                     }
+                } else {
+                    Text("There no appointments for this date").padding()
                 }
             }
             Spacer()

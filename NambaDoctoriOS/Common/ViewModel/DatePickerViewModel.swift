@@ -65,6 +65,14 @@ class DatePickerViewModel : ObservableObject {
     }
     
     func setDatesWithAppointments (appointments:[ServiceProviderAppointment]) {
+        
+        func clearAllAppointmentVals () {
+            for i in Dates.indices {
+                Dates[i].hasAppointment = false
+            }
+        }
+        
+        clearAllAppointmentVals()
 
         var upcomingAppointmentDates:[String] = [String]()
         var previousAppointmentDates:[String] = [String]()
@@ -78,19 +86,16 @@ class DatePickerViewModel : ObservableObject {
             }
         }
 
-        var index = 0
-        for date in Dates {
-            var currentDateString = Helpers.getDisplayForDateSelector(date: date.date)
+        for i in Dates.indices {
+            let currentDateString = Helpers.getDisplayForDateSelector(date: Dates[i].date)
             if upcomingAppointmentDates.contains(currentDateString) {
-                Dates[index].hasAppointment = true
-                Dates[index].isUpcoming = true
+                Dates[i].hasAppointment = true
+                Dates[i].isUpcoming = true
             }
             
             if previousAppointmentDates.contains(currentDateString) {
-                Dates[index].hasAppointment = true
+                Dates[i].hasAppointment = true
             }
-            
-            index+=1
         }
     }
 
@@ -107,15 +112,13 @@ class DatePickerViewModel : ObservableObject {
             Dates.append(dateObject)
         }
 
-        var localIndex = 0
-        for dateObj in Dates {
+        for localIndex in Dates.indices {
+            var dateObj = Dates[localIndex]
             let order = Calendar.current.compare(dateObj.date, to: todayDate, toGranularity: .day)
 
             if order == .orderedSame {
                 index = localIndex
             }
-
-            localIndex+=1
         }
 
         self.showScrollView = true

@@ -24,7 +24,7 @@ struct ServiceRequestEditableView: View {
                 .foregroundColor(Color.black.opacity(0.4))
                 .bold()
             ExpandingTextView(text: $serviceRequestVM.serviceRequest.diagnosis.name)
-            
+
             SideBySideCheckBox(isChecked: $serviceRequestVM.serviceRequest.diagnosis.type, title1: "Provisional", title2: "Definitive")
                 .padding(.bottom)
 
@@ -32,7 +32,7 @@ struct ServiceRequestEditableView: View {
                 .font(.footnote)
                 .foregroundColor(Color.black.opacity(0.4))
                 .bold()
-            
+
             ExpandingTextView(text: $serviceRequestVM.serviceRequest.advice)
         }.padding(.bottom)
     }

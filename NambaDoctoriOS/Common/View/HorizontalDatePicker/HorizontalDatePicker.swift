@@ -60,7 +60,9 @@ struct HorizontalDatePicker: View {
                                 }
                             }
                         }
-                    }.onAppear() {scrollview.scrollTo(datePickerVM.index, anchor: .center)}
+                    }.onAppear() {
+                        scrollview.scrollTo(datePickerVM.index, anchor: .center)
+                    }
                 }
             }
         }
