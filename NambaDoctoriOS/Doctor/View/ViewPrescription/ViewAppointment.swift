@@ -23,7 +23,7 @@ struct ViewAppointment: View {
                 
                 HStack {Spacer()}
             }.padding()
-        }
+        }.navigationBarItems(trailing: endAndAmendButton)
     }
 
     var header : some View {
@@ -40,7 +40,10 @@ struct ViewAppointment: View {
                     Text(intermediateVM.appointment.customerName)
                     
                     Text("Fee: ₹\(String(intermediateVM.appointment.serviceFee.clean))")
+                    
+                    Text("Reason: ")
                 }
+
                 Spacer()
             }
         }.padding()
@@ -53,7 +56,7 @@ struct ViewAppointment: View {
             ServiceRequestView()
             InvestigationsView()
 
-        }.navigationBarItems(trailing: endAndAmendButton)
+        }
     }
     
     var endAndAmendButton : some View {

@@ -37,9 +37,7 @@ class MedicineViewModel: ObservableObject {
         self.prescriptionServiceCalls = prescriptionServiceCalls
         self.prescription = MakeEmptyPrescription(appointment: appointment)
         
-        DispatchQueue.main.async {
-            self.retrievePrescriptions()
-        }
+        self.retrievePrescriptions()
     }
     
     func uploadManually() {

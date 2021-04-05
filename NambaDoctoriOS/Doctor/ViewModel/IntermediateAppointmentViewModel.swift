@@ -102,6 +102,7 @@ extension IntermediateAppointmentViewModel {
                 CommonDefaultModifiers.hideLoader()
                 self.docNotifHelper.fireAppointmentOverNotif(requestedBy: self.appointment.customerID)
                 DoctorDefaultModifiers.refreshAppointments()
+                self.checkIfAppointmentFinished()
                 self.showOnSuccessAlert = true
             }
         }
@@ -119,7 +120,10 @@ extension IntermediateAppointmentViewModel : TwilioDelegate {
     
     func startConsultation() {
         doctorTwilioManagerViewModel.startRoom()
-        doctorTwilioManagerViewModel.fireStartedNotif()
+        doctorTwilioManagerViewModel.fireStartedNotif() { success in
+            self.appointment.status = ConsultStateK.StartedConsultation.rawValue //need to refresh from db after. using local update for now.
+            self.checkIfAppointmentStarted()
+        }
         self.showTwilioRoom = true
     }
 }

@@ -11,7 +11,8 @@ struct ServiceRequestView: View {
     @EnvironmentObject var serviceRequestVM:ServiceRequestViewModel
     
     var body: some View {
-        VStack {
+        VStack (alignment: .leading) {
+            HStack {Spacer()}
             Group {
                 Text("Examination")
                     .font(.footnote)
@@ -34,10 +35,10 @@ struct ServiceRequestView: View {
                     .bold()
                     .foregroundColor(.gray)
                 Text(serviceRequestVM.advice)
-                
+
                 Spacer().frame(height: 5)
             }
-            
+
             Text("Investigations")
                 .font(.footnote)
                 .bold()

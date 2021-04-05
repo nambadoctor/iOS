@@ -75,7 +75,7 @@ struct DoctorTwilioManager: View {
             HStack {
                 Spacer()
                 if !DoctorTwilioVM.videoEnabled {
-                    Text("Your video and mic are currently disabled")
+                    Text("Your video is currently disabled")
                         .foregroundColor(.black)
                         .bold()
                         .frame(width: 100)

@@ -53,7 +53,7 @@ extension String {
         return SwiftProtobuf.Google_Protobuf_StringValue(self)}
     
     var toProtoBytes:SwiftProtobuf.Google_Protobuf_BytesValue {
-        return SwiftProtobuf.Google_Protobuf_BytesValue(Data(base64Encoded: self, options: .ignoreUnknownCharacters)!)
+        return SwiftProtobuf.Google_Protobuf_BytesValue(Data(base64Encoded: self)!)
     }
 }
 

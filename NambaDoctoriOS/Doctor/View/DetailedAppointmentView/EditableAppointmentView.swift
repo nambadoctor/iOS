@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct EditableAppointmentView: View {
-
+    
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var intermediateVM:IntermediateAppointmentViewModel
-
+    
     var body: some View {
         ZStack {
             detailedUpcomingAppointment
@@ -19,7 +19,7 @@ struct EditableAppointmentView: View {
             if intermediateVM.showTwilioRoom {
                 DoctorTwilioManager(DoctorTwilioVM: intermediateVM.doctorTwilioManagerViewModel)
             }
-
+            
             //remote kill view trigger
             if intermediateVM.killView {
                 Text("You are done").onAppear() { killView() }
@@ -34,10 +34,10 @@ struct EditableAppointmentView: View {
             EndEditingHelper.endEditing()
         }
     }
-
+    
     var detailedUpcomingAppointment : some View {
         ScrollView (.vertical) {
-
+            
             VStack {
                 header
                 Divider().background(Color.blue.opacity(0.4))
@@ -47,7 +47,7 @@ struct EditableAppointmentView: View {
             .background(Color.white)
             .border(Color.blue, width: 1)
             .padding(.top, 5)
-
+            
             MedicineEditableView()
                 .padding()
                 .background(Color.white)
@@ -65,7 +65,7 @@ struct EditableAppointmentView: View {
                 }
             }
             .padding(.horizontal)
-
+            
             if !intermediateVM.collapseExtraDetailEntry {
                 
                 PatientInfoEditableView()
@@ -86,26 +86,26 @@ struct EditableAppointmentView: View {
             sendToPatient
         }
     }
-
-//    var saveButton : some View {
-//        Button(action: {
-//            self.toggleNavBarProgressView.toggle()
-//            detailedAppointmentVM.savePrescription { _ in
-//                self.toggleNavBarProgressView.toggle()
-//            }
-//        }, label: {
-//            if !detailedAppointmentVM.checkIfAppointmentFinished() {
-//                HStack {
-//                    if toggleNavBarProgressView {
-//                        ProgressView()
-//                            .progressViewStyle(CircularProgressViewStyle())
-//                    }
-//                    Text("Save")
-//                }
-//            }
-//        })
-//    }
-
+    
+    //    var saveButton : some View {
+    //        Button(action: {
+    //            self.toggleNavBarProgressView.toggle()
+    //            detailedAppointmentVM.savePrescription { _ in
+    //                self.toggleNavBarProgressView.toggle()
+    //            }
+    //        }, label: {
+    //            if !detailedAppointmentVM.checkIfAppointmentFinished() {
+    //                HStack {
+    //                    if toggleNavBarProgressView {
+    //                        ProgressView()
+    //                            .progressViewStyle(CircularProgressViewStyle())
+    //                    }
+    //                    Text("Save")
+    //                }
+    //            }
+    //        })
+    //    }
+    
     var sendToPatient : some View {
         VStack {
             Button {
@@ -127,7 +127,7 @@ struct EditableAppointmentView: View {
             }
         }
     }
-
+    
     var header : some View {
         VStack (alignment: .leading) {
             Text("Appointment On: \(intermediateVM.appointmentTime)")
@@ -150,46 +150,49 @@ struct EditableAppointmentView: View {
     
     var actionButtons : some View {
         HStack {
-            if !intermediateVM.appointmentStarted || !intermediateVM.appointmentFinished {
-                Button(action: {
-                    intermediateVM.cancelAppointment { success in
-                        if success {
-                            killView()
-                        }
-                    }
-                }, label: {
-                    Text("Cancel")
-                        .padding([.top, .bottom], 7)
-                        .padding([.leading, .trailing], 10)
-                        .overlay(RoundedRectangle(cornerRadius: 6)
-                                    .stroke(Color.blue, lineWidth: 2))
-                })
-                
-                Spacer()
-            }
-
-            Button(action: {
-                intermediateVM.patientInfoViewModel.callPatient()
-            }, label: {
-                HStack (alignment: .center) {
-                    Image("phone")
-                        .scaleEffect(1.5)
-                }
-            })
-            
-            Spacer()
-            
             if !intermediateVM.appointmentFinished {
+                
+                if !intermediateVM.appointmentStarted {
+                    Button(action: {
+                        intermediateVM.cancelAppointment { success in
+                            if success {
+                                killView()
+                            }
+                        }
+                    }, label: {
+                        Text("Cancel")
+                            .padding([.top, .bottom], 7)
+                            .padding([.leading, .trailing], 10)
+                            .overlay(RoundedRectangle(cornerRadius: 6)
+                                        .stroke(Color.blue, lineWidth: 2))
+                    })
+                }
+
+                Spacer()
+                
                 Button(action: {
-                    intermediateVM.startConsultation()
+                    intermediateVM.patientInfoViewModel.callPatient()
                 }, label: {
-                    VStack (alignment: .center) {
-                        Image(systemName: "video")
+                    HStack (alignment: .center) {
+                        Image("phone")
                             .scaleEffect(1.5)
                     }
                 })
+                
+                Spacer()
+                
+                if !intermediateVM.appointmentFinished {
+                    Button(action: {
+                        intermediateVM.startConsultation()
+                    }, label: {
+                        VStack (alignment: .center) {
+                            Image(systemName: "video")
+                                .scaleEffect(1.5)
+                        }
+                    })
+                }
+
             }
-            
         }
         .padding([.leading, .trailing], 50)
         .padding(.top, 10)

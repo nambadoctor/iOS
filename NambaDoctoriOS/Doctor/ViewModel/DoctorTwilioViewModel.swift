@@ -20,7 +20,7 @@ class DoctorTwilioViewModel: ObservableObject {
     @Published var viewController:ViewController? = nil
 
     @Published var videoEnabled:Bool = false
-    @Published var micEnabled:Bool = false
+    @Published var micEnabled:Bool = true
 
     private var docAlertHelpers:DoctorAlertHelpersProtocol!
     private var docSheetHelper:DoctorSheetHelpers = DoctorSheetHelpers()
@@ -59,10 +59,11 @@ class DoctorTwilioViewModel: ObservableObject {
         }
     }
 
-    func fireStartedNotif () {
+    func fireStartedNotif (_ completion: @escaping (_ success:Bool)->()) {
         let replicatedAppointment = self.appointment //cannot do simultanueous access...
         self.updateAppointmentStatus.updateToStartedConsultation(appointment: &self.appointment) { (success) in
             if success {
+                completion(success)
                 self.docNotificationHelpers.fireStartedConsultationNotif(requestedBy: replicatedAppointment.customerID, appointmentTime: replicatedAppointment.scheduledAppointmentStartTime)
             }
         }
