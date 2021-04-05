@@ -58,7 +58,6 @@ struct DetailedUpcomingAppointmentView: View {
                 .padding()
                 .background(Color.white)
             
-            
             HStack {
                 Spacer()
                 Button {

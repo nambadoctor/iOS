@@ -38,6 +38,18 @@ class ServiceRequestViewModel: ObservableObject {
             self.retrieveServiceRequest()
         }
     }
+    
+    var examination : String {
+        return serviceRequest.examination.isEmpty ? "no examination entered" : "\(serviceRequest.examination)"
+    }
+    
+    var diagnosisName : String {
+        return serviceRequest.diagnosis.name.isEmpty ? "no diagnosis entered" : "\(serviceRequest.diagnosis.name)"
+    }
+    
+    var advice : String {
+        return serviceRequest.advice.isEmpty ? "no advice entered" : "\(serviceRequest.advice)"
+    }
 
     func retrieveServiceRequest() {
         retrieveServiceRequesthelper.getServiceRequest(appointmentId: self.appointment.appointmentID, serviceRequestId: appointment.serviceRequestID, customerId: self.appointment.customerID) { (serviceRequest) in

@@ -38,10 +38,12 @@ struct ViewAppointment: View {
                     
                     Text("Prescription Sent on \(Helpers.getTimeFromTimeStamp(timeStamp: medicineVM.prescription.createdDateTime))")
 
+                    Divider()
+                    
                     Spacer()
                 }
 
-                Spacer().frame(height: 10)
+                Spacer().frame(height: 20)
                 
                 details
                 
@@ -79,7 +81,7 @@ struct ViewAppointment: View {
                     .font(.footnote)
                     .bold()
                     .foregroundColor(.gray)
-                Text(serviceRequestVM.serviceRequest.examination)
+                Text(serviceRequestVM.examination)
                 
                 Spacer().frame(height: 5)
                 
@@ -87,7 +89,7 @@ struct ViewAppointment: View {
                     .font(.footnote)
                     .bold()
                     .foregroundColor(.gray)
-                Text(serviceRequestVM.serviceRequest.diagnosis.name)
+                Text(serviceRequestVM.diagnosisName)
                 
                 Spacer().frame(height: 5)
                 
@@ -95,7 +97,7 @@ struct ViewAppointment: View {
                     .font(.footnote)
                     .bold()
                     .foregroundColor(.gray)
-                Text(serviceRequestVM.serviceRequest.advice)
+                Text(serviceRequestVM.advice)
                 
                 Spacer().frame(height: 5)
             }
@@ -127,48 +129,52 @@ struct ViewAppointment: View {
                 .bold()
                 .foregroundColor(.gray)
             
-            ForEach (medicineVM.prescription.medicineList, id: \.medicineName) { medicine in
-                HStack {
-                    VStack (alignment: .leading, spacing: 5) {
-                        Text("\(medicine.medicineName) - \(medicine.dosage)")
-                            .font(.callout)
-                            .bold()
-                            .foregroundColor(Color.green)
-                        
-                        if !medicine.routeOfAdministration.isEmpty {
-                            Text("\(medicine.routeOfAdministration)")
+            if intermediateVM.prescriptionVM.hasMedicineOrImage {
+                Text("None")
+            } else {
+                ForEach (medicineVM.prescription.medicineList, id: \.medicineName) { medicine in
+                    HStack {
+                        VStack (alignment: .leading, spacing: 5) {
+                            Text("\(medicine.medicineName) - \(medicine.dosage)")
                                 .font(.callout)
+                                .bold()
                                 .foregroundColor(Color.green)
+                            
+                            if !medicine.routeOfAdministration.isEmpty {
+                                Text("\(medicine.routeOfAdministration)")
+                                    .font(.callout)
+                                    .foregroundColor(Color.green)
+                            }
+                            
+                            if !medicine.intake.isEmpty {
+                                Text("\(medicine.intake)")
+                                    .font(.callout)
+                                    .foregroundColor(Color.green)
+                            }
+                            
+                            if !medicine.specialInstructions.isEmpty {
+                                Text("\(medicine.specialInstructions)")
+                                    .font(.callout)
+                                    .foregroundColor(Color.green)
+                            }
                         }
+                        Spacer()
                         
-                        if !medicine.intake.isEmpty {
-                            Text("\(medicine.intake)")
-                                .font(.callout)
-                                .foregroundColor(Color.green)
-                        }
-                        
-                        if !medicine.specialInstructions.isEmpty {
-                            Text("\(medicine.specialInstructions)")
-                                .font(.callout)
-                                .foregroundColor(Color.green)
-                        }
                     }
-                    Spacer()
-                    
+                    .padding()
+                    .background(Color.green.opacity(0.1))
+                    .cornerRadius(7)
                 }
-                .padding()
-                .background(Color.green.opacity(0.1))
-                .cornerRadius(7)
-            }
-            
-            if !medicineVM.prescription.fileInfo.MediaImage.isEmpty {
-                HStack {
-                    Spacer()
-                    ImageView(withURL: medicineVM.prescription.fileInfo.MediaImage)
-                        .frame(width: 150, height: 200)
-                        .cornerRadius(10)
-                        .shadow(radius: 10)
-                    Spacer()
+                
+                if !medicineVM.prescription.fileInfo.MediaImage.isEmpty {
+                    HStack {
+                        Spacer()
+                        ImageView(withURL: medicineVM.prescription.fileInfo.MediaImage)
+                            .frame(width: 150, height: 200)
+                            .cornerRadius(10)
+                            .shadow(radius: 10)
+                        Spacer()
+                    }
                 }
             }
 

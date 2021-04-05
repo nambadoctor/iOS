@@ -17,6 +17,9 @@ class MedicineViewModel: ObservableObject {
     @Published var showMedicineEntrySheet:Bool = false
     @Published var medicineEntryVM:MedicineEntryViewModel = MedicineEntryViewModel(medicine: MakeEmptyMedicine(), isNew: true)
     @Published var imagePickerVM:ImagePickerViewModel = ImagePickerViewModel()
+    
+    @Published var hasMedicineOrImage:Bool = false
+    
     var medicineBeingEdited:Int? = nil
     
     var generalDoctorHelpers:GeneralDoctorHelpersProtocol!
@@ -103,6 +106,10 @@ class MedicineViewModel: ObservableObject {
         retrievePrescriptionHelper.downloadPrescription(prescriptionID: prescription.prescriptionID) { (imageDataURL) in
             if imageDataURL != nil {
                 self.prescription.fileInfo.MediaImage = imageDataURL!
+            } else {
+                if self.prescription.medicineList.isEmpty {
+                    self.hasMedicineOrImage = true
+                }
             }
         }
     }
