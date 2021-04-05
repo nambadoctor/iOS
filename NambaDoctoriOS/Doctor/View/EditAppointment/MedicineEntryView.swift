@@ -8,11 +8,7 @@
 import SwiftUI
 
 struct MedicineEntryView: View {
-    @ObservedObject var medicineVM:MedicineViewModel
-    
-    init(medicineVM:MedicineViewModel) {
-        self.medicineVM = medicineVM
-    }
+    @EnvironmentObject var medicineVM:MedicineViewModel
 
     var body: some View {
         ScrollView {

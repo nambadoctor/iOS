@@ -6,9 +6,10 @@
 //
 
 import SwiftUI
-struct PatientInfoView: View {
+struct PatientInfoEditableView: View {
     
-    @ObservedObject var patientInfoViewModel:PatientInfoViewModel
+    @EnvironmentObject var patientInfoViewModel:PatientInfoViewModel
+    
     var body: some View {
         VStack (alignment: .leading) {
             Text("ALLERGIES:")
@@ -29,7 +30,7 @@ struct PatientInfoView: View {
                 .font(.footnote)
                 .foregroundColor(Color.black.opacity(0.4))
                 .bold()
-            
+
             if self.patientInfoViewModel.ReportList != nil {
                 ScrollView (.horizontal) {
                     HStack {

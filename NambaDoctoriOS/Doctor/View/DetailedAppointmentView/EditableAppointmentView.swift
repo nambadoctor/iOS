@@ -7,35 +7,28 @@
 
 import SwiftUI
 
-struct DetailedUpcomingAppointmentView: View {
+struct EditableAppointmentView: View {
 
     @Environment(\.presentationMode) var presentationMode
-    @ObservedObject var detailedAppointmentVM:DetailedAppointmentViewModel
-    @State var toggleNavBarProgressView:Bool = false
-
-    init(intermediateVM:IntermediateAppointmentViewModel) {
-        detailedAppointmentVM = DetailedAppointmentViewModel(intermediateVM: intermediateVM)
-    }
+    @EnvironmentObject var intermediateVM:IntermediateAppointmentViewModel
 
     var body: some View {
         ZStack {
-
             detailedUpcomingAppointment
-
-            if detailedAppointmentVM.showTwilioRoom {
-                DoctorTwilioManager(DoctorTwilioVM: detailedAppointmentVM.doctorTwilioManagerViewModel)
+            
+            if intermediateVM.showTwilioRoom {
+                DoctorTwilioManager(DoctorTwilioVM: intermediateVM.doctorTwilioManagerViewModel)
             }
 
             //remote kill view trigger
-            if detailedAppointmentVM.killView {
+            if intermediateVM.killView {
                 Text("You are done").onAppear() { killView() }
             }
-
         }
         .background(Color.gray.opacity(0.3))
-        .navigationBarItems(trailing: saveButton)
-        .alert(isPresented: $detailedAppointmentVM.showOnSuccessAlert, content: {
-            Alert(title: Text("Prescription Sent Successfully"), dismissButton: .default(Text("Ok"), action: { detailedAppointmentVM.takeToViewScreen() }))
+        //.navigationBarItems(trailing: saveButton)
+        .alert(isPresented: $intermediateVM.showOnSuccessAlert, content: {
+            Alert(title: Text("Prescription Sent Successfully"), dismissButton: .default(Text("Ok"), action: { intermediateVM.takeToView() }))
         })
         .onTapGesture {
             EndEditingHelper.endEditing()
@@ -49,78 +42,79 @@ struct DetailedUpcomingAppointmentView: View {
                 header
                 Divider().background(Color.blue.opacity(0.4))
                 
-                
-                
                 actionButtons
             }
             .background(Color.white)
             .border(Color.blue, width: 1)
             .padding(.top, 5)
 
-            PrescriptionsView(prescriptionsVM: self.detailedAppointmentVM.intermediateVM.prescriptionVM)
+            MedicineEditableView()
                 .padding()
                 .background(Color.white)
-
+            
+            ModifyFeeView(modifyFeeVM: self.intermediateVM.modifyFeeViewModel)
+                .padding()
+                .background(Color.white)
+            
             HStack {
                 Spacer()
                 Button {
-                    self.detailedAppointmentVM.collapseExtraDetailEntry.toggle()
+                    self.intermediateVM.collapseExtraDetailEntry.toggle()
                 } label: {
-                    Text(self.detailedAppointmentVM.collapseExtraDetailEntry ? "Show Remaining" : "Collapse Remaining")
+                    Text(self.intermediateVM.collapseExtraDetailEntry ? "Show Remaining" : "Collapse Remaining")
                 }
             }
             .padding(.horizontal)
 
-            if !detailedAppointmentVM.collapseExtraDetailEntry {
-                PatientInfoView(patientInfoViewModel: detailedAppointmentVM.intermediateVM.patientInfoViewModel)
-                    .padding()
-                    .background(Color.white)
-
-                DoctorsSectionViewModel(serviceRequestVM: detailedAppointmentVM.intermediateVM.serviceRequestVM)
+            if !intermediateVM.collapseExtraDetailEntry {
                 
-    //                FollowUpView(followUpVM: self.detailedAppointmentVM.followUpViewModel)
-    //                    .padding()
-    //                    .background(Color.white)
-
-                ModifyFeeView(modifyFeeVM: self.detailedAppointmentVM.modifyFeeViewModel)
+                PatientInfoEditableView()
                     .padding()
                     .background(Color.white)
-
+                
+                ServiceRequestEditableView()
+                    .padding()
+                    .background(Color.white)
+                
+                InvestigationsEditableView()
+                    .padding()
+                    .background(Color.white)
+                
                 Spacer()
             }
-
+            
             sendToPatient
         }
     }
 
-    var saveButton : some View {
-        Button(action: {
-            self.toggleNavBarProgressView.toggle()
-            detailedAppointmentVM.savePrescription { _ in
-                self.toggleNavBarProgressView.toggle()
-            }
-        }, label: {
-            if !detailedAppointmentVM.checkIfAppointmentFinished() {
-                HStack {
-                    if toggleNavBarProgressView {
-                        ProgressView()
-                            .progressViewStyle(CircularProgressViewStyle())
-                    }
-                    Text("Save")
-                }
-            }
-        })
-    }
+//    var saveButton : some View {
+//        Button(action: {
+//            self.toggleNavBarProgressView.toggle()
+//            detailedAppointmentVM.savePrescription { _ in
+//                self.toggleNavBarProgressView.toggle()
+//            }
+//        }, label: {
+//            if !detailedAppointmentVM.checkIfAppointmentFinished() {
+//                HStack {
+//                    if toggleNavBarProgressView {
+//                        ProgressView()
+//                            .progressViewStyle(CircularProgressViewStyle())
+//                    }
+//                    Text("Save")
+//                }
+//            }
+//        })
+//    }
 
     var sendToPatient : some View {
         VStack {
             Button {
                 EndEditingHelper.endEditing()
-                detailedAppointmentVM.sendToPatient()
+                intermediateVM.sendToPatient()
             } label: {
                 HStack {
                     Spacer()
-                    Text(detailedAppointmentVM.checkIfAppointmentFinished() ? "Amend and Send to Patient" : "Send to Patient")
+                    Text(intermediateVM.appointmentFinished ? "Amend and Send to Patient" : "Send to Patient")
                         .font(.system(size: 22))
                         .bold()
                         .foregroundColor(.white)
@@ -136,7 +130,7 @@ struct DetailedUpcomingAppointmentView: View {
 
     var header : some View {
         VStack (alignment: .leading) {
-            Text("Appointment On: \(detailedAppointmentVM.appointmentTime)")
+            Text("Appointment On: \(intermediateVM.appointmentTime)")
                 .foregroundColor(.blue)
                 .bold()
             HStack (alignment: .top) {
@@ -144,10 +138,10 @@ struct DetailedUpcomingAppointmentView: View {
                     .resizable()
                     .frame(width: 70, height: 70)
                 VStack (alignment: .leading, spacing: 5) {
-                    Text(detailedAppointmentVM.customerName)
-                    Text(detailedAppointmentVM.intermediateVM.patientInfoViewModel.patientAgeGenderInfo)
+                    Text(intermediateVM.customerName)
+                    Text(intermediateVM.patientInfoViewModel.patientAgeGenderInfo)
                     
-                    Text(detailedAppointmentVM.appointmentServiceFee)
+                    Text(intermediateVM.appointmentServiceFee)
                 }
                 Spacer()
             }
@@ -156,10 +150,9 @@ struct DetailedUpcomingAppointmentView: View {
     
     var actionButtons : some View {
         HStack {
-            
-            if !detailedAppointmentVM.consultationHappened {
+            if !intermediateVM.appointmentStarted || !intermediateVM.appointmentFinished {
                 Button(action: {
-                    detailedAppointmentVM.cancelAppointment { success in
+                    intermediateVM.cancelAppointment { success in
                         if success {
                             killView()
                         }
@@ -176,23 +169,27 @@ struct DetailedUpcomingAppointmentView: View {
             }
 
             Button(action: {
-                detailedAppointmentVM.callPatient()
+                intermediateVM.patientInfoViewModel.callPatient()
             }, label: {
-                VStack (alignment: .center) {
+                HStack (alignment: .center) {
                     Image("phone")
                         .scaleEffect(1.5)
                 }
             })
             
             Spacer()
-            Button(action: {
-                detailedAppointmentVM.startConsultation()
-            }, label: {
-                VStack (alignment: .center) {
-                    Image(systemName: "video")
-                        .scaleEffect(1.5)
-                }
-            })
+            
+            if !intermediateVM.appointmentFinished {
+                Button(action: {
+                    intermediateVM.startConsultation()
+                }, label: {
+                    VStack (alignment: .center) {
+                        Image(systemName: "video")
+                            .scaleEffect(1.5)
+                    }
+                })
+            }
+            
         }
         .padding([.leading, .trailing], 50)
         .padding(.top, 10)

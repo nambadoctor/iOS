@@ -15,8 +15,7 @@ class ServiceRequestViewModel: ObservableObject {
     
     @Published var errorInRetrievingPrescription:Bool = false
     @Published var navigateToReviewPrescription:Bool = false
-    @Published var dismissAllViews:Bool = false
-    
+
     @Published var investigationsViewModel:InvestigationsViewModel = InvestigationsViewModel()
     
     private var retrieveServiceRequesthelper:ServiceRequestGetSetCallProtocol
@@ -24,7 +23,7 @@ class ServiceRequestViewModel: ObservableObject {
     private var docAlertHelper:DoctorAlertHelpers = DoctorAlertHelpers()
     
     var serviceRequestServiceCalls:ServiceRequestGetSetCallProtocol
-    
+
     init(appointment:ServiceProviderAppointment,
          retrieveServiceRequesthelper:ServiceRequestGetSetCallProtocol = ServiceRequestGetSetCall(),
          serviceRequestServiceCalls:ServiceRequestGetSetCallProtocol = ServiceRequestGetSetCall()) {
@@ -34,23 +33,25 @@ class ServiceRequestViewModel: ObservableObject {
         self.serviceRequest = MakeEmptyServiceRequest(appointment: appointment)
         self.serviceRequestServiceCalls = serviceRequestServiceCalls
         
-        DispatchQueue.main.async {
-            self.retrieveServiceRequest()
-        }
-    }
-    
-    var examination : String {
-        return serviceRequest.examination.isEmpty ? "no examination entered" : "\(serviceRequest.examination)"
-    }
-    
-    var diagnosisName : String {
-        return serviceRequest.diagnosis.name.isEmpty ? "no diagnosis entered" : "\(serviceRequest.diagnosis.name)"
-    }
-    
-    var advice : String {
-        return serviceRequest.advice.isEmpty ? "no advice entered" : "\(serviceRequest.advice)"
+        self.retrieveServiceRequest()
     }
 
+    var examination : String {
+        return serviceRequest.examination.isEmpty ? "none" : "\(serviceRequest.examination)"
+    }
+
+    var diagnosisName : String {
+        return serviceRequest.diagnosis.name.isEmpty ? "none" : "\(serviceRequest.diagnosis.name)"
+    }
+    
+    var diagnosisType : String {
+        return serviceRequest.diagnosis.type.isEmpty ? "" : "\(serviceRequest.diagnosis.type)"
+    }
+
+    var advice : String {
+        return serviceRequest.advice.isEmpty ? "none" : "\(serviceRequest.advice)"
+    }
+    
     func retrieveServiceRequest() {
         retrieveServiceRequesthelper.getServiceRequest(appointmentId: self.appointment.appointmentID, serviceRequestId: appointment.serviceRequestID, customerId: self.appointment.customerID) { (serviceRequest) in
             if serviceRequest != nil {

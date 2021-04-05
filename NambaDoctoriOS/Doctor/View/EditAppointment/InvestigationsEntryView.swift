@@ -7,25 +7,22 @@
 
 import SwiftUI
 
-struct InvestigationsEntryView: View {
-    @ObservedObject var investigationsViewModel:InvestigationsViewModel
-    var body: some View {
-        investigations
-    }
+struct InvestigationsEditableView: View {
+    @EnvironmentObject var investigationsVM:InvestigationsViewModel
     
-    var investigations : some View {
+    var body : some View {
         VStack (alignment: .leading) {
             Text("INVESTIGATIONS:")
                 .font(.footnote)
                 .foregroundColor(Color.black.opacity(0.4))
                 .bold()
-            
+
             HStack (alignment: .top) {
                 VStack {
-                    ExpandingTextView(text: $investigationsViewModel.investigationTemp)
+                    ExpandingTextView(text: $investigationsVM.investigationTemp)
                     Divider()
                     
-                    ForEach(self.investigationsViewModel.investigations, id: \.self) { inv in
+                    ForEach(self.investigationsVM.investigations, id: \.self) { inv in
                         HStack {
                             Text(inv)
                                 .font(.callout)
@@ -34,7 +31,7 @@ struct InvestigationsEntryView: View {
                             Spacer()
                             
                             Button {
-                                investigationsViewModel.removeInvestigationManually(investigation: inv)
+                                investigationsVM.removeInvestigationManually(investigation: inv)
                             } label: {
                                 Image("xmark.circle")
                                     .foregroundColor(Color.blue)
@@ -48,7 +45,7 @@ struct InvestigationsEntryView: View {
                 }.padding(.trailing)
 
                 Button(action: {
-                    self.investigationsViewModel.appendInvestigation()
+                    self.investigationsVM.appendInvestigation()
                 }, label: {
                     Image("plus.circle.fill")
                         .resizable()

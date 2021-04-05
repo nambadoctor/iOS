@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class PatientInfoViewModel: ObservableObject {
     
@@ -46,6 +47,12 @@ class PatientInfoViewModel: ObservableObject {
     var phoneNumber:String {
         return "\(patientObj.phoneNumbers[0].number)"
     }
+    
+    func callPatient () {
+        guard let number = URL(string: "tel://" + patientObj.phoneNumbers[0].number) else { return }
+        UIApplication.shared.open(number)
+    }
+
     
     private func retrievePatientObj () {
         customerServiceCall.getPatientProfile(patientId: self.appointment.requestedBy) { (customer) in

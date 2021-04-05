@@ -1,35 +1,17 @@
 //
-//  DoctorsSectionViewModel.swift
+//  ServiceRequestEditableView.swift
 //  NambaDoctoriOS
 //
-//  Created by Surya Manivannan on 25/03/21.
+//  Created by Surya Manivannan on 4/5/21.
 //
 
 import SwiftUI
 
-struct DoctorsSectionViewModel: View {
-    
-    @ObservedObject var serviceRequestVM:ServiceRequestViewModel
+struct ServiceRequestEditableView: View {
+    @EnvironmentObject var serviceRequestVM:ServiceRequestViewModel
     
     var body: some View {
-        VStack {
-            clinicalSummary
-                .padding()
-                .background(Color.white)
-            
-            InvestigationsEntryView(investigationsViewModel: serviceRequestVM.investigationsViewModel)
-                .padding()
-                .background(Color.white)
-        }
-    }
-    
-    var clinicalSummary : some View {
         VStack (alignment: .leading) {
-//            Text("Doctor's Section")
-//                .font(.title)
-//                .bold()
-//                .padding([.top, .bottom])
-
             Text("EXAMINATION:")
                 .font(.footnote)
                 .foregroundColor(Color.black.opacity(0.4))
