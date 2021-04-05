@@ -28,7 +28,7 @@ class DatePickerViewModel : ObservableObject {
     @Published var selectedDate:Date = Date()
     @Published var index = 20
     @Published var showScrollView : Bool = false
-    
+
     var datePickerDelegate:DatePickerChangedDelegate? = nil
     
     init() {
@@ -60,6 +60,7 @@ class DatePickerViewModel : ObservableObject {
     }
     
     func selectDate (index:Int) {
+        self.index = index
         selectedDate = Dates[index].date
         datePickerDelegate?.dateChanged(selectedDate: selectedDate)
     }
@@ -71,7 +72,7 @@ class DatePickerViewModel : ObservableObject {
                 Dates[i].hasAppointment = false
             }
         }
-        
+
         clearAllAppointmentVals()
 
         var upcomingAppointmentDates:[String] = [String]()

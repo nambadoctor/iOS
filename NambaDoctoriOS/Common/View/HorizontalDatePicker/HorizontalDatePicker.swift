@@ -56,6 +56,7 @@ struct HorizontalDatePicker: View {
                                 .background(datePickerVM.compareDate(index: index) ? Color.black : Color.white)
                                 .cornerRadius(50)
                                 .onTapGesture {
+                                    
                                     datePickerVM.selectDate(index: index)
                                 }
                             }
