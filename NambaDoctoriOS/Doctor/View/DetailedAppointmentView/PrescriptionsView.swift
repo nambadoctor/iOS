@@ -86,10 +86,12 @@ struct PrescriptionsView: View {
             } else if !prescriptionsVM.prescription.fileInfo.MediaImage.isEmpty {
                 HStack {
                     Spacer()
-                    ImageView(withURL: prescriptionsVM.prescription.fileInfo.MediaImage)
-                        .frame(width: 150, height: 200)
-                        .cornerRadius(10)
-                        .shadow(radius: 10)
+                    ZStack {
+                        ImageView(withURL: prescriptionsVM.prescription.fileInfo.MediaImage)
+                            .frame(width: 150, height: 200)
+                            .cornerRadius(10)
+                            .shadow(radius: 10)
+                    }
                     Spacer()
                 }
             }
@@ -113,4 +115,6 @@ struct PrescriptionsView: View {
             }
         }
     }
+    
+    
 }

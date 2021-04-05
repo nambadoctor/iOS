@@ -72,7 +72,7 @@ struct ViewAppointment: View {
                 }
                 .padding()
             }
-            
+
             Section(header: Text("Examination")) { Text(serviceRequestVM.serviceRequest.examination) }
             Section(header: Text("Diagnosis")) { Text(serviceRequestVM.serviceRequest.diagnosis.name) }
             Section(header: Text("Advise")) { Text(serviceRequestVM.serviceRequest.advice) }

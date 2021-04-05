@@ -183,12 +183,6 @@ class ViewController: UIViewController {
             localVideoTrack!.addRenderer(self.previewView)
             logMessage(messageText: "Video track created")
 
-            if (frontCamera != nil && backCamera != nil) {
-                // We will flip camera on tap.
-                let tap = UITapGestureRecognizer(target: self, action: #selector(ViewController.flipCamera))
-                self.previewView.addGestureRecognizer(tap)
-            }
-
             camera!.startCapture(device: frontCamera != nil ? frontCamera! : backCamera!) { (captureDevice, videoFormat, error) in
                 if let error = error {
                     self.logMessage(messageText: "Capture failed with error.\ncode = \((error as NSError).code) error = \(error.localizedDescription)")
@@ -202,7 +196,7 @@ class ViewController: UIViewController {
         }
     }
 
-    @objc func flipCamera() {
+    func flipCamera() {
         var newDevice: AVCaptureDevice?
 
         if let camera = self.camera, let captureDevice = camera.device {
@@ -353,11 +347,13 @@ extension ViewController : RemoteParticipantDelegate {
         // Remote Participant has offered to share the video Track.
         
         logMessage(messageText: "Participant \(participant.identity) published \(publication.trackName) video track")
+        self.messageLabel.text = ""
     }
 
     func remoteParticipantDidUnpublishVideoTrack(participant: RemoteParticipant, publication: RemoteVideoTrackPublication) {
         // Remote Participant has stopped sharing the video Track.
         logMessage(messageText: "Participant \(participant.identity) unpublished \(publication.trackName) video track")
+        self.messageLabel.text = "Patient Video Turned Off"
     }
 
     func remoteParticipantDidPublishAudioTrack(participant: RemoteParticipant, publication: RemoteAudioTrackPublication) {
@@ -413,10 +409,12 @@ extension ViewController : RemoteParticipantDelegate {
 
     func remoteParticipantDidEnableVideoTrack(participant: RemoteParticipant, publication: RemoteVideoTrackPublication) {
         logMessage(messageText: "Participant \(participant.identity) enabled \(publication.trackName) video track")
+        self.messageLabel.text = ""
     }
 
     func remoteParticipantDidDisableVideoTrack(participant: RemoteParticipant, publication: RemoteVideoTrackPublication) {
         logMessage(messageText: "Participant \(participant.identity) disabled \(publication.trackName) video track")
+        self.messageLabel.text = ""
     }
 
     func remoteParticipantDidEnableAudioTrack(participant: RemoteParticipant, publication: RemoteAudioTrackPublication) {
