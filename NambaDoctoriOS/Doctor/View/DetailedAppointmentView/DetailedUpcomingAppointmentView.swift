@@ -8,20 +8,20 @@
 import SwiftUI
 
 struct DetailedUpcomingAppointmentView: View {
-    
+
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var detailedAppointmentVM:DetailedAppointmentViewModel
     @State var toggleNavBarProgressView:Bool = false
-    
+
     init(intermediateVM:IntermediateAppointmentViewModel) {
         detailedAppointmentVM = DetailedAppointmentViewModel(intermediateVM: intermediateVM)
     }
 
     var body: some View {
         ZStack {
-            
+
             detailedUpcomingAppointment
-            
+
             if detailedAppointmentVM.showTwilioRoom {
                 DoctorTwilioManager(DoctorTwilioVM: detailedAppointmentVM.doctorTwilioManagerViewModel)
             }
@@ -44,20 +44,23 @@ struct DetailedUpcomingAppointmentView: View {
 
     var detailedUpcomingAppointment : some View {
         ScrollView (.vertical) {
-            
+
             VStack {
                 header
                 Divider().background(Color.blue.opacity(0.4))
+                
+                
+                
                 actionButtons
             }
             .background(Color.white)
             .border(Color.blue, width: 1)
             .padding(.top, 5)
-         
-            PrescriptionsView(prescriptionsVM: self.detailedAppointmentVM.prescriptionVM)
+
+            PrescriptionsView(prescriptionsVM: self.detailedAppointmentVM.intermediateVM.prescriptionVM)
                 .padding()
                 .background(Color.white)
-            
+
             HStack {
                 Spacer()
                 Button {
@@ -67,13 +70,13 @@ struct DetailedUpcomingAppointmentView: View {
                 }
             }
             .padding(.horizontal)
-            
+
             if !detailedAppointmentVM.collapseExtraDetailEntry {
-                PatientInfoView(patientInfoViewModel: detailedAppointmentVM.patientInfoViewModel)
+                PatientInfoView(patientInfoViewModel: detailedAppointmentVM.intermediateVM.patientInfoViewModel)
                     .padding()
                     .background(Color.white)
-                
-                DoctorsSectionViewModel(serviceRequestVM: detailedAppointmentVM.serviceRequestVM)
+
+                DoctorsSectionViewModel(serviceRequestVM: detailedAppointmentVM.intermediateVM.serviceRequestVM)
                 
     //                FollowUpView(followUpVM: self.detailedAppointmentVM.followUpViewModel)
     //                    .padding()
@@ -142,7 +145,7 @@ struct DetailedUpcomingAppointmentView: View {
                     .frame(width: 70, height: 70)
                 VStack (alignment: .leading, spacing: 5) {
                     Text(detailedAppointmentVM.customerName)
-                    Text(detailedAppointmentVM.patientInfoViewModel.patientAgeGenderInfo)
+                    Text(detailedAppointmentVM.intermediateVM.patientInfoViewModel.patientAgeGenderInfo)
                     
                     Text(detailedAppointmentVM.appointmentServiceFee)
                 }

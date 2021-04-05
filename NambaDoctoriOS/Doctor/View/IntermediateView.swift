@@ -12,7 +12,7 @@ class IntermediateAppointmentViewModel : ObservableObject {
     @Published var serviceRequestVM:ServiceRequestViewModel
     @Published var prescriptionVM:MedicineViewModel
     @Published var patientInfoViewModel:PatientInfoViewModel
-    
+
     @Published var takeToDetailedAppointment:Bool = false
     @Published var takeToViewAppointment:Bool = false
     

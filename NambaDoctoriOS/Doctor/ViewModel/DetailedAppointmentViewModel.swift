@@ -10,26 +10,23 @@ import UIKit
 
 class DetailedAppointmentViewModel : ObservableObject {
     @Published var killView:Bool = false
-    
+
     @Published var appointment:ServiceProviderAppointment
     @Published var intermediateVM:IntermediateAppointmentViewModel
-    
-    @Published var serviceRequestVM:ServiceRequestViewModel
-    @Published var prescriptionVM:MedicineViewModel
-    @Published var patientInfoViewModel:PatientInfoViewModel
+
     @Published var doctorTwilioManagerViewModel:DoctorTwilioViewModel
     @Published var followUpViewModel:FollowUpViewModel
     @Published var modifyFeeViewModel:ModifyFeeViewModel
-    
+
     @Published var showTwilioRoom:Bool = false
     @Published var consultationHappened:Bool = false
-    
+
     @Published var toggleAddMedicineSheet:Bool = false
-    
+
     @Published var showOnSuccessAlert:Bool = false
-    
+
     @Published var collapseExtraDetailEntry:Bool = false
-    
+
     private var updateAppointmentStatus:UpdateAppointmentStatusProtocol
     private var docNotifHelper:DocNotifHelpers
     private var doctorAlertHelper:DoctorAlertHelpersProtocol
@@ -40,14 +37,11 @@ class DetailedAppointmentViewModel : ObservableObject {
 
         self.appointment = intermediateVM.appointment
         self.intermediateVM = intermediateVM
-        
+
         self.updateAppointmentStatus = updateAppointmentStatus
         self.doctorAlertHelper = doctorAlertHelper
         self.docNotifHelper = DocNotifHelpers(appointment: intermediateVM.appointment)
 
-        self.patientInfoViewModel = intermediateVM.patientInfoViewModel
-        self.serviceRequestVM = intermediateVM.serviceRequestVM
-        self.prescriptionVM = intermediateVM.prescriptionVM
         self.followUpViewModel = FollowUpViewModel()
         self.modifyFeeViewModel = ModifyFeeViewModel(fee: intermediateVM.appointment.serviceFee.clean)
 
@@ -55,7 +49,7 @@ class DetailedAppointmentViewModel : ObservableObject {
         doctorTwilioManagerViewModel.twilioDelegate = self
         checkIfConsultationHappened()
         
-        if serviceRequestVM.serviceRequest == nil {
+        if intermediateVM.serviceRequestVM.serviceRequest == nil {
             CommonDefaultModifiers.showLoader()
         }
     }
@@ -71,18 +65,14 @@ class DetailedAppointmentViewModel : ObservableObject {
     var customerName:String {
         return "\(appointment.customerName)"
     }
-    
-    func showViewOrDetailed () {
-        
-    }
-    
+
     func checkIfConsultationHappened() {
         if appointment.status == ConsultStateK.StartedConsultation.rawValue || appointment.status == ConsultStateK.Finished.rawValue || appointment.status == ConsultStateK.FinishedAppointment.rawValue {
             print("Consultation Happened")
             consultationHappened = true
         }
     }
-    
+
     func checkIfAppointmentFinished () -> Bool {
         if appointment.status == ConsultStateK.Finished.rawValue {
             return true
@@ -107,7 +97,7 @@ class DetailedAppointmentViewModel : ObservableObject {
             }
         }
     }
-    
+
     func showAddMedicineDisplay () {
         self.toggleAddMedicineSheet = true
     }
@@ -119,7 +109,7 @@ class DetailedAppointmentViewModel : ObservableObject {
     }
 
     func callPatient () {
-        guard let number = URL(string: "tel://" + patientInfoViewModel.phoneNumber) else { return }
+        guard let number = URL(string: "tel://" + intermediateVM.patientInfoViewModel.phoneNumber) else { return }
         UIApplication.shared.open(number)
     }
 
@@ -133,28 +123,28 @@ class DetailedAppointmentViewModel : ObservableObject {
                 completion(true)
             }
         }
-        
+
         self.appointment.serviceFee = modifyFeeViewModel.convertFeeToDouble()
 
-        serviceRequestVM.sendToPatient { (success, serviceRequestId) in
+        intermediateVM.serviceRequestVM.sendToPatient { (success, serviceRequestId) in
             if success {
-                self.prescriptionVM.prescription.serviceRequestID = serviceRequestId!
-                self.prescriptionVM.sendToPatient { (success) in
+                self.intermediateVM.prescriptionVM.prescription.serviceRequestID = serviceRequestId!
+                self.intermediateVM.prescriptionVM.sendToPatient { (success) in
                     onCompletion(success: success)
                 }
             }
-            
+
             onCompletion(success: success)
         }
 
-        patientInfoViewModel.sendToPatient { (success) in
+        intermediateVM.patientInfoViewModel.sendToPatient { (success) in
             onCompletion(success: success)
         }
     }
-    
+
     func sendToPatient () {
         CommonDefaultModifiers.showLoader()
-        
+
         self.savePrescription { (success) in
             self.updateAppointmentStatus.updateToFinished(appointment: &self.appointment) { (success) in
                 CommonDefaultModifiers.hideLoader()
