@@ -47,7 +47,7 @@ class IntermediateAppointmentViewModel : ObservableObject {
         self.updateAppointmentStatus = updateAppointmentStatus
         self.doctorAlertHelper = doctorAlertHelper
         self.docNotifHelper = DocNotifHelpers(appointment: appointment)
-        
+
         //helper view model inits
         self.modifyFeeViewModel = ModifyFeeViewModel(fee: appointment.serviceFee.clean)
         self.doctorTwilioManagerViewModel = DoctorTwilioViewModel(appointment: appointment)
@@ -157,7 +157,7 @@ extension IntermediateAppointmentViewModel {
     var customerName:String {
         return "\(appointment.customerName)"
     }
-    
+
     func checkIfAppointmentStarted () {
         if appointment.status == ConsultStateK.StartedConsultation.rawValue
         {

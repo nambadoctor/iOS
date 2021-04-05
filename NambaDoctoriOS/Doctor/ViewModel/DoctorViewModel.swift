@@ -114,7 +114,7 @@ class DoctorViewModel: ObservableObject {
             }
         }
     }
-    
+
     func commitEdits () {
         
         CommonDefaultModifiers.showLoader()

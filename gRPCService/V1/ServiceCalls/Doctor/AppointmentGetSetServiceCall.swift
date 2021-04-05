@@ -44,7 +44,6 @@ class AppointmentGetSetServiceCall : AppointmentGetSetServiceCallProtocol {
                 let response = try getDoctorsAppointment.response.wait()
                 stopwatch.stop()
                 var appointmentList = self.appointmentObjectMapper.grpcAppointmentToLocal(appointment: response.appointments)
-                appointmentList.sort(by: { $0.scheduledAppointmentStartTime < $1.scheduledAppointmentStartTime })
                 print("Doctor Appointment Client Success \(appointmentList.count)")
                 DispatchQueue.main.async {
                     completion(appointmentList)
@@ -108,6 +107,7 @@ class AppointmentGetSetServiceCall : AppointmentGetSetServiceCallProtocol {
                 print("Set Appointment Success for \(response.id)")
                 DispatchQueue.main.async {
                     completion(true)
+                    DoctorDefaultModifiers.refreshAppointments()
                 }
             } catch {
                 print("Set Appointment \(appointment.appointmentID) Failure")

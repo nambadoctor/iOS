@@ -26,11 +26,20 @@ struct AppointmentCard: View {
             .shadow(radius: 5)
             
             HStack {
-                Text(AppointmentVM.firstLetterOfCustomer)
-                    .font(.system(size: 27))
-                    .foregroundColor(.white)
-                    .frame(width: 55, height: 55)
-                    .background(Circle().fill(AppointmentVM.consultationHappened ? Color.gray : Color.blue))
+                
+                if AppointmentVM.consultationStarted {
+                    Text(AppointmentVM.firstLetterOfCustomer)
+                        .font(.system(size: 27))
+                        .foregroundColor(.white)
+                        .frame(width: 55, height: 55)
+                        .background(Circle().fill(Color.green))
+                } else {
+                    Text(AppointmentVM.firstLetterOfCustomer)
+                        .font(.system(size: 27))
+                        .foregroundColor(.white)
+                        .frame(width: 55, height: 55)
+                        .background(Circle().fill(AppointmentVM.consultationFinished ? Color.gray : Color.blue))
+                }
                 
                 VStack (alignment: .leading, spacing: 5) {
                     HStack {
@@ -40,7 +49,11 @@ struct AppointmentCard: View {
                         .font(.system(size: 20))
                         .bold()
                     
-                    if AppointmentVM.consultationHappened {
+                    if AppointmentVM.consultationStarted {
+                        Text("Consultation Started")
+                            .font(.system(size: 15))
+                            .foregroundColor(Color.gray)
+                    } else if AppointmentVM.consultationFinished {
                         Text("\(AppointmentVM.paymentStatus)")
                             .font(.system(size: 15))
                             .foregroundColor(Color.gray)
@@ -49,7 +62,7 @@ struct AppointmentCard: View {
                             .font(.system(size: 17))
                             .foregroundColor(Color.gray)
                     }
-                    
+
                 }.padding(.leading, 3)
             }.padding()
             

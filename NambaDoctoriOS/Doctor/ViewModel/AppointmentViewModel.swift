@@ -11,10 +11,11 @@ import SwiftUI
 class AppointmentViewModel: ObservableObject {
     @Published var appointment:ServiceProviderAppointment
 
-    @Published var consultationHappened:Bool = false
-
     @Published var takeToTwilioRoom:Bool = false
     @Published var takeToDetailedAppointment:Bool = false
+    
+    @Published var consultationStarted:Bool = false
+    @Published var consultationFinished:Bool = false
 
     private var docSheetHelper:DoctorSheetHelpers = DoctorSheetHelpers()
     private var docNotifHelper:DocNotifHelpers
@@ -27,7 +28,8 @@ class AppointmentViewModel: ObservableObject {
         self.appointment = appointment
         self.doctorAlertHelper = doctorAlertHelper
         self.docNotifHelper = DocNotifHelpers(appointment: appointment)
-        checkIfConsultationHappened()
+        checkIfAppointmentStarted()
+        checkIfAppointmentFinished()
     }
     
     var firstLetterOfCustomer : String {
@@ -50,9 +52,18 @@ class AppointmentViewModel: ObservableObject {
         }
     }
 
-    func checkIfConsultationHappened() {
-        if appointment.status == ConsultStateK.StartedConsultation.rawValue || appointment.status == ConsultStateK.Finished.rawValue || appointment.status == ConsultStateK.FinishedAppointment.rawValue {
-            consultationHappened = true
+    func checkIfAppointmentStarted () {
+        if appointment.status == ConsultStateK.StartedConsultation.rawValue
+        {
+            self.consultationStarted = true
+        }
+    }
+    
+    func checkIfAppointmentFinished() {
+        if appointment.status == ConsultStateK.Finished.rawValue ||
+                    appointment.status == ConsultStateK.FinishedAppointment.rawValue
+        {
+            self.consultationFinished = true
         }
     }
 
