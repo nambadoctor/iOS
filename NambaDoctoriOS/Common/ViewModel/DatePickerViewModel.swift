@@ -68,7 +68,7 @@ class DatePickerViewModel : ObservableObject {
 
         var upcomingAppointmentDates:[String] = [String]()
         var previousAppointmentDates:[String] = [String]()
-        
+
         for appoinment in appointments {
             var dateString = Helpers.getDisplayForDateSelector(date: Date(milliseconds: appoinment.scheduledAppointmentStartTime))
             if appoinment.status == "Confirmed" && !upcomingAppointmentDates.contains(dateString) {

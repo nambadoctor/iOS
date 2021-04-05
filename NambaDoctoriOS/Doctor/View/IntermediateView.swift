@@ -25,6 +25,12 @@ class IntermediateAppointmentViewModel : ObservableObject {
         checkDetailedOrView()
     }
     
+    func fetchViewModelInits () {
+        self.serviceRequestVM = ServiceRequestViewModel(appointment: appointment)
+        self.prescriptionVM = MedicineViewModel(appointment: appointment)
+        self.patientInfoViewModel = PatientInfoViewModel(appointment: appointment)
+    }
+    
     func checkDetailedOrView () {
         if appointment.status == ConsultStateK.Confirmed.rawValue || appointment.status == ConsultStateK.StartedConsultation.rawValue {
             takeToDetailed()

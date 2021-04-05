@@ -19,7 +19,7 @@ class ServiceProviderFileInfoMapper {
         return Nd_V1_ServiceProviderFileInfoMessage.with {
             $0.fileName = fileInfo.FileName.toProto
             $0.fileType = fileInfo.FileType.toProto
-            $0.mediaImage = fileInfo.MediaImage.toProtoBytes
+            $0.mediaImage = fileInfo.MediaImage.toProtoBytes 
         }
     }
 }

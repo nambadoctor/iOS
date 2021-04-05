@@ -72,29 +72,31 @@ struct PrescriptionsView: View {
                 .cornerRadius(7)
             }
 
-            if prescriptionsVM.imagePickerVM.image != nil {
-                HStack {
-                    Spacer()
-                    Image(uiImage: prescriptionsVM.imagePickerVM.image!)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 150, height: 200)
-                        .cornerRadius(10)
-                        .shadow(radius: 10)
-                    Spacer()
-                }
-            } else if !prescriptionsVM.prescription.fileInfo.MediaImage.isEmpty {
-                HStack {
-                    Spacer()
-                    ZStack {
+            ZStack {
+                if prescriptionsVM.imagePickerVM.image != nil {
+                    HStack {
+                        Spacer()
+                        Image(uiImage: prescriptionsVM.imagePickerVM.image!)
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 150, height: 200)
+                            .cornerRadius(10)
+                            .shadow(radius: 10)
+                        Spacer()
+                    }
+                } else if !prescriptionsVM.prescription.fileInfo.MediaImage.isEmpty {
+                    HStack {
+                        Spacer()
                         ImageView(withURL: prescriptionsVM.prescription.fileInfo.MediaImage)
                             .frame(width: 150, height: 200)
                             .cornerRadius(10)
                             .shadow(radius: 10)
+                        Spacer()
                     }
-                    Spacer()
                 }
+                closeButton
             }
+
 
             HStack {
                 
@@ -116,5 +118,25 @@ struct PrescriptionsView: View {
         }
     }
     
-    
+    var closeButton : some View {
+        ZStack {
+            if prescriptionsVM.imagePickerVM.image != nil || !prescriptionsVM.prescription.fileInfo.MediaImage.isEmpty {
+                VStack (alignment: .center) {
+                        HStack {
+                            Spacer()
+                            Button {
+                                prescriptionsVM.imagePickerVM.image = nil
+                                prescriptionsVM.prescription.fileInfo.MediaImage = ""
+                            } label: {
+                                Image("xmark.circle")
+                                    .resizable()
+                                    .frame(width: 30, height: 30)
+                                    .foregroundColor(.blue)
+                            }.padding()
+                        }
+                        Spacer()
+                }.frame(width: 165, height: 215)
+            }
+        }
+    }
 }

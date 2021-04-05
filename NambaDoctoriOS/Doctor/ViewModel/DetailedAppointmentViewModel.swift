@@ -28,6 +28,8 @@ class DetailedAppointmentViewModel : ObservableObject {
     
     @Published var showOnSuccessAlert:Bool = false
     
+    @Published var collapseExtraDetailEntry:Bool = false
+    
     private var updateAppointmentStatus:UpdateAppointmentStatusProtocol
     private var docNotifHelper:DocNotifHelpers
     private var doctorAlertHelper:DoctorAlertHelpersProtocol

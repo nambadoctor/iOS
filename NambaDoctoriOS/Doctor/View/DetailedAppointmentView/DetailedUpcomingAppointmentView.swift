@@ -41,7 +41,7 @@ struct DetailedUpcomingAppointmentView: View {
             EndEditingHelper.endEditing()
         }
     }
-    
+
     var detailedUpcomingAppointment : some View {
         ScrollView (.vertical) {
             
@@ -53,49 +53,41 @@ struct DetailedUpcomingAppointmentView: View {
             .background(Color.white)
             .border(Color.blue, width: 1)
             .padding(.top, 5)
-            
-            prescriptionAlreadySentView
-            
-            PatientInfoView(patientInfoViewModel: detailedAppointmentVM.patientInfoViewModel)
-                .padding()
-                .background(Color.white)
-            
-            DoctorsSectionViewModel(serviceRequestVM: detailedAppointmentVM.serviceRequestVM)
-            
+         
             PrescriptionsView(prescriptionsVM: self.detailedAppointmentVM.prescriptionVM)
                 .padding()
                 .background(Color.white)
             
-//                FollowUpView(followUpVM: self.detailedAppointmentVM.followUpViewModel)
-//                    .padding()
-//                    .background(Color.white)
+            
+            HStack {
+                Spacer()
+                Button {
+                    self.detailedAppointmentVM.collapseExtraDetailEntry.toggle()
+                } label: {
+                    Text(self.detailedAppointmentVM.collapseExtraDetailEntry ? "Show Remaining" : "Collapse Remaining")
+                }
+            }
+            .padding(.horizontal)
+            
+            if !detailedAppointmentVM.collapseExtraDetailEntry {
+                PatientInfoView(patientInfoViewModel: detailedAppointmentVM.patientInfoViewModel)
+                    .padding()
+                    .background(Color.white)
+                
+                DoctorsSectionViewModel(serviceRequestVM: detailedAppointmentVM.serviceRequestVM)
+                
+    //                FollowUpView(followUpVM: self.detailedAppointmentVM.followUpViewModel)
+    //                    .padding()
+    //                    .background(Color.white)
 
-            ModifyFeeView(modifyFeeVM: self.detailedAppointmentVM.modifyFeeViewModel)
-                .padding()
-                .background(Color.white)
+                ModifyFeeView(modifyFeeVM: self.detailedAppointmentVM.modifyFeeViewModel)
+                    .padding()
+                    .background(Color.white)
 
-            Spacer()
+                Spacer()
+            }
 
             sendToPatient
-        }
-    }
-    
-    var prescriptionAlreadySentView : some View {
-        VStack {
-            if detailedAppointmentVM.checkIfAppointmentFinished() {
-                HStack {
-                    Image("checkmark.circle.fill")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                        .foregroundColor(Color.green)
-                        .padding(.trailing)
-                    
-                    Text("Prescription Already Sent")
-                    Spacer()
-                }
-                .padding()
-                .background(Color.white)
-            }
         }
     }
 

@@ -108,12 +108,6 @@ class MedicineViewModel: ObservableObject {
     }
     
     func sendToPatient (completion: @escaping (_ success:Bool)->()) {
-        guard !prescription.medicineList.isEmpty || imagePickerVM.image != nil else {
-            print("nothing to add for prescription")
-            completion(true)
-            return
-        }
-        
         prescription.prescriptionID = "" //service will make new prescription ID to update not overwrite
         
         if imagePickerVM.image != nil {
