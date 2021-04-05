@@ -30,7 +30,7 @@ struct ServiceRequestView: View {
                 
                 Spacer().frame(height: 5)
                 
-                Text("Examination")
+                Text("Advice")
                     .font(.footnote)
                     .bold()
                     .foregroundColor(.gray)
@@ -38,11 +38,6 @@ struct ServiceRequestView: View {
 
                 Spacer().frame(height: 5)
             }
-
-            Text("Investigations")
-                .font(.footnote)
-                .bold()
-                .foregroundColor(.gray)
 
             Spacer().frame(height: 5)
         }

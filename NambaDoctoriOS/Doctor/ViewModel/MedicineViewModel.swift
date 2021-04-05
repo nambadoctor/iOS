@@ -106,15 +106,23 @@ class MedicineViewModel: ObservableObject {
     }
     
     func downloadPrescription () {
+        
+        func ifmedListAlsoEmptyCheck () {
+            if self.prescription.medicineList.isEmpty {
+                self.hasNoMedicineOrImage = true
+            }
+        }
+        
         retrievePrescriptionHelper.downloadPrescription(prescriptionID: prescription.prescriptionID) { (imageDataURL) in
             if imageDataURL != nil {
                 self.imageLoader = ImageLoader(urlString: imageDataURL!) { success in
-                    if !success { self.imageLoader = nil }
+                    if !success {
+                        self.imageLoader = nil
+                        ifmedListAlsoEmptyCheck()
+                    }
                 }
             } else {
-                if self.prescription.medicineList.isEmpty {
-                    self.hasNoMedicineOrImage = true
-                }
+                ifmedListAlsoEmptyCheck()
             }
         }
     }

@@ -17,25 +17,23 @@ struct MedicineView: View {
                 .bold()
                 .foregroundColor(.gray)
             
-            //MARK:- TODO: NEED TO ADD CHECK FOR THIS!
-            HStack {
-                Image("checkmark.circle.fill")
-                    .resizable()
-                    .frame(width: 30, height: 30)
-                    .foregroundColor(Color.green)
-                    .padding(.trailing)
-                
-                Text("Sent on \(Helpers.getTimeFromTimeStamp(timeStamp: medicineVM.prescription.createdDateTime))")
-
-                Divider()
-                
-                Spacer()
-            }
-
-            
             if medicineVM.hasNoMedicineOrImage {
                 Text("None")
             } else {
+                HStack {
+                    Image("checkmark.circle.fill")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                        .foregroundColor(Color.green)
+                        .padding(.trailing)
+                    
+                    Text("Sent on \(Helpers.getTimeFromTimeStamp(timeStamp: medicineVM.prescription.createdDateTime))")
+
+                    Divider()
+                    
+                    Spacer()
+                }
+
                 ForEach (medicineVM.prescription.medicineList, id: \.medicineName) { medicine in
                     HStack {
                         VStack (alignment: .leading, spacing: 5) {

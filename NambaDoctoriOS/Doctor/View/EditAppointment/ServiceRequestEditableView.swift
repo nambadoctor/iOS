@@ -32,8 +32,8 @@ struct ServiceRequestEditableView: View {
                 .font(.footnote)
                 .foregroundColor(Color.black.opacity(0.4))
                 .bold()
-
             ExpandingTextView(text: $serviceRequestVM.serviceRequest.advice)
+
         }.padding(.bottom)
     }
 }

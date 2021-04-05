@@ -12,6 +12,12 @@ struct InvestigationsView: View {
 
     var body: some View {
         VStack {
+            
+            Text("Investigations")
+                .font(.footnote)
+                .bold()
+                .foregroundColor(.gray)
+
             if !investigationsVM.investigations.isEmpty {
                 ForEach(Array( investigationsVM.investigations.enumerated()), id: \.0) { i, _ in
                     if !investigationsVM.investigations[i].isEmpty {

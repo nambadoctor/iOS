@@ -7,12 +7,7 @@
 
 import Foundation
 
-struct ServiceProviderAppointment : Equatable {
-    
-    static func ==(lhs: ServiceProviderAppointment, rhs: ServiceProviderAppointment) -> Bool {
-        return lhs.appointmentID == rhs.appointmentID
-    }
-    
+struct ServiceProviderAppointment {
     var appointmentID:String
     var serviceRequestID:String
     var parentAppointmentID:String
