@@ -24,6 +24,26 @@ struct ImagePickerModifier: ViewModifier {
     }
 }
 
+struct LocalPickedImageDisplayView : View {
+    @ObservedObject var imagePickerVM:ImagePickerViewModel
+    var body : some View {
+        VStack {
+            if imagePickerVM.image != nil {
+                HStack {
+                    Spacer()
+                    Image(uiImage: imagePickerVM.image!)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 150, height: 200)
+                        .cornerRadius(10)
+                        .shadow(radius: 10)
+                    Spacer()
+                }
+            }
+        }
+    }
+}
+
 class ImagePickerViewModel:ObservableObject {
     @Published var image: UIImage? = nil
     @Published var shouldPresentImagePicker = false

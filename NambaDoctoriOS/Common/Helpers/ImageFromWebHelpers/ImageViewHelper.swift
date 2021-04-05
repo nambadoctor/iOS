@@ -13,7 +13,6 @@ struct ImageView: View {
     @State var image:UIImage = UIImage()
     @State var showEnlarged:Bool = false
     
-    
     init(withURL url:String) {
         imageLoader = ImageLoader(urlString:url)
     }

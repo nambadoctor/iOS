@@ -132,7 +132,7 @@
 		1748011025B8E12500C8E3CC /* DocViewStatesK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748010F25B8E12500C8E3CC /* DocViewStatesK.swift */; };
 		1748011525B8E21700C8E3CC /* RetrieveTwilioAccessToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748011425B8E21700C8E3CC /* RetrieveTwilioAccessToken.swift */; };
 		1748011A25B9746600C8E3CC /* DoctorAlertHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748011925B9746600C8E3CC /* DoctorAlertHelpers.swift */; };
-		17513B1D26102B5300542C00 /* ImageLoaderFromWeb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17513B1C26102B5300542C00 /* ImageLoaderFromWeb.swift */; };
+		17513B1D26102B5300542C00 /* RetrieveImageFromURLViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17513B1C26102B5300542C00 /* RetrieveImageFromURLViewModel.swift */; };
 		17513B2226102BF600542C00 /* ImageViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17513B2126102BF600542C00 /* ImageViewHelper.swift */; };
 		17626CAD25D5BAC200C36A99 /* LoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626CAC25D5BAC200C36A99 /* LoadingScreen.swift */; };
 		17626CCD25D5C02F00C36A99 /* DoctorHomeListeners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626CCC25D5C02F00C36A99 /* DoctorHomeListeners.swift */; };
@@ -388,7 +388,7 @@
 		1748010F25B8E12500C8E3CC /* DocViewStatesK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewStatesK.swift; sourceTree = "<group>"; };
 		1748011425B8E21700C8E3CC /* RetrieveTwilioAccessToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrieveTwilioAccessToken.swift; sourceTree = "<group>"; };
 		1748011925B9746600C8E3CC /* DoctorAlertHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorAlertHelpers.swift; sourceTree = "<group>"; };
-		17513B1C26102B5300542C00 /* ImageLoaderFromWeb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderFromWeb.swift; sourceTree = "<group>"; };
+		17513B1C26102B5300542C00 /* RetrieveImageFromURLViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrieveImageFromURLViewModel.swift; sourceTree = "<group>"; };
 		17513B2126102BF600542C00 /* ImageViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewHelper.swift; sourceTree = "<group>"; };
 		17626CAC25D5BAC200C36A99 /* LoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreen.swift; sourceTree = "<group>"; };
 		17626CCC25D5C02F00C36A99 /* DoctorHomeListeners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorHomeListeners.swift; sourceTree = "<group>"; };
@@ -872,7 +872,7 @@
 		17513B2626102C0300542C00 /* ImageFromWebHelpers */ = {
 			isa = PBXGroup;
 			children = (
-				17513B1C26102B5300542C00 /* ImageLoaderFromWeb.swift */,
+				17513B1C26102B5300542C00 /* RetrieveImageFromURLViewModel.swift */,
 				17513B2126102BF600542C00 /* ImageViewHelper.swift */,
 			);
 			path = ImageFromWebHelpers;
@@ -1636,7 +1636,7 @@
 				171646C72602B70300BB5B5A /* ServiceProviderPrescription.swift in Sources */,
 				17E8699E25CE108E000B0952 /* DoctorAppointmentViewModelProtocol.swift in Sources */,
 				17E370BE25BF53AD0004C965 /* TwilioDefaultModifiers.swift in Sources */,
-				17513B1D26102B5300542C00 /* ImageLoaderFromWeb.swift in Sources */,
+				17513B1D26102B5300542C00 /* RetrieveImageFromURLViewModel.swift in Sources */,
 				1716471626031FC600BB5B5A /* ServiceProviderDiagnosisObjectMapper.swift in Sources */,
 				1748006425B8C00300C8E3CC /* UpdateAppointmentStatusHelper.swift in Sources */,
 				1748003425B8BCA800C8E3CC /* AppointmentCard.swift in Sources */,

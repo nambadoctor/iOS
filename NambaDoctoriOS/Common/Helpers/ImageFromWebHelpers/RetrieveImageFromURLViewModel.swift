@@ -20,13 +20,9 @@ class ImageLoader: ObservableObject {
     init(urlString:String) {
         guard let url = URL(string: urlString) else { return }
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            
             guard let data = data else { return }
-            if UIImage(data: data) != nil {
-                DispatchQueue.main.async {
-                    print("RETURNING DATAAAA")
-                    self.data = data
-                }
+            DispatchQueue.main.async {
+                self.data = data
             }
         }
         task.resume()

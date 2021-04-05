@@ -11,7 +11,7 @@ class DoctorViewModel: ObservableObject {
     @Published var doctor:ServiceProviderProfile!
     @Published var appointments:[ServiceProviderAppointment] = [ServiceProviderAppointment]()
     @Published var myPatients:[ServiceProviderCustomerProfile] = [ServiceProviderCustomerProfile]()
-
+    
     @Published var noAppointments:Bool = false
     @Published var noPatients:Bool = false
     @Published var doctorLoggedIn:Bool = false
@@ -21,23 +21,23 @@ class DoctorViewModel: ObservableObject {
     
     @Published var datePickerVM:DatePickerViewModel = DatePickerViewModel()
     @Published var noAppointmentsForSelectedDate:Bool = false
-        
+    
     var authenticateService:AuthenticateServiceProtocol
     var serviceProviderServiceCall:ServiceProviderGetSetServiceCallProtocol
     var doctorAppointmentViewModel:AppointmentGetSetServiceCallProtocol
-
+    
     init(authenticateService:AuthenticateServiceProtocol = AuthenticateService(),
          serviceProviderServiceCall:ServiceProviderGetSetServiceCallProtocol = ServiceProviderGetSetServiceCall(),
          doctorAptVM:AppointmentGetSetServiceCallProtocol = AppointmentGetSetServiceCall()) {
         self.authenticateService = authenticateService
         self.serviceProviderServiceCall = serviceProviderServiceCall
         self.doctorAppointmentViewModel = doctorAptVM
-            
+        
         self.datePickerVM.datePickerDelegate = self
-
+        
         fetchDoctor()
     }
-
+    
     func fetchDoctor () {
         let userId = authenticateService.getUserId()
         serviceProviderServiceCall.getServiceProvider(serviceProviderId: userId) { (serviceProviderObj) in
@@ -54,13 +54,14 @@ class DoctorViewModel: ObservableObject {
     
     func updateFCMToken () {
         //update FCM Token
-        guard self.doctor != nil else { return }
+        guard self.doctor != nil else { return
+        }
         if !FCMTokenId.isEmpty {
             self.doctor.applicationInfo.deviceToken = FCMTokenId
             self.updateDoctor()
         }
     }
-
+    
     func updateDoctor () {
         DispatchQueue.global().async {
             self.serviceProviderServiceCall.setServiceProvider(serviceProvider: self.doctor) { (response) in
@@ -73,7 +74,7 @@ class DoctorViewModel: ObservableObject {
             }
         }
     }
-
+    
     var authTokenId:String? {
         return doctor.applicationInfo.authID
     }
@@ -91,7 +92,7 @@ class DoctorViewModel: ObservableObject {
             self.checkForEmptyList()
         }
     }
-
+    
     func checkForEmptyList () {
         if appointments.isEmpty {
             self.noAppointments = true
@@ -128,7 +129,7 @@ class DoctorViewModel: ObservableObject {
         if !editDoctorVM.ServiceFee.isEmpty {
             doctor.serviceFee = Double(editDoctorVM.ServiceFee)!
         }
-
+        
         if !editDoctorVM.TimeIntervalBetweenAppointments.isEmpty {
             doctor.intervalBetweenAppointment = Int32(editDoctorVM.TimeIntervalBetweenAppointments)!
         }
@@ -158,7 +159,7 @@ extension DoctorViewModel : DatePickerChangedDelegate {
         
         return exists
     }
-
+    
     func compareCurrentAppointmentTimeWithSelectedDate (appointment:ServiceProviderAppointment) -> Bool {
         return Helpers.compareDate(timestamp: appointment.scheduledAppointmentStartTime, date2: datePickerVM.selectedDate)
     }

@@ -72,29 +72,17 @@ struct PrescriptionsView: View {
                 .cornerRadius(7)
             }
 
-            ZStack {
-                if prescriptionsVM.imagePickerVM.image != nil {
-                    HStack {
-                        Spacer()
-                        Image(uiImage: prescriptionsVM.imagePickerVM.image!)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 150, height: 200)
-                            .cornerRadius(10)
-                            .shadow(radius: 10)
-                        Spacer()
-                    }
-                } else if !prescriptionsVM.prescription.fileInfo.MediaImage.isEmpty {
-                    HStack {
-                        Spacer()
-                        ImageView(withURL: prescriptionsVM.prescription.fileInfo.MediaImage)
-                            .frame(width: 150, height: 200)
-                            .cornerRadius(10)
-                            .shadow(radius: 10)
-                        Spacer()
-                    }
+            LocalPickedImageDisplayView(imagePickerVM: prescriptionsVM.imagePickerVM)
+            
+            if !prescriptionsVM.prescription.fileInfo.MediaImage.isEmpty {
+                HStack {
+                    Spacer()
+                    ImageView(withURL: prescriptionsVM.prescription.fileInfo.MediaImage)
+                        .frame(width: 150, height: 200)
+                        .cornerRadius(10)
+                        .shadow(radius: 10)
+                    Spacer()
                 }
-                closeButton
             }
 
 
