@@ -10,7 +10,7 @@ import Foundation
 class MedicineViewModel: ObservableObject {
     var appointment:ServiceProviderAppointment
     @Published var prescription:ServiceProviderPrescription
-    
+
     //global alert will not show when using bottom sheet
     @Published var showLocalAlert:Bool = false
     
@@ -18,10 +18,11 @@ class MedicineViewModel: ObservableObject {
     @Published var medicineEntryVM:MedicineEntryViewModel = MedicineEntryViewModel(medicine: MakeEmptyMedicine(), isNew: true)
     
     @Published var imagePickerVM:ImagePickerViewModel = ImagePickerViewModel()
+    @Published var localImageSelected:Bool = false
     @Published var imageLoader:ImageLoader? = nil
-    
-    @Published var hasMedicineOrImage:Bool = false
-    
+
+    @Published var hasNoMedicineOrImage:Bool = false
+
     var medicineBeingEdited:Int? = nil
     
     var generalDoctorHelpers:GeneralDoctorHelpersProtocol!
@@ -38,6 +39,8 @@ class MedicineViewModel: ObservableObject {
         self.retrievePrescriptionHelper = retrievePrescriptionHelper
         self.prescriptionServiceCalls = prescriptionServiceCalls
         self.prescription = MakeEmptyPrescription(appointment: appointment)
+        
+        self.imagePickerVM.imagePickerDelegate = self
         
         self.retrievePrescriptions()
     }
@@ -105,10 +108,12 @@ class MedicineViewModel: ObservableObject {
     func downloadPrescription () {
         retrievePrescriptionHelper.downloadPrescription(prescriptionID: prescription.prescriptionID) { (imageDataURL) in
             if imageDataURL != nil {
-                self.imageLoader = ImageLoader(urlString: imageDataURL!)
+                self.imageLoader = ImageLoader(urlString: imageDataURL!) { success in
+                    if !success { self.imageLoader = nil }
+                }
             } else {
                 if self.prescription.medicineList.isEmpty {
-                    self.hasMedicineOrImage = true
+                    self.hasNoMedicineOrImage = true
                 }
             }
         }
@@ -120,15 +125,30 @@ class MedicineViewModel: ObservableObject {
         if imagePickerVM.image != nil {
             self.prescription.fileInfo.FileName = ""
             self.prescription.fileInfo.FileType = "png"
-            self.prescription.fileInfo.MediaImage = imagePickerVM.image!.jpegData(compressionQuality: 0.1)!.base64EncodedString()
+            self.prescription.fileInfo.MediaImage = imagePickerVM.image!.jpegData(compressionQuality: 0.3)!.base64EncodedString()
         }
         
         if imageLoader != nil {
-            self.prescription.fileInfo.MediaImage = (imageLoader?.data.base64EncodedString())!
+            self.prescription.fileInfo.MediaImage = imageLoader!.image!.jpegData(compressionQuality: 0.3)!.base64EncodedString()
         }
 
         prescriptionServiceCalls.setPrescription(prescription: self.prescription) { (response) in
             completion(response)
         }
+    }
+}
+
+extension MedicineViewModel : ImagePickedDelegate {
+    func imageSelected() {
+        self.localImageSelected = true
+    }
+    
+    func removeSelectImage () {
+        self.imagePickerVM.image = nil
+        self.localImageSelected = false
+    }
+    
+    func removeLoadedImage () {
+        self.imageLoader = nil
     }
 }

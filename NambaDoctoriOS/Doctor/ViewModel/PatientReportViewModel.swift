@@ -10,7 +10,7 @@ import UIKit
 
 class PatientReportViewModel : ObservableObject {
     @Published var report:ServiceProviderReport
-    @Published var mediaURL:String?
+    @Published var imageLoader:ImageLoader? = nil
     @Published var displayImage:ImageDisplayEnum = .loading
     
     private var reportServiceCall:ReportGetSetServiceCallProtocol
@@ -26,7 +26,7 @@ class PatientReportViewModel : ObservableObject {
     func getImageObj () {
         reportServiceCall.getReportImage(reportId: report.reportID) { (reportImageURL) in
             if reportImageURL != nil {
-                self.mediaURL = reportImageURL
+                self.imageLoader = ImageLoader(urlString: reportImageURL!) { success in }
                 self.displayImage = .display
             } else {
                 self.displayImage = .notFound

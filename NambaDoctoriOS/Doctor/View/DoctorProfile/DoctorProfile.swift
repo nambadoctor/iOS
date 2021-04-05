@@ -213,7 +213,7 @@ struct DoctorProfile: View {
     
     var doctorInfoHeader : some View {
         HStack {
-            ImageView(withURL: doctorViewModel.doctor.profilePictureURL)
+            ImageView(imageLoader: doctorViewModel.imageLoader!)
             
             VStack (alignment: .leading, spacing: 10) {
                 VStack (alignment: .leading, spacing: 3) {

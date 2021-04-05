@@ -15,11 +15,7 @@ struct EditableAppointmentView: View {
     var body: some View {
         ZStack {
             detailedUpcomingAppointment
-            
-            if intermediateVM.showTwilioRoom {
-                DoctorTwilioManager(DoctorTwilioVM: intermediateVM.doctorTwilioManagerViewModel)
-            }
-            
+
             //remote kill view trigger
             if intermediateVM.killView {
                 Text("You are done").onAppear() { killView() }

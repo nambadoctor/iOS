@@ -33,7 +33,7 @@ struct MedicineView: View {
             }
 
             
-            if medicineVM.hasMedicineOrImage {
+            if medicineVM.hasNoMedicineOrImage {
                 Text("None")
             } else {
                 ForEach (medicineVM.prescription.medicineList, id: \.medicineName) { medicine in
@@ -70,10 +70,10 @@ struct MedicineView: View {
                     .cornerRadius(7)
                 }
                 
-                if !medicineVM.prescription.fileInfo.MediaImage.isEmpty {
+                if medicineVM.imageLoader != nil {
                     HStack {
                         Spacer()
-                        ImageView(withURL: medicineVM.prescription.fileInfo.MediaImage)
+                        ImageView(imageLoader: medicineVM.imageLoader!)
                             .frame(width: 150, height: 200)
                             .cornerRadius(10)
                             .shadow(radius: 10)

@@ -13,7 +13,7 @@ struct EditableDoctorProfilePic : View{
     
     init(doctorProfileURL:String, imagePickerViewModel:ImagePickerViewModel) {
         self.imagePickerViewModel = imagePickerViewModel
-        self.imageLoader = ImageLoader(urlString: doctorProfileURL)
+        self.imageLoader = ImageLoader(urlString: doctorProfileURL) { success in }
     }
     
     var body : some View {
@@ -61,7 +61,7 @@ struct EditableDoctorProfile: View {
     var editableDoctorInfoHeader : some View {
         HStack {
             
-            EditableDoctorProfilePic(imagePickerViewModel: editDoctorVM.imagePickerViewModel, doctorProfileURL: doctor.profilePictureURL)
+            EditableDoctorProfilePic(doctorProfileURL: doctor.profilePictureURL, imagePickerViewModel: editDoctorVM.imagePickerViewModel)
 
             VStack (alignment: .leading, spacing: 10) {
                 VStack (alignment: .leading, spacing: 3) {

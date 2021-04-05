@@ -69,21 +69,24 @@ struct MedicineEditableView: View {
                 .cornerRadius(7)
             }
 
-            //MARK:- TODO: NEED TO FIX OVERLAPPING DISPLAYS AND CONVERSION INTO VIEW MEDICINE
-            LocalPickedImageDisplayView(imagePickerVM: medicineVM.imagePickerVM)
-
-            if !medicineVM.prescription.fileInfo.MediaImage.isEmpty {
-                HStack {
-                    Spacer()
-                    ImageView(withURL: medicineVM.prescription.fileInfo.MediaImage)
-                        .frame(width: 150, height: 200)
-                        .cornerRadius(10)
-                        .shadow(radius: 10)
-                    Spacer()
+            ZStack {
+                if medicineVM.imageLoader != nil && !medicineVM.localImageSelected {
+                    HStack {
+                        Spacer()
+                        ImageView(imageLoader: medicineVM.imageLoader!)
+                        Spacer()
+                    }
+                    CloseButton {
+                        self.medicineVM.removeLoadedImage()
+                    }
+                } else if medicineVM.localImageSelected {
+                    LocalPickedImageDisplayView(imagePickerVM: medicineVM.imagePickerVM)
+                    CloseButton {
+                        self.medicineVM.removeSelectImage()
+                    }
                 }
             }
-            //MARK:- END TODO
-
+    
             HStack {
                 LargeButton(title: "Add Manually",
                             backgroundColor: Color.white,
@@ -92,6 +95,7 @@ struct MedicineEditableView: View {
                 }
                 .sheet(isPresented: $medicineVM.showMedicineEntrySheet) {
                     MedicineEntryView()
+                        .environmentObject(medicineVM)
                 }
                 
                 LargeButton(title: "Upload Image",
@@ -100,6 +104,30 @@ struct MedicineEditableView: View {
                 }
                 .modifier(ImagePickerModifier(imagePickerVM: self.medicineVM.imagePickerVM))
             }
+        }
+    }
+}
+
+struct CloseButton : View {
+    
+    private let action: () -> Void
+    
+    init(action: @escaping () -> Void) {
+        self.action = action
+    }
+    
+    var body: some View {
+        VStack{
+            HStack {
+                Spacer()
+                Button(action:self.action) {
+                    Image("xmark.circle")
+                        .resizable()
+                        .frame(width: 35, height: 35)
+                        .foregroundColor(.blue)
+                }.padding()
+            }
+            Spacer()
         }
     }
 }

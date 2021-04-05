@@ -18,6 +18,7 @@ class DoctorViewModel: ObservableObject {
     
     @Published var showEdit:Bool = false
     @Published var editDoctorVM:EditServiceProviderViewModel = EditServiceProviderViewModel()
+    @Published var imageLoader:ImageLoader? = nil
     
     @Published var datePickerVM:DatePickerViewModel = DatePickerViewModel()
     @Published var noAppointmentsForSelectedDate:Bool = false
@@ -46,8 +47,8 @@ class DoctorViewModel: ObservableObject {
                 self.doctorLoggedIn = true
                 self.retrieveAppointments()
                 self.getMyPatients()
-                
                 self.updateFCMToken()
+                self.imageLoader = ImageLoader(urlString: self.doctor.profilePictureURL) { success in }
             }
         }
     }

@@ -22,7 +22,7 @@ struct PatientReportView: View {
             case .notFound:
                 EmptyView()
             case .display:
-                ImageView(withURL: patientReportVM.mediaURL!)
+                ImageView(imageLoader: self.patientReportVM.imageLoader!)
             }
         }
         .frame(width: patientReportVM.displayImage == .display ? 100 : 0,

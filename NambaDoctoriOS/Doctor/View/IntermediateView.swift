@@ -15,11 +15,15 @@ struct IntermediateView: View {
     }
 
     var body: some View {
-        VStack {
+        ZStack {
             if intermediateVM.takeToViewAppointment {
                 ViewAppointment()
             } else if intermediateVM.takeToDetailedAppointment {
                 EditableAppointmentView()
+            }
+            
+            if intermediateVM.showTwilioRoom {
+                DoctorTwilioManager(DoctorTwilioVM: intermediateVM.doctorTwilioManagerViewModel)
             }
         }
         .environmentObject(intermediateVM)
