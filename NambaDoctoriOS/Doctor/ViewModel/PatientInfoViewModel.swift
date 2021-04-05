@@ -18,6 +18,8 @@ class PatientInfoViewModel: ObservableObject {
     @Published var AppointmentList:[ServiceProviderAppointment]? = nil
     @Published var ReportList:[ServiceProviderReport]? = nil
     
+    @Published var briefPatientDetails:String = ""
+    
     var appointment:ServiceProviderAppointment
     private var customerServiceCall:CustomerGetSetServiceCallProtocol
     private var reportServiceCall:ReportGetSetServiceCallProtocol
@@ -40,10 +42,6 @@ class PatientInfoViewModel: ObservableObject {
         }
     }
     
-    var patientAgeGenderInfo : String {
-        return "\(patientObj?.age ?? ""), \(patientObj?.gender ?? "")"
-    }
-    
     var phoneNumber:String {
         return "\(patientObj.phoneNumbers[0].number)"
     }
@@ -60,6 +58,7 @@ class PatientInfoViewModel: ObservableObject {
                 self.patientObj = customer
                 self.patientAllergies = customer?.allergies.last ?? ""
                 self.patientMedicalHistory = customer?.medicalHistory.last ?? ""
+                self.briefPatientDetails = "\(self.patientObj.age), \(self.patientObj.gender)"
                 CommonDefaultModifiers.hideLoader()
             }
         }

@@ -16,6 +16,7 @@ struct IntermediateView: View {
 
     var body: some View {
         ZStack {
+            
             if intermediateVM.takeToViewAppointment {
                 ViewAppointment()
             } else if intermediateVM.takeToDetailedAppointment {

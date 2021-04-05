@@ -11,18 +11,19 @@ struct EditableAppointmentView: View {
     
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var intermediateVM:IntermediateAppointmentViewModel
+    @State private var toggleNavBarProgressView:Bool = false
     
     var body: some View {
         ZStack {
             detailedUpcomingAppointment
-
+            
             //remote kill view trigger
             if intermediateVM.killView {
                 Text("You are done").onAppear() { killView() }
             }
         }
         .background(Color.gray.opacity(0.3))
-        //.navigationBarItems(trailing: saveButton)
+        .navigationBarItems(trailing: saveButton)
         .alert(isPresented: $intermediateVM.showOnSuccessAlert, content: {
             Alert(title: Text("Prescription Sent Successfully"), dismissButton: .default(Text("Ok"), action: { intermediateVM.takeToView() }))
         })
@@ -82,25 +83,25 @@ struct EditableAppointmentView: View {
             sendToPatient
         }
     }
-    
-    //    var saveButton : some View {
-    //        Button(action: {
-    //            self.toggleNavBarProgressView.toggle()
-    //            detailedAppointmentVM.savePrescription { _ in
-    //                self.toggleNavBarProgressView.toggle()
-    //            }
-    //        }, label: {
-    //            if !detailedAppointmentVM.checkIfAppointmentFinished() {
-    //                HStack {
-    //                    if toggleNavBarProgressView {
-    //                        ProgressView()
-    //                            .progressViewStyle(CircularProgressViewStyle())
-    //                    }
-    //                    Text("Save")
-    //                }
-    //            }
-    //        })
-    //    }
+
+    var saveButton : some View {
+        Button(action: {
+            self.toggleNavBarProgressView.toggle()
+            intermediateVM.savePrescription { _ in
+                self.toggleNavBarProgressView.toggle()
+            }
+        }, label: {
+            if !intermediateVM.appointmentFinished {
+                HStack {
+                    if toggleNavBarProgressView {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle())
+                    }
+                    Text("Save")
+                }
+            }
+        })
+    }
     
     var sendToPatient : some View {
         VStack {
@@ -126,7 +127,7 @@ struct EditableAppointmentView: View {
     
     var header : some View {
         VStack (alignment: .leading) {
-            Text("Appointment On: \(intermediateVM.appointmentTime)")
+            Text("Appointment On: \(intermediateVM.appointmentScheduledStartTime)")
                 .foregroundColor(.blue)
                 .bold()
             HStack (alignment: .top) {
@@ -135,9 +136,9 @@ struct EditableAppointmentView: View {
                     .frame(width: 70, height: 70)
                 VStack (alignment: .leading, spacing: 5) {
                     Text(intermediateVM.customerName)
-                    Text(intermediateVM.patientInfoViewModel.patientAgeGenderInfo)
-                    
+                    PatientOverViewDetails(patientInfoVM: intermediateVM.patientInfoViewModel) //age,gender display
                     Text(intermediateVM.appointmentServiceFee)
+                    ServiceRequestOverViewDetails(serviceRequestVM: intermediateVM.serviceRequestVM)
                 }
                 Spacer()
             }
@@ -197,5 +198,19 @@ struct EditableAppointmentView: View {
     
     private func killView () {
         self.presentationMode.wrappedValue.dismiss()
+    }
+}
+
+struct PatientOverViewDetails : View {
+    @ObservedObject var patientInfoVM:PatientInfoViewModel
+    var body: some View {
+        Text(patientInfoVM.briefPatientDetails)
+    }
+}
+
+struct ServiceRequestOverViewDetails : View {
+    @ObservedObject var serviceRequestVM:ServiceRequestViewModel
+    var body: some View {
+        Text("Reason: \(serviceRequestVM.serviceRequest.reason)")
     }
 }

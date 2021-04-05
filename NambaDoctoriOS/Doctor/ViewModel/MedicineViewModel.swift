@@ -75,7 +75,7 @@ class MedicineViewModel: ObservableObject {
 
     func makeMedicineObjAndAdd () {
         let medicine = ServiceProviderMedicine(medicineName: medicineEntryVM.medicineName, dosage: medicineEntryVM.dosage, routeOfAdministration: medicineEntryVM.routeOfAdmin, intake: medicineEntryVM.intake, duration: 0, timings: "", specialInstructions: medicineEntryVM.frequency, medicineID: "")
-        
+
         if medicineBeingEdited != nil {
             prescription.medicineList.remove(at: medicineBeingEdited!)
             prescription.medicineList.insert(medicine, at: medicineBeingEdited!)
@@ -132,6 +132,7 @@ class MedicineViewModel: ObservableObject {
             self.prescription.fileInfo.MediaImage = imageLoader!.image!.jpegData(compressionQuality: 0.3)!.base64EncodedString()
         }
 
+        self.prescription.createdDateTime = Date().millisecondsSince1970
         prescriptionServiceCalls.setPrescription(prescription: self.prescription) { (response) in
             completion(response)
         }
@@ -147,7 +148,7 @@ extension MedicineViewModel : ImagePickedDelegate {
         self.imagePickerVM.image = nil
         self.localImageSelected = false
     }
-    
+
     func removeLoadedImage () {
         self.imageLoader = nil
     }

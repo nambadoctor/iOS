@@ -24,11 +24,12 @@ struct ViewAppointment: View {
                 HStack {Spacer()}
             }.padding()
         }.navigationBarItems(trailing: endAndAmendButton)
+        .onAppear(){intermediateVM.refreshPrescription()} //MARK:- OPTIMIZE THIS LATER!
     }
 
     var header : some View {
         VStack (alignment: .leading) {
-            Text("Appointment On: \(Helpers.getTimeFromTimeStamp(timeStamp: intermediateVM.appointment.actualAppointmentStartTime))")
+            Text("Appointment Happened On: \(intermediateVM.appointmentActualStartTime)")
                 .foregroundColor(.blue)
                 .bold()
 
@@ -41,7 +42,7 @@ struct ViewAppointment: View {
                     
                     Text("Fee: ₹\(String(intermediateVM.appointment.serviceFee.clean))")
                     
-                    Text("Reason: ")
+                    Text("Reason: \(intermediateVM.serviceRequestVM.serviceRequest.reason)")
                 }
 
                 Spacer()
@@ -51,11 +52,9 @@ struct ViewAppointment: View {
     
     var details : some View {
         VStack (alignment: .leading, spacing: 5) {
-
             MedicineView()
             ServiceRequestView()
             InvestigationsView()
-
         }
     }
     

@@ -39,7 +39,7 @@ struct HorizontalDatePicker: View {
                                             .foregroundColor(datePickerVM.compareDate(index: index) ? Color.white : Color.black)
                                             .bold()
                                     }
-                                    
+
                                     if datePickerVM.ifHasAppointment(index: index) && !datePickerVM.compareDate(index: index) {
                                         VStack {
                                             Spacer()

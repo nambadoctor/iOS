@@ -22,7 +22,7 @@ class IntermediateAppointmentViewModel : ObservableObject {
 
     @Published var takeToDetailedAppointment:Bool = false
     @Published var takeToViewAppointment:Bool = false
-    
+
     @Published var appointmentStarted:Bool = false
     @Published var appointmentFinished:Bool = false
     
@@ -56,6 +56,10 @@ class IntermediateAppointmentViewModel : ObservableObject {
         initChecks()
     }
     
+    func refreshPrescription () {
+        self.medicineVM.retrievePrescriptions()
+    }
+
     func initChecks () {
         checkDetailedOrView()
         checkIfAppointmentFinished()
@@ -134,8 +138,20 @@ extension IntermediateAppointmentViewModel {
         return "Fee: ₹\(String(appointment.serviceFee.clean))"
     }
     
-    var appointmentTime:String {
+    var appointmentScheduledStartTime:String {
         return "\(Helpers.getTimeFromTimeStamp(timeStamp: appointment.scheduledAppointmentStartTime))"
+    }
+    
+    var appointmentScheduledEndTime:String {
+        return "\(Helpers.getTimeFromTimeStamp(timeStamp: appointment.scheduledAppointmentEndTime))"
+    }
+    
+    var appointmentActualStartTime:String {
+        return "\(Helpers.getTimeFromTimeStamp(timeStamp: appointment.actualAppointmentStartTime))"
+    }
+    
+    var appointmentActualEndTime:String {
+        return "\(Helpers.getTimeFromTimeStamp(timeStamp: appointment.actualAppointmentEndTime))"
     }
     
     var customerName:String {
