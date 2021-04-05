@@ -49,7 +49,7 @@ class ImagePickerViewModel:ObservableObject {
     @Published var shouldPresentImagePicker = false
     @Published var shouldPresentActionScheet = false
     @Published var shouldPresentCamera = false
-    
+
     func showActionSheet() {
         self.shouldPresentActionScheet = true
     }

@@ -71,7 +71,7 @@ struct MedicineEditableView: View {
 
             //MARK:- TODO: NEED TO FIX OVERLAPPING DISPLAYS AND CONVERSION INTO VIEW MEDICINE
             LocalPickedImageDisplayView(imagePickerVM: medicineVM.imagePickerVM)
-            
+
             if !medicineVM.prescription.fileInfo.MediaImage.isEmpty {
                 HStack {
                     Spacer()

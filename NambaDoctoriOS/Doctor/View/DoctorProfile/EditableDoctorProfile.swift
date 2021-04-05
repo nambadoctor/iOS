@@ -9,7 +9,12 @@ import SwiftUI
 
 struct EditableDoctorProfilePic : View{
     @ObservedObject var imagePickerViewModel:ImagePickerViewModel
-    var doctorProfileURL:String
+    @ObservedObject var imageLoader:ImageLoader
+    
+    init(doctorProfileURL:String, imagePickerViewModel:ImagePickerViewModel) {
+        self.imagePickerViewModel = imagePickerViewModel
+        self.imageLoader = ImageLoader(urlString: doctorProfileURL)
+    }
     
     var body : some View {
         VStack (spacing: 0) {
@@ -21,7 +26,7 @@ struct EditableDoctorProfilePic : View{
                     .cornerRadius(10)
                     .shadow(radius: 10)
             } else {
-                ImageView(withURL: doctorProfileURL)
+                ImageView(imageLoader: imageLoader)
             }
 
             Button(action: {

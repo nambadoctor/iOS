@@ -16,7 +16,9 @@ class MedicineViewModel: ObservableObject {
     
     @Published var showMedicineEntrySheet:Bool = false
     @Published var medicineEntryVM:MedicineEntryViewModel = MedicineEntryViewModel(medicine: MakeEmptyMedicine(), isNew: true)
+    
     @Published var imagePickerVM:ImagePickerViewModel = ImagePickerViewModel()
+    @Published var imageLoader:ImageLoader? = nil
     
     @Published var hasMedicineOrImage:Bool = false
     
@@ -103,7 +105,7 @@ class MedicineViewModel: ObservableObject {
     func downloadPrescription () {
         retrievePrescriptionHelper.downloadPrescription(prescriptionID: prescription.prescriptionID) { (imageDataURL) in
             if imageDataURL != nil {
-                self.prescription.fileInfo.MediaImage = imageDataURL!
+                self.imageLoader = ImageLoader(urlString: imageDataURL!)
             } else {
                 if self.prescription.medicineList.isEmpty {
                     self.hasMedicineOrImage = true
@@ -111,7 +113,7 @@ class MedicineViewModel: ObservableObject {
             }
         }
     }
-    
+
     func sendToPatient (completion: @escaping (_ success:Bool)->()) {
         prescription.prescriptionID = "" //service will make new prescription ID to update not overwrite
         
@@ -120,10 +122,13 @@ class MedicineViewModel: ObservableObject {
             self.prescription.fileInfo.FileType = "png"
             self.prescription.fileInfo.MediaImage = imagePickerVM.image!.jpegData(compressionQuality: 0.1)!.base64EncodedString()
         }
+        
+        if imageLoader != nil {
+            self.prescription.fileInfo.MediaImage = (imageLoader?.data.base64EncodedString())!
+        }
 
         prescriptionServiceCalls.setPrescription(prescription: self.prescription) { (response) in
             completion(response)
         }
     }
 }
-
