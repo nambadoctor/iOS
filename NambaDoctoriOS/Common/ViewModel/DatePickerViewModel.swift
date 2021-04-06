@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 protocol DatePickerChangedDelegate {
     func dateChanged(selectedDate:Date)
@@ -58,7 +59,7 @@ class DatePickerViewModel : ObservableObject {
     func compareDate (index:Int) -> Bool {
         return Helpers.compareDate(date1: Dates[index].date, date2: selectedDate)
     }
-    
+
     func selectDate (index:Int) {
         self.index = index
         selectedDate = Dates[index].date

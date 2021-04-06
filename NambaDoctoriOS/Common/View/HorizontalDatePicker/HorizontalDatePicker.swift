@@ -39,7 +39,7 @@ struct HorizontalDatePicker: View {
                                             .foregroundColor(datePickerVM.compareDate(index: index) ? Color.white : Color.black)
                                             .bold()
                                     }
-
+                                    
                                     if datePickerVM.ifHasAppointment(index: index) && !datePickerVM.compareDate(index: index) {
                                         VStack {
                                             Spacer()
@@ -56,14 +56,11 @@ struct HorizontalDatePicker: View {
                                 .background(datePickerVM.compareDate(index: index) ? Color.black : Color.white)
                                 .cornerRadius(50)
                                 .onTapGesture {
-                                    
                                     datePickerVM.selectDate(index: index)
                                 }
                             }
                         }
-                    }.onAppear() {
-                        scrollview.scrollTo(datePickerVM.index, anchor: .center)
-                    }
+                    }.onAppear() {scrollview.scrollTo(datePickerVM.index, anchor: .center)}
                 }
             }
         }

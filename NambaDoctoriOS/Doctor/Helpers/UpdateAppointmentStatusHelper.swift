@@ -25,7 +25,7 @@ class UpdateAppointmentStatusHelper:UpdateAppointmentStatusProtocol {
             } else { }
         }
     }
-    
+
     func updateToStartedConsultation (appointment:inout ServiceProviderAppointment, completion: @escaping (_ success:Bool) -> ()) {
 
         appointment.status = "StartedConsultation"
@@ -37,8 +37,9 @@ class UpdateAppointmentStatusHelper:UpdateAppointmentStatusProtocol {
     }
 
     func updateToFinished (appointment:inout ServiceProviderAppointment, completion: @escaping (_ success:Bool) -> ()) {
-        
+
         appointment.status = "Finished"
+        appointment.actualAppointmentStartTime = Date().millisecondsSince1970
         appointment.actualAppointmentEndTime = Date().millisecondsSince1970
         
         AppointmentServiceCalls.setAppointment(appointment: appointment) { (updated) in
@@ -47,7 +48,7 @@ class UpdateAppointmentStatusHelper:UpdateAppointmentStatusProtocol {
     }
 
     func updateToFinishedAppointment (appointment:inout ServiceProviderAppointment, completion: @escaping (_ success:Bool) -> ()) {
-        
+
         appointment.status = "FinishedAppointment"
 
         AppointmentServiceCalls.setAppointment(appointment: appointment) { (updated) in
