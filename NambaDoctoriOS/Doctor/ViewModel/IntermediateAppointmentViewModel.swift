@@ -158,13 +158,17 @@ extension IntermediateAppointmentViewModel {
         return "\(appointment.customerName)"
     }
 
+    var isPaid:Bool {
+        return appointment.isPaid
+    }
+
     func checkIfAppointmentStarted () {
         if appointment.status == ConsultStateK.StartedConsultation.rawValue
         {
             self.appointmentStarted = true
         }
     }
-    
+
     func checkIfAppointmentFinished() {
         if appointment.status == ConsultStateK.Finished.rawValue ||
                     appointment.status == ConsultStateK.FinishedAppointment.rawValue

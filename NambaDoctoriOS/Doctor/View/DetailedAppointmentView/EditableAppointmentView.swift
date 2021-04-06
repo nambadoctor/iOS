@@ -49,10 +49,13 @@ struct EditableAppointmentView: View {
                 .padding()
                 .background(Color.white)
             
-            ModifyFeeView(modifyFeeVM: self.intermediateVM.modifyFeeViewModel)
-                .padding()
-                .background(Color.white)
-            
+            if !intermediateVM.isPaid {
+                ModifyFeeView(modifyFeeVM: self.intermediateVM.modifyFeeViewModel)
+                    .padding()
+                    .background(Color.white)
+                
+            }
+
             HStack {
                 Spacer()
                 Button {

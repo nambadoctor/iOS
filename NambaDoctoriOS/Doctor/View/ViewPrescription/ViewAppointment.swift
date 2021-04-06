@@ -20,7 +20,7 @@ struct ViewAppointment: View {
                     .padding([.top, .bottom], 5)
 
                 details
-                
+
                 HStack {Spacer()}
             }.padding()
         }.navigationBarItems(trailing: endAndAmendButton)
@@ -29,7 +29,7 @@ struct ViewAppointment: View {
 
     var header : some View {
         VStack (alignment: .leading) {
-            Text("Appointment Happened On: \(intermediateVM.appointmentActualStartTime)")
+            Text("Consulted Time: \(intermediateVM.appointmentActualStartTime)")
                 .foregroundColor(.blue)
                 .bold()
 
@@ -44,7 +44,7 @@ struct ViewAppointment: View {
                     
                     Text("Reason: \(intermediateVM.serviceRequestVM.serviceRequest.reason)")
                 }
-
+                
                 Spacer()
             }
         }.padding()
