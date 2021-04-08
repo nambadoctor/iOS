@@ -11,10 +11,7 @@ import UIKit
 class PatientInfoViewModel: ObservableObject {
     
     @Published var patientObj:ServiceProviderCustomerProfile!
-    
-    var patientAllergies:String = ""
-    var patientMedicalHistory:String = ""
-    
+
     @Published var AppointmentList:[ServiceProviderAppointment]? = nil
     @Published var ReportList:[ServiceProviderReport]? = nil
     
@@ -56,8 +53,6 @@ class PatientInfoViewModel: ObservableObject {
         customerServiceCall.getPatientProfile(patientId: self.appointment.requestedBy) { (customer) in
             if customer != nil {
                 self.patientObj = customer
-                self.patientAllergies = customer?.allergies.last ?? ""
-                self.patientMedicalHistory = customer?.medicalHistory.last ?? ""
                 self.briefPatientDetails = "\(self.patientObj.age), \(self.patientObj.gender)"
                 CommonDefaultModifiers.hideLoader()
             }
@@ -79,27 +74,8 @@ class PatientInfoViewModel: ObservableObject {
             }
         }
     }
-    
+
     func sendToPatient (completion: @escaping (_ success:Bool)->()) {
-        var allergiesOrHistoryChanged:Bool = false
-        
-        if patientObj.allergies.last != patientAllergies {
-            print("PatientAllergiesChanged")
-            patientObj.allergies.append(patientAllergies)
-            allergiesOrHistoryChanged = true
-        }
-        
-        if patientObj.medicalHistory.last != patientMedicalHistory {
-            print("PatientMedicalHistoryChanged")
-            patientObj.medicalHistory.append(patientMedicalHistory)
-            allergiesOrHistoryChanged = true
-        }
-        
-        guard allergiesOrHistoryChanged else {
-            completion(true)
-            return
-        }
-        
         print("PatientObject: \(patientObj)")
         customerServiceCall.setPatientProfile(customerProfile: patientObj) { (response) in
             if response != nil {

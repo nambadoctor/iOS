@@ -12,6 +12,25 @@ struct ServiceRequestEditableView: View {
     
     var body: some View {
         VStack (alignment: .leading) {
+            
+            Group {
+                Text("Patient Allergies:")
+                    .font(.footnote)
+                    .foregroundColor(Color.black.opacity(0.4))
+                    .bold()
+
+                ExpandingTextView(text: self.$serviceRequestVM.serviceRequest.allergy.AllergyName)
+                
+                Text("Patient Medical History:")
+                    .font(.footnote)
+                    .foregroundColor(Color.black.opacity(0.4))
+                    .bold()
+
+                ExpandingTextView(text: self.$serviceRequestVM.serviceRequest.medicalHistory.MedicalHistoryName)
+
+                Divider()
+            }
+            
             Text("EXAMINATION:")
                 .font(.footnote)
                 .foregroundColor(Color.black.opacity(0.4))

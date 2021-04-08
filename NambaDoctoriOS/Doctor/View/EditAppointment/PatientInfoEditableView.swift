@@ -12,20 +12,20 @@ struct PatientInfoEditableView: View {
     
     var body: some View {
         VStack (alignment: .leading) {
-            Text("ALLERGIES:")
-                .font(.footnote)
-                .foregroundColor(Color.black.opacity(0.4))
-                .bold()
-            
-            ExpandingTextView(text: self.$patientInfoViewModel.patientAllergies)
-            
-            Text("HISTORY:")
-                .font(.footnote)
-                .foregroundColor(Color.black.opacity(0.4))
-                .bold()
-            
-            ExpandingTextView(text: self.$patientInfoViewModel.patientMedicalHistory)
-            
+//            Text("ALLERGIES:")
+//                .font(.footnote)
+//                .foregroundColor(Color.black.opacity(0.4))
+//                .bold()
+//
+//            ExpandingTextView(text: self.$patientInfoViewModel.patientAllergies)
+//
+//            Text("HISTORY:")
+//                .font(.footnote)
+//                .foregroundColor(Color.black.opacity(0.4))
+//                .bold()
+//
+//            ExpandingTextView(text: self.$patientInfoViewModel.patientMedicalHistory)
+//
             Text("Reports:")
                 .font(.footnote)
                 .foregroundColor(Color.black.opacity(0.4))

@@ -31,7 +31,7 @@ class AppointmentViewModel: ObservableObject {
         checkIfAppointmentStarted()
         checkIfAppointmentFinished()
     }
-    
+
     var firstLetterOfCustomer : String {
         return appointment.customerName[0]
     }
@@ -43,7 +43,7 @@ class AppointmentViewModel: ObservableObject {
     var appointmentId:String {
         return self.appointment.appointmentID
     }
-    
+
     var paymentStatus:String {
         if self.appointment.isPaid {
             return "Paid"
