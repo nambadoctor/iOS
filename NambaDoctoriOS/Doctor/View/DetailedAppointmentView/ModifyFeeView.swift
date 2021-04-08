@@ -23,7 +23,7 @@ struct ModifyFeeView: View {
             HStack {
                 TextField("\(modifyFeeVM.fee)", text: $modifyFeeVM.fee)
                     .keyboardType(.numberPad)
-                    .frame(width: 80, height: 20)
+                    .frame(width: 80, height: 15)
                     .padding()
                     .background(Color.gray.opacity(0.2))
                     .cornerRadius(10)

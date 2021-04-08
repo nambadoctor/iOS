@@ -28,7 +28,7 @@ class IntermediateAppointmentViewModel : ObservableObject {
     
     @Published var showOnSuccessAlert:Bool = false
     @Published var showTwilioRoom:Bool = false
-    @Published var collapseExtraDetailEntry:Bool = false
+    @Published var collapseExtraDetailEntry:Bool = true
     
     private var updateAppointmentStatus:UpdateAppointmentStatusProtocol
     private var docNotifHelper:DocNotifHelpers

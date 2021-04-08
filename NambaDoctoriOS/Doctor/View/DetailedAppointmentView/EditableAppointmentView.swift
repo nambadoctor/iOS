@@ -60,14 +60,16 @@ struct EditableAppointmentView: View {
             }
 
             HStack {
-                Spacer()
                 Button {
                     self.intermediateVM.collapseExtraDetailEntry.toggle()
                 } label: {
-                    Text(self.intermediateVM.collapseExtraDetailEntry ? "Show Remaining" : "Collapse Remaining")
+                    Text(self.intermediateVM.collapseExtraDetailEntry ? "Clinical Information +" : "Clinical Information -")
                 }
+                Spacer()
             }
+            .padding(.vertical, 2)
             .padding(.horizontal)
+            .background(Color.white)
             
             if !intermediateVM.collapseExtraDetailEntry {
                 
@@ -97,46 +99,23 @@ struct EditableAppointmentView: View {
 
     var saveButton : some View {
         VStack {
-            Button {
+            LargeButton(title: "Save For Later",
+                        backgroundColor: Color.white,
+                        foregroundColor: Color.blue) {
                 self.toggleNavBarProgressView.toggle()
                 intermediateVM.savePrescription { _ in
                     self.toggleNavBarProgressView.toggle()
                 }
-            } label: {
-                HStack {
-                    Spacer()
-                    Text("Save For Later")
-                        .font(.system(size: 22))
-                        .bold()
-                        .foregroundColor(.white)
-                        .multilineTextAlignment(.center)
-                    Spacer()
-                }
-                .padding()
-                .background(Color.blue)
-                .cornerRadius(10)
             }
         }
     }
     
     var sendToPatient : some View {
         VStack {
-            Button {
+            LargeButton(title: intermediateVM.appointmentFinished ? "Amend and Submit" : "Save and Submit",
+                        backgroundColor: Color.blue) {
                 EndEditingHelper.endEditing()
                 intermediateVM.sendToPatient()
-            } label: {
-                HStack {
-                    Spacer()
-                    Text(intermediateVM.appointmentFinished ? "Amend and Submit" : "Save and Submit")
-                        .font(.system(size: 22))
-                        .bold()
-                        .foregroundColor(.white)
-                        .multilineTextAlignment(.center)
-                    Spacer()
-                }
-                .padding()
-                .background(Color.green)
-                .cornerRadius(10)
             }
         }
     }
