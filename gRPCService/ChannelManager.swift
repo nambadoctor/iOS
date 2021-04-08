@@ -15,10 +15,10 @@ import NIOHTTP2
 class ChannelManager {
     //production ip:- 52.182.227.174
     //testing ip:- 52.233.76.64
-    static let sharedChannelManager = ChannelManager(host: "52.182.227.174", port: 80)
+    static let sharedChannelManager = ChannelManager(host: "52.233.76.64", port: 80)
     private var channel:ClientConnection?
     private var callOptions:CallOptions?
-    
+
     private var host:String
     private var port:Int
 

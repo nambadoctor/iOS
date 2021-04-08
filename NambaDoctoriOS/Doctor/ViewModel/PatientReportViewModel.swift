@@ -33,5 +33,4 @@ class PatientReportViewModel : ObservableObject {
             }
         }
     }
-
 }

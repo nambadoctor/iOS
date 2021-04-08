@@ -19,4 +19,6 @@ struct ServiceProviderServiceRequest : Codable {
     var createdDateTime:Int64
     var lastModifiedDate:Int64
     var customerID:String
+    var allergy:ServiceProviderCustomerAllergy
+    var medicalHistory:ServiceProviderCustomerMedicalHistory
 }

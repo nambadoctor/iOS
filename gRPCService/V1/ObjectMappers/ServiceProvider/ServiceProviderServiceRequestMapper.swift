@@ -20,7 +20,9 @@ class ServiceProviderServiceRequestMapper {
             advice: serviceRequest.advice.toString,
             createdDateTime: serviceRequest.createdDateTime.toInt64,
             lastModifiedDate: serviceRequest.lastModifedDate.toInt64,
-            customerID: serviceRequest.customerID.toString)
+            customerID: serviceRequest.customerID.toString,
+            allergy: ServiceProviderCustomerAllergyMapper.grpcAllergyToLocal(allergyMessage: serviceRequest.allergy),
+            medicalHistory: ServiceProviderCustomerMedicalHistoryMapper.grpcMedicalHistoryToLocal(medicalHistoryMessage: serviceRequest.medicalHistory))
     }
     
     func localServiceRequestToGrpc(serviceRequest:ServiceProviderServiceRequest) -> Nd_V1_ServiceProviderServiceRequestMessage {
@@ -36,6 +38,8 @@ class ServiceProviderServiceRequestMapper {
             $0.createdDateTime = serviceRequest.createdDateTime.toProto
             $0.lastModifedDate = serviceRequest.lastModifiedDate.toProto
             $0.customerID = serviceRequest.customerID.toProto
+            $0.allergy = ServiceProviderCustomerAllergyMapper.localAllergyToGrpc(allergy: serviceRequest.allergy)
+            $0.medicalHistory = ServiceProviderCustomerMedicalHistoryMapper.localMedicalHistoryToGrpc(medicalHistory: serviceRequest.medicalHistory)
         }
     }
 }

@@ -12,7 +12,15 @@ func MakeEmptyMedicine() -> ServiceProviderMedicine {
 }
 
 func MakeEmptyServiceRequest(appointment:ServiceProviderAppointment) -> ServiceProviderServiceRequest {
-    return ServiceProviderServiceRequest(serviceRequestID: appointment.serviceRequestID, reason: "", serviceProviderID: appointment.serviceProviderID, appointmentID: appointment.appointmentID, examination: "", diagnosis: MakeEmptyDiagnosis(), investigations: [String](), advice: "", createdDateTime: Date().millisecondsSince1970, lastModifiedDate: Date().millisecondsSince1970, customerID: appointment.customerID)
+    return ServiceProviderServiceRequest(serviceRequestID: appointment.serviceRequestID, reason: "", serviceProviderID: appointment.serviceProviderID, appointmentID: appointment.appointmentID, examination: "", diagnosis: MakeEmptyDiagnosis(), investigations: [String](), advice: "", createdDateTime: Date().millisecondsSince1970, lastModifiedDate: Date().millisecondsSince1970, customerID: appointment.customerID, allergy: MakeEmptyAllergy(), medicalHistory: MakeEmptyMedicalHistory())
+}
+
+func MakeEmptyAllergy() -> ServiceProviderCustomerAllergy {
+    return ServiceProviderCustomerAllergy(AllergyId: "", AllergyName: "", AppointmentId: "", ServiceRequestId: "")
+}
+
+func MakeEmptyMedicalHistory () -> ServiceProviderCustomerMedicalHistory {
+    return ServiceProviderCustomerMedicalHistory(MedicalHistoryId: "", MedicalHistoryName: "", AppointmentId: "", ServiceRequestId: "")
 }
 
 func MakeEmptyDiagnosis () -> ServiceProviderDiagnosis {
