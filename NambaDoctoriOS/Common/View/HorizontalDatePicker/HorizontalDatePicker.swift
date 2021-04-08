@@ -17,11 +17,11 @@ struct HorizontalDatePicker: View {
                 
                 if Helpers.compareDate(date1: datePickerVM.todayDate, date2: datePickerVM.selectedDate) {
                     Text("Today")
-                        .foregroundColor(.black)
+                        .foregroundColor(.blue)
                         .bold()
                 } else {
                     Text("\(Helpers.getDisplayForDateSelector(date: datePickerVM.selectedDate))")
-                        .foregroundColor(.black)
+                        .foregroundColor(.blue)
                         .bold()
                 }
 
@@ -32,11 +32,11 @@ struct HorizontalDatePicker: View {
                                 ZStack {
                                     VStack {
                                         Text(datePickerVM.getDateLetter(index: index))
-                                            .foregroundColor(datePickerVM.compareDate(index: index) ? Color.white : Color.black)
+                                            .foregroundColor(datePickerVM.compareDate(index: index) ? Color.white : Color.blue)
                                             .bold()
                                             .padding(.bottom, 5)
                                         Text(datePickerVM.getDateNumber(index: index))
-                                            .foregroundColor(datePickerVM.compareDate(index: index) ? Color.white : Color.black)
+                                            .foregroundColor(datePickerVM.compareDate(index: index) ? Color.white : Color.blue)
                                             .bold()
                                     }
                                     
@@ -53,7 +53,7 @@ struct HorizontalDatePicker: View {
                                 .frame(height: 70)
                                 .id(index)
                                 .padding()
-                                .background(datePickerVM.compareDate(index: index) ? Color.black : Color.white)
+                                .background(datePickerVM.compareDate(index: index) ? Color.blue : Color.blue.opacity(0.1))
                                 .cornerRadius(50)
                                 .onTapGesture {
                                     datePickerVM.selectDate(index: index)

@@ -7,6 +7,10 @@
 
 import Foundation
 
+protocol MedicineEntryDelegate {
+    func addMedicine()
+}
+
 class MedicineEntryViewModel : ObservableObject {
     @Published var medicineName:String = ""
     @Published var dosage:String = ""
@@ -19,10 +23,19 @@ class MedicineEntryViewModel : ObservableObject {
     @Published var routeOfAdmin:String = ""
     @Published var intake:String = ""
     
+    @Published var showEmptyWarningText:Bool = false
+    
+    var medicineEditedDelegate:MedicineEntryDelegate? = nil
+    
     init(medicine:ServiceProviderMedicine, isNew:Bool) {
         if !isNew {
             mapExistingMedicine(medicine: medicine)
         }
+    }
+    
+    func toggleEmptyWarning () {
+        guard medicineName.isEmpty, dosage.isEmpty else { return }
+        showEmptyWarningText = true
     }
 
     func mapExistingMedicine(medicine:ServiceProviderMedicine) {
@@ -50,5 +63,9 @@ class MedicineEntryViewModel : ObservableObject {
         intake = ""
         routeOfAdmin = ""
         frequency = ""
+    }
+    
+    func makeMedObjAndAdd() {
+        medicineEditedDelegate?.addMedicine()
     }
 }

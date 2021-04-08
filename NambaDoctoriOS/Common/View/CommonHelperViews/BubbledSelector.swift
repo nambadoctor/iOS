@@ -28,6 +28,7 @@ struct BubbledSelector: View {
                 
                 if array.count > 4 {
                     Button (action: {
+                        EndEditingHelper.endEditing()
                         self.limitToFour.toggle()
                     }, label: {
                         Text(limitToFour ? "show more" : "show less")

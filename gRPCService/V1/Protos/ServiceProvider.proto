@@ -51,6 +51,16 @@ message ServiceProviderAddress{
     google.protobuf.StringValue AddressId = 6;
 }
 
+message ServiceProviderAllergyMessage {
+	google.protobuf.StringValue AllergyId = 1;
+
+    google.protobuf.StringValue AllergyName = 2;
+
+    google.protobuf.StringValue AppointmentId = 3;
+
+    google.protobuf.StringValue ServiceRequestId = 4;
+}
+
 message ServiceProviderAppointmentMessage{
 
 	google.protobuf.StringValue AppointmentId = 1;
@@ -217,6 +227,12 @@ message ServiceProviderWorkExperience{
     google.protobuf.StringValue WorkExperienceId = 4;
 }
 
+message ServiceProviderFileInfoMessage{
+	google.protobuf.StringValue FileName = 1;
+	google.protobuf.StringValue FileType = 2;
+	google.protobuf.BytesValue MediaImage = 3;
+}
+
 message ServiceProviderFollowUpMessage{
 
 	google.protobuf.Int64Value CreatedDateTime = 1;
@@ -247,8 +263,14 @@ message ServiceProviderGeneratedSlotListMessage{
 	repeated ServiceProviderGeneratedSlotMessage Slots = 1;
 }
 
-message ServiceProviderMediaMessage{
-	google.protobuf.BytesValue MediaFile = 1;
+message ServiceProviderMedicalHistoryMessage {
+	google.protobuf.StringValue MedicalHistoryId = 1;
+
+    google.protobuf.StringValue MedicalHistoryName = 2;
+
+    google.protobuf.StringValue AppointmentId = 3;
+
+    google.protobuf.StringValue ServiceRequestId = 4;
 }
 
 message ServiceProviderMedicineMessage{
@@ -322,13 +344,7 @@ message ServiceProviderPrescriptionMessage{
 
     repeated ServiceProviderMedicineMessage MedicineList = 5;
 
-	google.protobuf.StringValue PrescriptionImageUrl = 6;
-
-    google.protobuf.BytesValue PrescriptionImageMediaFile = 7;
-
-	google.protobuf.StringValue FileName = 8;
-
-	google.protobuf.StringValue FileType = 9;
+	ServiceProviderFileInfoMessage FileInfo = 6;
 }
 
 message ServiceProviderReportMessage{
@@ -439,6 +455,11 @@ message ServiceProviderServiceRequestMessage{
     google.protobuf.Int64Value LastModifedDate = 10;
 
     google.protobuf.StringValue CustomerId = 11;
+    
+    ServiceProviderAllergyMessage Allergy = 12;
+
+	ServiceProviderMedicalHistoryMessage MedicalHistory = 13;
+
 }
 
 message ServiceProviderServiceRequestRequestMessage{
@@ -518,11 +539,12 @@ service ServiceProviderCustomerWorkerV1 {
 
 
 service ServiceProviderPrescriptionWorkerV1{
+
 	rpc GetPrescription(ServiceProviderServiceRequestRequestMessage) returns (ServiceProviderPrescriptionMessage);
 
 	rpc SetPrescription(ServiceProviderPrescriptionMessage) returns (IdMessage);
 
-	rpc DownloadPrescriptionMedia (IdMessage) returns (ServiceProviderMediaMessage);
+	rpc DownloadPrescriptionMedia (IdMessage) returns (StringMessage);
 }
 
 
@@ -537,7 +559,7 @@ service ServiceProviderReportWorkerV1{
 
 	rpc SetReport(ServiceProviderReportUploadMessage) returns (IdMessage);
 
-	rpc DownloadReportMedia(IdMessage) returns (ServiceProviderMediaMessage);
+	rpc DownloadReportMedia(IdMessage) returns (StringMessage);
 }
 
 

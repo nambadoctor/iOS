@@ -38,19 +38,20 @@ class IntermediateAppointmentViewModel : ObservableObject {
          updateAppointmentStatus:UpdateAppointmentStatusProtocol = UpdateAppointmentStatusHelper(),
          doctorAlertHelper:DoctorAlertHelpersProtocol = DoctorAlertHelpers()) {
         self.appointment = appointment
-        
-        //main view model inits
-        self.serviceRequestVM = ServiceRequestViewModel(appointment: appointment)
-        self.medicineVM = MedicineViewModel(appointment: appointment)
-        self.patientInfoViewModel = PatientInfoViewModel(appointment: appointment)
 
         self.updateAppointmentStatus = updateAppointmentStatus
         self.doctorAlertHelper = doctorAlertHelper
         self.docNotifHelper = DocNotifHelpers(appointment: appointment)
 
+        //main view model inits
+        self.medicineVM = MedicineViewModel(appointment: appointment)
+        self.patientInfoViewModel = PatientInfoViewModel(appointment: appointment)
+        self.serviceRequestVM = ServiceRequestViewModel(appointment: appointment)
+        
         //helper view model inits
         self.modifyFeeViewModel = ModifyFeeViewModel(fee: appointment.serviceFee.clean)
         self.doctorTwilioManagerViewModel = DoctorTwilioViewModel(appointment: appointment)
+
         doctorTwilioManagerViewModel.twilioDelegate = self
         
         initChecks()

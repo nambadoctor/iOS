@@ -8,6 +8,11 @@
 import Foundation
 import SwiftUI
 
+
+protocol LoadReportsWithServiceRequestDelegate {
+    func gotServiceRequestId(serviceRequestId:String)
+}
+
 class ServiceRequestViewModel: ObservableObject {
     var appointment:ServiceProviderAppointment
     
@@ -17,6 +22,8 @@ class ServiceRequestViewModel: ObservableObject {
     @Published var navigateToReviewPrescription:Bool = false
 
     @Published var investigationsViewModel:InvestigationsViewModel = InvestigationsViewModel()
+    
+    var gotServiceRequestDelegate:LoadReportsWithServiceRequestDelegate? = nil
     
     private var retrieveServiceRequesthelper:ServiceRequestGetSetCallProtocol
     private var docSheetHelper:DoctorSheetHelpers = DoctorSheetHelpers()
@@ -55,6 +62,7 @@ class ServiceRequestViewModel: ObservableObject {
     func retrieveServiceRequest() {
         retrieveServiceRequesthelper.getServiceRequest(appointmentId: self.appointment.appointmentID, serviceRequestId: appointment.serviceRequestID, customerId: self.appointment.customerID) { (serviceRequest) in
             if serviceRequest != nil {
+                self.gotServiceRequestDelegate?.gotServiceRequestId(serviceRequestId: serviceRequest!.serviceRequestID)
                 self.mapPrescriptionValues(serviceRequest: serviceRequest!)
                 CommonDefaultModifiers.hideLoader()
             }

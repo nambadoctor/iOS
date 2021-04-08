@@ -50,7 +50,7 @@ struct AppointmentCard: View {
                         .bold()
                     
                     if AppointmentVM.consultationStarted {
-                        Text("Consultation Started")
+                        Text("Consultation In Progress...")
                             .font(.system(size: 15))
                             .foregroundColor(Color.gray)
                     } else if AppointmentVM.consultationFinished {

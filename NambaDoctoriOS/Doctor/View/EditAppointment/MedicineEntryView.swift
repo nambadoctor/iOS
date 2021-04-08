@@ -13,6 +13,7 @@ struct MedicineEntryView: View {
     var body: some View {
         ScrollView {
             VStack (alignment: .leading) {
+                
                 HStack {
                     Spacer()
                     Button {
@@ -24,6 +25,7 @@ struct MedicineEntryView: View {
                             .foregroundColor(.blue)
                     }
                 }
+                
                 Text("Medicine Name:")
                     .font(.footnote)
                     .foregroundColor(Color.black.opacity(0.4))
@@ -44,15 +46,38 @@ struct MedicineEntryView: View {
                 
                 BubbledSelector(title: "Frequency",array: medicineInTakeTimings, selected: $medicineVM.medicineEntryVM.frequency, limitToFour: checkToLimitTo4(arr: medicineInTakeTimings))
                 
-                LargeButton(title: "Add Medicine") {
-                    medicineVM.makeMedicineObjAndAdd()
-                }
+                MedEntryAddButton(medicineEntryVM: medicineVM.medicineEntryVM)
+                
             }
         }
+        .onTapGesture { EndEditingHelper.endEditing() }
         .padding()
     }
     
     func checkToLimitTo4(arr:[String]) -> Bool {
         return arr.count > 4 ? true : false
+    }
+}
+
+struct MedEntryAddButton : View {
+    @ObservedObject var medicineEntryVM:MedicineEntryViewModel
+    
+    var body: some View {
+        VStack {
+            if medicineEntryVM.dosage.isEmpty || medicineEntryVM.medicineName.isEmpty {
+                if medicineEntryVM.showEmptyWarningText {
+                    Text("PLEASE FILL MEDICINE NAME AND DOSAGE")
+                        .font(.footnote)
+                        .foregroundColor(Color.red.opacity(0.5))
+                }
+                LargeButton(title: "Add Medicine", disabled: false, backgroundColor: .gray, foregroundColor: .white) {
+                    medicineEntryVM.toggleEmptyWarning()
+                }
+            } else {
+                LargeButton(title: "Add Medicine") {
+                    medicineEntryVM.makeMedObjAndAdd()
+                }
+            }
+        }
     }
 }

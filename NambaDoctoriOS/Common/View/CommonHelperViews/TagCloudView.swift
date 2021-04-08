@@ -141,6 +141,7 @@ struct TagCloudView: View {
             .cornerRadius(5)
             .onTapGesture {
                 selectedTag = text
+                EndEditingHelper.endEditing()
             }
     }
 

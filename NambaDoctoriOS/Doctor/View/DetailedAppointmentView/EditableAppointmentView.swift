@@ -23,7 +23,7 @@ struct EditableAppointmentView: View {
             }
         }
         .background(Color.gray.opacity(0.3))
-        .navigationBarItems(trailing: saveButton)
+        .navigationBarItems(trailing: Text(""))
         .alert(isPresented: $intermediateVM.showOnSuccessAlert, content: {
             Alert(title: Text("Prescription Sent Successfully"), dismissButton: .default(Text("Ok"), action: { intermediateVM.takeToView() }))
         })
@@ -37,9 +37,12 @@ struct EditableAppointmentView: View {
             
             VStack {
                 header
-                Divider().background(Color.blue.opacity(0.4))
                 
-                actionButtons
+                
+                if !intermediateVM.appointmentFinished {
+                    Divider().background(Color.blue.opacity(0.4))
+                    actionButtons
+                }
             }
             .background(Color.white)
             .border(Color.blue, width: 1)
@@ -83,27 +86,37 @@ struct EditableAppointmentView: View {
                 Spacer()
             }
             
-            sendToPatient
+            HStack {
+                saveButton
+                sendToPatient
+            }
+            .padding()
+            .background(Color.white)
         }
     }
 
     var saveButton : some View {
-        Button(action: {
-            self.toggleNavBarProgressView.toggle()
-            intermediateVM.savePrescription { _ in
+        VStack {
+            Button {
                 self.toggleNavBarProgressView.toggle()
-            }
-        }, label: {
-            if !intermediateVM.appointmentFinished {
-                HStack {
-                    if toggleNavBarProgressView {
-                        ProgressView()
-                            .progressViewStyle(CircularProgressViewStyle())
-                    }
-                    Text("Save")
+                intermediateVM.savePrescription { _ in
+                    self.toggleNavBarProgressView.toggle()
                 }
+            } label: {
+                HStack {
+                    Spacer()
+                    Text("Save For Later")
+                        .font(.system(size: 22))
+                        .bold()
+                        .foregroundColor(.white)
+                        .multilineTextAlignment(.center)
+                    Spacer()
+                }
+                .padding()
+                .background(Color.blue)
+                .cornerRadius(10)
             }
-        })
+        }
     }
     
     var sendToPatient : some View {
@@ -114,16 +127,16 @@ struct EditableAppointmentView: View {
             } label: {
                 HStack {
                     Spacer()
-                    Text(intermediateVM.appointmentFinished ? "Amend and Send to Patient" : "Send to Patient")
+                    Text(intermediateVM.appointmentFinished ? "Amend and Submit" : "Save and Submit")
                         .font(.system(size: 22))
                         .bold()
                         .foregroundColor(.white)
+                        .multilineTextAlignment(.center)
                     Spacer()
                 }
                 .padding()
                 .background(Color.green)
                 .cornerRadius(10)
-                .padding()
             }
         }
     }
@@ -150,48 +163,45 @@ struct EditableAppointmentView: View {
     
     var actionButtons : some View {
         HStack {
-            if !intermediateVM.appointmentFinished {
-                
-                if !intermediateVM.appointmentStarted {
-                    Button(action: {
-                        intermediateVM.cancelAppointment { success in
-                            if success {
-                                killView()
-                            }
-                        }
-                    }, label: {
-                        Text("Cancel")
-                            .padding([.top, .bottom], 7)
-                            .padding([.leading, .trailing], 10)
-                            .overlay(RoundedRectangle(cornerRadius: 6)
-                                        .stroke(Color.blue, lineWidth: 2))
-                    })
-                }
-
-                Spacer()
-                
+            
+            if !intermediateVM.appointmentStarted {
                 Button(action: {
-                    intermediateVM.patientInfoViewModel.callPatient()
+                    intermediateVM.cancelAppointment { success in
+                        if success {
+                            killView()
+                        }
+                    }
                 }, label: {
-                    HStack (alignment: .center) {
-                        Image("phone")
+                    Text("Cancel")
+                        .padding([.top, .bottom], 7)
+                        .padding([.leading, .trailing], 10)
+                        .overlay(RoundedRectangle(cornerRadius: 6)
+                                    .stroke(Color.blue, lineWidth: 2))
+                })
+            }
+
+            Spacer()
+            
+            Button(action: {
+                intermediateVM.patientInfoViewModel.callPatient()
+            }, label: {
+                HStack (alignment: .center) {
+                    Image("phone")
+                        .scaleEffect(1.5)
+                }
+            })
+            
+            Spacer()
+            
+            if !intermediateVM.appointmentFinished {
+                Button(action: {
+                    intermediateVM.startConsultation()
+                }, label: {
+                    VStack (alignment: .center) {
+                        Image(systemName: "video")
                             .scaleEffect(1.5)
                     }
                 })
-                
-                Spacer()
-                
-                if !intermediateVM.appointmentFinished {
-                    Button(action: {
-                        intermediateVM.startConsultation()
-                    }, label: {
-                        VStack (alignment: .center) {
-                            Image(systemName: "video")
-                                .scaleEffect(1.5)
-                        }
-                    })
-                }
-
             }
         }
         .padding([.leading, .trailing], 50)

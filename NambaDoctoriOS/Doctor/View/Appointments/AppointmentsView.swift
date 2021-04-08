@@ -14,6 +14,7 @@ struct AppointmentsView: View {
     var body: some View {
         VStack {
             HorizontalDatePicker(datePickerVM: doctorViewModel.datePickerVM)
+                .background(Color.blue.opacity(0.1))
             ScrollView {
                 if self.doctorViewModel.hasAppointments {
                     ForEach(doctorViewModel.appointments, id: \.appointmentID) { appointment in

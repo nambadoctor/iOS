@@ -15,7 +15,7 @@ class MedicineViewModel: ObservableObject {
     @Published var showLocalAlert:Bool = false
     
     @Published var showMedicineEntrySheet:Bool = false
-    @Published var medicineEntryVM:MedicineEntryViewModel = MedicineEntryViewModel(medicine: MakeEmptyMedicine(), isNew: true)
+    @Published var medicineEntryVM:MedicineEntryViewModel!
     
     @Published var imagePickerVM:ImagePickerViewModel = ImagePickerViewModel()
     @Published var localImageSelected:Bool = false
@@ -39,12 +39,15 @@ class MedicineViewModel: ObservableObject {
         self.retrievePrescriptionHelper = retrievePrescriptionHelper
         self.prescriptionServiceCalls = prescriptionServiceCalls
         self.prescription = MakeEmptyPrescription(appointment: appointment)
-        
+
         self.imagePickerVM.imagePickerDelegate = self
+        
+        self.medicineEntryVM = MedicineEntryViewModel(medicine: MakeEmptyMedicine(), isNew: true)
+        self.medicineEntryVM.medicineEditedDelegate = self
         
         self.retrievePrescriptions()
     }
-    
+
     func uploadManually() {
         self.medicineEntryVM = MedicineEntryViewModel(medicine: MakeEmptyMedicine(), isNew: true)
         self.showMedicineEntrySheet = true
@@ -147,11 +150,19 @@ class MedicineViewModel: ObservableObject {
     }
 }
 
+extension MedicineViewModel : MedicineEntryDelegate {
+    func addMedicine() {
+        print("REACHING HERE")
+        self.makeMedicineObjAndAdd()
+    }
+}
+
 extension MedicineViewModel : ImagePickedDelegate {
     func imageSelected() {
+        self.imageLoader = nil
         self.localImageSelected = true
     }
-    
+
     func removeSelectImage () {
         self.imagePickerVM.image = nil
         self.localImageSelected = false

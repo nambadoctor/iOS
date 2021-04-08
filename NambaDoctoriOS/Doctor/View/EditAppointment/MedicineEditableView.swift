@@ -62,7 +62,6 @@ struct MedicineEditableView: View {
                                 .foregroundColor(Color.blue)
                         }
                     }
-                    
                 }
                 .padding()
                 .background(Color.green.opacity(0.1))
@@ -81,9 +80,6 @@ struct MedicineEditableView: View {
                     }
                 } else if medicineVM.localImageSelected {
                     LocalPickedImageDisplayView(imagePickerVM: medicineVM.imagePickerVM)
-                    CloseButton {
-                        self.medicineVM.removeSelectImage()
-                    }
                 }
             }
     
@@ -98,11 +94,20 @@ struct MedicineEditableView: View {
                         .environmentObject(medicineVM)
                 }
                 
-                LargeButton(title: "Upload Image",
-                            backgroundColor: Color.blue) {
-                    medicineVM.imagePickerVM.showActionSheet()
+                if medicineVM.localImageSelected {
+                    LargeButton(title: "Remove Image",
+                                backgroundColor: Color.red.opacity(0.6)) {
+                        medicineVM.localImageSelected = false
+                        medicineVM.imagePickerVM.removeImage()
+                    }
+                    .modifier(ImagePickerModifier(imagePickerVM: self.medicineVM.imagePickerVM))
+                } else {
+                    LargeButton(title: "Upload Image",
+                                backgroundColor: Color.blue) {
+                        medicineVM.imagePickerVM.showActionSheet()
+                    }
+                    .modifier(ImagePickerModifier(imagePickerVM: self.medicineVM.imagePickerVM))
                 }
-                .modifier(ImagePickerModifier(imagePickerVM: self.medicineVM.imagePickerVM))
             }
         }
     }
