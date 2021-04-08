@@ -24,10 +24,10 @@ class ServiceProviderServiceRequestMapper {
             allergy: ServiceProviderCustomerAllergyMapper.grpcAllergyToLocal(allergyMessage: serviceRequest.allergy),
             medicalHistory: ServiceProviderCustomerMedicalHistoryMapper.grpcMedicalHistoryToLocal(medicalHistoryMessage: serviceRequest.medicalHistory))
     }
-    
+
     func localServiceRequestToGrpc(serviceRequest:ServiceProviderServiceRequest) -> Nd_V1_ServiceProviderServiceRequestMessage {
         return Nd_V1_ServiceProviderServiceRequestMessage.with{
-            $0.serviceRequestID = serviceRequest.serviceRequestID.toProto
+            $0.serviceRequestID =  ""//serviceRequest.serviceRequestID.toProto
             $0.reason = serviceRequest.reason.toProto
             $0.serviceProviderID = serviceRequest.serviceProviderID.toProto
             $0.appointmentID = serviceRequest.appointmentID.toProto

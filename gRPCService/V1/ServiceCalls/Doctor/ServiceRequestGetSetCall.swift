@@ -32,11 +32,12 @@ class ServiceRequestGetSetCall : ServiceRequestGetSetCallProtocol {
         }
 
         let getServiceRequestObj = serviceRequestClient.getServiceRequest(request, callOptions: callOptions)
-        
+
         DispatchQueue.global().async {
             do {
                 let response = try getServiceRequestObj.response.wait()
                 let serviceRequest = self.serviceRequestMapper.grpcServiceRequestToLocal(serviceRequest: response)
+                print(serviceRequest)
                 print("ServiceRequestClient received: \(response)")
                 DispatchQueue.main.async {
                     completion(serviceRequest)
@@ -46,7 +47,7 @@ class ServiceRequestGetSetCall : ServiceRequestGetSetCallProtocol {
             }
         }
     }
-    
+
     func setServiceRequest (serviceRequest:ServiceProviderServiceRequest,
                             completion: @escaping ((_ responseId:String?)->())) {
         let channel = ChannelManager.sharedChannelManager.getChannel()
@@ -57,7 +58,7 @@ class ServiceRequestGetSetCall : ServiceRequestGetSetCallProtocol {
         let request = serviceRequestMapper.localServiceRequestToGrpc(serviceRequest: serviceRequest)
 
         let getServiceRequestObj = serviceRequestClient.setServiceRequest(request, callOptions: callOptions)
-        
+
         DispatchQueue.global().async {
             do {
                 let response = try getServiceRequestObj.response.wait()
