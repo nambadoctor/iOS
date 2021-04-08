@@ -20,7 +20,7 @@ class ServiceProviderPrescriptionMapper {
     
     func localPrescriptionToGrpc (prescription: ServiceProviderPrescription) -> Nd_V1_ServiceProviderPrescriptionMessage {
         return Nd_V1_ServiceProviderPrescriptionMessage.with {
-            $0.prescriptionID = prescription.prescriptionID.toProto
+            $0.prescriptionID = ""//prescription.prescriptionID.toProto
             $0.serviceRequestID = prescription.serviceRequestID.toProto
             $0.customerID = prescription.customerID.toProto
             $0.createdDateTime = prescription.createdDateTime.toProto
