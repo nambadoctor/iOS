@@ -96,6 +96,7 @@
 		172FA707261F10B800D14545 /* ServiceProviderCustomerMedicalHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172FA706261F10B800D14545 /* ServiceProviderCustomerMedicalHistory.swift */; };
 		172FA70C261F125600D14545 /* ServiceProviderCustomerMedicalHistoryMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172FA70B261F125600D14545 /* ServiceProviderCustomerMedicalHistoryMapper.swift */; };
 		172FA711261F126800D14545 /* ServiceProviderCustomerAllergyMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172FA710261F126800D14545 /* ServiceProviderCustomerAllergyMapper.swift */; };
+		172FA7192620F2BE00D14545 /* LetterOnColoredCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172FA7182620F2BE00D14545 /* LetterOnColoredCircle.swift */; };
 		173A230725CAFA850086342A /* GRPC in Frameworks */ = {isa = PBXBuildFile; productRef = 173A230625CAFA850086342A /* GRPC */; };
 		173A230D25CAFB0F0086342A /* NIO in Frameworks */ = {isa = PBXBuildFile; productRef = 173A230C25CAFB0F0086342A /* NIO */; };
 		173A231225CAFE2B0086342A /* ChannelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173A231125CAFE2B0086342A /* ChannelManager.swift */; };
@@ -361,6 +362,7 @@
 		172FA706261F10B800D14545 /* ServiceProviderCustomerMedicalHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderCustomerMedicalHistory.swift; sourceTree = "<group>"; };
 		172FA70B261F125600D14545 /* ServiceProviderCustomerMedicalHistoryMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderCustomerMedicalHistoryMapper.swift; sourceTree = "<group>"; };
 		172FA710261F126800D14545 /* ServiceProviderCustomerAllergyMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderCustomerAllergyMapper.swift; sourceTree = "<group>"; };
+		172FA7182620F2BE00D14545 /* LetterOnColoredCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterOnColoredCircle.swift; sourceTree = "<group>"; };
 		173A231125CAFE2B0086342A /* ChannelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelManager.swift; sourceTree = "<group>"; };
 		173A231A25CBB8F20086342A /* FindUserTypeViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindUserTypeViewModelProtocol.swift; sourceTree = "<group>"; };
 		17424F1D25BA0C2B00523B94 /* FinishedAppointmentsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedAppointmentsViewModelTests.swift; sourceTree = "<group>"; };
@@ -621,6 +623,7 @@
 		1716E2A6261AF84100568837 /* ViewAppointment */ = {
 			isa = PBXGroup;
 			children = (
+				1742515325BCC33200523B94 /* ViewAppointment.swift */,
 				1716E2A7261AF85100568837 /* ServiceRequestView.swift */,
 				1716E2AC261AF8C900568837 /* InvestigationsView.swift */,
 				1716E2B1261AF92A00568837 /* MedicineView.swift */,
@@ -862,16 +865,9 @@
 				17424FE425BAD1B100523B94 /* SideBySideCheckBox.swift */,
 				17626CAC25D5BAC200C36A99 /* LoadingScreen.swift */,
 				17EC7674260EEBB20002BA75 /* BubbledSelector.swift */,
+				172FA7182620F2BE00D14545 /* LetterOnColoredCircle.swift */,
 			);
 			path = CommonHelperViews;
-			sourceTree = "<group>";
-		};
-		1742514725BCC31300523B94 /* ViewPrescription */ = {
-			isa = PBXGroup;
-			children = (
-				1742515325BCC33200523B94 /* ViewAppointment.swift */,
-			);
-			path = ViewPrescription;
 			sourceTree = "<group>";
 		};
 		1742523425BD987500523B94 /* PatientInfo */ = {
@@ -1110,7 +1106,6 @@
 				17AE6D1525E24B0B00B18292 /* DoctorsPatients */,
 				17E370A025BF196C0004C965 /* DoctorTwilioManager */,
 				1742523425BD987500523B94 /* PatientInfo */,
-				1742514725BCC31300523B94 /* ViewPrescription */,
 				17B5D13425B759EC009D6A42 /* Appointments */,
 				1785A56F261A353F009667D1 /* IntermediateView.swift */,
 			);
@@ -1722,6 +1717,7 @@
 				17EC75F7260CEFAB0002BA75 /* InvestigationsEntryView.swift in Sources */,
 				171648682609C0CE00BB5B5A /* RoundedCornerHelper.swift in Sources */,
 				17626E0525DA23E000C36A99 /* PinchToZoom.swift in Sources */,
+				172FA7192620F2BE00D14545 /* LetterOnColoredCircle.swift in Sources */,
 				1716472F2603226A00BB5B5A /* ServiceProviderMedicineMapper.swift in Sources */,
 				171647732603473000BB5B5A /* ServiceRequestGetSetCall.swift in Sources */,
 				172B851025AEE46700C6B035 /* PhoneVerificationview.swift in Sources */,

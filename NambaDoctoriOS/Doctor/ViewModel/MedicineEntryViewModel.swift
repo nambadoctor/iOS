@@ -27,10 +27,11 @@ class MedicineEntryViewModel : ObservableObject {
     
     var medicineEditedDelegate:MedicineEntryDelegate? = nil
     
-    init(medicine:ServiceProviderMedicine, isNew:Bool) {
+    init(medicine:ServiceProviderMedicine, isNew:Bool, medicineEditedDelegate:MedicineEntryDelegate) {
         if !isNew {
             mapExistingMedicine(medicine: medicine)
         }
+        self.medicineEditedDelegate = medicineEditedDelegate
     }
     
     func toggleEmptyWarning () {
@@ -66,6 +67,7 @@ class MedicineEntryViewModel : ObservableObject {
     }
     
     func makeMedObjAndAdd() {
+        print("REACHING INITIAL FUNCTION")
         medicineEditedDelegate?.addMedicine()
     }
 }

@@ -11,7 +11,7 @@ struct InvestigationsView: View {
     @EnvironmentObject var investigationsVM:InvestigationsViewModel
 
     var body: some View {
-        VStack {
+        VStack (alignment: .leading) {
             
             Text("Investigations")
                 .font(.footnote)
@@ -23,8 +23,8 @@ struct InvestigationsView: View {
                     if !investigationsVM.investigations[i].isEmpty {
                         HStack {
                             Text("\(self.investigationsVM.investigations[i])")
-                            Divider()
                         }
+                        Divider()
                     }
                 }
             } else {

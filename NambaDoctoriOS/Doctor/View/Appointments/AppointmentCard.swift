@@ -28,17 +28,9 @@ struct AppointmentCard: View {
             HStack {
                 
                 if AppointmentVM.consultationStarted {
-                    Text(AppointmentVM.firstLetterOfCustomer)
-                        .font(.system(size: 27))
-                        .foregroundColor(.white)
-                        .frame(width: 55, height: 55)
-                        .background(Circle().fill(Color.green))
+                    LetterOnColoredCircle(word: AppointmentVM.appointment.customerName, color: .green)
                 } else {
-                    Text(AppointmentVM.firstLetterOfCustomer)
-                        .font(.system(size: 27))
-                        .foregroundColor(.white)
-                        .frame(width: 55, height: 55)
-                        .background(Circle().fill(AppointmentVM.consultationFinished ? Color.gray : Color.blue))
+                    LetterOnColoredCircle(word: AppointmentVM.appointment.customerName, color: AppointmentVM.consultationFinished ? Color.gray : Color.blue)
                 }
                 
                 VStack (alignment: .leading, spacing: 5) {

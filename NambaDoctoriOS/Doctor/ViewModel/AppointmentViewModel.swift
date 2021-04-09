@@ -32,10 +32,6 @@ class AppointmentViewModel: ObservableObject {
         checkIfAppointmentFinished()
     }
 
-    var firstLetterOfCustomer : String {
-        return appointment.customerName[0]
-    }
-
     var LocalTime:String {
         return Helpers.getTimeFromTimeStamp(timeStamp: self.appointment.scheduledAppointmentStartTime)
     }
@@ -64,6 +60,17 @@ class AppointmentViewModel: ObservableObject {
                     appointment.status == ConsultStateK.FinishedAppointment.rawValue
         {
             self.consultationFinished = true
+        }
+    }
+    
+    func getLetterColor() -> Color {
+        if appointment.status == ConsultStateK.StartedConsultation.rawValue {
+            return .green
+        } else if appointment.status == ConsultStateK.Finished.rawValue ||
+                    appointment.status == ConsultStateK.FinishedAppointment.rawValue {
+            return .gray
+        } else {
+            return .blue
         }
     }
 

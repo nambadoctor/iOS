@@ -42,20 +42,20 @@ class MedicineViewModel: ObservableObject {
 
         self.imagePickerVM.imagePickerDelegate = self
         
-        self.medicineEntryVM = MedicineEntryViewModel(medicine: MakeEmptyMedicine(), isNew: true)
+        self.medicineEntryVM = MedicineEntryViewModel(medicine: MakeEmptyMedicine(), isNew: true, medicineEditedDelegate: self)
         self.medicineEntryVM.medicineEditedDelegate = self
         
         self.retrievePrescriptions()
     }
 
     func uploadManually() {
-        self.medicineEntryVM = MedicineEntryViewModel(medicine: MakeEmptyMedicine(), isNew: true)
+        self.medicineEntryVM = MedicineEntryViewModel(medicine: MakeEmptyMedicine(), isNew: true, medicineEditedDelegate: self)
         self.showMedicineEntrySheet = true
     }
     
     func editPrescription (medicine:ServiceProviderMedicine) {
         medicineBeingEdited = checkIfPrescriptionExists(medicine: medicine)
-        self.medicineEntryVM = MedicineEntryViewModel(medicine: medicine, isNew: false)
+        self.medicineEntryVM = MedicineEntryViewModel(medicine: medicine, isNew: false, medicineEditedDelegate: self)
         self.showMedicineEntrySheet = true
     }
     

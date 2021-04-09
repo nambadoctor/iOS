@@ -45,7 +45,7 @@ class PrescriptionGetSetServiceCall : PrescriptionGetSetServiceCallProtocol {
             }
         }
     }
-    
+
     func setPrescription(prescription:ServiceProviderPrescription, _ completion : @escaping ((_ successfull:Bool)->())) {
                 
         let channel = ChannelManager.sharedChannelManager.getChannel()

@@ -56,7 +56,6 @@ struct EditableAppointmentView: View {
                 ModifyFeeView(modifyFeeVM: self.intermediateVM.modifyFeeViewModel)
                     .padding()
                     .background(Color.white)
-                
             }
 
             HStack {
@@ -78,8 +77,6 @@ struct EditableAppointmentView: View {
                     .background(Color.white)
                 
                 ServiceRequestEditableView()
-                    .padding()
-                    .background(Color.white)
                 
                 InvestigationsEditableView()
                     .padding()
@@ -123,7 +120,7 @@ struct EditableAppointmentView: View {
     var header : some View {
         VStack (alignment: .leading) {
             Text("Appointment On: \(intermediateVM.appointmentScheduledStartTime)")
-                .foregroundColor(.blue)
+                .foregroundColor(.gray)
                 .bold()
             HStack (alignment: .top) {
                 Image("person.crop.circle.fill")

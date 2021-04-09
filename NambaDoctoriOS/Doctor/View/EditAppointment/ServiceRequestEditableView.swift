@@ -13,7 +13,7 @@ struct ServiceRequestEditableView: View {
     var body: some View {
         VStack (alignment: .leading) {
             
-            Group {
+            VStack (alignment: .leading) {
                 Text("Patient Allergies:")
                     .font(.footnote)
                     .foregroundColor(Color.black.opacity(0.4))
@@ -27,32 +27,37 @@ struct ServiceRequestEditableView: View {
                     .bold()
 
                 ExpandingTextView(text: self.$serviceRequestVM.serviceRequest.medicalHistory.MedicalHistoryName)
-
-                Divider()
             }
+            .padding()
+            .background(Color.white)
             
-            Text("EXAMINATION:")
-                .font(.footnote)
-                .foregroundColor(Color.black.opacity(0.4))
-                .bold()
+            VStack (alignment: .leading) {
+                Text("EXAMINATION:")
+                    .font(.footnote)
+                    .foregroundColor(Color.black.opacity(0.4))
+                    .bold()
 
-            ExpandingTextView(text: self.$serviceRequestVM.serviceRequest.examination)
+                ExpandingTextView(text: self.$serviceRequestVM.serviceRequest.examination)
 
-            Text("DIAGNOSIS:")
-                .font(.footnote)
-                .foregroundColor(Color.black.opacity(0.4))
-                .bold()
-            ExpandingTextView(text: $serviceRequestVM.serviceRequest.diagnosis.name)
+                Text("DIAGNOSIS:")
+                    .font(.footnote)
+                    .foregroundColor(Color.black.opacity(0.4))
+                    .bold()
+                ExpandingTextView(text: $serviceRequestVM.serviceRequest.diagnosis.name)
 
-            SideBySideCheckBox(isChecked: $serviceRequestVM.serviceRequest.diagnosis.type, title1: "Provisional", title2: "Definitive")
-                .padding(.bottom)
+                SideBySideCheckBox(isChecked: $serviceRequestVM.serviceRequest.diagnosis.type, title1: "Provisional", title2: "Definitive")
+                    .padding(.bottom)
 
-            Text("ADVICE FOR PATIENT:")
-                .font(.footnote)
-                .foregroundColor(Color.black.opacity(0.4))
-                .bold()
-            ExpandingTextView(text: $serviceRequestVM.serviceRequest.advice)
+                Text("ADVICE FOR PATIENT:")
+                    .font(.footnote)
+                    .foregroundColor(Color.black.opacity(0.4))
+                    .bold()
+                ExpandingTextView(text: $serviceRequestVM.serviceRequest.advice)
 
+            }
+            .padding()
+            .background(Color.white)
+            
         }.padding(.bottom)
     }
 }

@@ -42,22 +42,22 @@ struct ViewAppointment: View {
                     
                     Text("Fee: ₹\(String(intermediateVM.appointment.serviceFee.clean))")
                     
-                    Text("Reason: \(intermediateVM.serviceRequestVM.serviceRequest.reason)")
+                    ServiceRequestOverViewDetails(serviceRequestVM: intermediateVM.serviceRequestVM)
                 }
                 
                 Spacer()
             }
         }.padding()
     }
-    
+
     var details : some View {
         VStack (alignment: .leading, spacing: 5) {
-            MedicineView()
             ServiceRequestView()
             InvestigationsView()
+            MedicineView()
         }
     }
-    
+
     var endAndAmendButton : some View {
         Button {
             intermediateVM.takeToDetailed()
