@@ -110,7 +110,7 @@ class MedicineViewModel: ObservableObject {
     
     func downloadPrescription () {
         hasNoMedicineOrImage = false
-        
+
         func ifmedListAlsoEmptyCheck () {
             if self.prescription.medicineList.isEmpty {
                 self.hasNoMedicineOrImage = true
