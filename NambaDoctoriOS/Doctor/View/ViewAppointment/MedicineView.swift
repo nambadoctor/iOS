@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MedicineView: View {
     @EnvironmentObject var medicineVM:MedicineViewModel
-    
+
     var body: some View {
         VStack (alignment: .leading) {
             Text("Prescriptions")

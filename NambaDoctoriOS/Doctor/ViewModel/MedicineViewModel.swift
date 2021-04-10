@@ -109,6 +109,7 @@ class MedicineViewModel: ObservableObject {
     }
     
     func downloadPrescription () {
+        hasNoMedicineOrImage = false
         
         func ifmedListAlsoEmptyCheck () {
             if self.prescription.medicineList.isEmpty {
@@ -145,6 +146,8 @@ class MedicineViewModel: ObservableObject {
 
         self.prescription.createdDateTime = Date().millisecondsSince1970
         prescriptionServiceCalls.setPrescription(prescription: self.prescription) { (response) in
+            self.imageLoader = nil
+            //self.imagePickerVM = nil
             completion(response)
         }
     }
@@ -152,7 +155,6 @@ class MedicineViewModel: ObservableObject {
 
 extension MedicineViewModel : MedicineEntryDelegate {
     func addMedicine() {
-        print("REACHING HERE")
         self.makeMedicineObjAndAdd()
     }
 }
