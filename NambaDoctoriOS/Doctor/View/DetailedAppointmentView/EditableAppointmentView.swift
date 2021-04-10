@@ -71,11 +71,11 @@ struct EditableAppointmentView: View {
             .background(Color.white)
             
             if !intermediateVM.collapseExtraDetailEntry {
-                
+
                 PatientInfoEditableView()
                     .padding()
                     .background(Color.white)
-                
+
                 ServiceRequestEditableView()
                 
                 InvestigationsEditableView()
@@ -84,7 +84,7 @@ struct EditableAppointmentView: View {
                 
                 Spacer()
             }
-            
+
             HStack {
                 saveButton
                 sendToPatient
@@ -106,7 +106,7 @@ struct EditableAppointmentView: View {
             }
         }
     }
-    
+
     var sendToPatient : some View {
         VStack {
             LargeButton(title: intermediateVM.appointmentFinished ? "Amend and Submit" : "Save and Submit",
@@ -116,7 +116,7 @@ struct EditableAppointmentView: View {
             }
         }
     }
-    
+
     var header : some View {
         VStack (alignment: .leading) {
             VStack {
@@ -124,10 +124,10 @@ struct EditableAppointmentView: View {
                     .foregroundColor(.gray)
                     .bold()
             }
-            
+
             Divider()
             HStack (alignment: .top) {
-                
+
                 if intermediateVM.appointmentStarted {
                     LetterOnColoredCircle(word: intermediateVM.appointment.customerName, color: .green)
                         .padding(.vertical)
@@ -146,10 +146,10 @@ struct EditableAppointmentView: View {
             }
         }.padding()
     }
-    
+
     var actionButtons : some View {
         HStack {
-            
+
             if !intermediateVM.appointmentStarted {
                 Button(action: {
                     intermediateVM.cancelAppointment { success in
@@ -167,7 +167,7 @@ struct EditableAppointmentView: View {
             }
 
             Spacer()
-            
+
             Button(action: {
                 intermediateVM.patientInfoViewModel.callPatient()
             }, label: {
@@ -176,9 +176,9 @@ struct EditableAppointmentView: View {
                         .scaleEffect(1.5)
                 }
             })
-            
+
             Spacer()
-            
+
             if !intermediateVM.appointmentFinished {
                 Button(action: {
                     intermediateVM.startConsultation()
