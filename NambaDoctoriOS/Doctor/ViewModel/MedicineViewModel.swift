@@ -107,7 +107,7 @@ class MedicineViewModel: ObservableObject {
             CommonDefaultModifiers.hideLoader()
         }
     }
-    
+
     func downloadPrescription () {
         hasNoMedicineOrImage = false
 

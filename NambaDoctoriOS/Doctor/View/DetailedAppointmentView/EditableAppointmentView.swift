@@ -119,13 +119,23 @@ struct EditableAppointmentView: View {
     
     var header : some View {
         VStack (alignment: .leading) {
-            Text("Appointment On: \(intermediateVM.appointmentScheduledStartTime)")
-                .foregroundColor(.gray)
-                .bold()
+            VStack {
+                Text("Appointment On: \(intermediateVM.appointmentScheduledStartTime)")
+                    .foregroundColor(.gray)
+                    .bold()
+            }
+            
+            Divider()
             HStack (alignment: .top) {
-                Image("person.crop.circle.fill")
-                    .resizable()
-                    .frame(width: 70, height: 70)
+                
+                if intermediateVM.appointmentStarted {
+                    LetterOnColoredCircle(word: intermediateVM.appointment.customerName, color: .green)
+                        .padding(.vertical)
+                } else {
+                    LetterOnColoredCircle(word: intermediateVM.appointment.customerName, color: intermediateVM.appointmentFinished ? Color.gray : Color.blue)
+                        .padding(.vertical)
+                }
+
                 VStack (alignment: .leading, spacing: 5) {
                     Text(intermediateVM.customerName)
                     PatientOverViewDetails(patientInfoVM: intermediateVM.patientInfoViewModel) //age,gender display

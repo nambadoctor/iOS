@@ -34,9 +34,13 @@ struct ViewAppointment: View {
                 .bold()
 
             HStack (alignment: .top) {
-                Image("person.crop.circle.fill")
-                    .resizable()
-                    .frame(width: 70, height: 70)
+                
+                if intermediateVM.appointmentStarted {
+                    LetterOnColoredCircle(word: intermediateVM.appointment.customerName, color: .green)
+                } else {
+                    LetterOnColoredCircle(word: intermediateVM.appointment.customerName, color: intermediateVM.appointmentFinished ? Color.gray : Color.blue)
+                }
+                
                 VStack (alignment: .leading, spacing: 5) {
                     Text(intermediateVM.appointment.customerName)
                     
