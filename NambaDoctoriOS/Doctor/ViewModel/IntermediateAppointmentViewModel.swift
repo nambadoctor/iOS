@@ -84,6 +84,7 @@ extension IntermediateAppointmentViewModel {
             allSendsDone.append(success)
             
             if allSendsDone.count == 3 && !allSendsDone.contains(false) {
+                
                 completion(true)
             }
         }

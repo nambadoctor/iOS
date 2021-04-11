@@ -11,7 +11,6 @@ struct EditableAppointmentView: View {
     
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var intermediateVM:IntermediateAppointmentViewModel
-    @State private var toggleNavBarProgressView:Bool = false
     
     var body: some View {
         ZStack {
@@ -37,7 +36,6 @@ struct EditableAppointmentView: View {
             
             VStack {
                 header
-                
                 
                 if !intermediateVM.appointmentFinished {
                     Divider().background(Color.blue.opacity(0.4))
@@ -99,9 +97,10 @@ struct EditableAppointmentView: View {
             LargeButton(title: "Save For Later",
                         backgroundColor: Color.white,
                         foregroundColor: Color.blue) {
-                self.toggleNavBarProgressView.toggle()
+                CommonDefaultModifiers.showLoader()
                 intermediateVM.savePrescription { _ in
-                    self.toggleNavBarProgressView.toggle()
+                    CommonDefaultModifiers.hideLoader()
+                    DoctorAlertHelpers().isSavedAlert()
                 }
             }
         }
