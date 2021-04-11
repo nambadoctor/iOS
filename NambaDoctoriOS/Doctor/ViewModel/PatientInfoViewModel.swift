@@ -14,9 +14,7 @@ class PatientInfoViewModel: ObservableObject {
 
     @Published var AppointmentList:[ServiceProviderAppointment]? = nil
     @Published var ReportList:[ServiceProviderReport]? = nil
-    
-    @Published var hasReports:Bool = false
-    
+        
     @Published var briefPatientDetails:String = ""
     
     var appointment:ServiceProviderAppointment
@@ -73,8 +71,6 @@ class PatientInfoViewModel: ObservableObject {
     func retrieveUploadedDocumentList (serviceRequestId:String) {
         reportServiceCall.getUploadedReportList(customerId: appointment.customerID, serviceRequestId: serviceRequestId, appointmentId: appointment.appointmentID) { (uploadedDocumentList) in
             if uploadedDocumentList != nil {
-                self.hasReports = true
-                print("DOCLIST: \(uploadedDocumentList?.count)")
                 self.ReportList = uploadedDocumentList
             }
         }

@@ -17,7 +17,7 @@ struct PatientInfoEditableView: View {
                 .foregroundColor(Color.black.opacity(0.4))
                 .bold()
 
-            if self.patientInfoViewModel.hasReports {
+            if self.patientInfoViewModel.ReportList != nil {
                 ScrollView (.horizontal) {
                     HStack {
                         ForEach (self.patientInfoViewModel.ReportList!, id: \.reportID) { report in
