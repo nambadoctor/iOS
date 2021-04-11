@@ -11,6 +11,7 @@ struct PatientReportView: View {
     @ObservedObject var patientReportVM:PatientReportViewModel
 
     init(report:ServiceProviderReport) {
+        print("INITING REPORT VIEW: \(report.reportID)")
         patientReportVM = PatientReportViewModel(report: report)
     }
 

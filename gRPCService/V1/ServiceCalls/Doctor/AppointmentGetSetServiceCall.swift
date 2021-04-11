@@ -44,6 +44,9 @@ class AppointmentGetSetServiceCall : AppointmentGetSetServiceCallProtocol {
                 let response = try getDoctorsAppointment.response.wait()
                 stopwatch.stop()
                 var appointmentList = self.appointmentObjectMapper.grpcAppointmentToLocal(appointment: response.appointments)
+                for appointment in appointmentList {
+                    print("APPOINTMENT NAME: \(appointment.customerName)")
+                }
                 print("Doctor Appointment Client Success \(appointmentList.count)")
                 DispatchQueue.main.async {
                     completion(appointmentList)

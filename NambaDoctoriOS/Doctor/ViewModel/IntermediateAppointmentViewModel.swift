@@ -53,6 +53,7 @@ class IntermediateAppointmentViewModel : ObservableObject {
         self.doctorTwilioManagerViewModel = DoctorTwilioViewModel(appointment: appointment)
 
         doctorTwilioManagerViewModel.twilioDelegate = self
+        serviceRequestVM.gotServiceRequestDelegate = self
         
         initChecks()
     }
@@ -65,6 +66,12 @@ class IntermediateAppointmentViewModel : ObservableObject {
         checkDetailedOrView()
         checkIfAppointmentFinished()
         checkIfAppointmentStarted()
+    }
+}
+
+extension IntermediateAppointmentViewModel : LoadReportsWithServiceRequestDelegate {
+    func gotServiceRequestId(serviceRequestId: String) {
+        patientInfoViewModel.retrieveUploadedDocumentList(serviceRequestId: serviceRequestId)
     }
 }
 

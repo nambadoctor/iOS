@@ -11,6 +11,9 @@ PODS:
     - FirebaseAnalytics (= 7.4.0)
   - Firebase/CoreOnly (7.4.0):
     - FirebaseCore (= 7.4.0)
+  - Firebase/Crashlytics (7.4.0):
+    - Firebase/CoreOnly
+    - FirebaseCrashlytics (~> 7.4.0)
   - Firebase/Messaging (7.4.0):
     - Firebase/CoreOnly
     - FirebaseMessaging (~> 7.4.0)
@@ -37,6 +40,12 @@ PODS:
     - GoogleUtilities/Environment (~> 7.0)
     - GoogleUtilities/Logger (~> 7.0)
     - nanopb (~> 2.30907.0)
+  - FirebaseCrashlytics (7.4.0):
+    - FirebaseCore (~> 7.0)
+    - FirebaseInstallations (~> 7.0)
+    - GoogleDataTransport (~> 8.0)
+    - nanopb (~> 2.30907.0)
+    - PromisesObjC (~> 1.2)
   - FirebaseInstallations (7.4.0):
     - FirebaseCore (~> 7.0)
     - GoogleUtilities/Environment (~> 7.0)
@@ -95,6 +104,7 @@ DEPENDENCIES:
   - Alamofire (~> 5.2)
   - Firebase/Analytics
   - Firebase/Auth
+  - Firebase/Crashlytics
   - Firebase/Messaging
   - TwilioVideo (~> 3.7)
 
@@ -107,6 +117,7 @@ SPEC REPOS:
     - FirebaseAuth
     - FirebaseCore
     - FirebaseCoreDiagnostics
+    - FirebaseCrashlytics
     - FirebaseInstallations
     - FirebaseInstanceID
     - FirebaseMessaging
@@ -126,6 +137,7 @@ SPEC CHECKSUMS:
   FirebaseAuth: d8dba8db90a1705ee2493857047282ca4f6e7598
   FirebaseCore: 99c06e5a1e8d6952e75cb1f0a6d0b23c0f5ccdcf
   FirebaseCoreDiagnostics: 3770093ac4f2be4590fa03cfa1d3a6e5602d4557
+  FirebaseCrashlytics: ef6b0947ab6819b5cb335f8c0a7677cd57d544c5
   FirebaseInstallations: 30646fc9a61c6f4ee3cd7a8b7231721842b40c95
   FirebaseInstanceID: 46d93d287108246fabbd85371ca27141d2c21ff9
   FirebaseMessaging: 6112b5cd04e0ff58c4a9920e5e29cf193ea88439
@@ -137,6 +149,6 @@ SPEC CHECKSUMS:
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   TwilioVideo: c13a51ceca375e91620eb7578d2573c90cf53b46
 
-PODFILE CHECKSUM: 4b27292582c5fc42fdde8db48c298136a773ca48
+PODFILE CHECKSUM: 44d080abd84a2e0fca8518e33495464850da614f
 
 COCOAPODS: 1.10.1

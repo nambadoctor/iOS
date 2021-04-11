@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 protocol ReportGetSetServiceCallProtocol {
-    func getUploadedReportList(customerId:String, _ completion: @escaping (([ServiceProviderReport]?) -> ()))
+    func getUploadedReportList(customerId:String, serviceRequestId:String, appointmentId:String, _ completion: @escaping (([ServiceProviderReport]?) -> ()))
     
     func getReportImage(reportId: String, _ completion: @escaping (String?) -> ())
 }
@@ -21,7 +21,7 @@ class ReportGetSetServiceCall : ReportGetSetServiceCallProtocol {
         self.reportObjMapper = reportObjMapper
     }
     
-    func getUploadedReportList(customerId:String, _ completion: @escaping (([ServiceProviderReport]?) -> ())) {
+    func getUploadedReportList(customerId:String, serviceRequestId:String, appointmentId:String, _ completion: @escaping (([ServiceProviderReport]?) -> ())) {
         
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
@@ -29,11 +29,13 @@ class ReportGetSetServiceCall : ReportGetSetServiceCallProtocol {
         // Provide the connection to the generated client.
         let reportsClient = Nd_V1_ServiceProviderReportWorkerV1Client(channel: channel)
         
-        let request = Nd_V1_IdMessage.with {
-            $0.id = customerId.toProto
+        let request = Nd_V1_ServiceProviderServiceRequestRequestMessage.with {
+            $0.appointmentID = appointmentId.toProto
+            $0.serviceRequestID = serviceRequestId.toProto
+            $0.customerID = customerId.toProto
         }
-        
-        let getPatientReports = reportsClient.getCustomerReports(request,callOptions: callOptions)
+                
+        let getPatientReports = reportsClient.getAppointmentReports(request, callOptions: callOptions)
         
         DispatchQueue.global().async {
             do {

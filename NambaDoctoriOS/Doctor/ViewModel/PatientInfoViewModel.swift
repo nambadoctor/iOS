@@ -15,6 +15,8 @@ class PatientInfoViewModel: ObservableObject {
     @Published var AppointmentList:[ServiceProviderAppointment]? = nil
     @Published var ReportList:[ServiceProviderReport]? = nil
     
+    @Published var hasReports:Bool = false
+    
     @Published var briefPatientDetails:String = ""
     
     var appointment:ServiceProviderAppointment
@@ -32,10 +34,11 @@ class PatientInfoViewModel: ObservableObject {
         self.reportServiceCall = reportServiceCall
         self.appointmentServiceCall = appointmentServiceCall
         
+        
+        
         DispatchQueue.global().async {
             self.retrievePatientObj()
             self.retrieveAppointmentList()
-            self.retrieveUploadedDocumentList()
         }
     }
     
@@ -67,9 +70,11 @@ class PatientInfoViewModel: ObservableObject {
         }
     }
     
-    private func retrieveUploadedDocumentList () {
-        reportServiceCall.getUploadedReportList(customerId: appointment.customerID) { (uploadedDocumentList) in
+    func retrieveUploadedDocumentList (serviceRequestId:String) {
+        reportServiceCall.getUploadedReportList(customerId: appointment.customerID, serviceRequestId: serviceRequestId, appointmentId: appointment.appointmentID) { (uploadedDocumentList) in
             if uploadedDocumentList != nil {
+                self.hasReports = true
+                print("DOCLIST: \(uploadedDocumentList?.count)")
                 self.ReportList = uploadedDocumentList
             }
         }
