@@ -26,10 +26,6 @@ struct DoctorTwilioManager: View {
                 }))
                 .onTapGesture { DoctorTwilioVM.toggleTwilioViewSize() }
                 .cornerRadius(10)
-            
-            if !DoctorTwilioVM.participantJoined {
-                patientLeftView
-            }
 
             if DoctorTwilioVM.viewController != nil && !DoctorTwilioVM.collapseCall {
                 twilioButtonsLayout
@@ -39,7 +35,7 @@ struct DoctorTwilioManager: View {
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
     }
-    
+
     var patientLeftView : some View {
         VStack {
             Spacer()

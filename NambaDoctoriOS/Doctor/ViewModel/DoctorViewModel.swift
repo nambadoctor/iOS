@@ -21,11 +21,11 @@ class DoctorViewModel: ObservableObject {
     @Published var imageLoader:ImageLoader? = nil
     
     @Published var datePickerVM:DatePickerViewModel = DatePickerViewModel()
-    
+
     var authenticateService:AuthenticateServiceProtocol
     var serviceProviderServiceCall:ServiceProviderGetSetServiceCallProtocol
     var doctorAppointmentViewModel:AppointmentGetSetServiceCallProtocol
-    
+
     init(authenticateService:AuthenticateServiceProtocol = AuthenticateService(),
          serviceProviderServiceCall:ServiceProviderGetSetServiceCallProtocol = ServiceProviderGetSetServiceCall(),
          doctorAptVM:AppointmentGetSetServiceCallProtocol = AppointmentGetSetServiceCall()) {
@@ -89,7 +89,7 @@ class DoctorViewModel: ObservableObject {
                 self.appointments.removeAll()
                 self.appointments = appointments!
                 self.datePickerVM.setDatesWithAppointments(appointments: appointments!)
-                self.checkIfAppointmentExistForDate(date: self.datePickerVM.selectedDate)
+                self.dateChanged(selectedDate: self.datePickerVM.selectedDate)
             }
             self.checkForEmptyList()
         }

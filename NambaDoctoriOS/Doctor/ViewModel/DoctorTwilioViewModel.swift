@@ -22,7 +22,6 @@ class DoctorTwilioViewModel: ObservableObject {
     @Published var videoEnabled:Bool = false
     @Published var micEnabled:Bool = true
     
-    @Published var participantConectedFirstTime:Bool = false
     @Published var participantJoined:Bool = false
     
     private var docAlertHelpers:DoctorAlertHelpersProtocol!
@@ -104,7 +103,6 @@ class DoctorTwilioViewModel: ObservableObject {
 
 extension DoctorTwilioViewModel : TwilioEventHandlerDelegate {
     func participantConnected() {
-        self.participantConectedFirstTime = true
         self.participantJoined = true
     }
 
