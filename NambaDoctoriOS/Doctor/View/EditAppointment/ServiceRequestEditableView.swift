@@ -14,14 +14,14 @@ struct ServiceRequestEditableView: View {
         VStack (alignment: .leading) {
             
             VStack (alignment: .leading) {
-                Text("Patient Allergies:")
+                Text("PATIENT ALLERGIES")
                     .font(.footnote)
                     .foregroundColor(Color.black.opacity(0.4))
                     .bold()
 
                 ExpandingTextView(text: self.$serviceRequestVM.serviceRequest.allergy.AllergyName)
                 
-                Text("Patient Medical History:")
+                Text("PATIENT MEDICAL HISTORY")
                     .font(.footnote)
                     .foregroundColor(Color.black.opacity(0.4))
                     .bold()
@@ -32,14 +32,14 @@ struct ServiceRequestEditableView: View {
             .background(Color.white)
             
             VStack (alignment: .leading) {
-                Text("EXAMINATION:")
+                Text("EXAMINATION")
                     .font(.footnote)
                     .foregroundColor(Color.black.opacity(0.4))
                     .bold()
 
                 ExpandingTextView(text: self.$serviceRequestVM.serviceRequest.examination)
 
-                Text("DIAGNOSIS:")
+                Text("DIAGNOSIS")
                     .font(.footnote)
                     .foregroundColor(Color.black.opacity(0.4))
                     .bold()
@@ -48,7 +48,7 @@ struct ServiceRequestEditableView: View {
                 SideBySideCheckBox(isChecked: $serviceRequestVM.serviceRequest.diagnosis.type, title1: "Provisional", title2: "Definitive")
                     .padding(.bottom)
 
-                Text("ADVICE FOR PATIENT:")
+                Text("ADVICE FOR PATIENT")
                     .font(.footnote)
                     .foregroundColor(Color.black.opacity(0.4))
                     .bold()

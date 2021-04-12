@@ -12,7 +12,7 @@ struct PatientInfoEditableView: View {
     
     var body: some View {
         VStack (alignment: .leading) {
-            Text("Reports:")
+            Text("REPORTS")
                 .font(.footnote)
                 .foregroundColor(Color.black.opacity(0.4))
                 .bold()

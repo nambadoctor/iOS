@@ -26,6 +26,10 @@ struct DoctorTwilioManager: View {
                 }))
                 .onTapGesture { DoctorTwilioVM.toggleTwilioViewSize() }
                 .cornerRadius(10)
+            
+            if !DoctorTwilioVM.participantJoined {
+                patientLeftView
+            }
 
             if DoctorTwilioVM.viewController != nil && !DoctorTwilioVM.collapseCall {
                 twilioButtonsLayout
@@ -34,6 +38,20 @@ struct DoctorTwilioManager: View {
         .navigationTitle("")
         .navigationBarHidden(true)
         .navigationBarBackButtonHidden(true)
+    }
+    
+    var patientLeftView : some View {
+        VStack {
+            Spacer()
+            HStack {
+                Spacer()
+                Text("Waiting for patient to connect...")
+                Spacer()
+            }
+            .padding()
+            .background(Color.white.opacity(0.5))
+            Spacer()
+        }
     }
 
     var collapseCallButton : some View {

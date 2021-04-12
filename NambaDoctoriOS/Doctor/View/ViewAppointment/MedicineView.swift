@@ -12,7 +12,7 @@ struct MedicineView: View {
 
     var body: some View {
         VStack (alignment: .leading) {
-            Text("Prescriptions")
+            Text("PRESCRIPTIONS")
                 .font(.footnote)
                 .bold()
                 .foregroundColor(.gray)

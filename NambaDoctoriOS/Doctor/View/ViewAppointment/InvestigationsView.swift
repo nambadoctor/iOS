@@ -13,7 +13,7 @@ struct InvestigationsView: View {
     var body: some View {
         VStack (alignment: .leading) {
             
-            Text("Investigations")
+            Text("INVESTIGATIONS")
                 .font(.footnote)
                 .bold()
                 .foregroundColor(.gray)

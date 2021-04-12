@@ -21,7 +21,10 @@ class DoctorTwilioViewModel: ObservableObject {
 
     @Published var videoEnabled:Bool = false
     @Published var micEnabled:Bool = true
-
+    
+    @Published var participantConectedFirstTime:Bool = false
+    @Published var participantJoined:Bool = false
+    
     private var docAlertHelpers:DoctorAlertHelpersProtocol!
     private var docSheetHelper:DoctorSheetHelpers = DoctorSheetHelpers()
     private var docNotificationHelpers:DocNotifHelpersProtocol
@@ -45,17 +48,17 @@ class DoctorTwilioViewModel: ObservableObject {
 
     func startRoom() {
         if TwilioAccessTokenString.isEmpty {
-            DispatchQueue.main.async {
-                self.twilioAccessTokenHelper.retrieveToken(appointmentId: self.appointment.appointmentID, serviceProviderId: self.appointment.serviceProviderID) { (success, token) in
-                    if success {
-                        self.viewController = UIStoryboard(name: "Twilio", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as! ViewController
-                    } else {
-                        //show failed alert
-                    }
+            self.twilioAccessTokenHelper.retrieveToken(appointmentId: self.appointment.appointmentID, serviceProviderId: self.appointment.serviceProviderID) { (success, token) in
+                if success {
+                    self.viewController = UIStoryboard(name: "Twilio", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as! ViewController
+                    self.viewController!.twilioEventDelegate = self
+                } else {
+                    //show failed alert
                 }
             }
         } else {
             self.viewController = UIStoryboard(name: "Twilio", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as! ViewController
+            self.viewController!.twilioEventDelegate = self
         }
     }
 
@@ -90,13 +93,22 @@ class DoctorTwilioViewModel: ObservableObject {
 
     func toggleTwilioViewSize() {
         if collapseCall {
-            viewController!.messageLabel.isHidden = false
             viewController!.previewView.isHidden = false
             self.collapseCall = false
         } else {
-            viewController!.messageLabel.isHidden = true
             viewController!.previewView.isHidden = true
             self.collapseCall = true
         }
+    }
+}
+
+extension DoctorTwilioViewModel : TwilioEventHandlerDelegate {
+    func participantConnected() {
+        self.participantConectedFirstTime = true
+        self.participantJoined = true
+    }
+
+    func participantDisconnected() {
+        self.participantJoined = false
     }
 }

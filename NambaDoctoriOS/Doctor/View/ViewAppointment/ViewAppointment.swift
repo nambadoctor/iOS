@@ -40,7 +40,7 @@ struct ViewAppointment: View {
                 } else {
                     LetterOnColoredCircle(word: intermediateVM.appointment.customerName, color: intermediateVM.appointmentFinished ? Color.gray : Color.blue)
                 }
-                
+
                 VStack (alignment: .leading, spacing: 5) {
                     Text(intermediateVM.appointment.customerName)
                     
@@ -56,9 +56,9 @@ struct ViewAppointment: View {
 
     var details : some View {
         VStack (alignment: .leading, spacing: 5) {
+            MedicineView()
             ServiceRequestView()
             InvestigationsView()
-            MedicineView()
         }
     }
 

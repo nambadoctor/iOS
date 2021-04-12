@@ -26,14 +26,14 @@ struct MedicineEntryView: View {
                     }
                 }
                 
-                Text("Medicine Name:")
+                Text("MEDICINE NAME")
                     .font(.footnote)
                     .foregroundColor(Color.black.opacity(0.4))
                     .bold()
                 
                 ExpandingTextView(text: self.$medicineVM.medicineEntryVM.medicineName)
                 
-                Text("Dosage:")
+                Text("DOSAGE")
                     .font(.footnote)
                     .foregroundColor(Color.black.opacity(0.4))
                     .bold()

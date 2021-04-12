@@ -26,27 +26,15 @@
                                     <constraint firstAttribute="height" constant="160" id="ok0-QW-DSk"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Waiting for Patient..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5sC-Fe-a2M">
-                                <rect key="frame" x="16" y="239" width="343" height="29"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="29" id="Fzh-1e-FcE"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="6X6-cD-Bcg" secondAttribute="trailing" constant="11" id="Pvs-sL-c9V"/>
-                            <constraint firstItem="6X6-cD-Bcg" firstAttribute="top" secondItem="5sC-Fe-a2M" secondAttribute="bottom" constant="139" id="crV-B9-eyG"/>
                             <constraint firstItem="tZu-uw-hgi" firstAttribute="top" secondItem="6X6-cD-Bcg" secondAttribute="bottom" constant="100" id="qbi-gU-RqV"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="5sC-Fe-a2M" secondAttribute="trailing" constant="70" id="xGF-bg-jRC"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="9M3-8C-vjE"/>
                     <connections>
-                        <outlet property="messageLabel" destination="5sC-Fe-a2M" id="ln9-gM-V6e"/>
                         <outlet property="previewView" destination="6X6-cD-Bcg" id="y1o-u0-FtS"/>
                     </connections>
                 </viewController>

@@ -59,11 +59,11 @@ class ServiceProviderGetSetServiceCall : ServiceProviderGetSetServiceCallProtoco
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         
         let doctorClient = Nd_V1_ServiceProviderWorkerV1Client(channel: channel)
-        print(serviceProviderId)
         
+        print("FIREBASE AUTH \(serviceProviderId)")
+
         let request = Nd_V1_IdMessage.with {
-            //replace with serviceProviderId
-            $0.id = "60554422a30a3a82f677ecb0".toProto
+            $0.id = "6073d2899c4cc88f25cc2532".toProto
         }
 
         let getServiceProvider = doctorClient.getServiceProviderProfile(request, callOptions: callOptions)
@@ -79,7 +79,7 @@ class ServiceProviderGetSetServiceCall : ServiceProviderGetSetServiceCallProtoco
                     completion(doctor)
                 }
             } catch {
-                print("Get Doctor Client Failed")
+                print("Get Doctor Client Failed \(error.localizedDescription)")
                 DispatchQueue.main.async {
                     completion(nil)
                 }

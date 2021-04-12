@@ -26,6 +26,7 @@ struct IntermediateView: View {
             if intermediateVM.showTwilioRoom {
                 DoctorTwilioManager(DoctorTwilioVM: intermediateVM.doctorTwilioManagerViewModel)
             }
+
         }
         .environmentObject(intermediateVM)
         .environmentObject(intermediateVM.medicineVM)

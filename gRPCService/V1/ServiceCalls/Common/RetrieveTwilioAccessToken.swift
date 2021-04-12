@@ -26,15 +26,20 @@ class RetrieveTwilioAccessToken : TwilioAccessTokenProtocol {
 
         let getTwilioToken = twilioClient.getTwilioVideoAuthToken(request, callOptions: callOptions)
         
-        do {
-            let response = try getTwilioToken.response.wait()
-            let twilioToken = response.message.toString
-            print("TwilioToken received: \(twilioToken)")
-            TwilioAccessTokenString = twilioToken
-            completion(true, twilioToken)
-        } catch {
-            print("TwilioToken failed: \(error)")
-            completion(false, nil)
+        DispatchQueue.global().async {
+            do {
+                let response = try getTwilioToken.response.wait()
+                let twilioToken = response.message.toString
+                print("TwilioToken received: \(twilioToken)")
+                DispatchQueue.main.async {
+                    TwilioAccessTokenString = twilioToken
+                    completion(true, twilioToken)
+                }
+            } catch {
+                print("TwilioToken failed: \(error)")
+                completion(false, nil)
+            }
         }
+        
     }
 }

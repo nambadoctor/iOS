@@ -14,7 +14,7 @@ struct ServiceRequestView: View {
         VStack (alignment: .leading) {
             HStack {Spacer()}
             Group {
-                Text("Examination")
+                Text("EXAMINATION")
                     .font(.footnote)
                     .bold()
                     .foregroundColor(.gray)
@@ -22,7 +22,7 @@ struct ServiceRequestView: View {
                 
                 Spacer().frame(height: 5)
                 
-                Text("Diagnosis - \(serviceRequestVM.diagnosisType)")
+                Text("DIAGNOSIS - \(serviceRequestVM.diagnosisType)")
                     .font(.footnote)
                     .bold()
                     .foregroundColor(.gray)
@@ -30,7 +30,7 @@ struct ServiceRequestView: View {
                 
                 Spacer().frame(height: 5)
                 
-                Text("Advice")
+                Text("ADVICE")
                     .font(.footnote)
                     .bold()
                     .foregroundColor(.gray)

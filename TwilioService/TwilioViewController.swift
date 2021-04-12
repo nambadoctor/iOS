@@ -2,6 +2,11 @@ import UIKit
 import TwilioVideo
 import Foundation
 
+protocol TwilioEventHandlerDelegate {
+    func participantConnected()
+    func participantDisconnected()
+}
+
 class ViewController: UIViewController {
 
     // MARK:- View Controller Members
@@ -9,7 +14,7 @@ class ViewController: UIViewController {
     // Configure access token manually for testing, if desired! Create one manually in the console
     // at https://www.twilio.com/console/video/runtime/testing-tools
     var accessToken:String = TwilioAccessTokenString
-    
+
     // Video SDK components
     var room: Room?
     var camera: CameraSource?
@@ -17,12 +22,13 @@ class ViewController: UIViewController {
     var localAudioTrack: LocalAudioTrack?
     var remoteParticipant: RemoteParticipant?
     var remoteView: VideoView?
+    
+    var twilioEventDelegate:TwilioEventHandlerDelegate? = nil
 
     // MARK:- UI Element Outlets and handles
     // `VideoView` created from a storyboard
-    @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak  var previewView: VideoView!
-    
+
     deinit {
         // We are done with camera
         if let camera = self.camera {
@@ -49,7 +55,7 @@ class ViewController: UIViewController {
     override var prefersHomeIndicatorAutoHidden: Bool {
         return self.room != nil
     }
-    
+
     func setupRemoteVideoView() {
         // Creating `VideoView` programmatically
         self.remoteView = VideoView(frame: CGRect.zero, delegate: self)
@@ -138,8 +144,8 @@ class ViewController: UIViewController {
     }
 
     func disconnect(sender: AnyObject) {
-        self.room!.disconnect()
-        logMessage(messageText: "Attempting to disconnect from room \(room!.name)")
+        self.room?.disconnect()
+        logMessage(messageText: "Attempting to disconnect from room \(room?.name)")
     }
 
     func toggleMic(sender: AnyObject, completion: @escaping (_ success:Bool)->()) {
@@ -292,11 +298,12 @@ extension ViewController : RoomDelegate {
         for remoteParticipant in room.remoteParticipants {
             remoteParticipant.delegate = self
         }
+
     }
 
     func roomDidDisconnect(room: Room, error: Error?) {
         logMessage(messageText: "Disconnected from room \(room.name), error = \(String(describing: error))")
-        
+
         self.cleanupRemoteParticipant()
         self.room = nil
         
@@ -330,12 +337,12 @@ extension ViewController : RoomDelegate {
         logMessage(messageText: "Participant Connected")
         logMessage(messageText: "Participant \(participant.identity) connected with \(participant.remoteAudioTracks.count) audio and \(participant.remoteVideoTracks.count) video tracks")
         
-        self.messageLabel.text = ""
+        twilioEventDelegate?.participantConnected()
     }
 
     func participantDidDisconnect(room: Room, participant: RemoteParticipant) {
         logMessage(messageText: "Room \(room.name), Participant \(participant.identity) disconnected")
-        self.messageLabel.text = "Patient has left the room. Please wait until they return"
+        twilioEventDelegate?.participantDisconnected()
         // Nothing to do in this example. Subscription events are used to add/remove renderers.
     }
 }
@@ -347,13 +354,11 @@ extension ViewController : RemoteParticipantDelegate {
         // Remote Participant has offered to share the video Track.
         
         logMessage(messageText: "Participant \(participant.identity) published \(publication.trackName) video track")
-        self.messageLabel.text = ""
     }
 
     func remoteParticipantDidUnpublishVideoTrack(participant: RemoteParticipant, publication: RemoteVideoTrackPublication) {
         // Remote Participant has stopped sharing the video Track.
         logMessage(messageText: "Participant \(participant.identity) unpublished \(publication.trackName) video track")
-        self.messageLabel.text = "Patient Video Turned Off"
     }
 
     func remoteParticipantDidPublishAudioTrack(participant: RemoteParticipant, publication: RemoteAudioTrackPublication) {
@@ -409,12 +414,10 @@ extension ViewController : RemoteParticipantDelegate {
 
     func remoteParticipantDidEnableVideoTrack(participant: RemoteParticipant, publication: RemoteVideoTrackPublication) {
         logMessage(messageText: "Participant \(participant.identity) enabled \(publication.trackName) video track")
-        self.messageLabel.text = ""
     }
 
     func remoteParticipantDidDisableVideoTrack(participant: RemoteParticipant, publication: RemoteVideoTrackPublication) {
         logMessage(messageText: "Participant \(participant.identity) disabled \(publication.trackName) video track")
-        self.messageLabel.text = ""
     }
 
     func remoteParticipantDidEnableAudioTrack(participant: RemoteParticipant, publication: RemoteAudioTrackPublication) {
