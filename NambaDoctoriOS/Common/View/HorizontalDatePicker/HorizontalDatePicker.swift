@@ -48,7 +48,6 @@ struct HorizontalDatePicker: View {
                                                 .foregroundColor(datePickerVM.ifIsUpcoming(index: index) ? .blue : .gray)
                                         }
                                     }
-                                    
                                 }
                                 .frame(height: 70)
                                 .id(index)

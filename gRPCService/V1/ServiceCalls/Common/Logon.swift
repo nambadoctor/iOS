@@ -27,10 +27,27 @@ class Logon : FindUserTypeViewModelProtocol {
             print("UserTypeClient received: \(response.message.toString)")
             var responseSplit = response.message.toString.components(separatedBy: ",")
             let userStatus = CheckLoginStatus.checkStatus(loggedInStatus: responseSplit[0])
+            UserIdHelper().storeUserId(userId: responseSplit[1])
             completion(userStatus)
         } catch {
             completion(nil)
             print("UserTypeClient failed: \(error.localizedDescription)")
+        }
+    }
+}
+
+class UserIdHelper {
+    func storeUserId(userId:String) {
+        let defaults = UserDefaults.standard
+        defaults.set(userId, forKey: "userId")
+    }
+
+    func retrieveUserId() -> String {
+        let defaults = UserDefaults.standard
+        if let userId = defaults.string(forKey: "userId") {
+            return userId
+        } else {
+            return "USER ID NOT FOUND"
         }
     }
 }
