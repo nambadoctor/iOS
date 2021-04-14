@@ -68,5 +68,12 @@ class DoctorAlertHelpers: DoctorAlertHelpersProtocol {
         alertTempItem = AlertItem(title: Text("Success"), message: Text("Your prescription has been saved successfully."), dismissButton: .default(Text("OK")))
         CommonDefaultModifiers.showAlert()
     }
+    
+    func twilioConnectToRoomAlert (connect: @escaping (Bool) -> ()) {
+        alertTempItem = AlertItem(title: Text("Would you like to connect to the consultation room?"), primaryButton: Alert.Button.default(Text("No")), secondaryButton: Alert.Button.default(Text("Yes"), action: {
+            connect(true)
+        }))
+        CommonDefaultModifiers.showAlert()
+    }
 
 }

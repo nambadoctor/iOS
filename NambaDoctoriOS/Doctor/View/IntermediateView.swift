@@ -25,6 +25,7 @@ struct IntermediateView: View {
             
             if intermediateVM.showTwilioRoom {
                 DoctorTwilioManager(DoctorTwilioVM: intermediateVM.doctorTwilioManagerViewModel)
+                    .onAppear(){self.intermediateVM.doctorTwilioManagerViewModel.viewController?.connect(sender: intermediateVM)}
             }
 
         }
