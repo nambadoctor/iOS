@@ -7,7 +7,7 @@ target 'NambaDoctoriOS' do
 
   # Pods for NambaDoctoriOS
 
-pod 'Alamofire', '~> 5.2'
+pod 'Firebase/Database'
 pod 'Firebase/Auth'
 pod 'Firebase/Crashlytics'
 pod 'Firebase/Analytics'
