@@ -15,15 +15,15 @@ protocol TwilioDelegate {
 class DoctorTwilioViewModel: ObservableObject {
     var appointment:ServiceProviderAppointment
     @Published var status:TwilioStateK = .waitingToStart
-        
+
     @Published var collapseCall:Bool = false
     @Published var viewController:ViewController? = nil
 
     @Published var videoEnabled:Bool = false
     @Published var micEnabled:Bool = true
-    
+
     @Published var participantJoined:Bool = false
-    
+
     private var docAlertHelpers:DoctorAlertHelpersProtocol!
     private var docSheetHelper:DoctorSheetHelpers = DoctorSheetHelpers()
     private var docNotificationHelpers:DocNotifHelpersProtocol
@@ -85,7 +85,7 @@ class DoctorTwilioViewModel: ObservableObject {
     
     func leaveRoom () {
         self.videoEnabled = false
-        self.micEnabled = false
+        self.micEnabled = true
         self.viewController?.disconnect(sender: self)
         twilioDelegate?.leftRoom()
     }

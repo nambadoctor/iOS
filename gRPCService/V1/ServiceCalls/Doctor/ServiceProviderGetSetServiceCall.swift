@@ -63,7 +63,7 @@ class ServiceProviderGetSetServiceCall : ServiceProviderGetSetServiceCallProtoco
         print("FIREBASE AUTH \(serviceProviderId)")
 
         let request = Nd_V1_IdMessage.with {
-            $0.id = "6073d2899c4cc88f25cc2532".toProto
+            $0.id = serviceProviderId.toProto
         }
 
         let getServiceProvider = doctorClient.getServiceProviderProfile(request, callOptions: callOptions)

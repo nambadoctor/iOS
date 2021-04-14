@@ -139,9 +139,10 @@ class MedicineViewModel: ObservableObject {
             self.prescription.fileInfo.FileType = "png"
             self.prescription.fileInfo.MediaImage = imagePickerVM.image!.jpegData(compressionQuality: 0.3)!.base64EncodedString()
         }
-        
+
         if imageLoader != nil {
             self.prescription.fileInfo.MediaImage = imageLoader!.image!.jpegData(compressionQuality: 0.3)!.base64EncodedString()
+            self.prescription.fileInfo.FileType = "png"
         }
 
         self.prescription.createdDateTime = Date().millisecondsSince1970

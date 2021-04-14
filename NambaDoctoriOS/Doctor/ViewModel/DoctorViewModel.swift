@@ -51,7 +51,7 @@ class DoctorViewModel: ObservableObject {
             }
         }
     }
-    
+
     func updateFCMToken () {
         //update FCM Token
         guard self.doctor != nil else { return

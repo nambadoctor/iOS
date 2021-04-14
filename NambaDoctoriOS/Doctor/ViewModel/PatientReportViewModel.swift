@@ -22,7 +22,7 @@ class PatientReportViewModel : ObservableObject {
         
         getImageObj()
     }
-    
+
     func getImageObj () {
         reportServiceCall.getReportImage(reportId: report.reportID) { (reportImageURL) in
             if reportImageURL != nil {
