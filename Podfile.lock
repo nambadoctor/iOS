@@ -1,5 +1,6 @@
 PODS:
   - ActivityIndicatorView (0.0.6)
+  - CodableFirebase (0.2.1)
   - Firebase/Analytics (7.4.0):
     - Firebase/Core
   - Firebase/Auth (7.4.0):
@@ -107,6 +108,7 @@ PODS:
 
 DEPENDENCIES:
   - ActivityIndicatorView
+  - CodableFirebase
   - Firebase/Analytics
   - Firebase/Auth
   - Firebase/Crashlytics
@@ -117,6 +119,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - ActivityIndicatorView
+    - CodableFirebase
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuth
@@ -138,6 +141,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   ActivityIndicatorView: f7c08841e302c86d16c29b7c9554fce2a2bd9183
+  CodableFirebase: 0bf201991eeec35eb9fcd987d271ea463cf34a80
   Firebase: 09fb40287b6dfc8ee65f726fa0b788719d3f2a07
   FirebaseAnalytics: adb3c8f02f83d00661cdaac6dbb4d54e9720d1b6
   FirebaseAuth: d8dba8db90a1705ee2493857047282ca4f6e7598
@@ -157,6 +161,6 @@ SPEC CHECKSUMS:
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   TwilioVideo: c13a51ceca375e91620eb7578d2573c90cf53b46
 
-PODFILE CHECKSUM: 810e8278be32c6400ce0e0fd4d4d800df6d34387
+PODFILE CHECKSUM: edcfa8949232c807a12e791c898fe7d44f8247f4
 
 COCOAPODS: 1.10.1

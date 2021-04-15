@@ -12,6 +12,7 @@ pod 'Firebase/Auth'
 pod 'Firebase/Crashlytics'
 pod 'Firebase/Analytics'
 pod 'Firebase/Messaging'
+pod 'CodableFirebase'
 pod 'TwilioVideo', '~> 3.7'
 pod 'ActivityIndicatorView'
 

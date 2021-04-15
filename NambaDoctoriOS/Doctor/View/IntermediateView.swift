@@ -16,17 +16,21 @@ struct IntermediateView: View {
 
     var body: some View {
         ZStack {
-            
+
             if intermediateVM.takeToViewAppointment {
                 ViewAppointment()
             } else if intermediateVM.takeToDetailedAppointment {
                 EditableAppointmentView()
             }
-            
+
             if intermediateVM.showTwilioRoom {
                 DoctorTwilioManager(DoctorTwilioVM: intermediateVM.doctorTwilioManagerViewModel)
                     .onAppear(){self.intermediateVM.doctorTwilioManagerViewModel.viewController?.connect(sender: intermediateVM)}
             }
+
+            NavigationLink("",
+                           destination: ChatRoomView(appointment: intermediateVM.appointment),
+                           isActive: $intermediateVM.takeToChat)
 
         }
         .environmentObject(intermediateVM)

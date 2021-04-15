@@ -153,6 +153,18 @@ class Helpers {
         
         return "\(dateString1)"
     }
+
+    static func ObjectAsDictionary (object: Any) -> [String:Any] {
+        let mirror = Mirror(reflecting: object)
+        let dict = Dictionary(uniqueKeysWithValues: mirror.children.lazy.map({ (label:String?, value:Any) -> (String, Any)? in
+            guard let label = label else { return nil }
+            let val = value
+            
+            return (label, val)
+        }).compactMap { $0 })
+        return dict
+    }
+
 }
 
 extension String {

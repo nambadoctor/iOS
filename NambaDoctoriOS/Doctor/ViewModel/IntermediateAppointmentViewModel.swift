@@ -22,6 +22,8 @@ class IntermediateAppointmentViewModel : ObservableObject {
 
     @Published var takeToDetailedAppointment:Bool = false
     @Published var takeToViewAppointment:Bool = false
+    
+    @Published var takeToChat:Bool = false
 
     @Published var appointmentStarted:Bool = false
     @Published var appointmentFinished:Bool = false
