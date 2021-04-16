@@ -7,27 +7,35 @@
 
 import Foundation
 
-class ChatViewModel: ObservableObject {
-    private var appointment:ServiceProviderAppointment
-    private var realtimeDBRef:RealtimeDBListener
+class DoctorChatViewModel: ObservableObject {
+    var appointment:ServiceProviderAppointment
     
+    private var dbRef:DBReferences
+    private var realtimeDBRef:RealtimeDBListener
+
     @Published var messageList:[ChatMessage] = [ChatMessage]()
     @Published var currentTextEntry:String = ""
-    
 
+    @Published var takeToBottomListener:String = ""
+    
     init(appointment:ServiceProviderAppointment) {
         self.appointment = appointment
-        self.realtimeDBRef = RealtimeDBListener(dbQuery: DBReferences().getChatToReadRefForServiceProvider(serviceProviderId: appointment.serviceProviderID))
-        
+        self.dbRef = DBReferences(serviceProviderId: appointment.serviceProviderID, customerId: appointment.customerID)
+        self.realtimeDBRef = RealtimeDBListener(dbQuery: dbRef.getChatToReadRefForServiceProvider(serviceProviderId: appointment.serviceProviderID, customerId: appointment.customerID))
+
         startMessageAddedListener()
     }
 
     private func startMessageAddedListener () {
         realtimeDBRef.observeForAdded { (datasnapshot) in
             let chatObj = SnapshotDecoder.decodeSnapshot(modelType: ChatMessage.self, snapshot: datasnapshot)
-
-            if chatObj != nil {
+            if chatObj != nil && chatObj?.appointmentId == self.appointment.appointmentID {
                 self.messageList.append(chatObj!)
+                self.takeToBottomListener = UUID().uuidString
+            }
+            
+            self.messageList.sort {
+                $0.timeStamp < $1.timeStamp
             }
         }
     }
@@ -39,13 +47,16 @@ class ChatViewModel: ObservableObject {
     public func writeMessage () {
         
         guard !currentTextEntry.isEmpty else { return }
-        
-        let message = makeMessage()
+
+        var message = makeMessage()
         self.currentTextEntry = ""
         
-        let dbWriter = RealtimeDBWriter(dbRef: DBReferences().getSpecificChatRefToWrite(messageId: message.messageId))
-
-        dbWriter.writeData(object: message)
+        dbRef.getSpecificChatRefToWrite() { dbRef, keyId in
+            let dbWriter = RealtimeDBWriter(dbRef: dbRef)
+            message.messageId = keyId
+            dbWriter.writeData(object: message)
+            DocNotifHelpers(appointment: appointment).fireChatMessageNotif(message: message.message)
+        }
     }
     
     public func checkIfMessageIsFromCurrentUser (message:ChatMessage) -> Bool {
@@ -54,5 +65,10 @@ class ChatViewModel: ObservableObject {
         } else {
             return false
         }
+    }
+    
+    public func preSetMessageSelected (message:String) {
+        currentTextEntry = message
+        writeMessage()
     }
 }

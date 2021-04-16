@@ -9,14 +9,19 @@ import Foundation
 import FirebaseDatabase
 
 class DBReferences {
-    var ref = Database.database().reference()
+    var ref:DatabaseReference
     
-    func getChatToReadRefForServiceProvider (serviceProviderId:String) -> DatabaseQuery {
+    init(serviceProviderId:String, customerId:String) {
+        ref = Database.database().reference().child("Chats").child("\(serviceProviderId)-\(customerId)")
+    }
+    
+    func getChatToReadRefForServiceProvider (serviceProviderId:String, customerId:String) -> DatabaseQuery {
         return ref.queryOrdered(byChild: "serviceProviderId").queryEqual(toValue: serviceProviderId)
     }
 
-    func getSpecificChatRefToWrite (messageId:String) -> DatabaseReference {
-        return ref.child(messageId)
+    func getSpecificChatRefToWrite (completion: (_ dbRef:DatabaseReference, _ keyId:String)->()) {
+        let keyId = ref.childByAutoId().key!
+        let dbRef = ref.child(keyId)
+        completion(dbRef, keyId)
     }
 }
-

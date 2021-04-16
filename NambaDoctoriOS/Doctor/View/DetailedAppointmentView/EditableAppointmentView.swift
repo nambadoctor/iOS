@@ -11,7 +11,7 @@ struct EditableAppointmentView: View {
     
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var intermediateVM:IntermediateAppointmentViewModel
-    
+
     var body: some View {
         ZStack {
             detailedUpcomingAppointment
@@ -28,6 +28,9 @@ struct EditableAppointmentView: View {
         })
         .onTapGesture {
             EndEditingHelper.endEditing()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.willResignActiveNotification)) { _ in
+            self.intermediateVM.saveForLater { _ in}
         }
     }
     
@@ -58,7 +61,19 @@ struct EditableAppointmentView: View {
                 Button {
                     self.intermediateVM.collapseExtraDetailEntry.toggle()
                 } label: {
-                    Text(self.intermediateVM.collapseExtraDetailEntry ? "Clinical Information +" : "Clinical Information -")
+                    HStack {
+                        if self.intermediateVM.collapseExtraDetailEntry {
+                            Image("chevron.right.circle")
+                                .foregroundColor(.blue)
+                            
+                        } else {
+                            Image("chevron.down.circle")
+                                .foregroundColor(.blue)
+                        }
+                        Text("Clinical Information")
+                            .bold()
+                        Spacer()
+                    }
                 }
                 Spacer()
             }
@@ -96,7 +111,7 @@ struct EditableAppointmentView: View {
                         backgroundColor: Color.white,
                         foregroundColor: Color.blue) {
                 CommonDefaultModifiers.showLoader()
-                intermediateVM.savePrescription { _ in
+                intermediateVM.saveForLater { _ in
                     CommonDefaultModifiers.hideLoader()
                     DoctorAlertHelpers().isSavedAlert()
                 }
@@ -146,7 +161,7 @@ struct EditableAppointmentView: View {
     
     var actionButtons : some View {
         HStack {
-
+            
             if !intermediateVM.appointmentStarted && !intermediateVM.appointmentFinished {
                 Button(action: {
                     intermediateVM.cancelAppointment { success in
@@ -161,7 +176,7 @@ struct EditableAppointmentView: View {
                         .overlay(RoundedRectangle(cornerRadius: 6)
                                     .stroke(Color.blue, lineWidth: 2))
                 })
-
+                
                 Spacer()
             }
             

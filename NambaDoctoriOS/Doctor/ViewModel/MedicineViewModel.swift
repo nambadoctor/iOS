@@ -130,10 +130,8 @@ class MedicineViewModel: ObservableObject {
             }
         }
     }
-
-    func sendToPatient (completion: @escaping (_ success:Bool)->()) {
-        prescription.prescriptionID = "" //service will make new prescription ID to update not overwrite
-        
+    
+    func storeImageValues () {
         if imagePickerVM.image != nil {
             self.prescription.fileInfo.FileName = ""
             self.prescription.fileInfo.FileType = "png"
@@ -144,13 +142,22 @@ class MedicineViewModel: ObservableObject {
             self.prescription.fileInfo.MediaImage = imageLoader!.image!.jpegData(compressionQuality: 0.3)!.base64EncodedString()
             self.prescription.fileInfo.FileType = "png"
         }
+    }
 
+    func sendToPatient (completion: @escaping (_ success:Bool)->()) {
+        prescription.prescriptionID = "" //service will make new prescription ID to update not overwrite
+        
+        storeImageValues()
+        
         self.prescription.createdDateTime = Date().millisecondsSince1970
         prescriptionServiceCalls.setPrescription(prescription: self.prescription) { (response) in
             self.imageLoader = nil
-            //self.imagePickerVM = nil
             completion(response)
         }
+    }
+
+    func saveCurrentChanges () {
+        storeImageValues()
     }
 }
 

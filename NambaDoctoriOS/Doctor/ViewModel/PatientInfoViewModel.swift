@@ -16,7 +16,7 @@ class PatientInfoViewModel: ObservableObject {
     @Published var ReportList:[ServiceProviderReport]? = nil
         
     @Published var briefPatientDetails:String = ""
-    
+
     var appointment:ServiceProviderAppointment
     private var customerServiceCall:CustomerGetSetServiceCallProtocol
     private var reportServiceCall:ReportGetSetServiceCallProtocol
@@ -72,17 +72,6 @@ class PatientInfoViewModel: ObservableObject {
         reportServiceCall.getUploadedReportList(customerId: appointment.customerID, serviceRequestId: serviceRequestId, appointmentId: appointment.appointmentID) { (uploadedDocumentList) in
             if uploadedDocumentList != nil {
                 self.ReportList = uploadedDocumentList
-            }
-        }
-    }
-
-    func sendToPatient (completion: @escaping (_ success:Bool)->()) {
-        print("PatientObject: \(patientObj)")
-        customerServiceCall.setPatientProfile(customerProfile: patientObj) { (response) in
-            if response != nil {
-                completion(true)
-            } else {
-                completion(false)
             }
         }
     }

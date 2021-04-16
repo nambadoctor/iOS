@@ -17,11 +17,13 @@ class SendPushNotification {
         
         let sendNotifTask = notificiationClient.sendNotification(request, callOptions: callOptions)
 
-        do {
-            let response = try sendNotifTask.response.wait()
-            print("Send Notification Client Success")
-        } catch {
-            print("Send Notification Client Failure")
+        DispatchQueue.global().async {
+            do {
+                let response = try sendNotifTask.response.wait()
+                print("Send Notification Client Success")
+            } catch {
+                print("Send Notification Client Failure")
+            }
         }
     }
 }

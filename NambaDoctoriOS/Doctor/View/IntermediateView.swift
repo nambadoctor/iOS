@@ -28,9 +28,11 @@ struct IntermediateView: View {
                     .onAppear(){self.intermediateVM.doctorTwilioManagerViewModel.viewController?.connect(sender: intermediateVM)}
             }
 
-            NavigationLink("",
-                           destination: ChatRoomView(appointment: intermediateVM.appointment),
-                           isActive: $intermediateVM.takeToChat)
+            if intermediateVM.takeToChat {
+                NavigationLink("",
+                               destination: DoctorChatRoomView(appointment: intermediateVM.appointment),
+                               isActive: $intermediateVM.takeToChat)
+            }
 
         }
         .environmentObject(intermediateVM)

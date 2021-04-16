@@ -168,8 +168,7 @@
 		1772338D25B726A6002B814A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1772338C25B726A6002B814A /* GoogleService-Info.plist */; };
 		1772339825B72FF2002B814A /* CheckLoginStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1772339725B72FF2002B814A /* CheckLoginStatus.swift */; };
 		177233B925B7411A002B814A /* ViewOrAmmendConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177233B825B7411A002B814A /* ViewOrAmmendConstant.swift */; };
-		177233BE25B745C2002B814A /* Encoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177233BD25B745C2002B814A /* Encoder.swift */; };
-		177233C325B745EB002B814A /* Decoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177233C225B745EB002B814A /* Decoder.swift */; };
+		177233BE25B745C2002B814A /* EncoderDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177233BD25B745C2002B814A /* EncoderDecoder.swift */; };
 		1772755825B8A3DF0012B9DE /* AuthenticateServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1772755725B8A3DF0012B9DE /* AuthenticateServiceProtocol.swift */; };
 		1772755D25B8A4880012B9DE /* MockAuthenticateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1772755C25B8A4880012B9DE /* MockAuthenticateService.swift */; };
 		1772756525B8A7DB0012B9DE /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1772756425B8A7DB0012B9DE /* LoginViewModelTests.swift */; };
@@ -188,17 +187,17 @@
 		179BD39E25DE452D0076F391 /* LocalNotificationSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179BD39D25DE452D0076F391 /* LocalNotificationSender.swift */; };
 		179BD3A325DE4D120076F391 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179BD3A225DE4D120076F391 /* DateHelper.swift */; };
 		179C44782627CC170073F4E0 /* RealtimeDBListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179C44772627CC170073F4E0 /* RealtimeDBListener.swift */; };
-		179C44802627D8710073F4E0 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179C447F2627D8710073F4E0 /* ChatViewModel.swift */; };
+		179C44802627D8710073F4E0 /* DoctorChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179C447F2627D8710073F4E0 /* DoctorChatViewModel.swift */; };
 		179C44912627D8AC0073F4E0 /* ChatMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179C44902627D8AC0073F4E0 /* ChatMessage.swift */; };
 		179C44972627EB970073F4E0 /* SnapshotDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179C44962627EB970073F4E0 /* SnapshotDecoder.swift */; };
 		179C44B92627ED3F0073F4E0 /* RealtimeDBWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179C44B82627ED3F0073F4E0 /* RealtimeDBWriter.swift */; };
 		179C44BE2627ED6C0073F4E0 /* DBReferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179C44BD2627ED6C0073F4E0 /* DBReferences.swift */; };
 		179C44C42627F1B80073F4E0 /* ChatRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179C44C32627F1B80073F4E0 /* ChatRoomView.swift */; };
+		179C44E42628C86D0073F4E0 /* DoctorChatRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179C44E32628C86D0073F4E0 /* DoctorChatRoomView.swift */; };
 		179F629C25BF5F8900BA0A73 /* PhoneNumberObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179F629B25BF5F8900BA0A73 /* PhoneNumberObj.swift */; };
 		17AE6D1825E24B2200B18292 /* DoctorsPatientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE6D1725E24B2100B18292 /* DoctorsPatientsView.swift */; };
 		17AE6D2025E24B2A00B18292 /* DoctorsPatientsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE6D1F25E24B2A00B18292 /* DoctorsPatientsCardView.swift */; };
 		17AE6D3325E24DA400B18292 /* RetrieveDoctorsPatientsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE6D3225E24DA400B18292 /* RetrieveDoctorsPatientsServiceProtocol.swift */; };
-		17AE6D4325E26F4B00B18292 /* RemoveStoredObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE6D4225E26F4B00B18292 /* RemoveStoredObject.swift */; };
 		17B5D12D25B75789009D6A42 /* LocalEncodingK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B5D12C25B75789009D6A42 /* LocalEncodingK.swift */; };
 		17B5D13725B75A04009D6A42 /* AppointmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B5D13625B75A04009D6A42 /* AppointmentsView.swift */; };
 		17B5D16425B75CE7009D6A42 /* CheckAppointmentStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B5D16325B75CE7009D6A42 /* CheckAppointmentStatus.swift */; };
@@ -439,8 +438,7 @@
 		1772338C25B726A6002B814A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1772339725B72FF2002B814A /* CheckLoginStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckLoginStatus.swift; sourceTree = "<group>"; };
 		177233B825B7411A002B814A /* ViewOrAmmendConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewOrAmmendConstant.swift; sourceTree = "<group>"; };
-		177233BD25B745C2002B814A /* Encoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encoder.swift; sourceTree = "<group>"; };
-		177233C225B745EB002B814A /* Decoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoder.swift; sourceTree = "<group>"; };
+		177233BD25B745C2002B814A /* EncoderDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncoderDecoder.swift; sourceTree = "<group>"; };
 		1772755725B8A3DF0012B9DE /* AuthenticateServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticateServiceProtocol.swift; sourceTree = "<group>"; };
 		1772755C25B8A4880012B9DE /* MockAuthenticateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthenticateService.swift; sourceTree = "<group>"; };
 		1772756425B8A7DB0012B9DE /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
@@ -459,17 +457,17 @@
 		179BD39D25DE452D0076F391 /* LocalNotificationSender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalNotificationSender.swift; sourceTree = "<group>"; };
 		179BD3A225DE4D120076F391 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		179C44772627CC170073F4E0 /* RealtimeDBListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealtimeDBListener.swift; sourceTree = "<group>"; };
-		179C447F2627D8710073F4E0 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		179C447F2627D8710073F4E0 /* DoctorChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorChatViewModel.swift; sourceTree = "<group>"; };
 		179C44902627D8AC0073F4E0 /* ChatMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessage.swift; sourceTree = "<group>"; };
 		179C44962627EB970073F4E0 /* SnapshotDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotDecoder.swift; sourceTree = "<group>"; };
 		179C44B82627ED3F0073F4E0 /* RealtimeDBWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealtimeDBWriter.swift; sourceTree = "<group>"; };
 		179C44BD2627ED6C0073F4E0 /* DBReferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBReferences.swift; sourceTree = "<group>"; };
 		179C44C32627F1B80073F4E0 /* ChatRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomView.swift; sourceTree = "<group>"; };
+		179C44E32628C86D0073F4E0 /* DoctorChatRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorChatRoomView.swift; sourceTree = "<group>"; };
 		179F629B25BF5F8900BA0A73 /* PhoneNumberObj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberObj.swift; sourceTree = "<group>"; };
 		17AE6D1725E24B2100B18292 /* DoctorsPatientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorsPatientsView.swift; sourceTree = "<group>"; };
 		17AE6D1F25E24B2A00B18292 /* DoctorsPatientsCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorsPatientsCardView.swift; sourceTree = "<group>"; };
 		17AE6D3225E24DA400B18292 /* RetrieveDoctorsPatientsServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrieveDoctorsPatientsServiceProtocol.swift; sourceTree = "<group>"; };
-		17AE6D4225E26F4B00B18292 /* RemoveStoredObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveStoredObject.swift; sourceTree = "<group>"; };
 		17B5D12C25B75789009D6A42 /* LocalEncodingK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalEncodingK.swift; sourceTree = "<group>"; };
 		17B5D13625B75A04009D6A42 /* AppointmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentsView.swift; sourceTree = "<group>"; };
 		17B5D16325B75CE7009D6A42 /* CheckAppointmentStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckAppointmentStatus.swift; sourceTree = "<group>"; };
@@ -563,9 +561,7 @@
 		1701326125B7490800CAED6E /* LocalStorageHelpers */ = {
 			isa = PBXGroup;
 			children = (
-				177233BD25B745C2002B814A /* Encoder.swift */,
-				177233C225B745EB002B814A /* Decoder.swift */,
-				17AE6D4225E26F4B00B18292 /* RemoveStoredObject.swift */,
+				177233BD25B745C2002B814A /* EncoderDecoder.swift */,
 			);
 			path = LocalStorageHelpers;
 			sourceTree = "<group>";
@@ -746,7 +742,7 @@
 				171B8B0D261481D1007E722C /* FollowUpViewModel.swift */,
 				1785A5002616E193009667D1 /* ModifyFeeViewModel.swift */,
 				1716E2DB261B0FB500568837 /* IntermediateAppointmentViewModel.swift */,
-				179C447F2627D8710073F4E0 /* ChatViewModel.swift */,
+				179C447F2627D8710073F4E0 /* DoctorChatViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -807,6 +803,7 @@
 		172B852925AEE66600C6B035 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				179C44C22627F1AC0073F4E0 /* Chat */,
 				17EC7647260DB57A0002BA75 /* HorizontalDatePicker */,
 				17424FE925BAD1CA00523B94 /* CommonHelperViews */,
 				172B850B25AEE46700C6B035 /* Login */,
@@ -1130,17 +1127,26 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		179C44C22627F1AC0073F4E0 /* ChatRoom */ = {
+		179C44C22627F1AC0073F4E0 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
 				179C44C32627F1B80073F4E0 /* ChatRoomView.swift */,
 			);
-			path = ChatRoom;
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		179C44E22628C8600073F4E0 /* DoctorChat */ = {
+			isa = PBXGroup;
+			children = (
+				179C44E32628C86D0073F4E0 /* DoctorChatRoomView.swift */,
+			);
+			path = DoctorChat;
 			sourceTree = "<group>";
 		};
 		17AE6D1525E24B0B00B18292 /* DoctorsPatients */ = {
 			isa = PBXGroup;
 			children = (
+				17E370A025BF196C0004C965 /* DoctorTwilioManager */,
 				17AE6D1725E24B2100B18292 /* DoctorsPatientsView.swift */,
 				17AE6D1F25E24B2A00B18292 /* DoctorsPatientsCardView.swift */,
 			);
@@ -1150,14 +1156,13 @@
 		17B5D11625B74B29009D6A42 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				179C44C22627F1AC0073F4E0 /* ChatRoom */,
+				179C44E22628C8600073F4E0 /* DoctorChat */,
 				1716E2B6261AFA3F00568837 /* EditAppointment */,
 				1716E2A6261AF84100568837 /* ViewAppointment */,
 				171B8AE5261154BB007E722C /* DoctorProfile */,
 				17EC75E3260C61EF0002BA75 /* DetailedAppointmentView */,
 				17626CCB25D5C01A00C36A99 /* DoctorHome */,
 				17AE6D1525E24B0B00B18292 /* DoctorsPatients */,
-				17E370A025BF196C0004C965 /* DoctorTwilioManager */,
 				1742523425BD987500523B94 /* PatientInfo */,
 				17B5D13425B759EC009D6A42 /* Appointments */,
 				1785A56F261A353F009667D1 /* IntermediateView.swift */,
@@ -1572,7 +1577,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/FirebaseCrashlytics/run\"\n\"${PODS_ROOT}/FirebaseCrashlytics/upload-symbols\" -gsp \"${PROJECT_DIR}/NambaDoctoriOS/GoogleService-Info.plist\" -p ios \"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"\n";
 		};
 		8175882E11BAAF40157BB173 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1716,14 +1721,14 @@
 				171646FC26030C6300BB5B5A /* ServiceProviderAppointmentObjectMapper.swift in Sources */,
 				1785A570261A353F009667D1 /* IntermediateView.swift in Sources */,
 				1728B76D25B38156001D554E /* Logon.swift in Sources */,
+				179C44E42628C86D0073F4E0 /* DoctorChatRoomView.swift in Sources */,
 				1785A5422616FB58009667D1 /* serviceprovider.grpc.swift in Sources */,
 				17AE6D3325E24DA400B18292 /* RetrieveDoctorsPatientsServiceProtocol.swift in Sources */,
 				17E3707025BF123F0004C965 /* Settings.swift in Sources */,
 				171646732602B28F00BB5B5A /* NotificationRequest.swift in Sources */,
 				171B8B812616CE53007E722C /* ModifyFeeView.swift in Sources */,
-				177233C325B745EB002B814A /* Decoder.swift in Sources */,
 				17424F2625BA138F00523B94 /* DoctorAlertHelperProtocol.swift in Sources */,
-				177233BE25B745C2002B814A /* Encoder.swift in Sources */,
+				177233BE25B745C2002B814A /* EncoderDecoder.swift in Sources */,
 				179C44C42627F1B80073F4E0 /* ChatRoomView.swift in Sources */,
 				17EC75DF260C52B70002BA75 /* ExpandingTextView.swift in Sources */,
 				171646882602B40300BB5B5A /* ServiceProviderAppInfo.swift in Sources */,
@@ -1736,7 +1741,6 @@
 				1742515425BCC33200523B94 /* ViewAppointment.swift in Sources */,
 				171646972602B4CF00BB5B5A /* ServiceProviderPhoneNumber.swift in Sources */,
 				1748010625B8DF8900C8E3CC /* LoginDefaultMofiers.swift in Sources */,
-				17AE6D4325E26F4B00B18292 /* RemoveStoredObject.swift in Sources */,
 				171646B32602B62900BB5B5A /* ServiceProviderFollowUp.swift in Sources */,
 				171646BD2602B68000BB5B5A /* ServiceProviderMedicine.swift in Sources */,
 				172B851725AEE4AC00C6B035 /* UIColor.swift in Sources */,
@@ -1760,7 +1764,7 @@
 				171646D42602B78100BB5B5A /* ServiceProviderReportUploadObj.swift in Sources */,
 				17E5185425AED16A001F1A80 /* AppDelegate.swift in Sources */,
 				173A231225CAFE2B0086342A /* ChannelManager.swift in Sources */,
-				179C44802627D8710073F4E0 /* ChatViewModel.swift in Sources */,
+				179C44802627D8710073F4E0 /* DoctorChatViewModel.swift in Sources */,
 				179F629C25BF5F8900BA0A73 /* PhoneNumberObj.swift in Sources */,
 				17E3706F25BF123F0004C965 /* TwilioViewController.swift in Sources */,
 				1742505925BAE58800523B94 /* MedicineViewModel.swift in Sources */,

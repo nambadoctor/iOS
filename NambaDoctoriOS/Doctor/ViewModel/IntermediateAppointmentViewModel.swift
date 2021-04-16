@@ -10,7 +10,7 @@ import Foundation
 class IntermediateAppointmentViewModel : ObservableObject {
     @Published var killView:Bool = false
     @Published var appointment:ServiceProviderAppointment
-
+    
     //main view models
     @Published var serviceRequestVM:ServiceRequestViewModel
     @Published var medicineVM:MedicineViewModel
@@ -19,12 +19,12 @@ class IntermediateAppointmentViewModel : ObservableObject {
     //helper view models
     @Published var modifyFeeViewModel:ModifyFeeViewModel
     @Published var doctorTwilioManagerViewModel:DoctorTwilioViewModel
-
+    
     @Published var takeToDetailedAppointment:Bool = false
     @Published var takeToViewAppointment:Bool = false
     
     @Published var takeToChat:Bool = false
-
+    
     @Published var appointmentStarted:Bool = false
     @Published var appointmentFinished:Bool = false
     
@@ -35,16 +35,16 @@ class IntermediateAppointmentViewModel : ObservableObject {
     private var updateAppointmentStatus:UpdateAppointmentStatusProtocol
     private var docNotifHelper:DocNotifHelpers
     private var doctorAlertHelper:DoctorAlertHelpersProtocol
-
+    
     init(appointment:ServiceProviderAppointment,
          updateAppointmentStatus:UpdateAppointmentStatusProtocol = UpdateAppointmentStatusHelper(),
          doctorAlertHelper:DoctorAlertHelpersProtocol = DoctorAlertHelpers()) {
         self.appointment = appointment
-
+        
         self.updateAppointmentStatus = updateAppointmentStatus
         self.doctorAlertHelper = doctorAlertHelper
         self.docNotifHelper = DocNotifHelpers(appointment: appointment)
-
+        
         //main view model inits
         self.medicineVM = MedicineViewModel(appointment: appointment)
         self.patientInfoViewModel = PatientInfoViewModel(appointment: appointment)
@@ -53,7 +53,7 @@ class IntermediateAppointmentViewModel : ObservableObject {
         //helper view model inits
         self.modifyFeeViewModel = ModifyFeeViewModel(fee: appointment.serviceFee.clean)
         self.doctorTwilioManagerViewModel = DoctorTwilioViewModel(appointment: appointment)
-
+        
         doctorTwilioManagerViewModel.twilioDelegate = self
         serviceRequestVM.gotServiceRequestDelegate = self
         
@@ -63,7 +63,7 @@ class IntermediateAppointmentViewModel : ObservableObject {
     func refreshPrescription () {
         self.medicineVM.retrievePrescriptions()
     }
-
+    
     func initChecks () {
         checkDetailedOrView()
         checkIfAppointmentFinished()
@@ -79,32 +79,25 @@ extension IntermediateAppointmentViewModel : LoadReportsWithServiceRequestDelega
 
 //MARK:- UPDATING INFORMATION CALLS
 extension IntermediateAppointmentViewModel {
-    func savePrescription(completion: @escaping (_ success:Bool)->()) {
+    func saveForLater(completion: @escaping (_ success:Bool)->()) {
         var allSendsDone:[Bool] = [Bool]()
         
         func onCompletion(success:Bool) {
             allSendsDone.append(success)
             
-            if allSendsDone.count == 3 && !allSendsDone.contains(false) {
-                
+            if allSendsDone.count == 2 && !allSendsDone.contains(false) {
                 completion(true)
             }
         }
 
         self.appointment.serviceFee = modifyFeeViewModel.convertFeeToDouble()
-
+        
         serviceRequestVM.sendToPatient { (success, serviceRequestId) in
-            if success {
-                self.medicineVM.prescription.serviceRequestID = serviceRequestId!
-                self.medicineVM.sendToPatient { (success) in
-                    onCompletion(success: success)
-                }
-            }
-
             onCompletion(success: success)
         }
 
-        patientInfoViewModel.sendToPatient { (success) in
+        self.medicineVM.prescription.serviceRequestID = self.serviceRequestVM.serviceRequest.serviceRequestID
+        self.medicineVM.sendToPatient { (success) in
             onCompletion(success: success)
         }
     }
@@ -112,7 +105,7 @@ extension IntermediateAppointmentViewModel {
     func sendToPatient () {
         CommonDefaultModifiers.showLoader()
 
-        self.savePrescription { (success) in
+        self.saveForLater { (success) in
             self.updateAppointmentStatus.updateToFinished(appointment: &self.appointment) { (success) in
                 CommonDefaultModifiers.hideLoader()
                 self.docNotifHelper.fireAppointmentOverNotif(requestedBy: self.appointment.customerID)
@@ -168,26 +161,26 @@ extension IntermediateAppointmentViewModel {
     var customerName:String {
         return "\(appointment.customerName)"
     }
-
+    
     var isPaid:Bool {
         return appointment.isPaid
     }
-
+    
     func checkIfAppointmentStarted () {
         if appointment.status == ConsultStateK.StartedConsultation.rawValue
         {
             self.appointmentStarted = true
         }
     }
-
+    
     func checkIfAppointmentFinished() {
         if appointment.status == ConsultStateK.Finished.rawValue ||
-                    appointment.status == ConsultStateK.FinishedAppointment.rawValue
+            appointment.status == ConsultStateK.FinishedAppointment.rawValue
         {
             self.appointmentFinished = true
         }
     }
-
+    
     func checkDetailedOrView () {
         if appointment.status == ConsultStateK.Confirmed.rawValue || appointment.status == ConsultStateK.StartedConsultation.rawValue {
             takeToDetailed()
@@ -205,7 +198,7 @@ extension IntermediateAppointmentViewModel {
         self.takeToDetailedAppointment = false
         self.takeToViewAppointment = true
     }
-
+    
     func cancelAppointment(completion: @escaping (_ successfullyCancelled:Bool)->()) {
         doctorAlertHelper.cancelAppointmentAlert { (cancel) in
             CommonDefaultModifiers.showLoader()

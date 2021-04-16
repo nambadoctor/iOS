@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ChatMessage : Codable {
+struct ChatMessage : Codable, Hashable {
     var messageId:String
     var message:String
     var senderId:String

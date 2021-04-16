@@ -14,6 +14,17 @@ class DocNotifHelpers : DocNotifHelpersProtocol {
     init(appointment:ServiceProviderAppointment) {
         self.appointment = appointment
     }
+    
+    func fireChatMessageNotif (message:String) {
+        let cancelNotifObj = Nd_V1_NotificationRequestMessage.with {
+            $0.title = appointment.serviceProviderName.toProto
+            $0.body = "\(message)".toProto
+            $0.userID = appointment.customerID.toProto
+            $0.id = appointment.appointmentID.toProto
+        }
+
+        sendPushNotification.sendNotif(notifObj: cancelNotifObj)
+    }
 
     func fireCancelNotif (requestedBy:String, appointmentTime:Int64) {
         

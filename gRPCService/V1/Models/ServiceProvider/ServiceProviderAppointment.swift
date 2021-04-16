@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ServiceProviderAppointment {
+struct ServiceProviderAppointment : Codable {
     var appointmentID:String
     var serviceRequestID:String
     var parentAppointmentID:String
