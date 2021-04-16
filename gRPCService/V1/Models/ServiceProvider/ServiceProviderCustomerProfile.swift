@@ -22,8 +22,6 @@ struct ServiceProviderCustomerProfile {
     var completedAppointmentIds:[String]
     var profilePicURL:String
     var primaryServiceProviderID:String
-    var allergies:[String]
-    var medicalHistory:[String]
     var lastModifiedDate:Int64
     var createdDate:Int64
 }

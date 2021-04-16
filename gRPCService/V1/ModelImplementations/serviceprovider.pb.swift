@@ -41,6 +41,127 @@ struct Nd_V1_BoolMessage {
   fileprivate var _status: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
 }
 
+struct Nd_V1_DeviceInfoMessage {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var deviceInfoID: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _deviceInfoID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_deviceInfoID = newValue}
+  }
+  /// Returns true if `deviceInfoID` has been explicitly set.
+  var hasDeviceInfoID: Bool {return self._deviceInfoID != nil}
+  /// Clears the value of `deviceInfoID`. Subsequent reads from it will return its default value.
+  mutating func clearDeviceInfoID() {self._deviceInfoID = nil}
+
+  var osversion: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _osversion ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_osversion = newValue}
+  }
+  /// Returns true if `osversion` has been explicitly set.
+  var hasOsversion: Bool {return self._osversion != nil}
+  /// Clears the value of `osversion`. Subsequent reads from it will return its default value.
+  mutating func clearOsversion() {self._osversion = nil}
+
+  var deviceName: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _deviceName ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_deviceName = newValue}
+  }
+  /// Returns true if `deviceName` has been explicitly set.
+  var hasDeviceName: Bool {return self._deviceName != nil}
+  /// Clears the value of `deviceName`. Subsequent reads from it will return its default value.
+  mutating func clearDeviceName() {self._deviceName = nil}
+
+  var model: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _model ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_model = newValue}
+  }
+  /// Returns true if `model` has been explicitly set.
+  var hasModel: Bool {return self._model != nil}
+  /// Clears the value of `model`. Subsequent reads from it will return its default value.
+  mutating func clearModel() {self._model = nil}
+
+  var product: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _product ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_product = newValue}
+  }
+  /// Returns true if `product` has been explicitly set.
+  var hasProduct: Bool {return self._product != nil}
+  /// Clears the value of `product`. Subsequent reads from it will return its default value.
+  mutating func clearProduct() {self._product = nil}
+
+  var brand: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _brand ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_brand = newValue}
+  }
+  /// Returns true if `brand` has been explicitly set.
+  var hasBrand: Bool {return self._brand != nil}
+  /// Clears the value of `brand`. Subsequent reads from it will return its default value.
+  mutating func clearBrand() {self._brand = nil}
+
+  var display: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _display ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_display = newValue}
+  }
+  /// Returns true if `display` has been explicitly set.
+  var hasDisplay: Bool {return self._display != nil}
+  /// Clears the value of `display`. Subsequent reads from it will return its default value.
+  mutating func clearDisplay() {self._display = nil}
+
+  var cpuAbi: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _cpuAbi ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_cpuAbi = newValue}
+  }
+  /// Returns true if `cpuAbi` has been explicitly set.
+  var hasCpuAbi: Bool {return self._cpuAbi != nil}
+  /// Clears the value of `cpuAbi`. Subsequent reads from it will return its default value.
+  mutating func clearCpuAbi() {self._cpuAbi = nil}
+
+  var cpuAbi2: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _cpuAbi2 ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_cpuAbi2 = newValue}
+  }
+  /// Returns true if `cpuAbi2` has been explicitly set.
+  var hasCpuAbi2: Bool {return self._cpuAbi2 != nil}
+  /// Clears the value of `cpuAbi2`. Subsequent reads from it will return its default value.
+  mutating func clearCpuAbi2() {self._cpuAbi2 = nil}
+
+  var manufacturer: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _manufacturer ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_manufacturer = newValue}
+  }
+  /// Returns true if `manufacturer` has been explicitly set.
+  var hasManufacturer: Bool {return self._manufacturer != nil}
+  /// Clears the value of `manufacturer`. Subsequent reads from it will return its default value.
+  mutating func clearManufacturer() {self._manufacturer = nil}
+
+  var serial: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _serial ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_serial = newValue}
+  }
+  /// Returns true if `serial` has been explicitly set.
+  var hasSerial: Bool {return self._serial != nil}
+  /// Clears the value of `serial`. Subsequent reads from it will return its default value.
+  mutating func clearSerial() {self._serial = nil}
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _deviceInfoID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _osversion: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _deviceName: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _model: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _product: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _brand: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _display: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _cpuAbi: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _cpuAbi2: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _manufacturer: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _serial: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+}
+
 struct Nd_V1_IdMessage {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -780,16 +901,6 @@ struct Nd_V1_ServiceProviderCustomerProfileMessage {
   /// Clears the value of `primaryServiceProviderID`. Subsequent reads from it will return its default value.
   mutating func clearPrimaryServiceProviderID() {_uniqueStorage()._primaryServiceProviderID = nil}
 
-  var allergies: [SwiftProtobuf.Google_Protobuf_StringValue] {
-    get {return _storage._allergies}
-    set {_uniqueStorage()._allergies = newValue}
-  }
-
-  var medicalHistory: [SwiftProtobuf.Google_Protobuf_StringValue] {
-    get {return _storage._medicalHistory}
-    set {_uniqueStorage()._medicalHistory = newValue}
-  }
-
   var lastModifedDate: SwiftProtobuf.Google_Protobuf_Int64Value {
     get {return _storage._lastModifedDate ?? SwiftProtobuf.Google_Protobuf_Int64Value()}
     set {_uniqueStorage()._lastModifedDate = newValue}
@@ -807,6 +918,15 @@ struct Nd_V1_ServiceProviderCustomerProfileMessage {
   var hasCreatedDate: Bool {return _storage._createdDate != nil}
   /// Clears the value of `createdDate`. Subsequent reads from it will return its default value.
   mutating func clearCreatedDate() {_uniqueStorage()._createdDate = nil}
+
+  var customerDeviceInfo: Nd_V1_DeviceInfoMessage {
+    get {return _storage._customerDeviceInfo ?? Nd_V1_DeviceInfoMessage()}
+    set {_uniqueStorage()._customerDeviceInfo = newValue}
+  }
+  /// Returns true if `customerDeviceInfo` has been explicitly set.
+  var hasCustomerDeviceInfo: Bool {return _storage._customerDeviceInfo != nil}
+  /// Clears the value of `customerDeviceInfo`. Subsequent reads from it will return its default value.
+  mutating func clearCustomerDeviceInfo() {_uniqueStorage()._customerDeviceInfo = nil}
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -1866,6 +1986,15 @@ struct Nd_V1_ServiceProviderProfileMessage {
   /// Clears the value of `lastModifedDate`. Subsequent reads from it will return its default value.
   mutating func clearLastModifedDate() {_uniqueStorage()._lastModifedDate = nil}
 
+  var serviceProviderDeviceInfo: Nd_V1_DeviceInfoMessage {
+    get {return _storage._serviceProviderDeviceInfo ?? Nd_V1_DeviceInfoMessage()}
+    set {_uniqueStorage()._serviceProviderDeviceInfo = newValue}
+  }
+  /// Returns true if `serviceProviderDeviceInfo` has been explicitly set.
+  var hasServiceProviderDeviceInfo: Bool {return _storage._serviceProviderDeviceInfo != nil}
+  /// Clears the value of `serviceProviderDeviceInfo`. Subsequent reads from it will return its default value.
+  mutating func clearServiceProviderDeviceInfo() {_uniqueStorage()._serviceProviderDeviceInfo = nil}
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -2070,6 +2199,98 @@ extension Nd_V1_BoolMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
 
   static func ==(lhs: Nd_V1_BoolMessage, rhs: Nd_V1_BoolMessage) -> Bool {
     if lhs._status != rhs._status {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Nd_V1_DeviceInfoMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".DeviceInfoMessage"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "DeviceInfoId"),
+    2: .same(proto: "OSVersion"),
+    3: .same(proto: "DeviceName"),
+    4: .same(proto: "Model"),
+    5: .same(proto: "Product"),
+    6: .same(proto: "Brand"),
+    7: .same(proto: "Display"),
+    8: .standard(proto: "CPU_ABI"),
+    9: .standard(proto: "CPU_ABI2"),
+    10: .same(proto: "Manufacturer"),
+    11: .same(proto: "Serial"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularMessageField(value: &self._deviceInfoID) }()
+      case 2: try { try decoder.decodeSingularMessageField(value: &self._osversion) }()
+      case 3: try { try decoder.decodeSingularMessageField(value: &self._deviceName) }()
+      case 4: try { try decoder.decodeSingularMessageField(value: &self._model) }()
+      case 5: try { try decoder.decodeSingularMessageField(value: &self._product) }()
+      case 6: try { try decoder.decodeSingularMessageField(value: &self._brand) }()
+      case 7: try { try decoder.decodeSingularMessageField(value: &self._display) }()
+      case 8: try { try decoder.decodeSingularMessageField(value: &self._cpuAbi) }()
+      case 9: try { try decoder.decodeSingularMessageField(value: &self._cpuAbi2) }()
+      case 10: try { try decoder.decodeSingularMessageField(value: &self._manufacturer) }()
+      case 11: try { try decoder.decodeSingularMessageField(value: &self._serial) }()
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if let v = self._deviceInfoID {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+    }
+    if let v = self._osversion {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+    }
+    if let v = self._deviceName {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+    }
+    if let v = self._model {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+    }
+    if let v = self._product {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+    }
+    if let v = self._brand {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+    }
+    if let v = self._display {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+    }
+    if let v = self._cpuAbi {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
+    }
+    if let v = self._cpuAbi2 {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
+    }
+    if let v = self._manufacturer {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
+    }
+    if let v = self._serial {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Nd_V1_DeviceInfoMessage, rhs: Nd_V1_DeviceInfoMessage) -> Bool {
+    if lhs._deviceInfoID != rhs._deviceInfoID {return false}
+    if lhs._osversion != rhs._osversion {return false}
+    if lhs._deviceName != rhs._deviceName {return false}
+    if lhs._model != rhs._model {return false}
+    if lhs._product != rhs._product {return false}
+    if lhs._brand != rhs._brand {return false}
+    if lhs._display != rhs._display {return false}
+    if lhs._cpuAbi != rhs._cpuAbi {return false}
+    if lhs._cpuAbi2 != rhs._cpuAbi2 {return false}
+    if lhs._manufacturer != rhs._manufacturer {return false}
+    if lhs._serial != rhs._serial {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -2831,10 +3052,9 @@ extension Nd_V1_ServiceProviderCustomerProfileMessage: SwiftProtobuf.Message, Sw
     12: .same(proto: "CompletedAppointmentIds"),
     13: .same(proto: "ProfilePicURL"),
     14: .same(proto: "PrimaryServiceProviderId"),
-    15: .same(proto: "Allergies"),
-    16: .same(proto: "MedicalHistory"),
-    17: .same(proto: "LastModifedDate"),
-    18: .same(proto: "CreatedDate"),
+    15: .same(proto: "LastModifedDate"),
+    16: .same(proto: "CreatedDate"),
+    17: .same(proto: "CustomerDeviceInfo"),
   ]
 
   fileprivate class _StorageClass {
@@ -2852,10 +3072,9 @@ extension Nd_V1_ServiceProviderCustomerProfileMessage: SwiftProtobuf.Message, Sw
     var _completedAppointmentIds: [SwiftProtobuf.Google_Protobuf_StringValue] = []
     var _profilePicURL: SwiftProtobuf.Google_Protobuf_StringValue? = nil
     var _primaryServiceProviderID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-    var _allergies: [SwiftProtobuf.Google_Protobuf_StringValue] = []
-    var _medicalHistory: [SwiftProtobuf.Google_Protobuf_StringValue] = []
     var _lastModifedDate: SwiftProtobuf.Google_Protobuf_Int64Value? = nil
     var _createdDate: SwiftProtobuf.Google_Protobuf_Int64Value? = nil
+    var _customerDeviceInfo: Nd_V1_DeviceInfoMessage? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -2876,10 +3095,9 @@ extension Nd_V1_ServiceProviderCustomerProfileMessage: SwiftProtobuf.Message, Sw
       _completedAppointmentIds = source._completedAppointmentIds
       _profilePicURL = source._profilePicURL
       _primaryServiceProviderID = source._primaryServiceProviderID
-      _allergies = source._allergies
-      _medicalHistory = source._medicalHistory
       _lastModifedDate = source._lastModifedDate
       _createdDate = source._createdDate
+      _customerDeviceInfo = source._customerDeviceInfo
     }
   }
 
@@ -2912,10 +3130,9 @@ extension Nd_V1_ServiceProviderCustomerProfileMessage: SwiftProtobuf.Message, Sw
         case 12: try { try decoder.decodeRepeatedMessageField(value: &_storage._completedAppointmentIds) }()
         case 13: try { try decoder.decodeSingularMessageField(value: &_storage._profilePicURL) }()
         case 14: try { try decoder.decodeSingularMessageField(value: &_storage._primaryServiceProviderID) }()
-        case 15: try { try decoder.decodeRepeatedMessageField(value: &_storage._allergies) }()
-        case 16: try { try decoder.decodeRepeatedMessageField(value: &_storage._medicalHistory) }()
-        case 17: try { try decoder.decodeSingularMessageField(value: &_storage._lastModifedDate) }()
-        case 18: try { try decoder.decodeSingularMessageField(value: &_storage._createdDate) }()
+        case 15: try { try decoder.decodeSingularMessageField(value: &_storage._lastModifedDate) }()
+        case 16: try { try decoder.decodeSingularMessageField(value: &_storage._createdDate) }()
+        case 17: try { try decoder.decodeSingularMessageField(value: &_storage._customerDeviceInfo) }()
         default: break
         }
       }
@@ -2966,17 +3183,14 @@ extension Nd_V1_ServiceProviderCustomerProfileMessage: SwiftProtobuf.Message, Sw
       if let v = _storage._primaryServiceProviderID {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 14)
       }
-      if !_storage._allergies.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._allergies, fieldNumber: 15)
-      }
-      if !_storage._medicalHistory.isEmpty {
-        try visitor.visitRepeatedMessageField(value: _storage._medicalHistory, fieldNumber: 16)
-      }
       if let v = _storage._lastModifedDate {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 17)
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 15)
       }
       if let v = _storage._createdDate {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 18)
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 16)
+      }
+      if let v = _storage._customerDeviceInfo {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 17)
       }
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -3001,10 +3215,9 @@ extension Nd_V1_ServiceProviderCustomerProfileMessage: SwiftProtobuf.Message, Sw
         if _storage._completedAppointmentIds != rhs_storage._completedAppointmentIds {return false}
         if _storage._profilePicURL != rhs_storage._profilePicURL {return false}
         if _storage._primaryServiceProviderID != rhs_storage._primaryServiceProviderID {return false}
-        if _storage._allergies != rhs_storage._allergies {return false}
-        if _storage._medicalHistory != rhs_storage._medicalHistory {return false}
         if _storage._lastModifedDate != rhs_storage._lastModifedDate {return false}
         if _storage._createdDate != rhs_storage._createdDate {return false}
+        if _storage._customerDeviceInfo != rhs_storage._customerDeviceInfo {return false}
         return true
       }
       if !storagesAreEqual {return false}
@@ -3929,6 +4142,7 @@ extension Nd_V1_ServiceProviderProfileMessage: SwiftProtobuf.Message, SwiftProto
     22: .same(proto: "IsActive"),
     23: .same(proto: "CreatedDate"),
     24: .same(proto: "LastModifedDate"),
+    25: .same(proto: "ServiceProviderDeviceInfo"),
   ]
 
   fileprivate class _StorageClass {
@@ -3956,6 +4170,7 @@ extension Nd_V1_ServiceProviderProfileMessage: SwiftProtobuf.Message, SwiftProto
     var _isActive: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
     var _createdDate: SwiftProtobuf.Google_Protobuf_Int64Value? = nil
     var _lastModifedDate: SwiftProtobuf.Google_Protobuf_Int64Value? = nil
+    var _serviceProviderDeviceInfo: Nd_V1_DeviceInfoMessage? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -3986,6 +4201,7 @@ extension Nd_V1_ServiceProviderProfileMessage: SwiftProtobuf.Message, SwiftProto
       _isActive = source._isActive
       _createdDate = source._createdDate
       _lastModifedDate = source._lastModifedDate
+      _serviceProviderDeviceInfo = source._serviceProviderDeviceInfo
     }
   }
 
@@ -4028,6 +4244,7 @@ extension Nd_V1_ServiceProviderProfileMessage: SwiftProtobuf.Message, SwiftProto
         case 22: try { try decoder.decodeSingularMessageField(value: &_storage._isActive) }()
         case 23: try { try decoder.decodeSingularMessageField(value: &_storage._createdDate) }()
         case 24: try { try decoder.decodeSingularMessageField(value: &_storage._lastModifedDate) }()
+        case 25: try { try decoder.decodeSingularMessageField(value: &_storage._serviceProviderDeviceInfo) }()
         default: break
         }
       }
@@ -4108,6 +4325,9 @@ extension Nd_V1_ServiceProviderProfileMessage: SwiftProtobuf.Message, SwiftProto
       if let v = _storage._lastModifedDate {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 24)
       }
+      if let v = _storage._serviceProviderDeviceInfo {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 25)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -4141,6 +4361,7 @@ extension Nd_V1_ServiceProviderProfileMessage: SwiftProtobuf.Message, SwiftProto
         if _storage._isActive != rhs_storage._isActive {return false}
         if _storage._createdDate != rhs_storage._createdDate {return false}
         if _storage._lastModifedDate != rhs_storage._lastModifedDate {return false}
+        if _storage._serviceProviderDeviceInfo != rhs_storage._serviceProviderDeviceInfo {return false}
         return true
       }
       if !storagesAreEqual {return false}

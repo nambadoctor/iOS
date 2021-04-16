@@ -43,11 +43,30 @@ struct IntermediateView: View {
         .environmentObject(intermediateVM.patientInfoViewModel)
         
         .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading: Button(action : {
+        .navigationBarItems(leading: backButton, trailing: editButton)
+    }
+    
+    var backButton : some View {
+        Button(action : {
             self.intermediateVM.saveForLater { _ in }
             self.mode.wrappedValue.dismiss()
         }){
             Image(systemName: "arrow.left")
-        })
+                .padding([.top, .bottom, .trailing])
+        }
+    }
+    
+    var editButton : some View {
+        Button(action : {
+            self.intermediateVM.takeToDetailedAppointment = true
+        }){
+            HStack (spacing: 5) {
+                Text("Edit")
+                    .foregroundColor(.blue)
+                    .bold()
+                Image("pencil")
+            }
+            .padding([.top, .bottom, .leading])
+        }
     }
 }

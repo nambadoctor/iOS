@@ -21,10 +21,10 @@ class MedicineEntryViewModel : ObservableObject {
     @Published var routeOfAdmin:String = ""
     @Published var intake:String = ""
 
-    @Published var morning:Int = 0
-    @Published var afternoon:Int = 0
-    @Published var evening:Int = 0
-    @Published var night:Int = 0
+    @Published var morning:Double = 0.0
+    @Published var afternoon:Double = 0.0
+    @Published var evening:Double = 0.0
+    @Published var night:Double = 0.0
 
     @Published var showEmptyWarningText:Bool = false
 

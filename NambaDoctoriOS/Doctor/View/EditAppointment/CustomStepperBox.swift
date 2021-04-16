@@ -8,28 +8,34 @@
 import SwiftUI
 
 struct CustomStepperBox: View {
-    @Binding var number:Int
+    @Binding var number:Double
     var body: some View {
         HStack {
-            if number != 0 {
+            HStack {
                 Button(action: {
-                    number -= 1
+                    if number != 0 {
+                        number -= 0.5
+                    }
                 }, label: {
                     Image("minus")
+                        .padding(7)
+                })
+                
+                Text("\(number.clean)")
+                    .foregroundColor(.blue)
+                    .bold()
+                Button(action: {
+                    number += 0.5
+                }, label: {
+                    Image("plus")
+                        .padding(7)
                 })
             }
-            Text("\(number)")
-                .foregroundColor(.blue)
-                .bold()
-            Button(action: {
-                number += 1
-            }, label: {
-                Image("plus")
-            })
+            .padding(.horizontal)
+            .padding(.vertical, 5)
+            .background(Color.blue.opacity(0.3))
+            .cornerRadius(10)
+            Spacer()
         }
-        .padding(.horizontal)
-        .padding(.vertical, 5)
-        .background(Color.blue.opacity(0.3))
-        .cornerRadius(10)
     }
 }

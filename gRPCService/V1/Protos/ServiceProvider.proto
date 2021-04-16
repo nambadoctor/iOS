@@ -9,6 +9,20 @@ message BoolMessage {
 	google.protobuf.BoolValue Status = 1;
 }
 
+message DeviceInfoMessage {
+	google.protobuf.StringValue DeviceInfoId = 1;
+	google.protobuf.StringValue OSVersion = 2;
+	google.protobuf.StringValue DeviceName = 3;
+	google.protobuf.StringValue Model = 4;
+	google.protobuf.StringValue Product = 5;
+	google.protobuf.StringValue Brand = 6;
+	google.protobuf.StringValue Display = 7;
+	google.protobuf.StringValue CPU_ABI = 8;
+	google.protobuf.StringValue CPU_ABI2 = 9;
+	google.protobuf.StringValue Manufacturer = 10;
+	google.protobuf.StringValue Serial = 11;
+}
+
 message IdMessage {
 	google.protobuf.StringValue id = 1;
 }
@@ -180,13 +194,11 @@ message ServiceProviderCustomerProfileMessage {
 
 	google.protobuf.StringValue PrimaryServiceProviderId = 14;
 
-	repeated google.protobuf.StringValue Allergies = 15;
+	google.protobuf.Int64Value LastModifedDate = 15;
 
-	repeated google.protobuf.StringValue MedicalHistory = 16;
+	google.protobuf.Int64Value CreatedDate = 16;
 
-	google.protobuf.Int64Value LastModifedDate = 17;
-
-	google.protobuf.Int64Value CreatedDate = 18;
+	DeviceInfoMessage CustomerDeviceInfo = 17;
 }
 
 
@@ -429,6 +441,8 @@ message ServiceProviderProfileMessage{
 	google.protobuf.Int64Value CreatedDate = 23;
 
     google.protobuf.Int64Value LastModifedDate = 24;
+
+	DeviceInfoMessage ServiceProviderDeviceInfo = 25;
 
 }
 

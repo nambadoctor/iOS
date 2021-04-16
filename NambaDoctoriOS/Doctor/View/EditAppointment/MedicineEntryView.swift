@@ -12,7 +12,7 @@ struct MedicineEntryView: View {
     
     var body: some View {
         ScrollView {
-            VStack (alignment: .leading) {
+            VStack (alignment: .leading, spacing: 20) {
                 
                 HStack {
                     Spacer()
@@ -26,12 +26,14 @@ struct MedicineEntryView: View {
                     }
                 }
 
-                Text("MEDICINE NAME")
-                    .font(.footnote)
-                    .foregroundColor(Color.black.opacity(0.4))
-                    .bold()
-                
-                ExpandingTextView(text: self.$medicineVM.medicineEntryVM.medicineName)
+                VStack (alignment: .leading) {
+                    Text("MEDICINE NAME")
+                        .font(.footnote)
+                        .foregroundColor(Color.black.opacity(0.4))
+                        .bold()
+                    
+                    ExpandingTextView(text: self.$medicineVM.medicineEntryVM.medicineName)
+                }
                 
                 HStack {
                     VStack (alignment: .leading) {
@@ -54,25 +56,27 @@ struct MedicineEntryView: View {
                     }
                 }
         
-                BubbledSelector(title: "Intake Timings",array: foodSelectionArray, selected: $medicineVM.medicineEntryVM.intake, limitToFour: checkToLimitTo4(arr: foodSelectionArray))
+                BubbledSelector(title: "INTAKE TIMINGS",array: foodSelectionArray, selected: $medicineVM.medicineEntryVM.intake, limitToFour: checkToLimitTo4(arr: foodSelectionArray))
                 
-                BubbledSelector(title: "Route of Admission",array: routeOfAdmissionArray, selected: $medicineVM.medicineEntryVM.routeOfAdmin, limitToFour: checkToLimitTo4(arr: routeOfAdmissionArray))
-                
-                Text("FREQUENCY")
-                    .font(.footnote)
-                    .foregroundColor(Color.black.opacity(0.4))
-                    .bold()
-                
-                FrequencyPickerView(medicineEntryVM: self.medicineVM.medicineEntryVM)
-                
+                BubbledSelector(title: "ROUTE OF ADMISSION",array: routeOfAdmissionArray, selected: $medicineVM.medicineEntryVM.routeOfAdmin, limitToFour: checkToLimitTo4(arr: routeOfAdmissionArray))
+
+                VStack (alignment: .leading) {
+                    Text("FREQUENCY")
+                        .font(.footnote)
+                        .foregroundColor(Color.black.opacity(0.4))
+                        .bold()
+                    
+                    FrequencyPickerView(medicineEntryVM: self.medicineVM.medicineEntryVM)
+                }
+
                 MedEntryAddButton(medicineEntryVM: medicineVM.medicineEntryVM)
-                
+
             }
         }
         .onTapGesture { EndEditingHelper.endEditing() }
         .padding()
     }
-    
+
     func checkToLimitTo4(arr:[String]) -> Bool {
         return arr.count > 4 ? true : false
     }
@@ -85,23 +89,31 @@ struct FrequencyPickerView : View {
     var body: some View {
         ScrollView {
             LazyVGrid(columns: twoColumnGrid) {
-                VStack {
+                VStack (alignment: .leading) {
                     Text("morning")
+                        .font(.footnote)
+                        .foregroundColor(.black)
                     CustomStepperBox(number: $medicineEntryVM.morning)
                 }
                 
-                VStack {
+                VStack (alignment: .leading) {
                     Text("afternoon")
+                        .font(.footnote)
+                        .foregroundColor(.black)
                     CustomStepperBox(number: $medicineEntryVM.afternoon)
                 }
                 
-                VStack {
+                VStack (alignment: .leading) {
                     Text("evening")
+                        .font(.footnote)
+                        .foregroundColor(.black)
                     CustomStepperBox(number: $medicineEntryVM.evening)
                 }
-                
-                VStack {
+
+                VStack (alignment: .leading) {
                     Text("night")
+                        .font(.footnote)
+                        .foregroundColor(.black)
                     CustomStepperBox(number: $medicineEntryVM.night)
                 }
             }

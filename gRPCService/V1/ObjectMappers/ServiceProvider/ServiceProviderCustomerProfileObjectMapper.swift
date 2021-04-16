@@ -24,8 +24,6 @@ class ServiceProviderCustomerProfileObjectMapper {
             completedAppointmentIds: customer.completedAppointmentIds.convert(),
             profilePicURL: customer.profilePicURL.toString,
             primaryServiceProviderID: customer.primaryServiceProviderID.toString,
-            allergies: customer.allergies.convert(),
-            medicalHistory: customer.medicalHistory.convert(),
             lastModifiedDate: customer.lastModifedDate.toInt64,
             createdDate: customer.createdDate.toInt64)
     }
@@ -36,10 +34,10 @@ class ServiceProviderCustomerProfileObjectMapper {
         for cus in customer {
             customerList.append(grpcCustomerToLocal(customer: cus))
         }
-        
+
         return customerList
     }
-    
+
     func localCustomerToGrpc (customer:ServiceProviderCustomerProfile) -> Nd_V1_ServiceProviderCustomerProfileMessage {
         return Nd_V1_ServiceProviderCustomerProfileMessage.with {
             $0.customerID = customer.customerID.toProto
@@ -56,8 +54,6 @@ class ServiceProviderCustomerProfileObjectMapper {
             $0.completedAppointmentIds = customer.completedAppointmentIds.convert()
             $0.profilePicURL = customer.profilePicURL.toProto
             $0.primaryServiceProviderID = customer.primaryServiceProviderID.toProto
-            $0.allergies = customer.allergies.convert()
-            $0.medicalHistory = customer.medicalHistory.convert()
             $0.lastModifedDate = customer.lastModifiedDate.toProto
             $0.createdDate = customer.createdDate.toProto
         }
