@@ -45,7 +45,7 @@ class DoctorChatViewModel: ObservableObject {
     }
 
     public func writeMessage () {
-        
+        print("CURRENT TEXT ENTRY: \(currentTextEntry)")
         guard !currentTextEntry.isEmpty else { return }
 
         var message = makeMessage()

@@ -19,6 +19,7 @@ class IntermediateAppointmentViewModel : ObservableObject {
     //helper view models
     @Published var modifyFeeViewModel:ModifyFeeViewModel
     @Published var doctorTwilioManagerViewModel:DoctorTwilioViewModel
+    @Published var chatVM:DoctorChatViewModel
     
     @Published var takeToDetailedAppointment:Bool = false
     @Published var takeToViewAppointment:Bool = false
@@ -35,24 +36,25 @@ class IntermediateAppointmentViewModel : ObservableObject {
     private var updateAppointmentStatus:UpdateAppointmentStatusProtocol
     private var docNotifHelper:DocNotifHelpers
     private var doctorAlertHelper:DoctorAlertHelpersProtocol
-    
+
     init(appointment:ServiceProviderAppointment,
          updateAppointmentStatus:UpdateAppointmentStatusProtocol = UpdateAppointmentStatusHelper(),
          doctorAlertHelper:DoctorAlertHelpersProtocol = DoctorAlertHelpers()) {
         self.appointment = appointment
-        
+
         self.updateAppointmentStatus = updateAppointmentStatus
         self.doctorAlertHelper = doctorAlertHelper
         self.docNotifHelper = DocNotifHelpers(appointment: appointment)
-        
+
         //main view model inits
         self.medicineVM = MedicineViewModel(appointment: appointment)
         self.patientInfoViewModel = PatientInfoViewModel(appointment: appointment)
         self.serviceRequestVM = ServiceRequestViewModel(appointment: appointment)
-        
+
         //helper view model inits
         self.modifyFeeViewModel = ModifyFeeViewModel(fee: appointment.serviceFee.clean)
         self.doctorTwilioManagerViewModel = DoctorTwilioViewModel(appointment: appointment)
+        self.chatVM = DoctorChatViewModel(appointment: appointment)
         
         doctorTwilioManagerViewModel.twilioDelegate = self
         serviceRequestVM.gotServiceRequestDelegate = self
@@ -68,12 +70,25 @@ class IntermediateAppointmentViewModel : ObservableObject {
         checkDetailedOrView()
         checkIfAppointmentFinished()
         checkIfAppointmentStarted()
+        getClinicalInfoCollapseSetting()
     }
 }
 
 extension IntermediateAppointmentViewModel : LoadReportsWithServiceRequestDelegate {
     func gotServiceRequestId(serviceRequestId: String) {
         patientInfoViewModel.retrieveUploadedDocumentList(serviceRequestId: serviceRequestId)
+    }
+}
+
+//MARK:- VIEW RELATED CALLS
+extension IntermediateAppointmentViewModel {
+    func toggleCollapseOfClinicalInformation () {
+        self.collapseExtraDetailEntry.toggle()
+        DefaultPreferencesTracker().setClinicalInfoCollapseExpandSetting(expand: collapseExtraDetailEntry)
+    }
+    
+    func getClinicalInfoCollapseSetting () {
+        self.collapseExtraDetailEntry = DefaultPreferencesTracker().getClinicalInfoCollapseExpandSetting()
     }
 }
 

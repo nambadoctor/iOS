@@ -16,10 +16,6 @@ struct DoctorChatRoomView: View {
     
     @ObservedObject var chatVM:DoctorChatViewModel
     
-    init(appointment:ServiceProviderAppointment) {
-        chatVM = DoctorChatViewModel(appointment: appointment)
-    }
-
     var body: some View {
         VStack {
             ScrollView (.vertical) {
@@ -63,12 +59,13 @@ struct DoctorChatRoomView: View {
             }
             
             HStack {
-                ExpandingTextView(text: $chatVM.currentTextEntry)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .frame(minHeight: CGFloat(30))
-                Button(action: chatVM.writeMessage) {
+                ExpandingTextView(text: self.$chatVM.currentTextEntry)
+                Button {
+                    chatVM.writeMessage()
+                } label: {
                     Image("paperplane.fill")
                         .foregroundColor(.blue)
+                        .padding(5)
                 }
             }.frame(minHeight: CGFloat(30))
             .padding(.horizontal)

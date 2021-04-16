@@ -17,7 +17,6 @@ struct IntermediateView: View {
 
     var body: some View {
         ZStack {
-
             if intermediateVM.takeToViewAppointment {
                 ViewAppointment()
             } else if intermediateVM.takeToDetailedAppointment {
@@ -31,7 +30,7 @@ struct IntermediateView: View {
 
             if intermediateVM.takeToChat {
                 NavigationLink("",
-                               destination: DoctorChatRoomView(appointment: intermediateVM.appointment),
+                               destination: DoctorChatRoomView(chatVM: self.intermediateVM.chatVM),
                                isActive: $intermediateVM.takeToChat)
             }
         }

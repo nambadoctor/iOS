@@ -59,7 +59,7 @@ struct EditableAppointmentView: View {
             
             HStack {
                 Button {
-                    self.intermediateVM.collapseExtraDetailEntry.toggle()
+                    self.intermediateVM.toggleCollapseOfClinicalInformation()
                 } label: {
                     HStack {
                         if self.intermediateVM.collapseExtraDetailEntry {
