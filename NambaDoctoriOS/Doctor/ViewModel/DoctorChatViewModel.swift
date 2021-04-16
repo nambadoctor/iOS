@@ -33,7 +33,7 @@ class DoctorChatViewModel: ObservableObject {
                 self.messageList.append(chatObj!)
                 self.takeToBottomListener = UUID().uuidString
             }
-            
+
             self.messageList.sort {
                 $0.timeStamp < $1.timeStamp
             }

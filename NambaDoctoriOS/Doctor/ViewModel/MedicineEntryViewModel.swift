@@ -22,9 +22,14 @@ class MedicineEntryViewModel : ObservableObject {
     @Published var frequency:String = ""
     @Published var routeOfAdmin:String = ""
     @Published var intake:String = ""
-    
+
+    @Published var morning:Int = 0
+    @Published var afternoon:Int = 0
+    @Published var evening:Int = 0
+    @Published var night:Int = 0
+
     @Published var showEmptyWarningText:Bool = false
-    
+
     var medicineEditedDelegate:MedicineEntryDelegate? = nil
     
     init(medicine:ServiceProviderMedicine, isNew:Bool, medicineEditedDelegate:MedicineEntryDelegate) {

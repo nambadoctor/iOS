@@ -12,7 +12,7 @@ struct BubbledSelector: View {
     var array:[String]
     @Binding var selected:String
     @State var limitToFour:Bool
-    
+
     var body: some View {
         VStack {
             
@@ -23,7 +23,7 @@ struct BubbledSelector: View {
                         .foregroundColor(Color.black.opacity(0.4))
                         .bold()
                 }
-                
+
                 Spacer()
                 
                 if array.count > 4 {
@@ -36,7 +36,7 @@ struct BubbledSelector: View {
                     })
                 }
             }
-            
+
             if array.count < 4 {
                 TagCloudView(tags: array, selectedTag: $selected)
             } else {
@@ -48,7 +48,7 @@ struct BubbledSelector: View {
             }
         }
     }
-    
+
     func getLimitedTo4Array () -> [String] {
         var arr:[String] = [String]()
         for n in 0...3 {

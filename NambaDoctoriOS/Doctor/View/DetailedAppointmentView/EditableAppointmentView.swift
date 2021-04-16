@@ -36,7 +36,7 @@ struct EditableAppointmentView: View {
     
     var detailedUpcomingAppointment : some View {
         ScrollView (.vertical) {
-            
+
             VStack {
                 header
                 

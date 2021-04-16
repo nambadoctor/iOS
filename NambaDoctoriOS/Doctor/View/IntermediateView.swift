@@ -9,7 +9,8 @@ import SwiftUI
 
 struct IntermediateView: View {
     @ObservedObject var intermediateVM:IntermediateAppointmentViewModel
-
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    
     init(appointment:ServiceProviderAppointment) {
         intermediateVM = IntermediateAppointmentViewModel(appointment: appointment)
     }
@@ -40,5 +41,13 @@ struct IntermediateView: View {
         .environmentObject(intermediateVM.serviceRequestVM)
         .environmentObject(intermediateVM.serviceRequestVM.investigationsViewModel)
         .environmentObject(intermediateVM.patientInfoViewModel)
+        
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: Button(action : {
+            self.intermediateVM.saveForLater { _ in }
+            self.mode.wrappedValue.dismiss()
+        }){
+            Image(systemName: "arrow.left")
+        })
     }
 }

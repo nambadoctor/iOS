@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MedicineEntryView: View {
     @EnvironmentObject var medicineVM:MedicineViewModel
-
+    
     var body: some View {
         ScrollView {
             VStack (alignment: .leading) {
@@ -25,7 +25,7 @@ struct MedicineEntryView: View {
                             .foregroundColor(.blue)
                     }
                 }
-                
+
                 Text("MEDICINE NAME")
                     .font(.footnote)
                     .foregroundColor(Color.black.opacity(0.4))
@@ -44,7 +44,12 @@ struct MedicineEntryView: View {
                 
                 BubbledSelector(title: "Route of Admission",array: routeOfAdmissionArray, selected: $medicineVM.medicineEntryVM.routeOfAdmin, limitToFour: checkToLimitTo4(arr: routeOfAdmissionArray))
                 
-                BubbledSelector(title: "Frequency",array: medicineInTakeTimings, selected: $medicineVM.medicineEntryVM.frequency, limitToFour: checkToLimitTo4(arr: medicineInTakeTimings))
+                Text("FREQUENCY")
+                    .font(.footnote)
+                    .foregroundColor(Color.black.opacity(0.4))
+                    .bold()
+                
+                FrequencyPickerView(medicineEntryVM: self.medicineVM.medicineEntryVM)
                 
                 MedEntryAddButton(medicineEntryVM: medicineVM.medicineEntryVM)
                 
@@ -57,6 +62,38 @@ struct MedicineEntryView: View {
     func checkToLimitTo4(arr:[String]) -> Bool {
         return arr.count > 4 ? true : false
     }
+}
+
+struct FrequencyPickerView : View {
+    @ObservedObject var medicineEntryVM:MedicineEntryViewModel
+    var twoColumnGrid = [GridItem(.flexible()), GridItem(.flexible())]
+
+    var body: some View {
+        ScrollView {
+            LazyVGrid(columns: twoColumnGrid) {
+                VStack {
+                    Text("morning")
+                    CustomStepperBox(number: $medicineEntryVM.morning)
+                }
+                
+                VStack {
+                    Text("afternoon")
+                    CustomStepperBox(number: $medicineEntryVM.afternoon)
+                }
+                
+                VStack {
+                    Text("evening")
+                    CustomStepperBox(number: $medicineEntryVM.evening)
+                }
+                
+                VStack {
+                    Text("night")
+                    CustomStepperBox(number: $medicineEntryVM.night)
+                }
+            }
+        }
+    }
+
 }
 
 struct MedEntryAddButton : View {

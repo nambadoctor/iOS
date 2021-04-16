@@ -194,6 +194,7 @@
 		179C44BE2627ED6C0073F4E0 /* DBReferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179C44BD2627ED6C0073F4E0 /* DBReferences.swift */; };
 		179C44C42627F1B80073F4E0 /* ChatRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179C44C32627F1B80073F4E0 /* ChatRoomView.swift */; };
 		179C44E42628C86D0073F4E0 /* DoctorChatRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179C44E32628C86D0073F4E0 /* DoctorChatRoomView.swift */; };
+		179C453026296AFE0073F4E0 /* CustomStepperBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179C452F26296AFE0073F4E0 /* CustomStepperBox.swift */; };
 		179F629C25BF5F8900BA0A73 /* PhoneNumberObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179F629B25BF5F8900BA0A73 /* PhoneNumberObj.swift */; };
 		17AE6D1825E24B2200B18292 /* DoctorsPatientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE6D1725E24B2100B18292 /* DoctorsPatientsView.swift */; };
 		17AE6D2025E24B2A00B18292 /* DoctorsPatientsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE6D1F25E24B2A00B18292 /* DoctorsPatientsCardView.swift */; };
@@ -464,6 +465,7 @@
 		179C44BD2627ED6C0073F4E0 /* DBReferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBReferences.swift; sourceTree = "<group>"; };
 		179C44C32627F1B80073F4E0 /* ChatRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomView.swift; sourceTree = "<group>"; };
 		179C44E32628C86D0073F4E0 /* DoctorChatRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorChatRoomView.swift; sourceTree = "<group>"; };
+		179C452F26296AFE0073F4E0 /* CustomStepperBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStepperBox.swift; sourceTree = "<group>"; };
 		179F629B25BF5F8900BA0A73 /* PhoneNumberObj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberObj.swift; sourceTree = "<group>"; };
 		17AE6D1725E24B2100B18292 /* DoctorsPatientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorsPatientsView.swift; sourceTree = "<group>"; };
 		17AE6D1F25E24B2A00B18292 /* DoctorsPatientsCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorsPatientsCardView.swift; sourceTree = "<group>"; };
@@ -649,6 +651,7 @@
 				1716E2CA261AFB3200568837 /* MedicineEditableView.swift */,
 				17EC766F260EE9D50002BA75 /* MedicineEntryView.swift */,
 				17EC75E4260C62190002BA75 /* PatientInfoEditableView.swift */,
+				179C452F26296AFE0073F4E0 /* CustomStepperBox.swift */,
 			);
 			path = EditAppointment;
 			sourceTree = "<group>";
@@ -1836,6 +1839,7 @@
 				1742528325BDA9E100523B94 /* DoctorSheetHelpers.swift in Sources */,
 				171646A12602B5B400BB5B5A /* ServiceProviderEducation.swift in Sources */,
 				171647392603242200BB5B5A /* ServiceProviderPrescriptionMapper.swift in Sources */,
+				179C453026296AFE0073F4E0 /* CustomStepperBox.swift in Sources */,
 				171646832602B36700BB5B5A /* ServiceProviderAppointment.swift in Sources */,
 				171646F22603031700BB5B5A /* ServiceProviderPhoneNumberMapper.swift in Sources */,
 				17164706260312DC00BB5B5A /* ServiceProviderAvailaibilityObjectMapper.swift in Sources */,
