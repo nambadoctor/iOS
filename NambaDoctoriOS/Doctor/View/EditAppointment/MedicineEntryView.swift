@@ -33,12 +33,26 @@ struct MedicineEntryView: View {
                 
                 ExpandingTextView(text: self.$medicineVM.medicineEntryVM.medicineName)
                 
-                Text("DOSAGE")
-                    .font(.footnote)
-                    .foregroundColor(Color.black.opacity(0.4))
-                    .bold()
-                
-                ExpandingTextView(text: self.$medicineVM.medicineEntryVM.dosage)
+                HStack {
+                    VStack (alignment: .leading) {
+                        Text("DOSAGE")
+                            .font(.footnote)
+                            .foregroundColor(Color.black.opacity(0.4))
+                            .bold()
+                        
+                        ExpandingTextView(text: self.$medicineVM.medicineEntryVM.dosage)
+                    }
+                    
+                    VStack (alignment: .leading) {
+                        Text("DURATION (days)")
+                            .font(.footnote)
+                            .foregroundColor(Color.black.opacity(0.4))
+                            .bold()
+                        
+                        ExpandingTextView(text: self.$medicineVM.medicineEntryVM.duration, keyboardType: .numberPad)
+                            
+                    }
+                }
         
                 BubbledSelector(title: "Intake Timings",array: foodSelectionArray, selected: $medicineVM.medicineEntryVM.intake, limitToFour: checkToLimitTo4(arr: foodSelectionArray))
                 

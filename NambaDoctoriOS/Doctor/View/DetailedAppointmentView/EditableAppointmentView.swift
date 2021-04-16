@@ -97,7 +97,6 @@ struct EditableAppointmentView: View {
             }
             
             HStack {
-                saveButton
                 sendToPatient
             }
             .padding()
@@ -121,7 +120,7 @@ struct EditableAppointmentView: View {
     
     var sendToPatient : some View {
         VStack {
-            LargeButton(title: intermediateVM.appointmentFinished ? "Amend and Submit" : "Save and Submit",
+            LargeButton(title: intermediateVM.appointmentFinished ? "Amend and Submit" : "Submit",
                         backgroundColor: Color.blue) {
                 EndEditingHelper.endEditing()
                 intermediateVM.sendToPatient()

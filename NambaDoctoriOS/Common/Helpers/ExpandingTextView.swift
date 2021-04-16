@@ -12,6 +12,7 @@ struct WrappedTextView: UIViewRepresentable {
     typealias UIViewType = UITextView
 
     @Binding var text: String
+    var keyboardType:UIKeyboardType
     let textDidChange: (UITextView) -> Void
 
     func makeUIView(context: Context) -> UITextView {
@@ -25,6 +26,7 @@ struct WrappedTextView: UIViewRepresentable {
         uiView.text = self.text
         uiView.font = .systemFont(ofSize: 14)
         uiView.backgroundColor = UIColor(Color.gray.opacity(0.09))
+        uiView.keyboardType = keyboardType
         DispatchQueue.main.async {
             self.textDidChange(uiView)
         }
@@ -53,11 +55,12 @@ struct WrappedTextView: UIViewRepresentable {
 struct ExpandingTextView: View {
     @Binding var text: String
     let minHeight: CGFloat = 25
+    var keyboardType:UIKeyboardType = .default
     
     @State private var textViewHeight: CGFloat?
 
     var body: some View {
-        WrappedTextView(text: $text, textDidChange: self.textDidChange)
+        WrappedTextView(text: $text, keyboardType: self.keyboardType, textDidChange: self.textDidChange)
             .cornerRadius(10)
             .frame(height: textViewHeight ?? minHeight)
     }

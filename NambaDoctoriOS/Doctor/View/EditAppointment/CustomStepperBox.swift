@@ -27,7 +27,8 @@ struct CustomStepperBox: View {
                 Image("plus")
             })
         }
-        .padding()
+        .padding(.horizontal)
+        .padding(.vertical, 5)
         .background(Color.blue.opacity(0.3))
         .cornerRadius(10)
     }

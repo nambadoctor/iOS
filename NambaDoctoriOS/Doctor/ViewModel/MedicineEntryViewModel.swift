@@ -15,9 +15,7 @@ class MedicineEntryViewModel : ObservableObject {
     @Published var medicineName:String = ""
     @Published var dosage:String = ""
 
-    @Published var noSpecificDuration:Bool = false
-    @Published var tempNumOfDays:String = ""
-    @Published var timeIndex = 0
+    @Published var duration:String = ""
 
     @Published var frequency:String = ""
     @Published var routeOfAdmin:String = ""
@@ -49,10 +47,7 @@ class MedicineEntryViewModel : ObservableObject {
         dosage = medicine.dosage
 
         if medicine.duration == 0 {
-            noSpecificDuration = true
-        } else {
-            tempNumOfDays = String(medicine.duration)
-            timeIndex = 0
+            duration = String(medicine.duration)
         }
         
         frequency = medicine.specialInstructions
@@ -63,16 +58,13 @@ class MedicineEntryViewModel : ObservableObject {
     func clearValues () {
         medicineName = ""
         dosage = ""
-        noSpecificDuration = false
-        tempNumOfDays = ""
-        timeIndex = 0
+        duration = ""
         intake = ""
         routeOfAdmin = ""
         frequency = ""
     }
     
     func makeMedObjAndAdd() {
-        print("REACHING INITIAL FUNCTION")
         medicineEditedDelegate?.addMedicine()
     }
 }
