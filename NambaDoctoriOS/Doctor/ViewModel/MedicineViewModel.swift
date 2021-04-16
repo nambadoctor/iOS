@@ -77,7 +77,9 @@ class MedicineViewModel: ObservableObject {
     }
 
     func makeMedicineObjAndAdd () {
-        let medicine = ServiceProviderMedicine(medicineName: medicineEntryVM.medicineName, dosage: medicineEntryVM.dosage, routeOfAdministration: medicineEntryVM.routeOfAdmin, intake: medicineEntryVM.intake, duration: 0, timings: "", specialInstructions: medicineEntryVM.frequency, medicineID: "")
+        let timingsString = "\(medicineEntryVM.morning.clean),\(medicineEntryVM.afternoon.clean),\(medicineEntryVM.evening.clean),\(medicineEntryVM.night.clean)"
+        
+        let medicine = ServiceProviderMedicine(medicineName: medicineEntryVM.medicineName, dosage: medicineEntryVM.dosage, routeOfAdministration: medicineEntryVM.routeOfAdmin, intake: medicineEntryVM.intake, duration: Int32(medicineEntryVM.duration) ?? 0, timings: timingsString, specialInstructions: medicineEntryVM.frequency, medicineID: "")
 
         if medicineBeingEdited != nil {
             prescription.medicineList.remove(at: medicineBeingEdited!)

@@ -23,7 +23,7 @@ struct ViewAppointment: View {
 
                 HStack {Spacer()}
             }.padding()
-        }.navigationBarItems(trailing: endAndAmendButton)
+        }
         .onAppear(){intermediateVM.refreshPrescription()} //MARK:- OPTIMIZE THIS LATER!
     }
 
@@ -59,14 +59,6 @@ struct ViewAppointment: View {
             MedicineView()
             ServiceRequestView()
             InvestigationsView()
-        }
-    }
-
-    var endAndAmendButton : some View {
-        Button {
-            intermediateVM.takeToDetailed()
-        } label: {
-            Text("Edit")
         }
     }
 }

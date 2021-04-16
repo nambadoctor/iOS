@@ -34,7 +34,6 @@ struct IntermediateView: View {
                                destination: DoctorChatRoomView(appointment: intermediateVM.appointment),
                                isActive: $intermediateVM.takeToChat)
             }
-
         }
         .environmentObject(intermediateVM)
         .environmentObject(intermediateVM.medicineVM)
@@ -57,16 +56,20 @@ struct IntermediateView: View {
     }
     
     var editButton : some View {
-        Button(action : {
-            self.intermediateVM.takeToDetailedAppointment = true
-        }){
-            HStack (spacing: 5) {
-                Text("Edit")
-                    .foregroundColor(.blue)
-                    .bold()
-                Image("pencil")
+        VStack {
+            if intermediateVM.takeToViewAppointment {
+                Button(action : {
+                    intermediateVM.takeToDetailed()
+                }){
+                    HStack (spacing: 5) {
+                        Text("Edit")
+                            .foregroundColor(.blue)
+                            .bold()
+                        Image("pencil")
+                    }
+                    .padding([.top, .bottom, .leading])
+                }
             }
-            .padding([.top, .bottom, .leading])
         }
     }
 }

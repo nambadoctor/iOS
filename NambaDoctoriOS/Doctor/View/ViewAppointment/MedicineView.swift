@@ -42,14 +42,31 @@ struct MedicineView: View {
                                 .bold()
                                 .foregroundColor(Color.green)
                             
+                            if medicine.duration != 0 {
+                                Text("\(medicine.duration) days")
+                                    .font(.callout)
+                                    .foregroundColor(Color.green)
+                            } else {
+                                Text("No duration specified")
+                                    .font(.callout)
+                                    .foregroundColor(Color.green)
+                            }
+                            
                             if !medicine.routeOfAdministration.isEmpty {
                                 Text("\(medicine.routeOfAdministration)")
                                     .font(.callout)
                                     .foregroundColor(Color.green)
                             }
                             
+                            
                             if !medicine.intake.isEmpty {
                                 Text("\(medicine.intake)")
+                                    .font(.callout)
+                                    .foregroundColor(Color.green)
+                            }
+                            
+                            if !medicine.timings.isEmpty {
+                                Text("\(medicine.timings)")
                                     .font(.callout)
                                     .foregroundColor(Color.green)
                             }

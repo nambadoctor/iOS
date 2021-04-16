@@ -15,7 +15,7 @@ class MedicineEntryViewModel : ObservableObject {
     @Published var medicineName:String = ""
     @Published var dosage:String = ""
 
-    @Published var duration:String = ""
+    @Published var duration:String = "0"
 
     @Published var frequency:String = ""
     @Published var routeOfAdmin:String = ""
@@ -45,14 +45,18 @@ class MedicineEntryViewModel : ObservableObject {
     func mapExistingMedicine(medicine:ServiceProviderMedicine) {
         medicineName = medicine.medicineName
         dosage = medicine.dosage
-
-        if medicine.duration == 0 {
-            duration = String(medicine.duration)
-        }
-        
+        duration = String(medicine.duration)
         frequency = medicine.specialInstructions
         routeOfAdmin = medicine.routeOfAdministration
         intake = medicine.intake
+        
+        if !medicine.timings.isEmpty {
+            let timingsSplit = medicine.timings.components(separatedBy: ",")
+            morning = Double(timingsSplit[0]) ?? 0.0
+            afternoon = Double(timingsSplit[1]) ?? 0.0
+            evening = Double(timingsSplit[2]) ?? 0.0
+            night = Double(timingsSplit[3]) ?? 0.0
+        }
     }
 
     func clearValues () {
