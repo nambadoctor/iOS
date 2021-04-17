@@ -80,10 +80,10 @@ class DatePickerViewModel : ObservableObject {
         var previousAppointmentDates:[String] = [String]()
 
         for appoinment in appointments {
-            var dateString = Helpers.getDisplayForDateSelector(date: Date(milliseconds: appoinment.scheduledAppointmentStartTime))
-            if appoinment.status == "Confirmed" && !upcomingAppointmentDates.contains(dateString) {
+            let dateString = Helpers.getDisplayForDateSelector(date: Date(milliseconds: appoinment.scheduledAppointmentStartTime))
+            if (appoinment.status == "Confirmed" || appoinment.status == "StartedConsultation") && !upcomingAppointmentDates.contains(dateString) {
                 upcomingAppointmentDates.append(dateString)
-            } else if appoinment.status != "Confirmed" && !previousAppointmentDates.contains(dateString) {
+            } else if (appoinment.status != "Confirmed" && appoinment.status != "StartedConsultation") && !previousAppointmentDates.contains(dateString) {
                 previousAppointmentDates.append(dateString)
             }
         }

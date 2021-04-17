@@ -31,7 +31,7 @@ struct DoctorChatRoomView: View {
             .padding(.horizontal)
 
             Spacer()
-            
+
             ScrollView (.horizontal, showsIndicators: false) {
                 HStack {
                     ForEach(helperMessages, id: \.self) { message in
@@ -70,6 +70,9 @@ struct DoctorChatRoomView: View {
             }.frame(minHeight: CGFloat(30))
             .padding(.horizontal)
             .padding(.bottom, 2)
+        }
+        .onTapGesture {
+            EndEditingHelper.endEditing()
         }
         .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardDidShowNotification)) { _ in
             chatVM.takeToBottomListener = UUID().uuidString
