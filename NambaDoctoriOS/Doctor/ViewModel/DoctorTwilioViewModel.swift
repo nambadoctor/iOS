@@ -91,10 +91,10 @@ class DoctorTwilioViewModel: ObservableObject {
 
     func toggleTwilioViewSize() {
         if collapseCall {
-            viewController!.previewView.isHidden = false
+            viewController!.expandCall()
             self.collapseCall = false
         } else {
-            viewController!.previewView.isHidden = true
+            viewController!.collapseCall()
             self.collapseCall = true
         }
     }

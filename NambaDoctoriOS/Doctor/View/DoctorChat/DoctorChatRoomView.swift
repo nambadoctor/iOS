@@ -7,14 +7,15 @@
 
 import SwiftUI
 
-var helperMessages:[String] = ["Hi, can we have our consultation earlier?",
+var helperMessages:[String] = ["Hello, I am waiting in the consultation room",
+                               "Hi, can we have our consultation earlier?",
                                "Sorry, I will be a late for our consultation",
-                               "Hello, I am waiting in the consultation room",
                                "Please upload reports if any"]
 
 struct DoctorChatRoomView: View {
     
     @ObservedObject var chatVM:DoctorChatViewModel
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     
     var body: some View {
         VStack {
@@ -77,6 +78,18 @@ struct DoctorChatRoomView: View {
         .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardDidShowNotification)) { _ in
             chatVM.takeToBottomListener = UUID().uuidString
         }
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: backButton)
     }
+    
+    var backButton : some View {
+        Button(action : {
+            self.mode.wrappedValue.dismiss()
+        }){
+            Image(systemName: "arrow.left")
+                .padding([.top, .bottom, .trailing])
+        }
+    }
+    
 }
 

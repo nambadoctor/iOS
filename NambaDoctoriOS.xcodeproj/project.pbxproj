@@ -1151,7 +1151,6 @@
 		17AE6D1525E24B0B00B18292 /* DoctorsPatients */ = {
 			isa = PBXGroup;
 			children = (
-				17E370A025BF196C0004C965 /* DoctorTwilioManager */,
 				17AE6D1725E24B2100B18292 /* DoctorsPatientsView.swift */,
 				17AE6D1F25E24B2A00B18292 /* DoctorsPatientsCardView.swift */,
 			);
@@ -1167,6 +1166,7 @@
 				171B8AE5261154BB007E722C /* DoctorProfile */,
 				17EC75E3260C61EF0002BA75 /* DetailedAppointmentView */,
 				17626CCB25D5C01A00C36A99 /* DoctorHome */,
+				17E370A025BF196C0004C965 /* DoctorTwilioManager */,
 				17AE6D1525E24B0B00B18292 /* DoctorsPatients */,
 				1742523425BD987500523B94 /* PatientInfo */,
 				17B5D13425B759EC009D6A42 /* Appointments */,

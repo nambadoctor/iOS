@@ -113,7 +113,7 @@ struct MedicineEditableView: View {
                 
                 if medicineVM.localImageSelected {
                     LargeButton(title: "Remove Image",
-                                backgroundColor: Color.red.opacity(0.6)) {
+                                backgroundColor: Color.red) {
                         medicineVM.localImageSelected = false
                         medicineVM.imagePickerVM.removeImage()
                     }

@@ -15,7 +15,7 @@ class MedicineEntryViewModel : ObservableObject {
     @Published var medicineName:String = ""
     @Published var dosage:String = ""
 
-    @Published var duration:String = "0"
+    @Published var duration:String = ""
 
     @Published var frequency:String = ""
     @Published var routeOfAdmin:String = ""

@@ -281,6 +281,16 @@ class ViewController: UIViewController {
     func onlyNSLogMessage(messageText: String) {
         NSLog(messageText)
     }
+    
+    func collapseCall () {
+        self.previewView.isHidden = true
+        self.messageLabel.isHidden = true
+    }
+    
+    func expandCall () {
+        self.previewView.isHidden = false
+        self.messageLabel.isHidden = false
+    }
 
     func renderRemoteParticipant(participant : RemoteParticipant) -> Bool {
         // This example renders the first subscribed RemoteVideoTrack from the RemoteParticipant.
