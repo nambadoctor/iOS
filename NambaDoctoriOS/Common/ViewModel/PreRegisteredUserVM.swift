@@ -12,6 +12,7 @@ class PreRegisteredUserVM:ObservableObject {
     @Published var otp:String = ""
     @Published var sendToOTPView:Bool = false
     @Published var userLoggedIn:Bool = false
+    @Published var incorrectOTPAlert:Bool = false
     private let AuthService:AuthenticateServiceProtocol
     private let findDocOrPatientVM:FindUserTypeViewModelProtocol
 
@@ -41,12 +42,23 @@ class PreRegisteredUserVM:ObservableObject {
     }
 
     func registerUser () {
+        let defaults = UserDefaults.standard
+        let dictionary = defaults.dictionaryRepresentation()
+        dictionary.keys.forEach { key in
+            defaults.removeObject(forKey: key)
+        }
+
         CommonDefaultModifiers.showLoader()
         AuthService.verifyUser(verificationId: self.user.verificationId, otp: self.otp) { (verified) in
             if verified == true {
                 print("user verified")
-                self.loginUser()
+                RetrieveAuthId().getAuthId { (success) in
+                    if success {
+                        self.loginUser()
+                    }
+                }
             } else {
+                CommonDefaultModifiers.hideLoader()
                 GlobalPopupHelpers.incorrectOTPAlert()
             }
         }
@@ -54,7 +66,7 @@ class PreRegisteredUserVM:ObservableObject {
 
     func loginUser () {
         self.userLoggedIn = true
-        
+
         findDocOrPatientVM.logonUser() { (patientOrDoc) in
             CommonDefaultModifiers.hideLoader()
             switch patientOrDoc {

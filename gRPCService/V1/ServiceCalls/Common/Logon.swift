@@ -25,10 +25,14 @@ class Logon : FindUserTypeViewModelProtocol {
         do {
             let response = try getUserType.response.wait()
             print("UserTypeClient received: \(response.message.toString)")
-            var responseSplit = response.message.toString.components(separatedBy: ",")
-            let userStatus = CheckLoginStatus.checkStatus(loggedInStatus: responseSplit[0])
-            UserIdHelper().storeUserId(userId: responseSplit[1])
-            completion(userStatus)
+            let responseSplit = response.message.toString.components(separatedBy: ",")
+            if responseSplit.count > 1 {
+                let userStatus = CheckLoginStatus.checkStatus(loggedInStatus: responseSplit[0])
+                UserIdHelper().storeUserId(userId: responseSplit[1])
+                completion(userStatus)
+            } else {
+                completion(.Customer)
+            }
         } catch {
             completion(nil)
             print("UserTypeClient failed: \(error.localizedDescription)")

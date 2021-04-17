@@ -58,7 +58,7 @@ class ChannelManager {
     }
 
     private func getAuthHeader() -> CallOptions {
-        let headers: HPACKHeaders = ["authorization": "Bearer \(AuthTokenId)"]
+        let headers:HPACKHeaders = ["authorization": "Bearer \(AuthTokenId)"]
         return CallOptions(customMetadata: headers)
     }
 
