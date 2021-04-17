@@ -59,16 +59,14 @@ struct MedicineEntryView: View {
                 BubbledSelector(title: "INTAKE TIMINGS",array: foodSelectionArray, selected: $medicineVM.medicineEntryVM.intake, limitToFour: checkToLimitTo4(arr: foodSelectionArray))
                 
                 BubbledSelector(title: "ROUTE OF ADMISSION",array: routeOfAdmissionArray, selected: $medicineVM.medicineEntryVM.routeOfAdmin, limitToFour: checkToLimitTo4(arr: routeOfAdmissionArray))
-
-                VStack (alignment: .leading) {
-                    Text("FREQUENCY")
-                        .font(.footnote)
-                        .foregroundColor(Color.black.opacity(0.4))
-                        .bold()
-                    
-                    FrequencyPickerView(medicineEntryVM: self.medicineVM.medicineEntryVM)
-                }
-
+                
+                Text("FREQUENCY")
+                    .font(.footnote)
+                    .foregroundColor(Color.black.opacity(0.4))
+                    .bold()
+                
+                FrequencyPicker(medicineEntryVM: self.medicineVM.medicineEntryVM)
+                
                 MedEntryAddButton(medicineEntryVM: medicineVM.medicineEntryVM)
 
             }
@@ -79,6 +77,36 @@ struct MedicineEntryView: View {
 
     func checkToLimitTo4(arr:[String]) -> Bool {
         return arr.count > 4 ? true : false
+    }
+}
+
+struct FrequencyPicker : View {
+    @ObservedObject var medicineEntryVM:MedicineEntryViewModel
+    var body : some View {
+        VStack (alignment: .leading) {
+            HStack {
+                if self.medicineEntryVM.wheneverNecessary {
+                    Image("checkmark.square.fill")
+                        .resizable()
+                        .frame(width: 28.0, height: 28.0)
+                        .foregroundColor(.blue)
+                        .onTapGesture() {
+                            self.medicineEntryVM.wheneverNecessary.toggle()
+                        }
+                } else {
+                    Image("square")
+                        .resizable()
+                        .frame(width: 28.0, height: 28.0)
+                        .onTapGesture() {
+                            self.medicineEntryVM.wheneverNecessary.toggle()
+                        }
+                }
+                Text("Only Take Whenever Necessary")
+            }
+            if !self.medicineEntryVM.wheneverNecessary {
+                FrequencyPickerView(medicineEntryVM: self.medicineEntryVM)
+            }
+        }
     }
 }
 

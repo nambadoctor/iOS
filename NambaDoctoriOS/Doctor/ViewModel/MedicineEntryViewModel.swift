@@ -20,6 +20,8 @@ class MedicineEntryViewModel : ObservableObject {
     @Published var frequency:String = ""
     @Published var routeOfAdmin:String = ""
     @Published var intake:String = ""
+    
+    @Published var wheneverNecessary:Bool = false
 
     @Published var morning:Double = 0.0
     @Published var afternoon:Double = 0.0
@@ -50,12 +52,18 @@ class MedicineEntryViewModel : ObservableObject {
         routeOfAdmin = medicine.routeOfAdministration
         intake = medicine.intake
         
-        if !medicine.timings.isEmpty {
+        if !medicine.timings.isEmpty || medicine.timings != "0,0,0,0" {
             let timingsSplit = medicine.timings.components(separatedBy: ",")
             morning = Double(timingsSplit[0]) ?? 0.0
             afternoon = Double(timingsSplit[1]) ?? 0.0
             evening = Double(timingsSplit[2]) ?? 0.0
             night = Double(timingsSplit[3]) ?? 0.0
+        } else {
+            wheneverNecessary = true
+            morning = 0
+            afternoon = 0
+            evening = 0
+            night = 0
         }
     }
 
@@ -66,6 +74,7 @@ class MedicineEntryViewModel : ObservableObject {
         intake = ""
         routeOfAdmin = ""
         frequency = ""
+        wheneverNecessary = false
     }
     
     func makeMedObjAndAdd() {

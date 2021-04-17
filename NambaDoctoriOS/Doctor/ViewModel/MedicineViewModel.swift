@@ -77,7 +77,11 @@ class MedicineViewModel: ObservableObject {
     }
 
     func makeMedicineObjAndAdd () {
-        let timingsString = "\(medicineEntryVM.morning.clean),\(medicineEntryVM.afternoon.clean),\(medicineEntryVM.evening.clean),\(medicineEntryVM.night.clean)"
+        var timingsString = "\(medicineEntryVM.morning.clean),\(medicineEntryVM.afternoon.clean),\(medicineEntryVM.evening.clean),\(medicineEntryVM.night.clean)"
+
+        if medicineEntryVM.wheneverNecessary || timingsString != "0,0,0,0" {
+            timingsString = ""
+        }
         
         let medicine = ServiceProviderMedicine(medicineName: medicineEntryVM.medicineName, dosage: medicineEntryVM.dosage, routeOfAdministration: medicineEntryVM.routeOfAdmin, intake: medicineEntryVM.intake, duration: Int32(medicineEntryVM.duration) ?? 0, timings: timingsString, specialInstructions: medicineEntryVM.frequency, medicineID: "")
 
