@@ -236,6 +236,10 @@ struct PatientOverViewDetails : View {
 struct ServiceRequestOverViewDetails : View {
     @ObservedObject var serviceRequestVM:ServiceRequestViewModel
     var body: some View {
-        Text("Reason: \(serviceRequestVM.serviceRequest.reason)")
+        VStack {
+            if !serviceRequestVM.serviceRequest.reason.isEmpty {
+                Text("Reason: \(serviceRequestVM.serviceRequest.reason)")
+            }
+        }
     }
 }
