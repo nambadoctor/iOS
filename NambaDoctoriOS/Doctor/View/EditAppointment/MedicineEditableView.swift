@@ -54,6 +54,10 @@ struct MedicineEditableView: View {
                             Text("\(medicine.timings)")
                                 .font(.callout)
                                 .foregroundColor(Color.green)
+                        } else {
+                            Text("Take whenever necessary")
+                                .font(.callout)
+                                .foregroundColor(Color.green)
                         }
                         
                         if !medicine.specialInstructions.isEmpty {

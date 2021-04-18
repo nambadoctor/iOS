@@ -79,7 +79,7 @@ class MedicineViewModel: ObservableObject {
     func makeMedicineObjAndAdd () {
         var timingsString = "\(medicineEntryVM.morning.clean),\(medicineEntryVM.afternoon.clean),\(medicineEntryVM.evening.clean),\(medicineEntryVM.night.clean)"
 
-        if medicineEntryVM.wheneverNecessary || timingsString != "0,0,0,0" {
+        if medicineEntryVM.wheneverNecessary || timingsString == "0,0,0,0" {
             timingsString = ""
         }
         

@@ -52,7 +52,7 @@ class MedicineEntryViewModel : ObservableObject {
         routeOfAdmin = medicine.routeOfAdministration
         intake = medicine.intake
         
-        if !medicine.timings.isEmpty || medicine.timings != "0,0,0,0" {
+        if !medicine.timings.isEmpty {
             let timingsSplit = medicine.timings.components(separatedBy: ",")
             morning = Double(timingsSplit[0]) ?? 0.0
             afternoon = Double(timingsSplit[1]) ?? 0.0
