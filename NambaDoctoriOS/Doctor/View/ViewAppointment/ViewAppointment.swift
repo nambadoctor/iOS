@@ -20,15 +20,15 @@ struct ViewAppointment: View {
                     .padding([.top, .bottom], 5)
 
                 details
-
+                    .padding()
                 HStack {Spacer()}
-            }.padding()
+            }
         }
         .onAppear(){intermediateVM.refreshPrescription()} //MARK:- OPTIMIZE THIS LATER!
     }
 
     var header : some View {
-        VStack (alignment: .leading) {
+        VStack (alignment: .leading, spacing: 10) {
             Text("Consulted Time: \(intermediateVM.appointmentActualStartTime)")
                 .foregroundColor(.blue)
                 .bold()
@@ -48,6 +48,7 @@ struct ViewAppointment: View {
                     
                     ServiceRequestOverViewDetails(serviceRequestVM: intermediateVM.serviceRequestVM)
                 }
+                .padding(5)
                 
                 Spacer()
             }

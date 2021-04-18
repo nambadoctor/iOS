@@ -20,7 +20,6 @@ struct InvestigationsEditableView: View {
             HStack (alignment: .top) {
                 VStack {
                     ExpandingTextView(text: $investigationsVM.investigationTemp)
-                    Divider()
                     
                     ForEach(self.investigationsVM.investigations, id: \.self) { inv in
                         HStack {

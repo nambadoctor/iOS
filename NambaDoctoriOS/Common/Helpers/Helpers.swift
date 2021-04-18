@@ -153,6 +153,20 @@ class Helpers {
         
         return "\(dateString1)"
     }
+    
+    static func getDisplayForDateSelector (timeStamp : Int64) -> String {
+        let formatter = DateFormatter()
+        
+        formatter.timeZone = TimeZone.current
+        
+        formatter.dateFormat = "MMMM, dd"
+        
+        let date = Date(milliseconds: timeStamp)
+        
+        let dateString1 = formatter.string(from: date)
+        
+        return "\(dateString1)"
+    }
 
     static func ObjectAsDictionary (object: Any) -> [String:Any] {
         let mirror = Mirror(reflecting: object)

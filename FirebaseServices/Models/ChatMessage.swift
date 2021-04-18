@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ChatMessage : Codable, Hashable {
+struct ChatMessage : Codable {
     var messageId:String
     var message:String
     var senderId:String
@@ -15,4 +15,16 @@ struct ChatMessage : Codable, Hashable {
     var appointmentId:String
     var serviceProviderId:String
     var customerId:String
+}
+
+struct LocalChatMessage {
+    var id:String = UUID().uuidString
+    var chatMessage:ChatMessage
+    
+    var dateHeader:String = ""
+    var showDateHeader:Bool
+
+    var isCurrentUser:Bool
+    var customerName:String
+    var showCustomerProfPic:Bool
 }

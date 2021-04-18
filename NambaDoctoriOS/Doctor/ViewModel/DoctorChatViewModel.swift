@@ -13,10 +13,10 @@ class DoctorChatViewModel: ObservableObject {
     private var dbRef:DBReferences
     private var realtimeDBRef:RealtimeDBListener
 
-    @Published var messageList:[ChatMessage] = [ChatMessage]()
+    @Published var messageList:[LocalChatMessage] = [LocalChatMessage]()
     @Published var currentTextEntry:String = ""
-
-    @Published var takeToBottomListener:String = ""
+    
+    @Published var takeToBottomListener:Bool = false
     
     init(appointment:ServiceProviderAppointment) {
         self.appointment = appointment
@@ -27,15 +27,39 @@ class DoctorChatViewModel: ObservableObject {
     }
 
     private func startMessageAddedListener () {
+        var recentDate:String = ""
+        var showCustomerProfilePic:Bool = true
+        func makeChatObj (chatObj:ChatMessage) -> LocalChatMessage {
+            
+            let isCurrentUser = checkIfMessageIsFromCurrentUser(message: chatObj)
+            
+            if isCurrentUser {showCustomerProfilePic = true}
+            
+            var localChatObj = LocalChatMessage(chatMessage: chatObj, showDateHeader: false, isCurrentUser: isCurrentUser, customerName: self.appointment.customerName, showCustomerProfPic: showCustomerProfilePic)
+            
+            let displayDate = Helpers.getDisplayForDateSelector(timeStamp: chatObj.timeStamp)
+            if recentDate != displayDate {
+                localChatObj.showDateHeader = true
+                localChatObj.dateHeader = displayDate
+                recentDate = displayDate
+            }
+            
+            if showCustomerProfilePic && !isCurrentUser {
+                showCustomerProfilePic = false
+            }
+            return localChatObj
+        }
+        
         realtimeDBRef.observeForAdded { (datasnapshot) in
             let chatObj = SnapshotDecoder.decodeSnapshot(modelType: ChatMessage.self, snapshot: datasnapshot)
             if chatObj != nil && chatObj?.appointmentId == self.appointment.appointmentID {
-                self.messageList.append(chatObj!)
-                self.takeToBottomListener = UUID().uuidString
+                let localChatObj = makeChatObj(chatObj: chatObj!)
+                self.messageList.append(localChatObj)
+                self.takeToBottomListener.toggle()
             }
 
             self.messageList.sort {
-                $0.timeStamp < $1.timeStamp
+                $0.chatMessage.timeStamp < $1.chatMessage.timeStamp
             }
         }
     }

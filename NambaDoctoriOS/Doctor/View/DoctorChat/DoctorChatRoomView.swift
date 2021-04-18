@@ -21,11 +21,26 @@ struct DoctorChatRoomView: View {
         VStack {
             ScrollView (.vertical) {
                 ScrollViewReader {value in
-                    ForEach(chatVM.messageList, id: \.messageId) { message in
-                        MessageView(currentMessage: message, isCurrentUser: chatVM.checkIfMessageIsFromCurrentUser(message: message), customerName: chatVM.appointment.customerName)
-                            .id(message.messageId)
-                    }.onChange(of: chatVM.takeToBottomListener) { _ in
-                        value.scrollTo(chatVM.messageList.last?.messageId)
+                    ForEach(chatVM.messageList, id: \.id) { message in
+                        if message.showDateHeader {
+                            HStack {
+                                VStack {Divider()}
+                                Text(message.dateHeader)
+                                    .font(.footnote)
+                                    .foregroundColor(Color.gray)
+                                    .bold()
+                                VStack {Divider()}
+                            }
+                        }
+                        
+                        MessageView(currentMessage: message)
+                            .id(message.chatMessage.messageId)
+                    }
+                    .onChange(of: chatVM.takeToBottomListener) { _ in
+                        value.scrollTo(chatVM.messageList.last?.chatMessage.messageId)
+                    }
+                    .onAppear() {
+                        chatVM.takeToBottomListener.toggle()
                     }
                 }
             }
@@ -76,7 +91,7 @@ struct DoctorChatRoomView: View {
             EndEditingHelper.endEditing()
         }
         .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardDidShowNotification)) { _ in
-            chatVM.takeToBottomListener = UUID().uuidString
+            chatVM.takeToBottomListener.toggle()
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: backButton)

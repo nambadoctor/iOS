@@ -93,6 +93,10 @@ struct EditableAppointmentView: View {
                     .padding()
                     .background(Color.white)
                 
+                AdviceEditableView()
+                    .padding()
+                    .background(Color.white)
+                
                 Spacer()
             }
             

@@ -41,7 +41,7 @@ struct IntermediateView: View {
         .environmentObject(intermediateVM.patientInfoViewModel)
         
         .navigationBarBackButtonHidden(true)
-        .navigationBarItems(leading: backButton, trailing: editButton)
+        .navigationBarItems(leading: backButton, trailing: trailingNavBarButtons)
     }
     
     var backButton : some View {
@@ -54,21 +54,34 @@ struct IntermediateView: View {
         }
     }
     
-    var editButton : some View {
-        VStack {
+    var trailingNavBarButtons : some View {
+        HStack {
             if intermediateVM.takeToViewAppointment {
-                Button(action : {
-                    intermediateVM.takeToDetailed()
-                }){
-                    HStack (spacing: 5) {
-                        Text("Edit")
-                            .foregroundColor(.blue)
-                            .bold()
-                        Image("pencil")
-                    }
-                    .padding([.top, .bottom, .leading])
-                }
+                chatButton
+                editButton
             }
         }
+    }
+
+    var editButton : some View {
+        VStack {
+            Button(action : {
+                intermediateVM.takeToDetailed()
+            }){
+                Text("Edit")
+                    .foregroundColor(.blue)
+                    .bold()
+                    .padding(5)
+            }
+        }
+    }
+
+    var chatButton : some View {
+        Button(action: {
+            self.intermediateVM.takeToChat = true
+        }, label: {
+            Image(systemName: "message")
+                .padding(5)
+        })
     }
 }

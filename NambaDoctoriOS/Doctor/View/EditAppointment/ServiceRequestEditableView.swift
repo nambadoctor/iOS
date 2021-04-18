@@ -47,17 +47,10 @@ struct ServiceRequestEditableView: View {
 
                 SideBySideCheckBox(isChecked: $serviceRequestVM.serviceRequest.diagnosis.type, title1: "Provisional", title2: "Definitive")
                     .padding(.bottom)
-
-                Text("ADVICE FOR PATIENT")
-                    .font(.footnote)
-                    .foregroundColor(Color.black.opacity(0.4))
-                    .bold()
-                ExpandingTextView(text: $serviceRequestVM.serviceRequest.advice)
-
             }
             .padding()
             .background(Color.white)
             
-        }.padding(.bottom)
+        }
     }
 }
