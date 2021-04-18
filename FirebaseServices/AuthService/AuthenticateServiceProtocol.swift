@@ -8,9 +8,9 @@
 import Foundation
 
 protocol AuthenticateServiceProtocol {
-    func verifyNumber (phNumber:String, completion: @escaping (_ userId:String?) -> ())
+    func verifyNumber (phNumber:String, completion: @escaping (_ userId:String?,_ errorString:String?) -> ())
     
-    func verifyUser (verificationId:String, otp:String, completion: @escaping (_ userVerified:Bool) -> ())
+    func verifyUser (verificationId:String, otp:String, completion: @escaping (_ userVerified:Bool,_ errorString:String?) -> ())
     
     func validatePhoneNumber (_ phoneNumber:String) -> Bool
     

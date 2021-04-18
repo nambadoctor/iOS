@@ -52,5 +52,8 @@ struct PhoneVerificationview: View {
                 }
             }
         }
+        .alert(isPresented: self.$preRegUser.showAlert, content: {
+            Alert(title: Text(preRegUser.alertMessage), dismissButton: .default(Text("Ok")))
+        })
     }
 }

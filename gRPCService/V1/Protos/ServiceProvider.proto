@@ -36,6 +36,8 @@ message NotificationRequestMessage{
 	google.protobuf.StringValue Id = 3;
 
 	google.protobuf.StringValue UserId = 4;
+
+	google.protobuf.StringValue Type = 5;
 }
 
 message StringMessage {

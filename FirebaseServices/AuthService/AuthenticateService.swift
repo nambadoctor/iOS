@@ -15,32 +15,29 @@ class AuthenticateService : AuthenticateServiceProtocol {
         return Auth.auth().currentUser?.uid ?? "Not not logged in"
     }
 
-    func verifyNumber (phNumber:String, completion: @escaping (_ userId:String?) -> ()) {
+    func verifyNumber (phNumber:String, completion: @escaping (_ userId:String?,_ errorString:String?) -> ()) {
         PhoneAuthProvider.provider().verifyPhoneNumber(phNumber, uiDelegate: nil) { (verificationId, err) in
 
             if let err = err {
-                print(err)
-                completion(nil)
-            }
-
-            if let verificationId = verificationId {
-                completion(verificationId)
+                print(err.localizedDescription)
+                completion(nil, err.localizedDescription)
             } else {
-                completion(nil)
+                completion(verificationId, nil)
             }
+            
         }
     }
 
     //verify with otp
-    func verifyUser (verificationId:String, otp:String, completion: @escaping (_ userVerified:Bool) -> ()) {
+    func verifyUser (verificationId:String, otp:String, completion: @escaping (_ userVerified:Bool,_ errorString:String?) -> ()) {
         let credentials = PhoneAuthProvider.provider().credential(withVerificationID: verificationId, verificationCode: otp)
 
         Auth.auth().signIn(with: credentials) { (res, err) in
             if let err = err {
                 print(err.localizedDescription)
-                completion(false)
+                completion(false, err.localizedDescription)
             } else {
-                completion(true)
+                completion(true, nil)
             }
         }
     }

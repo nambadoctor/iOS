@@ -65,7 +65,7 @@ class DoctorTwilioViewModel: ObservableObject {
         self.updateAppointmentStatus.updateToStartedConsultation(appointment: &self.appointment) { (success) in
             if success {
                 completion(success)
-                self.docNotificationHelpers.fireStartedConsultationNotif(requestedBy: replicatedAppointment.customerID, appointmentTime: replicatedAppointment.scheduledAppointmentStartTime)
+                self.docNotificationHelpers.fireStartedConsultationNotif(appointmentTime: replicatedAppointment.scheduledAppointmentStartTime)
             }
         }
     }

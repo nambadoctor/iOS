@@ -224,6 +224,15 @@ struct Nd_V1_NotificationRequestMessage {
   /// Clears the value of `userID`. Subsequent reads from it will return its default value.
   mutating func clearUserID() {self._userID = nil}
 
+  var type: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _type ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_type = newValue}
+  }
+  /// Returns true if `type` has been explicitly set.
+  var hasType: Bool {return self._type != nil}
+  /// Clears the value of `type`. Subsequent reads from it will return its default value.
+  mutating func clearType() {self._type = nil}
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -232,6 +241,7 @@ struct Nd_V1_NotificationRequestMessage {
   fileprivate var _body: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _id: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _userID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _type: SwiftProtobuf.Google_Protobuf_StringValue? = nil
 }
 
 struct Nd_V1_StringMessage {
@@ -2335,6 +2345,7 @@ extension Nd_V1_NotificationRequestMessage: SwiftProtobuf.Message, SwiftProtobuf
     2: .same(proto: "Body"),
     3: .same(proto: "Id"),
     4: .same(proto: "UserId"),
+    5: .same(proto: "Type"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -2347,6 +2358,7 @@ extension Nd_V1_NotificationRequestMessage: SwiftProtobuf.Message, SwiftProtobuf
       case 2: try { try decoder.decodeSingularMessageField(value: &self._body) }()
       case 3: try { try decoder.decodeSingularMessageField(value: &self._id) }()
       case 4: try { try decoder.decodeSingularMessageField(value: &self._userID) }()
+      case 5: try { try decoder.decodeSingularMessageField(value: &self._type) }()
       default: break
       }
     }
@@ -2365,6 +2377,9 @@ extension Nd_V1_NotificationRequestMessage: SwiftProtobuf.Message, SwiftProtobuf
     if let v = self._userID {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
     }
+    if let v = self._type {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -2373,6 +2388,7 @@ extension Nd_V1_NotificationRequestMessage: SwiftProtobuf.Message, SwiftProtobuf
     if lhs._body != rhs._body {return false}
     if lhs._id != rhs._id {return false}
     if lhs._userID != rhs._userID {return false}
+    if lhs._type != rhs._type {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

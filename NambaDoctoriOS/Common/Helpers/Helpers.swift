@@ -183,6 +183,10 @@ class Helpers {
 
 extension String {
     subscript(i: Int) -> String {
-        return String(self[index(startIndex, offsetBy: i)])
+        if !self.isEmpty {
+            return String(self[index(startIndex, offsetBy: i)])
+        } else {
+            return ""
+        }
     }
 }

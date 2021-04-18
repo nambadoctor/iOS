@@ -42,10 +42,5 @@ struct OTPVerificationView: View {
                 Spacer()
             }.padding()
         }.keyboardAdaptive(specificOffSet: 0)
-        .alert(isPresented: $preRegUser.incorrectOTPAlert) {
-            Alert(title: Text("Incorrect Otp"), message: Text("Please Try Again"), dismissButton: .destructive(Text("Ok"), action: {
-                preRegUser.incorrectOTPAlert = false
-            }))
-        }
     }
 }

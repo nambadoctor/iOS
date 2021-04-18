@@ -12,7 +12,10 @@ class PreRegisteredUserVM:ObservableObject {
     @Published var otp:String = ""
     @Published var sendToOTPView:Bool = false
     @Published var userLoggedIn:Bool = false
-    @Published var incorrectOTPAlert:Bool = false
+    
+    @Published var showAlert:Bool = false
+    @Published var alertMessage:String = ""
+    
     private let AuthService:AuthenticateServiceProtocol
     private let findDocOrPatientVM:FindUserTypeViewModelProtocol
 
@@ -29,14 +32,15 @@ class PreRegisteredUserVM:ObservableObject {
     }
 
     func validateNumWithFirebase() {
-        AuthService.verifyNumber(phNumber: phoneNumber) { verificationId in
+        AuthService.verifyNumber(phNumber: phoneNumber) { verificationId, errorString in
             CommonDefaultModifiers.hideLoader()
             if verificationId != nil {
                 self.user.verificationId = verificationId!
                 self.sendToOTPView.toggle()
-            } else {
+            } else if errorString != nil {
+                self.showAlert = true
+                self.alertMessage = errorString!
                 EndEditingHelper.endEditing()
-                GlobalPopupHelpers.invalidNumberAlert()
             }
         }
     }
@@ -47,9 +51,9 @@ class PreRegisteredUserVM:ObservableObject {
         dictionary.keys.forEach { key in
             defaults.removeObject(forKey: key)
         }
-
+ 
         CommonDefaultModifiers.showLoader()
-        AuthService.verifyUser(verificationId: self.user.verificationId, otp: self.otp) { (verified) in
+        AuthService.verifyUser(verificationId: self.user.verificationId, otp: self.otp) { (verified, errorString) in
             if verified == true {
                 print("user verified")
                 RetrieveAuthId().getAuthId { (success) in
@@ -57,9 +61,11 @@ class PreRegisteredUserVM:ObservableObject {
                         self.loginUser()
                     }
                 }
-            } else {
+            } else if errorString != nil {
                 CommonDefaultModifiers.hideLoader()
-                GlobalPopupHelpers.incorrectOTPAlert()
+                self.showAlert = true
+                self.alertMessage = errorString!
+                EndEditingHelper.endEditing()
             }
         }
     }

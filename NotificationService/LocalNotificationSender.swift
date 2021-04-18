@@ -14,6 +14,7 @@ class LocalNotificationSender {
     func notifRecieveHelper (userInfo: [AnyHashable: Any]) {
         let body = userInfo[AnyHashable("body")]
         let title = userInfo[AnyHashable("title")]
+        let type = userInfo[AnyHashable("type")]
 
         guard body != nil, title != nil else { return }
 

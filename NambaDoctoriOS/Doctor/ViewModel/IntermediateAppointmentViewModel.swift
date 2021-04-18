@@ -55,7 +55,7 @@ class IntermediateAppointmentViewModel : ObservableObject {
         self.modifyFeeViewModel = ModifyFeeViewModel(fee: appointment.serviceFee.clean)
         self.doctorTwilioManagerViewModel = DoctorTwilioViewModel(appointment: appointment)
         self.chatVM = DoctorChatViewModel(appointment: appointment)
-        
+                
         doctorTwilioManagerViewModel.twilioDelegate = self
         serviceRequestVM.gotServiceRequestDelegate = self
         
@@ -123,7 +123,7 @@ extension IntermediateAppointmentViewModel {
         self.saveForLater { (success) in
             self.updateAppointmentStatus.updateToFinished(appointment: &self.appointment) { (success) in
                 CommonDefaultModifiers.hideLoader()
-                self.docNotifHelper.fireAppointmentOverNotif(requestedBy: self.appointment.customerID)
+                self.docNotifHelper.fireAppointmentOverNotif()
                 DoctorDefaultModifiers.refreshAppointments()
                 self.checkIfAppointmentFinished()
                 self.showOnSuccessAlert = true
@@ -213,13 +213,13 @@ extension IntermediateAppointmentViewModel {
         self.takeToDetailedAppointment = false
         self.takeToViewAppointment = true
     }
-    
+
     func cancelAppointment(completion: @escaping (_ successfullyCancelled:Bool)->()) {
         doctorAlertHelper.cancelAppointmentAlert { (cancel) in
             CommonDefaultModifiers.showLoader()
             self.updateAppointmentStatus.toCancelled(appointment: &self.appointment) { (success) in
                 if success {
-                    self.docNotifHelper.fireCancelNotif(requestedBy: self.appointment.customerID, appointmentTime: self.appointment.scheduledAppointmentStartTime)
+                    self.docNotifHelper.fireCancelNotif(appointmentTime: self.appointment.scheduledAppointmentStartTime)
                     DoctorDefaultModifiers.refreshAppointments()
                     CommonDefaultModifiers.hideLoader()
                     completion(success)
