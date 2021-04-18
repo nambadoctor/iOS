@@ -389,25 +389,25 @@ extension ViewController : RemoteParticipantDelegate {
     func remoteParticipantDidPublishVideoTrack(participant: RemoteParticipant, publication: RemoteVideoTrackPublication) {
         // Remote Participant has offered to share the video Track.
         
-        logMessage(messageText: "Participant \(participant.identity) published \(publication.trackName) video track")
+        onlyNSLogMessage(messageText: "Participant \(participant.identity) published \(publication.trackName) video track")
     }
 
     func remoteParticipantDidUnpublishVideoTrack(participant: RemoteParticipant, publication: RemoteVideoTrackPublication) {
         // Remote Participant has stopped sharing the video Track.
 
-        logMessage(messageText: "Participant \(participant.identity) unpublished \(publication.trackName) video track")
+        onlyNSLogMessage(messageText: "Participant \(participant.identity) unpublished \(publication.trackName) video track")
     }
 
     func remoteParticipantDidPublishAudioTrack(participant: RemoteParticipant, publication: RemoteAudioTrackPublication) {
         // Remote Participant has offered to share the audio Track.
 
-        logMessage(messageText: "Participant \(participant.identity) published \(publication.trackName) audio track")
+        onlyNSLogMessage(messageText: "Participant \(participant.identity) published \(publication.trackName) audio track")
     }
 
     func remoteParticipantDidUnpublishAudioTrack(participant: RemoteParticipant, publication: RemoteAudioTrackPublication) {
         // Remote Participant has stopped sharing the audio Track.
 
-        logMessage(messageText: "Participant \(participant.identity) unpublished \(publication.trackName) audio track")
+        onlyNSLogMessage(messageText: "Participant \(participant.identity) unpublished \(publication.trackName) audio track")
     }
 
     func didSubscribeToVideoTrack(videoTrack: RemoteVideoTrack, publication: RemoteVideoTrackPublication, participant: RemoteParticipant) {
