@@ -20,7 +20,7 @@ extension AppDelegate {
         if let messageID = userInfo[gcmMessageIDKey] {
             print("Message ID: \(messageID)")
         }
-        
+        print("NOTIFFFF HANDLLEERRRR 1")
         // Print full message.
         print(userInfo)
         LocalNotificationSender().notifRecieveHelper(userInfo: userInfo)
@@ -38,7 +38,7 @@ extension AppDelegate {
         if let messageID = userInfo[gcmMessageIDKey] {
             print("Message ID: \(messageID)")
         }
-        
+        print("NOTIFFFF HANDLLEERRRR 2")
         // Print full message.
         print(userInfo)
         LocalNotificationSender().notifRecieveHelper(userInfo: userInfo)
@@ -48,6 +48,7 @@ extension AppDelegate {
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         // Forground notifications.
         print("MESSAGE ID: ")
+        print("NOTIFFFF HANDLLEERRRR 3")
         completionHandler([.banner])
     }
 }
