@@ -145,7 +145,7 @@ class MedicineViewModel: ObservableObject {
         }
 
         if imageLoader != nil {
-            self.prescription.fileInfo.MediaImage = imageLoader!.image!.jpegData(compressionQuality: 0.3)!.base64EncodedString()
+            self.prescription.fileInfo.MediaImage = imageLoader?.image?.jpegData(compressionQuality: 0.3)!.base64EncodedString() ?? ""
             self.prescription.fileInfo.FileType = "png"
         }
     }

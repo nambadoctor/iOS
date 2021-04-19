@@ -9,16 +9,48 @@
 import Foundation
 import UIKit
 
+enum NotifTypes:String {
+    case AppointmentBooked
+    case AppointmentCancelled
+    case ReportUploaded
+    case Paid
+    case CallInRoom
+    case NewChatMessage
+}
+
 class LocalNotificationSender {
     
     func notifRecieveHelper (userInfo: [AnyHashable: Any]) {
         let body = userInfo[AnyHashable("body")]
         let title = userInfo[AnyHashable("title")]
-        let type = userInfo[AnyHashable("type")]
-
+        let type = (userInfo[AnyHashable("type")] ?? "") as! String
+        
         guard body != nil, title != nil else { return }
-
-        fireLocalNotif(title: title as! String, subtitle: body as! String)
+        
+        switch type {
+        case NotifTypes.AppointmentBooked.rawValue:
+            fireLocalNotif(title: title as! String, subtitle: body as! String)
+            DoctorDefaultModifiers.refreshAppointments()
+            break
+        case NotifTypes.AppointmentCancelled.rawValue:
+            fireLocalNotif(title: title as! String, subtitle: body as! String)
+            DoctorDefaultModifiers.refreshAppointments()
+            break
+        case NotifTypes.ReportUploaded.rawValue:
+            fireLocalNotif(title: title as! String, subtitle: body as! String)
+            break
+        case NotifTypes.Paid.rawValue:
+            fireLocalNotif(title: title as! String, subtitle: body as! String)
+            break
+        case NotifTypes.CallInRoom.rawValue:
+            fireLocalNotif(title: title as! String, subtitle: body as! String)
+            break
+        case NotifTypes.NewChatMessage.rawValue:
+            fireLocalNotif(title: title as! String, subtitle: body as! String)
+            break
+        default:
+            break
+        }
     }
 
     func fireLocalNotif (title:String, subtitle:String) {
@@ -35,7 +67,5 @@ class LocalNotificationSender {
 
         // add our notification request
         UNUserNotificationCenter.current().add(request)
-        
-        DoctorDefaultModifiers.refreshAppointments()
     }
 }

@@ -283,13 +283,13 @@ class ViewController: UIViewController {
     }
     
     func collapseCall () {
-        self.previewView.isHidden = true
-        self.messageLabel.isHidden = true
+        self.previewView?.isHidden = true
+        self.messageLabel?.isHidden = true
     }
     
     func expandCall () {
-        self.previewView.isHidden = false
-        self.messageLabel.isHidden = false
+        self.previewView?.isHidden = false
+        self.messageLabel?.isHidden = false
     }
 
     func renderRemoteParticipant(participant : RemoteParticipant) -> Bool {
