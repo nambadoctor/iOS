@@ -14,7 +14,7 @@ enum NotifTypes:String {
     case AppointmentCancelled
     case ReportUploaded
     case Paid
-    case CallInRoom
+    case CallInType
     case NewChatMessage
     case Empty
 }
@@ -29,8 +29,8 @@ func getNotifType(type:String) -> NotifTypes {
         return .ReportUploaded
     case NotifTypes.Paid.rawValue:
         return .Paid
-    case NotifTypes.CallInRoom.rawValue:
-        return .CallInRoom
+    case NotifTypes.CallInType.rawValue:
+        return .CallInType
     case NotifTypes.NewChatMessage.rawValue:
         return .NewChatMessage
     default:
@@ -44,7 +44,7 @@ class LocalNotificationHandler {
         let body = userInfo[AnyHashable("body")]
         let title = userInfo[AnyHashable("title")]
         let type = (userInfo[AnyHashable("type")] ?? "") as! String
-        
+        print("NOTIF TYPEEEE: \(type)")
         guard body != nil, title != nil else { return }
         
         let notifType = getNotifType(type: type)
@@ -55,7 +55,7 @@ class LocalNotificationHandler {
             completion(true)
         case .Paid, .ReportUploaded :
             completion(false)
-        case .CallInRoom, .NewChatMessage:
+        case .CallInType, .NewChatMessage:
             completion(true)
         default:
             completion(true)
@@ -78,7 +78,8 @@ class LocalNotificationHandler {
             DoctorDefaultModifiers.refreshAppointments()
         case .Paid, .ReportUploaded :
             break
-        case .CallInRoom:
+        case .CallInType:
+            print("CALLINROOMFUNCTIONNNNNN")
             docAutoNav.navigateToCall(appointmentId: id as! String)
             break
         case .NewChatMessage:
