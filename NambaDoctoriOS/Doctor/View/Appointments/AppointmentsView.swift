@@ -36,6 +36,7 @@ struct AppointmentsView: View {
             }
         }
         .onAppear() {
+            self.doctorViewModel.getNotificationSelectedAppointment()
             NotificationCenter.default.addObserver(forName: NSNotification.Name("\(DocViewStatesK.navigateToIntermediateViewChange)"), object: nil, queue: .main) { (_) in
                 self.doctorViewModel.getNotificationSelectedAppointment()
             }

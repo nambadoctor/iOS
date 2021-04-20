@@ -59,7 +59,15 @@ class IntermediateAppointmentViewModel : ObservableObject {
         doctorTwilioManagerViewModel.twilioDelegate = self
         serviceRequestVM.gotServiceRequestDelegate = self
 
+        refreshAppointment()
         initChecks()
+    }
+    
+    func refreshAppointment () {
+        AppointmentGetSetServiceCall().getSingleAppointment(appointmentId: appointment.appointmentID, serviceProviderId: appointment.serviceProviderID) { (appointment) in
+            self.appointment = appointment!
+            self.initChecks()
+        }
     }
 
     func refreshPrescription () {
@@ -67,6 +75,7 @@ class IntermediateAppointmentViewModel : ObservableObject {
     }
 
     func initChecks () {
+        docAutoNav.enterIntermediateView(appointmentId: self.appointment.appointmentID)
         checkDetailedOrView()
         checkIfAppointmentFinished()
         checkIfAppointmentStarted()
@@ -126,7 +135,7 @@ extension IntermediateAppointmentViewModel {
                 completion(true)
             }
         }
-
+        
         self.appointment.serviceFee = modifyFeeViewModel.convertFeeToDouble()
         
         serviceRequestVM.sendToPatient { (success, serviceRequestId) in
@@ -160,6 +169,7 @@ extension IntermediateAppointmentViewModel : TwilioDelegate {
             killView = true
         }
         self.showTwilioRoom.toggle()
+        docAutoNav.leaveTwilioRoom()
     }
     
     func startConsultation() {

@@ -14,6 +14,8 @@ protocol AppointmentGetSetServiceCallProtocol {
     
     func setAppointment (appointment:ServiceProviderAppointment,
                                 completion: @escaping (_ updated:Bool)->())
+    
+    func getSingleAppointment (appointmentId:String, serviceProviderId:String, _ completion: @escaping ((ServiceProviderAppointment?) -> ()))
 }
 
 class AppointmentGetSetServiceCall : AppointmentGetSetServiceCallProtocol {
@@ -118,6 +120,40 @@ class AppointmentGetSetServiceCall : AppointmentGetSetServiceCallProtocol {
                 }
             }
         }
+    }
+    
+    func getSingleAppointment(appointmentId: String, serviceProviderId: String, _ completion: @escaping ((ServiceProviderAppointment?) -> ())) {
+        let stopwatch = StopwatchManager(callingClass: "SERVICE_PROVIDER_GET_APPOINTMENT")
+        let channel = ChannelManager.sharedChannelManager.getChannel()
+        let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
+        
+        let appointmentClient = Nd_V1_ServiceProviderAppointmentWorkerV1Client(channel: channel)
+        
+        let request = Nd_V1_ServiceProviderAppointmentRequestMessage.with {
+            $0.serviceProviderID = serviceProviderId.toProto
+            $0.appointmentID = appointmentId.toProto
+        }
+
+        let getDoctorsAppointment = appointmentClient.getAppointment(request, callOptions: callOptions)
+        
+        DispatchQueue.global().async {
+            do {
+                stopwatch.start()
+                let response = try getDoctorsAppointment.response.wait()
+                stopwatch.stop()
+                var appointment = self.appointmentObjectMapper.grpcAppointmentToLocal(appointment: response)
+                print("Doctor Appointment Client Success \(appointment)")
+                DispatchQueue.main.async {
+                    completion(appointment)
+                }
+            } catch {
+                print("Doctor Appointment Client Failed")
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            }
+        }
+
     }
     
 }

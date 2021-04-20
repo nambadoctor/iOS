@@ -86,5 +86,10 @@ class DoctorAlertHelpers: DoctorAlertHelpersProtocol {
         }))
         CommonDefaultModifiers.showAlert()
     }
+    
+    func presentingStackedNavViewError (navType:String) {
+        alertTempItem = AlertItem(title: Text("Cannot Open"), message: Text("Sorry, you cannot open another \(navType) while currently in a meeting"), dismissButton: .default(Text("OK")))
+        CommonDefaultModifiers.showAlert()
+    }
 
 }

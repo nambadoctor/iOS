@@ -44,11 +44,15 @@ struct IntermediateView: View {
         .onAppear() {
             self.intermediateVM.checkForDirectNavigation()
         }
+        .onDisappear() {
+            docAutoNav.clearAllValues()
+        }
     }
     
     var backButton : some View {
         Button(action : {
             self.intermediateVM.saveForLater { _ in }
+            docAutoNav.leaveIntermediateView()
             DoctorDefaultModifiers.refreshAppointments()
             self.mode.wrappedValue.dismiss()
         }){

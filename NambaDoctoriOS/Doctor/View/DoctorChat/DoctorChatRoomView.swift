@@ -99,6 +99,7 @@ struct DoctorChatRoomView: View {
     
     var backButton : some View {
         Button(action : {
+            docAutoNav.leaveChatRoom()
             self.mode.wrappedValue.dismiss()
         }){
             Image(systemName: "arrow.left")

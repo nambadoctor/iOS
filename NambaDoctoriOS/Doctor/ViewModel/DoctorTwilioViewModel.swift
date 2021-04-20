@@ -45,6 +45,7 @@ class DoctorTwilioViewModel: ObservableObject {
     }
 
     func startRoom() {
+        docAutoNav.enterTwilioRoom(appointmentId: self.appointment.appointmentID)
         if TwilioAccessTokenString.isEmpty {
             self.twilioAccessTokenHelper.retrieveToken(appointmentId: self.appointment.appointmentID, serviceProviderId: self.appointment.serviceProviderID) { (success, token) in
                 if success {

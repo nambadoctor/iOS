@@ -22,8 +22,9 @@ class DoctorChatViewModel: ObservableObject {
         self.appointment = appointment
         self.dbRef = DBReferences(serviceProviderId: appointment.serviceProviderID, customerId: appointment.customerID)
         self.realtimeDBRef = RealtimeDBListener(dbQuery: dbRef.getChatToReadRefForServiceProvider(serviceProviderId: appointment.serviceProviderID, customerId: appointment.customerID))
-
+        
         startMessageAddedListener()
+        docAutoNav.enterChatRoom(appointmentId: appointment.appointmentID)
     }
 
     private func startMessageAddedListener () {

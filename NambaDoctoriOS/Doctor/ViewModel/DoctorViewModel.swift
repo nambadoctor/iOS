@@ -102,8 +102,10 @@ class DoctorViewModel: ObservableObject {
     }
     
     func getNotificationSelectedAppointment () {
+        print("CHECKING HERE BRUHHH")
         for appointment in appointments {
             if docAutoNav.appointmentId == appointment.appointmentID {
+                print("got a match!!!!")
                 self.selectedAppointment = appointment
                 self.takeToDetailedAppointment = true
             }
