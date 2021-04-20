@@ -42,6 +42,9 @@ struct IntermediateView: View {
         
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: backButton, trailing: trailingNavBarButtons)
+        .onAppear() {
+            self.intermediateVM.checkForDirectNavigation()
+        }
     }
     
     var backButton : some View {

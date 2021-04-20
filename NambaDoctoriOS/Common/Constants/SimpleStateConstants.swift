@@ -19,4 +19,7 @@ enum SimpleStateK {
     
     case showSheeet
     case showSheetChange
+    
+    case refreshOriginView
+    case refreshOriginViewChange
 }

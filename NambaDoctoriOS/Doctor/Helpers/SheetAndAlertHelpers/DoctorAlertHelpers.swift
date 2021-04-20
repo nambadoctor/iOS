@@ -70,8 +70,19 @@ class DoctorAlertHelpers: DoctorAlertHelpersProtocol {
     }
     
     func twilioConnectToRoomAlert (connect: @escaping (Bool) -> ()) {
-        alertTempItem = AlertItem(title: Text("Would you like to connect to the consultation room?"), primaryButton: Alert.Button.default(Text("No")), secondaryButton: Alert.Button.default(Text("Yes"), action: {
+        alertTempItem = AlertItem(title: Text("Would you like to connect to the consultation room?"), primaryButton: Alert.Button.cancel({
+            docAutoNav.clearAllValues()
+        }), secondaryButton: Alert.Button.default(Text("Yes"), action: {
             connect(true)
+        }))
+        CommonDefaultModifiers.showAlert()
+    }
+    
+    func takeToChatAlert (open: @escaping (Bool) -> ()) {
+        alertTempItem = AlertItem(title: Text("Would you like to open this chat?"), primaryButton: Alert.Button.cancel({
+            docAutoNav.clearAllValues()
+        }), secondaryButton: Alert.Button.default(Text("Yes"), action: {
+            open(true)
         }))
         CommonDefaultModifiers.showAlert()
     }

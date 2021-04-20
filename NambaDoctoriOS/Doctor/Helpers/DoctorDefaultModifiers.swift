@@ -14,6 +14,11 @@ class DoctorDefaultModifiers {
         NotificationCenter.default.post(name: NSNotification.Name(DocViewStatesK.refreshAppointmentsChange.rawValue), object: nil)
     }
     
+    static func navigateToClickedNotif () {
+        UserDefaults.standard.set(true, forKey: DocViewStatesK.navigateToIntermediateView.rawValue)
+        NotificationCenter.default.post(name: NSNotification.Name(DocViewStatesK.navigateToIntermediateViewChange.rawValue), object: nil)
+    }
+    
     static func updateFCMToken () {
         UserDefaults.standard.set(true, forKey: DocViewStatesK.FCMTokenUpdate.rawValue)
         NotificationCenter.default.post(name: NSNotification.Name(DocViewStatesK.FCMTokenUpdate.rawValue), object: nil)

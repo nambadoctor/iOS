@@ -55,22 +55,44 @@ class IntermediateAppointmentViewModel : ObservableObject {
         self.modifyFeeViewModel = ModifyFeeViewModel(fee: appointment.serviceFee.clean)
         self.doctorTwilioManagerViewModel = DoctorTwilioViewModel(appointment: appointment)
         self.chatVM = DoctorChatViewModel(appointment: appointment)
-                
+
         doctorTwilioManagerViewModel.twilioDelegate = self
         serviceRequestVM.gotServiceRequestDelegate = self
-        
+
         initChecks()
     }
-    
+
     func refreshPrescription () {
         self.medicineVM.retrievePrescriptions()
     }
-    
+
     func initChecks () {
         checkDetailedOrView()
         checkIfAppointmentFinished()
         checkIfAppointmentStarted()
         getClinicalInfoCollapseSetting()
+    }
+}
+
+extension IntermediateAppointmentViewModel {
+    func checkForDirectNavigation () {
+        if docAutoNav.takeToChat {
+            self.doctorAlertHelper.takeToChatAlert { (open) in
+                if open {
+                    self.takeToChat = true
+                    docAutoNav.clearAllValues()
+                }
+            }
+        }
+
+        if docAutoNav.takeToTwilioRoom {
+            self.doctorAlertHelper.twilioConnectToRoomAlert { (connect) in
+                if connect {
+                    self.startConsultation()
+                    docAutoNav.clearAllValues()
+                }
+            }
+        }
     }
 }
 

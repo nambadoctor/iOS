@@ -40,7 +40,7 @@ struct AppointmentCard: View {
                     Text(AppointmentVM.appointment.customerName)
                         .font(.system(size: 20))
                         .bold()
-                    
+
                     if AppointmentVM.consultationStarted {
                         Text("Consultation In Progress...")
                             .font(.system(size: 15))

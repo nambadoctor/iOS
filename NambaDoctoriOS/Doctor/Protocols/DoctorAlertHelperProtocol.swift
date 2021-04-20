@@ -9,7 +9,7 @@ import Foundation
 
 protocol DoctorAlertHelpersProtocol {
     func writePrescriptionAlert (appointmentId:String, requestedBy:String, navigate: @escaping (Bool) -> ())
-    
+
     func amendPrescriptionAlert (amend: @escaping (Bool) -> ())
     
     func askToSavePrescriptionAlert (save: @escaping (Bool) -> ())
@@ -21,4 +21,8 @@ protocol DoctorAlertHelpersProtocol {
     func patientAddedAlert ()
     
     func prescriptionWriteSuccessAlert ()
+    
+    func twilioConnectToRoomAlert (connect: @escaping (Bool) -> ())
+    
+    func takeToChatAlert (open: @escaping (Bool) -> ())
 }

@@ -10,7 +10,7 @@ import SwiftUI
 struct AppointmentsView: View {
     
     @EnvironmentObject var doctorViewModel:DoctorViewModel
-    
+        
     var body: some View {
         VStack {
             HorizontalDatePicker(datePickerVM: doctorViewModel.datePickerVM)
@@ -28,6 +28,17 @@ struct AppointmentsView: View {
                 }
             }
             Spacer()
+            
+            if doctorViewModel.takeToDetailedAppointment {
+                NavigationLink("",
+                               destination: IntermediateView(appointment: doctorViewModel.selectedAppointment!),
+                               isActive: $doctorViewModel.takeToDetailedAppointment)
+            }
+        }
+        .onAppear() {
+            NotificationCenter.default.addObserver(forName: NSNotification.Name("\(DocViewStatesK.navigateToIntermediateViewChange)"), object: nil, queue: .main) { (_) in
+                self.doctorViewModel.getNotificationSelectedAppointment()
+            }
         }
     }
 }

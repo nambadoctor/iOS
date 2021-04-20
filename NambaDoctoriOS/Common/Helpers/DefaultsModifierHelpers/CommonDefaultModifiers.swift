@@ -19,7 +19,7 @@ class CommonDefaultModifiers {
         UserDefaults.standard.set(false, forKey: "\(SimpleStateK.showLoader)")
         NotificationCenter.default.post(name: NSNotification.Name("\(SimpleStateK.showLoaderChange)"), object: nil)
     }
-    
+
     //MARK: SIGNOUT / SIGNIN
     static func signout () {
         UserDefaults.standard.set(false, forKey: "\(SimpleStateK.loginStatus)")
@@ -35,5 +35,10 @@ class CommonDefaultModifiers {
     static func hideAlert () {
         UserDefaults.standard.set(false, forKey: "\(SimpleStateK.showPopup)")
         NotificationCenter.default.post(name: NSNotification.Name("\(SimpleStateK.showPopupChange)"), object: nil)
+    }
+    
+    static func refreshOriginView () {
+        UserDefaults.standard.set(true, forKey: "\(SimpleStateK.refreshOriginView)")
+        NotificationCenter.default.post(name: NSNotification.Name("\(SimpleStateK.refreshOriginViewChange)"), object: nil)
     }
 }

@@ -78,15 +78,19 @@ class AppointmentViewModel: ObservableObject {
         self.takeToDetailedAppointment = true
     }
 
-    func startConsultation() {
-        self.takeToTwilioRoom = true
-    }
-    
     func getAppointmentTime () -> String {
         return Helpers.getSimpleTimeForAppointment(timeStamp1: appointment.scheduledAppointmentStartTime)
     }
     
     func getAppointmentTimeSpan () -> String {
         return Helpers.getSimpleTimeSpanForAppointment(timeStamp1: appointment.scheduledAppointmentStartTime, timeStamp2: appointment.scheduledAppointmentEndTime)
+    }
+    
+    func checkIfDirectlyToIntermediateView () {
+        if docAutoNav.takeToChat || docAutoNav.takeToIntermediateView || docAutoNav.takeToTwilioRoom {
+            if docAutoNav.appointmentId == self.appointment.appointmentID {
+                self.navigateIntoAppointment()
+            }
+        }
     }
 }

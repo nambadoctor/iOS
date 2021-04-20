@@ -16,6 +16,9 @@ class DoctorViewModel: ObservableObject {
     @Published var noPatients:Bool = false
     @Published var doctorLoggedIn:Bool = false
     
+    @Published var takeToDetailedAppointment:Bool = false
+    @Published var selectedAppointment:ServiceProviderAppointment? = nil
+
     @Published var showEdit:Bool = false
     @Published var editDoctorVM:EditServiceProviderViewModel = EditServiceProviderViewModel()
     @Published var imageLoader:ImageLoader? = nil
@@ -74,7 +77,7 @@ class DoctorViewModel: ObservableObject {
             }
         }
     }
-    
+
     var authTokenId:String? {
         return doctor.applicationInfo.authID
     }
@@ -92,6 +95,16 @@ class DoctorViewModel: ObservableObject {
                 self.dateChanged(selectedDate: self.datePickerVM.selectedDate)
             }
             self.checkForEmptyList()
+            self.getNotificationSelectedAppointment()
+        }
+    }
+    
+    func getNotificationSelectedAppointment () {
+        for appointment in appointments {
+            if docAutoNav.appointmentId == appointment.appointmentID {
+                self.selectedAppointment = appointment
+                self.takeToDetailedAppointment = true
+            }
         }
     }
     
