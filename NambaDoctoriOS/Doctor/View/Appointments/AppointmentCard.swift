@@ -11,8 +11,9 @@ struct AppointmentCard: View {
 
     @ObservedObject private var AppointmentVM:AppointmentViewModel
 
-    init(appointment:ServiceProviderAppointment) {
+    init(appointment:ServiceProviderAppointment, appointmentSelectDelegate:SelectAppointmentDelegate) {
         AppointmentVM = AppointmentViewModel(appointment: appointment)
+        AppointmentVM.selectedAppointmentDelegate = appointmentSelectDelegate
     }
 
     var body: some View {
@@ -58,17 +59,11 @@ struct AppointmentCard: View {
                 }.padding(.leading, 3)
             }.padding()
             
-            if self.AppointmentVM.takeToDetailedAppointment {
-                NavigationLink("",
-                               destination: IntermediateView(appointment: AppointmentVM.appointment),
-                               isActive: self.$AppointmentVM.takeToDetailedAppointment)
-            }
-            
         }
         .frame(width: UIScreen.main.bounds.width-30, height: 70)
         .padding()
         .onTapGesture {
-            self.AppointmentVM.navigateIntoAppointment()
+            self.AppointmentVM.onCardClicked()
         }
     }
 }

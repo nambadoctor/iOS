@@ -177,3 +177,10 @@ extension DoctorViewModel : DatePickerChangedDelegate {
         return Helpers.compareDate(timestamp: appointment.scheduledAppointmentStartTime, date2: datePickerVM.selectedDate)
     }
 }
+
+extension DoctorViewModel : SelectAppointmentDelegate {
+    func selectedAppointment(appointment: ServiceProviderAppointment) {
+        self.selectedAppointment = appointment
+        self.takeToDetailedAppointment = true
+    }
+}

@@ -8,14 +8,17 @@
 import Foundation
 import SwiftUI
 
+protocol SelectAppointmentDelegate {
+    func selectedAppointment(appointment:ServiceProviderAppointment)
+}
+
 class AppointmentViewModel: ObservableObject {
     @Published var appointment:ServiceProviderAppointment
-
-    @Published var takeToTwilioRoom:Bool = false
-    @Published var takeToDetailedAppointment:Bool = false
     
     @Published var consultationStarted:Bool = false
     @Published var consultationFinished:Bool = false
+    
+    var selectedAppointmentDelegate:SelectAppointmentDelegate? = nil
 
     private var docSheetHelper:DoctorSheetHelpers = DoctorSheetHelpers()
     private var docNotifHelper:DocNotifHelpers
@@ -73,9 +76,9 @@ class AppointmentViewModel: ObservableObject {
             return .blue
         }
     }
-
-    func navigateIntoAppointment () {
-        self.takeToDetailedAppointment = true
+    
+    func onCardClicked () {
+        self.selectedAppointmentDelegate?.selectedAppointment(appointment: self.appointment)
     }
 
     func getAppointmentTime () -> String {
@@ -84,13 +87,5 @@ class AppointmentViewModel: ObservableObject {
     
     func getAppointmentTimeSpan () -> String {
         return Helpers.getSimpleTimeSpanForAppointment(timeStamp1: appointment.scheduledAppointmentStartTime, timeStamp2: appointment.scheduledAppointmentEndTime)
-    }
-    
-    func checkIfDirectlyToIntermediateView () {
-        if docAutoNav.takeToChat || docAutoNav.takeToIntermediateView || docAutoNav.takeToTwilioRoom {
-            if docAutoNav.appointmentId == self.appointment.appointmentID {
-                self.navigateIntoAppointment()
-            }
-        }
     }
 }

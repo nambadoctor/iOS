@@ -39,7 +39,6 @@ struct IntermediateView: View {
         .environmentObject(intermediateVM.serviceRequestVM)
         .environmentObject(intermediateVM.serviceRequestVM.investigationsViewModel)
         .environmentObject(intermediateVM.patientInfoViewModel)
-        
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: backButton, trailing: trailingNavBarButtons)
         .onAppear() {
@@ -50,6 +49,7 @@ struct IntermediateView: View {
     var backButton : some View {
         Button(action : {
             self.intermediateVM.saveForLater { _ in }
+            
             self.mode.wrappedValue.dismiss()
         }){
             Image(systemName: "arrow.left")

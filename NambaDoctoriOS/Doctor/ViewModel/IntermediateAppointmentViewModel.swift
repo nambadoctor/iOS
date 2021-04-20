@@ -165,10 +165,12 @@ extension IntermediateAppointmentViewModel : TwilioDelegate {
     
     func startConsultation() {
         doctorTwilioManagerViewModel.startRoom()
+        
         doctorTwilioManagerViewModel.fireStartedNotif() { success in
             self.appointment.status = ConsultStateK.StartedConsultation.rawValue //need to refresh from db after. using local update for now.
             self.checkIfAppointmentStarted()
         }
+
         self.showTwilioRoom = true
     }
 }
@@ -178,7 +180,7 @@ extension IntermediateAppointmentViewModel {
     var appointmentServiceFee : String {
         return "Fee: ₹\(String(appointment.serviceFee.clean))"
     }
-    
+
     var appointmentScheduledStartTime:String {
         return "\(Helpers.getTimeFromTimeStamp(timeStamp: appointment.scheduledAppointmentStartTime))"
     }

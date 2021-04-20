@@ -110,7 +110,6 @@ class AppointmentGetSetServiceCall : AppointmentGetSetServiceCallProtocol {
                 print("Set Appointment Success for \(response.id)")
                 DispatchQueue.main.async {
                     completion(true)
-                    DoctorDefaultModifiers.refreshAppointments()
                 }
             } catch {
                 print("Set Appointment \(appointment.appointmentID) Failure")

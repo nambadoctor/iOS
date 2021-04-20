@@ -20,7 +20,7 @@ struct AppointmentsView: View {
                     ForEach(doctorViewModel.appointments, id: \.appointmentID) { appointment in
                         if doctorViewModel.compareCurrentAppointmentTimeWithSelectedDate(appointment: appointment)
                         {
-                            AppointmentCard(appointment: appointment)
+                            AppointmentCard(appointment: appointment, appointmentSelectDelegate: doctorViewModel)
                         }
                     }
                 } else {

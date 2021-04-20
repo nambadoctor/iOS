@@ -141,7 +141,7 @@ struct EditableAppointmentView: View {
             }
             
             Divider()
-            HStack (alignment: .top) {
+            HStack (alignment: .center) {
                 
                 if intermediateVM.appointmentStarted {
                     LetterOnColoredCircle(word: intermediateVM.appointment.customerName, color: .green)
@@ -156,7 +156,7 @@ struct EditableAppointmentView: View {
                     PatientOverViewDetails(patientInfoVM: intermediateVM.patientInfoViewModel) //age,gender display
                     Text(intermediateVM.appointmentServiceFee)
                     ServiceRequestOverViewDetails(serviceRequestVM: intermediateVM.serviceRequestVM)
-                }
+                }.padding(.horizontal)
                 Spacer()
             }
         }.padding()
