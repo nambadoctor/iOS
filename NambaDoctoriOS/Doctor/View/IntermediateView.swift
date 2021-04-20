@@ -49,7 +49,7 @@ struct IntermediateView: View {
     var backButton : some View {
         Button(action : {
             self.intermediateVM.saveForLater { _ in }
-            
+            DoctorDefaultModifiers.refreshAppointments()
             self.mode.wrappedValue.dismiss()
         }){
             Image(systemName: "arrow.left")

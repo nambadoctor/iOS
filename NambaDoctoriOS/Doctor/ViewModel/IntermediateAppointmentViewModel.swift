@@ -146,7 +146,6 @@ extension IntermediateAppointmentViewModel {
             self.updateAppointmentStatus.updateToFinished(appointment: &self.appointment) { (success) in
                 CommonDefaultModifiers.hideLoader()
                 self.docNotifHelper.fireAppointmentOverNotif()
-                DoctorDefaultModifiers.refreshAppointments()
                 self.checkIfAppointmentFinished()
                 self.showOnSuccessAlert = true
             }
