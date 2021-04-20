@@ -29,5 +29,17 @@ struct PatientInfoEditableView: View {
                 Text("There are no reports")
             }
         }
+        .onAppear() {
+            refreshReportListener()
+        }
+    }
+}
+
+extension PatientInfoEditableView {
+    func refreshReportListener () {
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("\(DocViewStatesK.refreshReportsChange)"), object: nil, queue: .main) { (_) in
+            print("LISTENING TO REPORT CHANGE BRUH!")
+            self.patientInfoViewModel.retrieveUploadedDocumentList(serviceRequestId: self.patientInfoViewModel.appointment.serviceRequestID)
+        }
     }
 }

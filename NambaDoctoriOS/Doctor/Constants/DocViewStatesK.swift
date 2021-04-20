@@ -26,4 +26,7 @@ enum DocViewStatesK:String {
     
     case navigateToIntermediateView
     case navigateToIntermediateViewChange
+    
+    case refreshReports
+    case refreshReportsChange
 }

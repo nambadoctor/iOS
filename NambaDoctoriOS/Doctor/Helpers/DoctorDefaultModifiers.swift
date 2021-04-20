@@ -29,4 +29,9 @@ class DoctorDefaultModifiers {
         UserDefaults.standard.set(true, forKey: "\(DocViewStatesK.endConsultationAlert)")
         NotificationCenter.default.post(name: NSNotification.Name("\(DocViewStatesK.endConsultationAlertChange)"), object: nil)
     }
+
+    static func refreshReportsForDoctor () {
+        UserDefaults.standard.set(true, forKey: "\(DocViewStatesK.refreshReports)")
+        NotificationCenter.default.post(name: NSNotification.Name("\(DocViewStatesK.refreshReportsChange)"), object: nil)
+    }
 }

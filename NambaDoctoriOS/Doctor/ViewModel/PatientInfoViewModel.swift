@@ -69,6 +69,7 @@ class PatientInfoViewModel: ObservableObject {
     }
     
     func retrieveUploadedDocumentList (serviceRequestId:String) {
+        self.ReportList = nil
         reportServiceCall.getUploadedReportList(customerId: appointment.customerID, serviceRequestId: serviceRequestId, appointmentId: appointment.appointmentID) { (uploadedDocumentList) in
             if uploadedDocumentList != nil {
                 self.ReportList = uploadedDocumentList

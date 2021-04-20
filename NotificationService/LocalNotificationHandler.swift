@@ -44,7 +44,6 @@ class LocalNotificationHandler {
         let body = userInfo[AnyHashable("body")]
         let title = userInfo[AnyHashable("title")]
         let type = (userInfo[AnyHashable("type")] ?? "") as! String
-        print("NOTIF TYPEEEE: \(type)")
         guard body != nil, title != nil else { return }
         
         let notifType = getNotifType(type: type)
@@ -53,8 +52,11 @@ class LocalNotificationHandler {
         case .AppointmentBooked, .AppointmentCancelled:
             DoctorDefaultModifiers.refreshAppointments()
             completion(true)
-        case .Paid, .ReportUploaded :
+        case .ReportUploaded:
+            DoctorDefaultModifiers.refreshReportsForDoctor()
             completion(false)
+        case .Paid:
+            break
         case .CallInType, .NewChatMessage:
             completion(true)
         default:
@@ -72,14 +74,13 @@ class LocalNotificationHandler {
         guard body != nil, title != nil else { return }
         
         let notifType = getNotifType(type: type)
-        
+
         switch notifType {
         case .AppointmentBooked, .AppointmentCancelled:
             DoctorDefaultModifiers.refreshAppointments()
         case .Paid, .ReportUploaded :
             break
         case .CallInType:
-            print("CALLINROOMFUNCTIONNNNNN")
             docAutoNav.navigateToCall(appointmentId: id as! String)
             break
         case .NewChatMessage:
