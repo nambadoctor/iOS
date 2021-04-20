@@ -56,6 +56,7 @@ class LocalNotificationHandler {
             DoctorDefaultModifiers.refreshReportsForDoctor()
             completion(false)
         case .Paid:
+            completion(true)
             break
         case .CallInType, .NewChatMessage:
             completion(true)

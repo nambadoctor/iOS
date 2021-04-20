@@ -40,6 +40,7 @@ struct DoctorHome: View {
                 }
                 .environmentObject(doctorViewModel)
                 .navigationBarTitle("NambaDoctor", displayMode: .inline)
+                .navigationBarItems(trailing: navBarRefreshButton)
             }
         }.onAppear() {
             showAlertListener()
@@ -49,5 +50,14 @@ struct DoctorHome: View {
         .alert(item: $alertItem) { alertItem in
             alertToShow(alertItem: alertItem)
         }
+    }
+    
+    
+    var navBarRefreshButton : some View {
+        Button(action: {
+            doctorViewModel.refreshAppointments()
+        }, label: {
+            Image("arrow.clockwise")
+        })
     }
 }

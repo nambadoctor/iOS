@@ -87,12 +87,14 @@ class DoctorViewModel: ObservableObject {
     }
     
     func retrieveAppointments () {
+        CommonDefaultModifiers.showLoader()
         doctorAppointmentViewModel.getDocAppointments(serviceProviderId: doctor.serviceProviderID) { (appointments) in
             if appointments != nil {
                 self.appointments.removeAll()
                 self.appointments = appointments!
                 self.datePickerVM.setDatesWithAppointments(appointments: appointments!)
                 self.dateChanged(selectedDate: self.datePickerVM.selectedDate)
+                CommonDefaultModifiers.hideLoader()
             }
             self.checkForEmptyList()
             self.getNotificationSelectedAppointment()
