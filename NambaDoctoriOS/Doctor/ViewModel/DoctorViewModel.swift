@@ -113,7 +113,7 @@ class DoctorViewModel: ObservableObject {
             self.hasAppointments = false
         }
     }
-    
+
     func refreshAppointments () {
         self.retrieveAppointments()
     }

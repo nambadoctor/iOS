@@ -286,7 +286,7 @@ class ViewController: UIViewController {
         self.previewView?.isHidden = true
         self.messageLabel?.isHidden = true
     }
-    
+
     func expandCall () {
         self.previewView?.isHidden = false
         self.messageLabel?.isHidden = false
