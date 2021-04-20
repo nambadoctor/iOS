@@ -86,6 +86,7 @@ class DoctorTwilioViewModel: ObservableObject {
         self.videoEnabled = false
         self.micEnabled = true
         self.viewController?.disconnect(sender: self)
+        self.viewController = nil
         twilioDelegate?.leftRoom()
     }
 
