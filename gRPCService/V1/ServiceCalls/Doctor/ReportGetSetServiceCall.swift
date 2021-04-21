@@ -25,7 +25,7 @@ class ReportGetSetServiceCall : ReportGetSetServiceCallProtocol {
         
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
-        
+
         // Provide the connection to the generated client.
         let reportsClient = Nd_V1_ServiceProviderReportWorkerV1Client(channel: channel)
         

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-enum NotifTypes:String {
+enum NotifTypes: String, Codable {
     case AppointmentBooked
     case AppointmentCancelled
     case ReportUploaded
@@ -35,6 +35,37 @@ func getNotifType(type:String) -> NotifTypes {
         return .NewChatMessage
     default:
         return .Empty
+    }
+}
+
+struct LocalNotifObj : Codable {
+    var Title:String
+    var Body:String
+    var NotifType:NotifTypes
+    var AppointmentId:String
+}
+
+class LocalNotifStorer {
+    func storeLocalNotif (title:String, body:String, appointmentId:String, notifType:NotifTypes) {
+        var localNotifObj:LocalNotifObj = LocalNotifObj(Title: "", Body: "", NotifType: notifType, AppointmentId: appointmentId)
+
+        switch notifType {
+        case .AppointmentBooked, .AppointmentCancelled:
+            localNotifObj.Title = title
+            localNotifObj.Body = body
+            localNotifObj.AppointmentId = appointmentId
+            break
+        case .ReportUploaded:
+            break
+        case .Paid:
+            break
+        case .CallInType:
+            break
+        case .NewChatMessage:
+            break
+        default:
+            break
+        }
     }
 }
 
@@ -90,78 +121,6 @@ class LocalNotificationHandler {
         default:
             break
         }
-    }
-}
-
-let docAutoNav:DocAutoNavigateHelper = DocAutoNavigateHelper()
-class DocAutoNavigateHelper {
-    var appointmentId:String = ""
-
-    var takeToChat:Bool = false
-    var takeToTwilioRoom:Bool = false
-    var takeToIntermediateView:Bool = false
-    
-    var currentyInChat:Bool = false
-    var currentlyInTwilioRoom:Bool = false
-    var currenltyInIntermediateView:Bool = false
-
-    func navigateToChat (appointmentId:String) {
-        if currentlyInTwilioRoom {
-            DoctorAlertHelpers().presentingStackedNavViewError(navType: "Chat Room")
-        } else {
-            self.appointmentId = appointmentId
-            self.takeToChat = true
-            DoctorDefaultModifiers.navigateToClickedNotif()
-        }
-    }
-
-    func navigateToCall (appointmentId:String) {
-        if currentlyInTwilioRoom {
-            DoctorAlertHelpers().presentingStackedNavViewError(navType: "Meeting Room")
-        } else {
-            self.appointmentId = appointmentId
-            self.takeToTwilioRoom = true
-            DoctorDefaultModifiers.navigateToClickedNotif()
-        }
-    }
-
-    func enterChatRoom (appointmentId:String) {
-        self.appointmentId = appointmentId
-        self.currentyInChat = true
-        self.currenltyInIntermediateView = true
-        self.currentlyInTwilioRoom = false
-    }
-    
-    func enterTwilioRoom (appointmentId:String) {
-        self.appointmentId = appointmentId
-        self.currentyInChat = false
-        self.currenltyInIntermediateView = true
-        self.currentlyInTwilioRoom = true
-    }
-    
-    func leaveChatRoom () {
-        self.currentyInChat = false
-    }
-    
-    func leaveTwilioRoom () {
-        self.currentlyInTwilioRoom = false
-    }
-
-    func enterIntermediateView (appointmentId:String) {
-        self.appointmentId = appointmentId
-        currenltyInIntermediateView = true
-    }
-    
-    func leaveIntermediateView() {
-        self.appointmentId = ""
-        currenltyInIntermediateView = false
-    }
-    
-    func clearAllValues () {
-        appointmentId = ""
-        takeToChat = false
-        takeToTwilioRoom = false
-        takeToIntermediateView = false
     }
 }
 

@@ -42,5 +42,4 @@ struct AppointmentsView: View {
             }
         }
     }
-    
 }
