@@ -8,12 +8,6 @@
 import Foundation
 
 protocol DoctorAlertHelpersProtocol {
-    func writePrescriptionAlert (appointmentId:String, requestedBy:String, navigate: @escaping (Bool) -> ())
-
-    func amendPrescriptionAlert (amend: @escaping (Bool) -> ())
-    
-    func askToSavePrescriptionAlert (save: @escaping (Bool) -> ())
-    
     func cancelAppointmentAlert (cancel: @escaping (Bool) -> ())
     
     func endConsultationAlert (endConsultation: @escaping (_ ended:Bool) -> ())

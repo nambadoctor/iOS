@@ -9,7 +9,8 @@ import SwiftUI
 
 struct DoctorProfile: View {
     @EnvironmentObject var doctorViewModel:DoctorViewModel
-
+    @State private var wakeUp = Date()
+    
     var body: some View {
         
         ScrollView {
@@ -75,22 +76,36 @@ struct DoctorProfile: View {
     
     var availabilities : some View {
         VStack {
-            
             ForEach((0...6), id: \.self) { day in
                 VStack (alignment: .leading) {
-                    Text(Helpers.getDayForDayOfWeekInt(dayInt: day))
-                    ForEach(doctorViewModel.getAvailabilitiesForDayOfWeek(dayOfWeek: Int32(day)), id: \.availabilityConfigID) { availability in
-                        Text("\(Helpers.getSimpleTimeForAppointment(timeStamp1: availability.startTime)) - \(Helpers.getSimpleTimeForAppointment(timeStamp1: availability.endTime))")
+                    HStack (spacing: 5) {
+                        Text(Helpers.getDayForDayOfWeekInt(dayInt: day))
+                            .font(.headline)
+                        
+                        Image("plus.circle.fill")
                             .foregroundColor(.blue)
-                            .font(.system(size: 20))
+                        Spacer()
+                    }
+                    ForEach(doctorViewModel.getAvailabilitiesForDayOfWeek(dayOfWeek: Int32(day)), id: \.availabilityConfigID) { availability in
+                        HStack {
+                            Text("\(Helpers.getSimpleTimeForAppointment(timeStamp1: availability.startTime)) - \(Helpers.getSimpleTimeForAppointment(timeStamp1: availability.endTime))")
+                                .foregroundColor(.blue)
+                        }
+                        .padding()
+                        .background(Color.blue.opacity(0.2))
+                        .cornerRadius(10)
+                        .onTapGesture {
+                            DoctorAlertHelpers().editOrRemoveAvailabilityAlert(slotTime: "\(Helpers.getSimpleTimeForAppointment(timeStamp1: availability.startTime)) - \(Helpers.getSimpleTimeForAppointment(timeStamp1: availability.endTime))") { (edit, remove) in
+                                
+                            }
+                        }
                     }
                 }
-                .padding(5)
-                .background(Color.white)
-                .cornerRadius(10)
-                .shadow(radius: 3)
-                .padding()
+                
+                Divider()
             }
+//            DatePicker("", selection: $wakeUp, displayedComponents: .hourAndMinute)
+//                .labelsHidden()
         }
     }
 

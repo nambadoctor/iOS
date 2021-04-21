@@ -10,34 +10,6 @@ import SwiftUI
 
 class DoctorAlertHelpers: DoctorAlertHelpersProtocol {
     
-    func writePrescriptionAlert (appointmentId:String, requestedBy:String, navigate: @escaping (Bool) -> ()) {
-        alertTempItem = AlertItem(title: Text("Warning! End consultation and write prescription?"), message: Text("You will not be able to call patient in consulting room anymore"), primaryButton: Alert.Button.default(Text("Confirm"), action: {
-
-            navigate(true)
-            
-        }), secondaryButton: Alert.Button.cancel(Text("Go Back")))
-
-        CommonDefaultModifiers.showAlert()
-    }
-
-    func amendPrescriptionAlert (amend: @escaping (Bool) -> ()) {
-        alertTempItem = AlertItem(title: Text("Amend Prescription?"), message: Text("When you amend this prescription an alert gets sent to the patient but old prescription is still saved as a record"), primaryButton: Alert.Button.default(Text("Continue"), action: {
-            amend(true)
-        }), secondaryButton: Alert.Button.cancel(Text("Cancel")))
-        
-        CommonDefaultModifiers.showAlert()
-    }
-    
-    func askToSavePrescriptionAlert (save: @escaping (Bool) -> ()) {
-        alertTempItem = AlertItem(title: Text("Save your progress!"), message: Text("You can save this prescription and finish it at your convenience"), primaryButton: Alert.Button.default(Text("Save and go back"), action: {
-            save(true)
-        }), secondaryButton: Alert.Button.default(Text("Don't save and go back"), action: {
-            save(false)
-        }))
-
-        CommonDefaultModifiers.showAlert()
-    }
-    
     func cancelAppointmentAlert (cancel: @escaping (Bool) -> ()) {
         alertTempItem = AlertItem(title: Text("Are you sure?"), message: Text("Do you want to cancel this appointment?"), primaryButton: Alert.Button.default(Text("Yes"), action: {
             cancel(true)
@@ -92,4 +64,13 @@ class DoctorAlertHelpers: DoctorAlertHelpersProtocol {
         CommonDefaultModifiers.showAlert()
     }
 
+    func editOrRemoveAvailabilityAlert (slotTime:String, completion: @escaping (_ edit:Bool, _ remove:Bool) -> ()) {
+        alertTempItem = AlertItem(title: Text("Would you like to edit or remove this slot?"), message: Text("Slot: \(slotTime)"), primaryButton: Alert.Button.default(Text("Edit"), action: {
+            completion(true, false)
+        }), secondaryButton: Alert.Button.default(Text("Remove"), action: {
+            completion(false, true)
+        }))
+
+        CommonDefaultModifiers.showAlert()
+    }
 }

@@ -182,19 +182,19 @@ class Helpers {
     static func getDayForDayOfWeekInt (dayInt:Int) -> String {
         switch dayInt {
         case 0:
-            return "Monday"
+            return "MONDAY"
         case 1:
-            return "Tuesday"
+            return "TUESDAY"
         case 2:
-            return "Wednesday"
+            return "WEDNESDAY"
         case 3:
-            return "Thursday"
+            return "THURSDAY"
         case 4:
-            return "Friday"
+            return "FRIDAY"
         case 5:
-            return "Saturday"
+            return "SATURDAY"
         case 6:
-            return "Sunday"
+            return "SUNDAY"
         default:
             return ""
         }
