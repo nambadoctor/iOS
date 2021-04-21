@@ -199,6 +199,8 @@
 		179C44E42628C86D0073F4E0 /* DoctorChatRoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179C44E32628C86D0073F4E0 /* DoctorChatRoomView.swift */; };
 		179C453026296AFE0073F4E0 /* CustomStepperBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179C452F26296AFE0073F4E0 /* CustomStepperBox.swift */; };
 		179F629C25BF5F8900BA0A73 /* PhoneNumberObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179F629B25BF5F8900BA0A73 /* PhoneNumberObj.swift */; };
+		17A020782630201200BD828F /* LocalNotifStoreHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A020772630201200BD828F /* LocalNotifStoreHelper.swift */; };
+		17A020812630214400BD828F /* DocNotificationDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A020802630214400BD828F /* DocNotificationDisplayView.swift */; };
 		17AE6D1825E24B2200B18292 /* DoctorsPatientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE6D1725E24B2100B18292 /* DoctorsPatientsView.swift */; };
 		17AE6D2025E24B2A00B18292 /* DoctorsPatientsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE6D1F25E24B2A00B18292 /* DoctorsPatientsCardView.swift */; };
 		17AE6D3325E24DA400B18292 /* RetrieveDoctorsPatientsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE6D3225E24DA400B18292 /* RetrieveDoctorsPatientsServiceProtocol.swift */; };
@@ -473,6 +475,8 @@
 		179C44E32628C86D0073F4E0 /* DoctorChatRoomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorChatRoomView.swift; sourceTree = "<group>"; };
 		179C452F26296AFE0073F4E0 /* CustomStepperBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomStepperBox.swift; sourceTree = "<group>"; };
 		179F629B25BF5F8900BA0A73 /* PhoneNumberObj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberObj.swift; sourceTree = "<group>"; };
+		17A020772630201200BD828F /* LocalNotifStoreHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotifStoreHelper.swift; sourceTree = "<group>"; };
+		17A020802630214400BD828F /* DocNotificationDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocNotificationDisplayView.swift; sourceTree = "<group>"; };
 		17AE6D1725E24B2100B18292 /* DoctorsPatientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorsPatientsView.swift; sourceTree = "<group>"; };
 		17AE6D1F25E24B2A00B18292 /* DoctorsPatientsCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorsPatientsCardView.swift; sourceTree = "<group>"; };
 		17AE6D3225E24DA400B18292 /* RetrieveDoctorsPatientsServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrieveDoctorsPatientsServiceProtocol.swift; sourceTree = "<group>"; };
@@ -915,6 +919,7 @@
 				179BD39D25DE452D0076F391 /* LocalNotificationHandler.swift */,
 				1748006925B8C14400C8E3CC /* SendPushNotification.swift */,
 				1728B7F325B6E6DD001D554E /* NotifHandler.swift */,
+				17A020772630201200BD828F /* LocalNotifStoreHelper.swift */,
 			);
 			path = NotificationService;
 			sourceTree = "<group>";
@@ -1153,6 +1158,14 @@
 			path = DoctorChat;
 			sourceTree = "<group>";
 		};
+		17A0207F2630213100BD828F /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				17A020802630214400BD828F /* DocNotificationDisplayView.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
 		17AE6D1525E24B0B00B18292 /* DoctorsPatients */ = {
 			isa = PBXGroup;
 			children = (
@@ -1165,6 +1178,7 @@
 		17B5D11625B74B29009D6A42 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				17A0207F2630213100BD828F /* Notifications */,
 				179C44E22628C8600073F4E0 /* DoctorChat */,
 				1716E2B6261AFA3F00568837 /* EditAppointment */,
 				1716E2A6261AF84100568837 /* ViewAppointment */,
@@ -1798,6 +1812,7 @@
 				17626E0A25DA270400C36A99 /* ImageDisplayEnum.swift in Sources */,
 				1785A5012616E193009667D1 /* ModifyFeeViewModel.swift in Sources */,
 				171647DF26044DC800BB5B5A /* ReportGetSetServiceCall.swift in Sources */,
+				17A020812630214400BD828F /* DocNotificationDisplayView.swift in Sources */,
 				17E869E625CE771E000B0952 /* PatientReportViewModel.swift in Sources */,
 				1748006A25B8C14400C8E3CC /* SendPushNotification.swift in Sources */,
 				179C44782627CC170073F4E0 /* RealtimeDBListener.swift in Sources */,
@@ -1864,6 +1879,7 @@
 				17AE6D2025E24B2A00B18292 /* DoctorsPatientsCardView.swift in Sources */,
 				17BA0AC725B9AE6200EDE4D1 /* UpdateAppointmentStatusProtocol.swift in Sources */,
 				171648722609DFC400BB5B5A /* ColoredButtons.swift in Sources */,
+				17A020782630201200BD828F /* LocalNotifStoreHelper.swift in Sources */,
 				1796322E25AEE9D6002E466C /* GlobalPopupHelpers.swift in Sources */,
 				17513B2226102BF600542C00 /* ImageViewHelper.swift in Sources */,
 				1716472A260321F900BB5B5A /* ServiceProviderGeneratedSlotMapper.swift in Sources */,

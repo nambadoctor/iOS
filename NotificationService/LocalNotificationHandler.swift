@@ -38,46 +38,18 @@ func getNotifType(type:String) -> NotifTypes {
     }
 }
 
-struct LocalNotifObj : Codable {
-    var Title:String
-    var Body:String
-    var NotifType:NotifTypes
-    var AppointmentId:String
-}
-
-class LocalNotifStorer {
-    func storeLocalNotif (title:String, body:String, appointmentId:String, notifType:NotifTypes) {
-        var localNotifObj:LocalNotifObj = LocalNotifObj(Title: "", Body: "", NotifType: notifType, AppointmentId: appointmentId)
-
-        switch notifType {
-        case .AppointmentBooked, .AppointmentCancelled:
-            localNotifObj.Title = title
-            localNotifObj.Body = body
-            localNotifObj.AppointmentId = appointmentId
-            break
-        case .ReportUploaded:
-            break
-        case .Paid:
-            break
-        case .CallInType:
-            break
-        case .NewChatMessage:
-            break
-        default:
-            break
-        }
-    }
-}
-
 class LocalNotificationHandler {
     
     func notifRecieveHelper (userInfo: [AnyHashable: Any], completion: @escaping (_ fire:Bool)->()) {
         let body = userInfo[AnyHashable("body")]
         let title = userInfo[AnyHashable("title")]
+        let id = userInfo[AnyHashable("id")]
         let type = (userInfo[AnyHashable("type")] ?? "") as! String
         guard body != nil, title != nil else { return }
-        
+                
         let notifType = getNotifType(type: type)
+        
+        LocalNotifStorer().storeLocalNotif(title: title as! String, body: body as! String, appointmentId: id as! String, notifType: notifType)
         
         switch notifType {
         case .AppointmentBooked, .AppointmentCancelled:
@@ -117,6 +89,23 @@ class LocalNotificationHandler {
             break
         case .NewChatMessage:
             docAutoNav.navigateToChat(appointmentId: id as! String)
+            break
+        default:
+            break
+        }
+    }
+    
+    func notifTappedHelper (notifObj: LocalNotifObj) {
+        switch notifObj.NotifType {
+        case .AppointmentBooked, .AppointmentCancelled:
+            DoctorDefaultModifiers.refreshAppointments()
+        case .Paid, .ReportUploaded :
+            break
+        case .CallInType:
+            docAutoNav.navigateToCall(appointmentId: notifObj.AppointmentId)
+            break
+        case .NewChatMessage:
+            docAutoNav.navigateToChat(appointmentId: notifObj.AppointmentId)
             break
         default:
             break

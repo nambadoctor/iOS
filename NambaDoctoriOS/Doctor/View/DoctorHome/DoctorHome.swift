@@ -26,16 +26,16 @@ struct DoctorHome: View {
                             Image("list.triangle")
                             Text("Appointments")
                         }.tag(1)
-                         
-//                        DoctorsPatientsView().tabItem {
-//                            Image("person.2.fill")
-//                            Text("My Patients")
-//                        }.tag(2)
-//
+
                         DoctorProfile().tabItem {
                             Image("person.crop.circle.fill")
                             Text("My Profile")
                         }.tag(2)
+                        
+                        DocNotificationDisplayView().tabItem {
+                            Image("bell")
+                            Text("Notifications")
+                        }.tag(3)
                     }
                 }
                 .environmentObject(doctorViewModel)
@@ -58,6 +58,14 @@ struct DoctorHome: View {
             doctorViewModel.refreshAppointments()
         }, label: {
             Image("arrow.clockwise")
+        })
+    }
+    
+    var navBarNotifCenterIcon : some View {
+        Button(action: {
+            
+        }, label: {
+            Image("bell")
         })
     }
 }
