@@ -13,33 +13,37 @@ struct DoctorProfile: View {
     var body: some View {
         
         ScrollView {
-
-            title
-            
-            if doctorViewModel.showEdit {
-                EditableDoctorProfile(editDoctorVM: doctorViewModel.editDoctorVM, doctor: $doctorViewModel.doctor)
-            } else {
-                doctorInfoHeader
-                Divider()
-                appointmentInfo
-                Divider()
-            }
-            
-            //will have edit option in future
-            Group {
-                phoneNumbers
-                Divider()
-                addresses
-                Divider()
-            }
-            
-            //non editable | need to contact nambadoctor team to edit
-            Group {
-                workExperience
-                Divider()
-                education
-            }
-        }.padding()
+            VStack (alignment: .leading) {
+                title
+                
+                if doctorViewModel.showEdit {
+                    EditableDoctorProfile(editDoctorVM: doctorViewModel.editDoctorVM, doctor: $doctorViewModel.doctor)
+                } else {
+                    doctorInfoHeader
+                    Divider()
+                    appointmentInfo
+                    Divider()
+                }
+                
+                availabilities
+                
+    //
+    //            //will have edit option in future
+    //            Group {
+    //                phoneNumbers
+    //                Divider()
+    //                addresses
+    //                Divider()
+    //            }
+    //
+    //            //non editable | need to contact nambadoctor team to edit
+    //            Group {
+    //                workExperience
+    //                Divider()
+    //                education
+    //            }
+            }.padding()
+        }
     }
     
     var title : some View {
@@ -69,6 +73,27 @@ struct DoctorProfile: View {
         }.padding()
     }
     
+    var availabilities : some View {
+        VStack {
+            
+            ForEach((0...6), id: \.self) { day in
+                VStack (alignment: .leading) {
+                    Text(Helpers.getDayForDayOfWeekInt(dayInt: day))
+                    ForEach(doctorViewModel.getAvailabilitiesForDayOfWeek(dayOfWeek: Int32(day)), id: \.availabilityConfigID) { availability in
+                        Text("\(Helpers.getSimpleTimeForAppointment(timeStamp1: availability.startTime)) - \(Helpers.getSimpleTimeForAppointment(timeStamp1: availability.endTime))")
+                            .foregroundColor(.blue)
+                            .font(.system(size: 20))
+                    }
+                }
+                .padding(5)
+                .background(Color.white)
+                .cornerRadius(10)
+                .shadow(radius: 3)
+                .padding()
+            }
+        }
+    }
+
     var education : some View {
         VStack (alignment: .leading) {
             Text("Education:")

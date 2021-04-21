@@ -10,6 +10,7 @@ import Foundation
 class DoctorViewModel: ObservableObject {
     @Published var doctor:ServiceProviderProfile!
     @Published var appointments:[ServiceProviderAppointment] = [ServiceProviderAppointment]()
+    @Published var availabilities:[ServiceProviderAvailability] = [ServiceProviderAvailability]()
     @Published var myPatients:[ServiceProviderCustomerProfile] = [ServiceProviderCustomerProfile]()
     
     @Published var hasAppointments:Bool = false
@@ -51,6 +52,15 @@ class DoctorViewModel: ObservableObject {
                 self.getMyPatients()
                 self.updateFCMToken()
                 self.imageLoader = ImageLoader(urlString: self.doctor.profilePictureURL) { success in }
+                self.getAvailabilities()
+            }
+        }
+    }
+    
+    func getAvailabilities () {
+        serviceProviderServiceCall.getServiceProviderAvailabilities(serviceProviderId: self.doctor.serviceProviderID) { (availabilities) in
+            if availabilities != nil {
+                self.availabilities = availabilities!
             }
         }
     }
@@ -155,6 +165,18 @@ class DoctorViewModel: ObservableObject {
         }
         
         updateDoctor()
+    }
+    
+    
+    func getAvailabilitiesForDayOfWeek (dayOfWeek:Int32) -> [ServiceProviderAvailability] {
+        var tempArr:[ServiceProviderAvailability] = [ServiceProviderAvailability]()
+        for avail in self.availabilities {
+            if avail.dayOfWeek == dayOfWeek {
+                tempArr.append(avail)
+            }
+        }
+        
+        return tempArr
     }
 }
 
