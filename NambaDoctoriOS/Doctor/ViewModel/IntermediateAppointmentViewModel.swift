@@ -80,7 +80,6 @@ class IntermediateAppointmentViewModel : ObservableObject {
         checkIfAppointmentFinished()
         checkIfAppointmentStarted()
         getClinicalInfoCollapseSetting()
-        checkForDirectNavigation()
     }
 }
 
