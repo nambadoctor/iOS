@@ -59,6 +59,7 @@ class IntermediateAppointmentViewModel : ObservableObject {
         doctorTwilioManagerViewModel.twilioDelegate = self
         serviceRequestVM.gotServiceRequestDelegate = self
 
+        checkForDirectNavigation()
         refreshAppointment()
         initChecks()
     }

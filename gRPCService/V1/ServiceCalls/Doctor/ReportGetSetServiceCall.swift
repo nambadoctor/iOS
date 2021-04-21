@@ -41,7 +41,7 @@ class ReportGetSetServiceCall : ReportGetSetServiceCallProtocol {
             do {
                 let response = try getPatientReports.response.wait()
                 let reportList = self.reportObjMapper.grpcReportToLocal(report: response.reports)
-                print("Patient Reports received")
+                print("Patient Reports received \(reportList.count)")
                 DispatchQueue.main.async {
                     completion(reportList)
                 }

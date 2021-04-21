@@ -38,7 +38,6 @@ struct PatientInfoEditableView: View {
 extension PatientInfoEditableView {
     func refreshReportListener () {
         NotificationCenter.default.addObserver(forName: NSNotification.Name("\(DocViewStatesK.refreshReportsChange)"), object: nil, queue: .main) { (_) in
-            print("LISTENING TO REPORT CHANGE BRUH!")
             self.patientInfoViewModel.retrieveUploadedDocumentList(serviceRequestId: self.patientInfoViewModel.appointment.serviceRequestID)
         }
     }
