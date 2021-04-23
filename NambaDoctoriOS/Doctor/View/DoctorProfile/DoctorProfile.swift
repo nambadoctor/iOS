@@ -26,9 +26,8 @@ struct DoctorProfile: View {
                     Divider()
                 }
                 
-                availabilities
-                
-    //
+                DoctorAvailabilityView(availabilityVM: doctorViewModel.availabilityVM)
+
     //            //will have edit option in future
     //            Group {
     //                phoneNumbers
@@ -72,41 +71,6 @@ struct DoctorProfile: View {
                 .frame(height: 50)
             }
         }.padding()
-    }
-    
-    var availabilities : some View {
-        VStack {
-            ForEach((0...6), id: \.self) { day in
-                VStack (alignment: .leading) {
-                    HStack (spacing: 5) {
-                        Text(Helpers.getDayForDayOfWeekInt(dayInt: day))
-                            .font(.headline)
-                        
-                        Image("plus.circle.fill")
-                            .foregroundColor(.blue)
-                        Spacer()
-                    }
-                    ForEach(doctorViewModel.getAvailabilitiesForDayOfWeek(dayOfWeek: Int32(day)), id: \.availabilityConfigID) { availability in
-                        HStack {
-                            Text("\(Helpers.getSimpleTimeForAppointment(timeStamp1: availability.startTime)) - \(Helpers.getSimpleTimeForAppointment(timeStamp1: availability.endTime))")
-                                .foregroundColor(.blue)
-                        }
-                        .padding()
-                        .background(Color.blue.opacity(0.2))
-                        .cornerRadius(10)
-                        .onTapGesture {
-                            DoctorAlertHelpers().editOrRemoveAvailabilityAlert(slotTime: "\(Helpers.getSimpleTimeForAppointment(timeStamp1: availability.startTime)) - \(Helpers.getSimpleTimeForAppointment(timeStamp1: availability.endTime))") { (edit, remove) in
-                                
-                            }
-                        }
-                    }
-                }
-                
-                Divider()
-            }
-//            DatePicker("", selection: $wakeUp, displayedComponents: .hourAndMinute)
-//                .labelsHidden()
-        }
     }
 
     var education : some View {

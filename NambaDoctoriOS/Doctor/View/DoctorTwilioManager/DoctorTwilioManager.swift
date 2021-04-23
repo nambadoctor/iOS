@@ -12,7 +12,7 @@ struct DoctorTwilioManager: View {
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var DoctorTwilioVM:DoctorTwilioViewModel
     @State private var twilioPosition = CGPoint(x: 100, y: 100)
-    
+
     var body: some View {
         ZStack {
             TwilioViewHelper(doctorTwilioVM: DoctorTwilioVM)

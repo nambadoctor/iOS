@@ -12,7 +12,15 @@ class DocNotifViewModel : ObservableObject {
     @Published var notifications:[LocalNotifObj]? = nil
 
     init() {
+        refreshNotifs()
+    }
+    
+    func refreshNotifs() {
         self.notifications = LocalNotifStorer().getLocalNotifs()
+    }
+    
+    func markAllAsRead() {
+        LocalNotifStorer().markAllNotifsAsRead()
     }
 }
 
@@ -24,13 +32,44 @@ struct DocNotificationDisplayView: View {
                 Text("NO NOTIFICATIONS")
             } else {
                 ScrollView {
-                    ForEach(DocNotifVM.notifications!, id: \.timeStamp) { notif in
-                        DocNotifCard(notifObj: notif)
-                        Divider()
+                    
+                    HStack {
+                        Spacer()
+                        Text("NEW")
+                            .font(.footnote)
+                            .foregroundColor(Color.gray)
+                            .bold()
+                        Spacer()
                     }
+                    
+                    ForEach(DocNotifVM.notifications!, id: \.timeStamp) { notif in
+                        if !notif.viewed {
+                            DocNotifCard(notifObj: notif)
+                            Divider()
+                        }
+                    }.background(Color.white)
+
+                    HStack {
+                        Spacer()
+                        Text("OLD")
+                            .font(.footnote)
+                            .foregroundColor(Color.gray)
+                            .bold()
+                        Spacer()
+                    }
+                    
+                    VStack {
+                        ForEach(DocNotifVM.notifications!, id: \.timeStamp) { notif in
+                            if notif.viewed {
+                                DocNotifCard(notifObj: notif)
+                                Divider()
+                            }
+                        }
+                    }.background(Color.gray.opacity(0.2))
                 }
             }
-        }
+        }.onAppear() {DocNotifVM.refreshNotifs()}
+        .onDisappear(){DocNotifVM.markAllAsRead()}
     }
 }
 
@@ -57,7 +96,8 @@ struct DocNotifCard : View {
                     .foregroundColor(Color.gray)
 
             }.padding(.leading, 3)
-        }.padding(.horizontal)
+        }
+        .padding(.horizontal)
         .onTapGesture {
             LocalNotificationHandler().notifTappedHelper(notifObj: notifObj)
         }

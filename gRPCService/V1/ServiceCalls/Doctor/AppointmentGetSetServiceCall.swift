@@ -105,7 +105,7 @@ class AppointmentGetSetServiceCall : AppointmentGetSetServiceCallProtocol {
         let request = appointmentObjectMapper.localAppointmentToGrpc(appointment: appointment)
         
         let setAptStatus = appointmentClient.setAppointment(request, callOptions: callOptions)
-        
+
         DispatchQueue.global().async {
             do {
                 let response = try setAptStatus.response.wait()
@@ -135,7 +135,7 @@ class AppointmentGetSetServiceCall : AppointmentGetSetServiceCallProtocol {
         }
 
         let getDoctorsAppointment = appointmentClient.getAppointment(request, callOptions: callOptions)
-        
+
         DispatchQueue.global().async {
             do {
                 stopwatch.start()

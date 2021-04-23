@@ -17,15 +17,7 @@ struct AppointmentCard: View {
     }
 
     var body: some View {
-        ZStack (alignment: .leading ) {
-            
-            VStack {
-                Spacer()
-                HStack {Spacer()}
-            }.background(Color.white)
-            .cornerRadius(10)
-            .shadow(radius: 5)
-            
+        VStack (alignment: .leading ) {
             HStack {
                 
                 if AppointmentVM.consultationStarted {
@@ -41,6 +33,10 @@ struct AppointmentCard: View {
                     Text(AppointmentVM.appointment.customerName)
                         .font(.system(size: 20))
                         .bold()
+                    
+                    Text(AppointmentVM.getAppointmentTime())
+                        .font(.system(size: 17))
+                        .foregroundColor(Color.gray)
 
                     if AppointmentVM.consultationStarted {
                         Text("Consultation In Progress...")
@@ -50,18 +46,17 @@ struct AppointmentCard: View {
                         Text("\(AppointmentVM.paymentStatus)")
                             .font(.system(size: 15))
                             .foregroundColor(Color.gray)
-                    } else {
-                        Text(AppointmentVM.getAppointmentTime())
-                            .font(.system(size: 17))
-                            .foregroundColor(Color.gray)
                     }
 
                 }.padding(.leading, 3)
             }.padding()
             
         }
-        .frame(width: UIScreen.main.bounds.width-30, height: 70)
-        .padding()
+        .background(Color.white)
+        .cornerRadius(10)
+        .shadow(radius: 5)
+        .padding(.horizontal)
+        .padding(.top, 5)
         .onTapGesture {
             self.AppointmentVM.onCardClicked()
         }

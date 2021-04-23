@@ -21,6 +21,7 @@ class DocNotifHelpers : DocNotifHelpersProtocol {
             $0.body = "\(message)".toProto
             $0.userID = appointment.customerID.toProto
             $0.id = appointment.appointmentID.toProto
+            $0.type = NotifTypes.NewChatMessage.rawValue.toProto
         }
 
         sendPushNotification.sendNotif(notifObj: cancelNotifObj)
@@ -35,6 +36,7 @@ class DocNotifHelpers : DocNotifHelpersProtocol {
             $0.body = "\(appointment.serviceProviderName) has cancelled the appointment at \(readableTime)".toProto
             $0.userID = appointment.customerID.toProto
             $0.id = appointment.appointmentID.toProto
+            $0.type = NotifTypes.AppointmentCancelled.rawValue.toProto
         }
 
         sendPushNotification.sendNotif(notifObj: cancelNotifObj)
@@ -47,6 +49,7 @@ class DocNotifHelpers : DocNotifHelpersProtocol {
             $0.body = "Please answer the call".toProto
             $0.userID = appointment.customerID.toProto
             $0.id = appointment.appointmentID.toProto
+            $0.type = NotifTypes.CallInType.rawValue.toProto
         }
 
         sendPushNotification.sendNotif(notifObj: startedConsultNotifObj)

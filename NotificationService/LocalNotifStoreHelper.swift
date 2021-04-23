@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct LocalNotifObj : Codable {
     var Title:String
     var Body:String
@@ -20,25 +19,68 @@ struct LocalNotifObj : Codable {
 var localNotifsEncodingString = "localNotifEncodingKey"
 class LocalNotifStorer {
     func storeLocalNotif (title:String, body:String, appointmentId:String, notifType:NotifTypes) {
-        let localNotifObj:LocalNotifObj = LocalNotifObj(Title: title, Body: body, NotifType: notifType, AppointmentId: appointmentId, viewed: false, timeStamp: Date().millisecondsSince1970)
-
+        var localNotifObj:LocalNotifObj = LocalNotifObj(Title: title, Body: body, NotifType: notifType, AppointmentId: appointmentId, viewed: false, timeStamp: Date().millisecondsSince1970)
+        
         var notifs = LocalDecoder.decode(modelType: [LocalNotifObj].self, from: localNotifsEncodingString)
         if notifs != nil {
-            notifs?.append(localNotifObj)
+            
+            switch notifType {
+            case .AppointmentBooked, .AppointmentCancelled, .Paid:
+                notifs?.append(localNotifObj)
+                break
+            case .NewChatMessage:
+                if notifs!.last?.NotifType == .NewChatMessage {
+                    notifs![notifs!.count - 1].Title = "New Messages from \(localNotifObj.Title)"
+                    notifs![notifs!.count - 1].Body = ""
+                    notifs![notifs!.count - 1].viewed = false
+                    notifs![notifs!.count - 1].timeStamp = Date().millisecondsSince1970
+                } else {
+                    notifs?.append(localNotifObj)
+                }
+            case .CallInType:
+                if notifs!.last?.NotifType == .CallInType {
+                    notifs![notifs!.count - 1].viewed = false
+                    notifs![notifs!.count - 1].timeStamp = Date().millisecondsSince1970
+                } else {
+                    notifs?.append(localNotifObj)
+                }
+            case .ReportUploaded:
+                if notifs!.last?.NotifType == .ReportUploaded {
+                    notifs![notifs!.count - 1].viewed = false
+                    notifs![notifs!.count - 1].timeStamp = Date().millisecondsSince1970
+                } else {
+                    notifs?.append(localNotifObj)
+                }
+            case .Empty:
+                break
+            }
+
             LocalEncoder.encode(payload: notifs, destination: localNotifsEncodingString)
         } else {
             let notifArr:[LocalNotifObj] = [localNotifObj]
             LocalEncoder.encode(payload: notifArr, destination: localNotifsEncodingString)
         }
     }
-
+    
     func getLocalNotifs () -> [LocalNotifObj]? {
         let notifs = LocalDecoder.decode(modelType: [LocalNotifObj].self, from: localNotifsEncodingString)
         
         if notifs != nil {
-            return notifs!.reversed()
+            return notifs!
         } else {
             return nil
+        }
+    }
+    
+    func markAllNotifsAsRead () {
+        var notifs = getLocalNotifs()
+        
+        if notifs != nil {
+            for index in 0..<notifs!.count {
+                notifs![index].viewed = true
+            }
+            
+            LocalEncoder.encode(payload: notifs, destination: localNotifsEncodingString)
         }
     }
 }

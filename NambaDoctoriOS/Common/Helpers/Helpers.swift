@@ -74,7 +74,9 @@ class Helpers {
         return "\(day), \(dateString)"
     }
     
-    
+    static func getDateFromTimeStamp (timeStamp : Int64) -> Date {
+        return Date(timeIntervalSince1970: TimeInterval(timeStamp))
+    }
     
     static func getSimpleTimeSpanForAppointment (timeStamp1 : Int64, timeStamp2: Int64) -> String {
         let formatter = DateFormatter()
@@ -182,19 +184,19 @@ class Helpers {
     static func getDayForDayOfWeekInt (dayInt:Int) -> String {
         switch dayInt {
         case 0:
-            return "MONDAY"
-        case 1:
-            return "TUESDAY"
-        case 2:
-            return "WEDNESDAY"
-        case 3:
-            return "THURSDAY"
-        case 4:
-            return "FRIDAY"
-        case 5:
-            return "SATURDAY"
-        case 6:
             return "SUNDAY"
+        case 1:
+            return "MONDAY"
+        case 2:
+            return "TUESDAY"
+        case 3:
+            return "WEDNESDAY"
+        case 4:
+            return "THURSDAY"
+        case 5:
+            return "FRIDAY"
+        case 6:
+            return "SATURDAY"
         default:
             return ""
         }

@@ -15,6 +15,8 @@ protocol ServiceProviderGetSetServiceCallProtocol {
     func getListOfPatients(serviceProviderId:String, _ completion: @escaping (([ServiceProviderCustomerProfile]?) -> ()))
     
     func getServiceProviderAvailabilities(serviceProviderId:String, _ completion: @escaping (([ServiceProviderAvailability]?) -> ()))
+    
+    func setServiceProviderAvailabilities(serviceProviderId:String, availabilities:[ServiceProviderAvailability], _ completion: @escaping (_ success:Bool)->())
 }
 
 class ServiceProviderGetSetServiceCall : ServiceProviderGetSetServiceCallProtocol {
@@ -146,6 +148,36 @@ class ServiceProviderGetSetServiceCall : ServiceProviderGetSetServiceCallProtoco
                 print("Doctors Availability received failed: \(error)")
                 DispatchQueue.main.async {
                     completion(nil)
+                }
+            }
+        }
+    }
+    
+    func setServiceProviderAvailabilities(serviceProviderId:String, availabilities: [ServiceProviderAvailability], _ completion: @escaping (Bool) -> ()) {
+        let channel = ChannelManager.sharedChannelManager.getChannel()
+        let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
+        
+        // Provide the connection to the generated client.
+        let serviceProviderClient = Nd_V1_ServiceProviderWorkerV1Client(channel: channel)
+        
+        let request = Nd_V1_ServiceProviderAvailabilityRequest.with {
+            $0.availabilityList = ServiceProviderAvailaibilityObjectMapper.localAvailabilityToGrpc(availability: availabilities)
+            $0.serviceProviderID = serviceProviderId.toProto
+        }
+
+        let getDoctorsPatients = serviceProviderClient.setServiceProviderAvailability(request, callOptions: callOptions)
+
+        DispatchQueue.global().async {
+            do {
+                let response = try getDoctorsPatients.response.wait()
+                print("Doctors Availability SET: success")
+                DispatchQueue.main.async {
+                    completion(true)
+                }
+            } catch {
+                print("Doctors Availability SET failed: \(error)")
+                DispatchQueue.main.async {
+                    completion(false)
                 }
             }
         }

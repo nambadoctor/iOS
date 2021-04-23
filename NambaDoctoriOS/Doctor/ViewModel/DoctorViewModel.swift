@@ -22,6 +22,7 @@ class DoctorViewModel: ObservableObject {
 
     @Published var showEdit:Bool = false
     @Published var editDoctorVM:EditServiceProviderViewModel = EditServiceProviderViewModel()
+    @Published var availabilityVM:DoctorAvailabilityViewModel = DoctorAvailabilityViewModel()
     @Published var imageLoader:ImageLoader? = nil
     
     @Published var datePickerVM:DatePickerViewModel = DatePickerViewModel()
@@ -52,15 +53,7 @@ class DoctorViewModel: ObservableObject {
                 self.getMyPatients()
                 self.updateFCMToken()
                 self.imageLoader = ImageLoader(urlString: self.doctor.profilePictureURL) { success in }
-                self.getAvailabilities()
-            }
-        }
-    }
-    
-    func getAvailabilities () {
-        serviceProviderServiceCall.getServiceProviderAvailabilities(serviceProviderId: self.doctor.serviceProviderID) { (availabilities) in
-            if availabilities != nil {
-                self.availabilities = availabilities!
+                self.availabilityVM.getAvailabilities(serviceProviderId: self.doctor.serviceProviderID)
             }
         }
     }
@@ -166,18 +159,7 @@ class DoctorViewModel: ObservableObject {
         
         updateDoctor()
     }
-    
-    
-    func getAvailabilitiesForDayOfWeek (dayOfWeek:Int32) -> [ServiceProviderAvailability] {
-        var tempArr:[ServiceProviderAvailability] = [ServiceProviderAvailability]()
-        for avail in self.availabilities {
-            if avail.dayOfWeek == dayOfWeek {
-                tempArr.append(avail)
-            }
-        }
-        
-        return tempArr
-    }
+
 }
 
 extension DoctorViewModel : DatePickerChangedDelegate {

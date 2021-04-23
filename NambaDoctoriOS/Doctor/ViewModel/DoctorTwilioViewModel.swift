@@ -46,18 +46,14 @@ class DoctorTwilioViewModel: ObservableObject {
 
     func startRoom() {
         docAutoNav.enterTwilioRoom(appointmentId: self.appointment.appointmentID)
-        if TwilioAccessTokenString.isEmpty {
-            self.twilioAccessTokenHelper.retrieveToken(appointmentId: self.appointment.appointmentID, serviceProviderId: self.appointment.serviceProviderID) { (success, token) in
-                if success {
-                    self.viewController = UIStoryboard(name: "Twilio", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as! ViewController
-                    self.viewController!.twilioEventDelegate = self
-                } else {
-                    //show failed alert
-                }
+        self.twilioAccessTokenHelper.retrieveToken(appointmentId: self.appointment.appointmentID, serviceProviderId: self.appointment.serviceProviderID) { (success, token) in
+            if success {
+                self.viewController = UIStoryboard(name: "Twilio", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as? ViewController
+                self.viewController!.twilioEventDelegate = self
+            } else {
+                //TODO: show doctor alert issue with video call and tell them to use phone. USE LOGS
+                //show failed alert
             }
-        } else {
-            self.viewController = UIStoryboard(name: "Twilio", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as! ViewController
-            self.viewController!.twilioEventDelegate = self
         }
     }
 
@@ -65,12 +61,14 @@ class DoctorTwilioViewModel: ObservableObject {
         let replicatedAppointment = self.appointment //cannot do simultanueous access...
         self.updateAppointmentStatus.updateToStartedConsultation(appointment: &self.appointment) { (success) in
             if success {
+                //TODO: LOG - room started, consultation not updated
                 completion(success)
                 self.docNotificationHelpers.fireStartedConsultationNotif(appointmentTime: replicatedAppointment.scheduledAppointmentStartTime)
             }
         }
+        //TODO:- ADD LOGS
     }
-    
+
     func toggleVideo () {
         self.viewController?.toggleVideo(sender: self) { _ in
             self.videoEnabled.toggle()
@@ -86,7 +84,11 @@ class DoctorTwilioViewModel: ObservableObject {
     func leaveRoom () {
         self.videoEnabled = false
         self.micEnabled = true
-        self.viewController?.disconnect(sender: self)
+        do {
+            self.viewController?.disconnect(sender: self)
+        } catch {
+            print(error.localizedDescription)
+        }
         self.viewController = nil
         twilioDelegate?.leftRoom()
     }

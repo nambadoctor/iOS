@@ -73,4 +73,9 @@ class DoctorAlertHelpers: DoctorAlertHelpersProtocol {
 
         CommonDefaultModifiers.showAlert()
     }
+    
+    func errorRemovingAvailabilitySlotAlert() {
+        alertTempItem = AlertItem(title: Text("Cannot remove this availability slot"), message: Text("Please try again"), dismissButton: .default(Text("OK")))
+        CommonDefaultModifiers.showAlert()
+    }
 }

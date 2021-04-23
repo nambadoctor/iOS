@@ -201,6 +201,7 @@
 		179F629C25BF5F8900BA0A73 /* PhoneNumberObj.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179F629B25BF5F8900BA0A73 /* PhoneNumberObj.swift */; };
 		17A020782630201200BD828F /* LocalNotifStoreHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A020772630201200BD828F /* LocalNotifStoreHelper.swift */; };
 		17A020812630214400BD828F /* DocNotificationDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A020802630214400BD828F /* DocNotificationDisplayView.swift */; };
+		17A020A326307AD000BD828F /* DoctorAvailabilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A020A226307AD000BD828F /* DoctorAvailabilityView.swift */; };
 		17AE6D1825E24B2200B18292 /* DoctorsPatientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE6D1725E24B2100B18292 /* DoctorsPatientsView.swift */; };
 		17AE6D2025E24B2A00B18292 /* DoctorsPatientsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE6D1F25E24B2A00B18292 /* DoctorsPatientsCardView.swift */; };
 		17AE6D3325E24DA400B18292 /* RetrieveDoctorsPatientsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE6D3225E24DA400B18292 /* RetrieveDoctorsPatientsServiceProtocol.swift */; };
@@ -477,6 +478,7 @@
 		179F629B25BF5F8900BA0A73 /* PhoneNumberObj.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberObj.swift; sourceTree = "<group>"; };
 		17A020772630201200BD828F /* LocalNotifStoreHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotifStoreHelper.swift; sourceTree = "<group>"; };
 		17A020802630214400BD828F /* DocNotificationDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocNotificationDisplayView.swift; sourceTree = "<group>"; };
+		17A020A226307AD000BD828F /* DoctorAvailabilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorAvailabilityView.swift; sourceTree = "<group>"; };
 		17AE6D1725E24B2100B18292 /* DoctorsPatientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorsPatientsView.swift; sourceTree = "<group>"; };
 		17AE6D1F25E24B2A00B18292 /* DoctorsPatientsCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorsPatientsCardView.swift; sourceTree = "<group>"; };
 		17AE6D3225E24DA400B18292 /* RetrieveDoctorsPatientsServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrieveDoctorsPatientsServiceProtocol.swift; sourceTree = "<group>"; };
@@ -672,6 +674,7 @@
 			children = (
 				171B8AE6261154C6007E722C /* DoctorProfile.swift */,
 				171B8AF326116FA7007E722C /* EditableDoctorProfile.swift */,
+				17A020A226307AD000BD828F /* DoctorAvailabilityView.swift */,
 			);
 			path = DoctorProfile;
 			sourceTree = "<group>";
@@ -1732,6 +1735,7 @@
 				1716484026092D5800BB5B5A /* ServiceProviderFileInfo.swift in Sources */,
 				171647B32604468500BB5B5A /* PrescriptionGetSetServiceCall.swift in Sources */,
 				1748010B25B8DFC100C8E3CC /* DoctorDefaultModifiers.swift in Sources */,
+				17A020A326307AD000BD828F /* DoctorAvailabilityView.swift in Sources */,
 				1742504F25BAE3E700523B94 /* CleanDoubleExtension.swift in Sources */,
 				171647252603217A00BB5B5A /* ServiceProviderFollowUpMapper.swift in Sources */,
 				17E370AD25BF19B40004C965 /* DoctorTwilioManager.swift in Sources */,
@@ -2091,7 +2095,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NambaDoctoriOS/NambaDoctoriOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 38;
+				CURRENT_PROJECT_VERSION = 42;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"NambaDoctoriOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 478XDR2NPK;
@@ -2101,7 +2105,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.37;
+				MARKETING_VERSION = 1.41;
 				PRODUCT_BUNDLE_IDENTIFIER = dsconnect.iOS.NambaDoctoriOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -2117,7 +2121,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NambaDoctoriOS/NambaDoctoriOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 38;
+				CURRENT_PROJECT_VERSION = 42;
 				DEVELOPMENT_ASSET_PATHS = "\"NambaDoctoriOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 478XDR2NPK;
 				ENABLE_PREVIEWS = YES;
@@ -2126,7 +2130,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.37;
+				MARKETING_VERSION = 1.41;
 				PRODUCT_BUNDLE_IDENTIFIER = dsconnect.iOS.NambaDoctoriOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
