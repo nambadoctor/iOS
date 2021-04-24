@@ -44,8 +44,8 @@ class DoctorViewModel: ObservableObject {
     }
 
     func fetchDoctor () {
-        let userId = authenticateService.getUserId()
-        serviceProviderServiceCall.getServiceProvider(serviceProviderId: UserIdHelper().retrieveUserId()) { (serviceProviderObj) in
+        let userId = UserIdHelper().retrieveUserId()
+        serviceProviderServiceCall.getServiceProvider(serviceProviderId: userId) { (serviceProviderObj) in
             if serviceProviderObj != nil {
                 self.doctor = serviceProviderObj!
                 self.doctorLoggedIn = true

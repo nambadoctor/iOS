@@ -137,7 +137,7 @@
 		1748005F25B8BDB000C8E3CC /* AppointmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748005E25B8BDB000C8E3CC /* AppointmentViewModel.swift */; };
 		1748006425B8C00300C8E3CC /* UpdateAppointmentStatusHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748006325B8C00300C8E3CC /* UpdateAppointmentStatusHelper.swift */; };
 		1748006A25B8C14400C8E3CC /* SendPushNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748006925B8C14400C8E3CC /* SendPushNotification.swift */; };
-		174800B725B8DC0A00C8E3CC /* SendNotificationHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174800B625B8DC0A00C8E3CC /* SendNotificationHelpers.swift */; };
+		174800B725B8DC0A00C8E3CC /* DocNotifHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174800B625B8DC0A00C8E3CC /* DocNotifHelpers.swift */; };
 		1748010625B8DF8900C8E3CC /* LoginDefaultMofiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748010525B8DF8900C8E3CC /* LoginDefaultMofiers.swift */; };
 		1748010B25B8DFC100C8E3CC /* DoctorDefaultModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748010A25B8DFC100C8E3CC /* DoctorDefaultModifiers.swift */; };
 		1748011025B8E12500C8E3CC /* DocViewStatesK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748010F25B8E12500C8E3CC /* DocViewStatesK.swift */; };
@@ -414,7 +414,7 @@
 		1748005E25B8BDB000C8E3CC /* AppointmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentViewModel.swift; sourceTree = "<group>"; };
 		1748006325B8C00300C8E3CC /* UpdateAppointmentStatusHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAppointmentStatusHelper.swift; sourceTree = "<group>"; };
 		1748006925B8C14400C8E3CC /* SendPushNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendPushNotification.swift; sourceTree = "<group>"; };
-		174800B625B8DC0A00C8E3CC /* SendNotificationHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendNotificationHelpers.swift; sourceTree = "<group>"; };
+		174800B625B8DC0A00C8E3CC /* DocNotifHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocNotifHelpers.swift; sourceTree = "<group>"; };
 		1748010525B8DF8900C8E3CC /* LoginDefaultMofiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginDefaultMofiers.swift; sourceTree = "<group>"; };
 		1748010A25B8DFC100C8E3CC /* DoctorDefaultModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorDefaultModifiers.swift; sourceTree = "<group>"; };
 		1748010F25B8E12500C8E3CC /* DocViewStatesK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocViewStatesK.swift; sourceTree = "<group>"; };
@@ -930,7 +930,7 @@
 		174800BE25B8DE0300C8E3CC /* Notification */ = {
 			isa = PBXGroup;
 			children = (
-				174800B625B8DC0A00C8E3CC /* SendNotificationHelpers.swift */,
+				174800B625B8DC0A00C8E3CC /* DocNotifHelpers.swift */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -1861,7 +1861,7 @@
 				177233B925B7411A002B814A /* ViewOrAmmendConstant.swift in Sources */,
 				17424FDD25BAD14C00523B94 /* DiagnosisTypeK.swift in Sources */,
 				17E5185825AED16A001F1A80 /* ContentView.swift in Sources */,
-				174800B725B8DC0A00C8E3CC /* SendNotificationHelpers.swift in Sources */,
+				174800B725B8DC0A00C8E3CC /* DocNotifHelpers.swift in Sources */,
 				1796320E25AEE865002E466C /* UIResponder+Current.swift in Sources */,
 				1728B7FA25B6E798001D554E /* TokenRefreshExtension.swift in Sources */,
 				1728B77A25B381E7001D554E /* PreRegisteredUserVM.swift in Sources */,

@@ -10,10 +10,14 @@ import FirebaseAnalytics
 
 class LogAnalytics {
     static func logEvent (title:String) {
-        Analytics.logEvent(AnalyticsEventSelectContent, parameters: [
-          AnalyticsParameterItemID: "id-\(title)",
-          AnalyticsParameterItemName: title,
-          AnalyticsParameterContentType: "cont"
-          ])
+        logFirebaseAnalytics(title: title)
+    }
+    
+    static func logFirebaseAnalytics (title:String) {
+        Analytics.logEvent(title, parameters: [:])
+    }
+    
+    static func logAppInsights (title:String) {
+        
     }
 }

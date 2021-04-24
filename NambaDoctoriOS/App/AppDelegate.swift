@@ -32,21 +32,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
             application.registerUserNotificationSettings(settings)
         }
-        
+
         application.registerForRemoteNotifications()
-        
-        
+
         FirebaseApp.configure()
 
         // [START set_messaging_delegate]
         Messaging.messaging().delegate = self
         // [END set_messaging_delegate]
-        
+
         // [END register_for_notifications]
- 
+
         return true
     }
-    
+
     // MARK: UISceneSession Lifecycle
     
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
