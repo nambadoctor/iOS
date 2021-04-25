@@ -14,7 +14,7 @@ enum NotifTypes: String, Codable {
     case AppointmentCancelled
     case ReportUploaded
     case Paid
-    case CallInType
+    case CallInRoom
     case NewChatMessage
     case Empty
 }
@@ -29,8 +29,8 @@ func getNotifType(type:String) -> NotifTypes {
         return .ReportUploaded
     case NotifTypes.Paid.rawValue:
         return .Paid
-    case NotifTypes.CallInType.rawValue:
-        return .CallInType
+    case NotifTypes.CallInRoom.rawValue:
+        return .CallInRoom
     case NotifTypes.NewChatMessage.rawValue:
         return .NewChatMessage
     default:
@@ -61,7 +61,7 @@ class LocalNotificationHandler {
         case .Paid:
             completion(true)
             break
-        case .CallInType, .NewChatMessage:
+        case .CallInRoom, .NewChatMessage:
             completion(true)
         default:
             completion(true)
@@ -84,7 +84,7 @@ class LocalNotificationHandler {
             DoctorDefaultModifiers.refreshAppointments()
         case .Paid, .ReportUploaded :
             break
-        case .CallInType:
+        case .CallInRoom:
             docAutoNav.navigateToCall(appointmentId: id as! String)
             break
         case .NewChatMessage:
@@ -101,7 +101,7 @@ class LocalNotificationHandler {
             DoctorDefaultModifiers.refreshAppointments()
         case .Paid, .ReportUploaded :
             break
-        case .CallInType:
+        case .CallInRoom:
             docAutoNav.navigateToCall(appointmentId: notifObj.AppointmentId)
             break
         case .NewChatMessage:

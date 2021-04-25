@@ -40,17 +40,17 @@ class DoctorTwilioViewModel: ObservableObject {
         self.updateAppointmentStatus = updateAppointmentStatus
         self.docNotificationHelpers = DocNotifHelpers(appointment: self.appointment)
         docAlertHelpers = DoctorAlertHelpers()
-        
-        startRoom()
     }
 
-    func startRoom() {
+    func startRoom(completion: @escaping (_ success:Bool)->()) {
         docAutoNav.enterTwilioRoom(appointmentId: self.appointment.appointmentID)
         self.twilioAccessTokenHelper.retrieveToken(appointmentId: self.appointment.appointmentID, serviceProviderId: self.appointment.serviceProviderID) { (success, token) in
             if success {
                 self.viewController = UIStoryboard(name: "Twilio", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as? ViewController
                 self.viewController!.twilioEventDelegate = self
+                completion(success)
             } else {
+                completion(false)
                 //TODO: show doctor alert issue with video call and tell them to use phone. USE LOGS
                 //show failed alert
             }

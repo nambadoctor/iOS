@@ -175,14 +175,21 @@ extension IntermediateAppointmentViewModel : TwilioDelegate {
     }
     
     func startConsultation() {
-        doctorTwilioManagerViewModel.startRoom()
-        
-        doctorTwilioManagerViewModel.fireStartedNotif() { success in
-            self.appointment.status = ConsultStateK.StartedConsultation.rawValue //need to refresh from db after. using local update for now.
-            self.checkIfAppointmentStarted()
-        }
+        CommonDefaultModifiers.showLoader()
+        doctorTwilioManagerViewModel.startRoom() { success in
+            if success {
+                
+                self.doctorTwilioManagerViewModel.fireStartedNotif() { success in
+                    self.appointment.status = ConsultStateK.StartedConsultation.rawValue //need to refresh from db after. using local update for now.
+                    self.checkIfAppointmentStarted()
+                }
 
-        self.showTwilioRoom = true
+                self.showTwilioRoom = true
+                CommonDefaultModifiers.hideLoader()
+            } else {
+                
+            }
+        }
     }
 }
 

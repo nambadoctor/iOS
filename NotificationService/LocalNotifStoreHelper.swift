@@ -37,8 +37,8 @@ class LocalNotifStorer {
                 } else {
                     notifs?.append(localNotifObj)
                 }
-            case .CallInType:
-                if notifs!.last?.NotifType == .CallInType {
+            case .CallInRoom:
+                if notifs!.last?.NotifType == .CallInRoom {
                     notifs![notifs!.count - 1].viewed = false
                     notifs![notifs!.count - 1].timeStamp = Date().millisecondsSince1970
                 } else {

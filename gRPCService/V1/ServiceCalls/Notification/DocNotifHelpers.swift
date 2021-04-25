@@ -49,7 +49,7 @@ class DocNotifHelpers : DocNotifHelpersProtocol {
             $0.body = "Please answer the call".toProto
             $0.userID = appointment.customerID.toProto
             $0.id = appointment.appointmentID.toProto
-            $0.type = NotifTypes.CallInType.rawValue.toProto
+            $0.type = NotifTypes.CallInRoom.rawValue.toProto
         }
 
         sendPushNotification.sendNotif(notifObj: startedConsultNotifObj)
@@ -62,7 +62,7 @@ class DocNotifHelpers : DocNotifHelpersProtocol {
             $0.userID = appointment.customerID.toProto
             $0.id = appointment.appointmentID.toProto
         }
-
+        
         sendPushNotification.sendNotif(notifObj: startedConsultNotifObj)
     }
     

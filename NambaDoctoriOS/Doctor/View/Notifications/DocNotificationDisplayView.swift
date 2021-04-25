@@ -109,7 +109,7 @@ struct DocNotifCard : View {
             return Color.green
         case .AppointmentCancelled:
             return Color.red
-        case .CallInType:
+        case .CallInRoom:
             return Color.green
         case .NewChatMessage:
             return Color.blue
@@ -128,7 +128,7 @@ struct DocNotifCard : View {
             return Image("checkmark.circle.fill")
         case .AppointmentCancelled:
             return Image("xmark.circle.fill")
-        case .CallInType:
+        case .CallInRoom:
             return Image(systemName: "video.circle.fill")
         case .NewChatMessage:
             return Image(systemName: "message.circle.fill")
