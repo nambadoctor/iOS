@@ -21,9 +21,38 @@ struct AppointmentCard: View {
             HStack {
                 
                 if AppointmentVM.consultationStarted {
-                    LetterOnColoredCircle(word: AppointmentVM.appointment.customerName, color: .green)
+                    ZStack {
+                        Image("clock.arrow.2.circlepath")
+                            .scaleEffect(1.5)
+                            .padding()
+                            .foregroundColor(.green)
+                    }
+                    .overlay(Circle()
+                                .fill(Color.green.opacity(0.2))
+                                .frame(width: 60, height: 60))
                 } else {
-                    LetterOnColoredCircle(word: AppointmentVM.appointment.customerName, color: AppointmentVM.consultationFinished ? Color.gray : Color.blue)
+                    
+                    if AppointmentVM.consultationFinished {
+                        ZStack {
+                            Image("checkmark")
+                                .scaleEffect(1.5)
+                                .padding()
+                                .foregroundColor(.gray)
+                        }
+                        .overlay(Circle()
+                                    .fill(Color.gray.opacity(0.2))
+                                    .frame(width: 60, height: 60))
+                    } else {
+                        ZStack {
+                            Image("calendar.badge.exclamationmark")
+                                .scaleEffect(1.5)
+                                .padding()
+                                .foregroundColor(.blue)
+                        }
+                        .overlay(Circle()
+                                    .fill(Color.blue.opacity(0.2))
+                                    .frame(width: 60, height: 60))
+                    }
                 }
                 
                 VStack (alignment: .leading, spacing: 5) {

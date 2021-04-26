@@ -167,6 +167,7 @@
 		17626E0A25DA270400C36A99 /* ImageDisplayEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626E0925DA270400C36A99 /* ImageDisplayEnum.swift */; };
 		17626ECE25DB4CB100C36A99 /* LogAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626ECD25DB4CB100C36A99 /* LogAnalytics.swift */; };
 		1763D31C262A39CA00E0E423 /* DefaultPreferencesTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1763D31B262A39CA00E0E423 /* DefaultPreferencesTracker.swift */; };
+		176AA0A9263632B500F02346 /* GetUserTypeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176AA0A8263632B500F02346 /* GetUserTypeHelper.swift */; };
 		1772336E25B70F99002B814A /* SimpleStateConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1772336D25B70F99002B814A /* SimpleStateConstants.swift */; };
 		1772338D25B726A6002B814A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1772338C25B726A6002B814A /* GoogleService-Info.plist */; };
 		1772339825B72FF2002B814A /* CheckLoginStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1772339725B72FF2002B814A /* CheckLoginStatus.swift */; };
@@ -444,6 +445,7 @@
 		17626E0925DA270400C36A99 /* ImageDisplayEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDisplayEnum.swift; sourceTree = "<group>"; };
 		17626ECD25DB4CB100C36A99 /* LogAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogAnalytics.swift; sourceTree = "<group>"; };
 		1763D31B262A39CA00E0E423 /* DefaultPreferencesTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPreferencesTracker.swift; sourceTree = "<group>"; };
+		176AA0A8263632B500F02346 /* GetUserTypeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserTypeHelper.swift; sourceTree = "<group>"; };
 		1772336D25B70F99002B814A /* SimpleStateConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleStateConstants.swift; sourceTree = "<group>"; };
 		1772338C25B726A6002B814A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1772339725B72FF2002B814A /* CheckLoginStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckLoginStatus.swift; sourceTree = "<group>"; };
@@ -803,6 +805,7 @@
 				17EC75DE260C52B70002BA75 /* ExpandingTextView.swift */,
 				171B8AE026109792007E722C /* ImagePicker.swift */,
 				171B8B002612966D007E722C /* StopwatchManager.swift */,
+				176AA0A8263632B500F02346 /* GetUserTypeHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1885,6 +1888,7 @@
 				171648722609DFC400BB5B5A /* ColoredButtons.swift in Sources */,
 				17A020782630201200BD828F /* LocalNotifStoreHelper.swift in Sources */,
 				1796322E25AEE9D6002E466C /* GlobalPopupHelpers.swift in Sources */,
+				176AA0A9263632B500F02346 /* GetUserTypeHelper.swift in Sources */,
 				17513B2226102BF600542C00 /* ImageViewHelper.swift in Sources */,
 				1716472A260321F900BB5B5A /* ServiceProviderGeneratedSlotMapper.swift in Sources */,
 			);

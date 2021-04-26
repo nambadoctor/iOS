@@ -18,7 +18,7 @@ struct AppointmentsView: View {
             ScrollView {
                 if self.doctorViewModel.hasAppointments {
                     ForEach(doctorViewModel.appointments, id: \.appointmentID) { appointment in
-                        if doctorViewModel.compareCurrentAppointmentTimeWithSelectedDate(appointment: appointment)
+                        if doctorViewModel.compareCurrentAppointmentTimeWithSelectedDate(appointment: appointment) && !appointment.customerName.isEmpty
                         {
                             AppointmentCard(appointment: appointment, appointmentSelectDelegate: doctorViewModel)
                         }

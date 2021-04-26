@@ -51,6 +51,7 @@ class CustomerGetSetServiceCall: CustomerGetSetServiceCallProtocol {
                 DispatchQueue.main.async {
                     completion(nil)
                 }
+                
             }
         }
     }

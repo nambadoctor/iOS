@@ -20,6 +20,7 @@ struct EditableAppointmentView: View {
             if intermediateVM.killView {
                 Text("You are done").onAppear() { killView() }
             }
+            
         }
         .background(Color.gray.opacity(0.3))
         .navigationBarItems(trailing: Text(""))
@@ -46,11 +47,11 @@ struct EditableAppointmentView: View {
             .background(Color.white)
             .border(Color.blue, width: 1)
             .padding(.top, 5)
-            
+
             MedicineEditableView()
                 .padding()
                 .background(Color.white)
-            
+
             if !intermediateVM.isPaid {
                 ModifyFeeView(modifyFeeVM: self.intermediateVM.modifyFeeViewModel)
                     .padding()
@@ -136,6 +137,7 @@ struct EditableAppointmentView: View {
         VStack (alignment: .leading) {
             VStack {
                 Text("Appointment On: \(intermediateVM.appointmentScheduledStartTime)")
+                    .font(.subheadline)
                     .foregroundColor(.gray)
                     .bold()
             }
@@ -173,23 +175,30 @@ struct EditableAppointmentView: View {
                         }
                     }
                 }, label: {
-                    Text("Cancel")
-                        .padding([.top, .bottom], 7)
-                        .padding([.leading, .trailing], 10)
-                        .overlay(RoundedRectangle(cornerRadius: 6)
-                                    .stroke(Color.blue, lineWidth: 2))
+                    ZStack {
+                        Image("xmark")
+                            .scaleEffect(1.2)
+                            .padding()
+                            .foregroundColor(.red)
+                    }
+                    .overlay(Circle()
+                                .fill(Color.red.opacity(0.2))
+                                .frame(width: 60, height: 60))
                 })
-                
                 Spacer()
             }
             
             Button(action: {
                 self.intermediateVM.takeToChat = true
             }, label: {
-                HStack (alignment: .center) {
+                ZStack {
                     Image(systemName: "message")
-                        .scaleEffect(1.5)
+                        .scaleEffect(1.2)
+                        .padding()
                 }
+                .overlay(Circle()
+                            .fill(Color.blue.opacity(0.2))
+                            .frame(width: 60, height: 60))
             })
             
             Spacer()
@@ -198,24 +207,32 @@ struct EditableAppointmentView: View {
                 Button(action: {
                     intermediateVM.patientInfoViewModel.callPatient()
                 }, label: {
-                    HStack (alignment: .center) {
+                    ZStack {
                         Image("phone")
-                            .scaleEffect(1.5)
+                            .scaleEffect(1.2)
+                            .padding()
                     }
+                    .overlay(Circle()
+                                .fill(Color.blue.opacity(0.2))
+                                .frame(width: 60, height: 60))
                 })
-                
-                Spacer()
             }
+            
+            Spacer()
             
             if !intermediateVM.appointmentFinished {
                 if !intermediateVM.appointmentFinished {
                     Button(action: {
                         intermediateVM.startConsultation()
                     }, label: {
-                        VStack (alignment: .center) {
+                        ZStack {
                             Image(systemName: "video")
-                                .scaleEffect(1.5)
+                                .scaleEffect(1.2)
+                                .padding()
                         }
+                        .overlay(Circle()
+                                    .fill(Color.blue.opacity(0.2))
+                                    .frame(width: 60, height: 60))
                     })
                 }
             }

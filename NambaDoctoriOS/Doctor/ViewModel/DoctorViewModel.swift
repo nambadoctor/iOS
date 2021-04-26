@@ -103,7 +103,7 @@ class DoctorViewModel: ObservableObject {
             self.getNotificationSelectedAppointment()
         }
     }
-    
+
     func getNotificationSelectedAppointment () {
         for appointment in appointments {
             if docAutoNav.appointmentId == appointment.appointmentID {

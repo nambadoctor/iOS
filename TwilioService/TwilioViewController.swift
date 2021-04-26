@@ -156,9 +156,9 @@ class ViewController: UIViewController {
         
         self.showRoomUI(inRoom: true)
     }
-    
+
     @IBAction func disconnect(sender: AnyObject) {
-        self.room!.disconnect()
+        self.room?.disconnect()
         logMessage(messageText: "Disconnecting from room...")
     }
     
