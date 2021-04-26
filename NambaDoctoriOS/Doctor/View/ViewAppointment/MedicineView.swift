@@ -25,7 +25,10 @@ struct MedicineView: View {
             }
             
             if medicineVM.hasNoMedicineOrImage {
-                Text("None")
+                HStack {
+                    Text("None")
+                    Spacer()
+                }
             } else {
                 HStack {
                     Image("checkmark.circle.fill")

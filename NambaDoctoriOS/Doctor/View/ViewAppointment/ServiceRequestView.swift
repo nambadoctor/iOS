@@ -11,7 +11,7 @@ struct ServiceRequestView: View {
     @EnvironmentObject var serviceRequestVM:ServiceRequestViewModel
     
     var body: some View {
-        VStack (alignment: .leading) {
+        VStack (alignment: .leading, spacing: 5) {
             HStack {Spacer()}
             Group {
                 
