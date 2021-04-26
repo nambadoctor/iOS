@@ -28,8 +28,11 @@ struct InvestigationsView: View {
                     }
                 }
             } else {
-                Text("No Investigations")
+                HStack {
+                    Text("No Investigations")
+                    Spacer()
+                }
             }
-        }
+        }.padding()
     }
 }

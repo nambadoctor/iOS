@@ -14,16 +14,17 @@ struct ViewAppointment: View {
     var body: some View {
         ScrollView {
             VStack {
+                
+                Spacer().frame(height: 5)
+                
                 header
                     .background(Color.white)
-                    .border(Color.blue, width: 1)
-                    .padding([.top, .bottom], 5)
 
                 details
-                    .padding()
                 HStack {Spacer()}
             }
         }
+        .background(Color.gray.opacity(0.3))
         .onAppear(){intermediateVM.refreshPrescription()} //MARK:- OPTIMIZE THIS LATER!
     }
 
@@ -58,8 +59,13 @@ struct ViewAppointment: View {
     var details : some View {
         VStack (alignment: .leading, spacing: 5) {
             MedicineView()
+                .background(Color.white)
+            
             ServiceRequestView()
+                .background(Color.white)
+            
             InvestigationsView()
+                .background(Color.white)
         }
     }
 }

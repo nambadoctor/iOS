@@ -14,11 +14,17 @@ struct MedicineEditableView: View {
     var body: some View {
         VStack (alignment: .leading) {
             
-            Text("PRESCRIPTION")
-                .font(.footnote)
-                .foregroundColor(Color.black.opacity(0.4))
-                .bold()
-
+            HStack (spacing: 3) {
+                Image("pills")
+                    .scaleEffect(0.8)
+                    .foregroundColor(Color.gray)
+                
+                Text("PRESCRIPTION")
+                    .font(.footnote)
+                    .foregroundColor(Color.black.opacity(0.4))
+                    .bold()
+            }
+            
             ForEach (medicineVM.prescription.medicineList, id: \.medicineName) { medicine in
                 HStack {
                     VStack (alignment: .leading, spacing: 5) {
@@ -96,9 +102,6 @@ struct MedicineEditableView: View {
                         ImageView(imageLoader: medicineVM.imageLoader!)
                         Spacer()
                     }
-                    CloseButton {
-                        self.medicineVM.removeLoadedImage()
-                    }
                 } else if medicineVM.localImageSelected {
                     LocalPickedImageDisplayView(imagePickerVM: medicineVM.imagePickerVM)
                 }
@@ -115,11 +118,11 @@ struct MedicineEditableView: View {
                         .environmentObject(medicineVM)
                 }
                 
-                if medicineVM.localImageSelected {
+                if medicineVM.showRemoveButton {
                     LargeButton(title: "Remove Image",
                                 backgroundColor: Color.red) {
-                        medicineVM.localImageSelected = false
-                        medicineVM.imagePickerVM.removeImage()
+                        self.medicineVM.removeSelectImage()
+                        self.medicineVM.removeLoadedImage()
                     }
                     .modifier(ImagePickerModifier(imagePickerVM: self.medicineVM.imagePickerVM))
                 } else {

@@ -16,32 +16,25 @@ struct SideBySideCheckBox: View {
         HStack {
             HStack{
                 Image(systemName: isChecked == title1 ? "smallcircle.fill.circle": "circle")
+                    .foregroundColor(isChecked == title1 ? .blue : .gray)
                 Text(title1)
                     .font(.system(size: 14))
             }.padding(.trailing)
+            .onTapGesture {
+                isChecked = title1
+            }
                         
             HStack{
                 Image(systemName: isChecked == title2 ? "smallcircle.fill.circle": "circle")
+                    .foregroundColor(isChecked == title2 ? .blue : .gray)
                 Text(title2)
                     .font(.system(size: 14))
             }.padding(.leading)
+            .onTapGesture {
+                isChecked = title2
+            }
 
             Spacer()
         }
-        .onTapGesture {
-            changeSelection()
-        }
-    }
-    
-    //Using on tap for whole
-    private func changeSelection() {
-        if isChecked == title1 {
-            isChecked = title2
-            print("checking if")
-        } else {
-            isChecked = title1
-            print("checking else")
-        }
-        EndEditingHelper.endEditing()
     }
 }

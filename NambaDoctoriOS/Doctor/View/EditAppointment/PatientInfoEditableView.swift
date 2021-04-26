@@ -12,10 +12,16 @@ struct PatientInfoEditableView: View {
     
     var body: some View {
         VStack (alignment: .leading) {
-            Text("REPORTS")
-                .font(.footnote)
-                .foregroundColor(Color.black.opacity(0.4))
-                .bold()
+            HStack (spacing: 3) {
+                Image("folder")
+                    .scaleEffect(0.8)
+                    .foregroundColor(Color.gray)
+                
+                Text("REPORTS")
+                    .font(.footnote)
+                    .foregroundColor(Color.black.opacity(0.4))
+                    .bold()
+            }
 
             if self.patientInfoViewModel.ReportList != nil {
                 ScrollView (.horizontal) {
@@ -26,7 +32,10 @@ struct PatientInfoEditableView: View {
                     }
                 }
             } else {
-                Text("There are no reports")
+                HStack {
+                    Text("There are no reports")
+                    Spacer()
+                }.padding(.top, 5)
             }
         }
         .onAppear() {

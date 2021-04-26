@@ -43,7 +43,11 @@ class ReportGetSetServiceCall : ReportGetSetServiceCallProtocol {
                 let reportList = self.reportObjMapper.grpcReportToLocal(report: response.reports)
                 print("Patient Reports received \(reportList.count)")
                 DispatchQueue.main.async {
-                    completion(reportList)
+                    if reportList.count == 0 {
+                        completion(nil)
+                    } else {
+                        completion(reportList)
+                    }
                 }
             } catch {
                 print("Patient Reports failed: \(error)")

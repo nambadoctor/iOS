@@ -14,17 +14,29 @@ struct ServiceRequestEditableView: View {
         VStack (alignment: .leading) {
             
             VStack (alignment: .leading) {
-                Text("PATIENT ALLERGIES")
-                    .font(.footnote)
-                    .foregroundColor(Color.black.opacity(0.4))
-                    .bold()
+                
+                HStack (spacing: 3) {
+                    Image("nose")
+                        .scaleEffect(0.8)
+                        .foregroundColor(.gray)
+                    Text("ALLERGIES")
+                        .font(.footnote)
+                        .foregroundColor(Color.black.opacity(0.4))
+                        .bold()
+                }
 
                 ExpandingTextView(text: self.$serviceRequestVM.serviceRequest.allergy.AllergyName)
                 
-                Text("PATIENT MEDICAL HISTORY")
-                    .font(.footnote)
-                    .foregroundColor(Color.black.opacity(0.4))
-                    .bold()
+                HStack (spacing: 3) {
+                    Image("heart.text.square")
+                        .scaleEffect(0.8)
+                        .foregroundColor(.gray)
+                    Text("MEDICAL HISTORY")
+                        .font(.footnote)
+                        .foregroundColor(Color.black.opacity(0.4))
+                        .bold()
+                }
+
 
                 ExpandingTextView(text: self.$serviceRequestVM.serviceRequest.medicalHistory.MedicalHistoryName)
             }
@@ -32,17 +44,31 @@ struct ServiceRequestEditableView: View {
             .background(Color.white)
             
             VStack (alignment: .leading) {
-                Text("EXAMINATION")
-                    .font(.footnote)
-                    .foregroundColor(Color.black.opacity(0.4))
-                    .bold()
+                
+                HStack (spacing: 3) {
+                    Image("eyeglasses")
+                        .scaleEffect(0.8)
+                        .foregroundColor(.gray)
+                    Text("EXAMINATION")
+                        .font(.footnote)
+                        .foregroundColor(Color.black.opacity(0.4))
+                        .bold()
+                }
+                
 
                 ExpandingTextView(text: self.$serviceRequestVM.serviceRequest.examination)
-
-                Text("DIAGNOSIS")
-                    .font(.footnote)
-                    .foregroundColor(Color.black.opacity(0.4))
-                    .bold()
+                
+                
+                HStack (spacing: 3) {
+                    Image("cross.case")
+                        .scaleEffect(0.8)
+                        .foregroundColor(.gray)
+                    Text("DIAGNOSIS")
+                        .font(.footnote)
+                        .foregroundColor(Color.black.opacity(0.4))
+                        .bold()
+                }
+                
                 ExpandingTextView(text: $serviceRequestVM.serviceRequest.diagnosis.name)
 
                 SideBySideCheckBox(isChecked: $serviceRequestVM.serviceRequest.diagnosis.type, title1: "Provisional", title2: "Definitive")

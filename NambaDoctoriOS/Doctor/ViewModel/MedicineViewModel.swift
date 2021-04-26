@@ -19,6 +19,7 @@ class MedicineViewModel: ObservableObject {
     
     @Published var imagePickerVM:ImagePickerViewModel = ImagePickerViewModel()
     @Published var localImageSelected:Bool = false
+    @Published var showRemoveButton:Bool = false
     @Published var imageLoader:ImageLoader? = nil
 
     @Published var hasNoMedicineOrImage:Bool = false
@@ -129,6 +130,8 @@ class MedicineViewModel: ObservableObject {
                     if !success {
                         self.imageLoader = nil
                         ifmedListAlsoEmptyCheck()
+                    } else {
+                        self.showRemoveButton = true
                     }
                 }
             } else {
@@ -177,14 +180,17 @@ extension MedicineViewModel : ImagePickedDelegate {
     func imageSelected() {
         self.imageLoader = nil
         self.localImageSelected = true
+        self.showRemoveButton = true
     }
 
     func removeSelectImage () {
         self.imagePickerVM.image = nil
         self.localImageSelected = false
+        self.showRemoveButton = false
     }
 
     func removeLoadedImage () {
         self.imageLoader = nil
+        self.showRemoveButton = false
     }
 }

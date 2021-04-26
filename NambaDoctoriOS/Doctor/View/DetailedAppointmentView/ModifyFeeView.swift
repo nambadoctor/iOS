@@ -13,12 +13,18 @@ struct ModifyFeeView: View {
     
     var body : some View {
         VStack (alignment: .leading) {
-            HStack{Spacer()}
-            
-            Text("Fee (₹)")
-                .font(.footnote)
-                .bold()
-                .foregroundColor(.gray)
+            HStack (spacing: 3) {
+                
+                Image("indianrupeesign.circle")
+                    .scaleEffect(0.8)
+                    .foregroundColor(.gray)
+                
+                Text("Fee")
+                    .font(.footnote)
+                    .bold()
+                    .foregroundColor(.gray)
+                Spacer()
+            }
             
             HStack {
                 TextField("\(modifyFeeVM.fee)", text: $modifyFeeVM.fee)

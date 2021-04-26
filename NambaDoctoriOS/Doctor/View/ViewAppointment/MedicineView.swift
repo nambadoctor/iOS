@@ -12,10 +12,17 @@ struct MedicineView: View {
 
     var body: some View {
         VStack (alignment: .leading) {
-            Text("PRESCRIPTIONS")
-                .font(.footnote)
-                .bold()
-                .foregroundColor(.gray)
+            
+            HStack (spacing: 3) {
+                Image("pills")
+                    .scaleEffect(0.8)
+                    .foregroundColor(Color.gray)
+                
+                Text("PRESCRIPTION")
+                    .font(.footnote)
+                    .foregroundColor(Color.black.opacity(0.4))
+                    .bold()
+            }
             
             if medicineVM.hasNoMedicineOrImage {
                 Text("None")
@@ -97,5 +104,6 @@ struct MedicineView: View {
                 }
             }
         }
+        .padding()
     }
 }

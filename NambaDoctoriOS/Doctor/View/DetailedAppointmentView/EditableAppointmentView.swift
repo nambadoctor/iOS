@@ -40,8 +40,6 @@ struct EditableAppointmentView: View {
 
             VStack {
                 header
-                
-                Divider().background(Color.blue.opacity(0.4))
                 actionButtons
             }
             .background(Color.white)
@@ -57,6 +55,10 @@ struct EditableAppointmentView: View {
                     .padding()
                     .background(Color.white)
             }
+            
+            PatientInfoEditableView()
+                .padding()
+                .background(Color.white)
             
             HStack {
                 Button {
@@ -78,15 +80,11 @@ struct EditableAppointmentView: View {
                 }
                 Spacer()
             }
-            .padding(.vertical, 2)
+            .padding(.vertical, 8)
             .padding(.horizontal)
             .background(Color.white)
-            
+
             if !intermediateVM.collapseExtraDetailEntry {
-                
-                PatientInfoEditableView()
-                    .padding()
-                    .background(Color.white)
                 
                 ServiceRequestEditableView()
                 
@@ -140,9 +138,10 @@ struct EditableAppointmentView: View {
                     .font(.subheadline)
                     .foregroundColor(.gray)
                     .bold()
-            }
+            }.padding(.top)
             
-            Divider()
+            Divider().background(Color.blue.opacity(0.4))
+            
             HStack (alignment: .center) {
                 
                 if intermediateVM.appointmentStarted {
@@ -161,7 +160,9 @@ struct EditableAppointmentView: View {
                 }.padding(.horizontal)
                 Spacer()
             }
-        }.padding()
+            
+            Divider().background(Color.blue.opacity(0.4))
+        }.padding(.horizontal)
     }
     
     var actionButtons : some View {
@@ -237,9 +238,8 @@ struct EditableAppointmentView: View {
                 }
             }
         }
-        .padding([.leading, .trailing], 50)
-        .padding(.top, 10)
-        .padding(.bottom, 18)
+        .padding(.horizontal, 25)
+        .padding(.vertical)
     }
     
     private func killView () {

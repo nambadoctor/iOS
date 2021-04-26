@@ -12,10 +12,18 @@ struct AdviceEditableView: View {
 
     var body: some View {
         VStack (alignment: .leading) {
-            Text("ADVICE FOR PATIENT")
-                .font(.footnote)
-                .foregroundColor(Color.black.opacity(0.4))
-                .bold()
+            
+            HStack (spacing: 3) {
+                Image("cross.circle")
+                    .foregroundColor(.gray)
+                    .scaleEffect(0.8)
+                
+                Text("ADVICE")
+                    .font(.footnote)
+                    .foregroundColor(Color.black.opacity(0.4))
+                    .bold()
+            }
+            
             ExpandingTextView(text: $serviceRequestVM.serviceRequest.advice)
         }
     }

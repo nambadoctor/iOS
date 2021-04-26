@@ -12,10 +12,17 @@ struct InvestigationsEditableView: View {
     
     var body : some View {
         VStack (alignment: .leading) {
-            Text("INVESTIGATIONS")
-                .font(.footnote)
-                .foregroundColor(Color.black.opacity(0.4))
-                .bold()
+            
+            HStack (spacing: 3){
+                Image("list.triangle")
+                    .scaleEffect(0.8)
+                    .foregroundColor(.gray)
+                
+                Text("INVESTIGATIONS")
+                    .font(.footnote)
+                    .foregroundColor(Color.black.opacity(0.4))
+                    .bold()
+            }
 
             HStack (alignment: .top) {
                 VStack {
