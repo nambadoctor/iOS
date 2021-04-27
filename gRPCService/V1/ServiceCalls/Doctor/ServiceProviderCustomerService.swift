@@ -8,14 +8,14 @@
 import Foundation
 import SwiftUI
 
-protocol CustomerGetSetServiceCallProtocol {
+protocol ServiceProviderCustomerServiceProtocol {
     func setPatientProfile (customerProfile:ServiceProviderCustomerProfile,
                             completion: @escaping (_ returnId:String?) -> ())
     func getPatientProfile(patientId: String,
                            completion: @escaping (_ profile:ServiceProviderCustomerProfile?) -> ())
 }
 
-class CustomerGetSetServiceCall: CustomerGetSetServiceCallProtocol {
+class ServiceProviderCustomerService: ServiceProviderCustomerServiceProtocol {
     
     var customerObjMapper:ServiceProviderCustomerProfileObjectMapper
     var reportObjMapper:ServiceProviderReportMapper
