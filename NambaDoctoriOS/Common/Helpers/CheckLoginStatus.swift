@@ -13,7 +13,7 @@ class CheckLoginStatus {
         case UserLoginStatus.ServiceProvider.rawValue:
             return .ServiceProvider
         case UserLoginStatus.Customer.rawValue:
-            return .ServiceProvider
+            return .Customer
         default:
             return .NotSignedIn
         }

@@ -8,15 +8,15 @@
 import Foundation
 
 class ServiceProviderPhoneNumberObjectMapper {
-    static func grpcPhoneNumberToLocal (phoneNumberMessage:Nd_V1_ServiceProviderPhoneNumber) -> ServiceProviderPhoneNumber {
-        return ServiceProviderPhoneNumber(countryCode: phoneNumberMessage.countryCode.toString,
+    static func grpcPhoneNumberToLocal (phoneNumberMessage:Nd_V1_ServiceProviderPhoneNumber) -> PhoneNumber {
+        return PhoneNumber(countryCode: phoneNumberMessage.countryCode.toString,
                                       number: phoneNumberMessage.number.toString,
                                       type: phoneNumberMessage.type.toString,
                                       phoneNumberID: phoneNumberMessage.phoneNumberID.toString)
     }
     
-    static func grpcPhoneNumberToLocal (phoneNumberMessages:[Nd_V1_ServiceProviderPhoneNumber]) -> [ServiceProviderPhoneNumber] {
-        var phNumberList:[ServiceProviderPhoneNumber] = [ServiceProviderPhoneNumber]()
+    static func grpcPhoneNumberToLocal (phoneNumberMessages:[Nd_V1_ServiceProviderPhoneNumber]) -> [PhoneNumber] {
+        var phNumberList:[PhoneNumber] = [PhoneNumber]()
         
         for number in phoneNumberMessages {
             phNumberList.append(grpcPhoneNumberToLocal(phoneNumberMessage: number))
@@ -25,7 +25,7 @@ class ServiceProviderPhoneNumberObjectMapper {
         return phNumberList
     }
     
-    static func localPhoneNumberToGrpc (phoneNumber:ServiceProviderPhoneNumber) -> Nd_V1_ServiceProviderPhoneNumber {
+    static func localPhoneNumberToGrpc (phoneNumber:PhoneNumber) -> Nd_V1_ServiceProviderPhoneNumber {
         return Nd_V1_ServiceProviderPhoneNumber.with {
             $0.countryCode = phoneNumber.countryCode.toProto
             $0.number = phoneNumber.number.toProto
@@ -34,7 +34,7 @@ class ServiceProviderPhoneNumberObjectMapper {
         }
     }
     
-    static func localPhoneNumberToGrpc (phoneNumbers:[ServiceProviderPhoneNumber]) -> [Nd_V1_ServiceProviderPhoneNumber] {
+    static func localPhoneNumberToGrpc (phoneNumbers:[PhoneNumber]) -> [Nd_V1_ServiceProviderPhoneNumber] {
         var phNumberList:[Nd_V1_ServiceProviderPhoneNumber] = [Nd_V1_ServiceProviderPhoneNumber]()
         
         for number in phoneNumbers {

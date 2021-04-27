@@ -1,5 +1,5 @@
 //
-//  PhoneNumber.swift
+//  ServiceProviderPhoneNumber.swift
 //  NambaDoctoriOS
 //
 //  Created by Surya Manivannan on 17/03/21.

@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    
     @State private var loginStatus:UserLoginStatus = UserLoginStatus.NotSignedIn
     @State private var showLoader:Bool = false
     
@@ -19,14 +18,13 @@ struct ContentView: View {
                 case .ServiceProvider:
                     DoctorHome(doctorViewModel: .init())
                 case .Customer:
-                    PhoneVerificationview(preRegUser: .init())
+                    Text("Patient Home")
                 case .NotSignedIn:
-                    PhoneVerificationview(preRegUser: .init())
-                default:
                     PhoneVerificationview(preRegUser: .init())
                 }
             }
-        }.overlay(LoadingScreen(showLoader: self.$showLoader))
+        }
+        .overlay(LoadingScreen(showLoader: self.$showLoader))
         .onAppear() {
             loginStateListener()
             showLoaderListener()
@@ -39,7 +37,7 @@ extension ContentView {
     func loginStateListener () {
         //Opening value check
         let status = GetUserTypeHelper.getUserType()
-        loginStatus = CheckLoginStatus.checkStatus(loggedInStatus: status as! String)
+        loginStatus = CheckLoginStatus.checkStatus(loggedInStatus: status)
         print("LOGIN STATUS: \(loginStatus)")
         NotificationCenter.default
             .addObserver(forName: NSNotification.Name("\(SimpleStateK.loginStatusChange)"),

@@ -72,7 +72,6 @@ class PreRegisteredUserVM:ObservableObject {
 
     func loginUser () {
         self.userLoggedIn = true
-
         findDocOrPatientVM.logonUser() { (patientOrDoc) in
             CommonDefaultModifiers.hideLoader()
             switch patientOrDoc {
