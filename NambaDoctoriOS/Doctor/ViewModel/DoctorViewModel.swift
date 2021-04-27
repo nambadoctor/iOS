@@ -12,7 +12,7 @@ class DoctorViewModel: ObservableObject {
     @Published var appointments:[ServiceProviderAppointment] = [ServiceProviderAppointment]()
     @Published var availabilities:[ServiceProviderAvailability] = [ServiceProviderAvailability]()
     @Published var myPatients:[ServiceProviderCustomerProfile] = [ServiceProviderCustomerProfile]()
-    
+
     @Published var hasAppointments:Bool = false
     @Published var noPatients:Bool = false
     @Published var doctorLoggedIn:Bool = false

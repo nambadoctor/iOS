@@ -122,6 +122,27 @@ class Helpers {
         return [day[0], dateString]
     }
     
+    static func load3LetterDayName(timeStamp:Int64) -> String{
+        let date = Date(milliseconds: timeStamp)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat  = "EE"
+        return dateFormatter.string(from: date)
+    }
+    
+    static func load3LetterMonthName(timeStamp:Int64) -> String{
+        let date = Date(milliseconds: timeStamp)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat  = "MMM"
+        return dateFormatter.string(from: date)
+    }
+    
+    static func loadDate(timeStamp:Int64) -> String{
+        let date = Date(milliseconds: timeStamp)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat  = "d"
+        return dateFormatter.string(from: date)
+    }
+    
     static func compareDate (date1:Date, date2:Date) -> Bool {
         let order = Calendar.current.compare(date1, to: date2, toGranularity: .day)
         
@@ -142,6 +163,21 @@ class Helpers {
         } else {
             return false
         }
+    }
+    
+    static func compareDate (dates:[Int64], toCompareDate:Int64) -> Bool {
+        let date = Date(milliseconds: toCompareDate)
+        
+        for d in dates {
+            let tempDate = Date(milliseconds: d)
+            let order = Calendar.current.compare(date, to: tempDate, toGranularity: .day)
+            
+            if order == .orderedSame {
+                return true
+            }
+        }
+        
+        return false
     }
     
     static func getDisplayForDateSelector (date : Date) -> String {

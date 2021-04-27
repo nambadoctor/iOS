@@ -8,8 +8,8 @@
 import Foundation
 
 class CustomerProfileMapper {
-    func grpcCustomerToLocal (customer:Nd_V1_CustomerCustomerProfileMessage) -> CustomerProfileMessage {
-        return CustomerProfileMessage(
+    func grpcCustomerToLocal (customer:Nd_V1_CustomerCustomerProfileMessage) -> CustomerProfile {
+        return CustomerProfile(
             customerID: customer.customerID.toString,
             firstName: customer.firstName.toString,
             lastName: customer.lastName.toString,
@@ -30,8 +30,8 @@ class CustomerProfileMapper {
             createdDate: customer.createdDate.toInt64)
     }
     
-    func grpcCustomerToLocal (customer:[Nd_V1_CustomerCustomerProfileMessage]) -> [CustomerProfileMessage] {
-        var customerList:[CustomerProfileMessage] = [CustomerProfileMessage]()
+    func grpcCustomerToLocal (customer:[Nd_V1_CustomerCustomerProfileMessage]) -> [CustomerProfile] {
+        var customerList:[CustomerProfile] = [CustomerProfile]()
         
         for cus in customer {
             customerList.append(grpcCustomerToLocal(customer: cus))
@@ -40,7 +40,7 @@ class CustomerProfileMapper {
         return customerList
     }
 
-    func localCustomerToGrpc (customer:CustomerProfileMessage) -> Nd_V1_CustomerCustomerProfileMessage {
+    func localCustomerToGrpc (customer:CustomerProfile) -> Nd_V1_CustomerCustomerProfileMessage {
         return Nd_V1_CustomerCustomerProfileMessage.with {
             $0.customerID = customer.customerID.toProto
             $0.firstName = customer.firstName.toProto

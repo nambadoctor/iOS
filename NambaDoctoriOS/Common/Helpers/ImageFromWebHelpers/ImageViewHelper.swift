@@ -12,6 +12,9 @@ struct ImageView: View {
     @ObservedObject var imageLoader:ImageLoader
     @State var showEnlarged:Bool = false
     
+    var height:CGFloat = 160
+    var width:CGFloat = 120
+    
     var body: some View {
         if imageLoader.image != nil {
             Image(uiImage: imageLoader.image!)
@@ -19,7 +22,7 @@ struct ImageView: View {
                 .cornerRadius(10)
                 .shadow(radius: 10)
                 .aspectRatio(contentMode: .fit)
-                .frame(width:120, height:160)
+                .frame(width:self.width, height:self.height)
                 .onTapGesture {
                     showEnlarged = true
                 }

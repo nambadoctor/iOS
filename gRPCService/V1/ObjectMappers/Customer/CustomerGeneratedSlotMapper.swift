@@ -8,14 +8,24 @@
 import Foundation
 
 class CustomerGeneratedSlotMapper {
-    static func grpcSlotToLocal(slot:Nd_V1_CustomerGeneratedSlotMessage) -> CustomerGeneratedSlot {
+    func grpcSlotToLocal(slot:Nd_V1_CustomerGeneratedSlotMessage) -> CustomerGeneratedSlot {
         return CustomerGeneratedSlot(
             startDateTime: slot.startDateTime.toInt64,
             endStartDateTime: slot.endStartDateTime.toInt64,
             duration: slot.duration.toInt32)
     }
     
-    static func localSlotToGrpc(slot: CustomerGeneratedSlot) -> Nd_V1_CustomerGeneratedSlotMessage {
+    func grpcSlotToLocal (slots:[Nd_V1_CustomerGeneratedSlotMessage]) -> [CustomerGeneratedSlot] {
+        var slotList:[CustomerGeneratedSlot] = [CustomerGeneratedSlot]()
+        
+        for slot in slots {
+            slotList.append(grpcSlotToLocal(slot: slot))
+        }
+        
+        return slotList
+    }
+    
+    func localSlotToGrpc(slot: CustomerGeneratedSlot) -> Nd_V1_CustomerGeneratedSlotMessage {
         return Nd_V1_CustomerGeneratedSlotMessage.with {
             $0.startDateTime = slot.startDateTime.toProto
             $0.endStartDateTime = slot.endStartDateTime.toProto

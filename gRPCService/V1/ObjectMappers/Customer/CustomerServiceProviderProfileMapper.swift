@@ -36,6 +36,16 @@ class CustomerServiceProviderProfileMapper {
             lastModifiedDate: profile.lastModifedDate.toInt64)
     }
     
+    func grpcPhoneNumberToLocal (profiles:[Nd_V1_CustomersServiceProviderProfileMessage]) -> [CustomerServiceProviderProfile] {
+        var profileList:[CustomerServiceProviderProfile] = [CustomerServiceProviderProfile]()
+
+        for profile in profiles {
+            profileList.append(grpcProfileToLocal(profile: profile))
+        }
+
+        return profileList
+    }
+    
     func localProfileToGrpc (profile: CustomerServiceProviderProfile) -> Nd_V1_CustomersServiceProviderProfileMessage {
         return Nd_V1_CustomersServiceProviderProfileMessage.with {
             $0.serviceProviderID = profile.serviceProviderID.toProto

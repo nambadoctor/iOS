@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CustomerProfileMessage {
+struct CustomerProfile {
     var customerID:String
     var firstName:String
     var lastName:String

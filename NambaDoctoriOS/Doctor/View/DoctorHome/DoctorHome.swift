@@ -31,7 +31,7 @@ struct DoctorHome: View {
                             Image("person.crop.circle.fill")
                             Text("My Profile")
                         }.tag(2)
-                        
+
                         DocNotificationDisplayView().tabItem {
                             Image("bell")
                             Text("Notifications")

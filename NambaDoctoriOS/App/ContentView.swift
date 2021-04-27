@@ -18,7 +18,7 @@ struct ContentView: View {
                 case .ServiceProvider:
                     DoctorHome(doctorViewModel: .init())
                 case .Customer:
-                    Text("Patient Home")
+                    CustomerHome(customerVM: .init())
                 case .NotSignedIn:
                     PhoneVerificationview(preRegUser: .init())
                 }

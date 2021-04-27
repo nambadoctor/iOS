@@ -28,7 +28,6 @@ class ServiceProviderAppointmentService : ServiceProviderAppointmentServiceProto
     
     func getDocAppointments (serviceProviderId:String,
                              completion: @escaping ((_ appointmentList:[ServiceProviderAppointment]?)->())) {
-        let stopwatch = StopwatchManager(callingClass: "SERVICE_PROVIDER_GET_APPOINTMENTS")
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         
@@ -42,13 +41,8 @@ class ServiceProviderAppointmentService : ServiceProviderAppointmentServiceProto
         
         DispatchQueue.global().async {
             do {
-                stopwatch.start()
                 let response = try getDoctorsAppointment.response.wait()
-                stopwatch.stop()
                 var appointmentList = self.appointmentObjectMapper.grpcAppointmentToLocal(appointment: response.appointments)
-                for appointment in appointmentList {
-                    print("APPOINTMENT NAME: \(appointment.customerName)")
-                }
                 print("Doctor Appointment Client Success \(appointmentList.count)")
                 DispatchQueue.main.async {
                     completion(appointmentList)
@@ -123,7 +117,6 @@ class ServiceProviderAppointmentService : ServiceProviderAppointmentServiceProto
     }
     
     func getSingleAppointment(appointmentId: String, serviceProviderId: String, _ completion: @escaping ((ServiceProviderAppointment?) -> ())) {
-        let stopwatch = StopwatchManager(callingClass: "SERVICE_PROVIDER_GET_APPOINTMENT")
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         
@@ -138,9 +131,7 @@ class ServiceProviderAppointmentService : ServiceProviderAppointmentServiceProto
 
         DispatchQueue.global().async {
             do {
-                stopwatch.start()
                 let response = try getDoctorsAppointment.response.wait()
-                stopwatch.stop()
                 var appointment = self.appointmentObjectMapper.grpcAppointmentToLocal(appointment: response)
                 print("Doctor Appointment Client Success \(appointment)")
                 DispatchQueue.main.async {

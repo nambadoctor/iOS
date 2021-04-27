@@ -8,7 +8,7 @@
 import Foundation
 
 class CustomerPaymentInfoMapper {
-    static func grpcPaymentInfoToLocal(payment:Nd_V1_CustomerPaymentInfoMessage) -> CustomerPaymentInfo {
+    func grpcPaymentInfoToLocal(payment:Nd_V1_CustomerPaymentInfoMessage) -> CustomerPaymentInfo {
         return CustomerPaymentInfo(
             serviceProviderID: payment.serviceProviderID.toString,
             appointmentID: payment.appointmentID.toString,
@@ -22,7 +22,7 @@ class CustomerPaymentInfoMapper {
             customerName: payment.customerName.toString)
     }
 
-    static func localPaymentInfoToGrpc(payment:CustomerPaymentInfo) -> Nd_V1_CustomerPaymentInfoMessage {
+    func localPaymentInfoToGrpc(payment:CustomerPaymentInfo) -> Nd_V1_CustomerPaymentInfoMessage {
         return Nd_V1_CustomerPaymentInfoMessage.with {
             $0.serviceProviderID = payment.serviceProviderID.toProto
             $0.appointmentID = payment.appointmentID.toProto
@@ -36,4 +36,15 @@ class CustomerPaymentInfoMapper {
             $0.customerName = payment.customerName.toProto
         }
     }
+    
+    func grpcPaymentInfoToLocal (paymentMessages:[Nd_V1_CustomerPaymentInfoMessage]) -> [CustomerPaymentInfo] {
+        var paymentList:[CustomerPaymentInfo] = [CustomerPaymentInfo]()
+        
+        for payment in paymentMessages {
+            paymentList.append(grpcPaymentInfoToLocal(payment: payment))
+        }
+        
+        return paymentList
+    }
+    
 }
