@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ServiceProviderGetSetServiceCallProtocol {
+protocol ServiceProviderProfileServiceProtocol {
     func setServiceProvider (serviceProvider:ServiceProviderProfile, _ completion : @escaping (_ id:String?)->())
     
     func getServiceProvider (serviceProviderId:String, _ completion : @escaping (_ DoctorObj:ServiceProviderProfile?)->())
@@ -19,7 +19,7 @@ protocol ServiceProviderGetSetServiceCallProtocol {
     func setServiceProviderAvailabilities(serviceProviderId:String, availabilities:[ServiceProviderAvailability], _ completion: @escaping (_ success:Bool)->())
 }
 
-class ServiceProviderGetSetServiceCall : ServiceProviderGetSetServiceCallProtocol {
+class ServiceProviderProfileService : ServiceProviderProfileServiceProtocol {
     
     var serviceProviderMapper:ServiceProviderProfileMapper
     var customerObjectMapper:ServiceProviderCustomerProfileObjectMapper

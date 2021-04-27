@@ -27,13 +27,13 @@ class MedicineViewModel: ObservableObject {
     var medicineBeingEdited:Int? = nil
     
     var generalDoctorHelpers:GeneralDoctorHelpersProtocol!
-    private var retrievePrescriptionHelper:PrescriptionGetSetServiceCallProtocol
-    var prescriptionServiceCalls:PrescriptionGetSetServiceCallProtocol
+    private var retrievePrescriptionHelper:ServiceProviderPrescriptionServiceProtocol
+    var prescriptionServiceCalls:ServiceProviderPrescriptionServiceProtocol
     
     init(appointment:ServiceProviderAppointment,
          generalDoctorHelpers:GeneralDoctorHelpersProtocol = GeneralDoctorHelpers(),
-         retrievePrescriptionHelper:PrescriptionGetSetServiceCallProtocol = PrescriptionGetSetServiceCall(),
-         prescriptionServiceCalls:PrescriptionGetSetServiceCallProtocol = PrescriptionGetSetServiceCall()) {
+         retrievePrescriptionHelper:ServiceProviderPrescriptionServiceProtocol = ServiceProviderPrescriptionService(),
+         prescriptionServiceCalls:ServiceProviderPrescriptionServiceProtocol = ServiceProviderPrescriptionService()) {
         
         self.appointment = appointment
         self.generalDoctorHelpers = generalDoctorHelpers

@@ -25,15 +25,15 @@ class ServiceRequestViewModel: ObservableObject {
     
     var gotServiceRequestDelegate:LoadReportsWithServiceRequestDelegate? = nil
     
-    private var retrieveServiceRequesthelper:ServiceRequestGetSetCallProtocol
+    private var retrieveServiceRequesthelper:ServiceProviderServiceRequestServiceProtocol
     private var docSheetHelper:DoctorSheetHelpers = DoctorSheetHelpers()
     private var docAlertHelper:DoctorAlertHelpers = DoctorAlertHelpers()
     
-    var serviceRequestServiceCalls:ServiceRequestGetSetCallProtocol
+    var serviceRequestServiceCalls:ServiceProviderServiceRequestServiceProtocol
 
     init(appointment:ServiceProviderAppointment,
-         retrieveServiceRequesthelper:ServiceRequestGetSetCallProtocol = ServiceRequestGetSetCall(),
-         serviceRequestServiceCalls:ServiceRequestGetSetCallProtocol = ServiceRequestGetSetCall()) {
+         retrieveServiceRequesthelper:ServiceProviderServiceRequestServiceProtocol = ServiceProviderServiceRequestService(),
+         serviceRequestServiceCalls:ServiceProviderServiceRequestServiceProtocol = ServiceProviderServiceRequestService()) {
         
         self.appointment = appointment
         self.retrieveServiceRequesthelper = retrieveServiceRequesthelper

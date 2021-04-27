@@ -19,12 +19,12 @@ class PatientInfoViewModel: ObservableObject {
 
     var appointment:ServiceProviderAppointment
     private var customerServiceCall:ServiceProviderCustomerServiceProtocol
-    private var reportServiceCall:ReportGetSetServiceCallProtocol
-    private var appointmentServiceCall:AppointmentGetSetServiceCallProtocol
+    private var reportServiceCall:ServiceProviderReportServiceProtocol
+    private var appointmentServiceCall:ServiceProviderAppointmentServiceProtocol
     
     init(appointment:ServiceProviderAppointment,
-         reportServiceCall:ReportGetSetServiceCallProtocol = ReportGetSetServiceCall(),
-         appointmentServiceCall:AppointmentGetSetServiceCallProtocol = AppointmentGetSetServiceCall(),
+         reportServiceCall:ServiceProviderReportServiceProtocol = ServiceProviderReportService(),
+         appointmentServiceCall:ServiceProviderAppointmentServiceProtocol = ServiceProviderAppointmentService(),
          customerServiceCall:ServiceProviderCustomerServiceProtocol = ServiceProviderCustomerService()) {
         
         self.appointment = appointment

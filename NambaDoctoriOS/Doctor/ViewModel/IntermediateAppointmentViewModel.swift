@@ -65,7 +65,7 @@ class IntermediateAppointmentViewModel : ObservableObject {
     }
 
     func refreshAppointment () {
-        AppointmentGetSetServiceCall().getSingleAppointment(appointmentId: appointment.appointmentID, serviceProviderId: appointment.serviceProviderID) { (appointment) in
+        ServiceProviderAppointmentService().getSingleAppointment(appointmentId: appointment.appointmentID, serviceProviderId: appointment.serviceProviderID) { (appointment) in
             if appointment != nil {
                 self.appointment = appointment!
                 self.initChecks()

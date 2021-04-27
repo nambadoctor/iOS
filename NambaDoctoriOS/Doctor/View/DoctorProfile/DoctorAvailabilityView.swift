@@ -21,7 +21,7 @@ class DoctorAvailabilityViewModel : ObservableObject {
     
     func getAvailabilities (serviceProviderId:String) {
         self.serviceProviderId = serviceProviderId
-        ServiceProviderGetSetServiceCall().getServiceProviderAvailabilities(serviceProviderId: serviceProviderId) { (availabilities) in
+        ServiceProviderProfileService().getServiceProviderAvailabilities(serviceProviderId: serviceProviderId) { (availabilities) in
             if availabilities != nil {
                 self.availabilities = availabilities!
                 self.showView = true
@@ -109,7 +109,7 @@ class DoctorAvailabilityViewModel : ObservableObject {
     
     func saveAvailabilities () {
         print(availabilities.count)
-        ServiceProviderGetSetServiceCall().setServiceProviderAvailabilities(serviceProviderId: self.serviceProviderId, availabilities: self.availabilities) { (success) in
+        ServiceProviderProfileService().setServiceProviderAvailabilities(serviceProviderId: self.serviceProviderId, availabilities: self.availabilities) { (success) in
             print("AVAILABILITIES SET SUCCESSFULLY")
         }
     }

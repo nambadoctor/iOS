@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol ServiceRequestGetSetCallProtocol {
+protocol ServiceProviderServiceRequestServiceProtocol {
     func getServiceRequest (appointmentId:String,
                             serviceRequestId:String,
                             customerId:String,

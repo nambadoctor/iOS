@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol AppointmentGetSetServiceCallProtocol {
+protocol ServiceProviderAppointmentServiceProtocol {
     func getDocAppointments (serviceProviderId:String, completion: @escaping ((_ appointmentList:[ServiceProviderAppointment]?)->()))
     
     func getCustomerAppointmentList(patientId: String, _ completion: @escaping (([ServiceProviderAppointment]?) -> ()))
@@ -18,7 +18,7 @@ protocol AppointmentGetSetServiceCallProtocol {
     func getSingleAppointment (appointmentId:String, serviceProviderId:String, _ completion: @escaping ((ServiceProviderAppointment?) -> ()))
 }
 
-class AppointmentGetSetServiceCall : AppointmentGetSetServiceCallProtocol {
+class ServiceProviderAppointmentService : ServiceProviderAppointmentServiceProtocol {
     
     var appointmentObjectMapper:ServiceProviderAppointmentObjectMapper
         

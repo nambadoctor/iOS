@@ -9,9 +9,9 @@ import Foundation
 
 class UpdateAppointmentStatusHelper:UpdateAppointmentStatusProtocol {
     
-    let AppointmentServiceCalls:AppointmentGetSetServiceCallProtocol
+    let AppointmentServiceCalls:ServiceProviderAppointmentServiceProtocol
     
-    init(AppointmentServiceCalls:AppointmentGetSetServiceCallProtocol = AppointmentGetSetServiceCall()) {
+    init(AppointmentServiceCalls:ServiceProviderAppointmentServiceProtocol = ServiceProviderAppointmentService()) {
         self.AppointmentServiceCalls = AppointmentServiceCalls
     }
 

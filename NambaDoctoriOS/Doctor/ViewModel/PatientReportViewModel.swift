@@ -13,10 +13,10 @@ class PatientReportViewModel : ObservableObject {
     @Published var imageLoader:ImageLoader? = nil
     @Published var displayImage:ImageDisplayEnum = .loading
     
-    private var reportServiceCall:ReportGetSetServiceCallProtocol
+    private var reportServiceCall:ServiceProviderReportServiceProtocol
     
     init(report:ServiceProviderReport,
-         reportServiceCall:ReportGetSetServiceCallProtocol = ReportGetSetServiceCall()) {
+         reportServiceCall:ServiceProviderReportServiceProtocol = ServiceProviderReportService()) {
         self.report = report
         self.reportServiceCall = reportServiceCall
         

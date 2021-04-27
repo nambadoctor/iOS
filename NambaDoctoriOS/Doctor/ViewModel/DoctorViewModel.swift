@@ -28,12 +28,12 @@ class DoctorViewModel: ObservableObject {
     @Published var datePickerVM:DatePickerViewModel = DatePickerViewModel()
 
     var authenticateService:AuthenticateServiceProtocol
-    var serviceProviderServiceCall:ServiceProviderGetSetServiceCallProtocol
-    var doctorAppointmentViewModel:AppointmentGetSetServiceCallProtocol
+    var serviceProviderServiceCall:ServiceProviderProfileServiceProtocol
+    var doctorAppointmentViewModel:ServiceProviderAppointmentServiceProtocol
 
     init(authenticateService:AuthenticateServiceProtocol = AuthenticateService(),
-         serviceProviderServiceCall:ServiceProviderGetSetServiceCallProtocol = ServiceProviderGetSetServiceCall(),
-         doctorAptVM:AppointmentGetSetServiceCallProtocol = AppointmentGetSetServiceCall()) {
+         serviceProviderServiceCall:ServiceProviderProfileServiceProtocol = ServiceProviderProfileService(),
+         doctorAptVM:ServiceProviderAppointmentServiceProtocol = ServiceProviderAppointmentService()) {
         self.authenticateService = authenticateService
         self.serviceProviderServiceCall = serviceProviderServiceCall
         self.doctorAppointmentViewModel = doctorAptVM

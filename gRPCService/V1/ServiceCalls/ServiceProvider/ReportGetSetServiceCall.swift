@@ -8,13 +8,13 @@
 import Foundation
 import SwiftUI
 
-protocol ReportGetSetServiceCallProtocol {
+protocol ServiceProviderReportServiceProtocol {
     func getUploadedReportList(customerId:String, serviceRequestId:String, appointmentId:String, _ completion: @escaping (([ServiceProviderReport]?) -> ()))
     
     func getReportImage(reportId: String, _ completion: @escaping (String?) -> ())
 }
 
-class ReportGetSetServiceCall : ReportGetSetServiceCallProtocol {
+class ServiceProviderReportService : ServiceProviderReportServiceProtocol {
     var reportObjMapper:ServiceProviderReportMapper
     
     init(reportObjMapper:ServiceProviderReportMapper = ServiceProviderReportMapper()) {

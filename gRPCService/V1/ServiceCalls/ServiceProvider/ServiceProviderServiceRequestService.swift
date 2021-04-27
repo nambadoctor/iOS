@@ -7,7 +7,7 @@
 
 import Foundation
 
-class ServiceRequestGetSetCall : ServiceRequestGetSetCallProtocol {
+class ServiceProviderServiceRequestService : ServiceProviderServiceRequestServiceProtocol {
     
     var serviceRequestMapper:ServiceProviderServiceRequestMapper
     

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class PrescriptionGetSetServiceCall : PrescriptionGetSetServiceCallProtocol {
+class ServiceProviderPrescriptionService : ServiceProviderPrescriptionServiceProtocol {
     
     var prescriptionObjectMapper:ServiceProviderPrescriptionMapper
     
