@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension AppDelegate {
+extension AppDelegate : UNUserNotificationCenterDelegate {
     // [START receive_message]
     func application(_ application: UIApplication,
                      didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {

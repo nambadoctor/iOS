@@ -14,7 +14,6 @@ struct CustomerServiceProviderProfile {
     var lastName:String
     var specialties:[String]
     var gender:String
-    var phoneNumbers:[PhoneNumber]
     var addresses:[CustomerAddress]
     var applicationInfo:CustomerAppInfo
     var emailAddress:String

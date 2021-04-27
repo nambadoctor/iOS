@@ -17,11 +17,32 @@ class CustomerAllergyMapper {
         }
     }
     
+    static func localAvailabilityToGrpc (allergies:[CustomerAllergy]) -> [Nd_V1_CustomerAllergyMessage] {
+        var allergyList:[Nd_V1_CustomerAllergyMessage] = [Nd_V1_CustomerAllergyMessage]()
+        
+        for allergy in allergies {
+            allergyList.append(localAllergyToGrpc(allergy: allergy))
+        }
+
+        return allergyList
+    }
+
     static func grpcAllergyToLocal (allergyMessage:Nd_V1_CustomerAllergyMessage) -> CustomerAllergy {
         return CustomerAllergy(AllergyId: allergyMessage.allergyID.toString,
                                               AllergyName: allergyMessage.allergyName.toString,
                                               AppointmentId: allergyMessage.appointmentID.toString,
                                               ServiceRequestId: allergyMessage.serviceRequestID.toString)
+    }
+    
+    
+    static func grpcAllergyToLocal (allergies:[Nd_V1_CustomerAllergyMessage]) -> [CustomerAllergy] {
+        var allergyList:[CustomerAllergy] = [CustomerAllergy]()
+        
+        for allergy in allergies {
+            allergyList.append(grpcAllergyToLocal(allergyMessage: allergy))
+        }
+        
+        return allergyList
     }
 
 }

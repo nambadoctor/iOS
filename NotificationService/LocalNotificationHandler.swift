@@ -45,11 +45,14 @@ class LocalNotificationHandler {
         let title = userInfo[AnyHashable("title")]
         let id = userInfo[AnyHashable("id")]
         let type = (userInfo[AnyHashable("type")] ?? "") as! String
+        print("NOTIF RECIEVED")
         guard body != nil, title != nil else { return }
-                
+   
         let notifType = getNotifType(type: type)
         
         LocalNotifStorer().storeLocalNotif(title: title as! String, body: body as! String, appointmentId: id as! String, notifType: notifType)
+        
+        print("notif type: \(notifType)")
         
         switch notifType {
         case .AppointmentBooked, .AppointmentCancelled:

@@ -8,7 +8,6 @@
 import Foundation
 
 class ServiceProviderGeneratedSlotMapper {
-    
     static func grpcSlotToLocal(slot:Nd_V1_ServiceProviderGeneratedSlotMessage) -> ServiceProviderGeneratedSlot {
         return ServiceProviderGeneratedSlot(
             startDateTime: slot.startDateTime.toInt64,
@@ -23,5 +22,4 @@ class ServiceProviderGeneratedSlotMapper {
             $0.duration = slot.duration.toProto
         }
     }
-
 }
