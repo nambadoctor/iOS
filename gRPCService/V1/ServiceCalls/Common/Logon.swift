@@ -11,7 +11,7 @@ import SwiftUI
 class Logon : FindUserTypeViewModelProtocol {
 
     func logonUser (_ completion : @escaping (_ patientOrDoc:UserLoginStatus?)->()) {
-
+        CorrelationId = UUID().uuidString
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
 
@@ -23,19 +23,23 @@ class Logon : FindUserTypeViewModelProtocol {
         let getUserType = logonClient.getUserType(request, callOptions: callOptions)
 
         do {
+            LoggerService().log(appointmentId: "", eventName: "REQUESTING USER TYPE")
             let response = try getUserType.response.wait()
+            LoggerService().log(appointmentId: "", eventName: "RECIEVED USER TYPE SUCCESS")
             print("UserTypeClient received: \(response.message.toString)")
-            let responseSplit = response.message.toString.components(separatedBy: ",")
-            if responseSplit.count > 1 {
+            
+            do {
+                let responseSplit = response.message.toString.components(separatedBy: ",")
                 let userStatus = CheckLoginStatus.checkStatus(loggedInStatus: responseSplit[0])
                 UserIdHelper().storeUserId(userId: responseSplit[1])
                 completion(userStatus)
-            } else {
+            } catch {
                 completion(.Customer)
             }
         } catch {
             completion(nil)
             print("UserTypeClient failed: \(error.localizedDescription)")
+            LoggerService().log(appointmentId: "", eventName: "RECIEVED USER TYPE FAILED")
         }
     }
 }
@@ -53,5 +57,11 @@ class UserIdHelper {
         } else {
             return "USER ID NOT FOUND"
         }
+    }
+}
+
+class GetUserTypeHelper {
+    static func getUserType() -> String {
+        return UserDefaults.standard.value(forKey: "\(SimpleStateK.loginStatus)") as? String ?? ""
     }
 }

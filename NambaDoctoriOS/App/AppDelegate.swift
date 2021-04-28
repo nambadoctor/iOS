@@ -60,6 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                    fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
     print("ID2 ENTRY")
+    CorrelationId = UUID().uuidString
     // If you are receiving a notification message while your app is in the background,
     // this callback will not be fired till the user taps on the notification launching the application.
     // TODO: Handle data of notification
@@ -69,7 +70,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     if let messageID = userInfo[gcmMessageIDKey] {
       print("Message ID2: \(messageID)")
     }
-
+    
+    LoggerService().log(appointmentId: "", eventName: "NOTIFICATION RECIEVED")
+    
     // Print full message.
     print(userInfo)
     
@@ -115,6 +118,8 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     // Print full message.
     print(userInfo)
     
+    LoggerService().log(appointmentId: "", eventName: "NOTIFICATION DISPLAYED")
+    
     LocalNotificationHandler().notifRecieveHelper(userInfo: userInfo) { (_) in }
 
     // Change this to your preferred presentation option
@@ -126,6 +131,8 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                               withCompletionHandler completionHandler: @escaping () -> Void) {
     print("ID4 ENTRY")
     let userInfo = response.notification.request.content.userInfo
+    
+    LoggerService().log(appointmentId: "", eventName: "NOTIFICATION TAPPED")
 
     // [START_EXCLUDE]
     // Print message ID.
