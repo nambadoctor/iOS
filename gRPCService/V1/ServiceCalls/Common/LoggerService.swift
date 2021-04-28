@@ -11,14 +11,14 @@ var SessionId:String = ""
 var CorrelationId:String = ""
 var AppointmentID:String = ""
 var EventMessage:String = ""
-var VersionNumber:String = "1.45"
+var VersionNumber:String = "1.46"
 
 class LoggerService {
     func log(appointmentId:String, eventName:String) {
         
         AppointmentID = appointmentId
         EventMessage = eventName
-        
+
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         let loggerClient = Nd_V1_LoggingWorkerV1Client(channel: channel)
@@ -26,7 +26,7 @@ class LoggerService {
         let request = Nd_V1_VoidMessage()
 
         let logEvent = loggerClient.setLog(request, callOptions: callOptions)
-        
+
         DispatchQueue.global().async {
             do {
                 let response = try logEvent.response.wait()

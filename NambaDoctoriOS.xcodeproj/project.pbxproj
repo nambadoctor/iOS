@@ -80,8 +80,6 @@
 		1728B77525B381D1001D554E /* PreRegisteredUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728B77425B381D1001D554E /* PreRegisteredUser.swift */; };
 		1728B77A25B381E7001D554E /* PreRegisteredUserVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728B77925B381E7001D554E /* PreRegisteredUserVM.swift */; };
 		1728B77F25B3838E001D554E /* LoginStatusEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728B77E25B3838E001D554E /* LoginStatusEnum.swift */; };
-		1728B7F425B6E6DD001D554E /* NotifHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728B7F325B6E6DD001D554E /* NotifHandler.swift */; };
-		1728B7FA25B6E798001D554E /* TokenRefreshExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728B7F925B6E798001D554E /* TokenRefreshExtension.swift */; };
 		172B84BA25AED42800C6B035 /* AuthenticateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172B84B925AED42800C6B035 /* AuthenticateService.swift */; };
 		172B84E725AEE39E00C6B035 /* DoctorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172B84E625AEE39E00C6B035 /* DoctorViewModel.swift */; };
 		172B850E25AEE46700C6B035 /* CountryPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172B850925AEE46600C6B035 /* CountryPickerView.swift */; };
@@ -418,8 +416,6 @@
 		1728B77925B381E7001D554E /* PreRegisteredUserVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreRegisteredUserVM.swift; sourceTree = "<group>"; };
 		1728B77E25B3838E001D554E /* LoginStatusEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginStatusEnum.swift; sourceTree = "<group>"; };
 		1728B79125B3898D001D554E /* NambaDoctoriOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NambaDoctoriOS.entitlements; sourceTree = "<group>"; };
-		1728B7F325B6E6DD001D554E /* NotifHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifHandler.swift; sourceTree = "<group>"; };
-		1728B7F925B6E798001D554E /* TokenRefreshExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRefreshExtension.swift; sourceTree = "<group>"; };
 		172B84B925AED42800C6B035 /* AuthenticateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticateService.swift; sourceTree = "<group>"; };
 		172B84E625AEE39E00C6B035 /* DoctorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorViewModel.swift; sourceTree = "<group>"; };
 		172B850925AEE46600C6B035 /* CountryPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryPickerView.swift; sourceTree = "<group>"; };
@@ -808,7 +804,6 @@
 		172B847525AED21600C6B035 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				17E363E025B6EC3D00791745 /* FCMTokenHelpers */,
 				17E5185325AED16A001F1A80 /* AppDelegate.swift */,
 				17E5185525AED16A001F1A80 /* SceneDelegate.swift */,
 				17E5185725AED16A001F1A80 /* ContentView.swift */,
@@ -1070,7 +1065,6 @@
 			children = (
 				179BD39D25DE452D0076F391 /* LocalNotificationHandler.swift */,
 				1748006925B8C14400C8E3CC /* SendPushNotification.swift */,
-				1728B7F325B6E6DD001D554E /* NotifHandler.swift */,
 				17A020772630201200BD828F /* LocalNotifStoreHelper.swift */,
 			);
 			path = NotificationService;
@@ -1513,14 +1507,6 @@
 				17626D8725D9B84200C36A99 /* MockPreRegisteredPatient.swift */,
 			);
 			name = MockData;
-			sourceTree = "<group>";
-		};
-		17E363E025B6EC3D00791745 /* FCMTokenHelpers */ = {
-			isa = PBXGroup;
-			children = (
-				1728B7F925B6E798001D554E /* TokenRefreshExtension.swift */,
-			);
-			path = FCMTokenHelpers;
 			sourceTree = "<group>";
 		};
 		17E3706825BF12340004C965 /* TwilioService */ = {
@@ -2031,7 +2017,6 @@
 				172FA70C261F125600D14545 /* ServiceProviderCustomerMedicalHistoryMapper.swift in Sources */,
 				1748005F25B8BDB000C8E3CC /* AppointmentViewModel.swift in Sources */,
 				178EB6AA2638BC5D009286B1 /* CustomerAlertHelpers.swift in Sources */,
-				1728B7F425B6E6DD001D554E /* NotifHandler.swift in Sources */,
 				171647A02604044300BB5B5A /* DoctorHome.swift in Sources */,
 				176AA1972637C62300F02346 /* CustomerServiceProviderProfileMapper.swift in Sources */,
 				172B852225AEE65B00C6B035 /* CountryCodes.swift in Sources */,
@@ -2157,7 +2142,6 @@
 				17E5185825AED16A001F1A80 /* ContentView.swift in Sources */,
 				174800B725B8DC0A00C8E3CC /* DocNotifHelpers.swift in Sources */,
 				1796320E25AEE865002E466C /* UIResponder+Current.swift in Sources */,
-				1728B7FA25B6E798001D554E /* TokenRefreshExtension.swift in Sources */,
 				1728B77A25B381E7001D554E /* PreRegisteredUserVM.swift in Sources */,
 				17424FE525BAD1B100523B94 /* SideBySideCheckBox.swift in Sources */,
 				176AA1122637BADA00F02346 /* CustomerProfile.swift in Sources */,
@@ -2395,7 +2379,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NambaDoctoriOS/NambaDoctoriOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 46;
+				CURRENT_PROJECT_VERSION = 47;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"NambaDoctoriOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 478XDR2NPK;
@@ -2405,7 +2389,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.45;
+				MARKETING_VERSION = 1.46;
 				PRODUCT_BUNDLE_IDENTIFIER = dsconnect.iOS.NambaDoctoriOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -2421,7 +2405,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NambaDoctoriOS/NambaDoctoriOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 46;
+				CURRENT_PROJECT_VERSION = 47;
 				DEVELOPMENT_ASSET_PATHS = "\"NambaDoctoriOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 478XDR2NPK;
 				ENABLE_PREVIEWS = YES;
@@ -2430,7 +2414,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.45;
+				MARKETING_VERSION = 1.46;
 				PRODUCT_BUNDLE_IDENTIFIER = dsconnect.iOS.NambaDoctoriOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
