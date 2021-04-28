@@ -8,7 +8,7 @@
 import Foundation
 
 class CustomerViewModel : ObservableObject {
-    @Published var customerProfile:CustomerProfile!
+    @Published var customerProfile:CustomerProfile? = nil
     @Published var appointments:[CustomerAppointment]? = nil
     @Published var serviceProviders:[CustomerServiceProviderProfile]? = nil
     
@@ -24,7 +24,7 @@ class CustomerViewModel : ObservableObject {
         self.customerProfileService = customerProfileService
         self.customerAppointmentService = customerAppointmentService
         self.customerServiceProviderService = customerServiceProviderService
-        
+    
         self.fetchCustomerProfile()
     }
 
@@ -36,14 +36,35 @@ class CustomerViewModel : ObservableObject {
                 self.customerLoggedIn = true
                 self.retrieveCustomerAppointments()
                 self.retrieveServiceProviders()
+                self.updateFCMToken()
             } else {
                 //TODO: handle customer profile null
             }
         }
     }
     
+    func updateFCMToken () {
+        //update FCM Token
+        guard self.customerProfile != nil else { return
+        }
+        if !FCMTokenId.isEmpty {
+            self.customerProfile!.appInfo.deviceToken = FCMTokenId
+            self.updateCustomer()
+        }
+    }
+    
+    func updateCustomer() {
+        customerProfileService.setCustomerProfile(customerProfile: self.customerProfile!) { (response) in
+            if response != nil {
+                print("SERVICE PROVIDER UPDATE SUCCESS \(response)")
+            }
+            CommonDefaultModifiers.hideLoader()
+        }
+    }
+
+    
     func retrieveCustomerAppointments () {
-        customerAppointmentService.getCustomerAppointments(customerId: self.customerProfile.customerID) { (customerAppointments) in
+        customerAppointmentService.getCustomerAppointments(customerId: self.customerProfile!.customerID) { (customerAppointments) in
             if customerAppointments != nil || customerAppointments?.count != 0 {
                 self.appointments = customerAppointments!
             } else {
@@ -53,7 +74,7 @@ class CustomerViewModel : ObservableObject {
     }
     
     func retrieveServiceProviders () {
-        customerServiceProviderService.getAllServiceProvider(customerId: customerProfile.customerID) { (serviceProviders) in
+        customerServiceProviderService.getAllServiceProvider(customerId: customerProfile!.customerID) { (serviceProviders) in
             if serviceProviders != nil || serviceProviders?.count != 0 {
                 self.serviceProviders = serviceProviders!
             } else {

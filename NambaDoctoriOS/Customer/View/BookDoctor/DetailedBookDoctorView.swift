@@ -16,7 +16,7 @@ struct DetailedBookDoctorView: View {
             
             Text("Reason For Appointment")
             ExpandingTextView(text: self.$detailedBookingVM.reasonForAppointment)
-            
+
             Text("Choose a Date")
             
             if !detailedBookingVM.dateDisplay.isEmpty {
@@ -61,7 +61,7 @@ struct DetailedBookDoctorView: View {
             
             LargeButton(title: "Book Appointment",
                         backgroundColor: Color.blue) {
-                
+                self.detailedBookingVM.book()
             }
         }
     }

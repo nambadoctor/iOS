@@ -30,7 +30,7 @@ class CustomerServiceRequestMapper {
             $0.serviceRequestID =  serviceRequest.serviceRequestID.toProto
             $0.reason = serviceRequest.reason.toProto
             $0.serviceProviderID = serviceRequest.serviceProviderID.toProto
-            $0.appointmentID = serviceRequest.appointmentID.toProto
+            $0.appointmentID = serviceRequest.appointmentID.toProto 
             $0.examination = serviceRequest.examination.toProto
             $0.diagnosis = CustomerDiagnosisMapper.localDiagnosisToGrpc(diagnosis: serviceRequest.diagnosis)
             $0.investigations = serviceRequest.investigations.convert()

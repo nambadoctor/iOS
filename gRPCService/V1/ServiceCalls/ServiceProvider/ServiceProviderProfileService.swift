@@ -44,9 +44,11 @@ class ServiceProviderProfileService : ServiceProviderProfileServiceProtocol {
         
         DispatchQueue.global().async {
             do {
+                CorrelationId = UUID().uuidString
                 let response = try getServiceProvider.response.wait()
                 print("Set Service Provider Success \(response.id)")
                 DispatchQueue.main.async {
+                    LoggerService().log(appointmentId: "", eventName: "Client Received Service Provider")
                     completion(response.id.toString)
                 }
             } catch {

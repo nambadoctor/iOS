@@ -13,7 +13,6 @@ struct DoctorHome: View {
     @State private var tabSelection:Int = 0
     @ObservedObject var doctorViewModel:DoctorViewModel
     @State var alertItem : AlertItem?
-    @State var sheetItem : DoctorSheetItem?
     
     var body: some View {
         NavigationView {
@@ -44,8 +43,8 @@ struct DoctorHome: View {
             }
         }.onAppear() {
             showAlertListener()
-            showSheetListener()
             refreshAppointmentsListener()
+            refreshFCMTokenListener()
         }
         .alert(item: $alertItem) { alertItem in
             alertToShow(alertItem: alertItem)

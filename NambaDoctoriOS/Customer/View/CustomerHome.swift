@@ -11,6 +11,7 @@ struct CustomerHome: View {
     
     @State private var tabSelection:Int = 2
     @ObservedObject var customerVM:CustomerViewModel
+    @State var alertItem : AlertItem?
     
     var body: some View {
         NavigationView {
@@ -19,11 +20,11 @@ struct CustomerHome: View {
             } else {
                 ZStack {
                     TabView (selection: self.$tabSelection) {
-                        Text("Appointments").tabItem {
+                        CustomerAppointmentsView().tabItem {
                             Image("list.triangle")
                             Text("Appointments")
                         }.tag(1)
-                        
+
                         BookDoctorView().tabItem {
                             Image("xmark")
                             Text("Book Doctor")
@@ -39,5 +40,40 @@ struct CustomerHome: View {
                 .navigationBarTitle("NambaDoctor", displayMode: .inline)
             }
         }
+        .onAppear(){
+            showAlertListener()
+            refreshFCMTokenListener()
+        }
+        .alert(item: $alertItem) { alertItem in
+            alertToShow(alertItem: alertItem)
+        }
     }
+}
+
+extension CustomerHome {
+    func alertToShow (alertItem: AlertItem) -> Alert {
+        guard let primaryButton = alertItem.primaryButton, let secondaryButton = alertItem.secondaryButton else{
+            return Alert(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
+        }
+        return Alert(title: alertItem.title, message: alertItem.message, primaryButton: primaryButton, secondaryButton: secondaryButton)
+    }
+}
+
+extension CustomerHome {
+    func showAlertListener () {
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("\(SimpleStateK.showPopupChange)"), object: nil, queue: .main) { (_) in
+            if alertTempItem != nil {
+                self.alertItem = alertTempItem
+            } else {
+                self.alertItem = nil
+            }
+        }
+    }
+
+    func refreshFCMTokenListener() {
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("\(CustomerViewStatesK.FCMTokenUpdateChange)"), object: nil, queue: .main) { (_) in
+            self.customerVM.updateFCMToken()
+        }
+    }
+
 }

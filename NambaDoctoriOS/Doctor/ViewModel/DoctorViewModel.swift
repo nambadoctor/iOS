@@ -67,17 +67,13 @@ class DoctorViewModel: ObservableObject {
             self.updateDoctor()
         }
     }
-    
+
     func updateDoctor () {
-        DispatchQueue.global().async {
-            self.serviceProviderServiceCall.setServiceProvider(serviceProvider: self.doctor) { (response) in
-                if response != nil {
-                    print("SERVICE PROVIDER UPDATE SUCCESS \(response)")
-                }
-                DispatchQueue.main.async {
-                    CommonDefaultModifiers.hideLoader()
-                }
+        self.serviceProviderServiceCall.setServiceProvider(serviceProvider: self.doctor) { (response) in
+            if response != nil {
+                print("SERVICE PROVIDER UPDATE SUCCESS \(response)")
             }
+            CommonDefaultModifiers.hideLoader()
         }
     }
 

@@ -17,14 +17,6 @@ extension DoctorHome {
             }
         }
     }
-    
-    func showSheetListener () {
-        NotificationCenter.default.addObserver(forName: NSNotification.Name("\(SimpleStateK.showSheetChange)"), object: nil, queue: .main) { (_) in
-            if sheetTempItem != nil {
-                self.sheetItem = sheetTempItem
-            }
-        }
-    }
 
     func refreshAppointmentsListener () {
         NotificationCenter.default.addObserver(forName: NSNotification.Name("\(DocViewStatesK.refreshAppointmentsChange)"), object: nil, queue: .main) { (_) in
@@ -32,7 +24,7 @@ extension DoctorHome {
         }
     }
     
-    func refreshFCMToken () {
+    func refreshFCMTokenListener () {
         NotificationCenter.default.addObserver(forName: NSNotification.Name("\(DocViewStatesK.FCMTokenUpdateChange)"), object: nil, queue: .main) { (_) in
             doctorViewModel.updateFCMToken()
         }

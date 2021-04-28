@@ -173,6 +173,7 @@
 		17626E0A25DA270400C36A99 /* ImageDisplayEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626E0925DA270400C36A99 /* ImageDisplayEnum.swift */; };
 		17626ECE25DB4CB100C36A99 /* LogAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626ECD25DB4CB100C36A99 /* LogAnalytics.swift */; };
 		1763D31C262A39CA00E0E423 /* DefaultPreferencesTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1763D31B262A39CA00E0E423 /* DefaultPreferencesTracker.swift */; };
+		1765BD072639185C0087664D /* LoggerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1765BD062639185C0087664D /* LoggerService.swift */; };
 		176AA0A9263632B500F02346 /* GetUserTypeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176AA0A8263632B500F02346 /* GetUserTypeHelper.swift */; };
 		176AA0B72637B84700F02346 /* ServiceProviderAndCustomer.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176AA0B62637B84700F02346 /* ServiceProviderAndCustomer.pb.swift */; };
 		176AA0C42637B85B00F02346 /* ServiceProviderAndCustomer.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176AA0C32637B85B00F02346 /* ServiceProviderAndCustomer.grpc.swift */; };
@@ -233,6 +234,10 @@
 		1772756525B8A7DB0012B9DE /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1772756425B8A7DB0012B9DE /* LoginViewModelTests.swift */; };
 		1785A5012616E193009667D1 /* ModifyFeeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1785A5002616E193009667D1 /* ModifyFeeViewModel.swift */; };
 		1785A570261A353F009667D1 /* IntermediateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1785A56F261A353F009667D1 /* IntermediateView.swift */; };
+		178EB6AA2638BC5D009286B1 /* CustomerAlertHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178EB6A92638BC5D009286B1 /* CustomerAlertHelpers.swift */; };
+		178EB6B22638BCF1009286B1 /* CustomerViewStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178EB6B12638BCF1009286B1 /* CustomerViewStates.swift */; };
+		178EB6BA26390CD4009286B1 /* CustomerAppointmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178EB6B926390CD4009286B1 /* CustomerAppointmentsView.swift */; };
+		178EB6C126390CF4009286B1 /* CustomerAppointmentsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178EB6C026390CF4009286B1 /* CustomerAppointmentsCardView.swift */; };
 		1796320525AEE7B5002E466C /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796320425AEE7B5002E466C /* Helpers.swift */; };
 		1796320E25AEE865002E466C /* UIResponder+Current.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796320A25AEE865002E466C /* UIResponder+Current.swift */; };
 		1796320F25AEE865002E466C /* KeyboardHeightPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796320B25AEE865002E466C /* KeyboardHeightPublisher.swift */; };
@@ -504,6 +509,7 @@
 		17626E0925DA270400C36A99 /* ImageDisplayEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDisplayEnum.swift; sourceTree = "<group>"; };
 		17626ECD25DB4CB100C36A99 /* LogAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogAnalytics.swift; sourceTree = "<group>"; };
 		1763D31B262A39CA00E0E423 /* DefaultPreferencesTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPreferencesTracker.swift; sourceTree = "<group>"; };
+		1765BD062639185C0087664D /* LoggerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerService.swift; sourceTree = "<group>"; };
 		176AA0A8263632B500F02346 /* GetUserTypeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetUserTypeHelper.swift; sourceTree = "<group>"; };
 		176AA0B62637B84700F02346 /* ServiceProviderAndCustomer.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderAndCustomer.pb.swift; sourceTree = "<group>"; };
 		176AA0C32637B85B00F02346 /* ServiceProviderAndCustomer.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderAndCustomer.grpc.swift; sourceTree = "<group>"; };
@@ -564,6 +570,10 @@
 		1772756425B8A7DB0012B9DE /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
 		1785A5002616E193009667D1 /* ModifyFeeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyFeeViewModel.swift; sourceTree = "<group>"; };
 		1785A56F261A353F009667D1 /* IntermediateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntermediateView.swift; sourceTree = "<group>"; };
+		178EB6A92638BC5D009286B1 /* CustomerAlertHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerAlertHelpers.swift; sourceTree = "<group>"; };
+		178EB6B12638BCF1009286B1 /* CustomerViewStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerViewStates.swift; sourceTree = "<group>"; };
+		178EB6B926390CD4009286B1 /* CustomerAppointmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerAppointmentsView.swift; sourceTree = "<group>"; };
+		178EB6C026390CF4009286B1 /* CustomerAppointmentsCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerAppointmentsCardView.swift; sourceTree = "<group>"; };
 		1796320425AEE7B5002E466C /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		1796320A25AEE865002E466C /* UIResponder+Current.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIResponder+Current.swift"; sourceTree = "<group>"; };
 		1796320B25AEE865002E466C /* KeyboardHeightPublisher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardHeightPublisher.swift; sourceTree = "<group>"; };
@@ -941,6 +951,7 @@
 		1739EAC72638079700556044 /* Customer */ = {
 			isa = PBXGroup;
 			children = (
+				178EB6A82638BC52009286B1 /* Helpers */,
 				1739EAD92638083700556044 /* ViewModels */,
 				1739EAD82638082F00556044 /* View */,
 			);
@@ -950,10 +961,9 @@
 		1739EAD82638082F00556044 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				178EB6BF26390CE8009286B1 /* Appointments */,
+				178EB6BE26390CDA009286B1 /* BookDoctor */,
 				1739EAD3263807BB00556044 /* CustomerHome.swift */,
-				1739EAEA26380EFA00556044 /* BookDoctorView.swift */,
-				1739EAEF26380FD500556044 /* BookDoctorCard.swift */,
-				1739EAF42638168600556044 /* DetailedBookDoctorView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1162,6 +1172,7 @@
 			children = (
 				1728B76C25B38156001D554E /* Logon.swift */,
 				1748011425B8E21700C8E3CC /* RetrieveTwilioAccessToken.swift */,
+				1765BD062639185C0087664D /* LoggerService.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1288,6 +1299,34 @@
 				1742506C25BAE69200523B94 /* PrescriptionFormPickerConstants.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		178EB6A82638BC52009286B1 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				178EB6A92638BC5D009286B1 /* CustomerAlertHelpers.swift */,
+				178EB6B12638BCF1009286B1 /* CustomerViewStates.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		178EB6BE26390CDA009286B1 /* BookDoctor */ = {
+			isa = PBXGroup;
+			children = (
+				1739EAF42638168600556044 /* DetailedBookDoctorView.swift */,
+				1739EAEF26380FD500556044 /* BookDoctorCard.swift */,
+				1739EAEA26380EFA00556044 /* BookDoctorView.swift */,
+			);
+			path = BookDoctor;
+			sourceTree = "<group>";
+		};
+		178EB6BF26390CE8009286B1 /* Appointments */ = {
+			isa = PBXGroup;
+			children = (
+				178EB6B926390CD4009286B1 /* CustomerAppointmentsView.swift */,
+				178EB6C026390CF4009286B1 /* CustomerAppointmentsCardView.swift */,
+			);
+			path = Appointments;
 			sourceTree = "<group>";
 		};
 		1796320925AEE865002E466C /* KeyboardHelpers */ = {
@@ -1963,6 +2002,7 @@
 				176AA1BF2637CA5000F02346 /* CustomerFileInfoMapper.swift in Sources */,
 				176AA1F92637F74900F02346 /* CustomerProfileService.swift in Sources */,
 				171646D92602B7AC00BB5B5A /* ServiceProviderProfile.swift in Sources */,
+				178EB6C126390CF4009286B1 /* CustomerAppointmentsCardView.swift in Sources */,
 				171646922602B47F00BB5B5A /* ServiceProviderCustomerProfile.swift in Sources */,
 				175E8DA9262FDA500000D00E /* DocAutoNavigateHelper.swift in Sources */,
 				179BD3A325DE4D120076F391 /* DateHelper.swift in Sources */,
@@ -1973,6 +2013,7 @@
 				176AA1B02637C96700F02346 /* CustomerMedicineMapper.swift in Sources */,
 				171646FC26030C6300BB5B5A /* ServiceProviderAppointmentObjectMapper.swift in Sources */,
 				1785A570261A353F009667D1 /* IntermediateView.swift in Sources */,
+				1765BD072639185C0087664D /* LoggerService.swift in Sources */,
 				1728B76D25B38156001D554E /* Logon.swift in Sources */,
 				179C44E42628C86D0073F4E0 /* DoctorChatRoomView.swift in Sources */,
 				17AE6D3325E24DA400B18292 /* RetrieveDoctorsPatientsServiceProtocol.swift in Sources */,
@@ -1989,6 +2030,7 @@
 				176AA1332637BD0900F02346 /* CustomerFollowUp.swift in Sources */,
 				172FA70C261F125600D14545 /* ServiceProviderCustomerMedicalHistoryMapper.swift in Sources */,
 				1748005F25B8BDB000C8E3CC /* AppointmentViewModel.swift in Sources */,
+				178EB6AA2638BC5D009286B1 /* CustomerAlertHelpers.swift in Sources */,
 				1728B7F425B6E6DD001D554E /* NotifHandler.swift in Sources */,
 				171647A02604044300BB5B5A /* DoctorHome.swift in Sources */,
 				176AA1972637C62300F02346 /* CustomerServiceProviderProfileMapper.swift in Sources */,
@@ -2037,6 +2079,7 @@
 				171647432603261800BB5B5A /* ServiceProviderProfileMapper.swift in Sources */,
 				171648452609300600BB5B5A /* ServiceProviderFileInfoMapper.swift in Sources */,
 				1716E2CB261AFB3200568837 /* MedicineEditableView.swift in Sources */,
+				178EB6BA26390CD4009286B1 /* CustomerAppointmentsView.swift in Sources */,
 				171647782603485F00BB5B5A /* ServiceProviderServiceRequestServiceProtocol.swift in Sources */,
 				17EC75FC260CF00C0002BA75 /* InvestigationsViewModel.swift in Sources */,
 				171647012603111400BB5B5A /* ServiceProviderAppInfoMapper.swift in Sources */,
@@ -2110,6 +2153,7 @@
 				177233B925B7411A002B814A /* ViewOrAmmendConstant.swift in Sources */,
 				17424FDD25BAD14C00523B94 /* DiagnosisTypeK.swift in Sources */,
 				176AA1032637BA3B00F02346 /* CustomerAppInfo.swift in Sources */,
+				178EB6B22638BCF1009286B1 /* CustomerViewStates.swift in Sources */,
 				17E5185825AED16A001F1A80 /* ContentView.swift in Sources */,
 				174800B725B8DC0A00C8E3CC /* DocNotifHelpers.swift in Sources */,
 				1796320E25AEE865002E466C /* UIResponder+Current.swift in Sources */,
@@ -2351,7 +2395,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NambaDoctoriOS/NambaDoctoriOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 45;
+				CURRENT_PROJECT_VERSION = 46;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"NambaDoctoriOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 478XDR2NPK;
@@ -2361,7 +2405,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.44;
+				MARKETING_VERSION = 1.45;
 				PRODUCT_BUNDLE_IDENTIFIER = dsconnect.iOS.NambaDoctoriOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -2377,7 +2421,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NambaDoctoriOS/NambaDoctoriOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 45;
+				CURRENT_PROJECT_VERSION = 46;
 				DEVELOPMENT_ASSET_PATHS = "\"NambaDoctoriOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 478XDR2NPK;
 				ENABLE_PREVIEWS = YES;
@@ -2386,7 +2430,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.44;
+				MARKETING_VERSION = 1.45;
 				PRODUCT_BUNDLE_IDENTIFIER = dsconnect.iOS.NambaDoctoriOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

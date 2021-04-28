@@ -9,7 +9,7 @@ import Foundation
 
 protocol CustomerAppointmentServiceProtocol {
     func setAppointment (appointment:CustomerAppointment,
-                                completion: @escaping (_ updated:Bool)->())
+                                completion: @escaping (_ aptId:String?)->())
     func getSingleAppointment(appointmentId: String, serviceProviderId: String, _ completion: @escaping ((CustomerAppointment?) -> ()))
     func getCustomerAppointments (customerId:String,
                              completion: @escaping ((_ appointmentList:[CustomerAppointment]?)->()))
@@ -29,7 +29,7 @@ class CustomerAppointmentService : CustomerAppointmentServiceProtocol {
     }
     
     func setAppointment (appointment:CustomerAppointment,
-                                completion: @escaping (_ updated:Bool)->()) {
+                                completion: @escaping (_ aptId:String?)->()) {
                 
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
@@ -45,12 +45,12 @@ class CustomerAppointmentService : CustomerAppointmentServiceProtocol {
                 let response = try setAptStatus.response.wait()
                 print("Set Appointment Success for \(response.id)")
                 DispatchQueue.main.async {
-                    completion(true)
+                    completion(response.id.toString)
                 }
             } catch {
                 print("Set Appointment \(appointment.appointmentID) Failure")
                 DispatchQueue.main.async {
-                    completion(false)
+                    completion(nil)
                 }
             }
         }
