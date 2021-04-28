@@ -94,9 +94,9 @@ internal protocol Nd_V1_LoggingWorkerV1ClientProtocol: GRPCClient {
   var interceptors: Nd_V1_LoggingWorkerV1ClientInterceptorFactoryProtocol? { get }
 
   func setLog(
-    _ request: Nd_V1_LogInfoMessage,
+    _ request: Nd_V1_VoidMessage,
     callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_LogInfoMessage, Nd_V1_BoolMessage>
+  ) -> UnaryCall<Nd_V1_VoidMessage, Nd_V1_BoolMessage>
 }
 
 extension Nd_V1_LoggingWorkerV1ClientProtocol {
@@ -111,9 +111,9 @@ extension Nd_V1_LoggingWorkerV1ClientProtocol {
   ///   - callOptions: Call options.
   /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
   internal func setLog(
-    _ request: Nd_V1_LogInfoMessage,
+    _ request: Nd_V1_VoidMessage,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_LogInfoMessage, Nd_V1_BoolMessage> {
+  ) -> UnaryCall<Nd_V1_VoidMessage, Nd_V1_BoolMessage> {
     return self.makeUnaryCall(
       path: "/nd.v1.LoggingWorkerV1/SetLog",
       request: request,
@@ -126,7 +126,7 @@ extension Nd_V1_LoggingWorkerV1ClientProtocol {
 internal protocol Nd_V1_LoggingWorkerV1ClientInterceptorFactoryProtocol {
 
   /// - Returns: Interceptors to use when invoking 'setLog'.
-  func makeSetLogInterceptors() -> [ClientInterceptor<Nd_V1_LogInfoMessage, Nd_V1_BoolMessage>]
+  func makeSetLogInterceptors() -> [ClientInterceptor<Nd_V1_VoidMessage, Nd_V1_BoolMessage>]
 }
 
 internal final class Nd_V1_LoggingWorkerV1Client: Nd_V1_LoggingWorkerV1ClientProtocol {
@@ -1933,7 +1933,7 @@ internal protocol Nd_V1_NotificationWorkerV1ServerInterceptorFactoryProtocol {
 internal protocol Nd_V1_LoggingWorkerV1Provider: CallHandlerProvider {
   var interceptors: Nd_V1_LoggingWorkerV1ServerInterceptorFactoryProtocol? { get }
 
-  func setLog(request: Nd_V1_LogInfoMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_BoolMessage>
+  func setLog(request: Nd_V1_VoidMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_BoolMessage>
 }
 
 extension Nd_V1_LoggingWorkerV1Provider {
@@ -1949,7 +1949,7 @@ extension Nd_V1_LoggingWorkerV1Provider {
     case "SetLog":
       return UnaryServerHandler(
         context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_LogInfoMessage>(),
+        requestDeserializer: ProtobufDeserializer<Nd_V1_VoidMessage>(),
         responseSerializer: ProtobufSerializer<Nd_V1_BoolMessage>(),
         interceptors: self.interceptors?.makeSetLogInterceptors() ?? [],
         userFunction: self.setLog(request:context:)
@@ -1965,7 +1965,7 @@ internal protocol Nd_V1_LoggingWorkerV1ServerInterceptorFactoryProtocol {
 
   /// - Returns: Interceptors to use when handling 'setLog'.
   ///   Defaults to calling `self.makeInterceptors()`.
-  func makeSetLogInterceptors() -> [ServerInterceptor<Nd_V1_LogInfoMessage, Nd_V1_BoolMessage>]
+  func makeSetLogInterceptors() -> [ServerInterceptor<Nd_V1_VoidMessage, Nd_V1_BoolMessage>]
 }
 /// To build a server, implement a class that conforms to this protocol.
 internal protocol Nd_V1_TwilioWorkerV1Provider: CallHandlerProvider {

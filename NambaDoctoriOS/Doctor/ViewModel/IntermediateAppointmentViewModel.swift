@@ -61,7 +61,6 @@ class IntermediateAppointmentViewModel : ObservableObject {
 
         refreshAppointment()
         initChecks()
-        checkForDirectNavigation()
     }
 
     func refreshAppointment () {

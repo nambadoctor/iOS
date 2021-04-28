@@ -69,7 +69,7 @@ class LocalNotificationHandler {
         default:
             completion(true)
         }
-
+        LoggerService().log(appointmentId: "", eventName: "PROCESSED NOTIFICATION")
     }
 
     func notifTappedHelper (userInfo: [AnyHashable: Any]) {
@@ -113,6 +113,7 @@ class LocalNotificationHandler {
         default:
             break
         }
+        LoggerService().log(appointmentId: "", eventName: "TAPPED NOTIFICATION")
     }
 }
 
@@ -129,11 +130,12 @@ class FireLocalNotif {
         
         // show this notification five seconds from now
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
-        
+
         // choose a random identifier
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         
         // add our notification request
         UNUserNotificationCenter.current().add(request)
+        LoggerService().log(appointmentId: "", eventName: "DISPLAYED NOTIFICATION")
     }
 }

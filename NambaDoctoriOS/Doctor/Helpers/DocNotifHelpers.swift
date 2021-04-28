@@ -22,6 +22,7 @@ class DocNotifHelpers : DocNotifHelpersProtocol {
             $0.userID = appointment.customerID.toProto
             $0.id = appointment.appointmentID.toProto
             $0.type = NotifTypes.NewChatMessage.rawValue.toProto
+            //notifID = makeNotifID
         }
 
         sendPushNotification.sendNotif(notifObj: cancelNotifObj)

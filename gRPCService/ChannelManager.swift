@@ -38,14 +38,6 @@ class ChannelManager {
         }
     }
 
-    public func getCallOptions() -> CallOptions {
-        if callOptions == nil {
-            return getAuthHeader()
-        } else {
-            return callOptions!
-        }
-    }
-
     private func createChannel () -> ClientConnection {
         let group = MultiThreadedEventLoopGroup(numberOfThreads: 1)
         print("creating channel")
@@ -56,9 +48,20 @@ class ChannelManager {
         print("created channel")
         return channel!
     }
-
-    private func getAuthHeader() -> CallOptions {
-        let headers:HPACKHeaders = ["authorization": "Bearer \(AuthTokenId)"]
+    
+    public func getCallOptions() -> CallOptions {
+        let headers:HPACKHeaders = ["authorization": "Bearer \(AuthTokenId)",
+                                    "UserId":UserIdHelper().retrieveUserId(),
+                                    "UserType":GetUserTypeHelper.getUserType(),
+                                    "EventDateTime":"\(Date().millisecondsSince1970)",
+                                    "AppointmentId":AppointmentID,
+                                    "SessionId":SessionId,
+                                    "CorrelationId":CorrelationId,
+                                    "AppVersion":VersionNumber,
+                                    "EventMessage":EventMessage,
+                                    "LogLevel":"info",
+                                    "IsProduction":"true",
+                                    "DeviceInfo":""]
         return CallOptions(customMetadata: headers)
     }
 

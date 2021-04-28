@@ -40,20 +40,6 @@ message NotificationRequestMessage{
     google.protobuf.StringValue Type = 5;
 }
 
-message LogInfoMessage {
-	google.protobuf.StringValue UserId = 1;
-    google.protobuf.StringValue UserType = 2;
-    google.protobuf.Int64Value EventDateTime = 3;
-    google.protobuf.StringValue AppointmentId = 4;
-    google.protobuf.StringValue SessionId  = 5;
-    google.protobuf.StringValue CorrelationId = 6;
-    google.protobuf.StringValue AppVersion = 7;
-    google.protobuf.StringValue EventMessage = 8;
-    google.protobuf.StringValue LogLevel = 9;
-    google.protobuf.BoolValue IsProduction = 10;
-	DeviceInfoMessage UserDeviceInfo = 11;
-}
-
 message StringMessage {
     google.protobuf.StringValue Message = 1;
 }
@@ -514,7 +500,7 @@ service NotificationWorkerV1{
 
 service LoggingWorkerV1{
 
-	rpc SetLog(LogInfoMessage) returns (BoolMessage);
+	rpc SetLog(VoidMessage) returns (BoolMessage);
 
 }
 
@@ -526,19 +512,11 @@ service TwilioWorkerV1{
     rpc GetTwilioChatAuthToken (IdMessage) returns (StringMessage);
 }
 
-
-
-
-
 service UserTypeWorkerV1{
 
     rpc GetUserType (VoidMessage) returns (StringMessage);
 
 }
-
-
-
-
 
 service ServiceProviderAppointmentWorkerV1{
 

@@ -61,13 +61,13 @@ class ServiceProviderProfileService : ServiceProviderProfileServiceProtocol {
     }
 
     func getServiceProvider (serviceProviderId:String, _ completion : @escaping (_ DoctorObj:ServiceProviderProfile?)->()) {
+        CorrelationId = UUID().uuidString
+        
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         
         let doctorClient = Nd_V1_ServiceProviderWorkerV1Client(channel: channel)
         
-        print("FIREBASE AUTH \(serviceProviderId)")
-
         let request = Nd_V1_IdMessage.with {
             $0.id = serviceProviderId.toProto
         }
@@ -76,9 +76,9 @@ class ServiceProviderProfileService : ServiceProviderProfileServiceProtocol {
 
         DispatchQueue.global().async {
             do {
-                self.stopwatch.start()
+                LoggerService().log(appointmentId: "", eventName: "REQUESTING SERVICE PROVIDER PROFILE")
                 let response = try getServiceProvider.response.wait()
-                self.stopwatch.stop()
+                LoggerService().log(appointmentId: "", eventName: "RECEIVED SERVICE PROVIDER PROFILE")
                 let doctor = self.serviceProviderMapper.grpcProfileToLocal(profile: response)
                 print("Get Doctor Client Success \(doctor.serviceProviderID)")
                 DispatchQueue.main.async {

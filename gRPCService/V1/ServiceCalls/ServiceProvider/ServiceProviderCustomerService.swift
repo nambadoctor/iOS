@@ -61,7 +61,7 @@ class ServiceProviderCustomerService: ServiceProviderCustomerServiceProtocol {
         
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
-        
+
         // Provide the connection to the generated client.
         let patientClient = Nd_V1_ServiceProviderCustomerWorkerV1Client(channel: channel)
         
