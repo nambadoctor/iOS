@@ -21,6 +21,12 @@ class CustomerReportUploadMapper {
     func localReportToGrpc(report:CustomerReportUpload) -> Nd_V1_CustomerReportUploadMessage {
         return Nd_V1_CustomerReportUploadMessage.with {
             $0.reportID = report.ReportId.toProto
+            $0.serviceRequestID = report.ServiceRequestId.toProto
+            $0.customerID = report.CustomerId.toProto
+            $0.fileName = report.FileName.toProto
+            $0.name = report.Name.toProto
+            $0.fileType = report.FileType.toProto
+            $0.mediaFile = report.MediaFile.toProtoBytes
         }
     }
 }

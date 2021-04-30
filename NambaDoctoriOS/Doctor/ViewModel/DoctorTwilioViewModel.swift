@@ -74,13 +74,13 @@ class DoctorTwilioViewModel: ObservableObject {
             self.videoEnabled.toggle()
         }
     }
-    
+
     func toggleMic () {
         self.viewController?.toggleMic(sender: self) { _ in
             self.micEnabled.toggle()
         }
     }
-    
+
     func leaveRoom () {
         self.videoEnabled = false
         self.micEnabled = true

@@ -22,24 +22,30 @@ class Logon : FindUserTypeViewModelProtocol {
 
         let getUserType = logonClient.getUserType(request, callOptions: callOptions)
 
-        do {
-            LoggerService().log(appointmentId: "", eventName: "REQUESTING USER TYPE")
-            let response = try getUserType.response.wait()
-            LoggerService().log(appointmentId: "", eventName: "RECIEVED USER TYPE SUCCESS")
-            print("UserTypeClient received: \(response.message.toString)")
-            
+        DispatchQueue.global().async {
             do {
+                LoggerService().log(appointmentId: "", eventName: "REQUESTING USER TYPE")
+                let response = try getUserType.response.wait()
+                LoggerService().log(appointmentId: "", eventName: "RECIEVED USER TYPE SUCCESS")
+                print("UserTypeClient received: \(response.message.toString)")
+                
                 let responseSplit = response.message.toString.components(separatedBy: ",")
-                let userStatus = CheckLoginStatus.checkStatus(loggedInStatus: responseSplit[0])
-                UserIdHelper().storeUserId(userId: responseSplit[1])
-                completion(userStatus)
+                
+                DispatchQueue.main.async {
+                    if responseSplit.count > 1 {
+                        let userStatus = CheckLoginStatus.checkStatus(loggedInStatus: responseSplit[0])
+                        UserIdHelper().storeUserId(userId: responseSplit[1])
+                        completion(userStatus)
+                    } else {
+                        completion(.Customer)
+                    }
+                }
+
             } catch {
-                completion(.Customer)
+                completion(nil)
+                print("UserTypeClient failed: \(error.localizedDescription)")
+                LoggerService().log(appointmentId: "", eventName: "RECIEVED USER TYPE FAILED")
             }
-        } catch {
-            completion(nil)
-            print("UserTypeClient failed: \(error.localizedDescription)")
-            LoggerService().log(appointmentId: "", eventName: "RECIEVED USER TYPE FAILED")
         }
     }
 }

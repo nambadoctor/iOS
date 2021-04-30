@@ -269,6 +269,13 @@
 		17BA0ABE25B9ADA600EDE4D1 /* MockUpdateAptStatusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BA0ABD25B9ADA600EDE4D1 /* MockUpdateAptStatusService.swift */; };
 		17BA0AC725B9AE6200EDE4D1 /* UpdateAppointmentStatusProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BA0AC625B9AE6200EDE4D1 /* UpdateAppointmentStatusProtocol.swift */; };
 		17BA0AD025B9B2B600EDE4D1 /* MockAppointmentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BA0ACF25B9B2B600EDE4D1 /* MockAppointmentData.swift */; };
+		17BD2E86263A369A00BB0BDD /* CustomerDetailedAppointmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BD2E85263A369A00BB0BDD /* CustomerDetailedAppointmentView.swift */; };
+		17BD2E88263A39F100BB0BDD /* CustomerReportCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BD2E87263A39F100BB0BDD /* CustomerReportCardView.swift */; };
+		17BD2E8A263A3A1500BB0BDD /* CustomerReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BD2E89263A3A1500BB0BDD /* CustomerReportViewModel.swift */; };
+		17BD2E8C263A3DD000BB0BDD /* CustomerAppointmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BD2E8B263A3DD000BB0BDD /* CustomerAppointmentViewModel.swift */; };
+		17BD2E8E263BD42000BB0BDD /* CustomerDetailedAppointmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BD2E8D263BD42000BB0BDD /* CustomerDetailedAppointmentViewModel.swift */; };
+		17BD2E93263C759600BB0BDD /* CustomerTwilioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BD2E92263C759600BB0BDD /* CustomerTwilioManager.swift */; };
+		17BD2E95263C75B700BB0BDD /* CustomerTwilioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BD2E94263C75B700BB0BDD /* CustomerTwilioViewModel.swift */; };
 		17E3706D25BF123F0004C965 /* TwilioSwiftUIWrap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E3706925BF123E0004C965 /* TwilioSwiftUIWrap.swift */; };
 		17E3706E25BF123F0004C965 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E3706A25BF123E0004C965 /* Utils.swift */; };
 		17E3706F25BF123F0004C965 /* TwilioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E3706B25BF123E0004C965 /* TwilioViewController.swift */; };
@@ -602,6 +609,13 @@
 		17BA0ABD25B9ADA600EDE4D1 /* MockUpdateAptStatusService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUpdateAptStatusService.swift; sourceTree = "<group>"; };
 		17BA0AC625B9AE6200EDE4D1 /* UpdateAppointmentStatusProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateAppointmentStatusProtocol.swift; sourceTree = "<group>"; };
 		17BA0ACF25B9B2B600EDE4D1 /* MockAppointmentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAppointmentData.swift; sourceTree = "<group>"; };
+		17BD2E85263A369A00BB0BDD /* CustomerDetailedAppointmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerDetailedAppointmentView.swift; sourceTree = "<group>"; };
+		17BD2E87263A39F100BB0BDD /* CustomerReportCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerReportCardView.swift; sourceTree = "<group>"; };
+		17BD2E89263A3A1500BB0BDD /* CustomerReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerReportViewModel.swift; sourceTree = "<group>"; };
+		17BD2E8B263A3DD000BB0BDD /* CustomerAppointmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerAppointmentViewModel.swift; sourceTree = "<group>"; };
+		17BD2E8D263BD42000BB0BDD /* CustomerDetailedAppointmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerDetailedAppointmentViewModel.swift; sourceTree = "<group>"; };
+		17BD2E92263C759600BB0BDD /* CustomerTwilioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerTwilioManager.swift; sourceTree = "<group>"; };
+		17BD2E94263C75B700BB0BDD /* CustomerTwilioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerTwilioViewModel.swift; sourceTree = "<group>"; };
 		17E3706925BF123E0004C965 /* TwilioSwiftUIWrap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwilioSwiftUIWrap.swift; sourceTree = "<group>"; };
 		17E3706A25BF123E0004C965 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		17E3706B25BF123E0004C965 /* TwilioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwilioViewController.swift; sourceTree = "<group>"; };
@@ -953,6 +967,8 @@
 		1739EAD82638082F00556044 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				17BD2E8F263C757700BB0BDD /* Twilio */,
+				17BD2E82263A366F00BB0BDD /* DetailedAppointment */,
 				178EB6BF26390CE8009286B1 /* Appointments */,
 				178EB6BE26390CDA009286B1 /* BookDoctor */,
 				1739EAD3263807BB00556044 /* CustomerHome.swift */,
@@ -966,6 +982,10 @@
 				1739EADA2638084100556044 /* CustomerViewModel.swift */,
 				1739EAF9263816A600556044 /* CustomerServiceProviderViewModel.swift */,
 				1739EAFE263820CB00556044 /* DetailedBookDocViewModel.swift */,
+				17BD2E89263A3A1500BB0BDD /* CustomerReportViewModel.swift */,
+				17BD2E8B263A3DD000BB0BDD /* CustomerAppointmentViewModel.swift */,
+				17BD2E8D263BD42000BB0BDD /* CustomerDetailedAppointmentViewModel.swift */,
+				17BD2E94263C75B700BB0BDD /* CustomerTwilioViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1506,6 +1526,23 @@
 			name = MockData;
 			sourceTree = "<group>";
 		};
+		17BD2E82263A366F00BB0BDD /* DetailedAppointment */ = {
+			isa = PBXGroup;
+			children = (
+				17BD2E85263A369A00BB0BDD /* CustomerDetailedAppointmentView.swift */,
+				17BD2E87263A39F100BB0BDD /* CustomerReportCardView.swift */,
+			);
+			path = DetailedAppointment;
+			sourceTree = "<group>";
+		};
+		17BD2E8F263C757700BB0BDD /* Twilio */ = {
+			isa = PBXGroup;
+			children = (
+				17BD2E92263C759600BB0BDD /* CustomerTwilioManager.swift */,
+			);
+			path = Twilio;
+			sourceTree = "<group>";
+		};
 		17E3706825BF12340004C965 /* TwilioService */ = {
 			isa = PBXGroup;
 			children = (
@@ -1932,6 +1969,7 @@
 				1742504A25BAE39E00523B94 /* GeneralDoctorHelpers.swift in Sources */,
 				1772339825B72FF2002B814A /* CheckLoginStatus.swift in Sources */,
 				1739EADB2638084100556044 /* CustomerViewModel.swift in Sources */,
+				17BD2E8A263A3A1500BB0BDD /* CustomerReportViewModel.swift in Sources */,
 				1796320525AEE7B5002E466C /* Helpers.swift in Sources */,
 				176AA1422637BD8000F02346 /* CustomerMedicine.swift in Sources */,
 				179BD39E25DE452D0076F391 /* LocalNotificationHandler.swift in Sources */,
@@ -1961,6 +1999,7 @@
 				179C44BE2627ED6C0073F4E0 /* DBReferences.swift in Sources */,
 				17AE6D1825E24B2200B18292 /* DoctorsPatientsView.swift in Sources */,
 				17EC7670260EE9D60002BA75 /* MedicineEntryView.swift in Sources */,
+				17BD2E95263C75B700BB0BDD /* CustomerTwilioViewModel.swift in Sources */,
 				171647C32604479900BB5B5A /* ServiceProviderAppointmentService.swift in Sources */,
 				176AA1792637BF7F00F02346 /* CustomerAppInfoMapper.swift in Sources */,
 				17626CCD25D5C02F00C36A99 /* DoctorHomeListeners.swift in Sources */,
@@ -1995,6 +2034,7 @@
 				17B5D13725B75A04009D6A42 /* AppointmentsView.swift in Sources */,
 				176AA1B02637C96700F02346 /* CustomerMedicineMapper.swift in Sources */,
 				171646FC26030C6300BB5B5A /* ServiceProviderAppointmentObjectMapper.swift in Sources */,
+				17BD2E88263A39F100BB0BDD /* CustomerReportCardView.swift in Sources */,
 				1785A570261A353F009667D1 /* IntermediateView.swift in Sources */,
 				1765BD072639185C0087664D /* LoggerService.swift in Sources */,
 				1728B76D25B38156001D554E /* Logon.swift in Sources */,
@@ -2065,6 +2105,7 @@
 				171647782603485F00BB5B5A /* ServiceProviderServiceRequestServiceProtocol.swift in Sources */,
 				17EC75FC260CF00C0002BA75 /* InvestigationsViewModel.swift in Sources */,
 				171647012603111400BB5B5A /* ServiceProviderAppInfoMapper.swift in Sources */,
+				17BD2E8C263A3DD000BB0BDD /* CustomerAppointmentViewModel.swift in Sources */,
 				171647BE2604470D00BB5B5A /* ServiceProviderPrescriptionServiceProtocol.swift in Sources */,
 				172B851125AEE46700C6B035 /* OTPVerificationView.swift in Sources */,
 				1716468D2602B44100BB5B5A /* ServiceProviderAvailability.swift in Sources */,
@@ -2104,6 +2145,7 @@
 				172B851025AEE46700C6B035 /* PhoneVerificationview.swift in Sources */,
 				17E869D925CE75E1000B0952 /* PatientReportView.swift in Sources */,
 				176AA15B2637BE4600F02346 /* CustomerServiceRequest.swift in Sources */,
+				17BD2E86263A369A00BB0BDD /* CustomerDetailedAppointmentView.swift in Sources */,
 				1742523E25BD98F400523B94 /* ServiceProviderCustomerService.swift in Sources */,
 				176AA18D2637C0AF00F02346 /* CustomerPhoneNumberMapper.swift in Sources */,
 				1716483826084EDE00BB5B5A /* GrpcHelpers.swift in Sources */,
@@ -2120,6 +2162,7 @@
 				176AA1212637BC8200F02346 /* CustomerEducation.swift in Sources */,
 				176AA1292637BCB600F02346 /* CustomerExperienceMessage.swift in Sources */,
 				17424F7A25BAC62A00523B94 /* TwilioAccessTokenProtocol.swift in Sources */,
+				17BD2E8E263BD42000BB0BDD /* CustomerDetailedAppointmentViewModel.swift in Sources */,
 				17B5D16425B75CE7009D6A42 /* CheckAppointmentStatus.swift in Sources */,
 				1716467E2602B33F00BB5B5A /* ServiceProviderAddress.swift in Sources */,
 				17E8694625CDDC09000B0952 /* DoctorSheetItem.swift in Sources */,
@@ -2163,6 +2206,7 @@
 				171648722609DFC400BB5B5A /* ColoredButtons.swift in Sources */,
 				17A020782630201200BD828F /* LocalNotifStoreHelper.swift in Sources */,
 				176AA0C42637B85B00F02346 /* ServiceProviderAndCustomer.grpc.swift in Sources */,
+				17BD2E93263C759600BB0BDD /* CustomerTwilioManager.swift in Sources */,
 				1796322E25AEE9D6002E466C /* GlobalPopupHelpers.swift in Sources */,
 				17513B2226102BF600542C00 /* ImageViewHelper.swift in Sources */,
 				176AA14C2637BDBD00F02346 /* CustomerPrescription.swift in Sources */,

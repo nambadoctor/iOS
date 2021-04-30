@@ -7,33 +7,7 @@
 
 import SwiftUI
 
-class CustomerAppointmentViewModel : ObservableObject {
-    var appointment:CustomerAppointment
-    
-    @Published var takeToDetailedAppointmentView:Bool = false
-    
-    init(appointment:CustomerAppointment) {
-        self.appointment = appointment
-    }
-    
-    var appointmentStatus:String {
-        if appointment.status == ConsultStateK.Confirmed.rawValue {
-            return "Appointment Upcoming"
-        } else if appointment.status == ConsultStateK.StartedConsultation.rawValue {
-            return "In-Progress"
-        } else {
-            return "Please wait for prescription"
-        }
-    }
 
-    var startDateMonth:String {
-        return Helpers.load3LetterMonthName(timeStamp: appointment.scheduledAppointmentStartTime)
-    }
-    
-    var startDate:String {
-        return Helpers.loadDate(timeStamp: appointment.scheduledAppointmentStartTime)
-    }
-}
 
 struct CustomerAppointmentsCardView: View {
     
@@ -69,7 +43,7 @@ struct CustomerAppointmentsCardView: View {
 
                 if self.customerAppointmentVM.takeToDetailedAppointmentView {
                     NavigationLink("",
-                                   destination: Text(""),
+                                   destination: CustomerDetailedAppointmentView(customerDetailedAppointmentVM: customerAppointmentVM.makeDetailedAppointmentVM()),
                                    isActive: self.$customerAppointmentVM.takeToDetailedAppointmentView)
                 }
             }.padding()
@@ -80,5 +54,8 @@ struct CustomerAppointmentsCardView: View {
         .shadow(radius: 5)
         .padding(.horizontal)
         .padding(.top, 5)
+        .onTapGesture {
+            customerAppointmentVM.takeToDetailedView()
+        }
     }
 }

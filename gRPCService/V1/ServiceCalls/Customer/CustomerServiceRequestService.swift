@@ -16,7 +16,7 @@ protocol CustomerServiceRequestServiceProtocol {
                             completion: @escaping ((_ responseId:String?)->()))
 }
 
-class CustomerServiceRequestService {
+class CustomerServiceRequestService : CustomerServiceRequestServiceProtocol {
     var serviceRequestMapper:CustomerServiceRequestMapper
     
     init(serviceRequestMapper:CustomerServiceRequestMapper = CustomerServiceRequestMapper()) {

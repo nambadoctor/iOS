@@ -46,6 +46,7 @@ class CustomerProfileService : CustomerProfileServiceProtocol {
     }
 
     func getCustomerProfile (customerId:String, _ completion : @escaping (_ customerObj:CustomerProfile?)->()) {
+        let stopwatch = StopwatchManager(callingClass: "CUSTOMER PROFILE")
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         
@@ -59,7 +60,9 @@ class CustomerProfileService : CustomerProfileServiceProtocol {
 
         DispatchQueue.global().async {
             do {
+                stopwatch.start()
                 let response = try getCustomer.response.wait()
+                stopwatch.stop()
                 let customer = self.customerProfileMapper.grpcCustomerToLocal(customer: response)
                 print("Get Customer Success \(customer.customerID)")
                 DispatchQueue.main.async {
