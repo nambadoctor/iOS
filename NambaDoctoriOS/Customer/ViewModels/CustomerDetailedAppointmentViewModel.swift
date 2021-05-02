@@ -14,9 +14,14 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     @Published var reports:[CustomerReport] = [CustomerReport]()
     
     @Published var imagePickerVM:ImagePickerViewModel = ImagePickerViewModel()
+    @Published var customerTwilioViewModel:CustomerTwilioViewModel
+    @Published var customerChatViewModel:CustomerChatViewModel
     
     @Published var allergy:String = ""
     @Published var reason:String = ""
+    
+    @Published var showTwilioRoom:Bool = false
+    @Published var takeToChat:Bool = false
     
     var customerServiceRequestService:CustomerServiceRequestServiceProtocol
     var customerReportService:CustomerReportServiceProtocol
@@ -28,6 +33,8 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
         self.appointment = appointment
         self.customerServiceRequestService = customerServiceRequestService
         self.customerReportService = customerReportService
+        self.customerTwilioViewModel = CustomerTwilioViewModel(appointment: appointment)
+        self.customerChatViewModel = CustomerChatViewModel(appointment: appointment)
         imagePickerVM.imagePickerDelegate = self
         
         self.getServiceRequest()
@@ -39,7 +46,6 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
                                                              serviceRequestId: self.appointment.serviceRequestID,
                                                              customerId: self.appointment.customerID) { serviceRequest in
             if serviceRequest != nil {
-                print("SETTING SERVICE REQUEST")
                 self.serviceRequest = serviceRequest!
                 self.allergy = serviceRequest!.allergy.AllergyName
                 self.reason = serviceRequest!.reason
@@ -71,6 +77,19 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
             }
         }
     }
+    
+    func startConsultation() {
+        CommonDefaultModifiers.showLoader()
+        customerTwilioViewModel.startRoom() { success in
+            if success {
+                self.showTwilioRoom = true
+                CommonDefaultModifiers.hideLoader()
+            } else {
+                
+            }
+        }
+    }
+
 }
 
 extension CustomerDetailedAppointmentViewModel : ImagePickedDelegate {

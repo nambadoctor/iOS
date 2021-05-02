@@ -9,7 +9,7 @@
 import SwiftUI
 import UIKit
 
-struct TwilioViewHelper: UIViewControllerRepresentable {
+struct DoctorTwilioViewHelper: UIViewControllerRepresentable {
     
     @ObservedObject var doctorTwilioVM:DoctorTwilioViewModel
 

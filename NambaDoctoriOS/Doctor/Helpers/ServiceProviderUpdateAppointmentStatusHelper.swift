@@ -7,7 +7,7 @@
 
 import Foundation
 
-class UpdateAppointmentStatusHelper:UpdateAppointmentStatusProtocol {
+class ServiceProviderUpdateAppointmentStatusHelper:ServiceProviderUpdateAppointmentStatusProtocol {
     
     let AppointmentServiceCalls:ServiceProviderAppointmentServiceProtocol
     

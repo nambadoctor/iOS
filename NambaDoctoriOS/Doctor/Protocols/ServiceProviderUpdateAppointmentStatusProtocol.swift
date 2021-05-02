@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol UpdateAppointmentStatusProtocol {
+protocol ServiceProviderUpdateAppointmentStatusProtocol {
     func toCancelled (appointment:inout ServiceProviderAppointment, completion: @escaping (_ success:Bool) -> ())
     
     func updateToStartedConsultation (appointment:inout ServiceProviderAppointment, completion: @escaping (_ success:Bool) -> ())

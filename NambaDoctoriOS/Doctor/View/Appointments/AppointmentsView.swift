@@ -31,7 +31,7 @@ struct AppointmentsView: View {
             
             if doctorViewModel.takeToDetailedAppointment {
                 NavigationLink("",
-                               destination: IntermediateView(appointment: doctorViewModel.selectedAppointment!),
+                               destination: DoctorIntermediateView(appointment: doctorViewModel.selectedAppointment!),
                                isActive: $doctorViewModel.takeToDetailedAppointment)
             }
         }

@@ -12,7 +12,7 @@ var TwilioAccessTokenString = ""
 
 class RetrieveTwilioAccessToken : TwilioAccessTokenProtocol {
     func retrieveToken (appointmentId:String,
-                        serviceProviderId:String,
+                        userId:String,
                         completion: @escaping ((_ success:Bool, _ twilioToke:String?)->())) {
                 
         let channel = ChannelManager.sharedChannelManager.getChannel()
@@ -21,7 +21,7 @@ class RetrieveTwilioAccessToken : TwilioAccessTokenProtocol {
         
         let request = Nd_V1_TwilioAuthRequest.with {
             $0.roomID = appointmentId.toProto
-            $0.userID = serviceProviderId.toProto
+            $0.userID = userId.toProto
         }
 
         let getTwilioToken = twilioClient.getTwilioVideoAuthToken(request, callOptions: callOptions)

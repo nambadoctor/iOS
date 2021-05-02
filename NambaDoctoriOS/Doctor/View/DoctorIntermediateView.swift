@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct IntermediateView: View {
+struct DoctorIntermediateView: View {
     @ObservedObject var intermediateVM:IntermediateAppointmentViewModel
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     

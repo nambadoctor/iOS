@@ -1,30 +1,29 @@
 //
-//  ChatViewModel.swift
+//  CustomerChatViewModel.swift
 //  NambaDoctoriOS
 //
-//  Created by Surya Manivannan on 4/14/21.
+//  Created by Surya Manivannan on 4/30/21.
 //
 
 import Foundation
 
-class DoctorChatViewModel: ObservableObject {
-    var appointment:ServiceProviderAppointment
+class CustomerChatViewModel: ObservableObject {
+    var appointment:CustomerAppointment
     
     private var dbRef:DBReferences
     private var realtimeDBRef:RealtimeDBListener
 
     @Published var messageList:[LocalChatMessage] = [LocalChatMessage]()
     @Published var currentTextEntry:String = ""
-    
+
     @Published var takeToBottomListener:Bool = false
-    
-    init(appointment:ServiceProviderAppointment) {
+
+    init(appointment:CustomerAppointment) {
         self.appointment = appointment
         self.dbRef = DBReferences(serviceProviderId: appointment.serviceProviderID, customerId: appointment.customerID)
         self.realtimeDBRef = RealtimeDBListener(dbQuery: dbRef.getChatToReadRefForServiceProvider(serviceProviderId: appointment.serviceProviderID, customerId: appointment.customerID))
         
         startMessageAddedListener()
-        docAutoNav.enterChatRoom(appointmentId: appointment.appointmentID)
     }
 
     private func startMessageAddedListener () {
@@ -66,7 +65,7 @@ class DoctorChatViewModel: ObservableObject {
     }
 
     public func makeMessage() -> ChatMessage {
-        return ChatMessage(messageId: UUID().uuidString, message: currentTextEntry, senderId: appointment.serviceProviderID, timeStamp: Date().millisecondsSince1970, appointmentId: appointment.appointmentID, serviceProviderId: appointment.serviceProviderID, customerId: appointment.customerID)
+        return ChatMessage(messageId: UUID().uuidString, message: currentTextEntry, senderId: appointment.customerID, timeStamp: Date().millisecondsSince1970, appointmentId: appointment.appointmentID, serviceProviderId: appointment.serviceProviderID, customerId: appointment.customerID)
     }
 
     public func writeMessage () {
@@ -79,10 +78,10 @@ class DoctorChatViewModel: ObservableObject {
             let dbWriter = RealtimeDBWriter(dbRef: dbRef)
             message.messageId = keyId
             dbWriter.writeData(object: message)
-            DocNotifHelpers(appointment: appointment).fireChatMessageNotif(message: message.message)
+            //TODO: Fire notif for each new chat
         }
     }
-    
+
     public func checkIfMessageIsFromCurrentUser (message:ChatMessage) -> Bool {
         if message.senderId == UserIdHelper().retrieveUserId() {
             return true
@@ -90,9 +89,10 @@ class DoctorChatViewModel: ObservableObject {
             return false
         }
     }
-    
+
     public func preSetMessageSelected (message:String) {
         currentTextEntry = message
         writeMessage()
     }
 }
+

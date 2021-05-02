@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-var helperMessages:[String] = ["Hello, I am waiting in the consultation room",
+var DoctorChatHelperMessages:[String] = ["Hello, I am waiting in the consultation room",
                                "Hi, can we have our consultation earlier?",
                                "Sorry, I will be a late for our consultation",
                                "Please upload reports if any"]
@@ -50,7 +50,7 @@ struct DoctorChatRoomView: View {
 
             ScrollView (.horizontal, showsIndicators: false) {
                 HStack {
-                    ForEach(helperMessages, id: \.self) { message in
+                    ForEach(DoctorChatHelperMessages, id: \.self) { message in
                         ZStack {
                             RoundedRectangle(cornerRadius: 10, style: .continuous)
                                 .fill(Color.white)

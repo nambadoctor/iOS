@@ -12,23 +12,39 @@ struct CustomerDetailedAppointmentView: View {
     @ObservedObject var customerDetailedAppointmentVM:CustomerDetailedAppointmentViewModel
     
     var body: some View {
-        VStack (alignment: .leading) {
-            
+        ZStack {
+
             HStack {
                 Button {
-                    
+                    self.customerDetailedAppointmentVM.takeToChat = true
                 } label: {
                     Text("Chat")
                 }
-                
+
                 Button {
-                    
+                    customerDetailedAppointmentVM.startConsultation()
                 } label: {
                     Text("Call")
                 }
             }
-
             
+            if customerDetailedAppointmentVM.showTwilioRoom {
+                CustomerTwilioManager(customerTwilioViewModel: customerDetailedAppointmentVM.customerTwilioViewModel)
+                    .onAppear(){self.customerDetailedAppointmentVM.customerTwilioViewModel.viewController?.connect(sender: customerDetailedAppointmentVM)}
+            }
+
+            if customerDetailedAppointmentVM.takeToChat {
+                NavigationLink("",
+                               destination: CustomerChatRoomView(chatVM: self.customerDetailedAppointmentVM.customerChatViewModel),
+                               isActive: $customerDetailedAppointmentVM.takeToChat)
+            }
+
+            appointmentFinishedView
+        }
+    }
+
+    var appointmentFinishedView : some View {
+        VStack (alignment: .leading) {
             if customerDetailedAppointmentVM.serviceRequest != nil {
                 Text("ALLERGIES:")
                     .font(.footnote)

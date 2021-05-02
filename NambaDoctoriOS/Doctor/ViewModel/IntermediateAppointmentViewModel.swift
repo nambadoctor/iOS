@@ -33,12 +33,12 @@ class IntermediateAppointmentViewModel : ObservableObject {
     @Published var showTwilioRoom:Bool = false
     @Published var collapseExtraDetailEntry:Bool = true
     
-    private var updateAppointmentStatus:UpdateAppointmentStatusProtocol
+    private var updateAppointmentStatus:ServiceProviderUpdateAppointmentStatusProtocol
     private var docNotifHelper:DocNotifHelpers
     private var doctorAlertHelper:DoctorAlertHelpersProtocol
 
     init(appointment:ServiceProviderAppointment,
-         updateAppointmentStatus:UpdateAppointmentStatusProtocol = UpdateAppointmentStatusHelper(),
+         updateAppointmentStatus:ServiceProviderUpdateAppointmentStatusProtocol = ServiceProviderUpdateAppointmentStatusHelper(),
          doctorAlertHelper:DoctorAlertHelpersProtocol = DoctorAlertHelpers()) {
         self.appointment = appointment
 

@@ -15,7 +15,7 @@ struct DoctorTwilioManager: View {
 
     var body: some View {
         ZStack {
-            TwilioViewHelper(doctorTwilioVM: DoctorTwilioVM)
+            DoctorTwilioViewHelper(doctorTwilioVM: DoctorTwilioVM)
                 .frame(width: DoctorTwilioVM.collapseCall ? 140 : UIScreen.main.bounds.width,
                        height: DoctorTwilioVM.collapseCall ? 200 : UIScreen.main.bounds.height)
                 .position(DoctorTwilioVM.collapseCall ? twilioPosition : CGPoint(x: UIScreen.main.bounds.width/2, y: UIScreen.main.bounds.height/2))

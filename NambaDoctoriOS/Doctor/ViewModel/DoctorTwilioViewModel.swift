@@ -30,11 +30,11 @@ class DoctorTwilioViewModel: ObservableObject {
     var twilioDelegate:TwilioDelegate? = nil
 
     private var twilioAccessTokenHelper:TwilioAccessTokenProtocol
-    private var updateAppointmentStatus:UpdateAppointmentStatusProtocol
+    private var updateAppointmentStatus:ServiceProviderUpdateAppointmentStatusProtocol
     
     init(appointment:ServiceProviderAppointment,
          twilioAccessTokenHelper:TwilioAccessTokenProtocol = RetrieveTwilioAccessToken(),
-         updateAppointmentStatus:UpdateAppointmentStatusProtocol = UpdateAppointmentStatusHelper()) {
+         updateAppointmentStatus:ServiceProviderUpdateAppointmentStatusProtocol = ServiceProviderUpdateAppointmentStatusHelper()) {
         self.appointment = appointment
         self.twilioAccessTokenHelper = twilioAccessTokenHelper
         self.updateAppointmentStatus = updateAppointmentStatus
@@ -44,7 +44,7 @@ class DoctorTwilioViewModel: ObservableObject {
 
     func startRoom(completion: @escaping (_ success:Bool)->()) {
         docAutoNav.enterTwilioRoom(appointmentId: self.appointment.appointmentID)
-        self.twilioAccessTokenHelper.retrieveToken(appointmentId: self.appointment.appointmentID, serviceProviderId: self.appointment.serviceProviderID) { (success, token) in
+        self.twilioAccessTokenHelper.retrieveToken(appointmentId: self.appointment.appointmentID, userId: self.appointment.serviceProviderID) { (success, token) in
             if success {
                 self.viewController = UIStoryboard(name: "Twilio", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as? ViewController
                 self.viewController!.twilioEventDelegate = self

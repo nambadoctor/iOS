@@ -9,6 +9,6 @@ import Foundation
 
 protocol TwilioAccessTokenProtocol {
     func retrieveToken (appointmentId:String,
-                        serviceProviderId:String,
+                        userId:String,
                         completion: @escaping ((_ success:Bool, _ twilioToke:String?)->()))
 }
