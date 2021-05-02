@@ -7,10 +7,12 @@
 
 import Foundation
 import SwiftUI
+import PDFKit
 
 class CustomerDetailedAppointmentViewModel: ObservableObject {
     @Published var appointment:CustomerAppointment
     @Published var serviceRequest:CustomerServiceRequest? = nil
+    @Published var prescription:CustomerPrescription? = nil
     @Published var reports:[CustomerReport] = [CustomerReport]()
     
     @Published var imagePickerVM:ImagePickerViewModel = ImagePickerViewModel()
@@ -19,6 +21,9 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     
     @Published var allergy:String = ""
     @Published var reason:String = ""
+    
+    @Published var prescriptionPDF:Data? = nil
+    @Published var imageLoader:ImageLoader? = nil
     
     @Published var showTwilioRoom:Bool = false
     @Published var takeToChat:Bool = false
@@ -38,6 +43,8 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
         imagePickerVM.imagePickerDelegate = self
         
         self.getServiceRequest()
+        self.getPrescription()
+        self.getPrescriptionPDF()
         self.getReports()
     }
     
@@ -78,6 +85,42 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
         }
     }
     
+    func getPrescription() {
+        CustomerPrescriptionService().getPrescription(customerId: UserIdHelper().retrieveUserId(), serviceRequestId: appointment.serviceRequestID, appointmentId: appointment.appointmentID) { prescription in
+            guard prescription != nil else { return }
+
+            if prescription!.medicineList.count != 0 {
+                self.getPrescriptionPDF()
+            }
+            
+            if !prescription!.fileInfo.FileType.isEmpty {
+                self.getPrescription()
+            }
+        }
+    }
+    
+    func getPrescriptionPDF () {
+        CustomerPrescriptionService().getPrescriptionPDF(serviceProviderId: appointment.serviceProviderID, customerId: appointment.customerID, appointmentId: appointment.appointmentID, serviceRequestId: appointment.serviceRequestID) { data in
+            if data != nil {
+                self.prescriptionPDF = data!
+            }
+        }
+    }
+    
+    func getPrescriptionImage () {
+        CustomerPrescriptionService().downloadPrescription(prescriptionID: prescription!.prescriptionID) { url in
+            if url != nil {
+                self.imageLoader = ImageLoader(urlString: url!) { success in
+                    if !success {
+                        self.imageLoader = nil
+                    } else {
+                        //self.showRemoveButton = true
+                    }
+                }
+            }
+        }
+    }
+    
     func startConsultation() {
         CommonDefaultModifiers.showLoader()
         customerTwilioViewModel.startRoom() { success in
@@ -89,7 +132,6 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
             }
         }
     }
-
 }
 
 extension CustomerDetailedAppointmentViewModel : ImagePickedDelegate {

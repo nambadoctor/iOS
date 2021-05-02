@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PDFKit
 
 struct CustomerDetailedAppointmentView: View {
     
@@ -13,36 +14,46 @@ struct CustomerDetailedAppointmentView: View {
     
     var body: some View {
         ZStack {
-
-            HStack {
-                Button {
-                    self.customerDetailedAppointmentVM.takeToChat = true
-                } label: {
-                    Text("Chat")
+            
+            ScrollView {
+                HStack {
+                    Button {
+                        self.customerDetailedAppointmentVM.takeToChat = true
+                    } label: {
+                        Text("Chat")
+                    }
+                    
+                    Button {
+                        customerDetailedAppointmentVM.startConsultation()
+                    } label: {
+                        Text("Call")
+                    }
                 }
-
-                Button {
-                    customerDetailedAppointmentVM.startConsultation()
-                } label: {
-                    Text("Call")
+                
+                if customerDetailedAppointmentVM.imageLoader != nil {
+                    ImageView(imageLoader: customerDetailedAppointmentVM.imageLoader!)
                 }
+                
+                if customerDetailedAppointmentVM.prescriptionPDF != nil {
+                    PDFKitView(data: customerDetailedAppointmentVM.prescriptionPDF!)
+                }
+                
+                appointmentFinishedView
             }
             
             if customerDetailedAppointmentVM.showTwilioRoom {
                 CustomerTwilioManager(customerTwilioViewModel: customerDetailedAppointmentVM.customerTwilioViewModel)
                     .onAppear(){self.customerDetailedAppointmentVM.customerTwilioViewModel.viewController?.connect(sender: customerDetailedAppointmentVM)}
             }
-
+            
             if customerDetailedAppointmentVM.takeToChat {
                 NavigationLink("",
                                destination: CustomerChatRoomView(chatVM: self.customerDetailedAppointmentVM.customerChatViewModel),
                                isActive: $customerDetailedAppointmentVM.takeToChat)
             }
-
-            appointmentFinishedView
         }
     }
-
+    
     var appointmentFinishedView : some View {
         VStack (alignment: .leading) {
             if customerDetailedAppointmentVM.serviceRequest != nil {
@@ -58,7 +69,7 @@ struct CustomerDetailedAppointmentView: View {
                 
                 ExpandingTextView(text: self.$customerDetailedAppointmentVM.reason)
             }
-
+            
             VStack (alignment: .leading) {
                 HStack (spacing: 3) {
                     Image("folder")
@@ -70,7 +81,7 @@ struct CustomerDetailedAppointmentView: View {
                         .foregroundColor(Color.black.opacity(0.4))
                         .bold()
                 }
-
+                
                 if !self.customerDetailedAppointmentVM.reports.isEmpty {
                     ScrollView (.horizontal) {
                         HStack {

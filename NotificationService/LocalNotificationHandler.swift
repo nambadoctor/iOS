@@ -121,10 +121,14 @@ class FireLocalNotif {
     func fire (userInfo:[AnyHashable: Any]) {
         let body = userInfo[AnyHashable("body")] as? String
         let title = userInfo[AnyHashable("title")] as? String
+        
+        let warning = userInfo[AnyHashable("title")] as? String
+        
+        guard warning != nil else { return }
 
         let content = UNMutableNotificationContent()
-        content.title = "\(title)"
-        content.subtitle = "\(body)"
+        content.title = "\(title ?? "")"
+        content.subtitle = "\(body ?? "")"
         content.userInfo = userInfo
         content.sound = UNNotificationSound.default
         

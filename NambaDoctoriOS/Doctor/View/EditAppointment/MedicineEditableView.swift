@@ -106,7 +106,7 @@ struct MedicineEditableView: View {
                     LocalPickedImageDisplayView(imagePickerVM: medicineVM.imagePickerVM)
                 }
             }
-    
+
             HStack {
                 LargeButton(title: "Add Manually",
                             backgroundColor: Color.white,
