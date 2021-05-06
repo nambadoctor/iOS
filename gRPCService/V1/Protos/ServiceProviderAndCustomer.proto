@@ -142,6 +142,8 @@ message ServiceProviderAppInfo{
 
     google.protobuf.StringValue AppInfoId = 4;
 
+    google.protobuf.StringValue DeviceTokenType = 5;
+
 }
 
 message ServiceProviderAvailability{
@@ -710,6 +712,8 @@ message CustomerAppInfo{
     google.protobuf.StringValue DeviceToken = 3;
 
     google.protobuf.StringValue AppInfoId = 4;
+
+    google.protobuf.StringValue DeviceTokenType = 5;
 
 }
 

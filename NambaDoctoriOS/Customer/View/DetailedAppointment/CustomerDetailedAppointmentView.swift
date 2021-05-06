@@ -10,66 +10,60 @@ import PDFKit
 
 struct CustomerDetailedAppointmentView: View {
     
+    @Environment(\.presentationMode) var presentationMode
     @ObservedObject var customerDetailedAppointmentVM:CustomerDetailedAppointmentViewModel
     
     var body: some View {
         ZStack {
-            
-            ScrollView {
-                HStack {
-                    Button {
-                        self.customerDetailedAppointmentVM.takeToChat = true
-                    } label: {
-                        Text("Chat")
+
+            VStack {
+                header
+                
+                VStack {
+                    if customerDetailedAppointmentVM.imageLoader != nil {
+                        ImageView(imageLoader: customerDetailedAppointmentVM.imageLoader!)
                     }
-                    
-                    Button {
-                        customerDetailedAppointmentVM.startConsultation()
-                    } label: {
-                        Text("Call")
+
+                    if customerDetailedAppointmentVM.prescriptionPDF != nil {
+                        PDFKitView(data: customerDetailedAppointmentVM.prescriptionPDF!)
                     }
                 }
                 
-                if customerDetailedAppointmentVM.imageLoader != nil {
-                    ImageView(imageLoader: customerDetailedAppointmentVM.imageLoader!)
+                if customerDetailedAppointmentVM.appointmentStarted || customerDetailedAppointmentVM.appointmnentUpComing {
+                    AppointmentInProgressView
                 }
-                
-                if customerDetailedAppointmentVM.prescriptionPDF != nil {
-                    PDFKitView(data: customerDetailedAppointmentVM.prescriptionPDF!)
-                }
-                
-                appointmentFinishedView
             }
-            
+
             if customerDetailedAppointmentVM.showTwilioRoom {
                 CustomerTwilioManager(customerTwilioViewModel: customerDetailedAppointmentVM.customerTwilioViewModel)
                     .onAppear(){self.customerDetailedAppointmentVM.customerTwilioViewModel.viewController?.connect(sender: customerDetailedAppointmentVM)}
             }
-            
+
             if customerDetailedAppointmentVM.takeToChat {
                 NavigationLink("",
                                destination: CustomerChatRoomView(chatVM: self.customerDetailedAppointmentVM.customerChatViewModel),
                                isActive: $customerDetailedAppointmentVM.takeToChat)
             }
-        }
+            
+        }.padding(.horizontal)
     }
-    
-    var appointmentFinishedView : some View {
-        VStack (alignment: .leading) {
+
+    var AppointmentInProgressView : some View {
+        VStack (alignment: .leading, spacing: 10) {
             if customerDetailedAppointmentVM.serviceRequest != nil {
-                Text("ALLERGIES:")
+                Text("Do you have any allergies?")
                     .font(.footnote)
                     .foregroundColor(.gray)
                 
-                ExpandingTextView(text: self.$customerDetailedAppointmentVM.allergy)
+                SideBySideCheckBox(isChecked: self.$customerDetailedAppointmentVM.allergy, title1: "Yes", title2: "No")
                 
-                Text("REASON:")
+                Text("Please select your reason")
                     .font(.footnote)
                     .foregroundColor(.gray)
                 
                 ExpandingTextView(text: self.$customerDetailedAppointmentVM.reason)
             }
-            
+
             VStack (alignment: .leading) {
                 HStack (spacing: 3) {
                     Image("folder")
@@ -81,7 +75,7 @@ struct CustomerDetailedAppointmentView: View {
                         .foregroundColor(Color.black.opacity(0.4))
                         .bold()
                 }
-                
+
                 if !self.customerDetailedAppointmentVM.reports.isEmpty {
                     ScrollView (.horizontal) {
                         HStack {
@@ -104,5 +98,97 @@ struct CustomerDetailedAppointmentView: View {
                 .modifier(ImagePickerModifier(imagePickerVM: self.customerDetailedAppointmentVM.imagePickerVM))
             }
         }
+    }
+    
+    var header : some View {
+        VStack (alignment: .leading) {
+            Text("Appointment On: \(customerDetailedAppointmentVM.appointmentScheduledStartTime)")
+                .font(.subheadline)
+                .foregroundColor(.gray)
+                .bold()
+                .padding(.top)
+            
+            Divider().background(Color.blue.opacity(0.4))
+            
+            HStack (alignment: .center) {
+                
+                if customerDetailedAppointmentVM.docProfPicImageLoader != nil {
+                    ImageView(imageLoader: customerDetailedAppointmentVM.docProfPicImageLoader!, height: 100, width: 100)
+                }
+                
+                VStack (alignment: .leading) {
+                    Text(customerDetailedAppointmentVM.serviceProviderName)
+                    Text(customerDetailedAppointmentVM.serviceProviderFee)
+                }
+                
+                Spacer()
+            }
+
+            actionButtons
+            
+            Divider().background(Color.blue.opacity(0.4))
+        }
+    }
+    
+    var actionButtons : some View {
+        HStack {
+            
+            if customerDetailedAppointmentVM.appointmnentUpComing {
+                Button(action: {
+                    customerDetailedAppointmentVM.cancelAppointment { success in
+                        if success {
+                            killView()
+                        }
+                    }
+                }, label: {
+                    ZStack {
+                        Image("xmark")
+                            .scaleEffect(1.2)
+                            .padding()
+                            .foregroundColor(.red)
+                    }
+                    .overlay(Circle()
+                                .fill(Color.red.opacity(0.2))
+                                .frame(width: 60, height: 60))
+                })
+                Spacer()
+            }
+
+            Button(action: {
+                self.customerDetailedAppointmentVM.takeToChat = true
+            }, label: {
+                ZStack {
+                    Image(systemName: "message")
+                        .scaleEffect(1.2)
+                        .padding()
+                }
+                .overlay(Circle()
+                            .fill(Color.blue.opacity(0.2))
+                            .frame(width: 60, height: 60))
+            })
+            
+            Spacer()
+            
+            if !customerDetailedAppointmentVM.appointmentFinished {
+                Button(action: {
+                    customerDetailedAppointmentVM.startConsultation()
+                }, label: {
+                    ZStack {
+                        Image(systemName: "video")
+                            .scaleEffect(1.2)
+                            .padding()
+                    }
+                    .overlay(Circle()
+                                .fill(Color.blue.opacity(0.2))
+                                .frame(width: 60, height: 60))
+                })
+            }
+        }
+        .padding(.horizontal, 25)
+        .padding(.vertical)
+    }
+    
+    private func killView () {
+        self.presentationMode.wrappedValue.dismiss()
     }
 }

@@ -14,20 +14,22 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     @Published var serviceRequest:CustomerServiceRequest? = nil
     @Published var prescription:CustomerPrescription? = nil
     @Published var reports:[CustomerReport] = [CustomerReport]()
+    @Published var serviceProvider:CustomerServiceProviderProfile? = nil
     
     @Published var imagePickerVM:ImagePickerViewModel = ImagePickerViewModel()
     @Published var customerTwilioViewModel:CustomerTwilioViewModel
     @Published var customerChatViewModel:CustomerChatViewModel
     
-    @Published var allergy:String = ""
+    @Published var allergy:String = "No"
     @Published var reason:String = ""
     
     @Published var prescriptionPDF:Data? = nil
     @Published var imageLoader:ImageLoader? = nil
+    @Published var docProfPicImageLoader:ImageLoader? = nil
     
     @Published var showTwilioRoom:Bool = false
     @Published var takeToChat:Bool = false
-    
+
     var customerServiceRequestService:CustomerServiceRequestServiceProtocol
     var customerReportService:CustomerReportServiceProtocol
     
@@ -42,10 +44,59 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
         self.customerChatViewModel = CustomerChatViewModel(appointment: appointment)
         imagePickerVM.imagePickerDelegate = self
         
+        self.getServiceProvider()
         self.getServiceRequest()
         self.getPrescription()
-        self.getPrescriptionPDF()
         self.getReports()
+    }
+    
+    var appointmentStarted:Bool {
+        if appointment.status == ConsultStateK.StartedConsultation.rawValue {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    var appointmentFinished:Bool {
+        if appointment.status == ConsultStateK.Finished.rawValue ||
+                    appointment.status == ConsultStateK.FinishedAppointment.rawValue {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    var appointmnentUpComing:Bool {
+        if appointment.status == ConsultStateK.Confirmed.rawValue {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    var appointmentScheduledStartTime:String {
+        return "\(Helpers.getTimeFromTimeStamp(timeStamp: appointment.scheduledAppointmentStartTime))"
+    }
+    
+    var appointmentScheduledEndTime:String {
+        return "\(Helpers.getTimeFromTimeStamp(timeStamp: appointment.scheduledAppointmentEndTime))"
+    }
+    
+    var appointmentActualStartTime:String {
+        return "\(Helpers.getTimeFromTimeStamp(timeStamp: appointment.actualAppointmentStartTime))"
+    }
+    
+    var appointmentActualEndTime:String {
+        return "\(Helpers.getTimeFromTimeStamp(timeStamp: appointment.actualAppointmentEndTime))"
+    }
+    
+    var serviceProviderName : String {
+        return appointment.serviceProviderName
+    }
+    
+    var serviceProviderFee : String {
+        return "Fee: ₹\(appointment.serviceFee.clean)"
     }
     
     func getServiceRequest() {
@@ -85,16 +136,27 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
         }
     }
     
+    func getServiceProvider () {
+        CustomerServiceProviderService().getServiceProvider(serviceProviderId: appointment.serviceProviderID) { provider in
+            if provider != nil {
+                self.serviceProvider = provider!
+                self.docProfPicImageLoader = ImageLoader(urlString: provider!.profilePictureURL) { _ in }
+            }
+        }
+    }
+    
     func getPrescription() {
         CustomerPrescriptionService().getPrescription(customerId: UserIdHelper().retrieveUserId(), serviceRequestId: appointment.serviceRequestID, appointmentId: appointment.appointmentID) { prescription in
-            guard prescription != nil else { return }
-
-            if prescription!.medicineList.count != 0 {
-                self.getPrescriptionPDF()
-            }
             
-            if !prescription!.fileInfo.FileType.isEmpty {
-                self.getPrescription()
+            if prescription != nil {
+                self.prescription = prescription!
+                
+//                if !prescription!.medicineList.isEmpty {
+//
+//                }
+                self.getPrescriptionPDF()
+
+                self.getPrescriptionImage()
             }
         }
     }
@@ -120,7 +182,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
             }
         }
     }
-    
+
     func startConsultation() {
         CommonDefaultModifiers.showLoader()
         customerTwilioViewModel.startRoom() { success in
@@ -129,6 +191,23 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
                 CommonDefaultModifiers.hideLoader()
             } else {
                 
+            }
+        }
+    }
+    
+    func cancelAppointment(completion: @escaping (_ successfullyCancelled:Bool)->()) {
+        DoctorAlertHelpers().cancelAppointmentAlert { (cancel) in
+            CommonDefaultModifiers.showLoader()
+            CustomerUpdateAppointmentStatusHelper().toCancelled(appointment: &self.appointment) { (success) in
+                if success {
+                    //TODO: Fire cancelled notification
+                    CommonDefaultModifiers.hideLoader()
+                    completion(success)
+                } else {
+                    GlobalPopupHelpers.setErrorAlert()
+                    CommonDefaultModifiers.hideLoader()
+                    completion(success)
+                }
             }
         }
     }

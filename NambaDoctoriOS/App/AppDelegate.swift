@@ -15,7 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     FirebaseApp.configure()
 
     // [START set_messaging_delegate]
-    Messaging.messaging().delegate = self
     // [END set_messaging_delegate]
     // Register for remote notifications. This shows a permission dialog on first run, to
     // show the dialog at a more appropriate time move this registration accordingly.
@@ -70,7 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     if let messageID = userInfo[gcmMessageIDKey] {
       print("Message ID2: \(messageID)")
     }
-    
+
     LoggerService().log(appointmentId: "", eventName: "NOTIFICATION RECIEVED")
     
     // Print full message.
@@ -91,7 +90,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   // the FCM registration token.
   func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
     print("APNs token retrieved: \(deviceToken)")
-
+    let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+    print(token)
+    DeviceTokenId = token
+    DoctorDefaultModifiers.updateFCMToken()
     // With swizzling disabled you must set the APNs token here.
     // Messaging.messaging().apnsToken = deviceToken
   }
@@ -151,21 +153,4 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
   }
 }
 // [END ios_10_message_handling]
-
-var FCMTokenId = ""
-
-extension AppDelegate : MessagingDelegate {
-  // [START refresh_token]
-  func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-    print("Firebase registration token: \(String(describing: fcmToken))")
-    
-    FCMTokenId = fcmToken!
-    DoctorDefaultModifiers.updateFCMToken()
-
-    let dataDict:[String: String] = ["token": fcmToken ?? ""]
-    NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
-    // TODO: If necessary send token to application server.
-    // Note: This callback is fired at each app startup and whenever a new token is generated.
-  }
-  // [END refresh_token]
-}
+var DeviceTokenId = ""

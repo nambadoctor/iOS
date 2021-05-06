@@ -27,7 +27,7 @@ class CustomerServiceRequestService : CustomerServiceRequestServiceProtocol {
                             serviceRequestId:String,
                             customerId:String,
                             completion: @escaping ((_ serviceRequest:CustomerServiceRequest?)->())) {
-        
+        let stopwatch = StopwatchManager(callingClass: "CUSTOMER GET SERVICE REQUEST")
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         
@@ -43,7 +43,9 @@ class CustomerServiceRequestService : CustomerServiceRequestServiceProtocol {
 
         DispatchQueue.global().async {
             do {
+                stopwatch.start()
                 let response = try getServiceRequestObj.response.wait()
+                stopwatch.stop()
                 let serviceRequest = self.serviceRequestMapper.grpcServiceRequestToLocal(serviceRequest: response)
                 print(serviceRequest)
                 print("ServiceRequestClient received: \(response)")

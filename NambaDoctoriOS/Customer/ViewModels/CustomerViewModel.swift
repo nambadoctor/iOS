@@ -47,8 +47,8 @@ class CustomerViewModel : ObservableObject {
         //update FCM Token
         guard self.customerProfile != nil else { return
         }
-        if !FCMTokenId.isEmpty {
-            self.customerProfile!.appInfo.deviceToken = FCMTokenId
+        if !DeviceTokenId.isEmpty {
+            self.customerProfile!.appInfo.deviceToken = DeviceTokenId
             self.updateCustomer()
         }
     }

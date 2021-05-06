@@ -222,20 +222,18 @@ struct EditableAppointmentView: View {
             Spacer()
             
             if !intermediateVM.appointmentFinished {
-                if !intermediateVM.appointmentFinished {
-                    Button(action: {
-                        intermediateVM.startConsultation()
-                    }, label: {
-                        ZStack {
-                            Image(systemName: "video")
-                                .scaleEffect(1.2)
-                                .padding()
-                        }
-                        .overlay(Circle()
-                                    .fill(Color.blue.opacity(0.2))
-                                    .frame(width: 60, height: 60))
-                    })
-                }
+                Button(action: {
+                    intermediateVM.startConsultation()
+                }, label: {
+                    ZStack {
+                        Image(systemName: "video")
+                            .scaleEffect(1.2)
+                            .padding()
+                    }
+                    .overlay(Circle()
+                                .fill(Color.blue.opacity(0.2))
+                                .frame(width: 60, height: 60))
+                })
             }
         }
         .padding(.horizontal, 25)

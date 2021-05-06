@@ -9,6 +9,7 @@ import Foundation
 
 class SendPushNotification {
     func sendNotif (notifObj: Nd_V1_NotificationRequestMessage) {
+        print("SEND NOTIFICATION CLIENT REACHED")
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let notificiationClient = Nd_V1_NotificationWorkerV1Client(channel: channel)
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()

@@ -12,4 +12,5 @@ struct ServiceProviderAppInfo {
     var authType:String
     var deviceToken:String
     var appInfoID:String
+    var deviceTokenType:String
 }

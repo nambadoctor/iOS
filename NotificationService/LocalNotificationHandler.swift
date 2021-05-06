@@ -39,20 +39,14 @@ func getNotifType(type:String) -> NotifTypes {
 }
 
 class LocalNotificationHandler {
-    
+
     func notifRecieveHelper (userInfo: [AnyHashable: Any], completion: @escaping (_ fire:Bool)->()) {
-        let body = userInfo[AnyHashable("body")]
-        let title = userInfo[AnyHashable("title")]
-        let id = userInfo[AnyHashable("id")]
-        let type = (userInfo[AnyHashable("type")] ?? "") as! String
-        print("NOTIF RECIEVED")
-        guard body != nil, title != nil else { return }
-   
-        let notifType = getNotifType(type: type)
+
+        let values = getValuesFromAPNPayload(userInfo: userInfo)
+
+        let notifType = getNotifType(type: values["type"]!)
         
-        LocalNotifStorer().storeLocalNotif(title: title as! String, body: body as! String, appointmentId: id as! String, notifType: notifType)
-        
-        print("notif type: \(notifType)")
+        LocalNotifStorer().storeLocalNotif(title: values["title"]!, body: values["body"]!, appointmentId: values["id"]!, notifType: notifType)
         
         switch notifType {
         case .AppointmentBooked, .AppointmentCancelled:
@@ -73,14 +67,9 @@ class LocalNotificationHandler {
     }
 
     func notifTappedHelper (userInfo: [AnyHashable: Any]) {
-        let body = userInfo[AnyHashable("body")]
-        let title = userInfo[AnyHashable("title")]
-        let id = userInfo[AnyHashable("id")]
-        let type = (userInfo[AnyHashable("type")] ?? "") as! String
-        
-        guard body != nil, title != nil else { return }
-        
-        let notifType = getNotifType(type: type)
+        let values = getValuesFromAPNPayload(userInfo: userInfo)
+                
+        let notifType = getNotifType(type: values["type"]!)
 
         switch notifType {
         case .AppointmentBooked, .AppointmentCancelled:
@@ -88,10 +77,10 @@ class LocalNotificationHandler {
         case .Paid, .ReportUploaded :
             break
         case .CallInRoom:
-            docAutoNav.navigateToCall(appointmentId: id as! String)
+            docAutoNav.navigateToCall(appointmentId: values["id"]!)
             break
         case .NewChatMessage:
-            docAutoNav.navigateToChat(appointmentId: id as! String)
+            docAutoNav.navigateToChat(appointmentId: values["id"]!)
             break
         default:
             break
@@ -114,6 +103,20 @@ class LocalNotificationHandler {
             break
         }
         LoggerService().log(appointmentId: "", eventName: "TAPPED NOTIFICATION")
+    }
+    
+    private func getValuesFromAPNPayload (userInfo:[AnyHashable: Any]) -> [String:String] {
+        let apnData = userInfo[AnyHashable("aps")] as! NSDictionary
+        let alertData  = apnData["alert"] as! NSDictionary
+        
+        let body = alertData["body"] as! String
+        let title = alertData["title"] as! String
+        let type = alertData["type"] as! String
+        let id = alertData["id"] as! String
+
+        var returnDict:[String:String] = ["body":body, "title":title, "type":type, "id":id]
+        
+        return returnDict
     }
 }
 

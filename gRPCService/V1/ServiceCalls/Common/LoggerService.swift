@@ -11,7 +11,7 @@ var SessionId:String = ""
 var CorrelationId:String = ""
 var AppointmentID:String = ""
 var EventMessage:String = ""
-var VersionNumber:String = "1.46"
+var VersionNumber:String = "1.54"
 
 class LoggerService {
     func log(appointmentId:String, eventName:String) {
