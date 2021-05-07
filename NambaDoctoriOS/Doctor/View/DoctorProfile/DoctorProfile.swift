@@ -186,7 +186,7 @@ struct DoctorProfile: View {
                     .font(.footnote)
                     .bold()
                     .foregroundColor(.gray)
-                Text("\(doctorViewModel.doctor.serviceFee.clean)₹")
+                Text("₹\(doctorViewModel.doctor.serviceFee.clean)")
             }
             
             VStack (alignment: .leading, spacing: 3) {
@@ -194,9 +194,9 @@ struct DoctorProfile: View {
                     .font(.footnote)
                     .bold()
                     .foregroundColor(.gray)
-                Text("\(doctorViewModel.doctor.followUpServiceFee.clean)₹")
+                Text("₹\(doctorViewModel.doctor.followUpServiceFee.clean)")
             }
-            
+
             VStack (alignment: .leading, spacing: 3) {
                 Text("Appointment Duration:")
                     .font(.footnote)

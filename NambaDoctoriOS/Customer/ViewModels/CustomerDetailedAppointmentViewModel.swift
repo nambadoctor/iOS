@@ -225,7 +225,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
             }
         }
     }
-    
+
     func setServiceRequest () {
         self.serviceRequest!.allergy.AllergyName = self.allergy
         self.serviceRequest!.allergy.AppointmentId = self.appointment.appointmentID

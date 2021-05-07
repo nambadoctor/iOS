@@ -22,12 +22,16 @@ class DocNotifViewModel : ObservableObject {
     func markAllAsRead() {
         LocalNotifStorer().markAllNotifsAsRead()
     }
+    
+    func clearAllNotifs () {
+        
+    }
 }
 
 struct DocNotificationDisplayView: View {
     @ObservedObject var DocNotifVM:DocNotifViewModel = DocNotifViewModel()
     var body: some View {
-        VStack {
+        ZStack {
             if DocNotifVM.notifications == nil {
                 Text("NO NOTIFICATIONS")
             } else {
@@ -66,6 +70,20 @@ struct DocNotificationDisplayView: View {
                             }
                         }
                     }.background(Color.gray.opacity(0.2))
+                }
+                
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        Button {
+                            
+                        } label: {
+                            Text("Clear All")
+                        }
+
+                        Spacer()
+                    }
                 }
             }
         }.onAppear() {DocNotifVM.refreshNotifs()}
