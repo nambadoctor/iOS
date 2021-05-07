@@ -21,7 +21,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     @Published var customerChatViewModel:CustomerChatViewModel
     
     @Published var allergy:String = "No"
-    @Published var reason:String = ""
+    @Published var reasonPickerVM:ReasonPickerViewModel = ReasonPickerViewModel()
     
     @Published var prescriptionPDF:Data? = nil
     @Published var imageLoader:ImageLoader? = nil
@@ -43,13 +43,17 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
         self.customerTwilioViewModel = CustomerTwilioViewModel(appointment: appointment)
         self.customerChatViewModel = CustomerChatViewModel(appointment: appointment)
         imagePickerVM.imagePickerDelegate = self
+        reasonPickerVM.reasonPickedDelegate = self
         
         self.getServiceProvider()
         self.getServiceRequest()
-        self.getPrescription()
         self.getReports()
+        
+        if appointmentFinished {
+            self.getPrescription()
+        }
     }
-    
+
     var appointmentStarted:Bool {
         if appointment.status == ConsultStateK.StartedConsultation.rawValue {
             return true
@@ -92,11 +96,11 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     }
     
     var serviceProviderName : String {
-        return appointment.serviceProviderName
+        return "Dr. \(appointment.serviceProviderName)"
     }
     
     var serviceProviderFee : String {
-        return "Fee: ₹\(appointment.serviceFee.clean)"
+        return "Fee: \(appointment.serviceFee.clean)"
     }
     
     func getServiceRequest() {
@@ -106,7 +110,12 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
             if serviceRequest != nil {
                 self.serviceRequest = serviceRequest!
                 self.allergy = serviceRequest!.allergy.AllergyName
-                self.reason = serviceRequest!.reason
+                
+                if !serviceRequest!.reason.isEmpty {
+                    self.reasonPickerVM.reason = serviceRequest!.reason
+                    self.reasonPickerVM.reasonSelected()
+                }
+                
             } else {
                 //TODO: handle no service request returned
             }
@@ -150,10 +159,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
             
             if prescription != nil {
                 self.prescription = prescription!
-                
-//                if !prescription!.medicineList.isEmpty {
-//
-//                }
+
                 self.getPrescriptionPDF()
 
                 self.getPrescriptionImage()
@@ -211,6 +217,20 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
             }
         }
     }
+    
+    func setServiceRequest () {
+        self.serviceRequest!.allergy.AllergyName = self.allergy
+        self.serviceRequest!.allergy.AppointmentId = self.appointment.appointmentID
+        self.serviceRequest!.allergy.ServiceRequestId = self.serviceRequest!.serviceRequestID
+        
+        self.serviceRequest!.reason = self.reasonPickerVM.reason
+        
+        customerServiceRequestService.setServiceRequest(serviceRequest: self.serviceRequest!) { response in
+            if response != nil {
+                print("success")
+            }
+        }
+    }
 }
 
 extension CustomerDetailedAppointmentViewModel : ImagePickedDelegate {
@@ -222,5 +242,18 @@ extension CustomerDetailedAppointmentViewModel : ImagePickedDelegate {
         let customerReport = CustomerReportUpload(ReportId: "", ServiceRequestId: self.serviceRequest!.serviceRequestID, CustomerId: self.serviceRequest!.customerID, FileName: "", Name: "report", FileType: ".jpg", MediaFile: encodedImage!)
                 
         setReport(report: customerReport)
+    }
+}
+
+extension CustomerDetailedAppointmentViewModel : SideBySideCheckBoxDelegate {
+    func itemChecked(value: String) {
+        self.allergy = value
+        self.setServiceRequest()
+    }
+}
+
+extension CustomerDetailedAppointmentViewModel : ReasonPickedDelegate {
+    func reasonSelected(reason: String) {
+        self.setServiceRequest()
     }
 }

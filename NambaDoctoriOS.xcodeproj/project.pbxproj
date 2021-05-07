@@ -236,6 +236,9 @@
 		1772756525B8A7DB0012B9DE /* LoginViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1772756425B8A7DB0012B9DE /* LoginViewModelTests.swift */; };
 		1785A5012616E193009667D1 /* ModifyFeeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1785A5002616E193009667D1 /* ModifyFeeViewModel.swift */; };
 		1785A570261A353F009667D1 /* DoctorIntermediateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1785A56F261A353F009667D1 /* DoctorIntermediateView.swift */; };
+		178909132644C2DD004A9D75 /* ReasonPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178909122644C2DD004A9D75 /* ReasonPickerView.swift */; };
+		178909152644C2E7004A9D75 /* ReasonPickerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178909142644C2E7004A9D75 /* ReasonPickerCard.swift */; };
+		178909172644DF50004A9D75 /* ReasonPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178909162644DF50004A9D75 /* ReasonPickerViewModel.swift */; };
 		178EB6AA2638BC5D009286B1 /* CustomerAlertHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178EB6A92638BC5D009286B1 /* CustomerAlertHelpers.swift */; };
 		178EB6B22638BCF1009286B1 /* CustomerViewStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178EB6B12638BCF1009286B1 /* CustomerViewStates.swift */; };
 		178EB6BA26390CD4009286B1 /* CustomerAppointmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178EB6B926390CD4009286B1 /* CustomerAppointmentsView.swift */; };
@@ -581,6 +584,9 @@
 		1772756425B8A7DB0012B9DE /* LoginViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModelTests.swift; sourceTree = "<group>"; };
 		1785A5002616E193009667D1 /* ModifyFeeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyFeeViewModel.swift; sourceTree = "<group>"; };
 		1785A56F261A353F009667D1 /* DoctorIntermediateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorIntermediateView.swift; sourceTree = "<group>"; };
+		178909122644C2DD004A9D75 /* ReasonPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonPickerView.swift; sourceTree = "<group>"; };
+		178909142644C2E7004A9D75 /* ReasonPickerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonPickerCard.swift; sourceTree = "<group>"; };
+		178909162644DF50004A9D75 /* ReasonPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonPickerViewModel.swift; sourceTree = "<group>"; };
 		178EB6A92638BC5D009286B1 /* CustomerAlertHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerAlertHelpers.swift; sourceTree = "<group>"; };
 		178EB6B12638BCF1009286B1 /* CustomerViewStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerViewStates.swift; sourceTree = "<group>"; };
 		178EB6B926390CD4009286B1 /* CustomerAppointmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerAppointmentsView.swift; sourceTree = "<group>"; };
@@ -978,6 +984,7 @@
 		1739EAD82638082F00556044 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				178909112644C2D0004A9D75 /* ReasonPicker */,
 				17437EAD263D369400AFEF5B /* CustomerChatView */,
 				17BD2E8F263C757700BB0BDD /* Twilio */,
 				17BD2E82263A366F00BB0BDD /* DetailedAppointment */,
@@ -999,6 +1006,7 @@
 				17BD2E8D263BD42000BB0BDD /* CustomerDetailedAppointmentViewModel.swift */,
 				17BD2E94263C75B700BB0BDD /* CustomerTwilioViewModel.swift */,
 				17437EAB263D336E00AFEF5B /* CustomerChatViewModel.swift */,
+				178909162644DF50004A9D75 /* ReasonPickerViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1339,6 +1347,15 @@
 				1742506C25BAE69200523B94 /* PrescriptionFormPickerConstants.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		178909112644C2D0004A9D75 /* ReasonPicker */ = {
+			isa = PBXGroup;
+			children = (
+				178909122644C2DD004A9D75 /* ReasonPickerView.swift */,
+				178909142644C2E7004A9D75 /* ReasonPickerCard.swift */,
+			);
+			path = ReasonPicker;
 			sourceTree = "<group>";
 		};
 		178EB6A82638BC52009286B1 /* Helpers */ = {
@@ -2034,6 +2051,7 @@
 				17EC7670260EE9D60002BA75 /* MedicineEntryView.swift in Sources */,
 				17BD2E95263C75B700BB0BDD /* CustomerTwilioViewModel.swift in Sources */,
 				171647C32604479900BB5B5A /* ServiceProviderAppointmentService.swift in Sources */,
+				178909152644C2E7004A9D75 /* ReasonPickerCard.swift in Sources */,
 				176AA1792637BF7F00F02346 /* CustomerAppInfoMapper.swift in Sources */,
 				17626CCD25D5C02F00C36A99 /* DoctorHomeListeners.swift in Sources */,
 				17EC767B260F05140002BA75 /* TagCloudView.swift in Sources */,
@@ -2162,6 +2180,7 @@
 				1716471B2603205500BB5B5A /* ServiceProviderEducationMapper.swift in Sources */,
 				1796321025AEE865002E466C /* ConsultStateConstants.swift in Sources */,
 				1716482026081DEA00BB5B5A /* ServiceProviderAndCustomer.proto in Sources */,
+				178909172644DF50004A9D75 /* ReasonPickerViewModel.swift in Sources */,
 				17E869A325CE121C000B0952 /* DocNotifHelpersProtocol.swift in Sources */,
 				176AA1F42637F73200F02346 /* CustomerAppointmentService.swift in Sources */,
 				17164720260320FF00BB5B5A /* ServiceProviderWorkExperienceMapper.swift in Sources */,
@@ -2228,6 +2247,7 @@
 				179C453026296AFE0073F4E0 /* CustomStepperBox.swift in Sources */,
 				176AA19C2637C6D000F02346 /* CustomerEducationMapper.swift in Sources */,
 				171646832602B36700BB5B5A /* ServiceProviderAppointment.swift in Sources */,
+				178909132644C2DD004A9D75 /* ReasonPickerView.swift in Sources */,
 				171646F22603031700BB5B5A /* ServiceProviderPhoneNumberMapper.swift in Sources */,
 				17437EAF263D369E00AFEF5B /* CustomerChatView.swift in Sources */,
 				17164706260312DC00BB5B5A /* ServiceProviderAvailaibilityObjectMapper.swift in Sources */,

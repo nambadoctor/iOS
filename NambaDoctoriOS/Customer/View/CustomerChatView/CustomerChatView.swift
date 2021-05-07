@@ -18,7 +18,7 @@ struct CustomerChatRoomView: View {
     
     @ObservedObject var chatVM:CustomerChatViewModel
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-    
+
     var body: some View {
         VStack {
             ScrollView (.vertical) {
@@ -101,8 +101,8 @@ struct CustomerChatRoomView: View {
     
     var backButton : some View {
         Button(action : {
-            //docAutoNav.leaveChatRoom()
-            //self.mode.wrappedValue.dismiss()
+            docAutoNav.leaveChatRoom()
+            self.mode.wrappedValue.dismiss()
         }){
             Image(systemName: "arrow.left")
                 .padding([.top, .bottom, .trailing])

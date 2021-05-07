@@ -76,10 +76,10 @@ class CustomerTwilioViewModel : ObservableObject {
 
     func toggleTwilioViewSize() {
         if collapseCall {
-            viewController!.expandCall()
+            viewController?.expandCall()
             self.collapseCall = false
         } else {
-            viewController!.collapseCall()
+            viewController?.collapseCall()
             self.collapseCall = true
         }
     }

@@ -7,10 +7,26 @@
 
 import SwiftUI
 
+protocol SideBySideCheckBoxDelegate {
+    func itemChecked(value:String)
+}
+
 struct SideBySideCheckBox: View {
     @Binding var isChecked:String
     var title1:String
     var title2:String
+    
+    init(isChecked: Binding<String>,
+        title1:String,
+         title2:String,
+        delegate:SideBySideCheckBoxDelegate?) {
+        self.title2 = title2
+        self.title1 = title1
+        self._isChecked = isChecked
+        self.checkBoxDelegate = delegate
+    }
+    
+    var checkBoxDelegate:SideBySideCheckBoxDelegate? = nil
 
     var body: some View {
         HStack {
@@ -22,6 +38,7 @@ struct SideBySideCheckBox: View {
             }.padding(.trailing)
             .onTapGesture {
                 isChecked = title1
+                self.checkBoxDelegate?.itemChecked(value: title1)
             }
                         
             HStack{
@@ -32,6 +49,7 @@ struct SideBySideCheckBox: View {
             }.padding(.leading)
             .onTapGesture {
                 isChecked = title2
+                self.checkBoxDelegate?.itemChecked(value: title2)
             }
 
             Spacer()

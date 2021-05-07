@@ -15,7 +15,6 @@ struct CustomerDetailedAppointmentView: View {
     
     var body: some View {
         ZStack {
-
             VStack {
                 header
                 
@@ -23,47 +22,53 @@ struct CustomerDetailedAppointmentView: View {
                     if customerDetailedAppointmentVM.imageLoader != nil {
                         ImageView(imageLoader: customerDetailedAppointmentVM.imageLoader!)
                     }
-
+                    
                     if customerDetailedAppointmentVM.prescriptionPDF != nil {
                         PDFKitView(data: customerDetailedAppointmentVM.prescriptionPDF!)
                     }
                 }
-                
+
                 if customerDetailedAppointmentVM.appointmentStarted || customerDetailedAppointmentVM.appointmnentUpComing {
                     AppointmentInProgressView
                 }
+                
+                Spacer()
             }
 
             if customerDetailedAppointmentVM.showTwilioRoom {
                 CustomerTwilioManager(customerTwilioViewModel: customerDetailedAppointmentVM.customerTwilioViewModel)
                     .onAppear(){self.customerDetailedAppointmentVM.customerTwilioViewModel.viewController?.connect(sender: customerDetailedAppointmentVM)}
             }
-
+            
             if customerDetailedAppointmentVM.takeToChat {
                 NavigationLink("",
                                destination: CustomerChatRoomView(chatVM: self.customerDetailedAppointmentVM.customerChatViewModel),
                                isActive: $customerDetailedAppointmentVM.takeToChat)
             }
-            
         }.padding(.horizontal)
+        .environmentObject(self.customerDetailedAppointmentVM.reasonPickerVM)
     }
-
+    
     var AppointmentInProgressView : some View {
         VStack (alignment: .leading, spacing: 10) {
             if customerDetailedAppointmentVM.serviceRequest != nil {
-                Text("Do you have any allergies?")
+                Text("DO YOU HAVE ALLERGIES?")
+                    .font(.footnote)
+                    .foregroundColor(.gray)
+
+                SideBySideCheckBox(isChecked: self.$customerDetailedAppointmentVM.allergy, title1: "Yes", title2: "No", delegate: self.customerDetailedAppointmentVM)
+                
+                Spacer().frame(height: 15)
+                
+                Text("SELECT YOUR REASON")
                     .font(.footnote)
                     .foregroundColor(.gray)
                 
-                SideBySideCheckBox(isChecked: self.$customerDetailedAppointmentVM.allergy, title1: "Yes", title2: "No")
-                
-                Text("Please select your reason")
-                    .font(.footnote)
-                    .foregroundColor(.gray)
-                
-                ExpandingTextView(text: self.$customerDetailedAppointmentVM.reason)
+                OneLineReasonDisplay()
             }
 
+            Spacer().frame(height: 15)
+            
             VStack (alignment: .leading) {
                 HStack (spacing: 3) {
                     Image("folder")
@@ -75,7 +80,7 @@ struct CustomerDetailedAppointmentView: View {
                         .foregroundColor(Color.black.opacity(0.4))
                         .bold()
                 }
-
+                
                 if !self.customerDetailedAppointmentVM.reports.isEmpty {
                     ScrollView (.horizontal) {
                         HStack {
@@ -86,44 +91,56 @@ struct CustomerDetailedAppointmentView: View {
                     }
                 } else {
                     HStack {
-                        Text("There are no reports")
+                        Text("You have uploaded 0 reports")
                         Spacer()
                     }.padding(.top, 5)
                 }
                 
-                LargeButton(title: "Upload Image",
+                LargeButton(title: "Click To Upload",
                             backgroundColor: Color.blue) {
                     customerDetailedAppointmentVM.imagePickerVM.showActionSheet()
                 }
                 .modifier(ImagePickerModifier(imagePickerVM: self.customerDetailedAppointmentVM.imagePickerVM))
             }
         }
+        .padding(.top, 10)
     }
     
     var header : some View {
         VStack (alignment: .leading) {
-            Text("Appointment On: \(customerDetailedAppointmentVM.appointmentScheduledStartTime)")
-                .font(.subheadline)
-                .foregroundColor(.gray)
-                .bold()
-                .padding(.top)
-            
-            Divider().background(Color.blue.opacity(0.4))
-            
+
             HStack (alignment: .center) {
-                
+
                 if customerDetailedAppointmentVM.docProfPicImageLoader != nil {
                     ImageView(imageLoader: customerDetailedAppointmentVM.docProfPicImageLoader!, height: 100, width: 100)
                 }
                 
-                VStack (alignment: .leading) {
-                    Text(customerDetailedAppointmentVM.serviceProviderName)
-                    Text(customerDetailedAppointmentVM.serviceProviderFee)
-                }
-                
+                VStack (alignment: .leading, spacing: 8) {
+                    
+                    HStack {
+                        Text(customerDetailedAppointmentVM.serviceProviderName)
+                            .font(.system(size: 16))
+                    }
+                    
+                    HStack {
+                        Image("indianrupeesign.circle")
+                        Text(customerDetailedAppointmentVM.serviceProviderFee)
+                            .font(.system(size: 16))
+                    }
+                    
+                    HStack {
+                        Image("calendar")
+                        Text(customerDetailedAppointmentVM.appointmentScheduledStartTime)
+                            .font(.system(size: 16))
+                    }
+                }.padding(.leading, 5)
+
                 Spacer()
             }
+            .padding(.top, 10)
 
+            Divider().background(Color.blue.opacity(0.4))
+            
             actionButtons
             
             Divider().background(Color.blue.opacity(0.4))
@@ -153,7 +170,7 @@ struct CustomerDetailedAppointmentView: View {
                 })
                 Spacer()
             }
-
+            
             Button(action: {
                 self.customerDetailedAppointmentVM.takeToChat = true
             }, label: {
@@ -185,7 +202,7 @@ struct CustomerDetailedAppointmentView: View {
             }
         }
         .padding(.horizontal, 25)
-        .padding(.vertical)
+        .padding(.vertical, 10)
     }
     
     private func killView () {

@@ -71,7 +71,7 @@ struct ServiceRequestEditableView: View {
                 
                 ExpandingTextView(text: $serviceRequestVM.serviceRequest.diagnosis.name)
 
-                SideBySideCheckBox(isChecked: $serviceRequestVM.serviceRequest.diagnosis.type, title1: "Provisional", title2: "Definitive")
+                SideBySideCheckBox(isChecked: $serviceRequestVM.serviceRequest.diagnosis.type, title1: "Provisional", title2: "Definitive", delegate: nil)
                     .padding(.bottom)
             }
             .padding()
