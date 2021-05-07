@@ -27,14 +27,14 @@ struct CustomerDetailedAppointmentView: View {
                         PDFKitView(data: customerDetailedAppointmentVM.prescriptionPDF!)
                     }
                 }
-
+                
                 if customerDetailedAppointmentVM.appointmentStarted || customerDetailedAppointmentVM.appointmnentUpComing {
                     AppointmentInProgressView
                 }
                 
                 Spacer()
             }
-
+            
             if customerDetailedAppointmentVM.showTwilioRoom {
                 CustomerTwilioManager(customerTwilioViewModel: customerDetailedAppointmentVM.customerTwilioViewModel)
                     .onAppear(){self.customerDetailedAppointmentVM.customerTwilioViewModel.viewController?.connect(sender: customerDetailedAppointmentVM)}
@@ -45,8 +45,22 @@ struct CustomerDetailedAppointmentView: View {
                                destination: CustomerChatRoomView(chatVM: self.customerDetailedAppointmentVM.customerChatViewModel),
                                isActive: $customerDetailedAppointmentVM.takeToChat)
             }
-        }.padding(.horizontal)
+        }
+        .padding(.horizontal)
         .environmentObject(self.customerDetailedAppointmentVM.reasonPickerVM)
+        .navigationBarItems(trailing: navBarChatButton)
+    }
+    
+    var navBarChatButton : some View {
+        VStack {
+            if self.customerDetailedAppointmentVM.appointmentFinished {
+                Button(action: {
+                    self.customerDetailedAppointmentVM.takeToChat = true
+                }, label: {
+                    Text("Chat")
+                })
+            }
+        }
     }
     
     var AppointmentInProgressView : some View {
@@ -55,7 +69,7 @@ struct CustomerDetailedAppointmentView: View {
                 Text("DO YOU HAVE ALLERGIES?")
                     .font(.footnote)
                     .foregroundColor(.gray)
-
+                
                 SideBySideCheckBox(isChecked: self.$customerDetailedAppointmentVM.allergy, title1: "Yes", title2: "No", delegate: self.customerDetailedAppointmentVM)
                 
                 Spacer().frame(height: 15)
@@ -66,7 +80,7 @@ struct CustomerDetailedAppointmentView: View {
                 
                 OneLineReasonDisplay()
             }
-
+            
             Spacer().frame(height: 15)
             
             VStack (alignment: .leading) {
@@ -108,9 +122,9 @@ struct CustomerDetailedAppointmentView: View {
     
     var header : some View {
         VStack (alignment: .leading) {
-
+            
             HStack (alignment: .center) {
-
+                
                 if customerDetailedAppointmentVM.docProfPicImageLoader != nil {
                     ImageView(imageLoader: customerDetailedAppointmentVM.docProfPicImageLoader!, height: 100, width: 100)
                 }
@@ -134,75 +148,77 @@ struct CustomerDetailedAppointmentView: View {
                             .font(.system(size: 16))
                     }
                 }.padding(.leading, 5)
-
+                
                 Spacer()
             }
             .padding(.top, 10)
-
-            Divider().background(Color.blue.opacity(0.4))
             
             actionButtons
             
-            Divider().background(Color.blue.opacity(0.4))
         }
     }
     
     var actionButtons : some View {
-        HStack {
-            
-            if customerDetailedAppointmentVM.appointmnentUpComing {
-                Button(action: {
-                    customerDetailedAppointmentVM.cancelAppointment { success in
-                        if success {
-                            killView()
-                        }
-                    }
-                }, label: {
-                    ZStack {
-                        Image("xmark")
-                            .scaleEffect(1.2)
-                            .padding()
-                            .foregroundColor(.red)
-                    }
-                    .overlay(Circle()
-                                .fill(Color.red.opacity(0.2))
-                                .frame(width: 60, height: 60))
-                })
-                Spacer()
-            }
-            
-            Button(action: {
-                self.customerDetailedAppointmentVM.takeToChat = true
-            }, label: {
-                ZStack {
-                    Image(systemName: "message")
-                        .scaleEffect(1.2)
-                        .padding()
-                }
-                .overlay(Circle()
-                            .fill(Color.blue.opacity(0.2))
-                            .frame(width: 60, height: 60))
-            })
-            
-            Spacer()
-            
+        VStack {
             if !customerDetailedAppointmentVM.appointmentFinished {
-                Button(action: {
-                    customerDetailedAppointmentVM.startConsultation()
-                }, label: {
-                    ZStack {
-                        Image(systemName: "video")
-                            .scaleEffect(1.2)
-                            .padding()
+                Divider().background(Color.blue.opacity(0.4))
+                HStack {
+                    
+                    if customerDetailedAppointmentVM.appointmnentUpComing {
+                        Button(action: {
+                            customerDetailedAppointmentVM.cancelAppointment { success in
+                                if success {
+                                    killView()
+                                }
+                            }
+                        }, label: {
+                            ZStack {
+                                Image("xmark")
+                                    .scaleEffect(1.2)
+                                    .padding()
+                                    .foregroundColor(.red)
+                            }
+                            .overlay(Circle()
+                                        .fill(Color.red.opacity(0.2))
+                                        .frame(width: 60, height: 60))
+                        })
+                        Spacer()
                     }
-                    .overlay(Circle()
-                                .fill(Color.blue.opacity(0.2))
-                                .frame(width: 60, height: 60))
-                })
+                    
+                    
+                    Button(action: {
+                        self.customerDetailedAppointmentVM.takeToChat = true
+                    }, label: {
+                        ZStack {
+                            Image(systemName: "message")
+                                .scaleEffect(1.2)
+                                .padding()
+                        }
+                        .overlay(Circle()
+                                    .fill(Color.blue.opacity(0.2))
+                                    .frame(width: 60, height: 60))
+                    })
+                    
+                    Spacer()
+                    
+                    Button(action: {
+                        customerDetailedAppointmentVM.startConsultation()
+                    }, label: {
+                        ZStack {
+                            Image(systemName: "video")
+                                .scaleEffect(1.2)
+                                .padding()
+                        }
+                        .overlay(Circle()
+                                    .fill(Color.blue.opacity(0.2))
+                                    .frame(width: 60, height: 60))
+                    })
+                }
+                .padding(.horizontal, 25)
+                .padding(.vertical, 10)
+                Divider().background(Color.blue.opacity(0.4))
             }
         }
-        .padding(.horizontal, 25)
-        .padding(.vertical, 10)
     }
     
     private func killView () {

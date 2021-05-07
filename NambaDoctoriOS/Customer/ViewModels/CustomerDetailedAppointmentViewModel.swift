@@ -29,9 +29,10 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     
     @Published var showTwilioRoom:Bool = false
     @Published var takeToChat:Bool = false
-
+    
     var customerServiceRequestService:CustomerServiceRequestServiceProtocol
     var customerReportService:CustomerReportServiceProtocol
+    var customerNotifHelpers:CustomerNotificationHelper
     
     init(appointment:CustomerAppointment,
          customerServiceRequestService:CustomerServiceRequestServiceProtocol = CustomerServiceRequestService(),
@@ -42,6 +43,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
         self.customerReportService = customerReportService
         self.customerTwilioViewModel = CustomerTwilioViewModel(appointment: appointment)
         self.customerChatViewModel = CustomerChatViewModel(appointment: appointment)
+        self.customerNotifHelpers = CustomerNotificationHelper(appointment: appointment)
         imagePickerVM.imagePickerDelegate = self
         reasonPickerVM.reasonPickedDelegate = self
         
@@ -53,7 +55,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
             self.getPrescription()
         }
     }
-
+    
     var appointmentStarted:Bool {
         if appointment.status == ConsultStateK.StartedConsultation.rawValue {
             return true
@@ -64,7 +66,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     
     var appointmentFinished:Bool {
         if appointment.status == ConsultStateK.Finished.rawValue ||
-                    appointment.status == ConsultStateK.FinishedAppointment.rawValue {
+            appointment.status == ConsultStateK.FinishedAppointment.rawValue {
             return true
         } else {
             return false
@@ -121,7 +123,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
             }
         }
     }
-
+    
     func getReports() {
         self.customerReportService.getAppointmentUploadedReportList(customerId: self.appointment.customerID, serviceRequestId: self.appointment.serviceRequestID, appointmentId: self.appointment.appointmentID) { reports in
             self.reports.removeAll()
@@ -133,12 +135,13 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
             }
         }
     }
-
+    
     func setReport(report:CustomerReportUpload) {
         CommonDefaultModifiers.showLoader()
         self.customerReportService.setReport(report: report) { success in
             if success {
                 self.getReports()
+                self.customerNotifHelpers.reportUploadedNotif()
             } else {
                 //TODO: handle report upload failed
             }
@@ -159,9 +162,9 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
             
             if prescription != nil {
                 self.prescription = prescription!
-
+                
                 self.getPrescriptionPDF()
-
+                
                 self.getPrescriptionImage()
             }
         }
@@ -188,16 +191,20 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
             }
         }
     }
-
+    
     func startConsultation() {
         CommonDefaultModifiers.showLoader()
-        customerTwilioViewModel.startRoom() { success in
-            if success {
-                self.showTwilioRoom = true
-                CommonDefaultModifiers.hideLoader()
-            } else {
-                
+        if appointmentStarted {
+            customerTwilioViewModel.startRoom() { success in
+                if success {
+                    self.showTwilioRoom = true
+                    CommonDefaultModifiers.hideLoader()
+                } else {
+                    
+                }
             }
+        } else {
+            CustomerAlertHelpers().WaitForDoctorToCallFirstAlert { _ in }
         }
     }
     
@@ -209,6 +216,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
                     //TODO: Fire cancelled notification
                     CommonDefaultModifiers.hideLoader()
                     completion(success)
+                    self.customerNotifHelpers.cancelledAppointment()
                 } else {
                     GlobalPopupHelpers.setErrorAlert()
                     CommonDefaultModifiers.hideLoader()
@@ -240,7 +248,7 @@ extension CustomerDetailedAppointmentViewModel : ImagePickedDelegate {
         let encodedImage = image.jpegData(compressionQuality: 0.5)?.base64EncodedString()
         
         let customerReport = CustomerReportUpload(ReportId: "", ServiceRequestId: self.serviceRequest!.serviceRequestID, CustomerId: self.serviceRequest!.customerID, FileName: "", Name: "report", FileType: ".jpg", MediaFile: encodedImage!)
-                
+        
         setReport(report: customerReport)
     }
 }

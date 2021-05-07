@@ -40,7 +40,7 @@ class ReasonPickerViewModel : ObservableObject {
     
     func reasonSelected () {
         let key = reason
-        if key == "Injury" || key == "Fever" || key == "Pregnancy" {
+        if key == "Injury" || key == "Fever" || key == "Pregnant" {
             //do nothing
         } else {
             self.OneLineReasonsToSHow.remove(at: 0)

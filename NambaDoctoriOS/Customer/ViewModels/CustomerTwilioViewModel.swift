@@ -21,7 +21,7 @@ class CustomerTwilioViewModel : ObservableObject {
     @Published var participantJoined:Bool = false
 
     private var docAlertHelpers:CustomerAlertHelpers!
-    //private var docNotificationHelpers:DocNotifHelpersProtocol
+    private var customerNotifHelpers:CustomerNotificationHelper
 
     var twilioDelegate:TwilioDelegate? = nil
 
@@ -31,6 +31,7 @@ class CustomerTwilioViewModel : ObservableObject {
          twilioAccessTokenHelper:TwilioAccessTokenProtocol = RetrieveTwilioAccessToken()) {
         self.appointment = appointment
         self.twilioAccessTokenHelper = twilioAccessTokenHelper
+        self.customerNotifHelpers = CustomerNotificationHelper(appointment: appointment)
         //self.docNotificationHelpers = DocNotifHelpers(appointment: self.appointment)
         docAlertHelpers = CustomerAlertHelpers()
     }
@@ -42,6 +43,7 @@ class CustomerTwilioViewModel : ObservableObject {
                 self.viewController = UIStoryboard(name: "Twilio", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as? ViewController
                 self.viewController!.twilioEventDelegate = self
                 completion(success)
+                self.customerNotifHelpers.callingNotif()
             } else {
                 completion(false)
                 //TODO: show doctor alert issue with video call and tell them to use phone. USE LOGS
@@ -49,7 +51,7 @@ class CustomerTwilioViewModel : ObservableObject {
             }
         }
     }
-    
+
     func toggleVideo () {
         self.viewController?.toggleVideo(sender: self) { _ in
             self.videoEnabled.toggle()

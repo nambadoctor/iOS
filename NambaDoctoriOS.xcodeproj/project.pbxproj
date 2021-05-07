@@ -239,6 +239,7 @@
 		178909132644C2DD004A9D75 /* ReasonPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178909122644C2DD004A9D75 /* ReasonPickerView.swift */; };
 		178909152644C2E7004A9D75 /* ReasonPickerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178909142644C2E7004A9D75 /* ReasonPickerCard.swift */; };
 		178909172644DF50004A9D75 /* ReasonPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178909162644DF50004A9D75 /* ReasonPickerViewModel.swift */; };
+		1789091B26453003004A9D75 /* CustomerNotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1789091A26453003004A9D75 /* CustomerNotificationHelper.swift */; };
 		178EB6AA2638BC5D009286B1 /* CustomerAlertHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178EB6A92638BC5D009286B1 /* CustomerAlertHelpers.swift */; };
 		178EB6B22638BCF1009286B1 /* CustomerViewStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178EB6B12638BCF1009286B1 /* CustomerViewStates.swift */; };
 		178EB6BA26390CD4009286B1 /* CustomerAppointmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178EB6B926390CD4009286B1 /* CustomerAppointmentsView.swift */; };
@@ -587,6 +588,7 @@
 		178909122644C2DD004A9D75 /* ReasonPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonPickerView.swift; sourceTree = "<group>"; };
 		178909142644C2E7004A9D75 /* ReasonPickerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonPickerCard.swift; sourceTree = "<group>"; };
 		178909162644DF50004A9D75 /* ReasonPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonPickerViewModel.swift; sourceTree = "<group>"; };
+		1789091A26453003004A9D75 /* CustomerNotificationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerNotificationHelper.swift; sourceTree = "<group>"; };
 		178EB6A92638BC5D009286B1 /* CustomerAlertHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerAlertHelpers.swift; sourceTree = "<group>"; };
 		178EB6B12638BCF1009286B1 /* CustomerViewStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerViewStates.swift; sourceTree = "<group>"; };
 		178EB6B926390CD4009286B1 /* CustomerAppointmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerAppointmentsView.swift; sourceTree = "<group>"; };
@@ -1364,6 +1366,7 @@
 				178EB6A92638BC5D009286B1 /* CustomerAlertHelpers.swift */,
 				178EB6B12638BCF1009286B1 /* CustomerViewStates.swift */,
 				17437EB3263FC11100AFEF5B /* CustomerUpdateAppointmentStatusHelper.swift */,
+				1789091A26453003004A9D75 /* CustomerNotificationHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -2098,6 +2101,7 @@
 				171B8B812616CE53007E722C /* ModifyFeeView.swift in Sources */,
 				17424F2625BA138F00523B94 /* DoctorAlertHelperProtocol.swift in Sources */,
 				177233BE25B745C2002B814A /* EncoderDecoder.swift in Sources */,
+				1789091B26453003004A9D75 /* CustomerNotificationHelper.swift in Sources */,
 				179C44C42627F1B80073F4E0 /* ChatRoomView.swift in Sources */,
 				17EC75DF260C52B70002BA75 /* ExpandingTextView.swift in Sources */,
 				171646882602B40300BB5B5A /* ServiceProviderAppInfo.swift in Sources */,

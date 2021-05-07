@@ -15,4 +15,11 @@ class CustomerAlertHelpers {
         }))
         CommonDefaultModifiers.showAlert()
     }
+    
+    func WaitForDoctorToCallFirstAlert (completion: @escaping (Bool) -> ()) {
+        alertTempItem = AlertItem(title: Text("Please wait for doctor to call you first"), primaryButton: Alert.Button.cancel({
+            completion(true)
+        }))
+        CommonDefaultModifiers.showAlert()
+    }
 }

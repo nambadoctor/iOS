@@ -12,6 +12,7 @@ class CustomerChatViewModel: ObservableObject {
     
     private var dbRef:DBReferences
     private var realtimeDBRef:RealtimeDBListener
+    private var customerNotifHelpers:CustomerNotificationHelper
 
     @Published var messageList:[LocalChatMessage] = [LocalChatMessage]()
     @Published var currentTextEntry:String = ""
@@ -22,7 +23,8 @@ class CustomerChatViewModel: ObservableObject {
         self.appointment = appointment
         self.dbRef = DBReferences(serviceProviderId: appointment.serviceProviderID, customerId: appointment.customerID)
         self.realtimeDBRef = RealtimeDBListener(dbQuery: dbRef.getChatToReadRefForServiceProvider(serviceProviderId: appointment.serviceProviderID, customerId: appointment.customerID))
-        
+        self.customerNotifHelpers = CustomerNotificationHelper(appointment: appointment)
+
         startMessageAddedListener()
         docAutoNav.enterChatRoom(appointmentId: appointment.appointmentID)
     }
@@ -79,6 +81,7 @@ class CustomerChatViewModel: ObservableObject {
             let dbWriter = RealtimeDBWriter(dbRef: dbRef)
             message.messageId = keyId
             dbWriter.writeData(object: message)
+            customerNotifHelpers.chatNotif(message: message.message)
             //TODO: Fire notif for each new chat
         }
     }
