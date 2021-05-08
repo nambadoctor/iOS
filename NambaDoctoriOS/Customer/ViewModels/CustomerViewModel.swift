@@ -65,11 +65,11 @@ class CustomerViewModel : ObservableObject {
         }
     }
 
-    
     func retrieveCustomerAppointments () {
         customerAppointmentService.getCustomerAppointments(customerId: self.customerProfile!.customerID) { (customerAppointments) in
             if customerAppointments != nil || customerAppointments?.count != 0 {
                 self.appointments = customerAppointments!
+                self.getNavigationSelectedAppointment()
             } else {
                 //TODO: handle empty or no appointments
             }
@@ -85,9 +85,18 @@ class CustomerViewModel : ObservableObject {
             }
         }
     }
-    
+
     func makeDetailedAppointmentVM() -> CustomerDetailedAppointmentViewModel {
         return CustomerDetailedAppointmentViewModel(appointment: self.selectedAppointment!)
+    }
+    
+    func getNavigationSelectedAppointment () {
+        for appointment in appointments! {
+            if cusAutoNav.appointmentId == appointment.appointmentID {
+                self.selectedAppointment = appointment
+                self.takeToDetailedAppointmentView = true
+            }
+        }
     }
 }
 

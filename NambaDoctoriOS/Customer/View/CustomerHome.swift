@@ -43,6 +43,8 @@ struct CustomerHome: View {
         .onAppear(){
             showAlertListener()
             refreshFCMTokenListener()
+            refreshAppointmentsListener()
+            navigationToDetailedViewListener()
         }
         .alert(item: $alertItem) { alertItem in
             alertToShow(alertItem: alertItem)
@@ -76,4 +78,16 @@ extension CustomerHome {
         }
     }
 
+    func refreshAppointmentsListener () {
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("\(CustomerViewStatesK.refreshAppointmentsChange)"), object: nil, queue: .main) { (_) in
+            customerVM.retrieveCustomerAppointments()
+        }
+    }
+
+    func navigationToDetailedViewListener () {
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("\(CustomerViewStatesK.navigateToDetailedViewChange)"), object: nil, queue: .main) { (_) in
+            self.tabSelection = 1
+            customerVM.retrieveCustomerAppointments()
+        }
+    }
 }

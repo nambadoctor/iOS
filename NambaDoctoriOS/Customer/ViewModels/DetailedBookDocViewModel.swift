@@ -102,6 +102,7 @@ class DetailedBookDocViewModel : ObservableObject {
         
         CustomerAppointmentService().setAppointment(appointment: customerAppointment) { (response) in
             if response != nil {
+                cusAutoNav.enterDetailedView(appointmentId: response!)
                 CustomerServiceRequestService().setServiceRequest(serviceRequest: self.makeServiceRequest(appointmentId: response!)) { (response) in
                     if response != nil {
                         completion(true)
@@ -114,7 +115,7 @@ class DetailedBookDocViewModel : ObservableObject {
             }
         }
     }
-    
+
     func makeAppointment(slot:CustomerGeneratedSlot?) -> CustomerAppointment {
         return CustomerAppointment(appointmentID: "",
                                    serviceRequestID: "",
@@ -139,12 +140,11 @@ class DetailedBookDocViewModel : ObservableObject {
     }
     
     func makeServiceRequest (appointmentId:String) -> CustomerServiceRequest {
-        
+
         let emptyDiagnosis = CustomerDiagnosis(name: "", type: "")
         let emptyAllergy = CustomerAllergy(AllergyId: "", AllergyName: "", AppointmentId: "", ServiceRequestId: "")
         let emptyMedicalHistory = CustomerMedicalHistory(MedicalHistoryId: "", MedicalHistoryName: "", AppointmentId: "", ServiceRequestId: "")
-        
-        
+
         return CustomerServiceRequest(serviceRequestID: "",
                                       reason: self.reasonVM.reason,
                                       serviceProviderID: serviceProvider.serviceProviderID,

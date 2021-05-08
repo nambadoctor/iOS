@@ -12,4 +12,10 @@ enum CustomerViewStatesK:String {
     case FCMTokenUpdateChange
     
     case AppointmentStatusChange
+    
+    case toRefreshAppointments
+    case refreshAppointmentsChange
+    
+    case navigateToDetailedView
+    case navigateToDetailedViewChange
 }

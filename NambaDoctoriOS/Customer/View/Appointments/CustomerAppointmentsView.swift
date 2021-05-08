@@ -12,11 +12,15 @@ struct CustomerAppointmentsView: View {
     @EnvironmentObject var customerVM:CustomerViewModel
     
     var body: some View {
-        if customerVM.appointments != nil {
-            ScrollView {
-                ForEach(customerVM.appointments!, id: \.appointmentID) { appointment in
-                    CustomerAppointmentsCardView(customerAppointmentVM: CustomerAppointmentViewModel(appointment: appointment, delegate: self.customerVM))
+        VStack {
+            if customerVM.appointments != nil {
+                ScrollView {
+                    ForEach(customerVM.appointments!, id: \.appointmentID) { appointment in
+                        CustomerAppointmentsCardView(customerAppointmentVM: CustomerAppointmentViewModel(appointment: appointment, delegate: self.customerVM))
+                    }
                 }
+            } else {
+                Indicator()
             }
             
             if self.customerVM.takeToDetailedAppointmentView {
@@ -24,8 +28,6 @@ struct CustomerAppointmentsView: View {
                                destination: CustomerDetailedAppointmentView(customerDetailedAppointmentVM: customerVM.makeDetailedAppointmentVM()),
                                isActive: self.$customerVM.takeToDetailedAppointmentView)
             }
-        } else {
-            Indicator()
         }
     }
 }

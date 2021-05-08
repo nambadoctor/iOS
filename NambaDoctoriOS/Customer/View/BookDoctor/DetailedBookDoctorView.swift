@@ -76,7 +76,8 @@ struct DetailedBookDoctorView: View {
                             backgroundColor: Color.blue) {
                     self.detailedBookingVM.book() { success in
                         if success {
-                            CustomerAlertHelpers().AppointmentBookedAlert { (done) in
+                            CustomerAlertHelpers().AppointmentBookedAlert(timeStamp: self.detailedBookingVM.selectedTime) { (done) in
+                                CustomerDefaultModifiers.navigateToDetailedView()
                                 self.presentationMode.wrappedValue.dismiss()
                                 CommonDefaultModifiers.hideLoader()
                             }

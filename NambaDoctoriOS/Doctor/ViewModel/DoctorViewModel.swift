@@ -109,7 +109,7 @@ class DoctorViewModel: ObservableObject {
             }
         }
     }
-    
+
     func checkForEmptyList () {
         if appointments.isEmpty {
             self.hasAppointments = false

@@ -23,7 +23,7 @@ enum DocViewStatesK:String {
     
     case FCMTokenUpdate
     case FCMTokenUpdateChange
-    
+
     case navigateToIntermediateView
     case navigateToIntermediateViewChange
     
