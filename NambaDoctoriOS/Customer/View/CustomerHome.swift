@@ -12,7 +12,7 @@ struct CustomerHome: View {
     @State private var tabSelection:Int = 2
     @ObservedObject var customerVM:CustomerViewModel
     @State var alertItem : AlertItem?
-    
+
     var body: some View {
         NavigationView {
             if !customerVM.customerLoggedIn {

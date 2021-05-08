@@ -96,53 +96,13 @@ class DetailedBookDocViewModel : ObservableObject {
     }
     
     func book (completion: @escaping (_ success:Bool)->()) {
-        
-        let emptyDiagnosis = CustomerDiagnosis(name: "", type: "")
-        let emptyAllergy = CustomerAllergy(AllergyId: "", AllergyName: "", AppointmentId: "", ServiceRequestId: "")
-        let emptyMedicalHistory = CustomerMedicalHistory(MedicalHistoryId: "", MedicalHistoryName: "", AppointmentId: "", ServiceRequestId: "")
-        
-        func makeServiceRequest (appointmentId:String) -> CustomerServiceRequest {
-            return CustomerServiceRequest(serviceRequestID: "",
-                                          reason: self.reasonVM.reason,
-                                          serviceProviderID: serviceProvider.serviceProviderID,
-                                          appointmentID: appointmentId,
-                                          examination: "",
-                                          diagnosis: emptyDiagnosis,
-                                          investigations: [String](),
-                                          advice: "",
-                                          createdDateTime: Date().millisecondsSince1970,
-                                          lastModifiedDate: Date().millisecondsSince1970,
-                                          customerID: UserIdHelper().retrieveUserId(),
-                                          allergy: emptyAllergy,
-                                          medicalHistory: emptyMedicalHistory)
-        }
-        
         let slot = getCorrespondingSlot(timestamp: selectedTime)
         
-        let customerAppointment:CustomerAppointment = CustomerAppointment(appointmentID: "",
-                                                                          serviceRequestID: "",
-                                                                          parentAppointmentID: "",
-                                                                          customerID: UserIdHelper().retrieveUserId(),
-                                                                          serviceProviderID: self.serviceProvider.serviceProviderID,
-                                                                          requestedBy: UserIdHelper().retrieveUserId(),
-                                                                          serviceProviderName: "",
-                                                                          customerName: "",
-                                                                          isBlockedByServiceProvider: false,
-                                                                          status: "Confirmed",
-                                                                          serviceFee: self.serviceProvider.serviceFee,
-                                                                          followUpDays: 0,
-                                                                          isPaid: false,
-                                                                          scheduledAppointmentStartTime: slot?.startDateTime ?? 0,
-                                                                          scheduledAppointmentEndTime: slot?.endStartDateTime ?? 0,
-                                                                          actualAppointmentStartTime: 0,
-                                                                          actualAppointmentEndTime: 0,
-                                                                          createdDateTime: Date().millisecondsSince1970,
-                                                                          lastModifiedDate: Date().millisecondsSince1970,
-                                                                          noOfReports: 0)
+        let customerAppointment:CustomerAppointment = makeAppointment(slot: slot)
         
         CustomerAppointmentService().setAppointment(appointment: customerAppointment) { (response) in
             if response != nil {
-                CustomerServiceRequestService().setServiceRequest(serviceRequest: makeServiceRequest(appointmentId: response!)) { (response) in
+                CustomerServiceRequestService().setServiceRequest(serviceRequest: self.makeServiceRequest(appointmentId: response!)) { (response) in
                     if response != nil {
                         completion(true)
                     } else {
@@ -153,5 +113,50 @@ class DetailedBookDocViewModel : ObservableObject {
                 completion(false)
             }
         }
+    }
+    
+    func makeAppointment(slot:CustomerGeneratedSlot?) -> CustomerAppointment {
+        return CustomerAppointment(appointmentID: "",
+                                   serviceRequestID: "",
+                                   parentAppointmentID: "",
+                                   customerID: UserIdHelper().retrieveUserId(),
+                                   serviceProviderID: self.serviceProvider.serviceProviderID,
+                                   requestedBy: UserIdHelper().retrieveUserId(),
+                                   serviceProviderName: "",
+                                   customerName: "",
+                                   isBlockedByServiceProvider: false,
+                                   status: "Confirmed",
+                                   serviceFee: self.serviceProvider.serviceFee,
+                                   followUpDays: 0,
+                                   isPaid: false,
+                                   scheduledAppointmentStartTime: slot?.startDateTime ?? 0,
+                                   scheduledAppointmentEndTime: slot?.endStartDateTime ?? 0,
+                                   actualAppointmentStartTime: 0,
+                                   actualAppointmentEndTime: 0,
+                                   createdDateTime: Date().millisecondsSince1970,
+                                   lastModifiedDate: Date().millisecondsSince1970,
+                                   noOfReports: 0)
+    }
+    
+    func makeServiceRequest (appointmentId:String) -> CustomerServiceRequest {
+        
+        let emptyDiagnosis = CustomerDiagnosis(name: "", type: "")
+        let emptyAllergy = CustomerAllergy(AllergyId: "", AllergyName: "", AppointmentId: "", ServiceRequestId: "")
+        let emptyMedicalHistory = CustomerMedicalHistory(MedicalHistoryId: "", MedicalHistoryName: "", AppointmentId: "", ServiceRequestId: "")
+        
+        
+        return CustomerServiceRequest(serviceRequestID: "",
+                                      reason: self.reasonVM.reason,
+                                      serviceProviderID: serviceProvider.serviceProviderID,
+                                      appointmentID: appointmentId,
+                                      examination: "",
+                                      diagnosis: emptyDiagnosis,
+                                      investigations: [String](),
+                                      advice: "",
+                                      createdDateTime: Date().millisecondsSince1970,
+                                      lastModifiedDate: Date().millisecondsSince1970,
+                                      customerID: UserIdHelper().retrieveUserId(),
+                                      allergy: emptyAllergy,
+                                      medicalHistory: emptyMedicalHistory)
     }
 }

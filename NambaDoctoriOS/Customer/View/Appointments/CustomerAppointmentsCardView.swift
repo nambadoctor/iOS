@@ -40,12 +40,6 @@ struct CustomerAppointmentsCardView: View {
                         .bold()
 
                 }.padding(.leading, 3)
-
-                if self.customerAppointmentVM.takeToDetailedAppointmentView {
-                    NavigationLink("",
-                                   destination: CustomerDetailedAppointmentView(customerDetailedAppointmentVM: customerAppointmentVM.makeDetailedAppointmentVM()),
-                                   isActive: self.$customerAppointmentVM.takeToDetailedAppointmentView)
-                }
             }.padding()
 
         }

@@ -14,6 +14,9 @@ class CustomerViewModel : ObservableObject {
     
     @Published var customerLoggedIn:Bool = false
     
+    @Published var selectedAppointment:CustomerAppointment? = nil
+    @Published var takeToDetailedAppointmentView:Bool = false
+    
     var customerProfileService:CustomerProfileServiceProtocol
     var customerAppointmentService:CustomerAppointmentServiceProtocol
     var customerServiceProviderService:CustomerServiceProviderServiceProtocol
@@ -81,5 +84,16 @@ class CustomerViewModel : ObservableObject {
                 //TODO: handle empty or no ServiceProviders
             }
         }
+    }
+    
+    func makeDetailedAppointmentVM() -> CustomerDetailedAppointmentViewModel {
+        return CustomerDetailedAppointmentViewModel(appointment: self.selectedAppointment!)
+    }
+}
+
+extension CustomerViewModel : CustomerSelectAppointmentDelegate {
+    func selected(appointment: CustomerAppointment) {
+        self.selectedAppointment = appointment
+        self.takeToDetailedAppointmentView = true
     }
 }

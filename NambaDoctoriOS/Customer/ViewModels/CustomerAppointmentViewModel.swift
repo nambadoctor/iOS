@@ -7,15 +7,20 @@
 
 import Foundation
 
+protocol CustomerSelectAppointmentDelegate {
+    func selected(appointment:CustomerAppointment)
+}
+
 class CustomerAppointmentViewModel : ObservableObject {
     var appointment:CustomerAppointment
+    var delegate:CustomerSelectAppointmentDelegate
     
-    @Published var takeToDetailedAppointmentView:Bool = false
-    
-    init(appointment:CustomerAppointment) {
+    init(appointment:CustomerAppointment,
+         delegate:CustomerSelectAppointmentDelegate) {
         self.appointment = appointment
+        self.delegate = delegate
     }
-    
+     
     var appointmentStatus:String {
         if appointment.status == ConsultStateK.Confirmed.rawValue {
             return "Appointment Upcoming"
@@ -35,11 +40,7 @@ class CustomerAppointmentViewModel : ObservableObject {
     }
     
     func takeToDetailedView () {
-        self.takeToDetailedAppointmentView = true
-    }
-    
-    func makeDetailedAppointmentVM() -> CustomerDetailedAppointmentViewModel {
-        return CustomerDetailedAppointmentViewModel(appointment: self.appointment)
+        self.delegate.selected(appointment: self.appointment)
     }
 }
 
