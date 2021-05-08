@@ -136,27 +136,3 @@ struct MedicineEditableView: View {
         }
     }
 }
-
-struct CloseButton : View {
-    
-    private let action: () -> Void
-    
-    init(action: @escaping () -> Void) {
-        self.action = action
-    }
-    
-    var body: some View {
-        VStack{
-            HStack {
-                Spacer()
-                Button(action:self.action) {
-                    Image("xmark.circle")
-                        .resizable()
-                        .frame(width: 35, height: 35)
-                        .foregroundColor(.blue)
-                }.padding()
-            }
-            Spacer()
-        }
-    }
-}

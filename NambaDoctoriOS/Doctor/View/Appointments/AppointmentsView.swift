@@ -15,19 +15,27 @@ struct AppointmentsView: View {
         VStack {
             HorizontalDatePicker(datePickerVM: doctorViewModel.datePickerVM)
                 .background(Color.blue.opacity(0.1))
-            ScrollView {
-                if self.doctorViewModel.hasAppointments {
+            
+            if self.doctorViewModel.hasAppointments {
+                ScrollView {
                     ForEach(doctorViewModel.appointments, id: \.appointmentID) { appointment in
                         if doctorViewModel.compareCurrentAppointmentTimeWithSelectedDate(appointment: appointment) && !appointment.customerName.isEmpty
                         {
                             AppointmentCard(appointment: appointment, appointmentSelectDelegate: doctorViewModel)
                         }
                     }
-                } else {
-                    Text("There no appointments for this date").padding()
                 }
+            } else {
+                VStack {
+                    Spacer()
+                    Image("calendar")
+                        .scaleEffect(2.5)
+                        .padding()
+                    Text("No appointments for this date")
+                        .font(.system(size: 20))
+                    Spacer()
+                }.padding()
             }
-            Spacer()
             
             if doctorViewModel.takeToDetailedAppointment {
                 NavigationLink("",

@@ -88,6 +88,10 @@ class LocalNotifStorer {
     }
     
     func clearAllNotifs () {
-        
+        var notifs = LocalDecoder.decode(modelType: [LocalNotifObj].self, from: localNotifsEncodingString)
+        if notifs != nil {
+            notifs?.removeAll()
+            LocalEncoder.encode(payload: notifs, destination: localNotifsEncodingString)
+        }
     }
 }

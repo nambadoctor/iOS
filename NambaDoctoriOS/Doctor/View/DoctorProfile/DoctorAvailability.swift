@@ -1,124 +1,11 @@
 //
-//  DoctorAvailabilityView.swift
+//  DoctorAvailability.swift
 //  NambaDoctoriOS
 //
-//  Created by Surya Manivannan on 4/21/21.
+//  Created by Surya Manivannan on 5/7/21.
 //
 
 import SwiftUI
-
-class DoctorAvailabilityViewModel : ObservableObject {
-    var serviceProviderId:String = ""
-    
-    @Published var availabilities:[ServiceProviderAvailability] = [ServiceProviderAvailability]()
-    @Published var showView:Bool = false
-    
-    @Published var availabilityToEdit:String = "nil"
-    @Published var editStartTime:Date = Date()
-    @Published var editEndTime:Date = Date()
-    
-    @Published var makeNewSlotToggle:Int = 1000
-    
-    func getAvailabilities (serviceProviderId:String) {
-        self.serviceProviderId = serviceProviderId
-        ServiceProviderProfileService().getServiceProviderAvailabilities(serviceProviderId: serviceProviderId) { (availabilities) in
-            if availabilities != nil {
-                self.availabilities = availabilities!
-                self.showView = true
-            }
-        }
-    }
-    
-    func getAvailabilitiesForDayOfWeek (dayOfWeek:Int32) -> [ServiceProviderAvailability] {
-        var tempArr:[ServiceProviderAvailability] = [ServiceProviderAvailability]()
-        for avail in self.availabilities {
-            if avail.dayOfWeek == dayOfWeek {
-                tempArr.append(avail)
-            }
-        }
-        
-        return tempArr
-    }
-    
-    func removeAvailability (availability:ServiceProviderAvailability) {
-        var index = 0
-        for avail in availabilities {
-            if avail.availabilityConfigID == availability.availabilityConfigID {
-                do {
-                    availabilities.remove(at: index)
-                } catch {
-                    print(error.localizedDescription)
-                    DoctorAlertHelpers().errorRemovingAvailabilitySlotAlert()
-                }
-            }
-            index+=1
-        }
-        refreshView()
-    }
-    
-    func removeAndSave (availability:ServiceProviderAvailability) {
-        removeAvailability(availability: availability)
-        saveAvailabilities()
-    }
-    
-    func startEdit (availability:ServiceProviderAvailability) {
-        self.availabilityToEdit = availability.availabilityConfigID
-        mapStartandEndTime(availability: availability)
-    }
-    
-    func cancelEdit () {
-        self.availabilityToEdit = "nil"
-        editEndTime = Date()
-        editStartTime = Date()
-    }
-
-    func endEdit (availability:ServiceProviderAvailability) {
-        removeAvailability(availability: availability)
-        
-        var tempAvail = availability
-        tempAvail.startTime = editStartTime.millisecondsSince1970
-        tempAvail.endTime = editEndTime.millisecondsSince1970
-        availabilities.append(tempAvail)
-        
-        availabilityToEdit = "nil"
-        refreshView()
-        saveAvailabilities()
-    }
-    
-    func makeNewSlot (day:Int) {
-        self.makeNewSlotToggle = day
-    }
-    
-    func confirmNewSlot (day:Int) {
-        let newSlot = ServiceProviderAvailability(dayOfWeek: Int32(day), startTime: editStartTime.millisecondsSince1970, endTime: editEndTime.millisecondsSince1970, availabilityConfigID: "")
-        
-        availabilities.append(newSlot)
-        self.makeNewSlotToggle = 1000
-        saveAvailabilities()
-        refreshView()
-    }
-
-    func cancelMakingNewSlot () {
-        self.makeNewSlotToggle = 1000
-    }
-
-    func mapStartandEndTime (availability:ServiceProviderAvailability) {
-        editStartTime = Helpers.getDateFromTimeStamp(timeStamp: availability.startTime)
-        editEndTime = Helpers.getDateFromTimeStamp(timeStamp: availability.endTime)
-    }
-    
-    func saveAvailabilities () {
-        print(availabilities.count)
-        ServiceProviderProfileService().setServiceProviderAvailabilities(serviceProviderId: self.serviceProviderId, availabilities: self.availabilities) { (success) in
-            print("AVAILABILITIES SET SUCCESSFULLY")
-        }
-    }
-
-    func refreshView () {
-        self.showView = false
-        self.showView = true
-    }
-}
 
 struct DoctorAvailabilityView: View {
     @ObservedObject var availabilityVM:DoctorAvailabilityViewModel = DoctorAvailabilityViewModel()
@@ -139,7 +26,7 @@ struct DoctorAvailabilityView: View {
                             })
                             Spacer()
                         }
-                        
+
                         if availabilityVM.makeNewSlotToggle == day {
                             HStack {
                                 DatePicker("", selection: $availabilityVM.editStartTime, displayedComponents: .hourAndMinute)
@@ -209,15 +96,11 @@ struct DoctorAvailabilityView: View {
                                 .padding()
                                 .background(Color.blue.opacity(0.2))
                                 .cornerRadius(10)
-                                .onTapGesture {
-                                    DoctorAlertHelpers().editOrRemoveAvailabilityAlert(slotTime: "\(Helpers.getSimpleTimeForAppointment(timeStamp1: availability.startTime)) - \(Helpers.getSimpleTimeForAppointment(timeStamp1: availability.endTime))") { (edit, remove) in
-                                        if edit {
-                                            availabilityVM.startEdit(availability: availability)
-                                        } else {
-                                            availabilityVM.removeAndSave(availability: availability)
-                                        }
-                                    }
+                                .onTapGesture () {
+                                    self.availabilityVM.startEdit(availability: availability)
+                                    self.availabilityVM.shouldPresentActionScheet = true
                                 }
+                                .modifier(AvailabilityEditorModifier(availabilityVM: self.availabilityVM))
                             }
                         }
                     }
@@ -226,5 +109,21 @@ struct DoctorAvailabilityView: View {
                 }
             }
         }
+    }
+}
+
+struct AvailabilityEditorModifier: ViewModifier {
+    @ObservedObject var availabilityVM:DoctorAvailabilityViewModel
+    func body(content: Content) -> some View {
+        content
+            .actionSheet(isPresented: $availabilityVM.shouldPresentActionScheet) { () -> ActionSheet in
+                        ActionSheet(title: Text("Choose One"), message: Text("Would you like to edit or remove this availability?"), buttons: [ActionSheet.Button.default(Text("Edit"), action: {
+                            //availabilityVM.startEdit(availability: availability)
+                        }), ActionSheet.Button.default(Text("Remove"), action: {
+                            availabilityVM.removeAndSave(availabilityId: availabilityVM.availabilityToEdit)
+                        }), ActionSheet.Button.default(Text("Cancel"), action: {
+                            availabilityVM.cancelEdit()
+                        })])
+                    }
     }
 }

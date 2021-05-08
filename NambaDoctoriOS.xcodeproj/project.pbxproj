@@ -240,6 +240,7 @@
 		178909152644C2E7004A9D75 /* ReasonPickerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178909142644C2E7004A9D75 /* ReasonPickerCard.swift */; };
 		178909172644DF50004A9D75 /* ReasonPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178909162644DF50004A9D75 /* ReasonPickerViewModel.swift */; };
 		1789091B26453003004A9D75 /* CustomerNotificationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1789091A26453003004A9D75 /* CustomerNotificationHelper.swift */; };
+		1789091D2645B631004A9D75 /* DoctorAvailability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1789091C2645B631004A9D75 /* DoctorAvailability.swift */; };
 		178EB6AA2638BC5D009286B1 /* CustomerAlertHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178EB6A92638BC5D009286B1 /* CustomerAlertHelpers.swift */; };
 		178EB6B22638BCF1009286B1 /* CustomerViewStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178EB6B12638BCF1009286B1 /* CustomerViewStates.swift */; };
 		178EB6BA26390CD4009286B1 /* CustomerAppointmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178EB6B926390CD4009286B1 /* CustomerAppointmentsView.swift */; };
@@ -589,6 +590,7 @@
 		178909142644C2E7004A9D75 /* ReasonPickerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonPickerCard.swift; sourceTree = "<group>"; };
 		178909162644DF50004A9D75 /* ReasonPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReasonPickerViewModel.swift; sourceTree = "<group>"; };
 		1789091A26453003004A9D75 /* CustomerNotificationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerNotificationHelper.swift; sourceTree = "<group>"; };
+		1789091C2645B631004A9D75 /* DoctorAvailability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorAvailability.swift; sourceTree = "<group>"; };
 		178EB6A92638BC5D009286B1 /* CustomerAlertHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerAlertHelpers.swift; sourceTree = "<group>"; };
 		178EB6B12638BCF1009286B1 /* CustomerViewStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerViewStates.swift; sourceTree = "<group>"; };
 		178EB6B926390CD4009286B1 /* CustomerAppointmentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerAppointmentsView.swift; sourceTree = "<group>"; };
@@ -817,7 +819,7 @@
 			children = (
 				171B8AE6261154C6007E722C /* DoctorProfile.swift */,
 				171B8AF326116FA7007E722C /* EditableDoctorProfile.swift */,
-				17A020A226307AD000BD828F /* DoctorAvailabilityView.swift */,
+				1789091C2645B631004A9D75 /* DoctorAvailability.swift */,
 			);
 			path = DoctorProfile;
 			sourceTree = "<group>";
@@ -888,6 +890,7 @@
 		172B84E525AEE38200C6B035 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				17A020A226307AD000BD828F /* DoctorAvailabilityView.swift */,
 				172B84E625AEE39E00C6B035 /* DoctorViewModel.swift */,
 				1748005E25B8BDB000C8E3CC /* AppointmentViewModel.swift */,
 				17EC75FB260CF00C0002BA75 /* InvestigationsViewModel.swift */,
@@ -2204,6 +2207,7 @@
 				172B851025AEE46700C6B035 /* PhoneVerificationview.swift in Sources */,
 				17E869D925CE75E1000B0952 /* PatientReportView.swift in Sources */,
 				176AA15B2637BE4600F02346 /* CustomerServiceRequest.swift in Sources */,
+				1789091D2645B631004A9D75 /* DoctorAvailability.swift in Sources */,
 				17BD2E86263A369A00BB0BDD /* CustomerDetailedAppointmentView.swift in Sources */,
 				1742523E25BD98F400523B94 /* ServiceProviderCustomerService.swift in Sources */,
 				176AA18D2637C0AF00F02346 /* CustomerPhoneNumberMapper.swift in Sources */,
