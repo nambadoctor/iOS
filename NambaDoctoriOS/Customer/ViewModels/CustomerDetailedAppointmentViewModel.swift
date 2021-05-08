@@ -164,8 +164,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     }
     
     func getPrescription() {
-        CustomerPrescriptionService().getPrescription(customerId: UserIdHelper().retrieveUserId(), serviceRequestId: appointment.serviceRequestID, appointmentId: appointment.appointmentID) { prescription in
-            
+        CustomerPrescriptionService().getPrescription(appointmentId: appointment.appointmentID, serviceRequestId: appointment.serviceRequestID) { prescription in
             if prescription != nil {
                 self.prescription = prescription!
                 
@@ -177,7 +176,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     }
     
     func getPrescriptionPDF () {
-        CustomerPrescriptionService().getPrescriptionPDF(serviceProviderId: appointment.serviceProviderID, customerId: appointment.customerID, appointmentId: appointment.appointmentID, serviceRequestId: appointment.serviceRequestID) { data in
+        CustomerPrescriptionService().getPrescriptionPDF(serviceProviderId: appointment.serviceProviderID, appointmentId: appointment.appointmentID, serviceRequestId: appointment.serviceRequestID) { data in
             if data != nil {
                 self.prescriptionPDF = data!
             }
