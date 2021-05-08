@@ -10,12 +10,13 @@ import SwiftUI
 
 class CustomerAlertHelpers {
     func AppointmentBookedAlert (completion: @escaping (Bool) -> ()) {
-        alertTempItem = AlertItem(title: Text("Successfully Booked Appointment"), primaryButton: Alert.Button.cancel({
+        alertTempItem = AlertItem(title: Text("Are you sure?"), message: Text("Do you want to cancel this appointment?"), dismissButton: Alert.Button.destructive(Text("Ok").foregroundColor(Color.black), action: {
             completion(true)
         }))
+        
         CommonDefaultModifiers.showAlert()
     }
-    
+
     func WaitForDoctorToCallFirstAlert (completion: @escaping (Bool) -> ()) {
         alertTempItem = AlertItem(title: Text("Please wait for doctor to call you first"), primaryButton: Alert.Button.cancel({
             completion(true)

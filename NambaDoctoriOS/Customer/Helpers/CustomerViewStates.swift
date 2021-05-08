@@ -10,4 +10,6 @@ import Foundation
 enum CustomerViewStatesK:String {
     case FCMTokenUpdate
     case FCMTokenUpdateChange
+    
+    case AppointmentStatusChange
 }

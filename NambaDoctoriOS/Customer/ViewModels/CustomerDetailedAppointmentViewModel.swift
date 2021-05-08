@@ -16,6 +16,10 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     @Published var reports:[CustomerReport] = [CustomerReport]()
     @Published var serviceProvider:CustomerServiceProviderProfile? = nil
     
+    @Published var appointmentStarted:Bool = false
+    @Published var appointmentFinished:Bool = false
+    @Published var appointmnentUpComing:Bool = false
+    
     @Published var imagePickerVM:ImagePickerViewModel = ImagePickerViewModel()
     @Published var customerTwilioViewModel:CustomerTwilioViewModel
     @Published var customerChatViewModel:CustomerChatViewModel
@@ -31,54 +35,47 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     @Published var takeToChat:Bool = false
     
     var customerServiceRequestService:CustomerServiceRequestServiceProtocol
+    var customerAppointmentService:CustomerAppointmentServiceProtocol
     var customerReportService:CustomerReportServiceProtocol
     var customerNotifHelpers:CustomerNotificationHelper
     
     init(appointment:CustomerAppointment,
          customerServiceRequestService:CustomerServiceRequestServiceProtocol = CustomerServiceRequestService(),
-         customerReportService:CustomerReportServiceProtocol = CustomerReportService()) {
+         customerReportService:CustomerReportServiceProtocol = CustomerReportService(),
+         customerAppointmentService:CustomerAppointmentServiceProtocol = CustomerAppointmentService()) {
         
         self.appointment = appointment
         self.customerServiceRequestService = customerServiceRequestService
         self.customerReportService = customerReportService
+        self.customerAppointmentService = customerAppointmentService
         self.customerTwilioViewModel = CustomerTwilioViewModel(appointment: appointment)
         self.customerChatViewModel = CustomerChatViewModel(appointment: appointment)
         self.customerNotifHelpers = CustomerNotificationHelper(appointment: appointment)
         imagePickerVM.imagePickerDelegate = self
         reasonPickerVM.reasonPickedDelegate = self
         
+        initCalls()
+    }
+    
+    func initCalls () {
+        CommonDefaultModifiers.showLoader()
+        self.getAppointment()
         self.getServiceProvider()
         self.getServiceRequest()
         self.getReports()
-        
-        if appointmentFinished {
-            self.getPrescription()
-        }
     }
     
-    var appointmentStarted:Bool {
+    func checkAppointmentStatus () {
         if appointment.status == ConsultStateK.StartedConsultation.rawValue {
-            return true
-        } else {
-            return false
-        }
-    }
-    
-    var appointmentFinished:Bool {
-        if appointment.status == ConsultStateK.Finished.rawValue ||
+            appointmentStarted = true
+        } else if appointment.status == ConsultStateK.Finished.rawValue ||
             appointment.status == ConsultStateK.FinishedAppointment.rawValue {
-            return true
-        } else {
-            return false
+            appointmentFinished = true
+            self.getPrescription()
+        } else if appointment.status == ConsultStateK.Confirmed.rawValue {
+            appointmnentUpComing = true
         }
-    }
-    
-    var appointmnentUpComing:Bool {
-        if appointment.status == ConsultStateK.Confirmed.rawValue {
-            return true
-        } else {
-            return false
-        }
+        CommonDefaultModifiers.hideLoader()
     }
     
     var appointmentScheduledStartTime:String {
@@ -88,7 +85,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     var appointmentScheduledEndTime:String {
         return "\(Helpers.getTimeFromTimeStamp(timeStamp: appointment.scheduledAppointmentEndTime))"
     }
-    
+
     var appointmentActualStartTime:String {
         return "\(Helpers.getTimeFromTimeStamp(timeStamp: appointment.actualAppointmentStartTime))"
     }
@@ -103,6 +100,15 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     
     var serviceProviderFee : String {
         return "Fee: \(appointment.serviceFee.clean)"
+    }
+    
+    func getAppointment () {
+        self.customerAppointmentService.getSingleAppointment(appointmentId: self.appointment.appointmentID, serviceProviderId: self.appointment.serviceProviderID) { customerAppointment in
+            if customerAppointment != nil {
+                self.appointment = customerAppointment!
+                self.checkAppointmentStatus()
+            }
+        }
     }
     
     func getServiceRequest() {

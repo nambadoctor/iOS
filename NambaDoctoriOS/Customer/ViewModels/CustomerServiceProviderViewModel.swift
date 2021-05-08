@@ -31,7 +31,7 @@ class CustomerServiceProviderViewModel : ObservableObject {
     }
     
     var fees:String {
-        return "Fees: ₹\(serviceProvider.serviceFee)"
+        return "Fees: ₹\(serviceProvider.serviceFee.clean)"
     }
     
     func getServiceProviderExperience () -> Int {

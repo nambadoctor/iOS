@@ -18,15 +18,28 @@ class DetailedBookDocViewModel : ObservableObject {
     @Published var selectedDate:Int64 = 0
     @Published var selectedTime:Int64 = 0
     
-    @Published var reasonForAppointment:String = ""
+    @Published var docProfPicImageLoader:ImageLoader? = nil
     
+    @Published var reasonVM:ReasonPickerViewModel = ReasonPickerViewModel()
+
     var customerServiceProviderService:CustomerServiceProviderServiceProtocol
+    
+    var serviceProviderName : String {
+        return "Dr. \(serviceProvider.firstName) \(serviceProvider.lastName)"
+    }
+    
+    var serviceProviderFee : String {
+        return "Fee: \(serviceProvider.serviceFee.clean)"
+    }
+    
     
     init(serviceProvider:CustomerServiceProviderProfile,
          customerServiceProviderService:CustomerServiceProviderServiceProtocol = CustomerServiceProviderService()) {
         self.serviceProvider = serviceProvider
         self.customerServiceProviderService = customerServiceProviderService
         self.retrieveAvailabilities()
+        
+        self.docProfPicImageLoader = ImageLoader(urlString: serviceProvider.profilePictureURL) { _ in }
     }
     
     func retrieveAvailabilities () {
@@ -82,7 +95,7 @@ class DetailedBookDocViewModel : ObservableObject {
         self.selectedTime = time
     }
     
-    func book () {
+    func book (completion: @escaping (_ success:Bool)->()) {
         
         let emptyDiagnosis = CustomerDiagnosis(name: "", type: "")
         let emptyAllergy = CustomerAllergy(AllergyId: "", AllergyName: "", AppointmentId: "", ServiceRequestId: "")
@@ -90,7 +103,7 @@ class DetailedBookDocViewModel : ObservableObject {
         
         func makeServiceRequest (appointmentId:String) -> CustomerServiceRequest {
             return CustomerServiceRequest(serviceRequestID: "",
-                                          reason: self.reasonForAppointment,
+                                          reason: self.reasonVM.reason,
                                           serviceProviderID: serviceProvider.serviceProviderID,
                                           appointmentID: appointmentId,
                                           examination: "",
@@ -131,16 +144,14 @@ class DetailedBookDocViewModel : ObservableObject {
             if response != nil {
                 CustomerServiceRequestService().setServiceRequest(serviceRequest: makeServiceRequest(appointmentId: response!)) { (response) in
                     if response != nil {
-                        self.bookedSuccessfullyAlert()
+                        completion(true)
+                    } else {
+                        completion(false)
                     }
                 }
+            } else {
+                completion(false)
             }
-        }
-    }
-    
-    func bookedSuccessfullyAlert () {
-        CustomerAlertHelpers().AppointmentBookedAlert { (done) in
-            CommonDefaultModifiers.hideLoader()
         }
     }
 }
