@@ -21,19 +21,22 @@ struct CustomerDetailedAppointmentView: View {
                 VStack {
                     if customerDetailedAppointmentVM.imageLoader != nil {
                         ImageView(imageLoader: customerDetailedAppointmentVM.imageLoader!)
+                            .padding(.top, 10)
                     }
                     
                     if customerDetailedAppointmentVM.prescriptionPDF != nil {
                         PDFKitView(data: customerDetailedAppointmentVM.prescriptionPDF!)
+                            .padding(.top, 10)
                     }
                 }
                 
                 if customerDetailedAppointmentVM.appointmentStarted || customerDetailedAppointmentVM.appointmnentUpComing {
                     AppointmentInProgressView
                 }
-                
+
                 Spacer()
             }
+            .padding(.horizontal)
             
             if customerDetailedAppointmentVM.showTwilioRoom {
                 CustomerTwilioManager(customerTwilioViewModel: customerDetailedAppointmentVM.customerTwilioViewModel)
@@ -45,8 +48,12 @@ struct CustomerDetailedAppointmentView: View {
                                destination: CustomerChatRoomView(chatVM: self.customerDetailedAppointmentVM.customerChatViewModel),
                                isActive: $customerDetailedAppointmentVM.takeToChat)
             }
+            
+            if customerDetailedAppointmentVM.showPayment {
+                customerDetailedAppointmentVM.razorPayEndPoint()
+            }
         }
-        .padding(.horizontal)
+        
         .environmentObject(self.customerDetailedAppointmentVM.reasonPickerVM)
         .navigationBarItems(trailing: navBarChatButton)
     }
@@ -130,25 +137,25 @@ struct CustomerDetailedAppointmentView: View {
                 }
                 
                 VStack (alignment: .leading, spacing: 8) {
-                    
+
                     HStack {
                         Text(customerDetailedAppointmentVM.serviceProviderName)
                             .font(.system(size: 16))
                     }
-                    
+
                     HStack {
                         Image("indianrupeesign.circle")
                         Text(customerDetailedAppointmentVM.serviceProviderFee)
                             .font(.system(size: 16))
                     }
-                    
+
                     HStack {
                         Image("calendar")
                         Text(customerDetailedAppointmentVM.appointmentScheduledStartTime)
                             .font(.system(size: 16))
                     }
                 }.padding(.leading, 5)
-                
+
                 Spacer()
             }
             .padding(.top, 10)
@@ -217,6 +224,11 @@ struct CustomerDetailedAppointmentView: View {
                 .padding(.horizontal, 25)
                 .padding(.vertical, 10)
                 Divider().background(Color.blue.opacity(0.4))
+            }
+            else if !customerDetailedAppointmentVM.isPaid {
+                LargeButton(title: "Pay Now") {
+                    customerDetailedAppointmentVM.makePayment()
+                }
             }
         }
     }

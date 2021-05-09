@@ -96,6 +96,9 @@
 		172FA7192620F2BE00D14545 /* LetterOnColoredCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172FA7182620F2BE00D14545 /* LetterOnColoredCircle.swift */; };
 		17365DFA2646951F00386909 /* CustomerDefaultModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17365DF92646951F00386909 /* CustomerDefaultModifiers.swift */; };
 		17365DFC2646997E00386909 /* CustomerAutoNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17365DFB2646997E00386909 /* CustomerAutoNav.swift */; };
+		17365DFF2647695600386909 /* RazorPayDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17365DFE2647695600386909 /* RazorPayDisplay.swift */; };
+		17365E02264771D600386909 /* Pods_NambaDoctoriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 421278E51F7A74B868A7EA69 /* Pods_NambaDoctoriOS.framework */; };
+		17365E03264771D600386909 /* Pods_NambaDoctoriOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 421278E51F7A74B868A7EA69 /* Pods_NambaDoctoriOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1739EAD4263807BB00556044 /* CustomerHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1739EAD3263807BB00556044 /* CustomerHome.swift */; };
 		1739EADB2638084100556044 /* CustomerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1739EADA2638084100556044 /* CustomerViewModel.swift */; };
 		1739EAEB26380EFA00556044 /* BookDoctorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1739EAEA26380EFA00556044 /* BookDoctorView.swift */; };
@@ -323,7 +326,6 @@
 		17EC7675260EEBB20002BA75 /* BubbledSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EC7674260EEBB20002BA75 /* BubbledSelector.swift */; };
 		17EC767B260F05140002BA75 /* TagCloudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EC767A260F05140002BA75 /* TagCloudView.swift */; };
 		434CDF5DFA0DF425DF44E2A2 /* Pods_NambaDoctoriOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 435C297907080A241A267BB0 /* Pods_NambaDoctoriOSTests.framework */; };
-		95ACD8DA00B7C0B2D7EA224D /* Pods_NambaDoctoriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 421278E51F7A74B868A7EA69 /* Pods_NambaDoctoriOS.framework */; };
 		B6746684516D05CE4C3163B4 /* Pods_NambaDoctoriOS_NambaDoctoriOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276EFB6904AFFC883BD04BA9 /* Pods_NambaDoctoriOS_NambaDoctoriOSUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -357,6 +359,20 @@
 			remoteInfo = NambaDoctoriOS;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		17365E04264771D600386909 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				17365E03264771D600386909 /* Pods_NambaDoctoriOS.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		171646722602B28F00BB5B5A /* NotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRequest.swift; sourceTree = "<group>"; };
@@ -449,6 +465,7 @@
 		172FA7182620F2BE00D14545 /* LetterOnColoredCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterOnColoredCircle.swift; sourceTree = "<group>"; };
 		17365DF92646951F00386909 /* CustomerDefaultModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerDefaultModifiers.swift; sourceTree = "<group>"; };
 		17365DFB2646997E00386909 /* CustomerAutoNav.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerAutoNav.swift; sourceTree = "<group>"; };
+		17365DFE2647695600386909 /* RazorPayDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RazorPayDisplay.swift; sourceTree = "<group>"; };
 		1739EAD3263807BB00556044 /* CustomerHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerHome.swift; sourceTree = "<group>"; };
 		1739EADA2638084100556044 /* CustomerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerViewModel.swift; sourceTree = "<group>"; };
 		1739EAEA26380EFA00556044 /* BookDoctorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDoctorView.swift; sourceTree = "<group>"; };
@@ -695,9 +712,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17365E02264771D600386909 /* Pods_NambaDoctoriOS.framework in Frameworks */,
 				173A230D25CAFB0F0086342A /* NIO in Frameworks */,
 				173A230725CAFA850086342A /* GRPC in Frameworks */,
-				95ACD8DA00B7C0B2D7EA224D /* Pods_NambaDoctoriOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -976,6 +993,14 @@
 				172B850825AEE46600C6B035 /* PhoneNumberEntryView */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		17365DFD2647694A00386909 /* RazorPay */ = {
+			isa = PBXGroup;
+			children = (
+				17365DFE2647695600386909 /* RazorPayDisplay.swift */,
+			);
+			path = RazorPay;
 			sourceTree = "<group>";
 		};
 		1739EAC72638079700556044 /* Customer */ = {
@@ -1632,6 +1657,7 @@
 		17E5184725AED16A001F1A80 = {
 			isa = PBXGroup;
 			children = (
+				17365DFD2647694A00386909 /* RazorPay */,
 				173A229325CAF7150086342A /* gRPCService */,
 				17E3706825BF12340004C965 /* TwilioService */,
 				1748006825B8C12D00C8E3CC /* NotificationService */,
@@ -1756,6 +1782,7 @@
 				17E5184E25AED16A001F1A80 /* Resources */,
 				8175882E11BAAF40157BB173 /* [CP] Embed Pods Frameworks */,
 				173CDAB0262193E10023CC0B /* ShellScript */,
+				17365E04264771D600386909 /* Embed Frameworks */,
 			);
 			buildRules = (
 				17626E0E25DA518000C36A99 /* PBXBuildRule */,
@@ -2112,6 +2139,7 @@
 				17EC75DF260C52B70002BA75 /* ExpandingTextView.swift in Sources */,
 				171646882602B40300BB5B5A /* ServiceProviderAppInfo.swift in Sources */,
 				171B8AEF26116D57007E722C /* EditServiceProviderViewModel.swift in Sources */,
+				17365DFF2647695600386909 /* RazorPayDisplay.swift in Sources */,
 				176AA1332637BD0900F02346 /* CustomerFollowUp.swift in Sources */,
 				172FA70C261F125600D14545 /* ServiceProviderCustomerMedicalHistoryMapper.swift in Sources */,
 				1748005F25B8BDB000C8E3CC /* AppointmentViewModel.swift in Sources */,
@@ -2487,7 +2515,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NambaDoctoriOS/NambaDoctoriOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 54;
+				CURRENT_PROJECT_VERSION = 55;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"NambaDoctoriOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 478XDR2NPK;
@@ -2497,7 +2525,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.53;
+				MARKETING_VERSION = 1.54;
 				PRODUCT_BUNDLE_IDENTIFIER = dsconnect.iOS.NambaDoctoriOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -2513,7 +2541,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NambaDoctoriOS/NambaDoctoriOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 54;
+				CURRENT_PROJECT_VERSION = 55;
 				DEVELOPMENT_ASSET_PATHS = "\"NambaDoctoriOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 478XDR2NPK;
 				ENABLE_PREVIEWS = YES;
@@ -2522,7 +2550,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.53;
+				MARKETING_VERSION = 1.54;
 				PRODUCT_BUNDLE_IDENTIFIER = dsconnect.iOS.NambaDoctoriOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

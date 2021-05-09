@@ -173,12 +173,11 @@ extension IntermediateAppointmentViewModel : TwilioDelegate {
         self.showTwilioRoom.toggle()
         docAutoNav.leaveTwilioRoom()
     }
-    
+
     func startConsultation() {
         CommonDefaultModifiers.showLoader()
         doctorTwilioManagerViewModel.startRoom() { success in
             if success {
-                
                 self.doctorTwilioManagerViewModel.fireStartedNotif() { success in
                     self.appointment.status = ConsultStateK.StartedConsultation.rawValue //need to refresh from db after. using local update for now.
                     self.checkIfAppointmentStarted()
@@ -186,11 +185,30 @@ extension IntermediateAppointmentViewModel : TwilioDelegate {
 
                 self.showTwilioRoom = true
                 CommonDefaultModifiers.hideLoader()
+                self.startPatientWaitCounter()
             } else {
-                
+
             }
         }
     }
+
+    func startPatientWaitCounter () {
+        //TODO: Change to 30 seconds
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            
+            guard !self.doctorTwilioManagerViewModel.participantJoined else { return }
+
+            self.doctorAlertHelper.patientUnavailableAlert(patientName: self.appointment.customerName) { wait, call in
+                if call {
+                    self.leftRoom()
+                    self.patientInfoViewModel.callPatient()
+                } else {
+                    
+                }
+            }
+        }
+    }
+
 }
 
 //MARK:- APPOINTMENT RELATED CALLS

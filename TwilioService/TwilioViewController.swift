@@ -372,7 +372,7 @@ extension ViewController : RoomDelegate {
     func participantDidConnect(room: Room, participant: RemoteParticipant) {
         // Listen for events from all Participants to decide which RemoteVideoTrack to render.
         participant.delegate = self
-
+        twilioEventDelegate?.participantConnected()
         logMessage(messageText: "Patient connected")
     }
 

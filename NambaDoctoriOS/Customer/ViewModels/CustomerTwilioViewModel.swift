@@ -15,7 +15,7 @@ class CustomerTwilioViewModel : ObservableObject {
     @Published var collapseCall:Bool = false
     @Published var viewController:ViewController? = nil
 
-    @Published var videoEnabled:Bool = false
+    @Published var videoEnabled:Bool = true
     @Published var micEnabled:Bool = true
 
     @Published var participantJoined:Bool = false
@@ -41,7 +41,8 @@ class CustomerTwilioViewModel : ObservableObject {
         self.twilioAccessTokenHelper.retrieveToken(appointmentId: self.appointment.appointmentID, userId: self.appointment.customerID) { (success, token) in
             if success {
                 self.viewController = UIStoryboard(name: "Twilio", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as? ViewController
-                self.viewController!.twilioEventDelegate = self
+                self.viewController?.twilioEventDelegate = self
+                self.viewController?.toggleVideo(sender: self, completion: { _ in })
                 completion(success)
                 self.customerNotifHelpers.callingNotif()
             } else {
@@ -65,7 +66,7 @@ class CustomerTwilioViewModel : ObservableObject {
     }
 
     func leaveRoom () {
-        self.videoEnabled = false
+        self.videoEnabled = true
         self.micEnabled = true
         do {
             self.viewController?.disconnect(sender: self)

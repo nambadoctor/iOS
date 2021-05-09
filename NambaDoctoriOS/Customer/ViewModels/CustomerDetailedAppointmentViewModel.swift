@@ -19,31 +19,34 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     @Published var appointmentStarted:Bool = false
     @Published var appointmentFinished:Bool = false
     @Published var appointmnentUpComing:Bool = false
-    
+    @Published var isPaid:Bool = false
+
     @Published var imagePickerVM:ImagePickerViewModel = ImagePickerViewModel()
     @Published var customerTwilioViewModel:CustomerTwilioViewModel
     @Published var customerChatViewModel:CustomerChatViewModel
-    
+
     @Published var allergy:String = "No"
     @Published var reasonPickerVM:ReasonPickerViewModel = ReasonPickerViewModel()
     
     @Published var prescriptionPDF:Data? = nil
     @Published var imageLoader:ImageLoader? = nil
     @Published var docProfPicImageLoader:ImageLoader? = nil
-    
+
     @Published var showTwilioRoom:Bool = false
     @Published var takeToChat:Bool = false
+
+    @Published var showPayment:Bool = false
     
     var customerServiceRequestService:CustomerServiceRequestServiceProtocol
     var customerAppointmentService:CustomerAppointmentServiceProtocol
     var customerReportService:CustomerReportServiceProtocol
     var customerNotifHelpers:CustomerNotificationHelper
-    
+
     init(appointment:CustomerAppointment,
          customerServiceRequestService:CustomerServiceRequestServiceProtocol = CustomerServiceRequestService(),
          customerReportService:CustomerReportServiceProtocol = CustomerReportService(),
          customerAppointmentService:CustomerAppointmentServiceProtocol = CustomerAppointmentService()) {
-        
+
         self.appointment = appointment
         self.customerServiceRequestService = customerServiceRequestService
         self.customerReportService = customerReportService
@@ -53,10 +56,11 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
         self.customerNotifHelpers = CustomerNotificationHelper(appointment: appointment)
         imagePickerVM.imagePickerDelegate = self
         reasonPickerVM.reasonPickedDelegate = self
-        
+        customerTwilioViewModel.twilioDelegate = self
+
         initCalls()
     }
-    
+
     func initCalls () {
         CommonDefaultModifiers.showLoader()
         self.getAppointment()
@@ -64,18 +68,22 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
         self.getServiceRequest()
         self.getReports()
     }
-    
+
     func checkAppointmentStatus () {
         if appointment.status == ConsultStateK.StartedConsultation.rawValue {
             appointmentStarted = true
         } else if appointment.status == ConsultStateK.Finished.rawValue ||
-            appointment.status == ConsultStateK.FinishedAppointment.rawValue {
+                    appointment.status == ConsultStateK.FinishedAppointment.rawValue {
             appointmentFinished = true
             self.getPrescription()
         } else if appointment.status == ConsultStateK.Confirmed.rawValue {
             appointmnentUpComing = true
         }
         CommonDefaultModifiers.hideLoader()
+    }
+    
+    func checkIfPaid () {
+        self.isPaid = appointment.isPaid
     }
     
     var appointmentScheduledStartTime:String {
@@ -85,7 +93,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     var appointmentScheduledEndTime:String {
         return "\(Helpers.getTimeFromTimeStamp(timeStamp: appointment.scheduledAppointmentEndTime))"
     }
-
+    
     var appointmentActualStartTime:String {
         return "\(Helpers.getTimeFromTimeStamp(timeStamp: appointment.actualAppointmentStartTime))"
     }
@@ -197,22 +205,6 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
         }
     }
     
-    func startConsultation() {
-        CommonDefaultModifiers.showLoader()
-        if appointmentStarted {
-            customerTwilioViewModel.startRoom() { success in
-                if success {
-                    self.showTwilioRoom = true
-                    CommonDefaultModifiers.hideLoader()
-                } else {
-                    
-                }
-            }
-        } else {
-            CustomerAlertHelpers().WaitForDoctorToCallFirstAlert { _ in }
-        }
-    }
-    
     func cancelAppointment(completion: @escaping (_ successfullyCancelled:Bool)->()) {
         DoctorAlertHelpers().cancelAppointmentAlert { (cancel) in
             CommonDefaultModifiers.showLoader()
@@ -230,7 +222,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
             }
         }
     }
-
+    
     func setServiceRequest () {
         self.serviceRequest!.allergy.AllergyName = self.allergy
         self.serviceRequest!.allergy.AppointmentId = self.appointment.appointmentID
@@ -243,6 +235,18 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
                 print("success")
             }
         }
+    }
+    
+    func makePayment() {
+        self.showPayment = true
+    }
+    
+    func razorPayEndPoint() -> RazorPayDisplay {
+        //TODO: ADD CUSTOMER NUMBER
+        return RazorPayDisplay(customerNumber: "",
+                               paymentAmount: "\(self.appointment.serviceFee)",
+                               serviceProviderId: self.appointment.serviceProviderID,
+                               appointmentId: self.appointment.appointmentID)
     }
 }
 
@@ -270,3 +274,28 @@ extension CustomerDetailedAppointmentViewModel : ReasonPickedDelegate {
         self.setServiceRequest()
     }
 }
+
+//MARK:- TWILIO RELATED CALLS
+extension CustomerDetailedAppointmentViewModel : TwilioDelegate {
+    func leftRoom() {
+        self.showTwilioRoom.toggle()
+        docAutoNav.leaveTwilioRoom()
+    }
+
+    func startConsultation() {
+        CommonDefaultModifiers.showLoader()
+        if appointmentStarted {
+            customerTwilioViewModel.startRoom() { success in
+                if success {
+                    self.showTwilioRoom = true
+                    CommonDefaultModifiers.hideLoader()
+                } else {
+                    
+                }
+            }
+        } else {
+            CustomerAlertHelpers().WaitForDoctorToCallFirstAlert { _ in }
+        }
+    }
+}
+

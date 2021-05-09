@@ -22,7 +22,7 @@ class CustomerProfileService : CustomerProfileServiceProtocol {
     func setCustomerProfile (customerProfile:CustomerProfile, _ completion : @escaping (_ id:String?)->()) {
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
-        
+
         let customerClient = Nd_V1_CustomerWorkerV1Client(channel: channel)
         
         let request = customerProfileMapper.localCustomerToGrpc(customer: customerProfile)

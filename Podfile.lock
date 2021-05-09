@@ -104,6 +104,7 @@ PODS:
   - nanopb/decode (2.30907.0)
   - nanopb/encode (2.30907.0)
   - PromisesObjC (1.2.12)
+  - razorpay-pod (1.1.12)
   - TwilioVideo (3.8.0)
 
 DEPENDENCIES:
@@ -114,6 +115,7 @@ DEPENDENCIES:
   - Firebase/Crashlytics
   - Firebase/Database
   - Firebase/Messaging
+  - razorpay-pod (~> 1.1.1)
   - TwilioVideo (~> 3.7)
 
 SPEC REPOS:
@@ -137,6 +139,7 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - PromisesObjC
+    - razorpay-pod
     - TwilioVideo
 
 SPEC CHECKSUMS:
@@ -159,8 +162,9 @@ SPEC CHECKSUMS:
   leveldb-library: 50c7b45cbd7bf543c81a468fe557a16ae3db8729
   nanopb: 59221d7f958fb711001e6a449489542d92ae113e
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  razorpay-pod: e2e8cf25aea59eef51c6851716f188df71adab86
   TwilioVideo: c13a51ceca375e91620eb7578d2573c90cf53b46
 
-PODFILE CHECKSUM: edcfa8949232c807a12e791c898fe7d44f8247f4
+PODFILE CHECKSUM: a6f42f986c34de3889ed25e236363eb73c2551ba
 
 COCOAPODS: 1.10.1

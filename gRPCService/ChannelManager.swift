@@ -52,7 +52,7 @@ class ChannelManager {
     public func getCallOptions() -> CallOptions {
         let headers:HPACKHeaders = ["authorization": "Bearer \(AuthTokenId)",
                                     "UserId":UserIdHelper().retrieveUserId(),
-                                    "UserType":GetUserTypeHelper.getUserType(),
+                                    "UserType":GetUserTypeHelper.getUserType(), //TODO: FIX THIS
                                     "EventDateTime":"\(Date().millisecondsSince1970)",
                                     "AppointmentId":AppointmentID,
                                     "SessionId":SessionId,

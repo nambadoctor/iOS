@@ -19,4 +19,6 @@ protocol DoctorAlertHelpersProtocol {
     func twilioConnectToRoomAlert (connect: @escaping (Bool) -> ())
     
     func takeToChatAlert (open: @escaping (Bool) -> ())
+    
+    func patientUnavailableAlert (patientName:String, completion: @escaping (_ wait:Bool, _ call:Bool) -> ())
 }

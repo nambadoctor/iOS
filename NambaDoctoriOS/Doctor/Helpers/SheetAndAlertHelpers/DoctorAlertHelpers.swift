@@ -74,6 +74,17 @@ class DoctorAlertHelpers: DoctorAlertHelpersProtocol {
         CommonDefaultModifiers.showAlert()
     }
     
+    
+    func patientUnavailableAlert (patientName:String, completion: @escaping (_ wait:Bool, _ call:Bool) -> ()) {
+        alertTempItem = AlertItem(title: Text("\(patientName) is not able to join"), message: Text("Would you like to call them through phone?"), primaryButton: Alert.Button.default(Text("Wait"), action: {
+            completion(true, false)
+        }), secondaryButton: Alert.Button.default(Text("Call"), action: {
+            completion(false, true)
+        }))
+
+        CommonDefaultModifiers.showAlert()
+    }
+    
     func errorRemovingAvailabilitySlotAlert() {
         alertTempItem = AlertItem(title: Text("Cannot remove this availability slot"), message: Text("Please try again"), dismissButton: .default(Text("OK")))
         CommonDefaultModifiers.showAlert()
