@@ -2,6 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
 		<string>dsconnect.iOS.NambaDoctoriOS</string>
@@ -22,6 +27,12 @@
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>paytmmp</string>
+        <string>tez</string>
+        <string>phonepe</string>
+    </array>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>

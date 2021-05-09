@@ -25,7 +25,8 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     @Published var customerTwilioViewModel:CustomerTwilioViewModel
     @Published var customerChatViewModel:CustomerChatViewModel
 
-    @Published var allergy:String = "No"
+    @Published var allergy:String = ""
+    @Published var allergyChanged:Bool = false
     @Published var reasonPickerVM:ReasonPickerViewModel = ReasonPickerViewModel()
     
     @Published var prescriptionPDF:Data? = nil
@@ -36,7 +37,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     @Published var takeToChat:Bool = false
 
     @Published var showPayment:Bool = false
-    
+
     var customerServiceRequestService:CustomerServiceRequestServiceProtocol
     var customerAppointmentService:CustomerAppointmentServiceProtocol
     var customerReportService:CustomerReportServiceProtocol
@@ -109,7 +110,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     var serviceProviderFee : String {
         return "Fee: \(appointment.serviceFee.clean)"
     }
-    
+
     func getAppointment () {
         self.customerAppointmentService.getSingleAppointment(appointmentId: self.appointment.appointmentID, serviceProviderId: self.appointment.serviceProviderID) { customerAppointment in
             if customerAppointment != nil {
@@ -223,7 +224,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
         }
     }
     
-    func setServiceRequest () {
+    func setServiceRequest (_ completion: @escaping (_ success:Bool)->()) {
         self.serviceRequest!.allergy.AllergyName = self.allergy
         self.serviceRequest!.allergy.AppointmentId = self.appointment.appointmentID
         self.serviceRequest!.allergy.ServiceRequestId = self.serviceRequest!.serviceRequestID
@@ -232,11 +233,11 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
         
         customerServiceRequestService.setServiceRequest(serviceRequest: self.serviceRequest!) { response in
             if response != nil {
-                print("success")
+                completion(true)
             }
         }
     }
-    
+
     func makePayment() {
         self.showPayment = true
     }
@@ -244,9 +245,24 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     func razorPayEndPoint() -> RazorPayDisplay {
         //TODO: ADD CUSTOMER NUMBER
         return RazorPayDisplay(customerNumber: "",
-                               paymentAmount: "\(self.appointment.serviceFee)",
+                               paymentAmount: "\(self.appointment.serviceFee.clean)",
                                serviceProviderId: self.appointment.serviceProviderID,
-                               appointmentId: self.appointment.appointmentID)
+                               appointmentId: self.appointment.appointmentID,
+                               delegate: self)
+    }
+    
+    func commitAllergy () {
+        CommonDefaultModifiers.showLoader()
+        self.setServiceRequest() { success in
+            if success {
+                self.allergyChanged = false
+                CommonDefaultModifiers.hideLoader()
+                CustomerAlertHelpers().AllergySetSuccessfully { _ in }
+                EndEditingHelper.endEditing()
+            } else {
+                CustomerAlertHelpers().AllergySetFailed() { _ in }
+            }
+        }
     }
 }
 
@@ -262,16 +278,9 @@ extension CustomerDetailedAppointmentViewModel : ImagePickedDelegate {
     }
 }
 
-extension CustomerDetailedAppointmentViewModel : SideBySideCheckBoxDelegate {
-    func itemChecked(value: String) {
-        self.allergy = value
-        self.setServiceRequest()
-    }
-}
-
 extension CustomerDetailedAppointmentViewModel : ReasonPickedDelegate {
     func reasonSelected(reason: String) {
-        self.setServiceRequest()
+        self.setServiceRequest() { _ in }
     }
 }
 
@@ -299,3 +308,34 @@ extension CustomerDetailedAppointmentViewModel : TwilioDelegate {
     }
 }
 
+extension CustomerDetailedAppointmentViewModel : RazorPayDelegate {
+    func paymentFailed() {
+        CustomerAlertHelpers().PaymentFailedAlert { _ in }
+    }
+    
+    func paymentSucceeded(paymentId: String) {
+        CommonDefaultModifiers.showLoader()
+        let paymentInfo = CustomerPaymentInfo(serviceProviderID: self.appointment.serviceProviderID,
+                                              appointmentID: self.appointment.appointmentID,
+                                              paidAmmount: self.appointment.serviceFee,
+                                              paidDate: Date().millisecondsSince1970,
+                                              paymentGateway: "Razorpay",
+                                              paymentTransactionID: paymentId,
+                                              paymentTransactionNotes: "none",
+                                              customerID: self.appointment.customerID,
+                                              serviceProviderName: self.appointment.serviceProviderName,
+                                              customerName: self.appointment.customerName)
+        
+        customerAppointmentService.setPayment(paymentInfo: paymentInfo) { success in
+            CustomerAlertHelpers().PaymentSuccessAlert { _ in
+                CommonDefaultModifiers.hideLoader()
+            }
+        }
+    }
+}
+
+extension CustomerDetailedAppointmentViewModel : ExpandingTextViewEditedDelegate {
+    func changed() {
+        self.allergyChanged = true
+    }
+}

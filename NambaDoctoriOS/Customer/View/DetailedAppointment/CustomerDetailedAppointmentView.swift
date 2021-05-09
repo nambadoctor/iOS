@@ -33,7 +33,7 @@ struct CustomerDetailedAppointmentView: View {
                 if customerDetailedAppointmentVM.appointmentStarted || customerDetailedAppointmentVM.appointmnentUpComing {
                     AppointmentInProgressView
                 }
-
+                
                 Spacer()
             }
             .padding(.horizontal)
@@ -73,12 +73,22 @@ struct CustomerDetailedAppointmentView: View {
     var AppointmentInProgressView : some View {
         VStack (alignment: .leading, spacing: 10) {
             if customerDetailedAppointmentVM.serviceRequest != nil {
-                Text("DO YOU HAVE ALLERGIES?")
+                Text("ENTER YOUR ALLERGIES (IF ANY)")
                     .font(.footnote)
                     .foregroundColor(.gray)
                 
-                SideBySideCheckBox(isChecked: self.$customerDetailedAppointmentVM.allergy, title1: "Yes", title2: "No", delegate: self.customerDetailedAppointmentVM)
-                
+                HStack {
+                    ExpandingTextView(text: self.$customerDetailedAppointmentVM.allergy, changeDelegate: self.customerDetailedAppointmentVM)
+                    
+                    if self.customerDetailedAppointmentVM.allergyChanged {
+                        Button {
+                            self.customerDetailedAppointmentVM.commitAllergy()
+                        } label: {
+                            Text("Submit")
+                        }
+                    }
+                }
+
                 Spacer().frame(height: 15)
                 
                 Text("SELECT YOUR REASON")
@@ -137,25 +147,25 @@ struct CustomerDetailedAppointmentView: View {
                 }
                 
                 VStack (alignment: .leading, spacing: 8) {
-
+                    
                     HStack {
                         Text(customerDetailedAppointmentVM.serviceProviderName)
                             .font(.system(size: 16))
                     }
-
+                    
                     HStack {
                         Image("indianrupeesign.circle")
                         Text(customerDetailedAppointmentVM.serviceProviderFee)
                             .font(.system(size: 16))
                     }
-
+                    
                     HStack {
                         Image("calendar")
                         Text(customerDetailedAppointmentVM.appointmentScheduledStartTime)
                             .font(.system(size: 16))
                     }
                 }.padding(.leading, 5)
-
+                
                 Spacer()
             }
             .padding(.top, 10)
@@ -225,9 +235,25 @@ struct CustomerDetailedAppointmentView: View {
                 .padding(.vertical, 10)
                 Divider().background(Color.blue.opacity(0.4))
             }
-            else if !customerDetailedAppointmentVM.isPaid {
-                LargeButton(title: "Pay Now") {
-                    customerDetailedAppointmentVM.makePayment()
+            else {
+                if !customerDetailedAppointmentVM.isPaid {
+                    LargeButton(title: "Pay Now") {
+                        customerDetailedAppointmentVM.makePayment()
+                    }
+                } else {
+                    HStack {
+                        Image("checkmark.circle.fill")
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                            .foregroundColor(Color.green)
+                            .padding(.trailing)
+                        
+                        Text("Paid Successfully")
+
+                        Divider()
+                        
+                        Spacer()
+                    }
                 }
             }
         }
@@ -245,6 +271,6 @@ extension CustomerDetailedAppointmentView {
                          object: nil,
                          queue: .main) { (_) in
                 self.customerDetailedAppointmentVM.initCalls()
-        }
+            }
     }
 }

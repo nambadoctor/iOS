@@ -25,7 +25,7 @@ struct SideBySideCheckBox: View {
         self._isChecked = isChecked
         self.checkBoxDelegate = delegate
     }
-    
+
     var checkBoxDelegate:SideBySideCheckBoxDelegate? = nil
 
     var body: some View {

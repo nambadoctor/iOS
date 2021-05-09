@@ -71,7 +71,7 @@ struct DetailedBookDoctorView: View {
                         }
                     }
                 }
-                
+
                 LargeButton(title: "Book Appointment",
                             backgroundColor: Color.blue) {
                     self.detailedBookingVM.book() { success in

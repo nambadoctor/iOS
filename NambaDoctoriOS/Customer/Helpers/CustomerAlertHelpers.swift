@@ -24,6 +24,34 @@ class CustomerAlertHelpers {
         CommonDefaultModifiers.showAlert()
     }
     
+    func PaymentSuccessAlert (completion: @escaping (Bool) -> ()) {
+        alertTempItem = AlertItem(title: Text("Payment Successful"), dismissButton: Alert.Button.default(Text("Ok"), action: {
+            completion(true)
+        }))
+        CommonDefaultModifiers.showAlert()
+    }
+    
+    func AllergySetSuccessfully (completion: @escaping (Bool) -> ()) {
+        alertTempItem = AlertItem(title: Text("Allergy Set Successfully"), dismissButton: Alert.Button.default(Text("Ok"), action: {
+            completion(true)
+        }))
+        CommonDefaultModifiers.showAlert()
+    }
+    
+    func AllergySetFailed (completion: @escaping (Bool) -> ()) {
+        alertTempItem = AlertItem(title: Text("Setting Allergy Failed"), message: Text("Please try again"), dismissButton: Alert.Button.default(Text("Ok"), action: {
+            completion(true)
+        }))
+        CommonDefaultModifiers.showAlert()
+    }
+    
+    func PaymentFailedAlert (completion: @escaping (Bool) -> ()) {
+        alertTempItem = AlertItem(title: Text("Payment Failed"), message: Text("Please try again"), dismissButton: Alert.Button.default(Text("Ok"), action: {
+            completion(true)
+        }))
+        CommonDefaultModifiers.showAlert()
+    }
+    
     func presentingStackedNavViewError (navType:String) {
         alertTempItem = AlertItem(title: Text("Cannot Open"), message: Text("Sorry, you cannot open another \(navType) while currently in a meeting"), dismissButton: .default(Text("OK")))
         CommonDefaultModifiers.showAlert()
