@@ -10,14 +10,14 @@ import Foundation
 class CustomerMedicalHistoryMapper {
     static func localMedicalHistoryToGrpc(medicalHistory:CustomerMedicalHistory) -> Nd_V1_CustomerMedicalHistoryMessage {
         return Nd_V1_CustomerMedicalHistoryMessage.with {
-            $0.medicalHistoryID = "".toProto
+            $0.medicalHistoryID = medicalHistory.MedicalHistoryId.toProto
             $0.medicalHistoryName = medicalHistory.MedicalHistoryName.toProto
             $0.appointmentID = medicalHistory.AppointmentId.toProto
             $0.serviceRequestID = medicalHistory.ServiceRequestId.toProto
         }
     }
     
-    static func localAvailabilityToGrpc (medicalHistories:[CustomerMedicalHistory]) -> [Nd_V1_CustomerMedicalHistoryMessage] {
+    static func localMedicalHistoryToGrpc (medicalHistories:[CustomerMedicalHistory]) -> [Nd_V1_CustomerMedicalHistoryMessage] {
         var medHistoryList:[Nd_V1_CustomerMedicalHistoryMessage] = [Nd_V1_CustomerMedicalHistoryMessage]()
         
         for medHistory in medicalHistories {

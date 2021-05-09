@@ -10,7 +10,7 @@ import Foundation
 class ServiceProviderCustomerAllergyMapper {
     static func localAllergyToGrpc(allergy:ServiceProviderCustomerAllergy) -> Nd_V1_ServiceProviderAllergyMessage {
         return Nd_V1_ServiceProviderAllergyMessage.with {
-            $0.allergyID = "".toProto
+            $0.allergyID = allergy.AllergyId.toProto
             $0.allergyName = allergy.AllergyName.toProto
             $0.appointmentID = allergy.AppointmentId.toProto
             $0.serviceRequestID = allergy.ServiceRequestId.toProto

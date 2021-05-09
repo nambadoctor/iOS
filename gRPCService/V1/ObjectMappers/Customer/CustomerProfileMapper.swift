@@ -57,7 +57,7 @@ class CustomerProfileMapper {
             $0.profilePicURL = customer.profilePicURL.toProto
             $0.primaryServiceProviderID = customer.primaryServiceProviderID.toProto
             $0.allergies = CustomerAllergyMapper.localAvailabilityToGrpc(allergies: customer.Allergies)
-            $0.medicalHistories = CustomerMedicalHistoryMapper.localAvailabilityToGrpc(medicalHistories: customer.MedicalHistories)
+            $0.medicalHistories = CustomerMedicalHistoryMapper.localMedicalHistoryToGrpc(medicalHistories: customer.MedicalHistories)
             $0.lastModifedDate = customer.lastModifiedDate.toProto
             $0.createdDate = customer.createdDate.toProto
         }

@@ -10,7 +10,7 @@ import Foundation
 class ServiceProviderCustomerMedicalHistoryMapper {
     static func localMedicalHistoryToGrpc(medicalHistory:ServiceProviderCustomerMedicalHistory) -> Nd_V1_ServiceProviderMedicalHistoryMessage {
         return Nd_V1_ServiceProviderMedicalHistoryMessage.with {
-            $0.medicalHistoryID = "".toProto
+            $0.medicalHistoryID = medicalHistory.MedicalHistoryId.toProto
             $0.medicalHistoryName = medicalHistory.MedicalHistoryName.toProto
             $0.appointmentID = medicalHistory.AppointmentId.toProto
             $0.serviceRequestID = medicalHistory.ServiceRequestId.toProto
