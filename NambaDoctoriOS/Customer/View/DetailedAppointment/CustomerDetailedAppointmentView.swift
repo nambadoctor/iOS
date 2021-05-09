@@ -53,7 +53,9 @@ struct CustomerDetailedAppointmentView: View {
                 customerDetailedAppointmentVM.razorPayEndPoint()
             }
         }
-        
+        .onAppear() {
+            showLoaderListener()
+        }
         .environmentObject(self.customerDetailedAppointmentVM.reasonPickerVM)
         .navigationBarItems(trailing: navBarChatButton)
     }
@@ -270,6 +272,7 @@ extension CustomerDetailedAppointmentView {
             .addObserver(forName: NSNotification.Name("\(CustomerViewStatesK.AppointmentStatusChange)"),
                          object: nil,
                          queue: .main) { (_) in
+                self.customerDetailedAppointmentVM.resetAllValues()
                 self.customerDetailedAppointmentVM.initCalls()
             }
     }

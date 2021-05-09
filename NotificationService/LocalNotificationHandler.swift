@@ -12,6 +12,7 @@ import UIKit
 enum NotifTypes: String, Codable {
     case AppointmentBooked
     case AppointmentCancelled
+    case AppointmentEnded
     case ReportUploaded
     case Paid
     case CallInRoom
@@ -25,6 +26,8 @@ func getNotifType(type:String) -> NotifTypes {
         return .AppointmentBooked
     case NotifTypes.AppointmentCancelled.rawValue:
         return .AppointmentCancelled
+    case NotifTypes.AppointmentEnded.rawValue:
+        return .AppointmentEnded
     case NotifTypes.ReportUploaded.rawValue:
         return .ReportUploaded
     case NotifTypes.Paid.rawValue:
@@ -51,7 +54,10 @@ class LocalNotificationHandler {
         switch notifType {
         case .AppointmentBooked, .AppointmentCancelled:
             DoctorDefaultModifiers.refreshAppointments()
+            CustomerDefaultModifiers.refreshAppointments()
             completion(true)
+        case .AppointmentEnded:
+            CustomerDefaultModifiers.triggerAppointmentStatusChanges()
         case .ReportUploaded:
             DoctorDefaultModifiers.refreshReportsForDoctor()
             completion(false)
@@ -63,6 +69,7 @@ class LocalNotificationHandler {
         default:
             completion(true)
         }
+        
         LoggerService().log(appointmentId: "", eventName: "PROCESSED NOTIFICATION")
     }
 

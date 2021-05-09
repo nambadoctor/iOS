@@ -62,6 +62,7 @@ class DocNotifHelpers : DocNotifHelpersProtocol {
             $0.body = "Please complete your payment to continue".toProto
             $0.userID = appointment.customerID.toProto
             $0.id = appointment.appointmentID.toProto
+            $0.type = NotifTypes.AppointmentEnded.rawValue.toProto
         }
         
         sendPushNotification.sendNotif(notifObj: startedConsultNotifObj)

@@ -15,7 +15,7 @@ var CustomerChatHelperMessages:[String] = ["Hello, I am waiting in the consultat
                                "Please upload reports if any"]
 
 struct CustomerChatRoomView: View {
-    
+
     @ObservedObject var chatVM:CustomerChatViewModel
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
 
@@ -75,7 +75,7 @@ struct CustomerChatRoomView: View {
                     }
                 }
             }
-            
+
             HStack {
                 ExpandingTextView(text: self.$chatVM.currentTextEntry)
                 Button {

@@ -82,7 +82,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
         }
         CommonDefaultModifiers.hideLoader()
     }
-    
+
     func checkIfPaid () {
         self.isPaid = appointment.isPaid
     }
@@ -303,6 +303,7 @@ extension CustomerDetailedAppointmentViewModel : TwilioDelegate {
                 }
             }
         } else {
+            CommonDefaultModifiers.showLoader()
             CustomerAlertHelpers().WaitForDoctorToCallFirstAlert { _ in }
         }
     }
@@ -338,4 +339,17 @@ extension CustomerDetailedAppointmentViewModel : ExpandingTextViewEditedDelegate
     func changed() {
         self.allergyChanged = true
     }
+}
+
+extension CustomerDetailedAppointmentViewModel {
+    func resetAllValues () {
+        self.appointmentStarted = false
+        self.appointmentFinished = false
+        self.appointmnentUpComing = false
+        self.isPaid = false
+        self.showTwilioRoom = false
+        self.takeToChat = false
+        self.showPayment = false
+    }
+
 }
