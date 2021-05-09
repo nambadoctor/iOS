@@ -20,7 +20,7 @@ class CustomerViewModel : ObservableObject {
     var customerProfileService:CustomerProfileServiceProtocol
     var customerAppointmentService:CustomerAppointmentServiceProtocol
     var customerServiceProviderService:CustomerServiceProviderServiceProtocol
-    
+
     init(customerProfileService:CustomerProfileServiceProtocol = CustomerProfileService(),
          customerAppointmentService:CustomerAppointmentServiceProtocol = CustomerAppointmentService(),
          customerServiceProviderService:CustomerServiceProviderServiceProtocol = CustomerServiceProviderService()) {
@@ -55,7 +55,7 @@ class CustomerViewModel : ObservableObject {
             self.updateCustomer()
         }
     }
-    
+
     func updateCustomer() {
         customerProfileService.setCustomerProfile(customerProfile: self.customerProfile!) { (response) in
             if response != nil {

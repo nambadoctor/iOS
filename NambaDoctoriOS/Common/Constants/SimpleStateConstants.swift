@@ -7,12 +7,14 @@
 
 import Foundation
 
-enum SimpleStateK {
+enum SimpleStateK : String {
     case showLoader
     case showLoaderChange
     
     case loginStatus
     case loginStatusChange
+    
+    case userType
     
     case showPopup
     case showPopupChange

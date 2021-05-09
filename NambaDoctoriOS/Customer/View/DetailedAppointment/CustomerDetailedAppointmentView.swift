@@ -76,7 +76,7 @@ struct CustomerDetailedAppointmentView: View {
                 Text("ENTER YOUR ALLERGIES (IF ANY)")
                     .font(.footnote)
                     .foregroundColor(.gray)
-                
+ 
                 HStack {
                     ExpandingTextView(text: self.$customerDetailedAppointmentVM.allergy, changeDelegate: self.customerDetailedAppointmentVM)
                     

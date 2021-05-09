@@ -26,7 +26,7 @@ class CustomerChatViewModel: ObservableObject {
         self.customerNotifHelpers = CustomerNotificationHelper(appointment: appointment)
 
         startMessageAddedListener()
-        docAutoNav.enterChatRoom(appointmentId: appointment.appointmentID)
+        cusAutoNav.enterChatRoom(appointmentId: appointment.appointmentID)
     }
 
     private func startMessageAddedListener () {

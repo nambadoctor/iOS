@@ -35,6 +35,7 @@ class Logon : FindUserTypeViewModelProtocol {
                     if responseSplit.count > 1 {
                         let userStatus = CheckLoginStatus.checkStatus(loggedInStatus: responseSplit[0])
                         UserIdHelper().storeUserId(userId: responseSplit[1])
+                        UserTypeHelper.setUserType(userType: userStatus)
                         completion(userStatus)
                     } else {
                         completion(.Customer)
@@ -66,8 +67,13 @@ class UserIdHelper {
     }
 }
 
-class GetUserTypeHelper {
+class UserTypeHelper {
     static func getUserType() -> String {
-        return UserDefaults.standard.value(forKey: "\(SimpleStateK.loginStatus)") as? String ?? ""
+        return UserDefaults.standard.value(forKey: SimpleStateK.userType.rawValue) as? String ?? ""
+    }
+    
+    static func setUserType (userType:UserLoginStatus) {
+        let defaults = UserDefaults.standard
+        defaults.set(userType.rawValue, forKey: SimpleStateK.userType.rawValue)
     }
 }

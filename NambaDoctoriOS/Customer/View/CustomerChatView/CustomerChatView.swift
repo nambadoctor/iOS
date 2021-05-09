@@ -101,7 +101,7 @@ struct CustomerChatRoomView: View {
     
     var backButton : some View {
         Button(action : {
-            docAutoNav.leaveChatRoom()
+            cusAutoNav.leaveChatRoom()
             self.mode.wrappedValue.dismiss()
         }){
             Image(systemName: "arrow.left")

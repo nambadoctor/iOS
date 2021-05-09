@@ -37,7 +37,7 @@ class CustomerTwilioViewModel : ObservableObject {
     }
 
     func startRoom(completion: @escaping (_ success:Bool)->()) {
-        docAutoNav.enterTwilioRoom(appointmentId: self.appointment.appointmentID)
+        cusAutoNav.enterTwilioRoom(appointmentId: self.appointment.appointmentID)
         self.twilioAccessTokenHelper.retrieveToken(appointmentId: self.appointment.appointmentID, userId: self.appointment.customerID) { (success, token) in
             if success {
                 self.viewController = UIStoryboard(name: "Twilio", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as? ViewController

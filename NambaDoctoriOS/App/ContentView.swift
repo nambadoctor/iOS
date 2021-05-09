@@ -36,7 +36,7 @@ struct ContentView: View {
 extension ContentView {
     func loginStateListener () {
         //Opening value check
-        let status = GetUserTypeHelper.getUserType()
+        let status = UserTypeHelper.getUserType()
         loginStatus = CheckLoginStatus.checkStatus(loggedInStatus: status)
         print("LOGIN STATUS: \(loginStatus)")
         NotificationCenter.default

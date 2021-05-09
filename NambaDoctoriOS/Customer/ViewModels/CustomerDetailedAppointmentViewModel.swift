@@ -288,7 +288,7 @@ extension CustomerDetailedAppointmentViewModel : ReasonPickedDelegate {
 extension CustomerDetailedAppointmentViewModel : TwilioDelegate {
     func leftRoom() {
         self.showTwilioRoom.toggle()
-        docAutoNav.leaveTwilioRoom()
+        cusAutoNav.leaveTwilioRoom()
     }
 
     func startConsultation() {
