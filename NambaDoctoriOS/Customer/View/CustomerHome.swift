@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct CustomerHome: View {
-    
-    @State private var tabSelection:Int = 2
+
     @ObservedObject var customerVM:CustomerViewModel
     @State var alertItem : AlertItem?
 
@@ -19,14 +18,14 @@ struct CustomerHome: View {
                 Indicator()
             } else {
                 ZStack {
-                    TabView (selection: self.$tabSelection) {
+                    TabView (selection: self.$customerVM.tabSelection) {
                         CustomerAppointmentsView().tabItem {
                             Image("list.triangle")
                             Text("Appointments")
                         }.tag(1)
 
                         BookDoctorView().tabItem {
-                            Image("xmark")
+                            Image("stethoscope")
                             Text("Book Doctor")
                         }.tag(2)
                         
@@ -86,7 +85,7 @@ extension CustomerHome {
 
     func navigationToDetailedViewListener () {
         NotificationCenter.default.addObserver(forName: NSNotification.Name("\(CustomerViewStatesK.navigateToDetailedViewChange)"), object: nil, queue: .main) { (_) in
-            self.tabSelection = 1
+            self.customerVM.tabSelection = 1
             customerVM.getNavigationSelectedAppointment()
         }
     }

@@ -8,8 +8,10 @@
 import Foundation
 
 class CustomerViewModel : ObservableObject {
+    @Published var tabSelection:Int = 2
     @Published var customerProfile:CustomerProfile? = nil
-    @Published var appointments:[CustomerAppointment]? = nil
+    @Published var upcomingAppointments:[CustomerAppointment] = [CustomerAppointment]()
+    @Published var finishedAppointments:[CustomerAppointment] = [CustomerAppointment]()
     @Published var serviceProviders:[CustomerServiceProviderProfile]? = nil
     
     @Published var customerLoggedIn:Bool = false
@@ -54,6 +56,20 @@ class CustomerViewModel : ObservableObject {
         }
     }
     
+    func sortAppointments (appointments:[CustomerAppointment]) {
+        for appointment in appointments {
+            if appointment.status == ConsultStateK.Confirmed.rawValue || appointment.status == ConsultStateK.StartedConsultation.rawValue {
+                upcomingAppointments.append(appointment)
+            } else if appointment.status == ConsultStateK.Finished.rawValue {
+                finishedAppointments.append(appointment)
+            }
+        }
+
+        if upcomingAppointments.count > 0 {
+            tabSelection = 1
+        }
+    }
+
     func updateFCMToken () {
         //update FCM Token
         guard self.customerProfile != nil else { return
@@ -76,7 +92,7 @@ class CustomerViewModel : ObservableObject {
     func retrieveCustomerAppointments () {
         customerAppointmentService.getCustomerAppointments(customerId: self.customerProfile!.customerID) { (customerAppointments) in
             if customerAppointments != nil || customerAppointments?.count != 0 {
-                self.appointments = customerAppointments!
+                self.sortAppointments(appointments: customerAppointments!)
                 self.getNavigationSelectedAppointment()
             } else {
                 //TODO: handle empty or no appointments
@@ -99,7 +115,14 @@ class CustomerViewModel : ObservableObject {
     }
     
     func getNavigationSelectedAppointment () {
-        for appointment in appointments! {
+        for appointment in upcomingAppointments {
+            if cusAutoNav.appointmentId == appointment.appointmentID {
+                self.selectedAppointment = appointment
+                self.takeToDetailedAppointmentView = true
+            }
+        }
+        
+        for appointment in finishedAppointments {
             if cusAutoNav.appointmentId == appointment.appointmentID {
                 self.selectedAppointment = appointment
                 self.takeToDetailedAppointmentView = true
