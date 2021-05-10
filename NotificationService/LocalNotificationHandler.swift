@@ -118,7 +118,7 @@ class LocalNotificationHandler {
         }
         LoggerService().log(appointmentId: "", eventName: "TAPPED NOTIFICATION")
     }
-    
+
     private func getValuesFromAPNPayload (userInfo:[AnyHashable: Any]) -> [String:String] {
         let apnData = userInfo[AnyHashable("aps")] as! NSDictionary
         let alertData  = apnData["alert"] as! NSDictionary
