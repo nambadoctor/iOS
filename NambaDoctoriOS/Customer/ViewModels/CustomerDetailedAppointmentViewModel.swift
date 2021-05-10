@@ -356,7 +356,7 @@ extension CustomerDetailedAppointmentViewModel {
 
 extension CustomerDetailedAppointmentViewModel {
     func checkForDirectNavigation () {
-        if docAutoNav.takeToChat {
+        if cusAutoNav.takeToChat {
             CustomerAlertHelpers().takeToChatAlert { (open) in
                 if open {
                     self.takeToChat = true
@@ -365,7 +365,7 @@ extension CustomerDetailedAppointmentViewModel {
             }
         }
 
-        if docAutoNav.takeToTwilioRoom {
+        if cusAutoNav.takeToTwilioRoom {
             CustomerAlertHelpers().twilioConnectToRoomAlert { (connect) in
                 if connect {
                     self.startConsultation()
