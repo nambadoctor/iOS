@@ -12,7 +12,8 @@ class CustomerAppInfoMapper {
         return CustomerAppInfo(authID: appInfo.authID.toString,
                                       authType: appInfo.authType.toString,
                                       deviceToken: appInfo.deviceToken.toString,
-                                      appInfoID: appInfo.appInfoID.toString)
+                                      appInfoID: appInfo.appInfoID.toString,
+                                      deviceTokenType: appInfo.deviceTokenType.toString)
     }
     
     static func localAppInfoToGrpc(appInfo:CustomerAppInfo) -> Nd_V1_CustomerAppInfo {
@@ -21,6 +22,7 @@ class CustomerAppInfoMapper {
             $0.authType = appInfo.authType.toProto
             $0.deviceToken = appInfo.deviceToken.toProto
             $0.appInfoID = appInfo.appInfoID.toProto
+            $0.deviceTokenType = appInfo.deviceTokenType.toProto
         }
     }
 

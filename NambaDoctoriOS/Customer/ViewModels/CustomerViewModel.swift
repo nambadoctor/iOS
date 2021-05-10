@@ -75,6 +75,7 @@ class CustomerViewModel : ObservableObject {
         guard self.customerProfile != nil else { return
         }
         if !DeviceTokenId.isEmpty {
+            self.customerProfile!.appInfo.deviceTokenType = "apn"
             self.customerProfile!.appInfo.deviceToken = DeviceTokenId
             self.updateCustomer()
         }

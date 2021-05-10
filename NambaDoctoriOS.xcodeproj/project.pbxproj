@@ -98,7 +98,6 @@
 		17365DFC2646997E00386909 /* CustomerAutoNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17365DFB2646997E00386909 /* CustomerAutoNav.swift */; };
 		17365DFF2647695600386909 /* RazorPayDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17365DFE2647695600386909 /* RazorPayDisplay.swift */; };
 		17365E02264771D600386909 /* Pods_NambaDoctoriOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 421278E51F7A74B868A7EA69 /* Pods_NambaDoctoriOS.framework */; };
-		17365E03264771D600386909 /* Pods_NambaDoctoriOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 421278E51F7A74B868A7EA69 /* Pods_NambaDoctoriOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1739EAD4263807BB00556044 /* CustomerHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1739EAD3263807BB00556044 /* CustomerHome.swift */; };
 		1739EADB2638084100556044 /* CustomerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1739EADA2638084100556044 /* CustomerViewModel.swift */; };
 		1739EAEB26380EFA00556044 /* BookDoctorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1739EAEA26380EFA00556044 /* BookDoctorView.swift */; };
@@ -360,20 +359,6 @@
 			remoteInfo = NambaDoctoriOS;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		17365E04264771D600386909 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				17365E03264771D600386909 /* Pods_NambaDoctoriOS.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		171646722602B28F00BB5B5A /* NotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRequest.swift; sourceTree = "<group>"; };
@@ -1793,7 +1778,6 @@
 				17E5184E25AED16A001F1A80 /* Resources */,
 				8175882E11BAAF40157BB173 /* [CP] Embed Pods Frameworks */,
 				173CDAB0262193E10023CC0B /* ShellScript */,
-				17365E04264771D600386909 /* Embed Frameworks */,
 			);
 			buildRules = (
 				17626E0E25DA518000C36A99 /* PBXBuildRule */,
