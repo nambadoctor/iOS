@@ -55,6 +55,7 @@ struct CustomerDetailedAppointmentView: View {
         }
         .onAppear() {
             showLoaderListener()
+            customerDetailedAppointmentVM.checkForDirectNavigation()
         }
         .environmentObject(self.customerDetailedAppointmentVM.reasonPickerVM)
         .navigationBarItems(trailing: navBarChatButton)

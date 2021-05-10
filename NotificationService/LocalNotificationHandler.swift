@@ -64,12 +64,15 @@ class LocalNotificationHandler {
         case .Paid:
             completion(true)
             break
-        case .CallInRoom, .NewChatMessage:
+        case .CallInRoom:
+            CustomerDefaultModifiers.triggerAppointmentStatusChanges()
+            completion(true)
+        case .NewChatMessage:
             completion(true)
         default:
             completion(true)
         }
-        
+
         LoggerService().log(appointmentId: "", eventName: "PROCESSED NOTIFICATION")
     }
 
@@ -85,9 +88,11 @@ class LocalNotificationHandler {
             break
         case .CallInRoom:
             docAutoNav.navigateToCall(appointmentId: values["id"]!)
+            cusAutoNav.navigateToCall(appointmentId: values["id"]!)
             break
         case .NewChatMessage:
             docAutoNav.navigateToChat(appointmentId: values["id"]!)
+            cusAutoNav.navigateToChat(appointmentId: values["id"]!)
             break
         default:
             break
@@ -102,9 +107,11 @@ class LocalNotificationHandler {
             break
         case .CallInRoom:
             docAutoNav.navigateToCall(appointmentId: notifObj.AppointmentId)
+            cusAutoNav.navigateToCall(appointmentId: notifObj.AppointmentId)
             break
         case .NewChatMessage:
             docAutoNav.navigateToChat(appointmentId: notifObj.AppointmentId)
+            cusAutoNav.navigateToChat(appointmentId: notifObj.AppointmentId)
             break
         default:
             break

@@ -87,7 +87,7 @@ extension CustomerHome {
     func navigationToDetailedViewListener () {
         NotificationCenter.default.addObserver(forName: NSNotification.Name("\(CustomerViewStatesK.navigateToDetailedViewChange)"), object: nil, queue: .main) { (_) in
             self.tabSelection = 1
-            customerVM.retrieveCustomerAppointments()
+            customerVM.getNavigationSelectedAppointment()
         }
     }
 }

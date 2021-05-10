@@ -353,3 +353,25 @@ extension CustomerDetailedAppointmentViewModel {
     }
 
 }
+
+extension CustomerDetailedAppointmentViewModel {
+    func checkForDirectNavigation () {
+        if docAutoNav.takeToChat {
+            CustomerAlertHelpers().takeToChatAlert { (open) in
+                if open {
+                    self.takeToChat = true
+                    cusAutoNav.clearAllValues()
+                }
+            }
+        }
+
+        if docAutoNav.takeToTwilioRoom {
+            CustomerAlertHelpers().twilioConnectToRoomAlert { (connect) in
+                if connect {
+                    self.startConsultation()
+                    cusAutoNav.clearAllValues()
+                }
+            }
+        }
+    }
+}

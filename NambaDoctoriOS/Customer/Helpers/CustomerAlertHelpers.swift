@@ -56,4 +56,23 @@ class CustomerAlertHelpers {
         alertTempItem = AlertItem(title: Text("Cannot Open"), message: Text("Sorry, you cannot open another \(navType) while currently in a meeting"), dismissButton: .default(Text("OK")))
         CommonDefaultModifiers.showAlert()
     }
+    
+    func twilioConnectToRoomAlert (connect: @escaping (Bool) -> ()) {
+        alertTempItem = AlertItem(title: Text("Would you like to connect to the consultation room?"), primaryButton: Alert.Button.cancel({
+            cusAutoNav.clearAllValues()
+        }), secondaryButton: Alert.Button.default(Text("Yes"), action: {
+            connect(true)
+        }))
+        CommonDefaultModifiers.showAlert()
+    }
+
+    func takeToChatAlert (open: @escaping (Bool) -> ()) {
+        alertTempItem = AlertItem(title: Text("Would you like to open this chat?"), primaryButton: Alert.Button.cancel({
+            cusAutoNav.clearAllValues()
+        }), secondaryButton: Alert.Button.default(Text("Yes"), action: {
+            open(true)
+        }))
+        CommonDefaultModifiers.showAlert()
+    }
+    
 }
