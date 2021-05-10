@@ -30,7 +30,7 @@ struct CustomerHome: View {
                             Text("Book Doctor")
                         }.tag(2)
                         
-                        Text("Profile").tabItem {
+                        CustomerProfileView().tabItem {
                             Image("person.crop.circle.fill")
                             Text("Profile")
                         }.tag(3)

@@ -17,6 +17,8 @@ class CustomerViewModel : ObservableObject {
     @Published var selectedAppointment:CustomerAppointment? = nil
     @Published var takeToDetailedAppointmentView:Bool = false
     
+    @Published var imageLoader:ImageLoader? = nil
+    
     var customerProfileService:CustomerProfileServiceProtocol
     var customerAppointmentService:CustomerAppointmentServiceProtocol
     var customerServiceProviderService:CustomerServiceProviderServiceProtocol
@@ -40,6 +42,12 @@ class CustomerViewModel : ObservableObject {
                 self.retrieveCustomerAppointments()
                 self.retrieveServiceProviders()
                 self.updateFCMToken()
+
+                if !customerProfile!.profilePicURL.isEmpty {
+                    self.imageLoader = ImageLoader(urlString: customerProfile!.profilePicURL, { _ in })
+                } else {
+                    self.imageLoader = ImageLoader(urlString: "https://wgsi.utoronto.ca/wp-content/uploads/2020/12/blank-profile-picture-png.png") {_ in}
+                }
             } else {
                 //TODO: handle customer profile null
             }

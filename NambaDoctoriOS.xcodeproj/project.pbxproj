@@ -325,6 +325,7 @@
 		17EC7670260EE9D60002BA75 /* MedicineEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EC766F260EE9D50002BA75 /* MedicineEntryView.swift */; };
 		17EC7675260EEBB20002BA75 /* BubbledSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EC7674260EEBB20002BA75 /* BubbledSelector.swift */; };
 		17EC767B260F05140002BA75 /* TagCloudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EC767A260F05140002BA75 /* TagCloudView.swift */; };
+		17F42E962648B65C00129D17 /* CustomerProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F42E952648B65C00129D17 /* CustomerProfileView.swift */; };
 		434CDF5DFA0DF425DF44E2A2 /* Pods_NambaDoctoriOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 435C297907080A241A267BB0 /* Pods_NambaDoctoriOSTests.framework */; };
 		B6746684516D05CE4C3163B4 /* Pods_NambaDoctoriOS_NambaDoctoriOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276EFB6904AFFC883BD04BA9 /* Pods_NambaDoctoriOS_NambaDoctoriOSUITests.framework */; };
 /* End PBXBuildFile section */
@@ -696,6 +697,7 @@
 		17EC766F260EE9D50002BA75 /* MedicineEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicineEntryView.swift; sourceTree = "<group>"; };
 		17EC7674260EEBB20002BA75 /* BubbledSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbledSelector.swift; sourceTree = "<group>"; };
 		17EC767A260F05140002BA75 /* TagCloudView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCloudView.swift; sourceTree = "<group>"; };
+		17F42E952648B65C00129D17 /* CustomerProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerProfileView.swift; sourceTree = "<group>"; };
 		276EFB6904AFFC883BD04BA9 /* Pods_NambaDoctoriOS_NambaDoctoriOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NambaDoctoriOS_NambaDoctoriOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C1F9336480062135B79A499 /* Pods-NambaDoctoriOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NambaDoctoriOS.release.xcconfig"; path = "Target Support Files/Pods-NambaDoctoriOS/Pods-NambaDoctoriOS.release.xcconfig"; sourceTree = "<group>"; };
 		421278E51F7A74B868A7EA69 /* Pods_NambaDoctoriOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NambaDoctoriOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1016,6 +1018,7 @@
 		1739EAD82638082F00556044 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				17F42E942648B65100129D17 /* CustomerProfile */,
 				178909112644C2D0004A9D75 /* ReasonPicker */,
 				17437EAD263D369400AFEF5B /* CustomerChatView */,
 				17BD2E8F263C757700BB0BDD /* Twilio */,
@@ -1746,6 +1749,14 @@
 			path = HorizontalDatePicker;
 			sourceTree = "<group>";
 		};
+		17F42E942648B65100129D17 /* CustomerProfile */ = {
+			isa = PBXGroup;
+			children = (
+				17F42E952648B65C00129D17 /* CustomerProfileView.swift */,
+			);
+			path = CustomerProfile;
+			sourceTree = "<group>";
+		};
 		3F839DD1AF4230490A6B4CE6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -2155,6 +2166,7 @@
 				171646BD2602B68000BB5B5A /* ServiceProviderMedicine.swift in Sources */,
 				172B851725AEE4AC00C6B035 /* UIColor.swift in Sources */,
 				171646C72602B70300BB5B5A /* ServiceProviderPrescription.swift in Sources */,
+				17F42E962648B65C00129D17 /* CustomerProfileView.swift in Sources */,
 				17365DFC2646997E00386909 /* CustomerAutoNav.swift in Sources */,
 				172FA707261F10B800D14545 /* ServiceProviderCustomerMedicalHistory.swift in Sources */,
 				17E8699E25CE108E000B0952 /* DoctorAppointmentViewModelProtocol.swift in Sources */,

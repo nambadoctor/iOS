@@ -122,14 +122,14 @@ class LocalNotificationHandler {
     private func getValuesFromAPNPayload (userInfo:[AnyHashable: Any]) -> [String:String] {
         let apnData = userInfo[AnyHashable("aps")] as! NSDictionary
         let alertData  = apnData["alert"] as! NSDictionary
-        
+
         let body = alertData["body"] as! String
         let title = alertData["title"] as! String
         let type = alertData["type"] as! String
         let id = alertData["id"] as! String
 
         var returnDict:[String:String] = ["body":body, "title":title, "type":type, "id":id]
-        
+
         return returnDict
     }
 }
