@@ -47,11 +47,6 @@
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-		<key>NSAllowsArbitraryLoads</key>
-		<true/>
-	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>NambaDoctor needs to use your camera for video consultation</string>
 	<key>NSMicrophoneUsageDescription</key>

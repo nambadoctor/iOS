@@ -78,6 +78,7 @@ class DetailedBookDocViewModel : ObservableObject {
     
     func getTimesForSelectedDates (selectedDate:Int64) {
         self.selectedDate = selectedDate
+        self.selectedTime = 0
         timeDisplay.removeAll()
         
         let date = Date(milliseconds: selectedDate)
@@ -96,22 +97,29 @@ class DetailedBookDocViewModel : ObservableObject {
     }
     
     func book (completion: @escaping (_ success:Bool)->()) {
-        let slot = getCorrespondingSlot(timestamp: selectedTime)
         
-        let customerAppointment:CustomerAppointment = makeAppointment(slot: slot)
-        
-        CustomerAppointmentService().setAppointment(appointment: customerAppointment) { (response) in
-            if response != nil {
-                cusAutoNav.enterDetailedView(appointmentId: response!)
-                CustomerServiceRequestService().setServiceRequest(serviceRequest: self.makeServiceRequest(appointmentId: response!)) { (response) in
-                    if response != nil {
-                        completion(true)
-                    } else {
-                        completion(false)
+        if selectedDate == 0 && selectedTime == 0 {
+            CustomerAlertHelpers().pleaseChooseTimeandDateAlert { _ in }
+        } else {
+            CommonDefaultModifiers.showLoader()
+            let slot = getCorrespondingSlot(timestamp: selectedTime)
+
+            let customerAppointment:CustomerAppointment = makeAppointment(slot: slot)
+
+            CustomerAppointmentService().setAppointment(appointment: customerAppointment) { (response) in
+                if response != nil {
+                    cusAutoNav.enterDetailedView(appointmentId: response!)
+                    CustomerServiceRequestService().setServiceRequest(serviceRequest: self.makeServiceRequest(appointmentId: response!)) { (response) in
+                        if response != nil {
+                            CommonDefaultModifiers.hideLoader()
+                            completion(true)
+                        } else {
+                            completion(false)
+                        }
                     }
+                } else {
+                    completion(false)
                 }
-            } else {
-                completion(false)
             }
         }
     }

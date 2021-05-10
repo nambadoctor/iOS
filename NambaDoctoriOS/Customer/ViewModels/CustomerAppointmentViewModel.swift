@@ -27,7 +27,11 @@ class CustomerAppointmentViewModel : ObservableObject {
         } else if appointment.status == ConsultStateK.StartedConsultation.rawValue {
             return "In-Progress"
         } else {
-            return "Please wait for prescription"
+            if appointment.isPaid {
+                return "Click to view prescription"
+            } else {
+                return "Payment Pending"
+            }
         }
     }
 

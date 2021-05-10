@@ -75,4 +75,8 @@ class CustomerAlertHelpers {
         CommonDefaultModifiers.showAlert()
     }
     
+    func pleaseChooseTimeandDateAlert (completion: @escaping (Bool) -> ()) {
+        alertTempItem = AlertItem(title: Text("Select All Values"), message: Text("Please select both date and time to continue"), dismissButton: .default(Text("OK")))
+        CommonDefaultModifiers.showAlert()
+    }
 }

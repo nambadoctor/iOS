@@ -90,6 +90,8 @@ class CustomerViewModel : ObservableObject {
     }
 
     func retrieveCustomerAppointments () {
+        self.upcomingAppointments.removeAll()
+        self.finishedAppointments.removeAll()
         customerAppointmentService.getCustomerAppointments(customerId: self.customerProfile!.customerID) { (customerAppointments) in
             if customerAppointments != nil || customerAppointments?.count != 0 {
                 self.sortAppointments(appointments: customerAppointments!)
@@ -121,7 +123,7 @@ class CustomerViewModel : ObservableObject {
                 self.takeToDetailedAppointmentView = true
             }
         }
-        
+
         for appointment in finishedAppointments {
             if cusAutoNav.appointmentId == appointment.appointmentID {
                 self.selectedAppointment = appointment

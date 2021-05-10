@@ -72,7 +72,7 @@ struct CustomerDetailedAppointmentView: View {
             }
         }
     }
-    
+
     var AppointmentInProgressView : some View {
         VStack (alignment: .leading, spacing: 10) {
             if customerDetailedAppointmentVM.serviceRequest != nil {
@@ -252,10 +252,6 @@ struct CustomerDetailedAppointmentView: View {
                             .padding(.trailing)
                         
                         Text("Paid Successfully")
-
-                        Divider()
-                        
-                        Spacer()
                     }
                 }
             }
@@ -263,6 +259,7 @@ struct CustomerDetailedAppointmentView: View {
     }
     
     private func killView () {
+        CustomerDefaultModifiers.refreshAppointments()
         self.presentationMode.wrappedValue.dismiss()
     }
 }

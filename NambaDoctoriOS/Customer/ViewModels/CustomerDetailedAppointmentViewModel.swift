@@ -77,6 +77,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
                     appointment.status == ConsultStateK.FinishedAppointment.rawValue {
             appointmentFinished = true
             self.getPrescription()
+            self.checkIfPaid()
         } else if appointment.status == ConsultStateK.Confirmed.rawValue {
             appointmnentUpComing = true
         }
@@ -292,8 +293,8 @@ extension CustomerDetailedAppointmentViewModel : TwilioDelegate {
     }
 
     func startConsultation() {
-        CommonDefaultModifiers.showLoader()
         if appointmentStarted {
+            CommonDefaultModifiers.showLoader()
             customerTwilioViewModel.startRoom() { success in
                 if success {
                     self.showTwilioRoom = true
@@ -303,8 +304,7 @@ extension CustomerDetailedAppointmentViewModel : TwilioDelegate {
                 }
             }
         } else {
-            CommonDefaultModifiers.showLoader()
-            CustomerAlertHelpers().WaitForDoctorToCallFirstAlert { _ in }
+            CustomerAlertHelpers().WaitForDoctorToCallFirstAlert { _ in}
         }
     }
 }
@@ -329,6 +329,7 @@ extension CustomerDetailedAppointmentViewModel : RazorPayDelegate {
         
         customerAppointmentService.setPayment(paymentInfo: paymentInfo) { success in
             CustomerAlertHelpers().PaymentSuccessAlert { _ in
+                CustomerDefaultModifiers.triggerAppointmentStatusChanges()
                 CommonDefaultModifiers.hideLoader()
             }
         }
@@ -351,7 +352,6 @@ extension CustomerDetailedAppointmentViewModel {
         self.takeToChat = false
         self.showPayment = false
     }
-
 }
 
 extension CustomerDetailedAppointmentViewModel {
