@@ -84,6 +84,8 @@ class MedicineViewModel: ObservableObject {
             timingsString = ""
         }
         
+        medicineEntryVM.dosage = "\(medicineEntryVM.dosage) \(medicineEntryVM.mgOrmcg)"
+        
         let medicine = ServiceProviderMedicine(medicineName: medicineEntryVM.medicineName, dosage: medicineEntryVM.dosage, routeOfAdministration: medicineEntryVM.routeOfAdmin, intake: medicineEntryVM.intake, duration: Int32(medicineEntryVM.duration) ?? 0, timings: timingsString, specialInstructions: medicineEntryVM.frequency, medicineID: "")
 
         if medicineBeingEdited != nil {

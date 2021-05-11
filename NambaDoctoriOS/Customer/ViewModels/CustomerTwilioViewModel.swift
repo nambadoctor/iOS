@@ -15,7 +15,7 @@ class CustomerTwilioViewModel : ObservableObject {
     @Published var collapseCall:Bool = false
     @Published var viewController:ViewController? = nil
 
-    @Published var videoEnabled:Bool = true
+    @Published var videoEnabled:Bool = false
     @Published var micEnabled:Bool = true
 
     @Published var participantJoined:Bool = false
@@ -42,7 +42,6 @@ class CustomerTwilioViewModel : ObservableObject {
             if success {
                 self.viewController = UIStoryboard(name: "Twilio", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as? ViewController
                 self.viewController?.twilioEventDelegate = self
-                self.viewController?.toggleVideo(sender: self, completion: { _ in })
                 completion(success)
                 self.customerNotifHelpers.callingNotif()
             } else {

@@ -42,9 +42,13 @@ struct MedicineEntryView: View {
                             .foregroundColor(Color.black.opacity(0.4))
                             .bold()
                         
-                        ExpandingTextView(text: self.$medicineVM.medicineEntryVM.dosage)
+                        HStack {
+                            ExpandingTextView(text: self.$medicineVM.medicineEntryVM.dosage, keyboardType: .numberPad)
+
+                            DosageUnitPicker(medicineEntryVM: self.medicineVM.medicineEntryVM)
+                        }
                     }
-                    
+
                     VStack (alignment: .leading) {
                         Text("DURATION (days)")
                             .font(.footnote)
@@ -77,6 +81,31 @@ struct MedicineEntryView: View {
 
     func checkToLimitTo4(arr:[String]) -> Bool {
         return arr.count > 4 ? true : false
+    }
+}
+
+struct DosageUnitPicker : View {
+    @ObservedObject var medicineEntryVM:MedicineEntryViewModel
+    var body: some View {
+        HStack {
+            Text("mg")
+                .frame(height: 30)
+                .padding(.horizontal, 5)
+                .background(medicineEntryVM.mgOrmcg == "mg" ? Color.blue.opacity(0.3) : Color.clear)
+                .foregroundColor(medicineEntryVM.mgOrmcg == "mg" ? Color.blue : Color.black)
+                .cornerRadius(5)
+                .onTapGesture { medicineEntryVM.mgOrmcg = "mg" }
+            Text("µg")
+                .frame(height: 30)
+                .padding(.horizontal, 5)
+                .background(medicineEntryVM.mgOrmcg == "µg" ? Color.blue.opacity(0.3) : Color.clear)
+                .foregroundColor(medicineEntryVM.mgOrmcg == "µg" ? Color.blue : Color.black)
+                .cornerRadius(5)
+                .onTapGesture { medicineEntryVM.mgOrmcg = "µg" }
+        }
+        .frame(height: 25)
+        .background(Color.gray.opacity(0.2))
+        .cornerRadius(5)
     }
 }
 
