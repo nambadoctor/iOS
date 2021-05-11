@@ -9,7 +9,7 @@ import SwiftUI
 import UIKit
 
 struct DoctorHome: View {
-
+    @Environment(\.scenePhase) var scenePhase
     @ObservedObject var doctorViewModel:DoctorViewModel
     @State var alertItem : AlertItem?
     
@@ -49,8 +49,7 @@ struct DoctorHome: View {
             alertToShow(alertItem: alertItem)
         }
     }
-    
-    
+
     var navBarRefreshButton : some View {
         Button(action: {
             doctorViewModel.refreshAppointments()

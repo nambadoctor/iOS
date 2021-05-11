@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    
     @State private var loginStatus:UserLoginStatus = UserLoginStatus.NotSignedIn
     @State private var showLoader:Bool = false
     
@@ -29,6 +30,10 @@ struct ContentView: View {
             loginStateListener()
             showLoaderListener()
         }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+            if loginStatus == .ServiceProvider {DoctorDefaultModifiers.refreshAppointments()}
+            if loginStatus == .Customer {CustomerDefaultModifiers.refreshAppointments()}
+        }
     }
 }
 
@@ -45,9 +50,9 @@ extension ContentView {
                          queue: .main) { (_) in
                 let status = UserDefaults.standard.value(forKey: "\(SimpleStateK.loginStatus)")
                 loginStatus = CheckLoginStatus.checkStatus(loggedInStatus: status as! String)
-        }
+            }
     }
-
+    
     func showLoaderListener () {
         NotificationCenter.default
             .addObserver(forName: NSNotification.Name("\(SimpleStateK.showLoaderChange)"),
@@ -55,6 +60,6 @@ extension ContentView {
                          queue: .main) { (_) in
                 let loaderStatus = UserDefaults.standard.value(forKey: "\(SimpleStateK.showLoader)")
                 self.showLoader = loaderStatus as! Bool
-        }
+            }
     }
 }
