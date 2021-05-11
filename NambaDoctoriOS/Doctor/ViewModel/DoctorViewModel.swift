@@ -8,6 +8,7 @@
 import Foundation
 
 class DoctorViewModel: ObservableObject {
+    @Published var tabSelection:Int = 0
     @Published var doctor:ServiceProviderProfile!
     @Published var appointments:[ServiceProviderAppointment] = [ServiceProviderAppointment]()
     @Published var availabilities:[ServiceProviderAvailability] = [ServiceProviderAvailability]()

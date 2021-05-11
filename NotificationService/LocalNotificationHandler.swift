@@ -98,7 +98,7 @@ class LocalNotificationHandler {
             break
         }
     }
-    
+
     func notifTappedHelper (notifObj: LocalNotifObj) {
         switch notifObj.NotifType {
         case .AppointmentBooked, .AppointmentCancelled:

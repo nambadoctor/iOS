@@ -63,6 +63,10 @@ class IntermediateAppointmentViewModel : ObservableObject {
         initChecks()
     }
 
+    deinit {
+        print("is no more!")
+    }
+
     func refreshAppointment () {
         ServiceProviderAppointmentService().getSingleAppointment(appointmentId: appointment.appointmentID, serviceProviderId: appointment.serviceProviderID) { (appointment) in
             if appointment != nil {

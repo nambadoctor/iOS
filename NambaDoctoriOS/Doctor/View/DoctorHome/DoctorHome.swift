@@ -10,7 +10,6 @@ import UIKit
 
 struct DoctorHome: View {
 
-    @State private var tabSelection:Int = 0
     @ObservedObject var doctorViewModel:DoctorViewModel
     @State var alertItem : AlertItem?
     
@@ -20,7 +19,7 @@ struct DoctorHome: View {
                 Indicator()
             } else {
                 ZStack {
-                    TabView (selection: self.$tabSelection) {
+                    TabView (selection: self.$doctorViewModel.tabSelection) {
                         AppointmentsView().tabItem {
                             Image("list.triangle")
                             Text("Appointments")
