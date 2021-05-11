@@ -78,11 +78,14 @@ class LocalNotificationHandler {
 
     func notifTappedHelper (userInfo: [AnyHashable: Any]) {
         let values = getValuesFromAPNPayload(userInfo: userInfo)
-                
+
         let notifType = getNotifType(type: values["type"]!)
 
         switch notifType {
-        case .AppointmentBooked, .AppointmentCancelled:
+        case .AppointmentBooked:
+            docAutoNav.navigateToAppointment(appointmentId: values["id"]!)
+            DoctorDefaultModifiers.refreshAppointments()
+        case .AppointmentCancelled:
             DoctorDefaultModifiers.refreshAppointments()
         case .Paid, .ReportUploaded :
             break
@@ -97,6 +100,7 @@ class LocalNotificationHandler {
         default:
             break
         }
+        LoggerService().log(appointmentId: "", eventName: "TAPPED NOTIFICATION")
     }
 
     func notifTappedHelper (notifObj: LocalNotifObj) {

@@ -356,6 +356,9 @@ extension CustomerDetailedAppointmentViewModel {
 
 extension CustomerDetailedAppointmentViewModel {
     func checkForDirectNavigation () {
+        
+        cusAutoNav.enterDetailedView(appointmentId: self.appointment.appointmentID)
+        
         if cusAutoNav.takeToChat {
             CustomerAlertHelpers().takeToChatAlert { (open) in
                 if open {

@@ -272,6 +272,7 @@ extension CustomerDetailedAppointmentView {
                          queue: .main) { (_) in
                 self.customerDetailedAppointmentVM.resetAllValues()
                 self.customerDetailedAppointmentVM.initCalls()
+                self.customerDetailedAppointmentVM.checkForDirectNavigation()
             }
     }
 }

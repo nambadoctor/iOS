@@ -42,7 +42,7 @@ class CustomerAutoNavigateHelper {
             CustomerDefaultModifiers.navigateToDetailedView()
         }
     }
-
+    
     func enterChatRoom (appointmentId:String) {
         self.appointmentId = appointmentId
         self.currentyInChat = true
