@@ -105,6 +105,7 @@ class DoctorViewModel: ObservableObject {
     func getNotificationSelectedAppointment () {
         for appointment in appointments {
             if docAutoNav.appointmentId == appointment.appointmentID {
+                self.datePickerVM.selectedDate = Date(milliseconds: appointment.scheduledAppointmentEndTime)
                 self.selectedAppointment = appointment
                 self.takeToDetailedAppointment = true
             }

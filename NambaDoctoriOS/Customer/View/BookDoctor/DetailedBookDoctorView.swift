@@ -77,9 +77,9 @@ struct DetailedBookDoctorView: View {
                     self.detailedBookingVM.book() { success in
                         if success {
                             CustomerAlertHelpers().AppointmentBookedAlert(timeStamp: self.detailedBookingVM.selectedTime) { (done) in
+                                CommonDefaultModifiers.showLoader()
                                 CustomerDefaultModifiers.navigateToDetailedView()
                                 self.presentationMode.wrappedValue.dismiss()
-                                CommonDefaultModifiers.hideLoader()
                             }
                         }
                     }

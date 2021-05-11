@@ -11,7 +11,7 @@ class DetailedBookDocViewModel : ObservableObject {
     var serviceProvider:CustomerServiceProviderProfile
     
     var slots:[CustomerGeneratedSlot]? = nil
-    
+
     @Published var dateDisplay:[Int64] = [Int64]()
     @Published var timeDisplay:[Int64] = [Int64]()
     
@@ -109,6 +109,7 @@ class DetailedBookDocViewModel : ObservableObject {
             CustomerAppointmentService().setAppointment(appointment: customerAppointment) { (response) in
                 if response != nil {
                     cusAutoNav.enterDetailedView(appointmentId: response!)
+                    self.fireBookedNotif(appointmentId: response!)
                     CustomerServiceRequestService().setServiceRequest(serviceRequest: self.makeServiceRequest(appointmentId: response!)) { (response) in
                         if response != nil {
                             CommonDefaultModifiers.hideLoader()
@@ -122,6 +123,11 @@ class DetailedBookDocViewModel : ObservableObject {
                 }
             }
         }
+    }
+
+    func fireBookedNotif (appointmentId:String) {
+        var slot = getCorrespondingSlot(timestamp: selectedTime)
+        CustomerNotificationHelper.bookedAppointment(customerName: "", dateDisplay: slot!.startDateTime, appointmentId: appointmentId, serviceProviderId: self.serviceProvider.serviceProviderID)
     }
 
     func makeAppointment(slot:CustomerGeneratedSlot?) -> CustomerAppointment {

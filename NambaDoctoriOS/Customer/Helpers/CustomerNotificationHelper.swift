@@ -62,7 +62,7 @@ class CustomerNotificationHelper {
         SendPushNotification().sendNotif(notifObj: startedConsultNotifObj)
     }
     
-    func bookedAppointment (customerName:String,
+    static func bookedAppointment (customerName:String,
                             dateDisplay:Int64,
                             appointmentId:String,
                             serviceProviderId:String) {

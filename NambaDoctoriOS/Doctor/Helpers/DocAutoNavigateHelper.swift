@@ -18,10 +18,19 @@ class DocAutoNavigateHelper {
     var currentyInChat:Bool = false
     var currentlyInTwilioRoom:Bool = false
     var currenltyInIntermediateView:Bool = false
+    
+    func navigateToAppointment (appointmentId:String) {
+        if currentlyInTwilioRoom {
+            DoctorAlertHelpers().presentingStackedNavViewError(navType: "appointment")
+        } else {
+            self.appointmentId = appointmentId
+            DoctorDefaultModifiers.navigateToClickedNotif()
+        }
+    }
 
     func navigateToChat (appointmentId:String) {
         if currentlyInTwilioRoom {
-            DoctorAlertHelpers().presentingStackedNavViewError(navType: "Chat Room")
+            DoctorAlertHelpers().presentingStackedNavViewError(navType: "chat room")
         } else {
             self.appointmentId = appointmentId
             self.takeToChat = true
@@ -31,7 +40,7 @@ class DocAutoNavigateHelper {
 
     func navigateToCall (appointmentId:String) {
         if currentlyInTwilioRoom {
-            DoctorAlertHelpers().presentingStackedNavViewError(navType: "Meeting Room")
+            DoctorAlertHelpers().presentingStackedNavViewError(navType: "meeting room")
         } else {
             self.appointmentId = appointmentId
             self.takeToTwilioRoom = true

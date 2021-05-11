@@ -15,7 +15,7 @@ class CustomerViewModel : ObservableObject {
     @Published var serviceProviders:[CustomerServiceProviderProfile]? = nil
     
     @Published var customerLoggedIn:Bool = false
-    
+
     @Published var selectedAppointment:CustomerAppointment? = nil
     @Published var takeToDetailedAppointmentView:Bool = false
     
@@ -91,10 +91,10 @@ class CustomerViewModel : ObservableObject {
     }
 
     func retrieveCustomerAppointments () {
-        self.upcomingAppointments.removeAll()
-        self.finishedAppointments.removeAll()
         customerAppointmentService.getCustomerAppointments(customerId: self.customerProfile!.customerID) { (customerAppointments) in
             if customerAppointments != nil || customerAppointments?.count != 0 {
+                self.upcomingAppointments.removeAll()
+                self.finishedAppointments.removeAll()
                 self.sortAppointments(appointments: customerAppointments!)
                 self.getNavigationSelectedAppointment()
             } else {

@@ -101,7 +101,10 @@ class LocalNotificationHandler {
 
     func notifTappedHelper (notifObj: LocalNotifObj) {
         switch notifObj.NotifType {
-        case .AppointmentBooked, .AppointmentCancelled:
+        case .AppointmentBooked:
+            docAutoNav.navigateToAppointment(appointmentId: notifObj.AppointmentId)
+            DoctorDefaultModifiers.refreshAppointments()
+        case .AppointmentCancelled:
             DoctorDefaultModifiers.refreshAppointments()
         case .Paid, .ReportUploaded :
             break

@@ -67,7 +67,7 @@ class LocalNotifStorer {
     
     func getLocalNotifs () -> [LocalNotifObj]? {
         let notifs = LocalDecoder.decode(modelType: [LocalNotifObj].self, from: localNotifsEncodingString)
-        
+
         if notifs != nil {
             return notifs!
         } else {
