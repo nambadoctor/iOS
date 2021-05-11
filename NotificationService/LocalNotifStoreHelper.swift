@@ -94,4 +94,36 @@ class LocalNotifStorer {
             LocalEncoder.encode(payload: notifs, destination: localNotifsEncodingString)
         }
     }
+    
+    func getNumberOfNewChatsForAppointment (appointmentId:String) -> Int {
+        var notifs = LocalDecoder.decode(modelType: [LocalNotifObj].self, from: localNotifsEncodingString)
+        
+        var countToReturn:Int = 0
+        
+        if notifs != nil {
+            for notif in notifs! {
+                if notif.AppointmentId == appointmentId &&
+                    notif.NotifType == .NewChatMessage &&
+                    notif.viewed == false {
+                    countToReturn+=1
+                }
+            }
+        }
+        
+        return countToReturn
+    }
+    
+    func clearNewChatsCountForAppointment (appointmentId:String) {
+        var notifs = LocalDecoder.decode(modelType: [LocalNotifObj].self, from: localNotifsEncodingString)
+                
+        if notifs != nil {
+            for index in 0..<notifs!.count {
+                if notifs![index].AppointmentId == appointmentId && notifs![index].NotifType == .NewChatMessage {
+                    notifs![index].viewed = true
+                }
+            }
+        }
+        
+        LocalEncoder.encode(payload: notifs, destination: localNotifsEncodingString)
+    }
 }

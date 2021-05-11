@@ -20,7 +20,7 @@ struct EditableAppointmentView: View {
             if intermediateVM.killView {
                 Text("You are done").onAppear() { killView() }
             }
-            
+
         }
         .background(Color.gray.opacity(0.3))
         .navigationBarItems(trailing: Text(""))
@@ -50,12 +50,7 @@ struct EditableAppointmentView: View {
                 .padding()
                 .background(Color.white)
 
-            if !intermediateVM.isPaid {
-                ModifyFeeView(modifyFeeVM: self.intermediateVM.modifyFeeViewModel)
-                    .padding()
-                    .background(Color.white)
-            }
-            
+
             PatientInfoEditableView()
                 .padding()
                 .background(Color.white)
@@ -73,8 +68,10 @@ struct EditableAppointmentView: View {
                             Image("chevron.down.circle")
                                 .foregroundColor(.blue)
                         }
+                        
                         Text("Clinical Information")
                             .bold()
+
                         Spacer()
                     }
                 }
@@ -99,6 +96,12 @@ struct EditableAppointmentView: View {
                 Spacer()
             }
             
+            if !intermediateVM.isPaid {
+                ModifyFeeView(modifyFeeVM: self.intermediateVM.modifyFeeViewModel)
+                    .padding()
+                    .background(Color.white)
+            }
+
             HStack {
                 sendToPatient
             }
@@ -188,14 +191,21 @@ struct EditableAppointmentView: View {
                 })
                 Spacer()
             }
-            
+
             Button(action: {
                 self.intermediateVM.takeToChat = true
             }, label: {
-                ZStack {
+                ZStack (alignment: .center) {
                     Image(systemName: "message")
                         .scaleEffect(1.2)
                         .padding()
+                    
+                    if self.intermediateVM.newChats > 0 {
+                        Text("\(self.intermediateVM.newChats)")
+                            .font(.subheadline)
+                            .foregroundColor(.blue)
+                            .padding(.bottom, 2)
+                    }
                 }
                 .overlay(Circle()
                             .fill(Color.blue.opacity(0.2))

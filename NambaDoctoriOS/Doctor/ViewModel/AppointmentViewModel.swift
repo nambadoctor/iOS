@@ -18,6 +18,8 @@ class AppointmentViewModel: ObservableObject {
     @Published var consultationStarted:Bool = false
     @Published var consultationFinished:Bool = false
     
+    @Published var newChats:Int = 0
+    
     var selectedAppointmentDelegate:SelectAppointmentDelegate? = nil
 
     private var docSheetHelper:DoctorSheetHelpers = DoctorSheetHelpers()
@@ -33,6 +35,8 @@ class AppointmentViewModel: ObservableObject {
         self.docNotifHelper = DocNotifHelpers(appointment: appointment)
         checkIfAppointmentStarted()
         checkIfAppointmentFinished()
+        getNewChatCount()
+        newChatListener()
     }
 
     var LocalTime:String {
@@ -87,5 +91,15 @@ class AppointmentViewModel: ObservableObject {
     
     func getAppointmentTimeSpan () -> String {
         return Helpers.getSimpleTimeSpanForAppointment(timeStamp1: appointment.scheduledAppointmentStartTime, timeStamp2: appointment.scheduledAppointmentEndTime)
+    }
+    
+    func getNewChatCount () {
+        self.newChats = LocalNotifStorer().getNumberOfNewChatsForAppointment(appointmentId: self.appointment.appointmentID)
+    }
+    
+    func newChatListener () {
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("\(SimpleStateK.refreshNewChatCountChange)"), object: nil, queue: .main) { (_) in
+            self.getNewChatCount()
+        }
     }
 }

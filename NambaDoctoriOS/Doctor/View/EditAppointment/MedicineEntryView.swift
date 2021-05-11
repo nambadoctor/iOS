@@ -59,7 +59,7 @@ struct MedicineEntryView: View {
                             
                     }
                 }
-        
+
                 BubbledSelector(title: "INTAKE TIMINGS",array: foodSelectionArray, selected: $medicineVM.medicineEntryVM.intake, limitToFour: checkToLimitTo4(arr: foodSelectionArray))
                 
                 BubbledSelector(title: "ROUTE OF ADMISSION",array: routeOfAdmissionArray, selected: $medicineVM.medicineEntryVM.routeOfAdmin, limitToFour: checkToLimitTo4(arr: routeOfAdmissionArray))

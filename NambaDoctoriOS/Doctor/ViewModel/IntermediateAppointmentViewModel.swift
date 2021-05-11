@@ -25,7 +25,8 @@ class IntermediateAppointmentViewModel : ObservableObject {
     @Published var takeToViewAppointment:Bool = false
     
     @Published var takeToChat:Bool = false
-    
+    @Published var newChats:Int = 0
+
     @Published var appointmentStarted:Bool = false
     @Published var appointmentFinished:Bool = false
     
@@ -86,6 +87,9 @@ class IntermediateAppointmentViewModel : ObservableObject {
         checkIfAppointmentFinished()
         checkIfAppointmentStarted()
         getClinicalInfoCollapseSetting()
+        
+        getNewChatCount()
+        newChatListener()
     }
 }
 
@@ -141,9 +145,9 @@ extension IntermediateAppointmentViewModel {
                 completion(true)
             }
         }
-        
+
         self.appointment.serviceFee = modifyFeeViewModel.convertFeeToDouble()
-        
+
         serviceRequestVM.sendToPatient { (success, serviceRequestId) in
             onCompletion(success: success)
         }
@@ -158,6 +162,11 @@ extension IntermediateAppointmentViewModel {
         CommonDefaultModifiers.showLoader()
 
         self.saveForLater { (success) in
+            
+            if self.appointment.serviceFee == 0 {
+                self.appointment.isPaid = true
+            }
+            
             self.updateAppointmentStatus.updateToFinished(appointment: &self.appointment) { (success) in
                 CommonDefaultModifiers.hideLoader()
                 self.docNotifHelper.fireAppointmentOverNotif()
@@ -293,6 +302,19 @@ extension IntermediateAppointmentViewModel {
                     completion(success)
                 }
             }
+        }
+    }
+}
+
+//chat count helpers
+extension IntermediateAppointmentViewModel {
+    func getNewChatCount () {
+        self.newChats = LocalNotifStorer().getNumberOfNewChatsForAppointment(appointmentId: self.appointment.appointmentID)
+    }
+
+    func newChatListener () {
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("\(SimpleStateK.refreshNewChatCountChange)"), object: nil, queue: .main) { (_) in
+            self.getNewChatCount()
         }
     }
 }

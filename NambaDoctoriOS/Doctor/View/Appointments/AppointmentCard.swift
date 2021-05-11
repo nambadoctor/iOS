@@ -78,6 +78,20 @@ struct AppointmentCard: View {
                     }
 
                 }.padding(.leading, 3)
+                
+                
+                if self.AppointmentVM.newChats > 0 {
+                    ZStack (alignment: .center) {
+                        Image(systemName: "message.fill")
+                            .scaleEffect(1.5)
+                            .foregroundColor(.blue)
+                        Text("\(self.AppointmentVM.newChats)")
+                            .font(.subheadline)
+                            .foregroundColor(.white)
+                            .padding(.bottom, 2)
+                    }
+                }
+
             }.padding()
             
         }

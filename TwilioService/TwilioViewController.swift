@@ -359,11 +359,11 @@ extension ViewController : RoomDelegate {
     }
 
     func roomIsReconnecting(room: Room, error: Error) {
-        logMessage(messageText: "Reconnecting to room")
+        onlyNSLogMessage(messageText: "Reconnecting to room")
     }
 
     func roomDidReconnect(room: Room) {
-        logMessage(messageText: "Reconnected to room")
+        onlyNSLogMessage(messageText: "Reconnected to room")
     }
 
     func participantDidConnect(room: Room, participant: RemoteParticipant) {

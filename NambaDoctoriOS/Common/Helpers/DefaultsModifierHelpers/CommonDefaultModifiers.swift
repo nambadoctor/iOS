@@ -41,4 +41,10 @@ class CommonDefaultModifiers {
         UserDefaults.standard.set(true, forKey: "\(SimpleStateK.refreshOriginView)")
         NotificationCenter.default.post(name: NSNotification.Name("\(SimpleStateK.refreshOriginViewChange)"), object: nil)
     }
+    
+    static func refreshChatCount () {
+        print("FIRING THIS")
+        UserDefaults.standard.set(true, forKey: "\(SimpleStateK.refreshNewChatCount)")
+        NotificationCenter.default.post(name: NSNotification.Name("\(SimpleStateK.refreshNewChatCountChange)"), object: nil)
+    }
 }

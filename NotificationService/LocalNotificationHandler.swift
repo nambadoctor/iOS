@@ -68,6 +68,7 @@ class LocalNotificationHandler {
             cusAutoNav.callNotifRecieved(appointmentId: values["id"]!)
             completion(true)
         case .NewChatMessage:
+            CommonDefaultModifiers.refreshChatCount()
             completion(true)
         default:
             completion(true)

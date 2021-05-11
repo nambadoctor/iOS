@@ -24,4 +24,7 @@ enum SimpleStateK : String {
     
     case refreshOriginView
     case refreshOriginViewChange
+    
+    case refreshNewChatCount
+    case refreshNewChatCountChange
 }
