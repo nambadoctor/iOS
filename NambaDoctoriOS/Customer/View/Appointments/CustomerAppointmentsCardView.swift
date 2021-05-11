@@ -40,6 +40,18 @@ struct CustomerAppointmentsCardView: View {
                         .bold()
 
                 }.padding(.leading, 3)
+                
+                if self.customerAppointmentVM.newChats > 0 {
+                    ZStack (alignment: .center) {
+                        Image(systemName: "message.fill")
+                            .scaleEffect(1.5)
+                            .foregroundColor(.blue)
+                        Text("\(self.customerAppointmentVM.newChats)")
+                            .font(.subheadline)
+                            .foregroundColor(.white)
+                            .padding(.bottom, 2)
+                    }
+                }
             }.padding()
 
         }

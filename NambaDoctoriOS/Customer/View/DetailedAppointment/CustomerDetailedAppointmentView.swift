@@ -209,10 +209,16 @@ struct CustomerDetailedAppointmentView: View {
                     Button(action: {
                         self.customerDetailedAppointmentVM.takeToChat = true
                     }, label: {
-                        ZStack {
+                        ZStack (alignment: .center) {
                             Image(systemName: "message")
                                 .scaleEffect(1.2)
                                 .padding()
+                            if self.customerDetailedAppointmentVM.newChats > 0 {
+                                Text("\(self.customerDetailedAppointmentVM.newChats)")
+                                    .font(.subheadline)
+                                    .foregroundColor(.blue)
+                                    .padding(.bottom, 2)
+                            }
                         }
                         .overlay(Circle()
                                     .fill(Color.blue.opacity(0.2))

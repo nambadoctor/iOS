@@ -15,10 +15,15 @@ class CustomerAppointmentViewModel : ObservableObject {
     var appointment:CustomerAppointment
     var delegate:CustomerSelectAppointmentDelegate
     
+    @Published var newChats:Int = 0
+
     init(appointment:CustomerAppointment,
          delegate:CustomerSelectAppointmentDelegate) {
         self.appointment = appointment
         self.delegate = delegate
+        
+        newChatListener()
+        getNewChatCount()
     }
      
     var appointmentStatus:String {
@@ -45,6 +50,16 @@ class CustomerAppointmentViewModel : ObservableObject {
     
     func takeToDetailedView () {
         self.delegate.selected(appointment: self.appointment)
+    }
+    
+    func getNewChatCount () {
+        self.newChats = LocalNotifStorer().getNumberOfNewChatsForAppointment(appointmentId: self.appointment.appointmentID)
+    }
+
+    func newChatListener () {
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("\(SimpleStateK.refreshNewChatCountChange)"), object: nil, queue: .main) { (_) in
+            self.getNewChatCount()
+        }
     }
 }
 

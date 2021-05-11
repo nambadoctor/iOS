@@ -35,6 +35,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
 
     @Published var showTwilioRoom:Bool = false
     @Published var takeToChat:Bool = false
+    @Published var newChats:Int = 0
 
     @Published var showPayment:Bool = false
 
@@ -68,6 +69,9 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
         self.getServiceProvider()
         self.getServiceRequest()
         self.getReports()
+        
+        self.newChatListener()
+        self.getNewChatCount()
     }
 
     func checkAppointmentStatus () {
@@ -375,6 +379,18 @@ extension CustomerDetailedAppointmentViewModel {
                     cusAutoNav.clearAllValues()
                 }
             }
+        }
+    }
+}
+
+extension CustomerDetailedAppointmentViewModel {
+    func getNewChatCount () {
+        self.newChats = LocalNotifStorer().getNumberOfNewChatsForAppointment(appointmentId: self.appointment.appointmentID)
+    }
+
+    func newChatListener () {
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("\(SimpleStateK.refreshNewChatCountChange)"), object: nil, queue: .main) { (_) in
+            self.getNewChatCount()
         }
     }
 }
