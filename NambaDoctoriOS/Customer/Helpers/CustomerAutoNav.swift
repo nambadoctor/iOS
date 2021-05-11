@@ -43,6 +43,13 @@ class CustomerAutoNavigateHelper {
         }
     }
     
+    func callNotifRecieved (appointmentId:String) {
+        if currenltyInIntermediateView && self.appointmentId == appointmentId {
+            self.takeToTwilioRoom.toggle()
+            CustomerDefaultModifiers.triggerAppointmentStatusChanges()
+        }
+    }
+
     func enterChatRoom (appointmentId:String) {
         self.appointmentId = appointmentId
         self.currentyInChat = true

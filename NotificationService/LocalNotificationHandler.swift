@@ -65,7 +65,7 @@ class LocalNotificationHandler {
             completion(true)
             break
         case .CallInRoom:
-            CustomerDefaultModifiers.triggerAppointmentStatusChanges()
+            cusAutoNav.callNotifRecieved(appointmentId: values["id"]!)
             completion(true)
         case .NewChatMessage:
             completion(true)

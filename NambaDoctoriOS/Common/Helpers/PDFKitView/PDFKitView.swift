@@ -13,7 +13,17 @@ import SwiftUI
 struct PDFKitView: View {
     var data:Data
     var body: some View {
-        PDFKitRepresentedView(data)
+        VStack {
+            LargeButton(title: "Click to share prescription", backgroundColor: Color.blue, foregroundColor: Color.white) {
+                self.actionSheet()
+            }
+            PDFKitRepresentedView(data)
+        }
+    }
+    
+    func actionSheet() {
+        let av = UIActivityViewController(activityItems: [data], applicationActivities: nil)
+        UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
     }
 }
 
