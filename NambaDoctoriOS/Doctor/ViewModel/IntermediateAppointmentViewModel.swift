@@ -61,11 +61,6 @@ class IntermediateAppointmentViewModel : ObservableObject {
         serviceRequestVM.gotServiceRequestDelegate = self
 
         refreshAppointment()
-        initChecks()
-    }
-
-    deinit {
-        print("is no more!")
     }
 
     func refreshAppointment () {
@@ -82,6 +77,7 @@ class IntermediateAppointmentViewModel : ObservableObject {
     }
 
     func initChecks () {
+        print("HITTING THIS INIT BRUH")
         docAutoNav.enterIntermediateView(appointmentId: self.appointment.appointmentID)
         checkDetailedOrView()
         checkIfAppointmentFinished()
