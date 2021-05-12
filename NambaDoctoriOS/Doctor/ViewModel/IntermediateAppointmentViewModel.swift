@@ -183,7 +183,7 @@ extension IntermediateAppointmentViewModel : TwilioDelegate {
         if appointment.status == "Finished" {
             killView = true
         }
-        self.showTwilioRoom.toggle()
+        self.showTwilioRoom = false
         docAutoNav.leaveTwilioRoom()
     }
 
@@ -208,16 +208,16 @@ extension IntermediateAppointmentViewModel : TwilioDelegate {
 
     func startPatientWaitCounter () {
         //TODO: Change to 30 seconds
-        DispatchQueue.main.asyncAfter(deadline: .now() + 30) {
-
-            guard !self.doctorTwilioManagerViewModel.participantJoined else { return }
-
-            self.doctorAlertHelper.patientUnavailableAlert(patientName: self.appointment.customerName) { wait, call in
-                if call {
-                    self.leftRoom()
-                    self.patientInfoViewModel.callPatient()
-                } else {
-                    
+        print("STARTED COUNTER")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+            if !self.doctorTwilioManagerViewModel.participantJoined && self.showTwilioRoom {
+                self.doctorAlertHelper.patientUnavailableAlert(patientName: self.appointment.customerName) { wait, call in
+                    if call {
+                        self.leftRoom()
+                        self.patientInfoViewModel.callPatient()
+                    } else {
+                        
+                    }
                 }
             }
         }
