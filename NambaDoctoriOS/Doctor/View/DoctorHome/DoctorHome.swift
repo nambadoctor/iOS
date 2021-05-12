@@ -36,6 +36,9 @@ struct DoctorHome: View {
                         }.tag(3)
                     }
                 }
+                .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+                    DoctorDefaultModifiers.refreshAppointments()
+                }
                 .environmentObject(doctorViewModel)
                 .navigationBarTitle("NambaDoctor", displayMode: .inline)
                 .navigationBarItems(trailing: navBarRefreshButton)

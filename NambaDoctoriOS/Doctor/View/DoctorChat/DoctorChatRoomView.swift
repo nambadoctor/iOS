@@ -109,6 +109,5 @@ struct DoctorChatRoomView: View {
                 .padding([.top, .bottom, .trailing])
         }
     }
-    
 }
 

@@ -35,6 +35,9 @@ struct CustomerHome: View {
                         }.tag(3)
                     }
                 }
+                .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+                    CustomerDefaultModifiers.refreshAppointments()
+                }
                 .environmentObject(customerVM)
                 .navigationBarTitle("NambaDoctor", displayMode: .inline)
             }

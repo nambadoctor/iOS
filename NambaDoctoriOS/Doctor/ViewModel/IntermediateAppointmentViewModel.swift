@@ -188,6 +188,7 @@ extension IntermediateAppointmentViewModel : TwilioDelegate {
     }
 
     func startConsultation() {
+        EndEditingHelper.endEditing()
         CommonDefaultModifiers.showLoader()
         doctorTwilioManagerViewModel.startRoom() { success in
             if success {
@@ -208,7 +209,7 @@ extension IntermediateAppointmentViewModel : TwilioDelegate {
     func startPatientWaitCounter () {
         //TODO: Change to 30 seconds
         DispatchQueue.main.asyncAfter(deadline: .now() + 30) {
-            
+
             guard !self.doctorTwilioManagerViewModel.participantJoined else { return }
 
             self.doctorAlertHelper.patientUnavailableAlert(patientName: self.appointment.customerName) { wait, call in

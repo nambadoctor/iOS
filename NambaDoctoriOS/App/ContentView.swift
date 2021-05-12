@@ -30,10 +30,6 @@ struct ContentView: View {
             loginStateListener()
             showLoaderListener()
         }
-        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
-            if loginStatus == .ServiceProvider {DoctorDefaultModifiers.refreshAppointments()}
-            if loginStatus == .Customer {CustomerDefaultModifiers.refreshAppointments()}
-        }
     }
 }
 
