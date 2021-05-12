@@ -64,6 +64,7 @@ class IntermediateAppointmentViewModel : ObservableObject {
     }
 
     func refreshAppointment () {
+        CommonDefaultModifiers.showLoader()
         ServiceProviderAppointmentService().getSingleAppointment(appointmentId: appointment.appointmentID, serviceProviderId: appointment.serviceProviderID) { (appointment) in
             if appointment != nil {
                 self.appointment = appointment!
@@ -85,6 +86,7 @@ class IntermediateAppointmentViewModel : ObservableObject {
         
         getNewChatCount()
         newChatListener()
+        CommonDefaultModifiers.hideLoader()
     }
 }
 
