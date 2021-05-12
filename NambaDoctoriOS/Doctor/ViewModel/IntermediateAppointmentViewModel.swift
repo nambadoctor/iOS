@@ -221,7 +221,6 @@ extension IntermediateAppointmentViewModel : TwilioDelegate {
             }
         }
     }
-
 }
 
 //MARK:- APPOINTMENT RELATED CALLS

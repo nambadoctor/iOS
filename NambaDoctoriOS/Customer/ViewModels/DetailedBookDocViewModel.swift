@@ -97,8 +97,7 @@ class DetailedBookDocViewModel : ObservableObject {
     }
     
     func book (completion: @escaping (_ success:Bool)->()) {
-        
-        if selectedDate == 0 && selectedTime == 0 {
+        if selectedDate == 0 || selectedTime == 0 {
             CustomerAlertHelpers().pleaseChooseTimeandDateAlert { _ in }
         } else {
             CommonDefaultModifiers.showLoader()
