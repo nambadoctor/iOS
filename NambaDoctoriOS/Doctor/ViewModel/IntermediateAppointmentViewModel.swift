@@ -77,7 +77,6 @@ class IntermediateAppointmentViewModel : ObservableObject {
     }
 
     func initChecks () {
-        print("HITTING THIS INIT BRUH")
         docAutoNav.enterIntermediateView(appointmentId: self.appointment.appointmentID)
         checkDetailedOrView()
         checkIfAppointmentFinished()

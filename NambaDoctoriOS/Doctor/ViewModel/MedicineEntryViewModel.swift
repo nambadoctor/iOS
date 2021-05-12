@@ -15,7 +15,7 @@ class MedicineEntryViewModel : ObservableObject {
     @Published var medicineName:String = ""
     
     @Published var dosage:String = ""
-    @Published var mgOrmcg:String = "mg"
+//    @Published var mgOrmcg:String = "mg"
 
     @Published var duration:String = ""
 
@@ -49,15 +49,10 @@ class MedicineEntryViewModel : ObservableObject {
     func mapExistingMedicine(medicine:ServiceProviderMedicine) {
         medicineName = medicine.medicineName
         duration = String(medicine.duration)
+        dosage = medicine.dosage
         frequency = medicine.specialInstructions
         routeOfAdmin = medicine.routeOfAdministration
         intake = medicine.intake
-        
-        if !medicine.dosage.isEmpty {
-            let dosageComponents = medicine.dosage.components(separatedBy: " ")
-            dosage = dosageComponents[0]
-            mgOrmcg = dosageComponents[1]
-        }
         
         if !medicine.timings.isEmpty {
             let timingsSplit = medicine.timings.components(separatedBy: ",")
