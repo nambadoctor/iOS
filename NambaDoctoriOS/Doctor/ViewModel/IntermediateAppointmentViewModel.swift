@@ -208,7 +208,6 @@ extension IntermediateAppointmentViewModel : TwilioDelegate {
 
     func startPatientWaitCounter () {
         //TODO: Change to 30 seconds
-        print("STARTED COUNTER")
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
             if !self.doctorTwilioManagerViewModel.participantJoined && self.showTwilioRoom {
                 self.doctorAlertHelper.patientUnavailableAlert(patientName: self.appointment.customerName) { wait, call in
