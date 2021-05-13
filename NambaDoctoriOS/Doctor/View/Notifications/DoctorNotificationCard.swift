@@ -43,7 +43,7 @@ struct DoctorNotificationCard : View {
             return Color.green
         case .AppointmentCancelled:
             return Color.red
-        case .PrescriptionSent:
+        case .PrescriptionUploaded:
             return Color.blue
         case .CallInRoom:
             return Color.green
@@ -64,7 +64,7 @@ struct DoctorNotificationCard : View {
             return Image("checkmark.circle.fill")
         case .AppointmentCancelled:
             return Image("xmark.circle.fill")
-        case .PrescriptionSent:
+        case .PrescriptionUploaded:
             return Image("checkmark.circle.fill")
         case .CallInRoom:
             return Image(systemName: "video.circle.fill")

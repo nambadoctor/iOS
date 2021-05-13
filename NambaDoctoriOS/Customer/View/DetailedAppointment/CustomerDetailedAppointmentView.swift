@@ -97,12 +97,12 @@ struct CustomerDetailedAppointmentView: View {
                 Text("SELECT YOUR REASON")
                     .font(.footnote)
                     .foregroundColor(.gray)
-                
+
                 OneLineReasonDisplay()
             }
 
             Spacer().frame(height: 15)
-            
+
             VStack (alignment: .leading) {
                 HStack (spacing: 3) {
                     Image("folder")
@@ -114,7 +114,7 @@ struct CustomerDetailedAppointmentView: View {
                         .foregroundColor(Color.black.opacity(0.4))
                         .bold()
                 }
-                
+
                 if !self.customerDetailedAppointmentVM.reports.isEmpty {
                     ScrollView (.horizontal) {
                         HStack {
