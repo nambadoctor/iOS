@@ -26,26 +26,13 @@ struct ModifyFeeView: View {
                 Spacer()
             }
 
-            HStack (alignment: .center, spacing: 5) {
-                TextField("\(modifyFeeVM.fee)", text: $modifyFeeVM.fee)
-                    .keyboardType(.numberPad)
-                    .frame(width: 80, height: 15)
-                    .padding()
-                    .background(Color.gray.opacity(0.2))
-                    .cornerRadius(6)
-                    .padding(.trailing)
-
-//                Button {
-//                    self.modifyFeeVM.fee = "0"
-//                } label: {
-//                    Text("Click to waive fee")
-//                        .foregroundColor(Color.white)
-//                }
-//                .frame(height: 15)
-//                .padding()
-//                .background(Color.blue)
-//                .cornerRadius(6)
-            }
+            TextField("\(modifyFeeVM.fee)", text: $modifyFeeVM.fee)
+                .keyboardType(.numberPad)
+                .frame(width: 80, height: 15)
+                .padding()
+                .background(Color.gray.opacity(0.2))
+                .cornerRadius(6)
+                .padding(.trailing)
         }
     }
 }
