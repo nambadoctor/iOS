@@ -16,6 +16,7 @@ pod 'CodableFirebase'
 pod 'TwilioVideo', '~> 3.7'
 pod 'ActivityIndicatorView'
 pod 'razorpay-pod', '~> 1.1.1'
+pod "Device", '~> 3.2.1'
 
   target 'NambaDoctoriOSTests' do
     inherit! :search_paths

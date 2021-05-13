@@ -11,9 +11,18 @@ struct OneLineReasonDisplay : View {
     @EnvironmentObject var reasonPickerVM:ReasonPickerViewModel
     var body : some View {
         HStack (spacing: 3) {
-            ForEach(reasonPickerVM.OneLineReasonsToSHow, id: \.self) { reason in
-                ReasonPickerCard(reason: reason, imageName: reasonPickerVM.getValForKey(key: reason))
+            
+            if DeviceSizeHelper.getIfSmallScreen() {
+                ForEach(reasonPickerVM.OneLineReasonsToSHowSmallDisplay, id: \.self) { reason in
+                    ReasonPickerCard(reason: reason, imageName: reasonPickerVM.getValForKey(key: reason))
+                }
+            } else {
+                ForEach(reasonPickerVM.OneLineReasonsToSHow, id: \.self) { reason in
+                    ReasonPickerCard(reason: reason, imageName: reasonPickerVM.getValForKey(key: reason))
+                }
             }
+            
+            
             VStack {
                 Text("More")
                     .font(.system(size: 12))

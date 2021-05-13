@@ -231,6 +231,7 @@
 		176AA2032637F76D00F02346 /* CustomerReportService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176AA2022637F76D00F02346 /* CustomerReportService.swift */; };
 		176AA2082637F77C00F02346 /* CustomerServiceRequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176AA2072637F77C00F02346 /* CustomerServiceRequestService.swift */; };
 		176AA20D2637F78A00F02346 /* CustomerServiceProviderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176AA20C2637F78A00F02346 /* CustomerServiceProviderService.swift */; };
+		176EFAA1264CAA1200A6310B /* DeviceSizeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176EFAA0264CAA1200A6310B /* DeviceSizeHelper.swift */; };
 		1772336E25B70F99002B814A /* SimpleStateConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1772336D25B70F99002B814A /* SimpleStateConstants.swift */; };
 		1772338D25B726A6002B814A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1772338C25B726A6002B814A /* GoogleService-Info.plist */; };
 		1772339825B72FF2002B814A /* CheckLoginStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1772339725B72FF2002B814A /* CheckLoginStatus.swift */; };
@@ -584,6 +585,7 @@
 		176AA2022637F76D00F02346 /* CustomerReportService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerReportService.swift; sourceTree = "<group>"; };
 		176AA2072637F77C00F02346 /* CustomerServiceRequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerServiceRequestService.swift; sourceTree = "<group>"; };
 		176AA20C2637F78A00F02346 /* CustomerServiceProviderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerServiceProviderService.swift; sourceTree = "<group>"; };
+		176EFAA0264CAA1200A6310B /* DeviceSizeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSizeHelper.swift; sourceTree = "<group>"; };
 		1772336D25B70F99002B814A /* SimpleStateConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleStateConstants.swift; sourceTree = "<group>"; };
 		1772338C25B726A6002B814A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1772339725B72FF2002B814A /* CheckLoginStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckLoginStatus.swift; sourceTree = "<group>"; };
@@ -957,6 +959,7 @@
 				17EC75DE260C52B70002BA75 /* ExpandingTextView.swift */,
 				171B8AE026109792007E722C /* ImagePicker.swift */,
 				171B8B002612966D007E722C /* StopwatchManager.swift */,
+				176EFAA0264CAA1200A6310B /* DeviceSizeHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -2048,6 +2051,7 @@
 				176AA16C2637BEEA00F02346 /* CustomerAddressMapper.swift in Sources */,
 				17E3709C25BF17600004C965 /* TwilioStateK.swift in Sources */,
 				176AA1882637C05000F02346 /* CustomerProfileMapper.swift in Sources */,
+				176EFAA1264CAA1200A6310B /* DeviceSizeHelper.swift in Sources */,
 				179C44972627EB970073F4E0 /* SnapshotDecoder.swift in Sources */,
 				17437EB826426B7000AFEF5B /* serviceproviderandcustomer.grpc.swift in Sources */,
 				1742504A25BAE39E00523B94 /* GeneralDoctorHelpers.swift in Sources */,

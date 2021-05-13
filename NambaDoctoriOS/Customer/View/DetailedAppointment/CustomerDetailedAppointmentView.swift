@@ -100,7 +100,7 @@ struct CustomerDetailedAppointmentView: View {
                 
                 OneLineReasonDisplay()
             }
-            
+
             Spacer().frame(height: 15)
             
             VStack (alignment: .leading) {
@@ -108,7 +108,7 @@ struct CustomerDetailedAppointmentView: View {
                     Image("folder")
                         .scaleEffect(0.8)
                         .foregroundColor(Color.gray)
-                    
+
                     Text("REPORTS")
                         .font(.footnote)
                         .foregroundColor(Color.black.opacity(0.4))

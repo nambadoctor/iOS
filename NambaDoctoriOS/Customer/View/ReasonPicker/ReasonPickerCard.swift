@@ -12,7 +12,7 @@ struct ReasonPickerCard: View {
     var reason:String
     var imageName:String
     @EnvironmentObject var reasonPickerVM:ReasonPickerViewModel
-    
+
     var body: some View {
         VStack {
             Text(reason)

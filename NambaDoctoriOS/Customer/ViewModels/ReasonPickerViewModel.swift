@@ -22,6 +22,7 @@ class ReasonPickerViewModel : ObservableObject {
                                    "Sleeping Disorder":"moon.fill"]
     
     var OneLineReasonsToSHow:[String] = [String]()
+    var OneLineReasonsToSHowSmallDisplay:[String] = [String]()
     
     @Published var reason:String = ""
     @Published var showAllReasons:Bool = false
@@ -32,6 +33,9 @@ class ReasonPickerViewModel : ObservableObject {
         self.OneLineReasonsToSHow.append("Injury")
         self.OneLineReasonsToSHow.append("Fever")
         self.OneLineReasonsToSHow.append("Pregnant")
+        
+        self.OneLineReasonsToSHowSmallDisplay.append("Injury")
+        self.OneLineReasonsToSHowSmallDisplay.append("Fever")
     }
     
     func getValForKey (key:String) -> String {
