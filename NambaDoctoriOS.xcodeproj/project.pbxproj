@@ -232,6 +232,7 @@
 		176AA2082637F77C00F02346 /* CustomerServiceRequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176AA2072637F77C00F02346 /* CustomerServiceRequestService.swift */; };
 		176AA20D2637F78A00F02346 /* CustomerServiceProviderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176AA20C2637F78A00F02346 /* CustomerServiceProviderService.swift */; };
 		176EFAA1264CAA1200A6310B /* DeviceSizeHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176EFAA0264CAA1200A6310B /* DeviceSizeHelper.swift */; };
+		176EFAA5264DECF400A6310B /* DoctorNotificationHandlerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176EFAA4264DECF400A6310B /* DoctorNotificationHandlerHelper.swift */; };
 		1772336E25B70F99002B814A /* SimpleStateConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1772336D25B70F99002B814A /* SimpleStateConstants.swift */; };
 		1772338D25B726A6002B814A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1772338C25B726A6002B814A /* GoogleService-Info.plist */; };
 		1772339825B72FF2002B814A /* CheckLoginStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1772339725B72FF2002B814A /* CheckLoginStatus.swift */; };
@@ -586,6 +587,7 @@
 		176AA2072637F77C00F02346 /* CustomerServiceRequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerServiceRequestService.swift; sourceTree = "<group>"; };
 		176AA20C2637F78A00F02346 /* CustomerServiceProviderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerServiceProviderService.swift; sourceTree = "<group>"; };
 		176EFAA0264CAA1200A6310B /* DeviceSizeHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceSizeHelper.swift; sourceTree = "<group>"; };
+		176EFAA4264DECF400A6310B /* DoctorNotificationHandlerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorNotificationHandlerHelper.swift; sourceTree = "<group>"; };
 		1772336D25B70F99002B814A /* SimpleStateConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleStateConstants.swift; sourceTree = "<group>"; };
 		1772338C25B726A6002B814A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1772339725B72FF2002B814A /* CheckLoginStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckLoginStatus.swift; sourceTree = "<group>"; };
@@ -1543,6 +1545,7 @@
 				17E8694525CDDC09000B0952 /* DoctorSheetItem.swift */,
 				1763D31B262A39CA00E0E423 /* DefaultPreferencesTracker.swift */,
 				175E8DA8262FDA500000D00E /* DocAutoNavigateHelper.swift */,
+				176EFAA4264DECF400A6310B /* DoctorNotificationHandlerHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -2280,6 +2283,7 @@
 				178EB6B22638BCF1009286B1 /* CustomerViewStates.swift in Sources */,
 				17E5185825AED16A001F1A80 /* ContentView.swift in Sources */,
 				174800B725B8DC0A00C8E3CC /* DocNotifHelpers.swift in Sources */,
+				176EFAA5264DECF400A6310B /* DoctorNotificationHandlerHelper.swift in Sources */,
 				1796320E25AEE865002E466C /* UIResponder+Current.swift in Sources */,
 				1728B77A25B381E7001D554E /* PreRegisteredUserVM.swift in Sources */,
 				17424FE525BAD1B100523B94 /* SideBySideCheckBox.swift in Sources */,

@@ -9,17 +9,17 @@ import Foundation
 
 class CustomerDefaultModifiers {
     static func refreshAppointments () {
-        UserDefaults.standard.set(true, forKey: CustomerViewStatesK.toRefreshAppointments.rawValue)
-        NotificationCenter.default.post(name: NSNotification.Name(CustomerViewStatesK.refreshAppointmentsChange.rawValue), object: nil)
+        UserDefaults.standard.set(true, forKey: CustomerViewStatesK.CustomerToRefreshAppointments.rawValue)
+        NotificationCenter.default.post(name: NSNotification.Name(CustomerViewStatesK.CustomerRefreshAppointmentsChange.rawValue), object: nil)
     }
 
     static func navigateToDetailedView () {
-        UserDefaults.standard.set(true, forKey: CustomerViewStatesK.navigateToDetailedView.rawValue)
-        NotificationCenter.default.post(name: NSNotification.Name(CustomerViewStatesK.navigateToDetailedViewChange.rawValue), object: nil)
+        UserDefaults.standard.set(true, forKey: CustomerViewStatesK.CustomerNavigateToDetailedView.rawValue)
+        NotificationCenter.default.post(name: NSNotification.Name(CustomerViewStatesK.CustomerNavigateToDetailedViewChange.rawValue), object: nil)
     }
     
     static func triggerAppointmentStatusChanges () {
-        UserDefaults.standard.set(true, forKey: CustomerViewStatesK.AppointmentStatus.rawValue)
-        NotificationCenter.default.post(name: NSNotification.Name(CustomerViewStatesK.AppointmentStatusChange.rawValue), object: nil)
+        UserDefaults.standard.set(true, forKey: CustomerViewStatesK.CustomerAppointmentStatus.rawValue)
+        NotificationCenter.default.post(name: NSNotification.Name(CustomerViewStatesK.CustomerAppointmentStatusChange.rawValue), object: nil)
     }
 }

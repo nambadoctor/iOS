@@ -60,6 +60,7 @@ class IntermediateAppointmentViewModel : ObservableObject {
         doctorTwilioManagerViewModel.twilioDelegate = self
         serviceRequestVM.gotServiceRequestDelegate = self
 
+        docAutoNav.enterIntermediateView(appointmentId: self.appointment.appointmentID)
         refreshAppointment()
     }
 

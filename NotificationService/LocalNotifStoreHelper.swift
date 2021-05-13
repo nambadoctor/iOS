@@ -24,38 +24,6 @@ class LocalNotifStorer {
         
         var notifs = LocalDecoder.decode(modelType: [LocalNotifObj].self, from: localNotifsEncodingString)
         if notifs != nil {
-            
-//            switch notifType {
-//            case .AppointmentBooked, .AppointmentCancelled, .Paid:
-//                notifs?.append(localNotifObj)
-//                break
-//            case .NewChatMessage:
-//                if notifs!.last?.NotifType == .NewChatMessage {
-//                    notifs![notifs!.count - 1].Title = "New Messages from \(localNotifObj.Title)"
-//                    notifs![notifs!.count - 1].Body = ""
-//                    notifs![notifs!.count - 1].viewed = false
-//                    notifs![notifs!.count - 1].timeStamp = Date().millisecondsSince1970
-//                } else {
-//                    notifs?.append(localNotifObj)
-//                }
-//            case .CallInRoom:
-//                if notifs!.last?.NotifType == .CallInRoom {
-//                    notifs![notifs!.count - 1].viewed = false
-//                    notifs![notifs!.count - 1].timeStamp = Date().millisecondsSince1970
-//                } else {
-//                    notifs?.append(localNotifObj)
-//                }
-//            case .ReportUploaded:
-//                if notifs!.last?.NotifType == .ReportUploaded {
-//                    notifs![notifs!.count - 1].viewed = false
-//                    notifs![notifs!.count - 1].timeStamp = Date().millisecondsSince1970
-//                } else {
-//                    notifs?.append(localNotifObj)
-//                }
-//            case .Empty:
-//                break
-//            }
-
             notifs!.append(localNotifObj)
 
             LocalEncoder.encode(payload: notifs, destination: localNotifsEncodingString)

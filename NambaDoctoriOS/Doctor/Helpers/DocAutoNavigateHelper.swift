@@ -74,7 +74,7 @@ class DocAutoNavigateHelper {
         self.appointmentId = appointmentId
         currenltyInIntermediateView = true
     }
-    
+
     func leaveIntermediateView() {
         self.appointmentId = ""
         currenltyInIntermediateView = false

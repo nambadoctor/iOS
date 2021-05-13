@@ -273,7 +273,7 @@ struct CustomerDetailedAppointmentView: View {
 extension CustomerDetailedAppointmentView {
     func showLoaderListener () {
         NotificationCenter.default
-            .addObserver(forName: NSNotification.Name("\(CustomerViewStatesK.AppointmentStatusChange)"),
+            .addObserver(forName: NSNotification.Name("\(CustomerViewStatesK.CustomerAppointmentStatusChange)"),
                          object: nil,
                          queue: .main) { (_) in
                 self.customerDetailedAppointmentVM.resetAllValues()

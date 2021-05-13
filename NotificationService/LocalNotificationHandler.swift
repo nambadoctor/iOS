@@ -53,7 +53,7 @@ class LocalNotificationHandler {
         
         switch notifType {
         case .AppointmentBooked, .AppointmentCancelled:
-            DoctorDefaultModifiers.refreshAppointments()
+            DoctorNotificationHandlerHelper().appointmentNotif()
             CustomerDefaultModifiers.refreshAppointments()
             completion(true)
         case .PrescriptionUploaded:

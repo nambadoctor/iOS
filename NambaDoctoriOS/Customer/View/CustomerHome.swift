@@ -81,13 +81,13 @@ extension CustomerHome {
     }
 
     func refreshAppointmentsListener () {
-        NotificationCenter.default.addObserver(forName: NSNotification.Name("\(CustomerViewStatesK.refreshAppointmentsChange)"), object: nil, queue: .main) { (_) in
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("\(CustomerViewStatesK.CustomerRefreshAppointmentsChange)"), object: nil, queue: .main) { (_) in
             customerVM.retrieveCustomerAppointments()
         }
     }
 
     func navigationToDetailedViewListener () {
-        NotificationCenter.default.addObserver(forName: NSNotification.Name("\(CustomerViewStatesK.navigateToDetailedViewChange)"), object: nil, queue: .main) { (_) in
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("\(CustomerViewStatesK.CustomerNavigateToDetailedViewChange)"), object: nil, queue: .main) { (_) in
             self.customerVM.tabSelection = 1
             customerVM.retrieveCustomerAppointments()
         }
