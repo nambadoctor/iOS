@@ -17,14 +17,11 @@ class AuthenticateService : AuthenticateServiceProtocol {
 
     func verifyNumber (phNumber:String, completion: @escaping (_ userId:String?,_ errorString:String?) -> ()) {
         PhoneAuthProvider.provider().verifyPhoneNumber(phNumber, uiDelegate: nil) { (verificationId, err) in
-
             if let err = err {
-                print(err.localizedDescription)
                 completion(nil, err.localizedDescription)
             } else {
                 completion(verificationId, nil)
             }
-            
         }
     }
 

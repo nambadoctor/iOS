@@ -337,8 +337,13 @@ extension ViewController : RoomDelegate {
         logMessage(messageText: "Connected to room...")
 
         // This example only renders 1 RemoteVideoTrack at a time. Listen for all events to decide which track to render.
+        
         for remoteParticipant in room.remoteParticipants {
             remoteParticipant.delegate = self
+        }
+        
+        if remoteParticipant != nil {
+            self.twilioEventDelegate?.participantConnected()
         }
     }
 
