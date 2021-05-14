@@ -47,7 +47,7 @@ class CustomerCreateProfileViewModel: ObservableObject {
                                               MedicalHistories: [CustomerMedicalHistory](),
                                               lastModifiedDate: Date().millisecondsSince1970,
                                               createdDate: Date().millisecondsSince1970)
-        
+
         CustomerProfileService().setCustomerProfile(customerProfile: customerProfile) { customerId in
             if customerId != nil {
                 LoginDefaultModifiers.signInPatient(userId: customerId!)
