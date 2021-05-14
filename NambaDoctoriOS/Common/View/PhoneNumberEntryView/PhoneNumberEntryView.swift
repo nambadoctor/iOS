@@ -29,12 +29,5 @@ struct PhoneNumberEntryView: View {
         .sheet(isPresented: self.$showCountryCodePicker) {
             CountryPickerView(selectedCountryCode: $numberObj.countryCode, countryPickerViewDismisser: $showCountryCodePicker)
         }
-        .onAppear() {
-            let defaults = UserDefaults.standard
-            let dictionary = defaults.dictionaryRepresentation()
-            dictionary.keys.forEach { key in
-                defaults.removeObject(forKey: key)
-            }
-        }
     }
 }

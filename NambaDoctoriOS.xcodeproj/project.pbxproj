@@ -262,6 +262,7 @@
 		1796321C25AEE932002E466C /* CommonDefaultModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796321A25AEE932002E466C /* CommonDefaultModifiers.swift */; };
 		1796322E25AEE9D6002E466C /* GlobalPopupHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796322C25AEE9D6002E466C /* GlobalPopupHelpers.swift */; };
 		1796322F25AEE9D6002E466C /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796322D25AEE9D6002E466C /* AlertItem.swift */; };
+		179B07EC264F3EEF00C5C53D /* ClearUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B07EB264F3EEF00C5C53D /* ClearUserDefaults.swift */; };
 		179BD39E25DE452D0076F391 /* LocalNotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179BD39D25DE452D0076F391 /* LocalNotificationHandler.swift */; };
 		179BD3A325DE4D120076F391 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179BD3A225DE4D120076F391 /* DateHelper.swift */; };
 		179C44782627CC170073F4E0 /* RealtimeDBListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179C44772627CC170073F4E0 /* RealtimeDBListener.swift */; };
@@ -620,6 +621,7 @@
 		1796321A25AEE932002E466C /* CommonDefaultModifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonDefaultModifiers.swift; sourceTree = "<group>"; };
 		1796322C25AEE9D6002E466C /* GlobalPopupHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalPopupHelpers.swift; sourceTree = "<group>"; };
 		1796322D25AEE9D6002E466C /* AlertItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
+		179B07EB264F3EEF00C5C53D /* ClearUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearUserDefaults.swift; sourceTree = "<group>"; };
 		179BD39D25DE452D0076F391 /* LocalNotificationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalNotificationHandler.swift; sourceTree = "<group>"; };
 		179BD3A225DE4D120076F391 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		179C44772627CC170073F4E0 /* RealtimeDBListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealtimeDBListener.swift; sourceTree = "<group>"; };
@@ -969,6 +971,7 @@
 				171B8B002612966D007E722C /* StopwatchManager.swift */,
 				176EFAA0264CAA1200A6310B /* DeviceSizeHelper.swift */,
 				176EFAAB264E5D6000A6310B /* LocalStorageHelper.swift */,
+				179B07EB264F3EEF00C5C53D /* ClearUserDefaults.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -2264,6 +2267,7 @@
 				1716472F2603226A00BB5B5A /* ServiceProviderMedicineMapper.swift in Sources */,
 				171647732603473000BB5B5A /* ServiceProviderServiceRequestService.swift in Sources */,
 				172B851025AEE46700C6B035 /* PhoneVerificationview.swift in Sources */,
+				179B07EC264F3EEF00C5C53D /* ClearUserDefaults.swift in Sources */,
 				17E869D925CE75E1000B0952 /* PatientReportView.swift in Sources */,
 				176AA15B2637BE4600F02346 /* CustomerServiceRequest.swift in Sources */,
 				1789091D2645B631004A9D75 /* DoctorAvailability.swift in Sources */,

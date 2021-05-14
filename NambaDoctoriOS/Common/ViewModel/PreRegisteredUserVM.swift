@@ -33,6 +33,8 @@ class PreRegisteredUserVM:ObservableObject {
     }
 
     func validateNumWithFirebase() {
+        ClearUserDefaults().clear()
+        
         LocalStorageHelper().storePhoneNumber(number: PhoneNumber(countryCode: self.user.phNumberObj.countryCode,
                                                                   number: self.user.phNumberObj.number.text,
                                                                   type: "",
