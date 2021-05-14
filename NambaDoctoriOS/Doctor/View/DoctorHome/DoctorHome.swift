@@ -37,7 +37,9 @@ struct DoctorHome: View {
                     }
                 }
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
-                    DoctorDefaultModifiers.refreshAppointments()
+                    if !docAutoNav.currenltyInIntermediateView {
+                        DoctorDefaultModifiers.refreshAppointments()
+                    }
                 }
                 .environmentObject(doctorViewModel)
                 .navigationBarTitle("NambaDoctor", displayMode: .inline)
