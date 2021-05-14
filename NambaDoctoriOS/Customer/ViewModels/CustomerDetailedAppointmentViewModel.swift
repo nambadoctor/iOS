@@ -119,12 +119,13 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     func getAppointment () {
         self.customerAppointmentService.getSingleAppointment(appointmentId: self.appointment.appointmentID, serviceProviderId: self.appointment.serviceProviderID) { customerAppointment in
             if customerAppointment != nil {
+                print(customerAppointment!)
                 self.appointment = customerAppointment!
                 self.checkAppointmentStatus()
             }
         }
     }
-    
+
     func getServiceRequest() {
         self.customerServiceRequestService.getServiceRequest(appointmentId: self.appointment.appointmentID,
                                                              serviceRequestId: self.appointment.serviceRequestID,
@@ -291,6 +292,8 @@ extension CustomerDetailedAppointmentViewModel : ReasonPickedDelegate {
 
 //MARK:- TWILIO RELATED CALLS
 extension CustomerDetailedAppointmentViewModel : TwilioDelegate {
+    func callPatientPhone() {}
+    
     func leftRoom() {
         self.showTwilioRoom.toggle()
         cusAutoNav.leaveTwilioRoom()

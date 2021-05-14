@@ -42,6 +42,7 @@ struct DoctorIntermediateView: View {
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: backButton, trailing: trailingNavBarButtons)
         .onAppear() {
+            self.intermediateVM.getNewChatCount()
             self.intermediateVM.checkForDirectNavigation()
         }
         .onDisappear() {

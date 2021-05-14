@@ -20,7 +20,7 @@ class IntermediateAppointmentViewModel : ObservableObject {
     @Published var modifyFeeViewModel:ModifyFeeViewModel
     @Published var doctorTwilioManagerViewModel:DoctorTwilioViewModel
     @Published var chatVM:DoctorChatViewModel
-    
+        
     @Published var takeToDetailedAppointment:Bool = false
     @Published var takeToViewAppointment:Bool = false
     
@@ -29,6 +29,7 @@ class IntermediateAppointmentViewModel : ObservableObject {
 
     @Published var appointmentStarted:Bool = false
     @Published var appointmentFinished:Bool = false
+    
     
     @Published var showOnSuccessAlert:Bool = false
     @Published var showTwilioRoom:Bool = false
@@ -177,6 +178,11 @@ extension IntermediateAppointmentViewModel {
 
 //MARK:- TWILIO RELATED CALLS
 extension IntermediateAppointmentViewModel : TwilioDelegate {
+    func callPatientPhone() {
+        self.leftRoom()
+        self.patientInfoViewModel.callPatient()
+    }
+    
     func leftRoom() {
         if appointment.status == "Finished" {
             killView = true
@@ -197,26 +203,7 @@ extension IntermediateAppointmentViewModel : TwilioDelegate {
 
                 self.showTwilioRoom = true
                 CommonDefaultModifiers.hideLoader()
-                self.startPatientWaitCounter()
-            } else {
-
-            }
-        }
-    }
-
-    func startPatientWaitCounter () {
-        //TODO: Change to 30 seconds
-        DispatchQueue.main.asyncAfter(deadline: .now() + 30) {
-            if !self.doctorTwilioManagerViewModel.participantJoined && self.showTwilioRoom {
-                self.doctorAlertHelper.patientUnavailableAlert(patientName: self.appointment.customerName) { wait, call in
-                    if call {
-                        self.leftRoom()
-                        self.patientInfoViewModel.callPatient()
-                    } else {
-                        
-                    }
-                }
-            }
+            } else { }
         }
     }
 }

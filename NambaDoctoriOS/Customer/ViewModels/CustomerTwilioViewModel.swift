@@ -88,6 +88,9 @@ class CustomerTwilioViewModel : ObservableObject {
 }
 
 extension CustomerTwilioViewModel : TwilioEventHandlerDelegate {
+    
+    func hostConnected() {}
+    
     func participantConnected() {
         self.participantJoined = true
     }

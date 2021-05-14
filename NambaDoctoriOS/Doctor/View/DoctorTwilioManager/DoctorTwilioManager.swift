@@ -30,6 +30,11 @@ struct DoctorTwilioManager: View {
             if DoctorTwilioVM.viewController != nil && !DoctorTwilioVM.collapseCall {
                 twilioButtonsLayout
             }
+            
+            if DoctorTwilioVM.showCallPhoneBanner {
+                callPhoneBanner
+            }
+            
         }
         .navigationTitle("")
         .navigationBarHidden(true)
@@ -144,6 +149,22 @@ struct DoctorTwilioManager: View {
     var leaveRoom : some View {
         LargeButton(title: "Leave Room") {
             DoctorTwilioVM.leaveRoom()
+        }
+    }
+    
+    var callPhoneBanner : some View {
+        VStack {
+            Spacer()
+            Text("If patient does not join after a while, Click here to make an audio call")
+                .fixedSize(horizontal: false, vertical: true)
+                .multilineTextAlignment(.center)
+                .padding()
+                .background(Color.white.opacity(0.7))
+                .foregroundColor(Color.blue)
+                .onTapGesture {
+                    self.DoctorTwilioVM.callPhoneBannerOnClick()
+                }
+            Spacer()
         }
     }
 

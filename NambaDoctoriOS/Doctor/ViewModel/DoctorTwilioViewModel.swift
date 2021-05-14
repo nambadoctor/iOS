@@ -8,6 +8,7 @@ import Foundation
 import SwiftUI
 
 protocol TwilioDelegate {
+    func callPatientPhone()
     func leftRoom()
 }
 
@@ -22,6 +23,7 @@ class DoctorTwilioViewModel: ObservableObject {
     @Published var micEnabled:Bool = true
 
     @Published var participantJoined:Bool = false
+    @Published var showCallPhoneBanner:Bool = false
 
     private var docAlertHelpers:DoctorAlertHelpersProtocol!
     private var docSheetHelper:DoctorSheetHelpers = DoctorSheetHelpers()
@@ -102,11 +104,20 @@ class DoctorTwilioViewModel: ObservableObject {
             self.collapseCall = true
         }
     }
+    
+    func callPhoneBannerOnClick () {
+        self.twilioDelegate?.callPatientPhone()
+    }
 }
 
 extension DoctorTwilioViewModel : TwilioEventHandlerDelegate {
+    func hostConnected() {
+        self.showCallPhoneBanner = true
+    }
+    
     func participantConnected() {
         self.participantJoined = true
+        self.showCallPhoneBanner = false
     }
 
     func participantDisconnected() {
