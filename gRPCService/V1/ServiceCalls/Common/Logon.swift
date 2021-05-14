@@ -30,7 +30,7 @@ class Logon : FindUserTypeViewModelProtocol {
                 print("UserTypeClient received: \(response.message.toString)")
                 
                 let responseSplit = response.message.toString.components(separatedBy: ",")
-                
+
                 DispatchQueue.main.async {
                     if responseSplit.count > 1 {
                         let userStatus = CheckLoginStatus.checkStatus(loggedInStatus: responseSplit[0])
@@ -38,7 +38,7 @@ class Logon : FindUserTypeViewModelProtocol {
                         UserTypeHelper.setUserType(userType: userStatus)
                         completion(userStatus)
                     } else {
-                        completion(.Customer)
+                        completion(.NotRegistered)
                     }
                 }
 
@@ -71,7 +71,7 @@ class UserTypeHelper {
     static func getUserType() -> String {
         return UserDefaults.standard.value(forKey: SimpleStateK.userType.rawValue) as? String ?? ""
     }
-    
+
     static func setUserType (userType:UserLoginStatus) {
         let defaults = UserDefaults.standard
         defaults.set(userType.rawValue, forKey: SimpleStateK.userType.rawValue)

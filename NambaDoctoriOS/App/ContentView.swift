@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    
+
     @State private var loginStatus:UserLoginStatus = UserLoginStatus.NotSignedIn
     @State private var showLoader:Bool = false
     
@@ -22,6 +22,8 @@ struct ContentView: View {
                     CustomerHome(customerVM: .init())
                 case .NotSignedIn:
                     PhoneVerificationview(preRegUser: .init())
+                case .NotRegistered:
+                    CreateCustomerProfileView()
                 }
             }
         }
@@ -39,16 +41,16 @@ extension ContentView {
         //Opening value check
         let status = UserTypeHelper.getUserType()
         loginStatus = CheckLoginStatus.checkStatus(loggedInStatus: status)
-        print("LOGIN STATUS: \(loginStatus)")
         NotificationCenter.default
             .addObserver(forName: NSNotification.Name("\(SimpleStateK.loginStatusChange)"),
                          object: nil,
                          queue: .main) { (_) in
                 let status = UserDefaults.standard.value(forKey: "\(SimpleStateK.loginStatus)")
                 loginStatus = CheckLoginStatus.checkStatus(loggedInStatus: status as! String)
+                print("STATUS SETTING: \(loginStatus)")
             }
     }
-    
+
     func showLoaderListener () {
         NotificationCenter.default
             .addObserver(forName: NSNotification.Name("\(SimpleStateK.showLoaderChange)"),

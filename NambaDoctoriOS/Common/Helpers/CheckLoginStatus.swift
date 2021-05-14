@@ -14,6 +14,8 @@ class CheckLoginStatus {
             return .ServiceProvider
         case UserLoginStatus.Customer.rawValue:
             return .Customer
+        case UserLoginStatus.NotRegistered.rawValue:
+            return .NotRegistered
         default:
             return .NotSignedIn
         }

@@ -151,7 +151,7 @@ struct DoctorTwilioManager: View {
             DoctorTwilioVM.leaveRoom()
         }
     }
-    
+
     var callPhoneBanner : some View {
         VStack {
             Spacer()

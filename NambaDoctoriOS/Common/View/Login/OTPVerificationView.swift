@@ -15,7 +15,7 @@ struct OTPVerificationView: View {
     
     var body: some View {
         ZStack{
-            
+
             VStack(spacing: 20){
                 Text("Enter OTP").font(Font.system(size:25).weight(.black)).fontWeight(.heavy).padding(.top, 70)
 

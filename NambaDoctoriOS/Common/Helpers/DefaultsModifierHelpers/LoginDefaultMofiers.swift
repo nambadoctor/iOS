@@ -19,4 +19,9 @@ class LoginDefaultModifiers {
         NotificationCenter.default.post(name: NSNotification.Name("\(SimpleStateK.loginStatusChange)"), object: nil)
     }
     
+    static func takeToRegistration () {
+        print("CALLING TAKE TO REGISTRATION DEFAULT MODIFIERS")
+        UserDefaults.standard.set(UserLoginStatus.NotRegistered.rawValue, forKey: "\(SimpleStateK.loginStatus)")
+        NotificationCenter.default.post(name: NSNotification.Name("\(SimpleStateK.loginStatusChange)"), object: nil)
+    }
 }

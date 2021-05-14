@@ -14,7 +14,7 @@ class LocalEncoder {
             let data = try encoder.encode(payload)
             UserDefaults.standard.set(data, forKey: destination)
         } catch let err {
-            print(err)
+            print("STORING ERROR: \(err)")
         }
     }
 }
@@ -22,6 +22,7 @@ class LocalEncoder {
 class LocalDecoder {
     static func decode<T:Codable>(modelType: T.Type, from:String) -> T? {
         var decodedObj:T?
+        print("DATAFKENF: \(UserDefaults.standard.data(forKey: from))")
         if let data = UserDefaults.standard.data(forKey: from) {
             do {
                 // Create JSON Decoder
@@ -30,6 +31,7 @@ class LocalDecoder {
                 // Decode Note
                 decodedObj = try decoder.decode(modelType.self, from: data)
 
+                print("DECODED OBJ: \(decodedObj)")
             } catch {
                 print("Unable to Decode Note (\(error))")
             }

@@ -7,15 +7,16 @@
 
 import Foundation
 
+
 class PreRegisteredUserVM:ObservableObject {
     @Published var user:PreRegisteredUser
     @Published var otp:String = ""
     @Published var sendToOTPView:Bool = false
     @Published var userLoggedIn:Bool = false
-    
+
     @Published var showAlert:Bool = false
     @Published var alertMessage:String = ""
-    
+
     private let AuthService:AuthenticateServiceProtocol
     private let findDocOrPatientVM:FindUserTypeViewModelProtocol
 
@@ -32,6 +33,11 @@ class PreRegisteredUserVM:ObservableObject {
     }
 
     func validateNumWithFirebase() {
+        LocalStorageHelper().storePhoneNumber(number: PhoneNumber(countryCode: self.user.phNumberObj.countryCode,
+                                                                  number: self.user.phNumberObj.number.text,
+                                                                  type: "",
+                                                                  phoneNumberID: ""))
+        
         AuthService.verifyNumber(phNumber: phoneNumber) { verificationId, errorString in
             CommonDefaultModifiers.hideLoader()
             if verificationId != nil {
@@ -46,16 +52,9 @@ class PreRegisteredUserVM:ObservableObject {
     }
 
     func registerUser () {
-        let defaults = UserDefaults.standard
-        let dictionary = defaults.dictionaryRepresentation()
-        dictionary.keys.forEach { key in
-            defaults.removeObject(forKey: key)
-        }
- 
         CommonDefaultModifiers.showLoader()
         AuthService.verifyUser(verificationId: self.user.verificationId, otp: self.otp) { (verified, errorString) in
             if verified == true {
-                print("user verified")
                 RetrieveAuthId().getAuthId { (success) in
                     if success {
                         self.loginUser()
@@ -79,6 +78,8 @@ class PreRegisteredUserVM:ObservableObject {
                 LoginDefaultModifiers.signInDoctor(userId: self.AuthService.getUserId())
             case .Customer:
                 LoginDefaultModifiers.signInPatient(userId: self.AuthService.getUserId())
+            case .NotRegistered:
+                LoginDefaultModifiers.takeToRegistration()
             case .NotSignedIn:
                 return
             default:
