@@ -28,6 +28,8 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     @Published var allergyChanged:Bool = false
     @Published var reasonPickerVM:ReasonPickerViewModel = ReasonPickerViewModel()
     
+    @Published var reportsVM:CustomerAllReportsViewModel
+    
     @Published var prescriptionPDF:Data? = nil
     @Published var imageLoader:ImageLoader? = nil
     @Published var docProfPicImageLoader:ImageLoader? = nil
@@ -44,7 +46,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     var customerNotifHelpers:CustomerNotificationHelper
 
     init(appointment:CustomerAppointment,
-         customerServiceRequestService:CustomerServiceRequestServiceProtocol = CustomerServiceRequestService(),,
+         customerServiceRequestService:CustomerServiceRequestServiceProtocol = CustomerServiceRequestService(),
          customerAppointmentService:CustomerAppointmentServiceProtocol = CustomerAppointmentService()) {
 
         self.appointment = appointment
@@ -53,6 +55,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
         self.customerTwilioViewModel = CustomerTwilioViewModel(appointment: appointment)
         self.customerChatViewModel = CustomerChatViewModel(appointment: appointment)
         self.customerNotifHelpers = CustomerNotificationHelper(appointment: appointment)
+        self.reportsVM = CustomerAllReportsViewModel(appointment: appointment)
         imagePickerVM.imagePickerDelegate = self
         reasonPickerVM.reasonPickedDelegate = self
         customerTwilioViewModel.twilioDelegate = self
@@ -64,7 +67,6 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
         self.getAppointment()
         self.getServiceProvider()
         self.getServiceRequest()
-        self.getReports()
         
         self.newChatListener()
         self.getNewChatCount()
@@ -141,7 +143,6 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
             }
         }
     }
-
 
     func getServiceProvider () {
         CustomerServiceProviderService().getServiceProvider(serviceProviderId: appointment.serviceProviderID) { provider in
@@ -251,7 +252,7 @@ extension CustomerDetailedAppointmentViewModel : ImagePickedDelegate {
         
         let customerReport = CustomerReportUpload(ReportId: "", ServiceRequestId: self.serviceRequest!.serviceRequestID, CustomerId: self.serviceRequest!.customerID, FileName: "", Name: "report", FileType: ".jpg", MediaFile: encodedImage!)
         
-        setReport(report: customerReport)
+        reportsVM.setReport(report: customerReport)
     }
 }
 

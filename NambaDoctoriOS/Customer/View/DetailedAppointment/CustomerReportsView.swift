@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct CustomerReportsView: View {
-    @ObservedObject var customerDetailedAppointmentVM:CustomerDetailedAppointmentViewModel
-    
+    @ObservedObject var reportsVM:CustomerAllReportsViewModel
+
     var body: some View {
         HStack (spacing: 3) {
             Image("folder")
@@ -22,10 +22,10 @@ struct CustomerReportsView: View {
                 .bold()
         }
 
-        if !self.customerDetailedAppointmentVM.reports.isEmpty {
+        if !self.reportsVM.reports.isEmpty {
             ScrollView (.horizontal) {
                 HStack {
-                    ForEach (self.customerDetailedAppointmentVM.reports, id: \.reportID) { report in
+                    ForEach (self.reportsVM.reports, id: \.reportID) { report in
                         CustomerReportCardView(report: report)
                     }
                 }

@@ -18,6 +18,8 @@ class CustomerAllReportsViewModel : ObservableObject {
         self.customerReportService = customerReportService
         self.appointment = appointment
         self.customerNotifHelpers = CustomerNotificationHelper(appointment: appointment)
+        
+        getReports()
     }
     
     func getReports() {

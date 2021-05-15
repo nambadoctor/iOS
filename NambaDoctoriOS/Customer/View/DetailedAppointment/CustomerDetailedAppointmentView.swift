@@ -33,8 +33,8 @@ struct CustomerDetailedAppointmentView: View {
                 if customerDetailedAppointmentVM.appointmentStarted || customerDetailedAppointmentVM.appointmnentUpComing {
                     allergyEntryView
                     
-                    CustomerReportsView(customerDetailedAppointmentVM: self.customerDetailedAppointmentVM)
-                    
+                    CustomerReportsView(reportsVM: self.customerDetailedAppointmentVM.reportsVM)
+
                     LargeButton(title: "Click To Upload",
                                 backgroundColor: Color.blue) {
                         customerDetailedAppointmentVM.imagePickerVM.showActionSheet()
