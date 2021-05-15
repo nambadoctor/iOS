@@ -297,6 +297,8 @@
 		17BD2E8E263BD42000BB0BDD /* CustomerDetailedAppointmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BD2E8D263BD42000BB0BDD /* CustomerDetailedAppointmentViewModel.swift */; };
 		17BD2E93263C759600BB0BDD /* CustomerTwilioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BD2E92263C759600BB0BDD /* CustomerTwilioManager.swift */; };
 		17BD2E95263C75B700BB0BDD /* CustomerTwilioViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BD2E94263C75B700BB0BDD /* CustomerTwilioViewModel.swift */; };
+		17BFEF1C264FA5C3000443C9 /* CustomerReportsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BFEF1B264FA5C3000443C9 /* CustomerReportsView.swift */; };
+		17BFEF1E264FAEC9000443C9 /* CustomerAllReportsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BFEF1D264FAEC9000443C9 /* CustomerAllReportsViewModel.swift */; };
 		17E3706D25BF123F0004C965 /* DoctorTwilioViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E3706925BF123E0004C965 /* DoctorTwilioViewHelper.swift */; };
 		17E3706E25BF123F0004C965 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E3706A25BF123E0004C965 /* Utils.swift */; };
 		17E3706F25BF123F0004C965 /* TwilioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E3706B25BF123E0004C965 /* TwilioViewController.swift */; };
@@ -657,6 +659,8 @@
 		17BD2E8D263BD42000BB0BDD /* CustomerDetailedAppointmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerDetailedAppointmentViewModel.swift; sourceTree = "<group>"; };
 		17BD2E92263C759600BB0BDD /* CustomerTwilioManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerTwilioManager.swift; sourceTree = "<group>"; };
 		17BD2E94263C75B700BB0BDD /* CustomerTwilioViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerTwilioViewModel.swift; sourceTree = "<group>"; };
+		17BFEF1B264FA5C3000443C9 /* CustomerReportsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerReportsView.swift; sourceTree = "<group>"; };
+		17BFEF1D264FAEC9000443C9 /* CustomerAllReportsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerAllReportsViewModel.swift; sourceTree = "<group>"; };
 		17E3706925BF123E0004C965 /* DoctorTwilioViewHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoctorTwilioViewHelper.swift; sourceTree = "<group>"; };
 		17E3706A25BF123E0004C965 /* Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		17E3706B25BF123E0004C965 /* TwilioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwilioViewController.swift; sourceTree = "<group>"; };
@@ -1048,6 +1052,7 @@
 				17437EAB263D336E00AFEF5B /* CustomerChatViewModel.swift */,
 				178909162644DF50004A9D75 /* ReasonPickerViewModel.swift */,
 				179B07ED264F4C7100C5C53D /* CustomerCreateProfileViewModel.swift */,
+				17BFEF1D264FAEC9000443C9 /* CustomerAllReportsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1632,6 +1637,7 @@
 			children = (
 				17BD2E85263A369A00BB0BDD /* CustomerDetailedAppointmentView.swift */,
 				17BD2E87263A39F100BB0BDD /* CustomerReportCardView.swift */,
+				17BFEF1B264FA5C3000443C9 /* CustomerReportsView.swift */,
 			);
 			path = DetailedAppointment;
 			sourceTree = "<group>";
@@ -2092,6 +2098,7 @@
 				171646A62602B5DA00BB5B5A /* ServiceProviderWorkExperience.swift in Sources */,
 				17626CD225D5C06200C36A99 /* DoctorHomeShowAlert.swift in Sources */,
 				171B8B012612966D007E722C /* StopwatchManager.swift in Sources */,
+				17BFEF1E264FAEC9000443C9 /* CustomerAllReportsViewModel.swift in Sources */,
 				176AA2032637F76D00F02346 /* CustomerReportService.swift in Sources */,
 				1728B77525B381D1001D554E /* PreRegisteredUser.swift in Sources */,
 				171B8AE126109792007E722C /* ImagePicker.swift in Sources */,
@@ -2171,6 +2178,7 @@
 				17365DFF2647695600386909 /* RazorPayDisplay.swift in Sources */,
 				176AA1332637BD0900F02346 /* CustomerFollowUp.swift in Sources */,
 				172FA70C261F125600D14545 /* ServiceProviderCustomerMedicalHistoryMapper.swift in Sources */,
+				17BFEF1C264FA5C3000443C9 /* CustomerReportsView.swift in Sources */,
 				1748005F25B8BDB000C8E3CC /* AppointmentViewModel.swift in Sources */,
 				178EB6AA2638BC5D009286B1 /* CustomerAlertHelpers.swift in Sources */,
 				171647A02604044300BB5B5A /* DoctorHome.swift in Sources */,
@@ -2551,7 +2559,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NambaDoctoriOS/NambaDoctoriOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 68;
+				CURRENT_PROJECT_VERSION = 69;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"NambaDoctoriOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 478XDR2NPK;
@@ -2561,7 +2569,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.68;
+				MARKETING_VERSION = 1.69;
 				PRODUCT_BUNDLE_IDENTIFIER = dsconnect.iOS.NambaDoctoriOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -2577,7 +2585,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NambaDoctoriOS/NambaDoctoriOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 68;
+				CURRENT_PROJECT_VERSION = 69;
 				DEVELOPMENT_ASSET_PATHS = "\"NambaDoctoriOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 478XDR2NPK;
 				ENABLE_PREVIEWS = YES;
@@ -2586,7 +2594,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.68;
+				MARKETING_VERSION = 1.69;
 				PRODUCT_BUNDLE_IDENTIFIER = dsconnect.iOS.NambaDoctoriOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

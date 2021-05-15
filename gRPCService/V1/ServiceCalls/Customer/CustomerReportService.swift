@@ -104,12 +104,12 @@ class CustomerReportService : CustomerReportServiceProtocol {
         DispatchQueue.global().async {
             do {
                 let response = try getPatientReports.response.wait()
-                print("Patient Reports received \(response.message)")
+                print("Patient Report Image received \(response.message)")
                 DispatchQueue.main.async {
                     completion(response.message.toString)
                 }
             } catch {
-                print("Patient Reports failed: \(error)")
+                print("Patient Report Image failed: \(error)")
                 DispatchQueue.main.async {
                     completion(nil)
                 }

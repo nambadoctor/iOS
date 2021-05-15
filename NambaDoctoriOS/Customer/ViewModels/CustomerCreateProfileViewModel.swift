@@ -29,7 +29,7 @@ class CustomerCreateProfileViewModel: ObservableObject {
                                          deviceToken: DeviceTokenId,
                                          appInfoID: "",
                                          deviceTokenType: "apn")
-        
+
         let customerProfile = CustomerProfile(customerID: "",
                                               firstName: self.firstName,
                                               lastName: self.lastName,

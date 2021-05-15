@@ -18,7 +18,6 @@ class CustomerReportViewModel : ObservableObject {
          reportServiceCall:CustomerReportServiceProtocol = CustomerReportService()) {
         self.report = report
         self.reportServiceCall = reportServiceCall
-        
         getImageObj()
     }
 

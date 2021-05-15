@@ -31,6 +31,8 @@ class ViewController: UIViewController {
     var localAudioTrack: LocalAudioTrack?
     var remoteParticipant: RemoteParticipant?
     var remoteView: VideoView?
+    
+    var currentUserType:String = ""
 
     // MARK:- UI Element Outlets and handles
     
@@ -61,6 +63,8 @@ class ViewController: UIViewController {
             // Preview our local camera track in the local video preview view.
             self.startPreview()
         }
+        
+        self.currentUserType = UserTypeHelper.getUserType()
         
     }
 
@@ -375,11 +379,20 @@ extension ViewController : RoomDelegate {
         // Listen for events from all Participants to decide which RemoteVideoTrack to render.
         participant.delegate = self
         twilioEventDelegate?.participantConnected()
-        logMessage(messageText: "Patient connected")
+        if UserTypeHelper.checkIfDoctor(userType: self.currentUserType) {
+            logMessage(messageText: "Patient connected")
+        } else {
+            logMessage(messageText: "Doctor connected")
+        }
     }
 
     func participantDidDisconnect(room: Room, participant: RemoteParticipant) {
-        logMessage(messageText: "Patient disconnected")
+        
+        if UserTypeHelper.checkIfDoctor(userType: self.currentUserType) {
+            logMessage(messageText: "Patient disconnected")
+        } else {
+            logMessage(messageText: "Doctor disconnected")
+        }
 
         // Nothing to do in this example. Subscription events are used to add/remove renderers.
     }
@@ -461,7 +474,12 @@ extension ViewController : RemoteParticipantDelegate {
     }
 
     func remoteParticipantDidDisableVideoTrack(participant: RemoteParticipant, publication: RemoteVideoTrackPublication) {
-        logMessage(messageText: "Patient Turned Off Video")
+        if UserTypeHelper.checkIfDoctor(userType: self.currentUserType) {
+            logMessage(messageText: "Patient Turned Off Video")
+        } else {
+            logMessage(messageText: "Doctor Turned Off Video")
+        }
+        
         onlyNSLogMessage(messageText: "Participant \(participant.identity) disabled \(publication.trackName) video track")
     }
 
@@ -471,7 +489,12 @@ extension ViewController : RemoteParticipantDelegate {
     }
 
     func remoteParticipantDidDisableAudioTrack(participant: RemoteParticipant, publication: RemoteAudioTrackPublication) {
-        logMessage(messageText: "Patient Muted")
+        if UserTypeHelper.checkIfDoctor(userType: self.currentUserType) {
+            logMessage(messageText: "Patient Muted")
+        } else {
+            logMessage(messageText: "Patient Muted")
+        }
+        
         onlyNSLogMessage(messageText: "Participant \(participant.identity) disabled \(publication.trackName) audio track")
     }
 

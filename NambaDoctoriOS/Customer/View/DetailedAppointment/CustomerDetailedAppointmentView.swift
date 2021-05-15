@@ -31,7 +31,15 @@ struct CustomerDetailedAppointmentView: View {
                 }
                 
                 if customerDetailedAppointmentVM.appointmentStarted || customerDetailedAppointmentVM.appointmnentUpComing {
-                    AppointmentInProgressView
+                    allergyEntryView
+                    
+                    CustomerReportsView(customerDetailedAppointmentVM: self.customerDetailedAppointmentVM)
+                    
+                    LargeButton(title: "Click To Upload",
+                                backgroundColor: Color.blue) {
+                        customerDetailedAppointmentVM.imagePickerVM.showActionSheet()
+                    }
+                    .modifier(ImagePickerModifier(imagePickerVM: self.customerDetailedAppointmentVM.imagePickerVM))
                 }
                 
                 Spacer()
@@ -52,6 +60,9 @@ struct CustomerDetailedAppointmentView: View {
             if customerDetailedAppointmentVM.showPayment {
                 customerDetailedAppointmentVM.razorPayEndPoint()
             }
+        }
+        .onTapGesture {
+            EndEditingHelper.endEditing()
         }
         .onAppear() {
             showLoaderListener()
@@ -83,17 +94,17 @@ struct CustomerDetailedAppointmentView: View {
             }
         }
     }
-
-    var AppointmentInProgressView : some View {
-        VStack (alignment: .leading, spacing: 10) {
+    
+    var allergyEntryView : some View {
+        VStack {
             if customerDetailedAppointmentVM.serviceRequest != nil {
                 Text("ENTER YOUR ALLERGIES (IF ANY)")
                     .font(.footnote)
                     .foregroundColor(.gray)
- 
+
                 HStack {
                     ExpandingTextView(text: self.$customerDetailedAppointmentVM.allergy, changeDelegate: self.customerDetailedAppointmentVM)
-                    
+
                     if self.customerDetailedAppointmentVM.allergyChanged {
                         Button {
                             self.customerDetailedAppointmentVM.commitAllergy()
@@ -110,45 +121,10 @@ struct CustomerDetailedAppointmentView: View {
                     .foregroundColor(.gray)
 
                 OneLineReasonDisplay()
-            }
-
-            Spacer().frame(height: 15)
-
-            VStack (alignment: .leading) {
-                HStack (spacing: 3) {
-                    Image("folder")
-                        .scaleEffect(0.8)
-                        .foregroundColor(Color.gray)
-
-                    Text("REPORTS")
-                        .font(.footnote)
-                        .foregroundColor(Color.black.opacity(0.4))
-                        .bold()
-                }
-
-                if !self.customerDetailedAppointmentVM.reports.isEmpty {
-                    ScrollView (.horizontal) {
-                        HStack {
-                            ForEach (self.customerDetailedAppointmentVM.reports, id: \.reportID) { report in
-                                CustomerReportCardView(report: report)
-                            }
-                        }
-                    }
-                } else {
-                    HStack {
-                        Text("You have uploaded 0 reports")
-                        Spacer()
-                    }.padding(.top, 5)
-                }
                 
-                LargeButton(title: "Click To Upload",
-                            backgroundColor: Color.blue) {
-                    customerDetailedAppointmentVM.imagePickerVM.showActionSheet()
-                }
-                .modifier(ImagePickerModifier(imagePickerVM: self.customerDetailedAppointmentVM.imagePickerVM))
+                Spacer().frame(height: 15)
             }
         }
-        .padding(.top, 10)
     }
     
     var header : some View {
@@ -166,7 +142,7 @@ struct CustomerDetailedAppointmentView: View {
                         Text(customerDetailedAppointmentVM.serviceProviderName)
                             .font(.system(size: 16))
                     }
-                    
+
                     HStack {
                         Image("indianrupeesign.circle")
                         Text(customerDetailedAppointmentVM.serviceProviderFee)

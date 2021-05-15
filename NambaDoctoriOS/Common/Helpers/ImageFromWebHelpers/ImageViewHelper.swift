@@ -32,7 +32,7 @@ struct ImageView: View {
                             HStack {
                                 Spacer()
                                 Button {
-                                    self.showEnlarged.toggle()
+                                    self.showEnlarged = false
                                 } label: {
                                     Image("xmark.circle")
                                         .resizable()

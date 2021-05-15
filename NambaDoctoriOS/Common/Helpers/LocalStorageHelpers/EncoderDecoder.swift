@@ -22,7 +22,6 @@ class LocalEncoder {
 class LocalDecoder {
     static func decode<T:Codable>(modelType: T.Type, from:String) -> T? {
         var decodedObj:T?
-        print("DATAFKENF: \(UserDefaults.standard.data(forKey: from))")
         if let data = UserDefaults.standard.data(forKey: from) {
             do {
                 // Create JSON Decoder

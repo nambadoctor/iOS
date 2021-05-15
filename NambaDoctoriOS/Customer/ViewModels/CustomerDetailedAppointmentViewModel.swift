@@ -13,7 +13,6 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     @Published var appointment:CustomerAppointment
     @Published var serviceRequest:CustomerServiceRequest? = nil
     @Published var prescription:CustomerPrescription? = nil
-    @Published var reports:[CustomerReport] = [CustomerReport]()
     @Published var serviceProvider:CustomerServiceProviderProfile? = nil
     
     @Published var appointmentStarted:Bool = false
@@ -41,17 +40,15 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
 
     var customerServiceRequestService:CustomerServiceRequestServiceProtocol
     var customerAppointmentService:CustomerAppointmentServiceProtocol
-    var customerReportService:CustomerReportServiceProtocol
+    
     var customerNotifHelpers:CustomerNotificationHelper
 
     init(appointment:CustomerAppointment,
-         customerServiceRequestService:CustomerServiceRequestServiceProtocol = CustomerServiceRequestService(),
-         customerReportService:CustomerReportServiceProtocol = CustomerReportService(),
+         customerServiceRequestService:CustomerServiceRequestServiceProtocol = CustomerServiceRequestService(),,
          customerAppointmentService:CustomerAppointmentServiceProtocol = CustomerAppointmentService()) {
 
         self.appointment = appointment
         self.customerServiceRequestService = customerServiceRequestService
-        self.customerReportService = customerReportService
         self.customerAppointmentService = customerAppointmentService
         self.customerTwilioViewModel = CustomerTwilioViewModel(appointment: appointment)
         self.customerChatViewModel = CustomerChatViewModel(appointment: appointment)
@@ -59,7 +56,6 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
         imagePickerVM.imagePickerDelegate = self
         reasonPickerVM.reasonPickedDelegate = self
         customerTwilioViewModel.twilioDelegate = self
-
         initCalls()
     }
 
@@ -146,30 +142,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
         }
     }
 
-    func getReports() {
-        self.customerReportService.getAppointmentUploadedReportList(customerId: self.appointment.customerID, serviceRequestId: self.appointment.serviceRequestID, appointmentId: self.appointment.appointmentID) { reports in
-            self.reports.removeAll()
-            if reports != nil {
-                self.reports = reports!
-                CommonDefaultModifiers.hideLoader()
-            } else {
-                //TODO: handle empty reports list
-            }
-        }
-    }
-    
-    func setReport(report:CustomerReportUpload) {
-        CommonDefaultModifiers.showLoader()
-        self.customerReportService.setReport(report: report) { success in
-            if success {
-                self.getReports()
-                self.customerNotifHelpers.reportUploadedNotif()
-            } else {
-                //TODO: handle report upload failed
-            }
-        }
-    }
-    
+
     func getServiceProvider () {
         CustomerServiceProviderService().getServiceProvider(serviceProviderId: appointment.serviceProviderID) { provider in
             if provider != nil {
@@ -198,7 +171,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
             }
         }
     }
-    
+
     func getPrescriptionImage () {
         CustomerPrescriptionService().downloadPrescription(prescriptionID: prescription!.prescriptionID) { url in
             if url != nil {

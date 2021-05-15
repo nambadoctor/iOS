@@ -14,8 +14,8 @@ class DeviceSizeHelper {
         case .screen3_5Inch:  return true
         case .screen4Inch:    return true
         case .screen4_7Inch:  return true
-        case .screen5_5Inch:  return false
-        case .screen5_8Inch:  return false
+        case .screen5_5Inch:  return true
+        case .screen5_8Inch:  return true
         case .screen6_1Inch:  return false
         case .screen6_5Inch:  return false
         case .screen7_9Inch:  return false

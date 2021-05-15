@@ -76,4 +76,20 @@ class UserTypeHelper {
         let defaults = UserDefaults.standard
         defaults.set(userType.rawValue, forKey: SimpleStateK.userType.rawValue)
     }
+    
+    static func checkIfDoctor (userType:String) -> Bool {
+        if userType == UserLoginStatus.ServiceProvider.rawValue {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    static func checkIfCustomer (userType:String) -> Bool {
+        if userType == UserLoginStatus.Customer.rawValue {
+            return true
+        } else {
+            return false
+        }
+    }
 }
