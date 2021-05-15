@@ -99,11 +99,12 @@ struct CustomerDetailedAppointmentView: View {
     }
     
     var allergyEntryView : some View {
-        VStack (alignment: .leading) {
+        VStack (alignment: .leading, spacing: 10) {
             if customerDetailedAppointmentVM.serviceRequest != nil {
                 Text("ENTER YOUR ALLERGIES (IF ANY)")
                     .font(.footnote)
                     .foregroundColor(.gray)
+                    .padding(.top, 10)
 
                 HStack {
                     ExpandingTextView(text: self.$customerDetailedAppointmentVM.allergy, changeDelegate: self.customerDetailedAppointmentVM)
@@ -117,7 +118,7 @@ struct CustomerDetailedAppointmentView: View {
                     }
                 }
 
-                Spacer().frame(height: 35)
+                Spacer().frame(height: 17)
                 
                 Text("SELECT YOUR REASON")
                     .font(.footnote)
@@ -125,7 +126,7 @@ struct CustomerDetailedAppointmentView: View {
 
                 OneLineReasonDisplay()
 
-                Spacer().frame(height: 35)
+                Spacer().frame(height: 17)
             }
         }
     }

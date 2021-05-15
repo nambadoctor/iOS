@@ -21,7 +21,7 @@ struct OneLineReasonDisplay : View {
                     ReasonPickerCard(reason: reason, imageName: reasonPickerVM.getValForKey(key: reason))
                 }
             }
-            
+
             VStack {
                 Text("More")
                     .font(.system(size: 12))
@@ -33,15 +33,16 @@ struct OneLineReasonDisplay : View {
             .onTapGesture {
                 self.reasonPickerVM.showAllReasons = true
             }
-            .padding()
-            .frame(width: 85, height: 90)
+            .padding(8)
+            .frame(width: 70, height: 75)
             .background(Color.white)
             .cornerRadius(10)
             .shadow(radius: 5)
-            .padding(.horizontal, 5)
+            .padding(.horizontal, 2)
             
             Spacer()
         }
+        .padding(.leading, 2)
 
         .sheet(isPresented: self.$reasonPickerVM.showAllReasons) {
             ReasonPickerView()

@@ -20,7 +20,7 @@ class ReasonPickerViewModel : ObservableObject {
                                    "Respiratory":"lungs.fill",
                                    "Phsychological":"psychology",
                                    "Sleeping Disorder":"moon.fill"]
-    
+
     var OneLineReasonsToSHow:[String] = [String]()
     var OneLineReasonsToSHowSmallDisplay:[String] = [String]()
     
@@ -33,13 +33,15 @@ class ReasonPickerViewModel : ObservableObject {
         self.OneLineReasonsToSHow.append("Injury")
         self.OneLineReasonsToSHow.append("Fever")
         self.OneLineReasonsToSHow.append("Pregnant")
+        self.OneLineReasonsToSHow.append("Joint Pain")
         
         self.OneLineReasonsToSHowSmallDisplay.append("Injury")
         self.OneLineReasonsToSHowSmallDisplay.append("Fever")
+        self.OneLineReasonsToSHowSmallDisplay.append("Pregnant")
     }
     
     func getValForKey (key:String) -> String {
-        return self.reasons[key] ?? "image.not.supported.fill"
+        return self.reasons[key] ?? "not supported"
     }
     
     func reasonSelected () {
@@ -49,6 +51,9 @@ class ReasonPickerViewModel : ObservableObject {
         } else {
             self.OneLineReasonsToSHow.remove(at: 0)
             self.OneLineReasonsToSHow.insert(key, at: 0)
+            
+            self.OneLineReasonsToSHowSmallDisplay.remove(at: 0)
+            self.OneLineReasonsToSHowSmallDisplay.insert(key, at: 0)
         }
         self.reasonPickedDelegate?.reasonSelected(reason: key)
         self.showAllReasons = false
