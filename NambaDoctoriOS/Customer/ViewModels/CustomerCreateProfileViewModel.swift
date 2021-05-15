@@ -21,6 +21,7 @@ class CustomerCreateProfileViewModel: ObservableObject {
     
     func register () {
         
+        phoneNumber.type = "Primary"
         let phoneNumbers:[PhoneNumber] = [phoneNumber]
         
         let appInfoObj = CustomerAppInfo(authID: AuthenticateService().getUserId(),
