@@ -55,12 +55,23 @@ struct CustomerDetailedAppointmentView: View {
         }
         .onAppear() {
             showLoaderListener()
-            customerDetailedAppointmentVM.checkForDirectNavigation()
         }
         .environmentObject(self.customerDetailedAppointmentVM.reasonPickerVM)
-        .navigationBarItems(trailing: navBarChatButton)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: backButton, trailing: navBarChatButton)
     }
     
+    var backButton : some View {
+        Button(action : {
+            cusAutoNav.leaveDetailedView()
+            CustomerDefaultModifiers.refreshAppointments()
+            self.presentationMode.wrappedValue.dismiss()
+        }){
+            Image(systemName: "arrow.left")
+                .padding([.top, .bottom, .trailing])
+        }
+    }
+
     var navBarChatButton : some View {
         VStack {
             if self.customerDetailedAppointmentVM.appointmentFinished {
@@ -278,7 +289,6 @@ extension CustomerDetailedAppointmentView {
                          queue: .main) { (_) in
                 self.customerDetailedAppointmentVM.resetAllValues()
                 self.customerDetailedAppointmentVM.initCalls()
-                self.customerDetailedAppointmentVM.checkForDirectNavigation()
             }
     }
 }

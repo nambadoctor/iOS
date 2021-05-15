@@ -9,7 +9,6 @@ import Foundation
 
 class DoctorNotificationHandlerHelper {
     func appointmentNotif () {
-        print("CURRENTLY IN VIEW: \(docAutoNav.currenltyInIntermediateView)")
         if !docAutoNav.currenltyInIntermediateView {
             DoctorDefaultModifiers.refreshAppointments()
         }

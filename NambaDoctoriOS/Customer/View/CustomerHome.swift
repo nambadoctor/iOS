@@ -36,13 +36,16 @@ struct CustomerHome: View {
                     }
                 }
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
-                    CustomerDefaultModifiers.refreshAppointments()
+                    if !cusAutoNav.currenltyInIntermediateView {
+                        CustomerDefaultModifiers.refreshAppointments()
+                    }
                 }
                 .environmentObject(customerVM)
                 .navigationBarTitle("NambaDoctor", displayMode: .inline)
             }
         }
         .onAppear(){
+            print("CUSTOMER HOME REACHED")
             showAlertListener()
             refreshFCMTokenListener()
             refreshAppointmentsListener()

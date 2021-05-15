@@ -49,7 +49,7 @@ class CustomerProfileService : CustomerProfileServiceProtocol {
         let stopwatch = StopwatchManager(callingClass: "CUSTOMER PROFILE")
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
-        
+
         let customerCLient = Nd_V1_CustomerWorkerV1Client(channel: channel)
         
         let request = Nd_V1_IdMessage.with {
@@ -60,6 +60,7 @@ class CustomerProfileService : CustomerProfileServiceProtocol {
 
         DispatchQueue.global().async {
             do {
+                print("GETTING CUSTOMER PROFILE: \(customerId)")
                 stopwatch.start()
                 let response = try getCustomer.response.wait()
                 stopwatch.stop()

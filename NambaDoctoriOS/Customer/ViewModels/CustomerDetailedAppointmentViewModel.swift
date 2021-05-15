@@ -122,6 +122,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
                 print(customerAppointment!)
                 self.appointment = customerAppointment!
                 self.checkAppointmentStatus()
+                self.checkForDirectNavigation()
             }
         }
     }
@@ -138,13 +139,13 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
                     self.reasonPickerVM.reason = serviceRequest!.reason
                     self.reasonPickerVM.reasonSelected()
                 }
-                
+
             } else {
                 //TODO: handle no service request returned
             }
         }
     }
-    
+
     func getReports() {
         self.customerReportService.getAppointmentUploadedReportList(customerId: self.appointment.customerID, serviceRequestId: self.appointment.serviceRequestID, appointmentId: self.appointment.appointmentID) { reports in
             self.reports.removeAll()

@@ -77,9 +77,9 @@ class PreRegisteredUserVM:ObservableObject {
             CommonDefaultModifiers.hideLoader()
             switch patientOrDoc {
             case .ServiceProvider:
-                LoginDefaultModifiers.signInDoctor(userId: self.AuthService.getUserId())
+                LoginDefaultModifiers.signInDoctor()
             case .Customer:
-                LoginDefaultModifiers.signInPatient(userId: self.AuthService.getUserId())
+                LoginDefaultModifiers.signInPatient()
             case .NotRegistered:
                 LoginDefaultModifiers.takeToRegistration()
             case .NotSignedIn:

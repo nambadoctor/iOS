@@ -84,7 +84,7 @@ class CustomerViewModel : ObservableObject {
     func updateCustomer() {
         customerProfileService.setCustomerProfile(customerProfile: self.customerProfile!) { (response) in
             if response != nil {
-                print("SERVICE PROVIDER UPDATE SUCCESS \(response)")
+                print("CUSTOMER UPDATE SUCCESS \(response)")
             }
             CommonDefaultModifiers.hideLoader()
         }

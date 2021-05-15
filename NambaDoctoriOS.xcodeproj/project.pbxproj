@@ -263,6 +263,7 @@
 		1796322E25AEE9D6002E466C /* GlobalPopupHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796322C25AEE9D6002E466C /* GlobalPopupHelpers.swift */; };
 		1796322F25AEE9D6002E466C /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796322D25AEE9D6002E466C /* AlertItem.swift */; };
 		179B07EC264F3EEF00C5C53D /* ClearUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B07EB264F3EEF00C5C53D /* ClearUserDefaults.swift */; };
+		179B07EE264F4C7100C5C53D /* CustomerCreateProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B07ED264F4C7100C5C53D /* CustomerCreateProfileViewModel.swift */; };
 		179BD39E25DE452D0076F391 /* LocalNotificationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179BD39D25DE452D0076F391 /* LocalNotificationHandler.swift */; };
 		179BD3A325DE4D120076F391 /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179BD3A225DE4D120076F391 /* DateHelper.swift */; };
 		179C44782627CC170073F4E0 /* RealtimeDBListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179C44772627CC170073F4E0 /* RealtimeDBListener.swift */; };
@@ -622,6 +623,7 @@
 		1796322C25AEE9D6002E466C /* GlobalPopupHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalPopupHelpers.swift; sourceTree = "<group>"; };
 		1796322D25AEE9D6002E466C /* AlertItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
 		179B07EB264F3EEF00C5C53D /* ClearUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClearUserDefaults.swift; sourceTree = "<group>"; };
+		179B07ED264F4C7100C5C53D /* CustomerCreateProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerCreateProfileViewModel.swift; sourceTree = "<group>"; };
 		179BD39D25DE452D0076F391 /* LocalNotificationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalNotificationHandler.swift; sourceTree = "<group>"; };
 		179BD3A225DE4D120076F391 /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		179C44772627CC170073F4E0 /* RealtimeDBListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealtimeDBListener.swift; sourceTree = "<group>"; };
@@ -1045,6 +1047,7 @@
 				17BD2E94263C75B700BB0BDD /* CustomerTwilioViewModel.swift */,
 				17437EAB263D336E00AFEF5B /* CustomerChatViewModel.swift */,
 				178909162644DF50004A9D75 /* ReasonPickerViewModel.swift */,
+				179B07ED264F4C7100C5C53D /* CustomerCreateProfileViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -2206,6 +2209,7 @@
 				173A231B25CBB8F20086342A /* FindUserTypeViewModelProtocol.swift in Sources */,
 				17B5D12D25B75789009D6A42 /* LocalEncodingK.swift in Sources */,
 				172B851C25AEE50C00C6B035 /* EndEditing.swift in Sources */,
+				179B07EE264F4C7100C5C53D /* CustomerCreateProfileViewModel.swift in Sources */,
 				171646D42602B78100BB5B5A /* ServiceProviderReportUploadObj.swift in Sources */,
 				17E5185425AED16A001F1A80 /* AppDelegate.swift in Sources */,
 				173A231225CAFE2B0086342A /* ChannelManager.swift in Sources */,
