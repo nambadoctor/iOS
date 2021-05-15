@@ -31,15 +31,17 @@ struct CustomerDetailedAppointmentView: View {
                 }
                 
                 if customerDetailedAppointmentVM.appointmentStarted || customerDetailedAppointmentVM.appointmnentUpComing {
-                    allergyEntryView
-                    
-                    CustomerReportsView(reportsVM: self.customerDetailedAppointmentVM.reportsVM)
+                    ScrollView {
+                        allergyEntryView
+                        
+                        CustomerReportsView(reportsVM: self.customerDetailedAppointmentVM.reportsVM)
 
-                    LargeButton(title: "Click To Upload",
-                                backgroundColor: Color.blue) {
-                        customerDetailedAppointmentVM.imagePickerVM.showActionSheet()
+                        LargeButton(title: "Click To Upload",
+                                    backgroundColor: Color.blue) {
+                            customerDetailedAppointmentVM.imagePickerVM.showActionSheet()
+                        }
+                        .modifier(ImagePickerModifier(imagePickerVM: self.customerDetailedAppointmentVM.imagePickerVM))
                     }
-                    .modifier(ImagePickerModifier(imagePickerVM: self.customerDetailedAppointmentVM.imagePickerVM))
                 }
                 
                 Spacer()
@@ -65,13 +67,14 @@ struct CustomerDetailedAppointmentView: View {
             EndEditingHelper.endEditing()
         }
         .onAppear() {
+            self.customerDetailedAppointmentVM.getNewChatCount()
             showLoaderListener()
         }
         .environmentObject(self.customerDetailedAppointmentVM.reasonPickerVM)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: backButton, trailing: navBarChatButton)
     }
-    
+
     var backButton : some View {
         Button(action : {
             cusAutoNav.leaveDetailedView()
@@ -96,7 +99,7 @@ struct CustomerDetailedAppointmentView: View {
     }
     
     var allergyEntryView : some View {
-        VStack {
+        VStack (alignment: .leading) {
             if customerDetailedAppointmentVM.serviceRequest != nil {
                 Text("ENTER YOUR ALLERGIES (IF ANY)")
                     .font(.footnote)
@@ -114,15 +117,15 @@ struct CustomerDetailedAppointmentView: View {
                     }
                 }
 
-                Spacer().frame(height: 15)
+                Spacer().frame(height: 35)
                 
                 Text("SELECT YOUR REASON")
                     .font(.footnote)
                     .foregroundColor(.gray)
 
                 OneLineReasonDisplay()
-                
-                Spacer().frame(height: 15)
+
+                Spacer().frame(height: 35)
             }
         }
     }

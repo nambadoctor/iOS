@@ -65,7 +65,7 @@ class CustomerTwilioViewModel : ObservableObject {
     }
 
     func leaveRoom () {
-        self.videoEnabled = true
+        self.videoEnabled = false
         self.micEnabled = true
         do {
             self.viewController?.disconnect(sender: self)

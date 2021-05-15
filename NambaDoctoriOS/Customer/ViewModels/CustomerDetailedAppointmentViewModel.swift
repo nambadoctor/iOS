@@ -31,6 +31,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     @Published var reportsVM:CustomerAllReportsViewModel
     
     @Published var prescriptionPDF:Data? = nil
+    
     @Published var imageLoader:ImageLoader? = nil
     @Published var docProfPicImageLoader:ImageLoader? = nil
 
@@ -158,6 +159,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
             if prescription != nil {
                 self.prescription = prescription!
                 
+                CommonDefaultModifiers.showLoader()
                 self.getPrescriptionPDF()
                 
                 self.getPrescriptionImage()
@@ -168,15 +170,18 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     func getPrescriptionPDF () {
         CustomerPrescriptionService().getPrescriptionPDF(serviceProviderId: appointment.serviceProviderID, appointmentId: appointment.appointmentID, serviceRequestId: appointment.serviceRequestID) { data in
             if data != nil {
+                CommonDefaultModifiers.hideLoader()
                 self.prescriptionPDF = data!
             }
         }
     }
 
     func getPrescriptionImage () {
+        
         CustomerPrescriptionService().downloadPrescription(prescriptionID: prescription!.prescriptionID) { url in
             if url != nil {
                 self.imageLoader = ImageLoader(urlString: url!) { success in
+                    CommonDefaultModifiers.hideLoader()
                     if !success {
                         self.imageLoader = nil
                     } else {

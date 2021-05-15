@@ -22,7 +22,6 @@ struct OneLineReasonDisplay : View {
                 }
             }
             
-            
             VStack {
                 Text("More")
                     .font(.system(size: 12))
@@ -40,6 +39,8 @@ struct OneLineReasonDisplay : View {
             .cornerRadius(10)
             .shadow(radius: 5)
             .padding(.horizontal, 5)
+            
+            Spacer()
         }
 
         .sheet(isPresented: self.$reasonPickerVM.showAllReasons) {

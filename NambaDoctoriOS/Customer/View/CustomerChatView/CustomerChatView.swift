@@ -89,6 +89,9 @@ struct CustomerChatRoomView: View {
             .padding(.horizontal)
             .padding(.bottom, 2)
         }
+        .onAppear() {
+            LocalNotifStorer().clearNewChatsCountForAppointment(appointmentId: self.chatVM.appointment.appointmentID)
+        }
         .onTapGesture {
             EndEditingHelper.endEditing()
         }

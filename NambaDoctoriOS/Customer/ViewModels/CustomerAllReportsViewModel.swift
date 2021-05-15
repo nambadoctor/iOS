@@ -21,7 +21,7 @@ class CustomerAllReportsViewModel : ObservableObject {
         
         getReports()
     }
-    
+
     func getReports() {
         self.customerReportService.getAppointmentUploadedReportList(customerId: self.appointment.customerID, serviceRequestId: self.appointment.serviceRequestID, appointmentId: self.appointment.appointmentID) { reports in
             self.reports.removeAll()
