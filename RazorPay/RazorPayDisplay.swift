@@ -17,17 +17,11 @@ struct RazorPayDisplay : UIViewControllerRepresentable {
     
     @Environment(\.presentationMode) var presentationMode
     
-    var customerNumber:String
-    var paymentAmount:String
-    var serviceProviderId:String
-    var appointmentId:String
+    var customerAppointment:CustomerAppointment
     var delegate:RazorPayDelegate
     
     func makeUIViewController(context: Context) -> RazorPayViewController {
-        return RazorPayViewController(customerNumber: self.customerNumber,
-                                      paymentAmount: self.paymentAmount,
-                                      serviceProviderId: self.serviceProviderId,
-                                      appointmentId: self.appointmentId,
+        return RazorPayViewController(customerAppointment: self.customerAppointment,
                                       delegate: self.delegate)
     }
     
@@ -41,19 +35,11 @@ class RazorPayViewController: UIViewController, RazorpayPaymentCompletionProtoco
     
     var razorpay: RazorpayCheckout!
     
-    var customerNumber:String
-    var paymentAmount:String
-    var serviceProviderId:String
-    var appointmentId:String
+    var customerAppointment:CustomerAppointment
     var delegate:RazorPayDelegate
     
-    init(customerNumber:String, paymentAmount:String, serviceProviderId:String, appointmentId:String, delegate:RazorPayDelegate) {
-        print("HITTING THIS INIT")
-        print(paymentAmount)
-        self.customerNumber = customerNumber
-        self.paymentAmount = paymentAmount
-        self.serviceProviderId = serviceProviderId
-        self.appointmentId = appointmentId
+    init(customerAppointment:CustomerAppointment, delegate:RazorPayDelegate) {
+        self.customerAppointment = customerAppointment
         self.delegate = delegate
         
         super.init(nibName: nil, bundle: nil)
@@ -74,19 +60,26 @@ class RazorPayViewController: UIViewController, RazorpayPaymentCompletionProtoco
     
     internal func showPaymentForm(){
         let options: [String:Any] = [
-                    "amount": String(Int(paymentAmount)! * 100), //This is in currency subunits. 100 = 100 paise= INR 1.
-                    "currency": "INR",//We support more that 92 international currencies.
-                    "description": "purchase description",
-                    "image": "https://url-to-image.png",
-                    "name": "NambaDoctor",
-                    "prefill": [
-                        "contact": "+91\(self.customerNumber)",
-                        "email":"nambadoctor@gmail.com"
-                    ],
-                    "theme": [
-                        "color": "#0061FF"
-                      ]
-                ]
+            "amount": String((customerAppointment.serviceFee * 100).clean), //This is in currency subunits. 100 = 100 paise= INR 1.
+            "currency": "INR",//We support more that 92 international currencies.
+            "description": "purchase description",
+            "image": "https://url-to-image.png",
+            "name": "NambaDoctor",
+            "prefill": [
+                "contact": "\(LocalStorageHelper().getPhoneNumber().countryCode)\(LocalStorageHelper().getPhoneNumber().number)",
+                "email":"nambadoctor@gmail.com"
+            ],
+            "theme": [
+                "color": "#0061FF"
+            ],
+            "notes": [
+                "serviceProviderId":self.customerAppointment.serviceProviderID,
+                "customerId":self.customerAppointment.customerID,
+                "appointmentId":self.customerAppointment.appointmentID,
+                "serviceProviderName":self.customerAppointment.serviceProviderName,
+                "customerName":self.customerAppointment.customerName,
+            ]
+        ]
         razorpay.open(options)
     }
     
@@ -94,7 +87,7 @@ class RazorPayViewController: UIViewController, RazorpayPaymentCompletionProtoco
         print("error: ", code, str)
         delegate.paymentFailed()
     }
-
+    
     func onPaymentSuccess(_ payment_id: String) {
         print("success: ", payment_id)
         delegate.paymentSucceeded(paymentId: payment_id)

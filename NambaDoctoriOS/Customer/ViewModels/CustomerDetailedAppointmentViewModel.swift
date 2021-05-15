@@ -91,7 +91,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     func checkIfPaid () {
         self.isPaid = appointment.isPaid
     }
-    
+
     var appointmentScheduledStartTime:String {
         return "\(Helpers.getTimeFromTimeStamp(timeStamp: appointment.scheduledAppointmentStartTime))"
     }
@@ -251,10 +251,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     
     func razorPayEndPoint() -> RazorPayDisplay {
         //TODO: ADD CUSTOMER NUMBER
-        return RazorPayDisplay(customerNumber: "",
-                               paymentAmount: "\(self.appointment.serviceFee.clean)",
-                               serviceProviderId: self.appointment.serviceProviderID,
-                               appointmentId: self.appointment.appointmentID,
+        return RazorPayDisplay(customerAppointment: self.appointment,
                                delegate: self)
     }
     
@@ -336,8 +333,8 @@ extension CustomerDetailedAppointmentViewModel : RazorPayDelegate {
                                               customerName: self.appointment.customerName)
         
         customerAppointmentService.setPayment(paymentInfo: paymentInfo) { success in
+            CustomerDefaultModifiers.triggerAppointmentStatusChanges()
             CustomerAlertHelpers().PaymentSuccessAlert { _ in
-                CustomerDefaultModifiers.triggerAppointmentStatusChanges()
                 CommonDefaultModifiers.hideLoader()
             }
         }

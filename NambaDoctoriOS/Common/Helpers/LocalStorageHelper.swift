@@ -8,9 +8,8 @@
 import Foundation
 
 class LocalStorageHelper {
-    var phoneNumberDestination:String = "currentUserNumber"
+    private var phoneNumberDestination:String = "currentUserNumber"
     func storePhoneNumber (number:PhoneNumber) {
-        print("STORING PHONE NUMBER")
         LocalEncoder.encode(payload: number, destination: phoneNumberDestination)
     }
 
