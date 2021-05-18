@@ -64,7 +64,7 @@ class ServiceProviderCustomerService: ServiceProviderCustomerServiceProtocol {
 
         // Provide the connection to the generated client.
         let patientClient = Nd_V1_ServiceProviderCustomerWorkerV1Client(channel: channel)
-        
+         
         let request = Nd_V1_IdMessage.with {
             $0.id = patientId.toProto
         }
