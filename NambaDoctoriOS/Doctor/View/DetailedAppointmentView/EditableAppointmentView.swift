@@ -66,7 +66,7 @@ struct EditableAppointmentView: View {
                 .background(Color.white)
                 .cornerRadius(10)
                 .padding(.horizontal)
-            
+
             HStack {
                 Button {
                     self.intermediateVM.toggleCollapseOfClinicalInformation()
@@ -175,8 +175,10 @@ struct EditableAppointmentView: View {
         VStack {
             LargeButton(title: intermediateVM.appointmentFinished ? "Amend and Submit" : "Submit",
                         backgroundColor: Color.blue) {
-                EndEditingHelper.endEditing()
-                intermediateVM.sendToPatient()
+                DoctorAlertHelpers().sendPrescriptionAlert { sendPrescription in
+                    EndEditingHelper.endEditing()
+                    intermediateVM.sendToPatient()
+                }
             }
         }
     }

@@ -48,7 +48,7 @@ struct HorizontalDatePicker: View {
                                         }
                                     }
                                 }
-                                .frame(width: 36, height: 60)
+                                .frame(width: 36, height: 65)
                                 .id(index)
                                 .padding()
                                 .background(datePickerVM.compareDate(index: index) ? Color(CustomColors.SkyBlue) : Color.white)

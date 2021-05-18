@@ -13,7 +13,6 @@ struct PrescriptionPreviewView: View {
     
     var body: some View {
         VStack {
-
             HStack {
                 Text("Prescription Preview")
                     .font(.title)

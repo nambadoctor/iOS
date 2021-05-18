@@ -18,9 +18,11 @@ class DoctorAlertHelpers: DoctorAlertHelpersProtocol {
         CommonDefaultModifiers.showAlert()
     }
 
-    func endConsultationAlert (endConsultation: @escaping (Bool) -> ()) {
-        alertTempItem = AlertItem(title: Text("Are you sure?"), message: Text("You will not be able to join consultation room again!"), primaryButton: Alert.Button.default(Text("No")), secondaryButton: Alert.Button.default(Text("Yes"), action: {
-            endConsultation(true)
+    func sendPrescriptionAlert (sendPrescription: @escaping (Bool) -> ()) {
+        alertTempItem = AlertItem(title: Text("Are you ready to send this prescription to the patient?"), primaryButton: Alert.Button.default(Text("Cancel"), action: {
+            sendPrescription(false)
+        }), secondaryButton: Alert.Button.default(Text("Yes"), action: {
+            sendPrescription(true)
         }))
         
         CommonDefaultModifiers.showAlert()

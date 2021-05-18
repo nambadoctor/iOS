@@ -10,7 +10,7 @@ import Foundation
 protocol DoctorAlertHelpersProtocol {
     func cancelAppointmentAlert (cancel: @escaping (Bool) -> ())
     
-    func endConsultationAlert (endConsultation: @escaping (_ ended:Bool) -> ())
+    func sendPrescriptionAlert (sendPrescription: @escaping (_ ended:Bool) -> ())
     
     func patientAddedAlert ()
     
