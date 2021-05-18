@@ -176,8 +176,10 @@ struct EditableAppointmentView: View {
             LargeButton(title: intermediateVM.appointmentFinished ? "Amend and Submit" : "Submit",
                         backgroundColor: Color.blue) {
                 DoctorAlertHelpers().sendPrescriptionAlert { sendPrescription in
-                    EndEditingHelper.endEditing()
-                    intermediateVM.sendToPatient()
+                    if sendPrescription {
+                        EndEditingHelper.endEditing()
+                        intermediateVM.sendToPatient()
+                    }
                 }
             }
         }
