@@ -180,13 +180,25 @@ class Helpers {
         return false
     }
     
-    static func getDisplayForDateSelector (date : Date) -> String {
+    static func MonthDayDateString (date : Date) -> String {
         let formatter = DateFormatter()
         
         formatter.timeZone = TimeZone.current
         
         formatter.dateFormat = "MMMM, dd"
         
+        let dateString1 = formatter.string(from: date)
+        
+        return "\(dateString1)"
+    }
+    
+    static func MonthYearDateString (date : Date) -> String {
+        let formatter = DateFormatter()
+        
+        formatter.timeZone = TimeZone.current
+        
+        formatter.dateFormat = "MMMM YYYY"
+
         let dateString1 = formatter.string(from: date)
         
         return "\(dateString1)"

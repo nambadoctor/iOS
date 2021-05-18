@@ -11,7 +11,7 @@ struct EditableAppointmentView: View {
     
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var intermediateVM:IntermediateAppointmentViewModel
-
+    
     var body: some View {
         ZStack {
             detailedUpcomingAppointment
@@ -20,9 +20,9 @@ struct EditableAppointmentView: View {
             if intermediateVM.killView {
                 Text("You are done").onAppear() { killView() }
             }
-
+            
         }
-        .background(Color.gray.opacity(0.3))
+        .background(Color.gray.opacity(0.08))
         .navigationBarItems(trailing: Text(""))
         .alert(isPresented: $intermediateVM.showOnSuccessAlert, content: {
             Alert(title: Text("Prescription Sent Successfully"), dismissButton: .default(Text("Ok"), action: { intermediateVM.takeToView() }))
@@ -34,26 +34,38 @@ struct EditableAppointmentView: View {
             self.intermediateVM.saveForLater { _ in}
         }
     }
-    
+
     var detailedUpcomingAppointment : some View {
         ScrollView (.vertical) {
-
-            VStack {
+            
+            ZStack {
                 header
-                actionButtons
-            }
-            .background(Color.white)
-            .border(Color.blue, width: 1)
-            .padding(.top, 5)
+                    .background(Color(CustomColors.SkyBlue))
+                    .cornerRadius(10)
+                    .padding()
+                    .padding(.bottom, 7)
 
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        actionButtons
+                    }
+                }
+            }
+            
             MedicineEditableView()
                 .padding()
                 .background(Color.white)
-
-
+                .cornerRadius(10)
+                .padding(.horizontal)
+            
+            
             PatientInfoEditableView()
                 .padding()
                 .background(Color.white)
+                .cornerRadius(10)
+                .padding(.horizontal)
             
             HStack {
                 Button {
@@ -69,8 +81,20 @@ struct EditableAppointmentView: View {
                                 .foregroundColor(.blue)
                         }
                         
-                        Text("Clinical Information")
-                            .bold()
+                        VStack (alignment: .leading) {
+                            Text("Clinical Information")
+                                .bold()
+                            
+                            if self.intermediateVM.collapseExtraDetailEntry {
+                                Text("click to expand")
+                                    .font(.footnote)
+                                    .foregroundColor(Color.gray.opacity(0.5))
+                            } else {
+                                Text("click to collapse")
+                                    .font(.footnote)
+                                    .foregroundColor(Color.gray.opacity(0.5))
+                            }
+                        }
 
                         Spacer()
                     }
@@ -80,7 +104,9 @@ struct EditableAppointmentView: View {
             .padding(.vertical, 8)
             .padding(.horizontal)
             .background(Color.white)
-
+            .cornerRadius(10)
+            .padding(.horizontal)
+            
             if !intermediateVM.collapseExtraDetailEntry {
                 
                 ServiceRequestEditableView()
@@ -88,10 +114,14 @@ struct EditableAppointmentView: View {
                 InvestigationsEditableView()
                     .padding()
                     .background(Color.white)
+                    .cornerRadius(10)
+                    .padding(.horizontal)
                 
                 AdviceEditableView()
                     .padding()
                     .background(Color.white)
+                    .cornerRadius(10)
+                    .padding(.horizontal)
                 
                 Spacer()
             }
@@ -100,8 +130,10 @@ struct EditableAppointmentView: View {
                 ModifyFeeView(modifyFeeVM: self.intermediateVM.modifyFeeViewModel)
                     .padding()
                     .background(Color.white)
+                    .cornerRadius(10)
+                    .padding(.horizontal)
             }
-
+            
             HStack {
                 previewPrescription
                 sendToPatient
@@ -150,14 +182,6 @@ struct EditableAppointmentView: View {
     
     var header : some View {
         VStack (alignment: .leading) {
-            VStack {
-                Text("Appointment On: \(intermediateVM.appointmentScheduledStartTime)")
-                    .font(.subheadline)
-                    .foregroundColor(.gray)
-                    .bold()
-            }.padding(.top)
-            
-            Divider().background(Color.blue.opacity(0.4))
             
             HStack (alignment: .center) {
                 
@@ -170,21 +194,39 @@ struct EditableAppointmentView: View {
                 }
                 
                 VStack (alignment: .leading, spacing: 5) {
+                    Text("Name")
+                        .foregroundColor(Color.white.opacity(0.5))
+                    
                     Text(intermediateVM.customerName)
-                    PatientOverViewDetails(patientInfoVM: intermediateVM.patientInfoViewModel) //age,gender display
-                    Text(intermediateVM.appointmentServiceFee)
+                        .foregroundColor(Color.white)
+                        .bold()
+                    
+                    HStack (spacing: 20) {
+                        
+                        PatientOverViewDetails(patientInfoVM: intermediateVM.patientInfoViewModel) //age,gender display
+                        
+                        VStack (alignment: .leading) {
+                            Text("Fee")
+                                .foregroundColor(Color.white.opacity(0.5))
+                            
+                            Text(intermediateVM.appointmentServiceFee)
+                                .foregroundColor(Color.white)
+                                .bold()
+                        }
+                    }
+
                     ServiceRequestOverViewDetails(serviceRequestVM: intermediateVM.serviceRequestVM)
+                    
                 }.padding(.horizontal)
                 Spacer()
             }
-            
-            Divider().background(Color.blue.opacity(0.4))
-        }.padding(.horizontal)
+        }
+        .padding([.horizontal, .top])
+        .padding(.bottom, 40)
     }
-    
+
     var actionButtons : some View {
-        HStack {
-            
+        HStack (spacing: 10) {
             if !intermediateVM.appointmentStarted && !intermediateVM.appointmentFinished {
                 Button(action: {
                     intermediateVM.cancelAppointment { success in
@@ -195,38 +237,40 @@ struct EditableAppointmentView: View {
                 }, label: {
                     ZStack {
                         Image("xmark")
-                            .scaleEffect(1.2)
+                            .scaleEffect(1.0)
                             .padding()
                             .foregroundColor(.red)
+                            .background(Color.white)
                     }
-                    .overlay(Circle()
-                                .fill(Color.red.opacity(0.2))
-                                .frame(width: 60, height: 60))
+                    .frame(width: 45, height: 45)
+                    .overlay(Circle().fill(Color.red.opacity(0.3)))
+                    .overlay(Circle().stroke(Color.white, lineWidth: 3))
+                    .clipShape(Circle())
                 })
-                Spacer()
             }
-
+            
             Button(action: {
                 self.intermediateVM.takeToChat = true
             }, label: {
-                ZStack (alignment: .center) {
+                ZStack {
                     Image(systemName: "message")
-                        .scaleEffect(1.2)
+                        .scaleEffect(1.0)
                         .padding()
-                    
+                        .foregroundColor(.green)
+                        .background(Color.white)
+
                     if self.intermediateVM.newChats > 0 {
                         Text("\(self.intermediateVM.newChats)")
                             .font(.subheadline)
-                            .foregroundColor(.blue)
+                            .foregroundColor(.green)
                             .padding(.bottom, 2)
                     }
                 }
-                .overlay(Circle()
-                            .fill(Color.blue.opacity(0.2))
-                            .frame(width: 60, height: 60))
+                .frame(width: 45, height: 45)
+                .overlay(Circle().fill(Color.green.opacity(0.3)))
+                .overlay(Circle().stroke(Color.white, lineWidth: 3))
+                .clipShape(Circle())
             })
-            
-            Spacer()
             
             if !intermediateVM.appointmentFinished {
                 Button(action: {
@@ -234,34 +278,36 @@ struct EditableAppointmentView: View {
                 }, label: {
                     ZStack {
                         Image("phone")
-                            .scaleEffect(1.2)
+                            .scaleEffect(1.0)
                             .padding()
+                            .background(Color.white)
                     }
-                    .overlay(Circle()
-                                .fill(Color.blue.opacity(0.2))
-                                .frame(width: 60, height: 60))
+                    .frame(width: 45, height: 45)
+                    .overlay(Circle().fill(Color.blue.opacity(0.3)))
+                    .overlay(Circle().stroke(Color.white, lineWidth: 3))
+                    .clipShape(Circle())
                 })
             }
-            
-            Spacer()
-            
+
             if !intermediateVM.appointmentFinished {
                 Button(action: {
                     intermediateVM.startConsultation()
                 }, label: {
                     ZStack {
                         Image(systemName: "video")
-                            .scaleEffect(1.2)
+                            .scaleEffect(1.0)
                             .padding()
+                            .background(Color.white)
                     }
-                    .overlay(Circle()
-                                .fill(Color.blue.opacity(0.2))
-                                .frame(width: 60, height: 60))
+                    .frame(width: 45, height: 45)
+                    .overlay(Circle().fill(Color.blue.opacity(0.3)))
+                    .overlay(Circle().stroke(Color.white, lineWidth: 3))
+                    .clipShape(Circle())
                 })
             }
         }
-        .padding(.horizontal, 25)
-        .padding(.vertical)
+        .padding(.trailing)
+        .padding(.trailing)
     }
     
     private func killView () {
@@ -272,16 +318,41 @@ struct EditableAppointmentView: View {
 struct PatientOverViewDetails : View {
     @ObservedObject var patientInfoVM:PatientInfoViewModel
     var body: some View {
-        Text(patientInfoVM.briefPatientDetails)
+        HStack (spacing: 20) {
+            if patientInfoVM.patientObj != nil {
+                VStack (alignment: .leading) {
+                    Text("Age")
+                        .foregroundColor(Color.white.opacity(0.5))
+                    
+                    Text(patientInfoVM.patientObj.age)
+                        .foregroundColor(Color.white)
+                        .bold()
+                }
+                
+                VStack (alignment: .leading) {
+                    Text("Gender")
+                        .foregroundColor(Color.white.opacity(0.5))
+                    
+                    Text(patientInfoVM.patientObj.gender)
+                        .foregroundColor(Color.white)
+                        .bold()
+                }
+            }
+        }
     }
 }
 
 struct ServiceRequestOverViewDetails : View {
     @ObservedObject var serviceRequestVM:ServiceRequestViewModel
     var body: some View {
-        VStack {
+        VStack (alignment: .leading) {
             if !serviceRequestVM.serviceRequest.reason.isEmpty {
-                Text("Reason: \(serviceRequestVM.serviceRequest.reason)")
+                Text("Reason")
+                    .foregroundColor(Color.white.opacity(0.5))
+                
+                Text(serviceRequestVM.serviceRequest.reason)
+                    .foregroundColor(Color.white)
+                    .bold()
             }
         }
     }

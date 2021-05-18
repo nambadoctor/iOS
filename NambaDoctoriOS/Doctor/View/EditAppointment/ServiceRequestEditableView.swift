@@ -18,7 +18,10 @@ struct ServiceRequestEditableView: View {
                 HStack (spacing: 3) {
                     Image("nose")
                         .scaleEffect(0.8)
-                        .foregroundColor(.gray)
+                        .background(Color.blue.opacity(0.1))
+                        .foregroundColor(Color.blue)
+                        .cornerRadius(5)
+                    
                     Text("ALLERGIES")
                         .font(.footnote)
                         .foregroundColor(Color.black.opacity(0.4))
@@ -30,7 +33,10 @@ struct ServiceRequestEditableView: View {
                 HStack (spacing: 3) {
                     Image("heart.text.square")
                         .scaleEffect(0.8)
-                        .foregroundColor(.gray)
+                        .background(Color.blue.opacity(0.1))
+                        .foregroundColor(Color.blue)
+                        .cornerRadius(5)
+                    
                     Text("MEDICAL HISTORY")
                         .font(.footnote)
                         .foregroundColor(Color.black.opacity(0.4))
@@ -42,13 +48,18 @@ struct ServiceRequestEditableView: View {
             }
             .padding()
             .background(Color.white)
+            .cornerRadius(10)
+            .padding(.horizontal)
             
             VStack (alignment: .leading) {
                 
                 HStack (spacing: 3) {
                     Image("eyeglasses")
                         .scaleEffect(0.8)
-                        .foregroundColor(.gray)
+                        .background(Color.blue.opacity(0.1))
+                        .foregroundColor(Color.blue)
+                        .cornerRadius(5)
+                    
                     Text("EXAMINATION")
                         .font(.footnote)
                         .foregroundColor(Color.black.opacity(0.4))
@@ -62,7 +73,10 @@ struct ServiceRequestEditableView: View {
                 HStack (spacing: 3) {
                     Image("cross.case")
                         .scaleEffect(0.8)
-                        .foregroundColor(.gray)
+                        .background(Color.blue.opacity(0.1))
+                        .foregroundColor(Color.blue)
+                        .cornerRadius(5)
+                    
                     Text("DIAGNOSIS")
                         .font(.footnote)
                         .foregroundColor(Color.black.opacity(0.4))
@@ -76,7 +90,8 @@ struct ServiceRequestEditableView: View {
             }
             .padding()
             .background(Color.white)
-            
+            .cornerRadius(10)
+            .padding(.horizontal)
         }
     }
 }

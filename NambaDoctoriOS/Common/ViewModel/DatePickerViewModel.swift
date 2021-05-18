@@ -29,6 +29,8 @@ class DatePickerViewModel : ObservableObject {
     @Published var selectedDate:Date = Date()
     @Published var index = 20
     @Published var showScrollView : Bool = false
+    
+    @Published var datePickerTitle:String = ""
 
     var datePickerDelegate:DatePickerChangedDelegate? = nil
     
@@ -80,7 +82,7 @@ class DatePickerViewModel : ObservableObject {
         var previousAppointmentDates:[String] = [String]()
 
         for appoinment in appointments {
-            let dateString = Helpers.getDisplayForDateSelector(date: Date(milliseconds: appoinment.scheduledAppointmentStartTime))
+            let dateString = Helpers.MonthDayDateString(date: Date(milliseconds: appoinment.scheduledAppointmentStartTime))
             if (appoinment.status == "Confirmed" || appoinment.status == "StartedConsultation") && !upcomingAppointmentDates.contains(dateString) {
                 upcomingAppointmentDates.append(dateString)
             } else if (appoinment.status != "Confirmed" && appoinment.status != "StartedConsultation") && !previousAppointmentDates.contains(dateString) {
@@ -89,7 +91,7 @@ class DatePickerViewModel : ObservableObject {
         }
 
         for i in Dates.indices {
-            let currentDateString = Helpers.getDisplayForDateSelector(date: Dates[i].date)
+            let currentDateString = Helpers.MonthDayDateString(date: Dates[i].date)
             if upcomingAppointmentDates.contains(currentDateString) {
                 Dates[i].hasAppointment = true
                 Dates[i].isUpcoming = true
@@ -125,5 +127,10 @@ class DatePickerViewModel : ObservableObject {
 
         self.showScrollView = true
         datePickerDelegate?.dateChanged(selectedDate: selectedDate)
+        self.setTitle(date: selectedDate)
+    }
+    
+    func setTitle (date:Date) {
+        self.datePickerTitle = Helpers.MonthYearDateString(date: date)
     }
 }

@@ -16,7 +16,9 @@ struct InvestigationsEditableView: View {
             HStack (spacing: 3){
                 Image("list.triangle")
                     .scaleEffect(0.8)
-                    .foregroundColor(.gray)
+                    .background(Color.blue.opacity(0.1))
+                    .foregroundColor(Color.blue)
+                    .cornerRadius(5)
                 
                 Text("INVESTIGATIONS")
                     .font(.footnote)

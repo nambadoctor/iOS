@@ -17,7 +17,9 @@ struct MedicineEditableView: View {
             HStack (spacing: 3) {
                 Image("pills")
                     .scaleEffect(0.8)
-                    .foregroundColor(Color.gray)
+                    .background(Color.blue.opacity(0.1))
+                    .foregroundColor(Color.blue)
+                    .cornerRadius(5)
                 
                 Text("PRESCRIPTION")
                     .font(.footnote)

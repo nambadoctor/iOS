@@ -220,7 +220,7 @@ extension IntermediateAppointmentViewModel : TwilioDelegate {
 //MARK:- APPOINTMENT RELATED CALLS
 extension IntermediateAppointmentViewModel {
     var appointmentServiceFee : String {
-        return "Fee: ₹\(String(appointment.serviceFee.clean))"
+        return "₹\(String(appointment.serviceFee.clean))"
     }
 
     var appointmentScheduledStartTime:String {

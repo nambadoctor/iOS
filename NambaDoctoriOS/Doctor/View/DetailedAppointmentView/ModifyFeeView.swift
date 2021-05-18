@@ -17,9 +17,11 @@ struct ModifyFeeView: View {
                 
                 Image("indianrupeesign.circle")
                     .scaleEffect(0.8)
-                    .foregroundColor(.gray)
+                    .background(Color.blue.opacity(0.1))
+                    .foregroundColor(Color.blue)
+                    .cornerRadius(5)
                 
-                Text("Fee")
+                Text("FEE")
                     .font(.footnote)
                     .bold()
                     .foregroundColor(.gray)

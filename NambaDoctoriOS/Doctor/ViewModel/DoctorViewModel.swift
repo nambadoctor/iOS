@@ -165,7 +165,7 @@ extension DoctorViewModel : DatePickerChangedDelegate {
     func dateChanged(selectedDate: Date) {
         self.hasAppointments = checkIfAppointmentExistForDate(date: selectedDate)
     }
-    
+
     func checkIfAppointmentExistForDate(date:Date) -> Bool {
         var exists:Bool = false
         for appoinment in appointments {

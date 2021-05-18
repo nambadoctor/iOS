@@ -15,8 +15,10 @@ struct AdviceEditableView: View {
             
             HStack (spacing: 3) {
                 Image("cross.circle")
-                    .foregroundColor(.gray)
                     .scaleEffect(0.8)
+                    .background(Color.blue.opacity(0.1))
+                    .foregroundColor(Color.blue)
+                    .cornerRadius(5)
                 
                 Text("ADVICE")
                     .font(.footnote)

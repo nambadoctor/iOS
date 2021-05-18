@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+class CustomColors {
+    static var SkyBlue:String = "SkyBlue"
+}
+
 extension UIColor {
     static let LightBlue = UIColor().colorFromHex("#D8E9FF")
     static let MediumBlue = UIColor().colorFromHex("#6CACFF")

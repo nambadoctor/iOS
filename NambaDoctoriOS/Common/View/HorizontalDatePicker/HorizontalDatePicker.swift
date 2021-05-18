@@ -15,31 +15,30 @@ struct HorizontalDatePicker: View {
         VStack {
             if datePickerVM.showScrollView {
                 
-                if Helpers.compareDate(date1: datePickerVM.todayDate, date2: datePickerVM.selectedDate) {
-                    Text("Today")
-                        .foregroundColor(.blue)
+                HStack {
+                    Text(self.datePickerVM.datePickerTitle)
+                        .foregroundColor(.black.opacity(0.7))
+                        .font(.title)
                         .bold()
-                } else {
-                    Text("\(Helpers.getDisplayForDateSelector(date: datePickerVM.selectedDate))")
-                        .foregroundColor(.blue)
-                        .bold()
+                    Spacer()
                 }
+                .padding(.horizontal)
 
                 ScrollViewReader { scrollview in
                     ScrollView (.horizontal, showsIndicators: false) {
-                        HStack {
+                        LazyHStack {
                             ForEach (0..<datePickerVM.datesCount) { index in
                                 ZStack {
                                     VStack {
                                         Text(datePickerVM.getDateLetter(index: index))
-                                            .foregroundColor(datePickerVM.compareDate(index: index) ? Color.white : Color.blue)
+                                            .foregroundColor(datePickerVM.compareDate(index: index) ? Color.white : Color.black.opacity(0.7))
                                             .bold()
                                             .padding(.bottom, 5)
                                         Text(datePickerVM.getDateNumber(index: index))
-                                            .foregroundColor(datePickerVM.compareDate(index: index) ? Color.white : Color.blue)
+                                            .foregroundColor(datePickerVM.compareDate(index: index) ? Color.white : Color.black.opacity(0.7))
                                             .bold()
                                     }
-                                    
+
                                     if datePickerVM.ifHasAppointment(index: index) && !datePickerVM.compareDate(index: index) {
                                         VStack {
                                             Spacer()
@@ -49,16 +48,19 @@ struct HorizontalDatePicker: View {
                                         }
                                     }
                                 }
-                                .frame(height: 70)
+                                .frame(width: 36, height: 60)
                                 .id(index)
                                 .padding()
-                                .background(datePickerVM.compareDate(index: index) ? Color.blue : Color.blue.opacity(0.1))
-                                .cornerRadius(50)
+                                .background(datePickerVM.compareDate(index: index) ? Color(CustomColors.SkyBlue) : Color.white)
+                                .cornerRadius(15)
                                 .onTapGesture {
                                     datePickerVM.selectDate(index: index)
                                 }
+                                .onAppear() {
+                                    datePickerVM.setTitle(date: datePickerVM.Dates[index].date)
+                                }
                             }
-                        }
+                        }.frame(height: 100)
                     }.onAppear() {scrollview.scrollTo(datePickerVM.index, anchor: .center)}
                 }
             }

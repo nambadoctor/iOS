@@ -14,8 +14,6 @@ class PatientInfoViewModel: ObservableObject {
 
     @Published var AppointmentList:[ServiceProviderAppointment]? = nil
     @Published var ReportList:[ServiceProviderReport]? = nil
-        
-    @Published var briefPatientDetails:String = ""
 
     var appointment:ServiceProviderAppointment
     private var customerServiceCall:ServiceProviderCustomerServiceProtocol
@@ -52,7 +50,6 @@ class PatientInfoViewModel: ObservableObject {
         customerServiceCall.getPatientProfile(patientId: self.appointment.requestedBy) { (customer) in
             if customer != nil {
                 self.patientObj = customer
-                self.briefPatientDetails = "\(self.patientObj.age), \(self.patientObj.gender)"
                 CommonDefaultModifiers.hideLoader()
             }
         }
