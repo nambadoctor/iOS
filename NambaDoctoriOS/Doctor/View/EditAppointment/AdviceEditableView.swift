@@ -19,6 +19,7 @@ struct AdviceEditableView: View {
                     .background(Color.blue.opacity(0.1))
                     .foregroundColor(Color.blue)
                     .cornerRadius(5)
+                    .padding(.vertical, 4)
                 
                 Text("ADVICE")
                     .font(.footnote)

@@ -20,6 +20,7 @@ struct MedicineEditableView: View {
                     .background(Color.blue.opacity(0.1))
                     .foregroundColor(Color.blue)
                     .cornerRadius(5)
+                    .padding(.vertical, 4)
                 
                 Text("PRESCRIPTION")
                     .font(.footnote)
@@ -33,45 +34,45 @@ struct MedicineEditableView: View {
                         Text("\(medicine.medicineName) - \(medicine.dosage)")
                             .font(.callout)
                             .bold()
-                            .foregroundColor(Color.green)
+                            .foregroundColor(Color.blue)
                         
                         if medicine.duration != 0 {
                             Text("\(medicine.duration) days")
                                 .font(.callout)
-                                .foregroundColor(Color.green)
+                                .foregroundColor(Color.blue)
                         } else {
                             Text("No duration specified")
                                 .font(.callout)
-                                .foregroundColor(Color.green)
+                                .foregroundColor(Color.blue)
                         }
                         
                         if !medicine.routeOfAdministration.isEmpty {
                             Text("\(medicine.routeOfAdministration)")
                                 .font(.callout)
-                                .foregroundColor(Color.green)
+                                .foregroundColor(Color.blue)
                         }
                         
                         
                         if !medicine.intake.isEmpty {
                             Text("\(medicine.intake)")
                                 .font(.callout)
-                                .foregroundColor(Color.green)
+                                .foregroundColor(Color.blue)
                         }
                         
                         if !medicine.timings.isEmpty {
                             Text("\(medicine.timings)")
                                 .font(.callout)
-                                .foregroundColor(Color.green)
+                                .foregroundColor(Color.blue)
                         } else {
                             Text("Take whenever necessary")
                                 .font(.callout)
-                                .foregroundColor(Color.green)
+                                .foregroundColor(Color.blue)
                         }
 
                         if !medicine.specialInstructions.isEmpty {
                             Text("\(medicine.specialInstructions)")
                                 .font(.callout)
-                                .foregroundColor(Color.green)
+                                .foregroundColor(Color.blue)
 
                         }
                     }
@@ -89,12 +90,12 @@ struct MedicineEditableView: View {
                             medicineVM.removePrescription(medicine: medicine)
                         } label: {
                             Image("xmark.circle")
-                                .foregroundColor(Color.blue)
+                                .foregroundColor(Color.red)
                         }
                     }
                 }
                 .padding()
-                .background(Color.green.opacity(0.1))
+                .background(Color.blue.opacity(0.1))
                 .cornerRadius(7)
             }
 

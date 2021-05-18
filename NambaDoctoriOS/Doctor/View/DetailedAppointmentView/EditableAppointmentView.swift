@@ -132,6 +132,7 @@ struct EditableAppointmentView: View {
                     .background(Color.white)
                     .cornerRadius(10)
                     .padding(.horizontal)
+                    .padding(.vertical, 4)
             }
             
             HStack {

@@ -119,16 +119,16 @@ class Helpers {
         
         let day = "\(DateFormatter().weekdaySymbols[Calendar.current.component(.weekday, from: date) - 1])"
         
-        return [day[0], dateString]
+        return [String(day.prefix(3)), dateString]
     }
-    
+
     static func load3LetterDayName(timeStamp:Int64) -> String{
         let date = Date(milliseconds: timeStamp)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat  = "EE"
         return dateFormatter.string(from: date)
     }
-    
+
     static func load3LetterMonthName(timeStamp:Int64) -> String{
         let date = Date(milliseconds: timeStamp)
         let dateFormatter = DateFormatter()

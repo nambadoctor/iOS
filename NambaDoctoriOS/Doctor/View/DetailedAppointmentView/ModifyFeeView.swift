@@ -30,10 +30,10 @@ struct ModifyFeeView: View {
 
             TextField("\(modifyFeeVM.fee)", text: $modifyFeeVM.fee)
                 .keyboardType(.numberPad)
-                .frame(width: 80, height: 15)
+                .frame(width: 80, height: 5)
                 .padding()
-                .background(Color.gray.opacity(0.2))
-                .cornerRadius(6)
+                .background(Color.gray.opacity(0.09))
+                .cornerRadius(10)
                 .padding(.trailing)
         }
     }

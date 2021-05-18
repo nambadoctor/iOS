@@ -19,6 +19,7 @@ struct InvestigationsEditableView: View {
                     .background(Color.blue.opacity(0.1))
                     .foregroundColor(Color.blue)
                     .cornerRadius(5)
+                    .padding(.vertical, 4)
                 
                 Text("INVESTIGATIONS")
                     .font(.footnote)

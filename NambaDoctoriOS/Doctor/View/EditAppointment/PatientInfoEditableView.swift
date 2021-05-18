@@ -18,6 +18,7 @@ struct PatientInfoEditableView: View {
                     .background(Color.blue.opacity(0.1))
                     .foregroundColor(Color.blue)
                     .cornerRadius(5)
+                    .padding(.vertical, 4)
                 
                 Text("REPORTS")
                     .font(.footnote)

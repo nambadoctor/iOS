@@ -21,6 +21,7 @@ struct ServiceRequestEditableView: View {
                         .background(Color.blue.opacity(0.1))
                         .foregroundColor(Color.blue)
                         .cornerRadius(5)
+                        .padding(.vertical, 4)
                     
                     Text("ALLERGIES")
                         .font(.footnote)
@@ -36,6 +37,7 @@ struct ServiceRequestEditableView: View {
                         .background(Color.blue.opacity(0.1))
                         .foregroundColor(Color.blue)
                         .cornerRadius(5)
+                        .padding(.vertical, 4)
                     
                     Text("MEDICAL HISTORY")
                         .font(.footnote)
@@ -59,6 +61,7 @@ struct ServiceRequestEditableView: View {
                         .background(Color.blue.opacity(0.1))
                         .foregroundColor(Color.blue)
                         .cornerRadius(5)
+                        .padding(.vertical, 4)
                     
                     Text("EXAMINATION")
                         .font(.footnote)
@@ -76,6 +79,7 @@ struct ServiceRequestEditableView: View {
                         .background(Color.blue.opacity(0.1))
                         .foregroundColor(Color.blue)
                         .cornerRadius(5)
+                        .padding(.vertical, 4)
                     
                     Text("DIAGNOSIS")
                         .font(.footnote)
