@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1705A4FF2653AA2E0015EFA2 /* PrescriptionPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1705A4FE2653AA2E0015EFA2 /* PrescriptionPreviewView.swift */; };
+		170FBF792653C3B800DFBF35 /* ServiceProviderAndCustomer.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170FBF782653C3B800DFBF35 /* ServiceProviderAndCustomer.pb.swift */; };
+		170FBF7B2653C3BC00DFBF35 /* ServiceProviderAndCustomer.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170FBF7A2653C3BC00DFBF35 /* ServiceProviderAndCustomer.grpc.swift */; };
 		171646732602B28F00BB5B5A /* NotificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171646722602B28F00BB5B5A /* NotificationRequest.swift */; };
 		1716467E2602B33F00BB5B5A /* ServiceProviderAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1716467D2602B33F00BB5B5A /* ServiceProviderAddress.swift */; };
 		171646832602B36700BB5B5A /* ServiceProviderAppointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171646822602B36700BB5B5A /* ServiceProviderAppointment.swift */; };
@@ -371,6 +373,8 @@
 
 /* Begin PBXFileReference section */
 		1705A4FE2653AA2E0015EFA2 /* PrescriptionPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrescriptionPreviewView.swift; sourceTree = "<group>"; };
+		170FBF782653C3B800DFBF35 /* ServiceProviderAndCustomer.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServiceProviderAndCustomer.pb.swift; path = gRPCService/V1/Protos/ServiceProviderAndCustomer.pb.swift; sourceTree = SOURCE_ROOT; };
+		170FBF7A2653C3BC00DFBF35 /* ServiceProviderAndCustomer.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ServiceProviderAndCustomer.grpc.swift; path = gRPCService/V1/Protos/ServiceProviderAndCustomer.grpc.swift; sourceTree = SOURCE_ROOT; };
 		171646722602B28F00BB5B5A /* NotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRequest.swift; sourceTree = "<group>"; };
 		1716467D2602B33F00BB5B5A /* ServiceProviderAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderAddress.swift; sourceTree = "<group>"; };
 		171646822602B36700BB5B5A /* ServiceProviderAppointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderAppointment.swift; sourceTree = "<group>"; };
@@ -1098,6 +1102,7 @@
 		173A22BB25CAF8BC0086342A /* ServiceImplementations */ = {
 			isa = PBXGroup;
 			children = (
+				170FBF7A2653C3BC00DFBF35 /* ServiceProviderAndCustomer.grpc.swift */,
 			);
 			path = ServiceImplementations;
 			sourceTree = "<group>";
@@ -1105,6 +1110,7 @@
 		173A22BC25CAF8C60086342A /* ModelImplementations */ = {
 			isa = PBXGroup;
 			children = (
+				170FBF782653C3B800DFBF35 /* ServiceProviderAndCustomer.pb.swift */,
 			);
 			path = ModelImplementations;
 			sourceTree = "<group>";
@@ -2251,6 +2257,7 @@
 				1785A5012616E193009667D1 /* ModifyFeeViewModel.swift in Sources */,
 				171647DF26044DC800BB5B5A /* ServiceProviderReportService.swift in Sources */,
 				176AA1AB2637C91300F02346 /* CustomerGeneratedSlotMapper.swift in Sources */,
+				170FBF792653C3B800DFBF35 /* ServiceProviderAndCustomer.pb.swift in Sources */,
 				176AA1B52637C9CF00F02346 /* CustomerPaymentInfoMapper.swift in Sources */,
 				17A020812630214400BD828F /* DocNotificationDisplayView.swift in Sources */,
 				17E869E625CE771E000B0952 /* PatientReportViewModel.swift in Sources */,
@@ -2277,6 +2284,7 @@
 				17EC75F7260CEFAB0002BA75 /* InvestigationsEntryView.swift in Sources */,
 				171648682609C0CE00BB5B5A /* RoundedCornerHelper.swift in Sources */,
 				17437EAA263D2B4200AFEF5B /* CustomerTwilioViewHelper.swift in Sources */,
+				170FBF7B2653C3BC00DFBF35 /* ServiceProviderAndCustomer.grpc.swift in Sources */,
 				17626E0525DA23E000C36A99 /* PinchToZoom.swift in Sources */,
 				172FA7192620F2BE00D14545 /* LetterOnColoredCircle.swift in Sources */,
 				1716472F2603226A00BB5B5A /* ServiceProviderMedicineMapper.swift in Sources */,
