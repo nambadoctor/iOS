@@ -31,7 +31,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     @Published var reportsVM:CustomerAllReportsViewModel
     
     @Published var prescriptionPDF:Data? = nil
-    
+
     @Published var imageLoader:ImageLoader? = nil
     @Published var docProfPicImageLoader:ImageLoader? = nil
 

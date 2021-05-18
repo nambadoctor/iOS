@@ -34,7 +34,7 @@ struct MedicineEntryView: View {
                     
                     ExpandingTextView(text: self.$medicineVM.medicineEntryVM.medicineName)
                 }
-                
+
                 HStack {
                     VStack (alignment: .leading) {
                         Text("DOSAGE")
@@ -161,11 +161,11 @@ struct MedEntryAddButton : View {
                         .font(.footnote)
                         .foregroundColor(Color.red.opacity(0.5))
                 }
-                LargeButton(title: "Add Medicine", disabled: false, backgroundColor: .gray, foregroundColor: .white) {
+                LargeButton(title: "Save Medicine", disabled: false, backgroundColor: .gray, foregroundColor: .white) {
                     medicineEntryVM.toggleEmptyWarning()
                 }
             } else {
-                LargeButton(title: "Add Medicine") {
+                LargeButton(title: "Save Medicine") {
                     medicineEntryVM.makeMedObjAndAdd()
                 }
             }

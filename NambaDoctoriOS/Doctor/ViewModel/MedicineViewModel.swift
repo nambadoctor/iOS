@@ -24,8 +24,10 @@ class MedicineViewModel: ObservableObject {
 
     @Published var hasNoMedicineOrImage:Bool = false
 
+    @Published var prescriptionPDF:Data? = nil
+
     var medicineBeingEdited:Int? = nil
-    
+
     var generalDoctorHelpers:GeneralDoctorHelpersProtocol!
     private var retrievePrescriptionHelper:ServiceProviderPrescriptionServiceProtocol
     var prescriptionServiceCalls:ServiceProviderPrescriptionServiceProtocol
@@ -107,6 +109,10 @@ class MedicineViewModel: ObservableObject {
                 self.prescription.customerID = self.appointment.customerID
                 self.prescription.serviceRequestID = self.appointment.serviceRequestID
                 self.downloadPrescription()
+                
+                if !self.prescription.medicineList.isEmpty {
+                    self.getPrescriptionPDF()
+                }
                 //end
             } else {
                 self.prescription = MakeEmptyPrescription(appointment: self.appointment)
@@ -136,6 +142,16 @@ class MedicineViewModel: ObservableObject {
                 }
             } else {
                 ifmedListAlsoEmptyCheck()
+            }
+        }
+    }
+    
+    
+    func getPrescriptionPDF () {
+        retrievePrescriptionHelper.getPrescriptionPDF(customerId: appointment.customerID, serviceProviderId: appointment.serviceProviderID, appointmentId: appointment.appointmentID, serviceRequestId: appointment.serviceRequestID) { data in
+            if data != nil {
+                CommonDefaultModifiers.hideLoader()
+                self.prescriptionPDF = data!
             }
         }
     }

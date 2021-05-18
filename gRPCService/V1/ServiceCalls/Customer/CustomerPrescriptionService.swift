@@ -48,7 +48,7 @@ class CustomerPrescriptionService {
             }
         }
     }
-    
+
     func downloadPrescription(prescriptionID:String, _ completion: @escaping (_ imageData:String?)->()) {
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
@@ -58,7 +58,7 @@ class CustomerPrescriptionService {
         let request = Nd_V1_IdMessage.with {
             $0.id = prescriptionID.toProto
         }
-        
+
         let downloadPrescription = prescriptionClient.downloadPrescriptionMedia(request, callOptions: callOptions)
 
         DispatchQueue.global().async {

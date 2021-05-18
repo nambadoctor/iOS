@@ -20,7 +20,7 @@ class IntermediateAppointmentViewModel : ObservableObject {
     @Published var modifyFeeViewModel:ModifyFeeViewModel
     @Published var doctorTwilioManagerViewModel:DoctorTwilioViewModel
     @Published var chatVM:DoctorChatViewModel
-        
+
     @Published var takeToDetailedAppointment:Bool = false
     @Published var takeToViewAppointment:Bool = false
     
@@ -30,6 +30,7 @@ class IntermediateAppointmentViewModel : ObservableObject {
     @Published var appointmentStarted:Bool = false
     @Published var appointmentFinished:Bool = false
     
+    @Published var showPDFPreview:Bool = false
     
     @Published var showOnSuccessAlert:Bool = false
     @Published var showTwilioRoom:Bool = false
@@ -172,6 +173,14 @@ extension IntermediateAppointmentViewModel {
                 self.checkIfAppointmentFinished()
                 self.showOnSuccessAlert = true
             }
+        }
+    }
+    
+    func previewPrescription () {
+        CommonDefaultModifiers.showLoader()
+        self.saveForLater { saved in
+            CommonDefaultModifiers.hideLoader()
+            self.showPDFPreview = true
         }
     }
 }

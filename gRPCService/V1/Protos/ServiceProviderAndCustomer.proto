@@ -559,6 +559,8 @@ service ServiceProviderPrescriptionWorkerV1{
     rpc SetPrescription(ServiceProviderPrescriptionMessage) returns (IdMessage);
 
     rpc DownloadPrescriptionMedia (IdMessage) returns (StringMessage);
+
+    rpc GetPrescriptionPdf(RequestPdf) returns(ResponsePdf);
 }
 
 
@@ -1124,8 +1126,6 @@ service CustomerReportWorkerV1{
 
     rpc DownloadReportMedia(IdMessage) returns (StringMessage);
 }
-
-
 
 
 

@@ -103,6 +103,7 @@ struct EditableAppointmentView: View {
             }
 
             HStack {
+                previewPrescription
                 sendToPatient
             }
             .padding()
@@ -122,6 +123,19 @@ struct EditableAppointmentView: View {
                 }
             }
         }
+    }
+    
+    var previewPrescription : some View {
+        VStack {
+            LargeButton(title: "Preview",
+                        backgroundColor: Color.white,
+                        foregroundColor: Color.blue) {
+                self.intermediateVM.previewPrescription()
+            }
+        }
+        .sheet(isPresented: self.$intermediateVM.showPDFPreview, content: {
+            PrescriptionPreviewView()
+        })
     }
     
     var sendToPatient : some View {

@@ -65,11 +65,12 @@ struct MedicineEditableView: View {
                                 .font(.callout)
                                 .foregroundColor(Color.green)
                         }
-                        
+
                         if !medicine.specialInstructions.isEmpty {
                             Text("\(medicine.specialInstructions)")
                                 .font(.callout)
                                 .foregroundColor(Color.green)
+
                         }
                     }
                     Spacer()
@@ -108,7 +109,7 @@ struct MedicineEditableView: View {
             }
 
             HStack {
-                LargeButton(title: "Add Manually",
+                LargeButton(title: "Add Medicine",
                             backgroundColor: Color.white,
                             foregroundColor: Color.blue) {
                     medicineVM.uploadManually()
