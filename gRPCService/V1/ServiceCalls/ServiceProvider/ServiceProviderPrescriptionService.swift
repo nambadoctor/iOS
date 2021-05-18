@@ -119,7 +119,7 @@ class ServiceProviderPrescriptionService : ServiceProviderPrescriptionServicePro
         }
         
         let downloadPrescription = prescriptionClient.getPrescriptionPdf(request, callOptions: callOptions)
-        
+
         DispatchQueue.global().async {
             do {
                 let response = try downloadPrescription.response.wait()
