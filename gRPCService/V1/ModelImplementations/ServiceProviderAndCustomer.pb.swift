@@ -1327,6 +1327,24 @@ struct Nd_V1_ServiceProviderMedicalHistoryMessage {
   /// Clears the value of `serviceRequestID`. Subsequent reads from it will return its default value.
   mutating func clearServiceRequestID() {self._serviceRequestID = nil}
 
+  var pastMedicalHistory: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _pastMedicalHistory ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_pastMedicalHistory = newValue}
+  }
+  /// Returns true if `pastMedicalHistory` has been explicitly set.
+  var hasPastMedicalHistory: Bool {return self._pastMedicalHistory != nil}
+  /// Clears the value of `pastMedicalHistory`. Subsequent reads from it will return its default value.
+  mutating func clearPastMedicalHistory() {self._pastMedicalHistory = nil}
+
+  var medicationHistory: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _medicationHistory ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_medicationHistory = newValue}
+  }
+  /// Returns true if `medicationHistory` has been explicitly set.
+  var hasMedicationHistory: Bool {return self._medicationHistory != nil}
+  /// Clears the value of `medicationHistory`. Subsequent reads from it will return its default value.
+  mutating func clearMedicationHistory() {self._medicationHistory = nil}
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -1335,6 +1353,8 @@ struct Nd_V1_ServiceProviderMedicalHistoryMessage {
   fileprivate var _medicalHistoryName: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _appointmentID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _serviceRequestID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _pastMedicalHistory: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _medicationHistory: SwiftProtobuf.Google_Protobuf_StringValue? = nil
 }
 
 struct Nd_V1_ServiceProviderMedicineMessage {
@@ -1414,6 +1434,15 @@ struct Nd_V1_ServiceProviderMedicineMessage {
   /// Clears the value of `medicineID`. Subsequent reads from it will return its default value.
   mutating func clearMedicineID() {self._medicineID = nil}
 
+  var notes: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _notes ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_notes = newValue}
+  }
+  /// Returns true if `notes` has been explicitly set.
+  var hasNotes: Bool {return self._notes != nil}
+  /// Clears the value of `notes`. Subsequent reads from it will return its default value.
+  mutating func clearNotes() {self._notes = nil}
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -1426,6 +1455,7 @@ struct Nd_V1_ServiceProviderMedicineMessage {
   fileprivate var _timings: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _specialInstructions: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _medicineID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _notes: SwiftProtobuf.Google_Protobuf_StringValue? = nil
 }
 
 struct Nd_V1_ServiceProviderPaymentInfoMessage {
@@ -3530,6 +3560,24 @@ struct Nd_V1_CustomerMedicalHistoryMessage {
   /// Clears the value of `serviceRequestID`. Subsequent reads from it will return its default value.
   mutating func clearServiceRequestID() {self._serviceRequestID = nil}
 
+  var pastMedicalHistory: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _pastMedicalHistory ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_pastMedicalHistory = newValue}
+  }
+  /// Returns true if `pastMedicalHistory` has been explicitly set.
+  var hasPastMedicalHistory: Bool {return self._pastMedicalHistory != nil}
+  /// Clears the value of `pastMedicalHistory`. Subsequent reads from it will return its default value.
+  mutating func clearPastMedicalHistory() {self._pastMedicalHistory = nil}
+
+  var medicationHistory: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _medicationHistory ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_medicationHistory = newValue}
+  }
+  /// Returns true if `medicationHistory` has been explicitly set.
+  var hasMedicationHistory: Bool {return self._medicationHistory != nil}
+  /// Clears the value of `medicationHistory`. Subsequent reads from it will return its default value.
+  mutating func clearMedicationHistory() {self._medicationHistory = nil}
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -3538,6 +3586,8 @@ struct Nd_V1_CustomerMedicalHistoryMessage {
   fileprivate var _medicalHistoryName: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _appointmentID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _serviceRequestID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _pastMedicalHistory: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _medicationHistory: SwiftProtobuf.Google_Protobuf_StringValue? = nil
 }
 
 struct Nd_V1_CustomerMedicineMessage {
@@ -3617,6 +3667,15 @@ struct Nd_V1_CustomerMedicineMessage {
   /// Clears the value of `medicineID`. Subsequent reads from it will return its default value.
   mutating func clearMedicineID() {self._medicineID = nil}
 
+  var notes: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _notes ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_notes = newValue}
+  }
+  /// Returns true if `notes` has been explicitly set.
+  var hasNotes: Bool {return self._notes != nil}
+  /// Clears the value of `notes`. Subsequent reads from it will return its default value.
+  mutating func clearNotes() {self._notes = nil}
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -3629,6 +3688,7 @@ struct Nd_V1_CustomerMedicineMessage {
   fileprivate var _timings: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _specialInstructions: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _medicineID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _notes: SwiftProtobuf.Google_Protobuf_StringValue? = nil
 }
 
 struct Nd_V1_CustomerPaymentInfoMessage {
@@ -5640,6 +5700,8 @@ extension Nd_V1_ServiceProviderMedicalHistoryMessage: SwiftProtobuf.Message, Swi
     2: .same(proto: "MedicalHistoryName"),
     3: .same(proto: "AppointmentId"),
     4: .same(proto: "ServiceRequestId"),
+    5: .same(proto: "PastMedicalHistory"),
+    6: .same(proto: "MedicationHistory"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -5652,6 +5714,8 @@ extension Nd_V1_ServiceProviderMedicalHistoryMessage: SwiftProtobuf.Message, Swi
       case 2: try { try decoder.decodeSingularMessageField(value: &self._medicalHistoryName) }()
       case 3: try { try decoder.decodeSingularMessageField(value: &self._appointmentID) }()
       case 4: try { try decoder.decodeSingularMessageField(value: &self._serviceRequestID) }()
+      case 5: try { try decoder.decodeSingularMessageField(value: &self._pastMedicalHistory) }()
+      case 6: try { try decoder.decodeSingularMessageField(value: &self._medicationHistory) }()
       default: break
       }
     }
@@ -5670,6 +5734,12 @@ extension Nd_V1_ServiceProviderMedicalHistoryMessage: SwiftProtobuf.Message, Swi
     if let v = self._serviceRequestID {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
     }
+    if let v = self._pastMedicalHistory {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+    }
+    if let v = self._medicationHistory {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -5678,6 +5748,8 @@ extension Nd_V1_ServiceProviderMedicalHistoryMessage: SwiftProtobuf.Message, Swi
     if lhs._medicalHistoryName != rhs._medicalHistoryName {return false}
     if lhs._appointmentID != rhs._appointmentID {return false}
     if lhs._serviceRequestID != rhs._serviceRequestID {return false}
+    if lhs._pastMedicalHistory != rhs._pastMedicalHistory {return false}
+    if lhs._medicationHistory != rhs._medicationHistory {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -5694,6 +5766,7 @@ extension Nd_V1_ServiceProviderMedicineMessage: SwiftProtobuf.Message, SwiftProt
     6: .same(proto: "Timings"),
     7: .same(proto: "SpecialInstructions"),
     8: .same(proto: "MedicineId"),
+    9: .same(proto: "Notes"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -5710,6 +5783,7 @@ extension Nd_V1_ServiceProviderMedicineMessage: SwiftProtobuf.Message, SwiftProt
       case 6: try { try decoder.decodeSingularMessageField(value: &self._timings) }()
       case 7: try { try decoder.decodeSingularMessageField(value: &self._specialInstructions) }()
       case 8: try { try decoder.decodeSingularMessageField(value: &self._medicineID) }()
+      case 9: try { try decoder.decodeSingularMessageField(value: &self._notes) }()
       default: break
       }
     }
@@ -5740,6 +5814,9 @@ extension Nd_V1_ServiceProviderMedicineMessage: SwiftProtobuf.Message, SwiftProt
     if let v = self._medicineID {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
     }
+    if let v = self._notes {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -5752,6 +5829,7 @@ extension Nd_V1_ServiceProviderMedicineMessage: SwiftProtobuf.Message, SwiftProt
     if lhs._timings != rhs._timings {return false}
     if lhs._specialInstructions != rhs._specialInstructions {return false}
     if lhs._medicineID != rhs._medicineID {return false}
+    if lhs._notes != rhs._notes {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -8146,6 +8224,8 @@ extension Nd_V1_CustomerMedicalHistoryMessage: SwiftProtobuf.Message, SwiftProto
     2: .same(proto: "MedicalHistoryName"),
     3: .same(proto: "AppointmentId"),
     4: .same(proto: "ServiceRequestId"),
+    5: .same(proto: "PastMedicalHistory"),
+    6: .same(proto: "MedicationHistory"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -8158,6 +8238,8 @@ extension Nd_V1_CustomerMedicalHistoryMessage: SwiftProtobuf.Message, SwiftProto
       case 2: try { try decoder.decodeSingularMessageField(value: &self._medicalHistoryName) }()
       case 3: try { try decoder.decodeSingularMessageField(value: &self._appointmentID) }()
       case 4: try { try decoder.decodeSingularMessageField(value: &self._serviceRequestID) }()
+      case 5: try { try decoder.decodeSingularMessageField(value: &self._pastMedicalHistory) }()
+      case 6: try { try decoder.decodeSingularMessageField(value: &self._medicationHistory) }()
       default: break
       }
     }
@@ -8176,6 +8258,12 @@ extension Nd_V1_CustomerMedicalHistoryMessage: SwiftProtobuf.Message, SwiftProto
     if let v = self._serviceRequestID {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
     }
+    if let v = self._pastMedicalHistory {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+    }
+    if let v = self._medicationHistory {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -8184,6 +8272,8 @@ extension Nd_V1_CustomerMedicalHistoryMessage: SwiftProtobuf.Message, SwiftProto
     if lhs._medicalHistoryName != rhs._medicalHistoryName {return false}
     if lhs._appointmentID != rhs._appointmentID {return false}
     if lhs._serviceRequestID != rhs._serviceRequestID {return false}
+    if lhs._pastMedicalHistory != rhs._pastMedicalHistory {return false}
+    if lhs._medicationHistory != rhs._medicationHistory {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -8200,6 +8290,7 @@ extension Nd_V1_CustomerMedicineMessage: SwiftProtobuf.Message, SwiftProtobuf._M
     6: .same(proto: "Timings"),
     7: .same(proto: "SpecialInstructions"),
     8: .same(proto: "MedicineId"),
+    9: .same(proto: "Notes"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -8216,6 +8307,7 @@ extension Nd_V1_CustomerMedicineMessage: SwiftProtobuf.Message, SwiftProtobuf._M
       case 6: try { try decoder.decodeSingularMessageField(value: &self._timings) }()
       case 7: try { try decoder.decodeSingularMessageField(value: &self._specialInstructions) }()
       case 8: try { try decoder.decodeSingularMessageField(value: &self._medicineID) }()
+      case 9: try { try decoder.decodeSingularMessageField(value: &self._notes) }()
       default: break
       }
     }
@@ -8246,6 +8338,9 @@ extension Nd_V1_CustomerMedicineMessage: SwiftProtobuf.Message, SwiftProtobuf._M
     if let v = self._medicineID {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
     }
+    if let v = self._notes {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -8258,6 +8353,7 @@ extension Nd_V1_CustomerMedicineMessage: SwiftProtobuf.Message, SwiftProtobuf._M
     if lhs._timings != rhs._timings {return false}
     if lhs._specialInstructions != rhs._specialInstructions {return false}
     if lhs._medicineID != rhs._medicineID {return false}
+    if lhs._notes != rhs._notes {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

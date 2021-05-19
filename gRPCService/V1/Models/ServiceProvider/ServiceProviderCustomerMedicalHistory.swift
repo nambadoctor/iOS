@@ -10,6 +10,8 @@ import Foundation
 struct ServiceProviderCustomerMedicalHistory : Codable {
     var MedicalHistoryId:String
     var MedicalHistoryName:String
+    var PastMedicalHistory:String
+    var MedicationHistory:String
     var AppointmentId:String
     var ServiceRequestId:String
 }

@@ -31,22 +31,59 @@ struct ServiceRequestEditableView: View {
 
                 ExpandingTextView(text: self.$serviceRequestVM.serviceRequest.allergy.AllergyName)
                 
-                HStack (spacing: 3) {
-                    Image("heart.text.square")
-                        .scaleEffect(0.8)
-                        .background(Color.blue.opacity(0.1))
-                        .foregroundColor(Color.blue)
-                        .cornerRadius(5)
-                        .padding(.vertical, 4)
-                    
-                    Text("MEDICAL HISTORY")
-                        .font(.footnote)
-                        .foregroundColor(Color.black.opacity(0.4))
-                        .bold()
+                Group {
+                    HStack (spacing: 3) {
+                        Image("heart.text.square")
+                            .scaleEffect(0.8)
+                            .background(Color.blue.opacity(0.1))
+                            .foregroundColor(Color.blue)
+                            .cornerRadius(5)
+                            .padding(.vertical, 4)
+                        
+                        Text("PRESENTING MEDICAL HISTORY")
+                            .font(.footnote)
+                            .foregroundColor(Color.black.opacity(0.4))
+                            .bold()
+                    }
+
+                    ExpandingTextView(text: self.$serviceRequestVM.serviceRequest.medicalHistory.MedicalHistoryName)
                 }
 
+                Group {
+                    HStack (spacing: 3) {
+                        Image("heart.text.square")
+                            .scaleEffect(0.8)
+                            .background(Color.blue.opacity(0.1))
+                            .foregroundColor(Color.blue)
+                            .cornerRadius(5)
+                            .padding(.vertical, 4)
+                        
+                        Text("PAST MEDICAL HISTORY")
+                            .font(.footnote)
+                            .foregroundColor(Color.black.opacity(0.4))
+                            .bold()
+                    }
 
-                ExpandingTextView(text: self.$serviceRequestVM.serviceRequest.medicalHistory.MedicalHistoryName)
+                    ExpandingTextView(text: self.$serviceRequestVM.serviceRequest.medicalHistory.PastMedicalHistory)
+                }
+                
+                Group {
+                    HStack (spacing: 3) {
+                        Image("heart.text.square")
+                            .scaleEffect(0.8)
+                            .background(Color.blue.opacity(0.1))
+                            .foregroundColor(Color.blue)
+                            .cornerRadius(5)
+                            .padding(.vertical, 4)
+                        
+                        Text("MEDICATION HISTORY")
+                            .font(.footnote)
+                            .foregroundColor(Color.black.opacity(0.4))
+                            .bold()
+                    }
+
+                    ExpandingTextView(text: self.$serviceRequestVM.serviceRequest.medicalHistory.MedicationHistory)
+                }
             }
             .padding()
             .background(Color.white)

@@ -7,6 +7,30 @@
 
 import SwiftUI
 
+struct AdviceView : View {
+    @EnvironmentObject var serviceRequestVM:ServiceRequestViewModel
+    
+    var body: some View {
+        VStack (alignment: .leading) {
+            HStack {Spacer()}
+            HStack (spacing: 3) {
+                Image("cross.circle")
+                    .foregroundColor(.gray)
+                    .scaleEffect(0.8)
+                
+                Text("ADVICE")
+                    .font(.footnote)
+                    .foregroundColor(Color.black.opacity(0.4))
+                    .bold()
+            }
+            
+            Text(serviceRequestVM.advice)
+
+            Spacer().frame(height: 5)
+        }.padding()
+    }
+}
+
 struct ServiceRequestView: View {
     @EnvironmentObject var serviceRequestVM:ServiceRequestViewModel
     
@@ -19,6 +43,7 @@ struct ServiceRequestView: View {
                     Image("eyeglasses")
                         .scaleEffect(0.8)
                         .foregroundColor(.gray)
+                    
                     Text("EXAMINATION")
                         .font(.footnote)
                         .foregroundColor(Color.black.opacity(0.4))
@@ -42,21 +67,6 @@ struct ServiceRequestView: View {
                 
                 Text(serviceRequestVM.diagnosisName)
                 
-                Spacer().frame(height: 5)
-                
-                HStack (spacing: 3) {
-                    Image("cross.circle")
-                        .foregroundColor(.gray)
-                        .scaleEffect(0.8)
-                    
-                    Text("ADVICE")
-                        .font(.footnote)
-                        .foregroundColor(Color.black.opacity(0.4))
-                        .bold()
-                }
-                
-                Text(serviceRequestVM.advice)
-
                 Spacer().frame(height: 5)
             }
 

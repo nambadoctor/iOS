@@ -17,7 +17,8 @@ class ServiceProviderMedicineMapper {
             duration: medicine.duration.toInt32,
             timings: medicine.timings.toString,
             specialInstructions: medicine.specialInstructions.toString,
-            medicineID: medicine.medicineID.toString)
+            medicineID: medicine.medicineID.toString,
+            notes: medicine.notes.toString)
     }
     
     static func grpcMedicineToLocal (medicines:[Nd_V1_ServiceProviderMedicineMessage]) -> [ServiceProviderMedicine] {
@@ -40,6 +41,7 @@ class ServiceProviderMedicineMapper {
             $0.timings = medicine.timings.toProto
             $0.specialInstructions = medicine.specialInstructions.toProto
             $0.medicineID = medicine.medicineID.toProto
+            $0.notes = medicine.notes.toProto
         }
     }
     

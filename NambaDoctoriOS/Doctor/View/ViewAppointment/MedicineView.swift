@@ -86,6 +86,12 @@ struct MedicineView: View {
                                     .font(.callout)
                                     .foregroundColor(Color.green)
                             }
+                            
+                            if !medicine.notes.isEmpty {
+                                Text("\(medicine.notes)")
+                                    .font(.callout)
+                                    .foregroundColor(Color.green)
+                            }
                         }
                         Spacer()
                         

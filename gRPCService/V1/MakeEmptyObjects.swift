@@ -8,7 +8,7 @@
 import Foundation
 
 func MakeEmptyMedicine() -> ServiceProviderMedicine {
-    return ServiceProviderMedicine(medicineName: "", dosage: "", routeOfAdministration: "", intake: "", duration: 0, timings: "", specialInstructions: "", medicineID: "")
+    return ServiceProviderMedicine(medicineName: "", dosage: "", routeOfAdministration: "", intake: "", duration: 0, timings: "", specialInstructions: "", medicineID: "", notes: "")
 }
 
 func MakeEmptyServiceRequest(appointment:ServiceProviderAppointment) -> ServiceProviderServiceRequest {
@@ -20,7 +20,7 @@ func MakeEmptyAllergy() -> ServiceProviderCustomerAllergy {
 }
 
 func MakeEmptyMedicalHistory () -> ServiceProviderCustomerMedicalHistory {
-    return ServiceProviderCustomerMedicalHistory(MedicalHistoryId: "", MedicalHistoryName: "", AppointmentId: "", ServiceRequestId: "")
+    return ServiceProviderCustomerMedicalHistory(MedicalHistoryId: "", MedicalHistoryName: "", PastMedicalHistory: "", MedicationHistory: "", AppointmentId: "", ServiceRequestId: "")
 }
 
 func MakeEmptyDiagnosis () -> ServiceProviderDiagnosis {

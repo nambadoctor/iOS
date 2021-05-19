@@ -12,6 +12,8 @@ class CustomerMedicalHistoryMapper {
         return Nd_V1_CustomerMedicalHistoryMessage.with {
             $0.medicalHistoryID = medicalHistory.MedicalHistoryId.toProto
             $0.medicalHistoryName = medicalHistory.MedicalHistoryName.toProto
+            $0.pastMedicalHistory = medicalHistory.PastMedicalHistory.toProto
+            $0.medicationHistory = medicalHistory.MedicationHistory.toProto
             $0.appointmentID = medicalHistory.AppointmentId.toProto
             $0.serviceRequestID = medicalHistory.ServiceRequestId.toProto
         }
@@ -23,16 +25,18 @@ class CustomerMedicalHistoryMapper {
         for medHistory in medicalHistories {
             medHistoryList.append(localMedicalHistoryToGrpc(medicalHistory: medHistory))
         }
-
+        
         return medHistoryList
     }
-
+    
     
     static func grpcMedicalHistoryToLocal (medicalHistoryMessage:Nd_V1_CustomerMedicalHistoryMessage) -> CustomerMedicalHistory {
         return CustomerMedicalHistory(MedicalHistoryId: medicalHistoryMessage.medicalHistoryID.toString,
-                                                     MedicalHistoryName: medicalHistoryMessage.medicalHistoryName.toString,
-                                                     AppointmentId: medicalHistoryMessage.appointmentID.toString,
-                                                     ServiceRequestId: medicalHistoryMessage.serviceRequestID.toString)
+                                      MedicalHistoryName: medicalHistoryMessage.medicalHistoryName.toString,
+                                      PastMedicalHistory: medicalHistoryMessage.pastMedicalHistory.toString,
+                                      MedicationHistory: medicalHistoryMessage.medicationHistory.toString,
+                                      AppointmentId: medicalHistoryMessage.appointmentID.toString,
+                                      ServiceRequestId: medicalHistoryMessage.serviceRequestID.toString)
     }
     
     static func grpcMedicalHistoryToLocal (medicalHistories:[Nd_V1_CustomerMedicalHistoryMessage]) -> [CustomerMedicalHistory] {
@@ -44,6 +48,6 @@ class CustomerMedicalHistoryMapper {
         
         return medHistoryList
     }
-
-
+    
+    
 }

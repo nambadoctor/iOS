@@ -72,7 +72,7 @@ struct AppointmentCard: View {
                             .font(.system(size: 15))
                             .foregroundColor(Color.gray)
                     } else if AppointmentVM.consultationFinished {
-                        Text("\(AppointmentVM.paymentStatus)")
+                        Text("Finished")
                             .font(.system(size: 15))
                             .foregroundColor(Color.gray)
                     }

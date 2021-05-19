@@ -156,7 +156,7 @@ class DetailedBookDocViewModel : ObservableObject {
 
         let emptyDiagnosis = CustomerDiagnosis(name: "", type: "")
         let emptyAllergy = CustomerAllergy(AllergyId: "", AllergyName: "", AppointmentId: "", ServiceRequestId: "")
-        let emptyMedicalHistory = CustomerMedicalHistory(MedicalHistoryId: "", MedicalHistoryName: "", AppointmentId: "", ServiceRequestId: "")
+        let emptyMedicalHistory = CustomerMedicalHistory(MedicalHistoryId: "", MedicalHistoryName: "", PastMedicalHistory: "", MedicationHistory: "", AppointmentId: "", ServiceRequestId: "")
 
         return CustomerServiceRequest(serviceRequestID: "",
                                       reason: self.reasonVM.reason,

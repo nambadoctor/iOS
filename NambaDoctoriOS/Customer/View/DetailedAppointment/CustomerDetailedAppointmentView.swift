@@ -29,7 +29,7 @@ struct CustomerDetailedAppointmentView: View {
                             .padding(.top, 10)
                     }
                 }
-                
+
                 if customerDetailedAppointmentVM.appointmentStarted || customerDetailedAppointmentVM.appointmnentUpComing {
                     ScrollView {
                         allergyEntryView

@@ -339,7 +339,7 @@ extension ViewController : UITextFieldDelegate {
 // MARK:- RoomDelegate
 extension ViewController : RoomDelegate {
     func roomDidConnect(room: Room) {
-        logMessage(messageText: "Connected to room...")
+        logMessage(messageText: "Connected to consulting room...")
         
         self.twilioEventDelegate?.hostConnected()
 

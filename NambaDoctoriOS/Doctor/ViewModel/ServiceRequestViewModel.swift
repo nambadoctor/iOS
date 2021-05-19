@@ -81,7 +81,6 @@ class ServiceRequestViewModel: ObservableObject {
     }
 
     func sendToPatient (completion: @escaping (_ success:Bool,_ serviceRequestId:String?)->()) {
-        print("ServiceRequest: \(serviceRequest)")
         investigationsViewModel.addTempIntoArrayWhenFinished()
         serviceRequest.investigations = investigationsViewModel.investigations
         serviceRequestServiceCalls.setServiceRequest(serviceRequest: serviceRequest) { (response) in

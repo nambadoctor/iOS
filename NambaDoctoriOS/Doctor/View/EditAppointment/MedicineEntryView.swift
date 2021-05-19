@@ -67,6 +67,15 @@ struct MedicineEntryView: View {
                 
                 FrequencyPicker(medicineEntryVM: self.medicineVM.medicineEntryVM)
                 
+                VStack (alignment: .leading) {
+                    Text("INSTRUCTIONS (IF ANY)")
+                        .font(.footnote)
+                        .foregroundColor(Color.black.opacity(0.4))
+                        .bold()
+                    
+                    ExpandingTextView(text: self.$medicineVM.medicineEntryVM.notes)
+                }
+                
                 MedEntryAddButton(medicineEntryVM: medicineVM.medicineEntryVM)
 
             }

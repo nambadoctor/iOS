@@ -15,13 +15,13 @@ struct PDFKitView: View {
     var body: some View {
         VStack {
             LargeButton(title: "Click to share prescription", backgroundColor: Color.blue, foregroundColor: Color.white) {
-                self.actionSheet()
+                self.sharePDF()
             }
             PDFKitRepresentedView(data)
         }
     }
     
-    func actionSheet() {
+    func sharePDF() {
         let av = UIActivityViewController(activityItems: [data], applicationActivities: nil)
         UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
     }

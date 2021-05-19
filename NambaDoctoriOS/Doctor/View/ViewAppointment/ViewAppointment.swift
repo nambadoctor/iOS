@@ -45,7 +45,7 @@ struct ViewAppointment: View {
                 VStack (alignment: .leading, spacing: 5) {
                     Text(intermediateVM.appointment.customerName)
                     
-                    Text("Fee: ₹\(String(intermediateVM.appointment.serviceFee.clean)) (\(intermediateVM.isPaid ? "Paid" : "Payment Pending"))")
+                    Text("Fee: ₹\(String(intermediateVM.appointment.serviceFee.clean))")
                     
                     ServiceRequestOverViewDetails(serviceRequestVM: intermediateVM.serviceRequestVM)
                 }
@@ -61,10 +61,19 @@ struct ViewAppointment: View {
             MedicineView()
                 .background(Color.white)
             
+            MedicalHistoriesView()
+                .background(Color.white)
+            
+            PatientReportsView()
+                .background(Color.white)
+            
             ServiceRequestView()
                 .background(Color.white)
             
             InvestigationsView()
+                .background(Color.white)
+            
+            AdviceView()
                 .background(Color.white)
         }
     }

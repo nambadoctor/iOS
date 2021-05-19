@@ -75,6 +75,12 @@ struct MedicineEditableView: View {
                                 .foregroundColor(Color.blue)
 
                         }
+                        
+                        if !medicine.notes.isEmpty {
+                            Text("\(medicine.notes)")
+                                .font(.callout)
+                                .foregroundColor(Color.blue)
+                        }
                     }
                     Spacer()
                     

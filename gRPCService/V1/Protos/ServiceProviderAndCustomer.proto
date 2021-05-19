@@ -287,6 +287,10 @@ message ServiceProviderMedicalHistoryMessage {
     google.protobuf.StringValue AppointmentId = 3;
 
     google.protobuf.StringValue ServiceRequestId = 4;
+
+    google.protobuf.StringValue PastMedicalHistory = 5;
+
+    google.protobuf.StringValue MedicationHistory = 6;
 }
 
 message ServiceProviderMedicineMessage{
@@ -306,6 +310,8 @@ message ServiceProviderMedicineMessage{
     google.protobuf.StringValue SpecialInstructions = 7;
 
     google.protobuf.StringValue MedicineId = 8;
+
+    google.protobuf.StringValue Notes = 9;
 }
 
 message ServiceProviderPaymentInfoMessage{
@@ -923,6 +929,10 @@ message CustomerMedicalHistoryMessage {
     google.protobuf.StringValue AppointmentId = 3;
 
     google.protobuf.StringValue ServiceRequestId = 4;
+
+    google.protobuf.StringValue PastMedicalHistory = 5;
+
+    google.protobuf.StringValue MedicationHistory = 6;
 }
 
 message CustomerMedicineMessage{
@@ -942,6 +952,8 @@ message CustomerMedicineMessage{
     google.protobuf.StringValue SpecialInstructions = 7;
 
     google.protobuf.StringValue MedicineId = 8;
+
+    google.protobuf.StringValue Notes = 9;
 }
 
 message CustomerPaymentInfoMessage{

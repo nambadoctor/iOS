@@ -46,22 +46,14 @@ class AppointmentViewModel: ObservableObject {
     var appointmentId:String {
         return self.appointment.appointmentID
     }
-
-    var paymentStatus:String {
-        if self.appointment.isPaid {
-            return "Paid"
-        } else {
-            return "Payment Pending"
-        }
-    }
-
+    
     func checkIfAppointmentStarted () {
         if appointment.status == ConsultStateK.StartedConsultation.rawValue
         {
             self.consultationStarted = true
         }
     }
-    
+
     func checkIfAppointmentFinished() {
         if appointment.status == ConsultStateK.Finished.rawValue ||
                     appointment.status == ConsultStateK.FinishedAppointment.rawValue

@@ -22,6 +22,7 @@ class MedicineEntryViewModel : ObservableObject {
     @Published var frequency:String = ""
     @Published var routeOfAdmin:String = ""
     @Published var intake:String = ""
+    @Published var notes:String = ""
     
     @Published var wheneverNecessary:Bool = false
 
@@ -52,6 +53,7 @@ class MedicineEntryViewModel : ObservableObject {
         dosage = medicine.dosage
         frequency = medicine.specialInstructions
         routeOfAdmin = medicine.routeOfAdministration
+        notes = medicine.notes
         intake = medicine.intake
         
         if !medicine.timings.isEmpty {
@@ -76,6 +78,7 @@ class MedicineEntryViewModel : ObservableObject {
         intake = ""
         routeOfAdmin = ""
         frequency = ""
+        notes = ""
         wheneverNecessary = false
     }
     

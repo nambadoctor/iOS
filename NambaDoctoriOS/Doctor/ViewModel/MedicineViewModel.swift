@@ -86,7 +86,7 @@ class MedicineViewModel: ObservableObject {
             timingsString = ""
         }
 
-        let medicine = ServiceProviderMedicine(medicineName: medicineEntryVM.medicineName, dosage: medicineEntryVM.dosage, routeOfAdministration: medicineEntryVM.routeOfAdmin, intake: medicineEntryVM.intake, duration: Int32(medicineEntryVM.duration) ?? 0, timings: timingsString, specialInstructions: medicineEntryVM.frequency, medicineID: "")
+        let medicine = ServiceProviderMedicine(medicineName: medicineEntryVM.medicineName, dosage: medicineEntryVM.dosage, routeOfAdministration: medicineEntryVM.routeOfAdmin, intake: medicineEntryVM.intake, duration: Int32(medicineEntryVM.duration) ?? 0, timings: timingsString, specialInstructions: medicineEntryVM.frequency, medicineID: "", notes: medicineEntryVM.notes)
 
         if medicineBeingEdited != nil {
             prescription.medicineList.remove(at: medicineBeingEdited!)

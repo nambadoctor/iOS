@@ -13,10 +13,16 @@ struct InvestigationsView: View {
     var body: some View {
         VStack (alignment: .leading) {
             
-            Text("INVESTIGATIONS")
-                .font(.footnote)
-                .bold()
-                .foregroundColor(.gray)
+            HStack (spacing: 3){
+                Image("list.triangle")
+                    .scaleEffect(0.8)
+                    .foregroundColor(.gray)
+                
+                Text("INVESTIGATIONS")
+                    .font(.footnote)
+                    .bold()
+                    .foregroundColor(.gray)
+            }
 
             if !investigationsVM.investigations.isEmpty {
                 ForEach(Array( investigationsVM.investigations.enumerated()), id: \.0) { i, _ in

@@ -24,6 +24,8 @@ class DoctorTwilioViewModel: ObservableObject {
 
     @Published var participantJoined:Bool = false
     @Published var showCallPhoneBanner:Bool = false
+    
+    private var soundHelper:PlaySounds = PlaySounds(soundName: "calling_sound", type: ".mp3")
 
     private var docAlertHelpers:DoctorAlertHelpersProtocol!
     private var docSheetHelper:DoctorSheetHelpers = DoctorSheetHelpers()
@@ -45,6 +47,7 @@ class DoctorTwilioViewModel: ObservableObject {
     }
 
     func startRoom(completion: @escaping (_ success:Bool)->()) {
+        
         docAutoNav.enterTwilioRoom(appointmentId: self.appointment.appointmentID)
         self.twilioAccessTokenHelper.retrieveToken(appointmentId: self.appointment.appointmentID, userId: self.appointment.serviceProviderID) { (success, token) in
             if success {
@@ -93,6 +96,7 @@ class DoctorTwilioViewModel: ObservableObject {
         }
         self.viewController = nil
         twilioDelegate?.leftRoom()
+        soundHelper.stopSound()
     }
 
     func toggleTwilioViewSize() {
@@ -113,11 +117,13 @@ class DoctorTwilioViewModel: ObservableObject {
 extension DoctorTwilioViewModel : TwilioEventHandlerDelegate {
     func hostConnected() {
         self.showCallPhoneBanner = true
+        self.soundHelper.playSound()
     }
-    
+
     func participantConnected() {
         self.participantJoined = true
         self.showCallPhoneBanner = false
+        soundHelper.stopSound()
     }
 
     func participantDisconnected() {

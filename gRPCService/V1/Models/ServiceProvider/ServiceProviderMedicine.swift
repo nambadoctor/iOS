@@ -16,4 +16,5 @@ struct ServiceProviderMedicine : Codable {
     var timings:String
     var specialInstructions:String
     var medicineID:String
+    var notes:String
 }
