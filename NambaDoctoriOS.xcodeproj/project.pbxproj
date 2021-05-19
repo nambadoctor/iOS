@@ -96,6 +96,7 @@
 		172EF1EF26552662000F2B4E /* calling_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 172EF1EE26552662000F2B4E /* calling_sound.mp3 */; };
 		172EF1F12655291C000F2B4E /* MedicalHistoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172EF1F02655291C000F2B4E /* MedicalHistoriesView.swift */; };
 		172EF1F32655295F000F2B4E /* PatientReportsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172EF1F22655295F000F2B4E /* PatientReportsView.swift */; };
+		172EF1F526553CE1000F2B4E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 172EF1F426553CE1000F2B4E /* GoogleService-Info.plist */; };
 		172FA702261F107E00D14545 /* ServiceProviderCustomerAllergy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172FA701261F107E00D14545 /* ServiceProviderCustomerAllergy.swift */; };
 		172FA707261F10B800D14545 /* ServiceProviderCustomerMedicalHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172FA706261F10B800D14545 /* ServiceProviderCustomerMedicalHistory.swift */; };
 		172FA70C261F125600D14545 /* ServiceProviderCustomerMedicalHistoryMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172FA70B261F125600D14545 /* ServiceProviderCustomerMedicalHistoryMapper.swift */; };
@@ -242,7 +243,6 @@
 		176EFAAA264E56E000A6310B /* CreateCustomerProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176EFAA9264E56E000A6310B /* CreateCustomerProfileView.swift */; };
 		176EFAAC264E5D6000A6310B /* LocalStorageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176EFAAB264E5D6000A6310B /* LocalStorageHelper.swift */; };
 		1772336E25B70F99002B814A /* SimpleStateConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1772336D25B70F99002B814A /* SimpleStateConstants.swift */; };
-		1772338D25B726A6002B814A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1772338C25B726A6002B814A /* GoogleService-Info.plist */; };
 		1772339825B72FF2002B814A /* CheckLoginStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1772339725B72FF2002B814A /* CheckLoginStatus.swift */; };
 		177233BE25B745C2002B814A /* EncoderDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177233BD25B745C2002B814A /* EncoderDecoder.swift */; };
 		1772755825B8A3DF0012B9DE /* AuthenticateServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1772755725B8A3DF0012B9DE /* AuthenticateServiceProtocol.swift */; };
@@ -466,6 +466,7 @@
 		172EF1EE26552662000F2B4E /* calling_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = calling_sound.mp3; sourceTree = "<group>"; };
 		172EF1F02655291C000F2B4E /* MedicalHistoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalHistoriesView.swift; sourceTree = "<group>"; };
 		172EF1F22655295F000F2B4E /* PatientReportsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientReportsView.swift; sourceTree = "<group>"; };
+		172EF1F426553CE1000F2B4E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		172FA701261F107E00D14545 /* ServiceProviderCustomerAllergy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderCustomerAllergy.swift; sourceTree = "<group>"; };
 		172FA706261F10B800D14545 /* ServiceProviderCustomerMedicalHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderCustomerMedicalHistory.swift; sourceTree = "<group>"; };
 		172FA70B261F125600D14545 /* ServiceProviderCustomerMedicalHistoryMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderCustomerMedicalHistoryMapper.swift; sourceTree = "<group>"; };
@@ -609,7 +610,6 @@
 		176EFAA9264E56E000A6310B /* CreateCustomerProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateCustomerProfileView.swift; sourceTree = "<group>"; };
 		176EFAAB264E5D6000A6310B /* LocalStorageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageHelper.swift; sourceTree = "<group>"; };
 		1772336D25B70F99002B814A /* SimpleStateConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleStateConstants.swift; sourceTree = "<group>"; };
-		1772338C25B726A6002B814A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		1772339725B72FF2002B814A /* CheckLoginStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckLoginStatus.swift; sourceTree = "<group>"; };
 		177233BD25B745C2002B814A /* EncoderDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncoderDecoder.swift; sourceTree = "<group>"; };
 		1772755725B8A3DF0012B9DE /* AuthenticateServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticateServiceProtocol.swift; sourceTree = "<group>"; };
@@ -1740,7 +1740,7 @@
 				1739EAC72638079700556044 /* Customer */,
 				172B847F25AED22700C6B035 /* Resources */,
 				17E5186125AED16C001F1A80 /* Info.plist */,
-				1772338C25B726A6002B814A /* GoogleService-Info.plist */,
+				172EF1F426553CE1000F2B4E /* GoogleService-Info.plist */,
 				17E5185B25AED16C001F1A80 /* Preview Content */,
 			);
 			path = NambaDoctoriOS;
@@ -1944,12 +1944,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1772338D25B726A6002B814A /* GoogleService-Info.plist in Resources */,
 				17E3707525BF12540004C965 /* Twilio.storyboard in Resources */,
 				17E5186025AED16C001F1A80 /* LaunchScreen.storyboard in Resources */,
 				17E5185D25AED16C001F1A80 /* Preview Assets.xcassets in Resources */,
 				17E5185A25AED16C001F1A80 /* Assets.xcassets in Resources */,
 				172EF1EF26552662000F2B4E /* calling_sound.mp3 in Resources */,
+				172EF1F526553CE1000F2B4E /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2590,7 +2590,7 @@
 				CURRENT_PROJECT_VERSION = 72;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"NambaDoctoriOS/Preview Content\"";
-				DEVELOPMENT_TEAM = 478XDR2NPK;
+				DEVELOPMENT_TEAM = 4H9M6DGZQ3;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = NambaDoctoriOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -2599,7 +2599,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.72;
-				PRODUCT_BUNDLE_IDENTIFIER = dsconnect.iOS.NambaDoctoriOS;
+				PRODUCT_BUNDLE_IDENTIFIER = nambadoctor.iOS.NambaDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -2616,7 +2616,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 72;
 				DEVELOPMENT_ASSET_PATHS = "\"NambaDoctoriOS/Preview Content\"";
-				DEVELOPMENT_TEAM = 478XDR2NPK;
+				DEVELOPMENT_TEAM = 4H9M6DGZQ3;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = NambaDoctoriOS/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
@@ -2625,7 +2625,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.72;
-				PRODUCT_BUNDLE_IDENTIFIER = dsconnect.iOS.NambaDoctoriOS;
+				PRODUCT_BUNDLE_IDENTIFIER = nambadoctor.iOS.NambaDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
