@@ -21,6 +21,7 @@ struct EditableAppointmentView: View {
                 Text("You are done").onAppear() { killView() }
             }
             
+            CancellationBottomsheetCaller(offset: self.$intermediateVM.cancellationSheetOffset, delegate: self.intermediateVM)
         }
         .background(Color.gray.opacity(0.08))
         .navigationBarItems(trailing: Text(""))
@@ -232,13 +233,9 @@ struct EditableAppointmentView: View {
 
     var actionButtons : some View {
         HStack (spacing: 10) {
-            if !intermediateVM.appointmentStarted && !intermediateVM.appointmentFinished {
+            if !intermediateVM.appointmentFinished {
                 Button(action: {
-                    intermediateVM.cancelAppointment { success in
-                        if success {
-                            killView()
-                        }
-                    }
+                    self.intermediateVM.showCancellationSheet()
                 }, label: {
                     ZStack {
                         Image("xmark")

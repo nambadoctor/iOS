@@ -77,6 +77,20 @@ message ServiceProviderAllergyMessage {
     google.protobuf.StringValue ServiceRequestId = 4;
 }
 
+message ServiceProviderCancellationMessage{
+
+    google.protobuf.StringValue ReasonName = 1;
+
+    google.protobuf.Int64Value CancelledTime = 2;
+
+    google.protobuf.StringValue CancelledBy = 3;
+
+    google.protobuf.StringValue CancelledByType = 4;
+
+    google.protobuf.StringValue Notes = 5;
+
+}
+
 message ServiceProviderAppointmentMessage{
 
     google.protobuf.StringValue AppointmentId = 1;
@@ -118,6 +132,8 @@ message ServiceProviderAppointmentMessage{
     google.protobuf.Int64Value LastModifedDate = 19;
 
     google.protobuf.Int32Value NoOfReports = 20;
+
+    ServiceProviderCancellationMessage Cancellation = 21;
 }
 
 

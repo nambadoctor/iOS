@@ -29,7 +29,8 @@ class ServiceProviderAppointmentObjectMapper {
             actualAppointmentEndTime: appointment.actualAppointmentEndTime.toInt64,
             createdDateTime: appointment.createdDateTime.toInt64,
             lastModifiedDate: appointment.lastModifedDate.toInt64,
-            noOfReports: appointment.noOfReports.toInt32)
+            noOfReports: appointment.noOfReports.toInt32,
+            cancellation: ServiceProviderCancellationMapper.grpcCancellationToLocal(cancellation: appointment.cancellation))
     }
     
     func grpcAppointmentToLocal (appointment:[Nd_V1_ServiceProviderAppointmentMessage]) -> [ServiceProviderAppointment] {
@@ -64,6 +65,7 @@ class ServiceProviderAppointmentObjectMapper {
             $0.createdDateTime = appointment.createdDateTime.toProto
             $0.lastModifedDate = appointment.lastModifiedDate.toProto
             $0.noOfReports = appointment.noOfReports.toProto
+            $0.cancellation = ServiceProviderCancellationMapper.localCancellationToGrpc(cancellation: appointment.cancellation)
         }
     }
 }

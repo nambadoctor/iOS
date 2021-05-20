@@ -90,13 +90,18 @@
 		172B851725AEE4AC00C6B035 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172B851625AEE4AC00C6B035 /* UIColor.swift */; };
 		172B851C25AEE50C00C6B035 /* EndEditing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172B851B25AEE50C00C6B035 /* EndEditing.swift */; };
 		172B852225AEE65B00C6B035 /* CountryCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172B852125AEE65B00C6B035 /* CountryCodes.swift */; };
-		172EF1E9265512DD000F2B4E /* ServiceProviderAndCustomer.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172EF1E8265512DD000F2B4E /* ServiceProviderAndCustomer.grpc.swift */; };
-		172EF1EB265512FB000F2B4E /* ServiceProviderAndCustomer.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172EF1EA265512FB000F2B4E /* ServiceProviderAndCustomer.pb.swift */; };
 		172EF1ED26552522000F2B4E /* PlaySounds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172EF1EC26552522000F2B4E /* PlaySounds.swift */; };
 		172EF1EF26552662000F2B4E /* calling_sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 172EF1EE26552662000F2B4E /* calling_sound.mp3 */; };
 		172EF1F12655291C000F2B4E /* MedicalHistoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172EF1F02655291C000F2B4E /* MedicalHistoriesView.swift */; };
 		172EF1F32655295F000F2B4E /* PatientReportsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172EF1F22655295F000F2B4E /* PatientReportsView.swift */; };
 		172EF1F526553CE1000F2B4E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 172EF1F426553CE1000F2B4E /* GoogleService-Info.plist */; };
+		172EF1F82655D350000F2B4E /* CancellationBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172EF1F72655D350000F2B4E /* CancellationBottomSheet.swift */; };
+		172EF1FB2655D3E5000F2B4E /* CheckboxField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172EF1FA2655D3E5000F2B4E /* CheckboxField.swift */; };
+		172EF1FD2655D656000F2B4E /* CancellationBottomsheetCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172EF1FC2655D656000F2B4E /* CancellationBottomsheetCaller.swift */; };
+		172EF2012655E2DB000F2B4E /* ServiceProviderCancellation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172EF2002655E2DB000F2B4E /* ServiceProviderCancellation.swift */; };
+		172EF2032655E362000F2B4E /* ServiceProviderCancellationMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172EF2022655E362000F2B4E /* ServiceProviderCancellationMapper.swift */; };
+		172EF2052655E399000F2B4E /* ServiceProviderAndCustomer.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172EF2042655E399000F2B4E /* ServiceProviderAndCustomer.pb.swift */; };
+		172EF2072655E39E000F2B4E /* ServiceProviderAndCustomer.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172EF2062655E39E000F2B4E /* ServiceProviderAndCustomer.grpc.swift */; };
 		172FA702261F107E00D14545 /* ServiceProviderCustomerAllergy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172FA701261F107E00D14545 /* ServiceProviderCustomerAllergy.swift */; };
 		172FA707261F10B800D14545 /* ServiceProviderCustomerMedicalHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172FA706261F10B800D14545 /* ServiceProviderCustomerMedicalHistory.swift */; };
 		172FA70C261F125600D14545 /* ServiceProviderCustomerMedicalHistoryMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172FA70B261F125600D14545 /* ServiceProviderCustomerMedicalHistoryMapper.swift */; };
@@ -460,13 +465,18 @@
 		172B851625AEE4AC00C6B035 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		172B851B25AEE50C00C6B035 /* EndEditing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndEditing.swift; sourceTree = "<group>"; };
 		172B852125AEE65B00C6B035 /* CountryCodes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCodes.swift; sourceTree = "<group>"; };
-		172EF1E8265512DD000F2B4E /* ServiceProviderAndCustomer.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderAndCustomer.grpc.swift; sourceTree = "<group>"; };
-		172EF1EA265512FB000F2B4E /* ServiceProviderAndCustomer.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderAndCustomer.pb.swift; sourceTree = "<group>"; };
 		172EF1EC26552522000F2B4E /* PlaySounds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaySounds.swift; sourceTree = "<group>"; };
 		172EF1EE26552662000F2B4E /* calling_sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = calling_sound.mp3; sourceTree = "<group>"; };
 		172EF1F02655291C000F2B4E /* MedicalHistoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicalHistoriesView.swift; sourceTree = "<group>"; };
 		172EF1F22655295F000F2B4E /* PatientReportsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientReportsView.swift; sourceTree = "<group>"; };
 		172EF1F426553CE1000F2B4E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		172EF1F72655D350000F2B4E /* CancellationBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancellationBottomSheet.swift; sourceTree = "<group>"; };
+		172EF1FA2655D3E5000F2B4E /* CheckboxField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckboxField.swift; sourceTree = "<group>"; };
+		172EF1FC2655D656000F2B4E /* CancellationBottomsheetCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancellationBottomsheetCaller.swift; sourceTree = "<group>"; };
+		172EF2002655E2DB000F2B4E /* ServiceProviderCancellation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderCancellation.swift; sourceTree = "<group>"; };
+		172EF2022655E362000F2B4E /* ServiceProviderCancellationMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderCancellationMapper.swift; sourceTree = "<group>"; };
+		172EF2042655E399000F2B4E /* ServiceProviderAndCustomer.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderAndCustomer.pb.swift; sourceTree = "<group>"; };
+		172EF2062655E39E000F2B4E /* ServiceProviderAndCustomer.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderAndCustomer.grpc.swift; sourceTree = "<group>"; };
 		172FA701261F107E00D14545 /* ServiceProviderCustomerAllergy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderCustomerAllergy.swift; sourceTree = "<group>"; };
 		172FA706261F10B800D14545 /* ServiceProviderCustomerMedicalHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderCustomerMedicalHistory.swift; sourceTree = "<group>"; };
 		172FA70B261F125600D14545 /* ServiceProviderCustomerMedicalHistoryMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderCustomerMedicalHistoryMapper.swift; sourceTree = "<group>"; };
@@ -793,6 +803,7 @@
 				1716483F26092D5800BB5B5A /* ServiceProviderFileInfo.swift */,
 				172FA701261F107E00D14545 /* ServiceProviderCustomerAllergy.swift */,
 				172FA706261F10B800D14545 /* ServiceProviderCustomerMedicalHistory.swift */,
+				172EF2002655E2DB000F2B4E /* ServiceProviderCancellation.swift */,
 			);
 			path = ServiceProvider;
 			sourceTree = "<group>";
@@ -820,6 +831,7 @@
 				1716474726032B5F00BB5B5A /* ServiceProviderServiceRequestMapper.swift */,
 				172FA70B261F125600D14545 /* ServiceProviderCustomerMedicalHistoryMapper.swift */,
 				172FA710261F126800D14545 /* ServiceProviderCustomerAllergyMapper.swift */,
+				172EF2022655E362000F2B4E /* ServiceProviderCancellationMapper.swift */,
 			);
 			path = ServiceProvider;
 			sourceTree = "<group>";
@@ -976,6 +988,7 @@
 		172B851525AEE49E00C6B035 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				172EF1F92655D3CF000F2B4E /* CustomBottomSheet */,
 				17437EB0263E956300AFEF5B /* PDFKitView */,
 				17513B2626102C0300542C00 /* ImageFromWebHelpers */,
 				17E3709A25BF174A0004C965 /* TwilioHelpers */,
@@ -1024,6 +1037,23 @@
 				172B850825AEE46600C6B035 /* PhoneNumberEntryView */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		172EF1F62655D33E000F2B4E /* CancellationBottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				172EF1F72655D350000F2B4E /* CancellationBottomSheet.swift */,
+				172EF1FC2655D656000F2B4E /* CancellationBottomsheetCaller.swift */,
+			);
+			path = CancellationBottomSheet;
+			sourceTree = "<group>";
+		};
+		172EF1F92655D3CF000F2B4E /* CustomBottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				172EF1FA2655D3E5000F2B4E /* CheckboxField.swift */,
+			);
+			path = CustomBottomSheet;
 			sourceTree = "<group>";
 		};
 		17365DFD2647694A00386909 /* RazorPay */ = {
@@ -1113,7 +1143,7 @@
 		173A22BB25CAF8BC0086342A /* ServiceImplementations */ = {
 			isa = PBXGroup;
 			children = (
-				172EF1E8265512DD000F2B4E /* ServiceProviderAndCustomer.grpc.swift */,
+				172EF2062655E39E000F2B4E /* ServiceProviderAndCustomer.grpc.swift */,
 			);
 			path = ServiceImplementations;
 			sourceTree = "<group>";
@@ -1121,7 +1151,7 @@
 		173A22BC25CAF8C60086342A /* ModelImplementations */ = {
 			isa = PBXGroup;
 			children = (
-				172EF1EA265512FB000F2B4E /* ServiceProviderAndCustomer.pb.swift */,
+				172EF2042655E399000F2B4E /* ServiceProviderAndCustomer.pb.swift */,
 			);
 			path = ModelImplementations;
 			sourceTree = "<group>";
@@ -1557,6 +1587,7 @@
 		17B5D11625B74B29009D6A42 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				172EF1F62655D33E000F2B4E /* CancellationBottomSheet */,
 				1705A4FD2653AA220015EFA2 /* PrescriptionPreviewView */,
 				17A0207F2630213100BD828F /* Notifications */,
 				179C44E22628C8600073F4E0 /* DoctorChat */,
@@ -2097,6 +2128,7 @@
 			files = (
 				17437EB4263FC11100AFEF5B /* CustomerUpdateAppointmentStatusHelper.swift in Sources */,
 				171646B82602B65700BB5B5A /* ServiceProviderGeneratedSlot.swift in Sources */,
+				172EF2052655E399000F2B4E /* ServiceProviderAndCustomer.pb.swift in Sources */,
 				1796321C25AEE932002E466C /* CommonDefaultModifiers.swift in Sources */,
 				176AA0FE2637B9DD00F02346 /* CustomerAllergy.swift in Sources */,
 				171646C22602B6B700BB5B5A /* ServiceProviderPaymentInfo.swift in Sources */,
@@ -2144,6 +2176,7 @@
 				1742523625BD988D00523B94 /* PatientInfoViewModel.swift in Sources */,
 				1748011025B8E12500C8E3CC /* DocViewStatesK.swift in Sources */,
 				179C44BE2627ED6C0073F4E0 /* DBReferences.swift in Sources */,
+				172EF1FB2655D3E5000F2B4E /* CheckboxField.swift in Sources */,
 				17AE6D1825E24B2200B18292 /* DoctorsPatientsView.swift in Sources */,
 				17EC7670260EE9D60002BA75 /* MedicineEntryView.swift in Sources */,
 				17BD2E95263C75B700BB0BDD /* CustomerTwilioViewModel.swift in Sources */,
@@ -2195,6 +2228,7 @@
 				17424F2625BA138F00523B94 /* DoctorAlertHelperProtocol.swift in Sources */,
 				177233BE25B745C2002B814A /* EncoderDecoder.swift in Sources */,
 				1789091B26453003004A9D75 /* CustomerNotificationHelper.swift in Sources */,
+				172EF1FD2655D656000F2B4E /* CancellationBottomsheetCaller.swift in Sources */,
 				179C44C42627F1B80073F4E0 /* ChatRoomView.swift in Sources */,
 				17EC75DF260C52B70002BA75 /* ExpandingTextView.swift in Sources */,
 				171646882602B40300BB5B5A /* ServiceProviderAppInfo.swift in Sources */,
@@ -2208,6 +2242,7 @@
 				171647A02604044300BB5B5A /* DoctorHome.swift in Sources */,
 				176AA1972637C62300F02346 /* CustomerServiceProviderProfileMapper.swift in Sources */,
 				172B852225AEE65B00C6B035 /* CountryCodes.swift in Sources */,
+				172EF1F82655D350000F2B4E /* CancellationBottomSheet.swift in Sources */,
 				1742515425BCC33200523B94 /* ViewAppointment.swift in Sources */,
 				171646972602B4CF00BB5B5A /* PhoneNumber.swift in Sources */,
 				176AA1382637BD3D00F02346 /* CustomerGeneratedSlot.swift in Sources */,
@@ -2235,6 +2270,7 @@
 				171647832603F47C00BB5B5A /* MakeEmptyObjects.swift in Sources */,
 				176AA17E2637BFAC00F02346 /* CustomerAppointmentMapper.swift in Sources */,
 				1716E2B2261AF92A00568837 /* MedicineView.swift in Sources */,
+				172EF2012655E2DB000F2B4E /* ServiceProviderCancellation.swift in Sources */,
 				1716E2A8261AF85100568837 /* ServiceRequestView.swift in Sources */,
 				176AA1082637BA5600F02346 /* CustomerAppointment.swift in Sources */,
 				17626CAD25D5BAC200C36A99 /* LoadingScreen.swift in Sources */,
@@ -2268,6 +2304,7 @@
 				17E5185625AED16A001F1A80 /* SceneDelegate.swift in Sources */,
 				172EF1ED26552522000F2B4E /* PlaySounds.swift in Sources */,
 				17626E0A25DA270400C36A99 /* ImageDisplayEnum.swift in Sources */,
+				172EF2072655E39E000F2B4E /* ServiceProviderAndCustomer.grpc.swift in Sources */,
 				176AA1562637BDFF00F02346 /* CustomerReportUpload.swift in Sources */,
 				176AA1D62637F39600F02346 /* CustomerDiagnosisMapper.swift in Sources */,
 				1785A5012616E193009667D1 /* ModifyFeeViewModel.swift in Sources */,
@@ -2292,6 +2329,7 @@
 				17164720260320FF00BB5B5A /* ServiceProviderWorkExperienceMapper.swift in Sources */,
 				176AA2082637F77C00F02346 /* CustomerServiceRequestService.swift in Sources */,
 				1763D31C262A39CA00E0E423 /* DefaultPreferencesTracker.swift in Sources */,
+				172EF2032655E362000F2B4E /* ServiceProviderCancellationMapper.swift in Sources */,
 				176AA1A12637C72E00F02346 /* CustomerWorkExperienceMapper.swift in Sources */,
 				172B84E725AEE39E00C6B035 /* DoctorViewModel.swift in Sources */,
 				17E3707D25BF12AF0004C965 /* DoctorTwilioViewModel.swift in Sources */,
@@ -2319,7 +2357,6 @@
 				176AA1C42637CCE600F02346 /* CustomerReportMapper.swift in Sources */,
 				1716470E260314DE00BB5B5A /* ServiceProviderCustomerProfileObjectMapper.swift in Sources */,
 				1739EAEB26380EFA00556044 /* BookDoctorView.swift in Sources */,
-				172EF1EB265512FB000F2B4E /* ServiceProviderAndCustomer.pb.swift in Sources */,
 				1796320F25AEE865002E466C /* KeyboardHeightPublisher.swift in Sources */,
 				172FA702261F107E00D14545 /* ServiceProviderCustomerAllergy.swift in Sources */,
 				176AA1A62637C8E900F02346 /* CustomerFollowUpMapper.swift in Sources */,
@@ -2351,7 +2388,6 @@
 				17424FE525BAD1B100523B94 /* SideBySideCheckBox.swift in Sources */,
 				176AA1122637BADA00F02346 /* CustomerProfile.swift in Sources */,
 				171646DE2602B88000BB5B5A /* ServiceProviderServiceRequest.swift in Sources */,
-				172EF1E9265512DD000F2B4E /* ServiceProviderAndCustomer.grpc.swift in Sources */,
 				1742528325BDA9E100523B94 /* DoctorSheetHelpers.swift in Sources */,
 				171646A12602B5B400BB5B5A /* ServiceProviderEducation.swift in Sources */,
 				171647392603242200BB5B5A /* ServiceProviderPrescriptionMapper.swift in Sources */,
@@ -2587,7 +2623,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NambaDoctoriOS/NambaDoctoriOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 72;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"NambaDoctoriOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 4H9M6DGZQ3;
@@ -2598,7 +2634,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.72;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = nambadoctor.iOS.NambaDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -2614,7 +2650,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NambaDoctoriOS/NambaDoctoriOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 72;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"NambaDoctoriOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 4H9M6DGZQ3;
 				ENABLE_PREVIEWS = YES;
@@ -2624,7 +2660,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.72;
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = nambadoctor.iOS.NambaDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

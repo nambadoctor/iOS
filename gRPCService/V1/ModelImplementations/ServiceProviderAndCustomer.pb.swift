@@ -428,6 +428,67 @@ struct Nd_V1_ServiceProviderAllergyMessage {
   fileprivate var _serviceRequestID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
 }
 
+struct Nd_V1_ServiceProviderCancellationMessage {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var reasonName: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _reasonName ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_reasonName = newValue}
+  }
+  /// Returns true if `reasonName` has been explicitly set.
+  var hasReasonName: Bool {return self._reasonName != nil}
+  /// Clears the value of `reasonName`. Subsequent reads from it will return its default value.
+  mutating func clearReasonName() {self._reasonName = nil}
+
+  var cancelledTime: SwiftProtobuf.Google_Protobuf_Int64Value {
+    get {return _cancelledTime ?? SwiftProtobuf.Google_Protobuf_Int64Value()}
+    set {_cancelledTime = newValue}
+  }
+  /// Returns true if `cancelledTime` has been explicitly set.
+  var hasCancelledTime: Bool {return self._cancelledTime != nil}
+  /// Clears the value of `cancelledTime`. Subsequent reads from it will return its default value.
+  mutating func clearCancelledTime() {self._cancelledTime = nil}
+
+  var cancelledBy: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _cancelledBy ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_cancelledBy = newValue}
+  }
+  /// Returns true if `cancelledBy` has been explicitly set.
+  var hasCancelledBy: Bool {return self._cancelledBy != nil}
+  /// Clears the value of `cancelledBy`. Subsequent reads from it will return its default value.
+  mutating func clearCancelledBy() {self._cancelledBy = nil}
+
+  var cancelledByType: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _cancelledByType ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_cancelledByType = newValue}
+  }
+  /// Returns true if `cancelledByType` has been explicitly set.
+  var hasCancelledByType: Bool {return self._cancelledByType != nil}
+  /// Clears the value of `cancelledByType`. Subsequent reads from it will return its default value.
+  mutating func clearCancelledByType() {self._cancelledByType = nil}
+
+  var notes: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _notes ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_notes = newValue}
+  }
+  /// Returns true if `notes` has been explicitly set.
+  var hasNotes: Bool {return self._notes != nil}
+  /// Clears the value of `notes`. Subsequent reads from it will return its default value.
+  mutating func clearNotes() {self._notes = nil}
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _reasonName: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _cancelledTime: SwiftProtobuf.Google_Protobuf_Int64Value? = nil
+  fileprivate var _cancelledBy: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _cancelledByType: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _notes: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+}
+
 struct Nd_V1_ServiceProviderAppointmentMessage {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -612,6 +673,15 @@ struct Nd_V1_ServiceProviderAppointmentMessage {
   var hasNoOfReports: Bool {return _storage._noOfReports != nil}
   /// Clears the value of `noOfReports`. Subsequent reads from it will return its default value.
   mutating func clearNoOfReports() {_uniqueStorage()._noOfReports = nil}
+
+  var cancellation: Nd_V1_ServiceProviderCancellationMessage {
+    get {return _storage._cancellation ?? Nd_V1_ServiceProviderCancellationMessage()}
+    set {_uniqueStorage()._cancellation = newValue}
+  }
+  /// Returns true if `cancellation` has been explicitly set.
+  var hasCancellation: Bool {return _storage._cancellation != nil}
+  /// Clears the value of `cancellation`. Subsequent reads from it will return its default value.
+  mutating func clearCancellation() {_uniqueStorage()._cancellation = nil}
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -4655,6 +4725,62 @@ extension Nd_V1_ServiceProviderAllergyMessage: SwiftProtobuf.Message, SwiftProto
   }
 }
 
+extension Nd_V1_ServiceProviderCancellationMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".ServiceProviderCancellationMessage"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "ReasonName"),
+    2: .same(proto: "CancelledTime"),
+    3: .same(proto: "CancelledBy"),
+    4: .same(proto: "CancelledByType"),
+    5: .same(proto: "Notes"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularMessageField(value: &self._reasonName) }()
+      case 2: try { try decoder.decodeSingularMessageField(value: &self._cancelledTime) }()
+      case 3: try { try decoder.decodeSingularMessageField(value: &self._cancelledBy) }()
+      case 4: try { try decoder.decodeSingularMessageField(value: &self._cancelledByType) }()
+      case 5: try { try decoder.decodeSingularMessageField(value: &self._notes) }()
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if let v = self._reasonName {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+    }
+    if let v = self._cancelledTime {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+    }
+    if let v = self._cancelledBy {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+    }
+    if let v = self._cancelledByType {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+    }
+    if let v = self._notes {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Nd_V1_ServiceProviderCancellationMessage, rhs: Nd_V1_ServiceProviderCancellationMessage) -> Bool {
+    if lhs._reasonName != rhs._reasonName {return false}
+    if lhs._cancelledTime != rhs._cancelledTime {return false}
+    if lhs._cancelledBy != rhs._cancelledBy {return false}
+    if lhs._cancelledByType != rhs._cancelledByType {return false}
+    if lhs._notes != rhs._notes {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
 extension Nd_V1_ServiceProviderAppointmentMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".ServiceProviderAppointmentMessage"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
@@ -4678,6 +4804,7 @@ extension Nd_V1_ServiceProviderAppointmentMessage: SwiftProtobuf.Message, SwiftP
     18: .same(proto: "CreatedDateTime"),
     19: .same(proto: "LastModifedDate"),
     20: .same(proto: "NoOfReports"),
+    21: .same(proto: "Cancellation"),
   ]
 
   fileprivate class _StorageClass {
@@ -4701,6 +4828,7 @@ extension Nd_V1_ServiceProviderAppointmentMessage: SwiftProtobuf.Message, SwiftP
     var _createdDateTime: SwiftProtobuf.Google_Protobuf_Int64Value? = nil
     var _lastModifedDate: SwiftProtobuf.Google_Protobuf_Int64Value? = nil
     var _noOfReports: SwiftProtobuf.Google_Protobuf_Int32Value? = nil
+    var _cancellation: Nd_V1_ServiceProviderCancellationMessage? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -4727,6 +4855,7 @@ extension Nd_V1_ServiceProviderAppointmentMessage: SwiftProtobuf.Message, SwiftP
       _createdDateTime = source._createdDateTime
       _lastModifedDate = source._lastModifedDate
       _noOfReports = source._noOfReports
+      _cancellation = source._cancellation
     }
   }
 
@@ -4765,6 +4894,7 @@ extension Nd_V1_ServiceProviderAppointmentMessage: SwiftProtobuf.Message, SwiftP
         case 18: try { try decoder.decodeSingularMessageField(value: &_storage._createdDateTime) }()
         case 19: try { try decoder.decodeSingularMessageField(value: &_storage._lastModifedDate) }()
         case 20: try { try decoder.decodeSingularMessageField(value: &_storage._noOfReports) }()
+        case 21: try { try decoder.decodeSingularMessageField(value: &_storage._cancellation) }()
         default: break
         }
       }
@@ -4833,6 +4963,9 @@ extension Nd_V1_ServiceProviderAppointmentMessage: SwiftProtobuf.Message, SwiftP
       if let v = _storage._noOfReports {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 20)
       }
+      if let v = _storage._cancellation {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 21)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -4862,6 +4995,7 @@ extension Nd_V1_ServiceProviderAppointmentMessage: SwiftProtobuf.Message, SwiftP
         if _storage._createdDateTime != rhs_storage._createdDateTime {return false}
         if _storage._lastModifedDate != rhs_storage._lastModifedDate {return false}
         if _storage._noOfReports != rhs_storage._noOfReports {return false}
+        if _storage._cancellation != rhs_storage._cancellation {return false}
         return true
       }
       if !storagesAreEqual {return false}

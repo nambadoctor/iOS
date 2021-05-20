@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class IntermediateAppointmentViewModel : ObservableObject {
     @Published var killView:Bool = false
@@ -20,7 +21,9 @@ class IntermediateAppointmentViewModel : ObservableObject {
     @Published var modifyFeeViewModel:ModifyFeeViewModel
     @Published var doctorTwilioManagerViewModel:DoctorTwilioViewModel
     @Published var chatVM:DoctorChatViewModel
-
+    
+    @Published var cancellationSheetOffset:CGFloat = UIScreen.main.bounds.height
+    
     @Published var takeToDetailedAppointment:Bool = false
     @Published var takeToViewAppointment:Bool = false
     
@@ -90,6 +93,10 @@ class IntermediateAppointmentViewModel : ObservableObject {
         getNewChatCount()
         newChatListener()
         CommonDefaultModifiers.hideLoader()
+    }
+    
+    func showCancellationSheet () {
+        self.cancellationSheetOffset = 0
     }
 }
 
@@ -280,20 +287,18 @@ extension IntermediateAppointmentViewModel {
         self.takeToViewAppointment = true
     }
 
-    func cancelAppointment(completion: @escaping (_ successfullyCancelled:Bool)->()) {
-        doctorAlertHelper.cancelAppointmentAlert { (cancel) in
-            CommonDefaultModifiers.showLoader()
-            self.updateAppointmentStatus.toCancelled(appointment: &self.appointment) { (success) in
-                if success {
-                    self.docNotifHelper.fireCancelNotif(appointmentTime: self.appointment.scheduledAppointmentStartTime)
-                    DoctorDefaultModifiers.refreshAppointments()
-                    CommonDefaultModifiers.hideLoader()
-                    completion(success)
-                } else {
-                    GlobalPopupHelpers.setErrorAlert()
-                    CommonDefaultModifiers.hideLoader()
-                    completion(success)
-                }
+    func cancelAppointment(completion: @escaping (_ successfullyCancelled:Bool) -> ()) {
+        CommonDefaultModifiers.showLoader()
+        self.updateAppointmentStatus.toCancelled(appointment: &self.appointment) { (success) in
+            if success {
+                self.docNotifHelper.fireCancelNotif(appointmentTime: self.appointment.scheduledAppointmentStartTime)
+                DoctorDefaultModifiers.refreshAppointments()
+                CommonDefaultModifiers.hideLoader()
+                completion(success)
+            } else {
+                GlobalPopupHelpers.setErrorAlert()
+                CommonDefaultModifiers.hideLoader()
+                completion(success)
             }
         }
     }
@@ -308,6 +313,24 @@ extension IntermediateAppointmentViewModel {
     func newChatListener () {
         NotificationCenter.default.addObserver(forName: NSNotification.Name("\(SimpleStateK.refreshNewChatCountChange)"), object: nil, queue: .main) { (_) in
             self.getNewChatCount()
+        }
+    }
+}
+
+extension IntermediateAppointmentViewModel : DoctorCancellationDelegate {
+    func cancel(reasonName: String) {
+        
+        let cancellation = ServiceProviderCancellation(ReasonName: reasonName,
+                                                       CancelledTime: Date().millisecondsSince1970,
+                                                       CancelledBy: UserIdHelper().retrieveUserId(),
+                                                       CancelledByType: UserTypeHelper.getUserType(),
+                                                       Notes: "")
+        self.appointment.cancellation = cancellation
+        
+        self.cancelAppointment { success in
+            if success {
+                self.killView = true
+            }
         }
     }
 }
