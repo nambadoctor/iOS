@@ -11,7 +11,7 @@ struct ContentView: View {
 
     @State private var loginStatus:UserLoginStatus = UserLoginStatus.NotSignedIn
     @State private var showLoader:Bool = false
-    
+
     var body: some View {
         ZStack {
             VStack {

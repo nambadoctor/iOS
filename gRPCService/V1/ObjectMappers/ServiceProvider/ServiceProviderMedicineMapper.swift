@@ -11,10 +11,10 @@ class ServiceProviderMedicineMapper {
     static func grpcMedicineToLocal (medicine:Nd_V1_ServiceProviderMedicineMessage) -> ServiceProviderMedicine {
         return ServiceProviderMedicine(
             medicineName: medicine.medicineName.toString,
-            dosage: medicine.dosage.toString,
+            _dosage: ServiceProviderDosageMapper.GrpcToLocal(dosage: medicine.dosageObj),
             routeOfAdministration: medicine.routeOfAdministration.toString,
             intake: medicine.intake.toString,
-            duration: medicine.duration.toInt32,
+            _duration: ServiceProviderDurationMapper.GrpcToLocal(duration: medicine.durationObj),
             timings: medicine.timings.toString,
             specialInstructions: medicine.specialInstructions.toString,
             medicineID: medicine.medicineID.toString,
@@ -34,10 +34,10 @@ class ServiceProviderMedicineMapper {
     static func localMedicineToGrpc (medicine:ServiceProviderMedicine) -> Nd_V1_ServiceProviderMedicineMessage {
         return Nd_V1_ServiceProviderMedicineMessage.with {
             $0.medicineName = medicine.medicineName.toProto
-            $0.dosage = medicine.dosage.toProto
+            $0.dosageObj = ServiceProviderDosageMapper.LocalToGrpc(dosage: medicine._dosage)
             $0.routeOfAdministration = medicine.routeOfAdministration.toProto
             $0.intake = medicine.intake.toProto
-            $0.duration = medicine.duration.toProto
+            $0.durationObj = ServiceProviderDurationMapper.LocalToGrpc(duration: medicine._duration)
             $0.timings = medicine.timings.toProto
             $0.specialInstructions = medicine.specialInstructions.toProto
             $0.medicineID = medicine.medicineID.toProto

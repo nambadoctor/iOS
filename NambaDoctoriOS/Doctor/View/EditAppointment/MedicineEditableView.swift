@@ -31,55 +31,50 @@ struct MedicineEditableView: View {
             ForEach (medicineVM.prescription.medicineList, id: \.medicineName) { medicine in
                 HStack {
                     VStack (alignment: .leading, spacing: 5) {
-                        Text("\(medicine.medicineName) - \(medicine.dosage)")
+                        Text("\(medicine.medicineName) - \(medicine._dosage.Name)")
                             .font(.callout)
                             .bold()
-                            .foregroundColor(Color.blue)
+                            .foregroundColor(Color.green)
                         
-                        if medicine.duration != 0 {
-                            Text("\(medicine.duration) days")
+                        if !medicine._duration.Days.isEmpty {
+                            Text("\(medicine._duration.Days) \(medicine._duration.Unit)")
                                 .font(.callout)
-                                .foregroundColor(Color.blue)
+                                .foregroundColor(Color.green)
                         } else {
                             Text("No duration specified")
                                 .font(.callout)
-                                .foregroundColor(Color.blue)
+                                .foregroundColor(Color.green)
                         }
                         
                         if !medicine.routeOfAdministration.isEmpty {
                             Text("\(medicine.routeOfAdministration)")
                                 .font(.callout)
-                                .foregroundColor(Color.blue)
+                                .foregroundColor(Color.green)
                         }
                         
                         
                         if !medicine.intake.isEmpty {
                             Text("\(medicine.intake)")
                                 .font(.callout)
-                                .foregroundColor(Color.blue)
+                                .foregroundColor(Color.green)
                         }
                         
                         if !medicine.timings.isEmpty {
                             Text("\(medicine.timings)")
                                 .font(.callout)
-                                .foregroundColor(Color.blue)
-                        } else {
-                            Text("Take whenever necessary")
-                                .font(.callout)
-                                .foregroundColor(Color.blue)
+                                .foregroundColor(Color.green)
                         }
-
+                        
                         if !medicine.specialInstructions.isEmpty {
                             Text("\(medicine.specialInstructions)")
                                 .font(.callout)
-                                .foregroundColor(Color.blue)
-
+                                .foregroundColor(Color.green)
                         }
                         
                         if !medicine.notes.isEmpty {
                             Text("\(medicine.notes)")
                                 .font(.callout)
-                                .foregroundColor(Color.blue)
+                                .foregroundColor(Color.green)
                         }
                     }
                     Spacer()
@@ -101,7 +96,7 @@ struct MedicineEditableView: View {
                     }
                 }
                 .padding()
-                .background(Color.blue.opacity(0.1))
+                .background(Color.green.opacity(0.1))
                 .cornerRadius(7)
             }
 

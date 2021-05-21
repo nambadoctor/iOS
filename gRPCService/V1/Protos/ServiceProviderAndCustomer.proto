@@ -91,6 +91,56 @@ message ServiceProviderCancellationMessage{
 
 }
 
+message CustomerCancellationMessage{
+
+    google.protobuf.StringValue ReasonName = 1;
+
+    google.protobuf.Int64Value CancelledTime = 2;
+
+    google.protobuf.StringValue CancelledBy = 3;
+
+    google.protobuf.StringValue CancelledByType = 4;
+
+    google.protobuf.StringValue Notes = 5;
+
+}
+
+message ServiceProviderAutofillMedicineMessage {
+
+	google.protobuf.StringValue AutofillMedicineId = 1;
+
+    google.protobuf.StringValue MedicineGenericName = 2;
+
+    google.protobuf.StringValue MedicineBrandName = 3;
+
+    google.protobuf.StringValue RouteOfAdmission = 4;
+
+    google.protobuf.StringValue Intake = 5;
+
+    google.protobuf.StringValue Frequency = 6;
+
+    ServiceProviderDosageMessage Dosage = 7;
+
+    ServiceProviderDurationMessage Duration = 8;
+}
+
+message ServiceProviderAutofillMedicineListMessage{
+	repeated ServiceProviderAutofillMedicineMessage Medicines = 1;
+}
+
+message ServiceProviderDosageMessage {
+	google.protobuf.StringValue Name = 1;
+
+    google.protobuf.StringValue Unit = 2;
+}
+
+message ServiceProviderDurationMessage {
+	google.protobuf.StringValue Days = 1;
+
+    google.protobuf.StringValue Unit = 2;
+}
+
+
 message ServiceProviderAppointmentMessage{
 
     google.protobuf.StringValue AppointmentId = 1;
@@ -328,6 +378,10 @@ message ServiceProviderMedicineMessage{
     google.protobuf.StringValue MedicineId = 8;
 
     google.protobuf.StringValue Notes = 9;
+
+    ServiceProviderDurationMessage DurationObj = 10;
+
+    ServiceProviderDosageMessage DosageObj = 11;
 }
 
 message ServiceProviderPaymentInfoMessage{
@@ -614,6 +668,8 @@ service ServiceProviderWorkerV1 {
 
     rpc GetServiceProviderAvailablity(IdMessage) returns (ServiceProviderAvailabilityConfigList);
 
+    rpc GetAutoFillMedicines(IdMessage) returns (ServiceProviderAutofillMedicineListMessage);
+
 }
 
 
@@ -713,6 +769,8 @@ message CustomerAppointmentMessage{
     google.protobuf.Int64Value LastModifedDate = 19;
 
     google.protobuf.Int32Value NoOfReports = 20;
+
+    CustomerCancellationMessage Cancellation = 21;
 }
 
 
@@ -861,6 +919,8 @@ message CustomerCustomerProfileMessage {
     google.protobuf.Int64Value CreatedDate = 18;
 
     DeviceInfoMessage CustomerDeviceInfo = 19;
+
+    repeated CustomerChildProfileMessage Children = 20;
 }
 
 
@@ -951,6 +1011,18 @@ message CustomerMedicalHistoryMessage {
     google.protobuf.StringValue MedicationHistory = 6;
 }
 
+message CustomerDurationMessage{
+    google.protobuf.StringValue Days = 1;
+
+    google.protobuf.StringValue Unit = 2;
+}
+
+message CustomerDosageMessage{
+	google.protobuf.StringValue Name = 1;
+
+    google.protobuf.StringValue Unit = 2;
+} 
+
 message CustomerMedicineMessage{
 
     google.protobuf.StringValue MedicineName = 1;
@@ -970,6 +1042,10 @@ message CustomerMedicineMessage{
     google.protobuf.StringValue MedicineId = 8;
 
     google.protobuf.StringValue Notes = 9;
+
+    CustomerDurationMessage DurationObj = 10;
+
+    CustomerDosageMessage DosageObj = 11;
 }
 
 message CustomerPaymentInfoMessage{
@@ -1060,6 +1136,22 @@ message CustomerReportUploadMessage{
     google.protobuf.BytesValue MediaFile = 7;
 }
 
+message CustomerChildProfileMessage {
+    google.protobuf.StringValue ChildProfileId = 1;
+
+    google.protobuf.StringValue Name = 2;
+
+    google.protobuf.StringValue Gender = 3;
+
+    google.protobuf.StringValue Age = 4;
+
+    google.protobuf.StringValue PreferredPhoneNumber = 5;
+}
+
+message CustomerChildProfileListMessage {
+    repeated CustomerChildProfileMessage children = 1;
+}
+
 message CustomerServiceRequestMessage{
 
     google.protobuf.StringValue ServiceRequestId = 1;
@@ -1087,6 +1179,8 @@ message CustomerServiceRequestMessage{
     CustomerAllergyMessage Allergy = 12;
 
     CustomerMedicalHistoryMessage MedicalHistory = 13;
+
+    google.protobuf.StringValue ChildId = 14;
 }
 
 message CustomerServiceRequestRequestMessage{

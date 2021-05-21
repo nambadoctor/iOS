@@ -917,6 +917,11 @@ internal protocol Nd_V1_ServiceProviderWorkerV1ClientProtocol: GRPCClient {
     _ request: Nd_V1_IdMessage,
     callOptions: CallOptions?
   ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderAvailabilityConfigList>
+
+  func getAutoFillMedicines(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderAutofillMedicineListMessage>
 }
 
 extension Nd_V1_ServiceProviderWorkerV1ClientProtocol {
@@ -995,6 +1000,24 @@ extension Nd_V1_ServiceProviderWorkerV1ClientProtocol {
       interceptors: self.interceptors?.makeGetServiceProviderAvailablityInterceptors() ?? []
     )
   }
+
+  /// Unary call to GetAutoFillMedicines
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetAutoFillMedicines.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getAutoFillMedicines(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderAutofillMedicineListMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderWorkerV1/GetAutoFillMedicines",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetAutoFillMedicinesInterceptors() ?? []
+    )
+  }
 }
 
 internal protocol Nd_V1_ServiceProviderWorkerV1ClientInterceptorFactoryProtocol {
@@ -1010,6 +1033,9 @@ internal protocol Nd_V1_ServiceProviderWorkerV1ClientInterceptorFactoryProtocol 
 
   /// - Returns: Interceptors to use when invoking 'getServiceProviderAvailablity'.
   func makeGetServiceProviderAvailablityInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderAvailabilityConfigList>]
+
+  /// - Returns: Interceptors to use when invoking 'getAutoFillMedicines'.
+  func makeGetAutoFillMedicinesInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderAutofillMedicineListMessage>]
 }
 
 internal final class Nd_V1_ServiceProviderWorkerV1Client: Nd_V1_ServiceProviderWorkerV1ClientProtocol {
@@ -2442,6 +2468,8 @@ internal protocol Nd_V1_ServiceProviderWorkerV1Provider: CallHandlerProvider {
   func setServiceProviderAvailability(request: Nd_V1_ServiceProviderAvailabilityRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_IdMessage>
 
   func getServiceProviderAvailablity(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderAvailabilityConfigList>
+
+  func getAutoFillMedicines(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderAutofillMedicineListMessage>
 }
 
 extension Nd_V1_ServiceProviderWorkerV1Provider {
@@ -2490,6 +2518,15 @@ extension Nd_V1_ServiceProviderWorkerV1Provider {
         userFunction: self.getServiceProviderAvailablity(request:context:)
       )
 
+    case "GetAutoFillMedicines":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderAutofillMedicineListMessage>(),
+        interceptors: self.interceptors?.makeGetAutoFillMedicinesInterceptors() ?? [],
+        userFunction: self.getAutoFillMedicines(request:context:)
+      )
+
     default:
       return nil
     }
@@ -2513,6 +2550,10 @@ internal protocol Nd_V1_ServiceProviderWorkerV1ServerInterceptorFactoryProtocol 
   /// - Returns: Interceptors to use when handling 'getServiceProviderAvailablity'.
   ///   Defaults to calling `self.makeInterceptors()`.
   func makeGetServiceProviderAvailablityInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderAvailabilityConfigList>]
+
+  /// - Returns: Interceptors to use when handling 'getAutoFillMedicines'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetAutoFillMedicinesInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderAutofillMedicineListMessage>]
 }
 /// To build a server, implement a class that conforms to this protocol.
 internal protocol Nd_V1_ServiceProviderServiceRequestWorkerV1Provider: CallHandlerProvider {

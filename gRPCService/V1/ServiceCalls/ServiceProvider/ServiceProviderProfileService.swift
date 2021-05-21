@@ -17,6 +17,8 @@ protocol ServiceProviderProfileServiceProtocol {
     func getServiceProviderAvailabilities(serviceProviderId:String, _ completion: @escaping (([ServiceProviderAvailability]?) -> ()))
     
     func setServiceProviderAvailabilities(serviceProviderId:String, availabilities:[ServiceProviderAvailability], _ completion: @escaping (_ success:Bool)->())
+    
+    func getAutofillMedicineList (_ completion: @escaping (([ServiceProviderAutofillMedicine]?) -> ()))
 }
 
 class ServiceProviderProfileService : ServiceProviderProfileServiceProtocol {
@@ -181,6 +183,31 @@ class ServiceProviderProfileService : ServiceProviderProfileServiceProtocol {
                 DispatchQueue.main.async {
                     completion(false)
                 }
+            }
+        }
+    }
+    
+    func getAutofillMedicineList (_ completion: @escaping (([ServiceProviderAutofillMedicine]?) -> ())) {
+        let channel = ChannelManager.sharedChannelManager.getChannel()
+        let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
+        
+        // Provide the connection to the generated client.
+        let serviceProviderClient = Nd_V1_ServiceProviderWorkerV1Client(channel: channel)
+        
+        let request = Nd_V1_IdMessage.with {
+            $0.id = "".toProto
+        }
+
+        let getAutofillMedicines = serviceProviderClient.getAutoFillMedicines(request, callOptions: callOptions)
+
+        DispatchQueue.global().async {
+            do {
+                let response = try getAutofillMedicines.response.wait()
+                print("Doctors AUTOFILL MEDICINES GET: success")
+                completion(ServiceProviderAutofillMedicineMapper.LocalToGrpc(medicines: response.medicines))
+            } catch {
+                print("Doctors AUTOFILL MEDICINES GET: failed \(error)")
+                completion(nil)
             }
         }
     }

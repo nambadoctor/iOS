@@ -47,13 +47,13 @@ struct MedicineView: View {
                 ForEach (medicineVM.prescription.medicineList, id: \.medicineName) { medicine in
                     HStack {
                         VStack (alignment: .leading, spacing: 5) {
-                            Text("\(medicine.medicineName) - \(medicine.dosage)")
+                            Text("\(medicine.medicineName) - \(medicine._dosage.Name)")
                                 .font(.callout)
                                 .bold()
                                 .foregroundColor(Color.green)
                             
-                            if medicine.duration != 0 {
-                                Text("\(medicine.duration) days")
+                            if !medicine._duration.Days.isEmpty {
+                                Text("\(medicine._duration.Days) \(medicine._duration.Unit)")
                                     .font(.callout)
                                     .foregroundColor(Color.green)
                             } else {
