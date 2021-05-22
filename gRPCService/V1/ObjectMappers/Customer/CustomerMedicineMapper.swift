@@ -12,9 +12,11 @@ class CustomerMedicineMapper {
         return CustomerMedicine(
             medicineName: medicine.medicineName.toString,
             dosage: medicine.dosage.toString,
+            _dosage: CustomerDosageMapper.GrpcToLocal(dosage: medicine.dosageObj),
             routeOfAdministration: medicine.routeOfAdministration.toString,
             intake: medicine.intake.toString,
             duration: medicine.duration.toInt32,
+            _duration: CustomerDurationMapper.GrpcToLocal(duration: medicine.durationObj),
             timings: medicine.timings.toString,
             specialInstructions: medicine.specialInstructions.toString,
             medicineID: medicine.medicineID.toString,
@@ -35,16 +37,18 @@ class CustomerMedicineMapper {
         return Nd_V1_CustomerMedicineMessage.with {
             $0.medicineName = medicine.medicineName.toProto
             $0.dosage = medicine.dosage.toProto
+            $0.dosageObj = CustomerDosageMapper.LocalToGrpc(dosage: medicine._dosage)
             $0.routeOfAdministration = medicine.routeOfAdministration.toProto
             $0.intake = medicine.intake.toProto
             $0.duration = medicine.duration.toProto
+            $0.durationObj = CustomerDurationMapper.LocalToGrpc(duration: medicine._duration)
             $0.timings = medicine.timings.toProto
             $0.specialInstructions = medicine.specialInstructions.toProto
             $0.medicineID = medicine.medicineID.toProto
             $0.notes = medicine.notes.toProto
         }
     }
-    
+
     static func localMedicineToGrpc (medicines:[CustomerMedicine]) -> [Nd_V1_CustomerMedicineMessage] {
         var medList:[Nd_V1_CustomerMedicineMessage] = [Nd_V1_CustomerMedicineMessage]()
 

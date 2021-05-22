@@ -26,5 +26,5 @@ struct CustomerProfile {
     var MedicalHistories:[CustomerMedicalHistory]
     var lastModifiedDate:Int64
     var createdDate:Int64
-
+    //var children:[CustomerChildProfile]
 }

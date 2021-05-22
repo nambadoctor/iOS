@@ -50,7 +50,7 @@ class MedicineViewModel: ObservableObject {
         
         self.retrievePrescriptions()
     }
-
+    
     func uploadManually() {
         self.medicineEntryVM = MedicineEntryViewModel(medicine: MakeEmptyMedicine(), isNew: true, medicineEditedDelegate: self)
         self.showMedicineEntrySheet = true
@@ -71,7 +71,7 @@ class MedicineViewModel: ObservableObject {
     func checkIfPrescriptionExists (medicine:ServiceProviderMedicine) -> Int? {
         var index = 0
         for med in prescription.medicineList {
-            if med.medicineName == medicine.medicineName && med.dosage == medicine.dosage {
+            if med.medicineName == medicine.medicineName && med._dosage.Name == medicine._dosage.Name {
                 return index
             }
             index += 1
@@ -86,7 +86,7 @@ class MedicineViewModel: ObservableObject {
             timingsString = ""
         }
 
-        let medicine = ServiceProviderMedicine(medicineName: medicineEntryVM.medicineName, dosage: medicineEntryVM.dosage, routeOfAdministration: medicineEntryVM.routeOfAdmin, intake: medicineEntryVM.intake, duration: Int32(medicineEntryVM.duration) ?? 0, timings: timingsString, specialInstructions: medicineEntryVM.frequency, medicineID: "", notes: medicineEntryVM.notes)
+        let medicine = ServiceProviderMedicine(medicineName: medicineEntryVM.medicineName, _dosage: medicineEntryVM.dosage, routeOfAdministration: medicineEntryVM.routeOfAdmin, intake: medicineEntryVM.intake, _duration: medicineEntryVM.duration, timings: timingsString, specialInstructions: medicineEntryVM.frequency, medicineID: "", notes: medicineEntryVM.notes)
 
         if medicineBeingEdited != nil {
             prescription.medicineList.remove(at: medicineBeingEdited!)
@@ -96,7 +96,7 @@ class MedicineViewModel: ObservableObject {
             prescription.medicineList.append(medicine)
             showMedicineEntrySheet = false
         }
-        
+
         self.medicineEntryVM.clearValues()
     }
     

@@ -9,10 +9,10 @@ import Foundation
 
 struct ServiceProviderMedicine : Codable {
     var medicineName:String
-    var dosage:String
+    var _dosage:ServiceProviderDosage
     var routeOfAdministration:String
     var intake:String
-    var duration:Int32
+    var _duration:ServiceProviderDuration
     var timings:String
     var specialInstructions:String
     var medicineID:String

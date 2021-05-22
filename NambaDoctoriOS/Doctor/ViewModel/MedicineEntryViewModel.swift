@@ -13,11 +13,12 @@ protocol MedicineEntryDelegate {
 
 class MedicineEntryViewModel : ObservableObject {
     @Published var medicineName:String = ""
-    
-    @Published var dosage:String = ""
-//    @Published var mgOrmcg:String = "mg"
+    @Published var medicineNameChanged:Bool = false
+    @Published var medicineNameConfirmed:Bool = false
 
-    @Published var duration:String = ""
+    @Published var dosage:ServiceProviderDosage = MakeEmptyDosage()
+
+    @Published var duration:ServiceProviderDuration = MakeEmptyDuration()
 
     @Published var frequency:String = ""
     @Published var routeOfAdmin:String = ""
@@ -35,27 +36,33 @@ class MedicineEntryViewModel : ObservableObject {
 
     var medicineEditedDelegate:MedicineEntryDelegate? = nil
     
+    @Published var autofillMedicineList:[ServiceProviderAutofillMedicine] = [ServiceProviderAutofillMedicine]()
+    @Published var predictedMedicineList:[ServiceProviderAutofillMedicine] = [ServiceProviderAutofillMedicine]()
+    @Published var showPredictedMedicines:Bool = false
+    
     init(medicine:ServiceProviderMedicine, isNew:Bool, medicineEditedDelegate:MedicineEntryDelegate) {
         if !isNew {
             mapExistingMedicine(medicine: medicine)
         }
         self.medicineEditedDelegate = medicineEditedDelegate
+        
+        self.getAutofillMedicines()
     }
     
     func toggleEmptyWarning () {
-        guard medicineName.isEmpty, dosage.isEmpty else { return }
+        guard medicineName.isEmpty, dosage.Name.isEmpty else { return }
         showEmptyWarningText = true
     }
 
     func mapExistingMedicine(medicine:ServiceProviderMedicine) {
         medicineName = medicine.medicineName
-        duration = String(medicine.duration)
-        dosage = medicine.dosage
+        duration = medicine._duration
+        dosage = medicine._dosage
         frequency = medicine.specialInstructions
         routeOfAdmin = medicine.routeOfAdministration
         notes = medicine.notes
         intake = medicine.intake
-        
+
         if !medicine.timings.isEmpty {
             let timingsSplit = medicine.timings.components(separatedBy: ",")
             morning = Double(timingsSplit[0]) ?? 0.0
@@ -69,12 +76,14 @@ class MedicineEntryViewModel : ObservableObject {
             evening = 0
             night = 0
         }
+        
+        self.medicineNameFinalized()
     }
 
     func clearValues () {
         medicineName = ""
-        dosage = ""
-        duration = ""
+        dosage = MakeEmptyDosage()
+        duration = MakeEmptyDuration()
         intake = ""
         routeOfAdmin = ""
         frequency = ""
@@ -84,5 +93,65 @@ class MedicineEntryViewModel : ObservableObject {
     
     func makeMedObjAndAdd() {
         medicineEditedDelegate?.addMedicine()
+    }
+    
+    func autoSelectMedicine (medicine:ServiceProviderAutofillMedicine) {
+        EndEditingHelper.endEditing()
+        medicineName = medicine.MedicineBrandName
+        dosage = medicine.Dosage
+        duration = medicine.Duration
+        routeOfAdmin = medicine.RouteOfAdmission
+        intake = medicine.Intake
+
+        if !medicine.Frequency.isEmpty {
+            let timingsSplit = medicine.Frequency.components(separatedBy: ",")
+            morning = Double(timingsSplit[0]) ?? 0.0
+            afternoon = Double(timingsSplit[1]) ?? 0.0
+            evening = Double(timingsSplit[2]) ?? 0.0
+            night = Double(timingsSplit[3]) ?? 0.0
+        } else {
+            wheneverNecessary = true
+            morning = 0
+            afternoon = 0
+            evening = 0
+            night = 0
+        }
+        
+        medicineNameFinalized()
+
+    }
+    
+    func getAutofillMedicines () {
+        ServiceProviderProfileService().getAutofillMedicineList { autoFillMedList in
+            if autoFillMedList != nil {
+                self.autofillMedicineList = autoFillMedList!
+                print(autoFillMedList!)
+            }
+        }
+    }
+    
+    func makeNewMedicine () {
+        EndEditingHelper.endEditing()
+        medicineNameFinalized()
+    }
+    
+    func medicineNameFinalized() {
+        self.medicineNameConfirmed = true
+        self.medicineNameChanged = false
+        self.showPredictedMedicines = false
+    }
+}
+
+extension MedicineEntryViewModel : ExpandingTextViewEditedDelegate {
+    func changed() {
+        self.showPredictedMedicines = true
+        self.medicineNameChanged = true
+        self.medicineNameConfirmed = false
+    }
+}
+
+extension MedicineEntryViewModel : SideBySideCheckBoxDelegate {
+    func itemChecked(value: String) {
+        self.duration.Unit = value
     }
 }
