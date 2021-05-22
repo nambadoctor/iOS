@@ -22,7 +22,8 @@ class CustomerServiceRequestMapper {
             lastModifiedDate: serviceRequest.lastModifedDate.toInt64,
             customerID: serviceRequest.customerID.toString,
             allergy: CustomerAllergyMapper.grpcAllergyToLocal(allergyMessage: serviceRequest.allergy),
-            medicalHistory: CustomerMedicalHistoryMapper.grpcMedicalHistoryToLocal(medicalHistoryMessage: serviceRequest.medicalHistory))
+            medicalHistory: CustomerMedicalHistoryMapper.grpcMedicalHistoryToLocal(medicalHistoryMessage: serviceRequest.medicalHistory),
+            childId: serviceRequest.childID.toString)
     }
 
     func localServiceRequestToGrpc(serviceRequest:CustomerServiceRequest) -> Nd_V1_CustomerServiceRequestMessage {
@@ -40,6 +41,7 @@ class CustomerServiceRequestMapper {
             $0.customerID = serviceRequest.customerID.toProto
             $0.allergy = CustomerAllergyMapper.localAllergyToGrpc(allergy: serviceRequest.allergy)
             $0.medicalHistory = CustomerMedicalHistoryMapper.localMedicalHistoryToGrpc(medicalHistory: serviceRequest.medicalHistory)
+            $0.childID = serviceRequest.childId.toProto
         }
     }
 

@@ -9,7 +9,7 @@ import Foundation
 
 class DetailedBookDocViewModel : ObservableObject {
     var serviceProvider:CustomerServiceProviderProfile
-    
+    var customerProfile:CustomerProfile
     var slots:[CustomerGeneratedSlot]? = nil
 
     @Published var dateDisplay:[Int64] = [Int64]()
@@ -21,7 +21,10 @@ class DetailedBookDocViewModel : ObservableObject {
     @Published var docProfPicImageLoader:ImageLoader? = nil
     
     @Published var reasonVM:ReasonPickerViewModel = ReasonPickerViewModel()
-
+    
+    @Published var bookingAppointmentFor:String = "Me"
+    var bookingForProfile:CustomerChildProfile? = nil
+    
     var customerServiceProviderService:CustomerServiceProviderServiceProtocol
     
     var serviceProviderName : String {
@@ -34,11 +37,13 @@ class DetailedBookDocViewModel : ObservableObject {
     
     
     init(serviceProvider:CustomerServiceProviderProfile,
-         customerServiceProviderService:CustomerServiceProviderServiceProtocol = CustomerServiceProviderService()) {
+         customerServiceProviderService:CustomerServiceProviderServiceProtocol = CustomerServiceProviderService(),
+         customerProfile:CustomerProfile) {
+        self.customerProfile = customerProfile
         self.serviceProvider = serviceProvider
         self.customerServiceProviderService = customerServiceProviderService
         self.retrieveAvailabilities()
-        
+
         self.docProfPicImageLoader = ImageLoader(urlString: serviceProvider.profilePictureURL) { _ in }
     }
     
@@ -157,19 +162,39 @@ class DetailedBookDocViewModel : ObservableObject {
         let emptyDiagnosis = CustomerDiagnosis(name: "", type: "")
         let emptyAllergy = CustomerAllergy(AllergyId: "", AllergyName: "", AppointmentId: "", ServiceRequestId: "")
         let emptyMedicalHistory = CustomerMedicalHistory(MedicalHistoryId: "", MedicalHistoryName: "", PastMedicalHistory: "", MedicationHistory: "", AppointmentId: "", ServiceRequestId: "")
+        
+        var serviceRequest = CustomerServiceRequest(serviceRequestID: "",
+                                                    reason: self.reasonVM.reason,
+                                                    serviceProviderID: serviceProvider.serviceProviderID,
+                                                    appointmentID: appointmentId,
+                                                    examination: "",
+                                                    diagnosis: emptyDiagnosis,
+                                                    investigations: [String](),
+                                                    advice: "",
+                                                    createdDateTime: Date().millisecondsSince1970,
+                                                    lastModifiedDate: Date().millisecondsSince1970,
+                                                    customerID: UserIdHelper().retrieveUserId(),
+                                                    allergy: emptyAllergy,
+                                                    medicalHistory: emptyMedicalHistory,
+                                                    childId: "")
+        
+        if self.bookingForProfile != nil {
+            serviceRequest.childId = bookingForProfile!.ChildProfileId
+        }
 
-        return CustomerServiceRequest(serviceRequestID: "",
-                                      reason: self.reasonVM.reason,
-                                      serviceProviderID: serviceProvider.serviceProviderID,
-                                      appointmentID: appointmentId,
-                                      examination: "",
-                                      diagnosis: emptyDiagnosis,
-                                      investigations: [String](),
-                                      advice: "",
-                                      createdDateTime: Date().millisecondsSince1970,
-                                      lastModifiedDate: Date().millisecondsSince1970,
-                                      customerID: UserIdHelper().retrieveUserId(),
-                                      allergy: emptyAllergy,
-                                      medicalHistory: emptyMedicalHistory)
+        return serviceRequest
+    }
+}
+
+//profile booking
+extension DetailedBookDocViewModel {
+    func bookForMe () {
+        self.bookingAppointmentFor = "Me"
+        self.bookingForProfile = nil
+    }
+    
+    func bookForChild (child:CustomerChildProfile) {
+        self.bookingForProfile = child
+        self.bookingAppointmentFor = child.Name
     }
 }

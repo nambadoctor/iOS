@@ -21,4 +21,6 @@ protocol DoctorAlertHelpersProtocol {
     func takeToChatAlert (open: @escaping (Bool) -> ())
     
     func patientUnavailableAlert (patientName:String, completion: @escaping (_ wait:Bool, _ call:Bool) -> ())
+    
+    func videoCallNotAllowedForChildAlert(call: @escaping (Bool) -> ())
 }

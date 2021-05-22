@@ -22,6 +22,8 @@ class IntermediateAppointmentViewModel : ObservableObject {
     @Published var doctorTwilioManagerViewModel:DoctorTwilioViewModel
     @Published var chatVM:DoctorChatViewModel
     
+    @Published var childProfile:ServiceProviderCustomerChildProfile? = nil
+    
     @Published var cancellationSheetOffset:CGFloat = UIScreen.main.bounds.height
     
     @Published var takeToDetailedAppointment:Bool = false
@@ -122,9 +124,16 @@ extension IntermediateAppointmentViewModel {
     }
 }
 
-extension IntermediateAppointmentViewModel : LoadReportsWithServiceRequestDelegate {
+extension IntermediateAppointmentViewModel : LoadedServiceRequestDelegate {
     func gotServiceRequestId(serviceRequestId: String) {
         patientInfoViewModel.retrieveUploadedDocumentList(serviceRequestId: serviceRequestId)
+    }
+    
+    func isForChild(childId: String) {
+        let child = patientInfoViewModel.getChildProfile(childId: childId)
+        if child != nil {
+            self.childProfile = child!
+        }
     }
 }
 
@@ -208,6 +217,14 @@ extension IntermediateAppointmentViewModel : TwilioDelegate {
     }
 
     func startConsultation() {
+
+        guard self.childProfile == nil else {
+            doctorAlertHelper.videoCallNotAllowedForChildAlert { _ in
+                self.patientInfoViewModel.callPatient()
+            }
+            return
+        }
+
         EndEditingHelper.endEditing()
         CommonDefaultModifiers.showLoader()
         doctorTwilioManagerViewModel.startRoom() { success in

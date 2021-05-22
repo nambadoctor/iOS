@@ -47,7 +47,8 @@ class CustomerCreateProfileViewModel: ObservableObject {
                                               Allergies: [CustomerAllergy](),
                                               MedicalHistories: [CustomerMedicalHistory](),
                                               lastModifiedDate: Date().millisecondsSince1970,
-                                              createdDate: Date().millisecondsSince1970)
+                                              createdDate: Date().millisecondsSince1970,
+                                              children: [CustomerChildProfile]())
 
         CommonDefaultModifiers.showLoader()
         CustomerProfileService().setCustomerProfile(customerProfile: customerProfile) { customerId in

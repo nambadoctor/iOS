@@ -25,7 +25,8 @@ class ServiceProviderCustomerProfileObjectMapper {
             profilePicURL: customer.profilePicURL.toString,
             primaryServiceProviderID: customer.primaryServiceProviderID.toString,
             lastModifiedDate: customer.lastModifedDate.toInt64,
-            createdDate: customer.createdDate.toInt64)
+            createdDate: customer.createdDate.toInt64,
+            children: ServiceProviderCustomerChildProfileMapper.GrpcToLocal(children: customer.children))
     }
     
     func grpcCustomerToLocal (customer:[Nd_V1_ServiceProviderCustomerProfileMessage]) -> [ServiceProviderCustomerProfile] {
@@ -56,6 +57,7 @@ class ServiceProviderCustomerProfileObjectMapper {
             $0.primaryServiceProviderID = customer.primaryServiceProviderID.toProto
             $0.lastModifedDate = customer.lastModifiedDate.toProto
             $0.createdDate = customer.createdDate.toProto
+            $0.children = ServiceProviderCustomerChildProfileMapper.LocalToGrpc(children: customer.children)
         }
     }
 }

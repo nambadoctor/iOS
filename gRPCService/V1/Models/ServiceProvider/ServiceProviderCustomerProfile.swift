@@ -24,4 +24,5 @@ struct ServiceProviderCustomerProfile {
     var primaryServiceProviderID:String
     var lastModifiedDate:Int64
     var createdDate:Int64
+    var children:[ServiceProviderCustomerChildProfile]
 }

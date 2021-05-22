@@ -14,6 +14,8 @@ class PatientInfoViewModel: ObservableObject {
 
     @Published var AppointmentList:[ServiceProviderAppointment]? = nil
     @Published var ReportList:[ServiceProviderReport]? = nil
+    
+    var patientPhoneNumber:String = ""
 
     var appointment:ServiceProviderAppointment
     private var customerServiceCall:ServiceProviderCustomerServiceProtocol
@@ -39,17 +41,17 @@ class PatientInfoViewModel: ObservableObject {
     var phoneNumber:String {
         return "\(patientObj.phoneNumbers[0].number)"
     }
-    
+
     func callPatient () {
-        guard let number = URL(string: "tel://" + patientObj.phoneNumbers[0].countryCode + patientObj.phoneNumbers[0].number) else { return }
+        guard let number = URL(string: "tel://" + self.patientPhoneNumber) else { return }
         UIApplication.shared.open(number)
     }
 
-    
     private func retrievePatientObj () {
         customerServiceCall.getPatientProfile(patientId: self.appointment.requestedBy) { (customer) in
             if customer != nil {
                 self.patientObj = customer
+                self.patientPhoneNumber = self.patientObj.phoneNumbers[0].countryCode + self.patientObj.phoneNumbers[0].number
                 CommonDefaultModifiers.hideLoader()
             }
         }
@@ -69,5 +71,15 @@ class PatientInfoViewModel: ObservableObject {
                 self.ReportList = uploadedDocumentList
             }
         }
+    }
+    
+    func getChildProfile (childId:String) -> ServiceProviderCustomerChildProfile? {
+        for child in self.patientObj.children {
+            if child.ChildProfileId == childId {
+                self.patientPhoneNumber = child.PreferredPhoneNumber
+                return child
+            }
+        }
+        return nil
     }
 }

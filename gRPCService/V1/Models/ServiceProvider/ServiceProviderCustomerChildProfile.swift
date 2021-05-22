@@ -1,13 +1,13 @@
 //
-//  CustomerChildProfile.swift
+//  ServiceProviderCustomerChildProfile.swift
 //  NambaDoctoriOS
 //
-//  Created by Surya Manivannan on 5/21/21.
+//  Created by Surya Manivannan on 5/22/21.
 //
 
 import Foundation
 
-struct CustomerChildProfile {
+struct ServiceProviderCustomerChildProfile : Codable {
     var ChildProfileId:String
     var Name:String
     var Age:String

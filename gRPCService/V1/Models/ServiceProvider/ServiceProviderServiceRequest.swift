@@ -21,4 +21,5 @@ struct ServiceProviderServiceRequest : Codable {
     var customerID:String
     var allergy:ServiceProviderCustomerAllergy
     var medicalHistory:ServiceProviderCustomerMedicalHistory
+    var childId:String
 }

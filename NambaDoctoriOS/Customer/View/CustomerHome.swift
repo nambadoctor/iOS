@@ -42,10 +42,10 @@ struct CustomerHome: View {
                 }
                 .environmentObject(customerVM)
                 .navigationBarTitle("NambaDoctor", displayMode: .inline)
+                .navigationBarItems(trailing: self.addChildButton)
             }
         }
         .onAppear(){
-            print("CUSTOMER HOME REACHED")
             showAlertListener()
             refreshFCMTokenListener()
             refreshAppointmentsListener()
@@ -53,6 +53,20 @@ struct CustomerHome: View {
         }
         .alert(item: $alertItem) { alertItem in
             alertToShow(alertItem: alertItem)
+        }
+    }
+    
+    var addChildButton : some View {
+        Button {
+            self.customerVM.showAddChildSheet = true
+        } label: {
+            Text("Add Profile")
+        }
+        .sheet(isPresented: self.$customerVM.showAddChildSheet) {
+            AddChildProfileView()
+                .onDisappear() {
+                    self.customerVM.fetchCustomerProfile()
+                }
         }
     }
 }

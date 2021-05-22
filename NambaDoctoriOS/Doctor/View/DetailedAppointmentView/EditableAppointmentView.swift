@@ -20,7 +20,7 @@ struct EditableAppointmentView: View {
             if intermediateVM.killView {
                 Text("You are done").onAppear() { killView() }
             }
-            
+
             CancellationBottomsheetCaller(offset: self.$intermediateVM.cancellationSheetOffset, delegate: self.intermediateVM)
         }
         .background(Color.gray.opacity(0.08))
@@ -39,11 +39,23 @@ struct EditableAppointmentView: View {
     var detailedUpcomingAppointment : some View {
         ScrollView (.vertical) {
             
+            if self.intermediateVM.childProfile != nil {
+                HStack {
+                    Text("Appointment booked by caretaker for child")
+                        .font(.footnote)
+                        .foregroundColor(.gray)
+                    Spacer()
+                }
+                .padding(.horizontal)
+                .padding(.top, 5)
+            }
+            
             ZStack {
                 header
                     .background(Color(CustomColors.SkyBlue))
                     .cornerRadius(10)
-                    .padding()
+                    .padding([.horizontal, .bottom])
+                    .padding(.top, 7)
                     .padding(.bottom, 7)
 
                 VStack {
@@ -54,7 +66,7 @@ struct EditableAppointmentView: View {
                     }
                 }
             }
-            
+
             MedicineEditableView()
                 .padding()
                 .background(Color.white)
@@ -81,7 +93,7 @@ struct EditableAppointmentView: View {
                             Image("chevron.down.circle")
                                 .foregroundColor(.blue)
                         }
-                        
+
                         VStack (alignment: .leading) {
                             Text("Clinical Information")
                                 .bold()
@@ -198,7 +210,7 @@ struct EditableAppointmentView: View {
                     LetterOnColoredCircle(word: intermediateVM.appointment.customerName, color: intermediateVM.appointmentFinished ? Color.gray : Color.blue)
                         .padding(.vertical)
                 }
-                
+
                 VStack (alignment: .leading, spacing: 5) {
                     Text("Name")
                         .foregroundColor(Color.white.opacity(0.5))

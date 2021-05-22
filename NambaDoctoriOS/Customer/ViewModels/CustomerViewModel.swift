@@ -21,6 +21,8 @@ class CustomerViewModel : ObservableObject {
     
     @Published var imageLoader:ImageLoader? = nil
     
+    @Published var showAddChildSheet:Bool = false
+    
     var customerProfileService:CustomerProfileServiceProtocol
     var customerAppointmentService:CustomerAppointmentServiceProtocol
     var customerServiceProviderService:CustomerServiceProviderServiceProtocol

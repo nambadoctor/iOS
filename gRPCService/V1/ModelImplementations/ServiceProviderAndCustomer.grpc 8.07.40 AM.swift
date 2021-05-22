@@ -25,284 +25,6 @@ import NIO
 import SwiftProtobuf
 
 
-/// Usage: instantiate `Nd_V1_NotificationWorkerV1Client`, then call methods of this protocol to make API calls.
-internal protocol Nd_V1_NotificationWorkerV1ClientProtocol: GRPCClient {
-  var serviceName: String { get }
-  var interceptors: Nd_V1_NotificationWorkerV1ClientInterceptorFactoryProtocol? { get }
-
-  func sendNotification(
-    _ request: Nd_V1_NotificationRequestMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_NotificationRequestMessage, Nd_V1_BoolMessage>
-}
-
-extension Nd_V1_NotificationWorkerV1ClientProtocol {
-  internal var serviceName: String {
-    return "nd.v1.NotificationWorkerV1"
-  }
-
-  /// Unary call to SendNotification
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to SendNotification.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func sendNotification(
-    _ request: Nd_V1_NotificationRequestMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_NotificationRequestMessage, Nd_V1_BoolMessage> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.NotificationWorkerV1/SendNotification",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeSendNotificationInterceptors() ?? []
-    )
-  }
-}
-
-internal protocol Nd_V1_NotificationWorkerV1ClientInterceptorFactoryProtocol {
-
-  /// - Returns: Interceptors to use when invoking 'sendNotification'.
-  func makeSendNotificationInterceptors() -> [ClientInterceptor<Nd_V1_NotificationRequestMessage, Nd_V1_BoolMessage>]
-}
-
-internal final class Nd_V1_NotificationWorkerV1Client: Nd_V1_NotificationWorkerV1ClientProtocol {
-  internal let channel: GRPCChannel
-  internal var defaultCallOptions: CallOptions
-  internal var interceptors: Nd_V1_NotificationWorkerV1ClientInterceptorFactoryProtocol?
-
-  /// Creates a client for the nd.v1.NotificationWorkerV1 service.
-  ///
-  /// - Parameters:
-  ///   - channel: `GRPCChannel` to the service host.
-  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
-  ///   - interceptors: A factory providing interceptors for each RPC.
-  internal init(
-    channel: GRPCChannel,
-    defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Nd_V1_NotificationWorkerV1ClientInterceptorFactoryProtocol? = nil
-  ) {
-    self.channel = channel
-    self.defaultCallOptions = defaultCallOptions
-    self.interceptors = interceptors
-  }
-}
-
-/// Usage: instantiate `Nd_V1_LoggingWorkerV1Client`, then call methods of this protocol to make API calls.
-internal protocol Nd_V1_LoggingWorkerV1ClientProtocol: GRPCClient {
-  var serviceName: String { get }
-  var interceptors: Nd_V1_LoggingWorkerV1ClientInterceptorFactoryProtocol? { get }
-
-  func setLog(
-    _ request: Nd_V1_VoidMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_VoidMessage, Nd_V1_BoolMessage>
-}
-
-extension Nd_V1_LoggingWorkerV1ClientProtocol {
-  internal var serviceName: String {
-    return "nd.v1.LoggingWorkerV1"
-  }
-
-  /// Unary call to SetLog
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to SetLog.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func setLog(
-    _ request: Nd_V1_VoidMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_VoidMessage, Nd_V1_BoolMessage> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.LoggingWorkerV1/SetLog",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeSetLogInterceptors() ?? []
-    )
-  }
-}
-
-internal protocol Nd_V1_LoggingWorkerV1ClientInterceptorFactoryProtocol {
-
-  /// - Returns: Interceptors to use when invoking 'setLog'.
-  func makeSetLogInterceptors() -> [ClientInterceptor<Nd_V1_VoidMessage, Nd_V1_BoolMessage>]
-}
-
-internal final class Nd_V1_LoggingWorkerV1Client: Nd_V1_LoggingWorkerV1ClientProtocol {
-  internal let channel: GRPCChannel
-  internal var defaultCallOptions: CallOptions
-  internal var interceptors: Nd_V1_LoggingWorkerV1ClientInterceptorFactoryProtocol?
-
-  /// Creates a client for the nd.v1.LoggingWorkerV1 service.
-  ///
-  /// - Parameters:
-  ///   - channel: `GRPCChannel` to the service host.
-  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
-  ///   - interceptors: A factory providing interceptors for each RPC.
-  internal init(
-    channel: GRPCChannel,
-    defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Nd_V1_LoggingWorkerV1ClientInterceptorFactoryProtocol? = nil
-  ) {
-    self.channel = channel
-    self.defaultCallOptions = defaultCallOptions
-    self.interceptors = interceptors
-  }
-}
-
-/// Usage: instantiate `Nd_V1_TwilioWorkerV1Client`, then call methods of this protocol to make API calls.
-internal protocol Nd_V1_TwilioWorkerV1ClientProtocol: GRPCClient {
-  var serviceName: String { get }
-  var interceptors: Nd_V1_TwilioWorkerV1ClientInterceptorFactoryProtocol? { get }
-
-  func getTwilioVideoAuthToken(
-    _ request: Nd_V1_TwilioAuthRequest,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_TwilioAuthRequest, Nd_V1_StringMessage>
-
-  func getTwilioChatAuthToken(
-    _ request: Nd_V1_IdMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_StringMessage>
-}
-
-extension Nd_V1_TwilioWorkerV1ClientProtocol {
-  internal var serviceName: String {
-    return "nd.v1.TwilioWorkerV1"
-  }
-
-  /// Unary call to GetTwilioVideoAuthToken
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetTwilioVideoAuthToken.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func getTwilioVideoAuthToken(
-    _ request: Nd_V1_TwilioAuthRequest,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_TwilioAuthRequest, Nd_V1_StringMessage> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.TwilioWorkerV1/GetTwilioVideoAuthToken",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetTwilioVideoAuthTokenInterceptors() ?? []
-    )
-  }
-
-  /// Unary call to GetTwilioChatAuthToken
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetTwilioChatAuthToken.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func getTwilioChatAuthToken(
-    _ request: Nd_V1_IdMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_StringMessage> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.TwilioWorkerV1/GetTwilioChatAuthToken",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetTwilioChatAuthTokenInterceptors() ?? []
-    )
-  }
-}
-
-internal protocol Nd_V1_TwilioWorkerV1ClientInterceptorFactoryProtocol {
-
-  /// - Returns: Interceptors to use when invoking 'getTwilioVideoAuthToken'.
-  func makeGetTwilioVideoAuthTokenInterceptors() -> [ClientInterceptor<Nd_V1_TwilioAuthRequest, Nd_V1_StringMessage>]
-
-  /// - Returns: Interceptors to use when invoking 'getTwilioChatAuthToken'.
-  func makeGetTwilioChatAuthTokenInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_StringMessage>]
-}
-
-internal final class Nd_V1_TwilioWorkerV1Client: Nd_V1_TwilioWorkerV1ClientProtocol {
-  internal let channel: GRPCChannel
-  internal var defaultCallOptions: CallOptions
-  internal var interceptors: Nd_V1_TwilioWorkerV1ClientInterceptorFactoryProtocol?
-
-  /// Creates a client for the nd.v1.TwilioWorkerV1 service.
-  ///
-  /// - Parameters:
-  ///   - channel: `GRPCChannel` to the service host.
-  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
-  ///   - interceptors: A factory providing interceptors for each RPC.
-  internal init(
-    channel: GRPCChannel,
-    defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Nd_V1_TwilioWorkerV1ClientInterceptorFactoryProtocol? = nil
-  ) {
-    self.channel = channel
-    self.defaultCallOptions = defaultCallOptions
-    self.interceptors = interceptors
-  }
-}
-
-/// Usage: instantiate `Nd_V1_UserTypeWorkerV1Client`, then call methods of this protocol to make API calls.
-internal protocol Nd_V1_UserTypeWorkerV1ClientProtocol: GRPCClient {
-  var serviceName: String { get }
-  var interceptors: Nd_V1_UserTypeWorkerV1ClientInterceptorFactoryProtocol? { get }
-
-  func getUserType(
-    _ request: Nd_V1_VoidMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_VoidMessage, Nd_V1_StringMessage>
-}
-
-extension Nd_V1_UserTypeWorkerV1ClientProtocol {
-  internal var serviceName: String {
-    return "nd.v1.UserTypeWorkerV1"
-  }
-
-  /// Unary call to GetUserType
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetUserType.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func getUserType(
-    _ request: Nd_V1_VoidMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_VoidMessage, Nd_V1_StringMessage> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.UserTypeWorkerV1/GetUserType",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetUserTypeInterceptors() ?? []
-    )
-  }
-}
-
-internal protocol Nd_V1_UserTypeWorkerV1ClientInterceptorFactoryProtocol {
-
-  /// - Returns: Interceptors to use when invoking 'getUserType'.
-  func makeGetUserTypeInterceptors() -> [ClientInterceptor<Nd_V1_VoidMessage, Nd_V1_StringMessage>]
-}
-
-internal final class Nd_V1_UserTypeWorkerV1Client: Nd_V1_UserTypeWorkerV1ClientProtocol {
-  internal let channel: GRPCChannel
-  internal var defaultCallOptions: CallOptions
-  internal var interceptors: Nd_V1_UserTypeWorkerV1ClientInterceptorFactoryProtocol?
-
-  /// Creates a client for the nd.v1.UserTypeWorkerV1 service.
-  ///
-  /// - Parameters:
-  ///   - channel: `GRPCChannel` to the service host.
-  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
-  ///   - interceptors: A factory providing interceptors for each RPC.
-  internal init(
-    channel: GRPCChannel,
-    defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Nd_V1_UserTypeWorkerV1ClientInterceptorFactoryProtocol? = nil
-  ) {
-    self.channel = channel
-    self.defaultCallOptions = defaultCallOptions
-    self.interceptors = interceptors
-  }
-}
-
 /// Usage: instantiate `Nd_V1_ServiceProviderAppointmentWorkerV1Client`, then call methods of this protocol to make API calls.
 internal protocol Nd_V1_ServiceProviderAppointmentWorkerV1ClientProtocol: GRPCClient {
   var serviceName: String { get }
@@ -1149,6 +871,284 @@ internal final class Nd_V1_ServiceProviderServiceRequestWorkerV1Client: Nd_V1_Se
   }
 }
 
+/// Usage: instantiate `Nd_V1_LoggingWorkerV1Client`, then call methods of this protocol to make API calls.
+internal protocol Nd_V1_LoggingWorkerV1ClientProtocol: GRPCClient {
+  var serviceName: String { get }
+  var interceptors: Nd_V1_LoggingWorkerV1ClientInterceptorFactoryProtocol? { get }
+
+  func setLog(
+    _ request: Nd_V1_VoidMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_VoidMessage, Nd_V1_BoolMessage>
+}
+
+extension Nd_V1_LoggingWorkerV1ClientProtocol {
+  internal var serviceName: String {
+    return "nd.v1.LoggingWorkerV1"
+  }
+
+  /// Unary call to SetLog
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to SetLog.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func setLog(
+    _ request: Nd_V1_VoidMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_VoidMessage, Nd_V1_BoolMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.LoggingWorkerV1/SetLog",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeSetLogInterceptors() ?? []
+    )
+  }
+}
+
+internal protocol Nd_V1_LoggingWorkerV1ClientInterceptorFactoryProtocol {
+
+  /// - Returns: Interceptors to use when invoking 'setLog'.
+  func makeSetLogInterceptors() -> [ClientInterceptor<Nd_V1_VoidMessage, Nd_V1_BoolMessage>]
+}
+
+internal final class Nd_V1_LoggingWorkerV1Client: Nd_V1_LoggingWorkerV1ClientProtocol {
+  internal let channel: GRPCChannel
+  internal var defaultCallOptions: CallOptions
+  internal var interceptors: Nd_V1_LoggingWorkerV1ClientInterceptorFactoryProtocol?
+
+  /// Creates a client for the nd.v1.LoggingWorkerV1 service.
+  ///
+  /// - Parameters:
+  ///   - channel: `GRPCChannel` to the service host.
+  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
+  ///   - interceptors: A factory providing interceptors for each RPC.
+  internal init(
+    channel: GRPCChannel,
+    defaultCallOptions: CallOptions = CallOptions(),
+    interceptors: Nd_V1_LoggingWorkerV1ClientInterceptorFactoryProtocol? = nil
+  ) {
+    self.channel = channel
+    self.defaultCallOptions = defaultCallOptions
+    self.interceptors = interceptors
+  }
+}
+
+/// Usage: instantiate `Nd_V1_NotificationWorkerV1Client`, then call methods of this protocol to make API calls.
+internal protocol Nd_V1_NotificationWorkerV1ClientProtocol: GRPCClient {
+  var serviceName: String { get }
+  var interceptors: Nd_V1_NotificationWorkerV1ClientInterceptorFactoryProtocol? { get }
+
+  func sendNotification(
+    _ request: Nd_V1_NotificationRequestMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_NotificationRequestMessage, Nd_V1_BoolMessage>
+}
+
+extension Nd_V1_NotificationWorkerV1ClientProtocol {
+  internal var serviceName: String {
+    return "nd.v1.NotificationWorkerV1"
+  }
+
+  /// Unary call to SendNotification
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to SendNotification.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func sendNotification(
+    _ request: Nd_V1_NotificationRequestMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_NotificationRequestMessage, Nd_V1_BoolMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.NotificationWorkerV1/SendNotification",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeSendNotificationInterceptors() ?? []
+    )
+  }
+}
+
+internal protocol Nd_V1_NotificationWorkerV1ClientInterceptorFactoryProtocol {
+
+  /// - Returns: Interceptors to use when invoking 'sendNotification'.
+  func makeSendNotificationInterceptors() -> [ClientInterceptor<Nd_V1_NotificationRequestMessage, Nd_V1_BoolMessage>]
+}
+
+internal final class Nd_V1_NotificationWorkerV1Client: Nd_V1_NotificationWorkerV1ClientProtocol {
+  internal let channel: GRPCChannel
+  internal var defaultCallOptions: CallOptions
+  internal var interceptors: Nd_V1_NotificationWorkerV1ClientInterceptorFactoryProtocol?
+
+  /// Creates a client for the nd.v1.NotificationWorkerV1 service.
+  ///
+  /// - Parameters:
+  ///   - channel: `GRPCChannel` to the service host.
+  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
+  ///   - interceptors: A factory providing interceptors for each RPC.
+  internal init(
+    channel: GRPCChannel,
+    defaultCallOptions: CallOptions = CallOptions(),
+    interceptors: Nd_V1_NotificationWorkerV1ClientInterceptorFactoryProtocol? = nil
+  ) {
+    self.channel = channel
+    self.defaultCallOptions = defaultCallOptions
+    self.interceptors = interceptors
+  }
+}
+
+/// Usage: instantiate `Nd_V1_TwilioWorkerV1Client`, then call methods of this protocol to make API calls.
+internal protocol Nd_V1_TwilioWorkerV1ClientProtocol: GRPCClient {
+  var serviceName: String { get }
+  var interceptors: Nd_V1_TwilioWorkerV1ClientInterceptorFactoryProtocol? { get }
+
+  func getTwilioVideoAuthToken(
+    _ request: Nd_V1_TwilioAuthRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_TwilioAuthRequest, Nd_V1_StringMessage>
+
+  func getTwilioChatAuthToken(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_StringMessage>
+}
+
+extension Nd_V1_TwilioWorkerV1ClientProtocol {
+  internal var serviceName: String {
+    return "nd.v1.TwilioWorkerV1"
+  }
+
+  /// Unary call to GetTwilioVideoAuthToken
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetTwilioVideoAuthToken.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getTwilioVideoAuthToken(
+    _ request: Nd_V1_TwilioAuthRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_TwilioAuthRequest, Nd_V1_StringMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.TwilioWorkerV1/GetTwilioVideoAuthToken",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetTwilioVideoAuthTokenInterceptors() ?? []
+    )
+  }
+
+  /// Unary call to GetTwilioChatAuthToken
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetTwilioChatAuthToken.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getTwilioChatAuthToken(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_StringMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.TwilioWorkerV1/GetTwilioChatAuthToken",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetTwilioChatAuthTokenInterceptors() ?? []
+    )
+  }
+}
+
+internal protocol Nd_V1_TwilioWorkerV1ClientInterceptorFactoryProtocol {
+
+  /// - Returns: Interceptors to use when invoking 'getTwilioVideoAuthToken'.
+  func makeGetTwilioVideoAuthTokenInterceptors() -> [ClientInterceptor<Nd_V1_TwilioAuthRequest, Nd_V1_StringMessage>]
+
+  /// - Returns: Interceptors to use when invoking 'getTwilioChatAuthToken'.
+  func makeGetTwilioChatAuthTokenInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_StringMessage>]
+}
+
+internal final class Nd_V1_TwilioWorkerV1Client: Nd_V1_TwilioWorkerV1ClientProtocol {
+  internal let channel: GRPCChannel
+  internal var defaultCallOptions: CallOptions
+  internal var interceptors: Nd_V1_TwilioWorkerV1ClientInterceptorFactoryProtocol?
+
+  /// Creates a client for the nd.v1.TwilioWorkerV1 service.
+  ///
+  /// - Parameters:
+  ///   - channel: `GRPCChannel` to the service host.
+  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
+  ///   - interceptors: A factory providing interceptors for each RPC.
+  internal init(
+    channel: GRPCChannel,
+    defaultCallOptions: CallOptions = CallOptions(),
+    interceptors: Nd_V1_TwilioWorkerV1ClientInterceptorFactoryProtocol? = nil
+  ) {
+    self.channel = channel
+    self.defaultCallOptions = defaultCallOptions
+    self.interceptors = interceptors
+  }
+}
+
+/// Usage: instantiate `Nd_V1_UserTypeWorkerV1Client`, then call methods of this protocol to make API calls.
+internal protocol Nd_V1_UserTypeWorkerV1ClientProtocol: GRPCClient {
+  var serviceName: String { get }
+  var interceptors: Nd_V1_UserTypeWorkerV1ClientInterceptorFactoryProtocol? { get }
+
+  func getUserType(
+    _ request: Nd_V1_VoidMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_VoidMessage, Nd_V1_StringMessage>
+}
+
+extension Nd_V1_UserTypeWorkerV1ClientProtocol {
+  internal var serviceName: String {
+    return "nd.v1.UserTypeWorkerV1"
+  }
+
+  /// Unary call to GetUserType
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetUserType.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getUserType(
+    _ request: Nd_V1_VoidMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_VoidMessage, Nd_V1_StringMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.UserTypeWorkerV1/GetUserType",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetUserTypeInterceptors() ?? []
+    )
+  }
+}
+
+internal protocol Nd_V1_UserTypeWorkerV1ClientInterceptorFactoryProtocol {
+
+  /// - Returns: Interceptors to use when invoking 'getUserType'.
+  func makeGetUserTypeInterceptors() -> [ClientInterceptor<Nd_V1_VoidMessage, Nd_V1_StringMessage>]
+}
+
+internal final class Nd_V1_UserTypeWorkerV1Client: Nd_V1_UserTypeWorkerV1ClientProtocol {
+  internal let channel: GRPCChannel
+  internal var defaultCallOptions: CallOptions
+  internal var interceptors: Nd_V1_UserTypeWorkerV1ClientInterceptorFactoryProtocol?
+
+  /// Creates a client for the nd.v1.UserTypeWorkerV1 service.
+  ///
+  /// - Parameters:
+  ///   - channel: `GRPCChannel` to the service host.
+  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
+  ///   - interceptors: A factory providing interceptors for each RPC.
+  internal init(
+    channel: GRPCChannel,
+    defaultCallOptions: CallOptions = CallOptions(),
+    interceptors: Nd_V1_UserTypeWorkerV1ClientInterceptorFactoryProtocol? = nil
+  ) {
+    self.channel = channel
+    self.defaultCallOptions = defaultCallOptions
+    self.interceptors = interceptors
+  }
+}
+
 /// Usage: instantiate `Nd_V1_CustomerAppointmentWorkerV1Client`, then call methods of this protocol to make API calls.
 internal protocol Nd_V1_CustomerAppointmentWorkerV1ClientProtocol: GRPCClient {
   var serviceName: String { get }
@@ -1335,6 +1335,11 @@ internal protocol Nd_V1_CustomerWorkerV1ClientProtocol: GRPCClient {
     _ request: Nd_V1_CustomerFollowUpRequestMessage,
     callOptions: CallOptions?
   ) -> UnaryCall<Nd_V1_CustomerFollowUpRequestMessage, Nd_V1_CustomerFollowUpMessage>
+
+  func setChildProfile(
+    _ request: Nd_V1_CustomerChildProfileUploadMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_CustomerChildProfileUploadMessage, Nd_V1_IdMessage>
 }
 
 extension Nd_V1_CustomerWorkerV1ClientProtocol {
@@ -1395,6 +1400,24 @@ extension Nd_V1_CustomerWorkerV1ClientProtocol {
       interceptors: self.interceptors?.makeGetLatestFollowUpWithServiceProviderInterceptors() ?? []
     )
   }
+
+  /// Unary call to SetChildProfile
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to SetChildProfile.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func setChildProfile(
+    _ request: Nd_V1_CustomerChildProfileUploadMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_CustomerChildProfileUploadMessage, Nd_V1_IdMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.CustomerWorkerV1/SetChildProfile",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeSetChildProfileInterceptors() ?? []
+    )
+  }
 }
 
 internal protocol Nd_V1_CustomerWorkerV1ClientInterceptorFactoryProtocol {
@@ -1407,6 +1430,9 @@ internal protocol Nd_V1_CustomerWorkerV1ClientInterceptorFactoryProtocol {
 
   /// - Returns: Interceptors to use when invoking 'getLatestFollowUpWithServiceProvider'.
   func makeGetLatestFollowUpWithServiceProviderInterceptors() -> [ClientInterceptor<Nd_V1_CustomerFollowUpRequestMessage, Nd_V1_CustomerFollowUpMessage>]
+
+  /// - Returns: Interceptors to use when invoking 'setChildProfile'.
+  func makeSetChildProfileInterceptors() -> [ClientInterceptor<Nd_V1_CustomerChildProfileUploadMessage, Nd_V1_IdMessage>]
 }
 
 internal final class Nd_V1_CustomerWorkerV1Client: Nd_V1_CustomerWorkerV1ClientProtocol {
@@ -1944,173 +1970,6 @@ internal final class Nd_V1_CustomerServiceRequestWorkerV1Client: Nd_V1_CustomerS
 }
 
 /// To build a server, implement a class that conforms to this protocol.
-internal protocol Nd_V1_NotificationWorkerV1Provider: CallHandlerProvider {
-  var interceptors: Nd_V1_NotificationWorkerV1ServerInterceptorFactoryProtocol? { get }
-
-  func sendNotification(request: Nd_V1_NotificationRequestMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_BoolMessage>
-}
-
-extension Nd_V1_NotificationWorkerV1Provider {
-  internal var serviceName: Substring { return "nd.v1.NotificationWorkerV1" }
-
-  /// Determines, calls and returns the appropriate request handler, depending on the request's method.
-  /// Returns nil for methods not handled by this service.
-  internal func handle(
-    method name: Substring,
-    context: CallHandlerContext
-  ) -> GRPCServerHandlerProtocol? {
-    switch name {
-    case "SendNotification":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_NotificationRequestMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_BoolMessage>(),
-        interceptors: self.interceptors?.makeSendNotificationInterceptors() ?? [],
-        userFunction: self.sendNotification(request:context:)
-      )
-
-    default:
-      return nil
-    }
-  }
-}
-
-internal protocol Nd_V1_NotificationWorkerV1ServerInterceptorFactoryProtocol {
-
-  /// - Returns: Interceptors to use when handling 'sendNotification'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeSendNotificationInterceptors() -> [ServerInterceptor<Nd_V1_NotificationRequestMessage, Nd_V1_BoolMessage>]
-}
-/// To build a server, implement a class that conforms to this protocol.
-internal protocol Nd_V1_LoggingWorkerV1Provider: CallHandlerProvider {
-  var interceptors: Nd_V1_LoggingWorkerV1ServerInterceptorFactoryProtocol? { get }
-
-  func setLog(request: Nd_V1_VoidMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_BoolMessage>
-}
-
-extension Nd_V1_LoggingWorkerV1Provider {
-  internal var serviceName: Substring { return "nd.v1.LoggingWorkerV1" }
-
-  /// Determines, calls and returns the appropriate request handler, depending on the request's method.
-  /// Returns nil for methods not handled by this service.
-  internal func handle(
-    method name: Substring,
-    context: CallHandlerContext
-  ) -> GRPCServerHandlerProtocol? {
-    switch name {
-    case "SetLog":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_VoidMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_BoolMessage>(),
-        interceptors: self.interceptors?.makeSetLogInterceptors() ?? [],
-        userFunction: self.setLog(request:context:)
-      )
-
-    default:
-      return nil
-    }
-  }
-}
-
-internal protocol Nd_V1_LoggingWorkerV1ServerInterceptorFactoryProtocol {
-
-  /// - Returns: Interceptors to use when handling 'setLog'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeSetLogInterceptors() -> [ServerInterceptor<Nd_V1_VoidMessage, Nd_V1_BoolMessage>]
-}
-/// To build a server, implement a class that conforms to this protocol.
-internal protocol Nd_V1_TwilioWorkerV1Provider: CallHandlerProvider {
-  var interceptors: Nd_V1_TwilioWorkerV1ServerInterceptorFactoryProtocol? { get }
-
-  func getTwilioVideoAuthToken(request: Nd_V1_TwilioAuthRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_StringMessage>
-
-  func getTwilioChatAuthToken(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_StringMessage>
-}
-
-extension Nd_V1_TwilioWorkerV1Provider {
-  internal var serviceName: Substring { return "nd.v1.TwilioWorkerV1" }
-
-  /// Determines, calls and returns the appropriate request handler, depending on the request's method.
-  /// Returns nil for methods not handled by this service.
-  internal func handle(
-    method name: Substring,
-    context: CallHandlerContext
-  ) -> GRPCServerHandlerProtocol? {
-    switch name {
-    case "GetTwilioVideoAuthToken":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_TwilioAuthRequest>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_StringMessage>(),
-        interceptors: self.interceptors?.makeGetTwilioVideoAuthTokenInterceptors() ?? [],
-        userFunction: self.getTwilioVideoAuthToken(request:context:)
-      )
-
-    case "GetTwilioChatAuthToken":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_StringMessage>(),
-        interceptors: self.interceptors?.makeGetTwilioChatAuthTokenInterceptors() ?? [],
-        userFunction: self.getTwilioChatAuthToken(request:context:)
-      )
-
-    default:
-      return nil
-    }
-  }
-}
-
-internal protocol Nd_V1_TwilioWorkerV1ServerInterceptorFactoryProtocol {
-
-  /// - Returns: Interceptors to use when handling 'getTwilioVideoAuthToken'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetTwilioVideoAuthTokenInterceptors() -> [ServerInterceptor<Nd_V1_TwilioAuthRequest, Nd_V1_StringMessage>]
-
-  /// - Returns: Interceptors to use when handling 'getTwilioChatAuthToken'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetTwilioChatAuthTokenInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_StringMessage>]
-}
-/// To build a server, implement a class that conforms to this protocol.
-internal protocol Nd_V1_UserTypeWorkerV1Provider: CallHandlerProvider {
-  var interceptors: Nd_V1_UserTypeWorkerV1ServerInterceptorFactoryProtocol? { get }
-
-  func getUserType(request: Nd_V1_VoidMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_StringMessage>
-}
-
-extension Nd_V1_UserTypeWorkerV1Provider {
-  internal var serviceName: Substring { return "nd.v1.UserTypeWorkerV1" }
-
-  /// Determines, calls and returns the appropriate request handler, depending on the request's method.
-  /// Returns nil for methods not handled by this service.
-  internal func handle(
-    method name: Substring,
-    context: CallHandlerContext
-  ) -> GRPCServerHandlerProtocol? {
-    switch name {
-    case "GetUserType":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_VoidMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_StringMessage>(),
-        interceptors: self.interceptors?.makeGetUserTypeInterceptors() ?? [],
-        userFunction: self.getUserType(request:context:)
-      )
-
-    default:
-      return nil
-    }
-  }
-}
-
-internal protocol Nd_V1_UserTypeWorkerV1ServerInterceptorFactoryProtocol {
-
-  /// - Returns: Interceptors to use when handling 'getUserType'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetUserTypeInterceptors() -> [ServerInterceptor<Nd_V1_VoidMessage, Nd_V1_StringMessage>]
-}
-/// To build a server, implement a class that conforms to this protocol.
 internal protocol Nd_V1_ServiceProviderAppointmentWorkerV1Provider: CallHandlerProvider {
   var interceptors: Nd_V1_ServiceProviderAppointmentWorkerV1ServerInterceptorFactoryProtocol? { get }
 
@@ -2609,6 +2468,173 @@ internal protocol Nd_V1_ServiceProviderServiceRequestWorkerV1ServerInterceptorFa
   func makeGetServiceRequestInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderServiceRequestRequestMessage, Nd_V1_ServiceProviderServiceRequestMessage>]
 }
 /// To build a server, implement a class that conforms to this protocol.
+internal protocol Nd_V1_LoggingWorkerV1Provider: CallHandlerProvider {
+  var interceptors: Nd_V1_LoggingWorkerV1ServerInterceptorFactoryProtocol? { get }
+
+  func setLog(request: Nd_V1_VoidMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_BoolMessage>
+}
+
+extension Nd_V1_LoggingWorkerV1Provider {
+  internal var serviceName: Substring { return "nd.v1.LoggingWorkerV1" }
+
+  /// Determines, calls and returns the appropriate request handler, depending on the request's method.
+  /// Returns nil for methods not handled by this service.
+  internal func handle(
+    method name: Substring,
+    context: CallHandlerContext
+  ) -> GRPCServerHandlerProtocol? {
+    switch name {
+    case "SetLog":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_VoidMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_BoolMessage>(),
+        interceptors: self.interceptors?.makeSetLogInterceptors() ?? [],
+        userFunction: self.setLog(request:context:)
+      )
+
+    default:
+      return nil
+    }
+  }
+}
+
+internal protocol Nd_V1_LoggingWorkerV1ServerInterceptorFactoryProtocol {
+
+  /// - Returns: Interceptors to use when handling 'setLog'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeSetLogInterceptors() -> [ServerInterceptor<Nd_V1_VoidMessage, Nd_V1_BoolMessage>]
+}
+/// To build a server, implement a class that conforms to this protocol.
+internal protocol Nd_V1_NotificationWorkerV1Provider: CallHandlerProvider {
+  var interceptors: Nd_V1_NotificationWorkerV1ServerInterceptorFactoryProtocol? { get }
+
+  func sendNotification(request: Nd_V1_NotificationRequestMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_BoolMessage>
+}
+
+extension Nd_V1_NotificationWorkerV1Provider {
+  internal var serviceName: Substring { return "nd.v1.NotificationWorkerV1" }
+
+  /// Determines, calls and returns the appropriate request handler, depending on the request's method.
+  /// Returns nil for methods not handled by this service.
+  internal func handle(
+    method name: Substring,
+    context: CallHandlerContext
+  ) -> GRPCServerHandlerProtocol? {
+    switch name {
+    case "SendNotification":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_NotificationRequestMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_BoolMessage>(),
+        interceptors: self.interceptors?.makeSendNotificationInterceptors() ?? [],
+        userFunction: self.sendNotification(request:context:)
+      )
+
+    default:
+      return nil
+    }
+  }
+}
+
+internal protocol Nd_V1_NotificationWorkerV1ServerInterceptorFactoryProtocol {
+
+  /// - Returns: Interceptors to use when handling 'sendNotification'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeSendNotificationInterceptors() -> [ServerInterceptor<Nd_V1_NotificationRequestMessage, Nd_V1_BoolMessage>]
+}
+/// To build a server, implement a class that conforms to this protocol.
+internal protocol Nd_V1_TwilioWorkerV1Provider: CallHandlerProvider {
+  var interceptors: Nd_V1_TwilioWorkerV1ServerInterceptorFactoryProtocol? { get }
+
+  func getTwilioVideoAuthToken(request: Nd_V1_TwilioAuthRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_StringMessage>
+
+  func getTwilioChatAuthToken(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_StringMessage>
+}
+
+extension Nd_V1_TwilioWorkerV1Provider {
+  internal var serviceName: Substring { return "nd.v1.TwilioWorkerV1" }
+
+  /// Determines, calls and returns the appropriate request handler, depending on the request's method.
+  /// Returns nil for methods not handled by this service.
+  internal func handle(
+    method name: Substring,
+    context: CallHandlerContext
+  ) -> GRPCServerHandlerProtocol? {
+    switch name {
+    case "GetTwilioVideoAuthToken":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_TwilioAuthRequest>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_StringMessage>(),
+        interceptors: self.interceptors?.makeGetTwilioVideoAuthTokenInterceptors() ?? [],
+        userFunction: self.getTwilioVideoAuthToken(request:context:)
+      )
+
+    case "GetTwilioChatAuthToken":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_StringMessage>(),
+        interceptors: self.interceptors?.makeGetTwilioChatAuthTokenInterceptors() ?? [],
+        userFunction: self.getTwilioChatAuthToken(request:context:)
+      )
+
+    default:
+      return nil
+    }
+  }
+}
+
+internal protocol Nd_V1_TwilioWorkerV1ServerInterceptorFactoryProtocol {
+
+  /// - Returns: Interceptors to use when handling 'getTwilioVideoAuthToken'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetTwilioVideoAuthTokenInterceptors() -> [ServerInterceptor<Nd_V1_TwilioAuthRequest, Nd_V1_StringMessage>]
+
+  /// - Returns: Interceptors to use when handling 'getTwilioChatAuthToken'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetTwilioChatAuthTokenInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_StringMessage>]
+}
+/// To build a server, implement a class that conforms to this protocol.
+internal protocol Nd_V1_UserTypeWorkerV1Provider: CallHandlerProvider {
+  var interceptors: Nd_V1_UserTypeWorkerV1ServerInterceptorFactoryProtocol? { get }
+
+  func getUserType(request: Nd_V1_VoidMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_StringMessage>
+}
+
+extension Nd_V1_UserTypeWorkerV1Provider {
+  internal var serviceName: Substring { return "nd.v1.UserTypeWorkerV1" }
+
+  /// Determines, calls and returns the appropriate request handler, depending on the request's method.
+  /// Returns nil for methods not handled by this service.
+  internal func handle(
+    method name: Substring,
+    context: CallHandlerContext
+  ) -> GRPCServerHandlerProtocol? {
+    switch name {
+    case "GetUserType":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_VoidMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_StringMessage>(),
+        interceptors: self.interceptors?.makeGetUserTypeInterceptors() ?? [],
+        userFunction: self.getUserType(request:context:)
+      )
+
+    default:
+      return nil
+    }
+  }
+}
+
+internal protocol Nd_V1_UserTypeWorkerV1ServerInterceptorFactoryProtocol {
+
+  /// - Returns: Interceptors to use when handling 'getUserType'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetUserTypeInterceptors() -> [ServerInterceptor<Nd_V1_VoidMessage, Nd_V1_StringMessage>]
+}
+/// To build a server, implement a class that conforms to this protocol.
 internal protocol Nd_V1_CustomerAppointmentWorkerV1Provider: CallHandlerProvider {
   var interceptors: Nd_V1_CustomerAppointmentWorkerV1ServerInterceptorFactoryProtocol? { get }
 
@@ -2715,6 +2741,8 @@ internal protocol Nd_V1_CustomerWorkerV1Provider: CallHandlerProvider {
   func getCustomerProfile(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_CustomerCustomerProfileMessage>
 
   func getLatestFollowUpWithServiceProvider(request: Nd_V1_CustomerFollowUpRequestMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_CustomerFollowUpMessage>
+
+  func setChildProfile(request: Nd_V1_CustomerChildProfileUploadMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_IdMessage>
 }
 
 extension Nd_V1_CustomerWorkerV1Provider {
@@ -2754,6 +2782,15 @@ extension Nd_V1_CustomerWorkerV1Provider {
         userFunction: self.getLatestFollowUpWithServiceProvider(request:context:)
       )
 
+    case "SetChildProfile":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_CustomerChildProfileUploadMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_IdMessage>(),
+        interceptors: self.interceptors?.makeSetChildProfileInterceptors() ?? [],
+        userFunction: self.setChildProfile(request:context:)
+      )
+
     default:
       return nil
     }
@@ -2773,6 +2810,10 @@ internal protocol Nd_V1_CustomerWorkerV1ServerInterceptorFactoryProtocol {
   /// - Returns: Interceptors to use when handling 'getLatestFollowUpWithServiceProvider'.
   ///   Defaults to calling `self.makeInterceptors()`.
   func makeGetLatestFollowUpWithServiceProviderInterceptors() -> [ServerInterceptor<Nd_V1_CustomerFollowUpRequestMessage, Nd_V1_CustomerFollowUpMessage>]
+
+  /// - Returns: Interceptors to use when handling 'setChildProfile'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeSetChildProfileInterceptors() -> [ServerInterceptor<Nd_V1_CustomerChildProfileUploadMessage, Nd_V1_IdMessage>]
 }
 /// To build a server, implement a class that conforms to this protocol.
 internal protocol Nd_V1_CustomerPrescriptionWorkerV1Provider: CallHandlerProvider {

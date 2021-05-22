@@ -19,6 +19,33 @@ struct DetailedBookDoctorView: View {
                     
                     Divider().background(Color.blue)
                     
+                    HStack {
+                        
+                        Text("This appointment is for")
+                        
+                        Menu {
+                            
+                            Button {
+                                self.detailedBookingVM.bookForMe()
+                            } label: {
+                                Text("Me")
+                            }
+                            
+                            ForEach(self.detailedBookingVM.customerProfile.children, id: \.ChildProfileId) {child in
+                                Button {
+                                    self.detailedBookingVM.bookForChild(child: child)
+                                } label: {
+                                    Text(child.Name)
+                                }
+                            }
+                            
+                        } label: {
+                            Text(self.detailedBookingVM.bookingAppointmentFor)
+                            Image("chevron.down.circle")
+                        }
+                    }
+                    
+                    
                     Spacer().frame(height: 10)
                     
                     Text("Reason For Appointment")
@@ -26,10 +53,10 @@ struct DetailedBookDoctorView: View {
                     OneLineReasonDisplay()
                     
                     Spacer().frame(height: 10)
-                                    
+                    
                     Text("Choose a Date")
                 }
-
+                
                 if !detailedBookingVM.dateDisplay.isEmpty {
                     ScrollView (.horizontal) {
                         HStack (spacing: 5) {
@@ -71,7 +98,7 @@ struct DetailedBookDoctorView: View {
                         }
                     }
                 }
-
+                
                 LargeButton(title: "Book Appointment",
                             backgroundColor: Color.blue) {
                     self.detailedBookingVM.book() { success in

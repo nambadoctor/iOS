@@ -10,6 +10,7 @@ import Foundation
 protocol CustomerProfileServiceProtocol {
     func setCustomerProfile (customerProfile:CustomerProfile, _ completion : @escaping (_ id:String?)->())
     func getCustomerProfile (customerId:String, _ completion : @escaping (_ customerObj:CustomerProfile?)->())
+    func setChildProfile (child:CustomerChildProfile, _ completion : @escaping (_ id:String?)->())
 }
 
 class CustomerProfileService : CustomerProfileServiceProtocol {
@@ -71,6 +72,36 @@ class CustomerProfileService : CustomerProfileServiceProtocol {
                 }
             } catch {
                 print("Get Customer Failed \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            }
+        }
+    }
+    
+    func setChildProfile(child: CustomerChildProfile, _ completion: @escaping (String?) -> ()) {
+        let channel = ChannelManager.sharedChannelManager.getChannel()
+        let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
+
+        let customerCLient = Nd_V1_CustomerWorkerV1Client(channel: channel)
+        
+        let request = Nd_V1_CustomerChildProfileUploadMessage.with {
+            $0.childProfile = CustomerChildProfileMapper.LocalToGrpc(child: child)
+            $0.caretakerID = UserIdHelper().retrieveUserId().toProto
+        }
+
+        let setChild = customerCLient.setChildProfile(request, callOptions: callOptions)
+
+        DispatchQueue.global().async {
+            do {
+                print("SETTING CUSTOMER CHILD PROFILE: \(UserIdHelper().retrieveUserId())")
+                let response = try setChild.response.wait()
+                print("SETTING CUSTOMER CHILD PROFILE Success \(response)")
+                DispatchQueue.main.async {
+                    completion(response.id.toString)
+                }
+            } catch {
+                print("SETTING CUSTOMER CHILD PROFILE Failed \(error.localizedDescription)")
                 DispatchQueue.main.async {
                     completion(nil)
                 }

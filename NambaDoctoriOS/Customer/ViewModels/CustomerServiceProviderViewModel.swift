@@ -11,10 +11,12 @@ class CustomerServiceProviderViewModel : ObservableObject {
     var serviceProvider:CustomerServiceProviderProfile
     @Published var imageLoader:ImageLoader? = nil
     @Published var takeToBookDoc:Bool = false
+    var customerProfile:CustomerProfile
     
-    init(serviceProvider:CustomerServiceProviderProfile) {
+    init(serviceProvider:CustomerServiceProviderProfile,
+         customerProfile:CustomerProfile) {
         self.serviceProvider = serviceProvider
-        
+        self.customerProfile = customerProfile
         self.imageLoader = ImageLoader(urlString: serviceProvider.profilePictureURL) { success in }
     }
     
@@ -56,6 +58,6 @@ class CustomerServiceProviderViewModel : ObservableObject {
     }
     
     func getDetailedBookingVM () -> DetailedBookDocViewModel{
-        DetailedBookDocViewModel(serviceProvider: serviceProvider)
+        DetailedBookDocViewModel(serviceProvider: serviceProvider, customerProfile: self.customerProfile)
     }
 }

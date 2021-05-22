@@ -91,4 +91,11 @@ class DoctorAlertHelpers: DoctorAlertHelpersProtocol {
         alertTempItem = AlertItem(title: Text("Cannot remove this availability slot"), message: Text("Please try again"), dismissButton: .default(Text("OK")))
         CommonDefaultModifiers.showAlert()
     }
+    
+    func videoCallNotAllowedForChildAlert(call: @escaping (Bool) -> ()) {
+        alertTempItem = AlertItem(title: Text("Video call not supported for this patient"), message: Text("Please do audio call"), dismissButton: .default(Text("OK"), action: {
+            call(true)
+        }))
+        CommonDefaultModifiers.showAlert()
+    }
 }

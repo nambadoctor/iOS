@@ -21,4 +21,5 @@ struct CustomerServiceRequest {
     var customerID:String
     var allergy:CustomerAllergy
     var medicalHistory:CustomerMedicalHistory
+    var childId:String
 }

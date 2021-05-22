@@ -18,7 +18,7 @@ class ChannelManager {
     //production ip:- 52.182.227.174
     //testing ip:- 52.233.76.64
     //traffic manager url: nambadocservice.trafficmanager.net
-    static let sharedChannelManager = ChannelManager(host: "nambadocservice.trafficmanager.net", port: 80)
+    static let sharedChannelManager = ChannelManager(host: "52.233.76.64", port: 80)
     private var channel:ClientConnection?
     private var callOptions:CallOptions?
 
@@ -33,25 +33,10 @@ class ChannelManager {
     }
 
     public func getChannel() -> ClientConnection {
-        print("GETTING CHANNEL")
-        let diffs = Calendar.current.dateComponents([.minute], from: channelCreatedTime, to: Date())
         return createChannel()
-        print("TIME DIFFERENCE: \(diffs.minute ?? 0) \((diffs.minute ?? 0) >= 30)")
-        if (diffs.minute ?? 0) >= 30 || channel == nil {
-            print("CREATING NEW CHANNEL")
-            return createChannel()
-        } else {
-            print("RETURNING OLD CHANNEL")
-            return channel!
-        }
     }
 
     private func createChannel () -> ClientConnection {
-        if channel != nil {
-            print("CLOSING CHANNEL")
-            channel!.close()
-        }
-        
         let group = MultiThreadedEventLoopGroup(numberOfThreads: 1)
         print("creating channel")
         // Configure the channel, we're not using TLS so the connection is `insecure`.
