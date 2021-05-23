@@ -12,7 +12,7 @@ struct OneLineReasonDisplay : View {
     var body : some View {
         HStack (spacing: 3) {
             
-            if DeviceSizeHelper.getIfSmallScreen() {
+            if DeviceHelper.getIfSmallScreen() {
                 ForEach(reasonPickerVM.OneLineReasonsToSHowSmallDisplay, id: \.self) { reason in
                     ReasonPickerCard(reason: reason, imageName: reasonPickerVM.getValForKey(key: reason))
                 }

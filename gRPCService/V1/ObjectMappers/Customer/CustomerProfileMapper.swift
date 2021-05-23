@@ -28,7 +28,8 @@ class CustomerProfileMapper {
             MedicalHistories: CustomerMedicalHistoryMapper.grpcMedicalHistoryToLocal(medicalHistories: customer.medicalHistories),
             lastModifiedDate: customer.lastModifedDate.toInt64,
             createdDate: customer.createdDate.toInt64,
-            children: CustomerChildProfileMapper.GrpcToLocal(children: customer.children))
+            children: CustomerChildProfileMapper.GrpcToLocal(children: customer.children),
+            customerProviderDeviceInfo: DeviceInformationMapper.GrpcToLocal(deviceInfo: customer.customerDeviceInfo))
     }
     
     func grpcCustomerToLocal (customer:[Nd_V1_CustomerCustomerProfileMessage]) -> [CustomerProfile] {
@@ -62,6 +63,7 @@ class CustomerProfileMapper {
             $0.lastModifedDate = customer.lastModifiedDate.toProto
             $0.createdDate = customer.createdDate.toProto
             $0.children = CustomerChildProfileMapper.LocalToGrpc(children: customer.children)
+            $0.customerDeviceInfo = DeviceInformationMapper.LocalToGrpc(deviceInfo: customer.customerProviderDeviceInfo)
         }
     }
 }

@@ -33,7 +33,8 @@ class ServiceProviderProfileMapper {
             registrationNumber: profile.registrationNumber.toString,
             isActive: profile.isActive.toBool,
             createdDate: profile.createdDate.toInt64,
-            lastModifiedDate: profile.lastModifedDate.toInt64)
+            lastModifiedDate: profile.lastModifedDate.toInt64,
+            serviceProviderDeviceInfo: DeviceInformationMapper.GrpcToLocal(deviceInfo: profile.serviceProviderDeviceInfo))
     }
     
     func localProfileToGrpc (profile: ServiceProviderProfile) -> Nd_V1_ServiceProviderProfileMessage {
@@ -62,6 +63,7 @@ class ServiceProviderProfileMapper {
             $0.isActive = profile.isActive.toProto
             $0.createdDate = profile.createdDate.toProto
             $0.lastModifedDate = profile.lastModifiedDate.toProto
+            $0.serviceProviderDeviceInfo = DeviceInformationMapper.LocalToGrpc(deviceInfo: profile.serviceProviderDeviceInfo)
         }
     }
 }

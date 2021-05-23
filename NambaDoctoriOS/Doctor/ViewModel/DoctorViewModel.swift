@@ -71,6 +71,7 @@ class DoctorViewModel: ObservableObject {
     }
 
     func updateDoctor () {
+        self.doctor.serviceProviderDeviceInfo = DeviceHelper.getDeviceInfo()
         self.serviceProviderServiceCall.setServiceProvider(serviceProvider: self.doctor) { (response) in
             if response != nil {
                 print("SERVICE PROVIDER UPDATE SUCCESS \(response)")

@@ -32,4 +32,5 @@ struct ServiceProviderProfile {
     var isActive:Bool
     var createdDate:Int64
     var lastModifiedDate:Int64
+    var serviceProviderDeviceInfo:DeviceInformation
 }

@@ -25,4 +25,5 @@ struct ServiceProviderCustomerProfile {
     var lastModifiedDate:Int64
     var createdDate:Int64
     var children:[ServiceProviderCustomerChildProfile]
+    var customerProviderDeviceInfo:DeviceInformation
 }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class CustomerCreateProfileViewModel: ObservableObject {
     @Published var firstName:String = ""
@@ -29,6 +30,8 @@ class CustomerCreateProfileViewModel: ObservableObject {
                                          deviceToken: DeviceTokenId,
                                          appInfoID: "",
                                          deviceTokenType: "apn")
+        
+        let deviceInfoObj = DeviceHelper.getDeviceInfo()
 
         let customerProfile = CustomerProfile(customerID: "",
                                               firstName: self.firstName,
@@ -48,7 +51,8 @@ class CustomerCreateProfileViewModel: ObservableObject {
                                               MedicalHistories: [CustomerMedicalHistory](),
                                               lastModifiedDate: Date().millisecondsSince1970,
                                               createdDate: Date().millisecondsSince1970,
-                                              children: [CustomerChildProfile]())
+                                              children: [CustomerChildProfile](),
+                                              customerProviderDeviceInfo: deviceInfoObj)
 
         CommonDefaultModifiers.showLoader()
         CustomerProfileService().setCustomerProfile(customerProfile: customerProfile) { customerId in
