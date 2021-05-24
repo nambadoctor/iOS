@@ -154,17 +154,19 @@ struct DoctorTwilioManager: View {
 
     var callPhoneBanner : some View {
         VStack {
-            Spacer()
-            Text("If patient does not join after a while, Click here to make an audio call")
-                .fixedSize(horizontal: false, vertical: true)
-                .multilineTextAlignment(.center)
-                .padding()
-                .background(Color.white.opacity(0.7))
-                .foregroundColor(Color.blue)
-                .onTapGesture {
-                    self.DoctorTwilioVM.callPhoneBannerOnClick()
-                }
-            Spacer()
+            if !DoctorTwilioVM.collapseCall {
+                Spacer()
+                Text("If patient does not join after a while, Click here to make an audio call")
+                    .fixedSize(horizontal: false, vertical: true)
+                    .multilineTextAlignment(.center)
+                    .padding()
+                    .background(Color.white.opacity(0.7))
+                    .foregroundColor(Color.blue)
+                    .onTapGesture {
+                        self.DoctorTwilioVM.callPhoneBannerOnClick()
+                    }
+                Spacer()
+            }
         }
     }
 

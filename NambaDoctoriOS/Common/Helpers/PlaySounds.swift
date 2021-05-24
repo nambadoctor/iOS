@@ -24,7 +24,7 @@ class PlaySounds {
 
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: url)
-            audioPlayer?.numberOfLoops = 5000
+            audioPlayer?.numberOfLoops = 200
             audioPlayer?.play()
         } catch {
             // couldn't load file :(
@@ -32,10 +32,6 @@ class PlaySounds {
     }
 
     func stopSound () {
-        do {
-            audioPlayer?.stop()
-        } catch {
-            
-        }
+        audioPlayer?.stop()
     }
 }

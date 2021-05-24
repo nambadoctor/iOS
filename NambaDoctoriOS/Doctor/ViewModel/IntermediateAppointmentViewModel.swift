@@ -179,20 +179,39 @@ extension IntermediateAppointmentViewModel {
 
     func sendToPatient () {
         CommonDefaultModifiers.showLoader()
+        
+        func submitFunc () {
+            self.saveForLater { (success) in
+                
+                if self.appointment.serviceFee == 0 {
+                    self.appointment.isPaid = true
+                }
 
-        self.saveForLater { (success) in
-            
-            if self.appointment.serviceFee == 0 {
-                self.appointment.isPaid = true
-            }
-            
-            self.updateAppointmentStatus.updateToFinished(appointment: &self.appointment) { (success) in
-                CommonDefaultModifiers.hideLoader()
-                self.docNotifHelper.fireAppointmentOverNotif()
-                self.checkIfAppointmentFinished()
-                self.showOnSuccessAlert = true
+                self.updateAppointmentStatus.updateToFinished(appointment: &self.appointment) { (success) in
+                    CommonDefaultModifiers.hideLoader()
+                    self.docNotifHelper.fireAppointmentOverNotif()
+                    self.checkIfAppointmentFinished()
+                    self.showOnSuccessAlert = true
+                }
             }
         }
+        
+        if showTwilioRoom {
+            doctorAlertHelper.callWillTerminateAfterSubmitAlert { goBack, submit in
+                if submit {
+                    self.doctorTwilioManagerViewModel.leaveRoom()
+                    submitFunc()
+                }
+
+                if goBack {
+                    CommonDefaultModifiers.hideLoader()
+                }
+            }
+        } else {
+            submitFunc()
+        }
+
+        
     }
     
     func previewPrescription () {

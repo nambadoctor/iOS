@@ -98,4 +98,14 @@ class DoctorAlertHelpers: DoctorAlertHelpersProtocol {
         }))
         CommonDefaultModifiers.showAlert()
     }
+    
+    func callWillTerminateAfterSubmitAlert(completion: @escaping (_ goBack:Bool, _ submit:Bool) -> ()) {
+        alertTempItem = AlertItem(title: Text("Submiting prescription will end call"), message: Text("Are you sure you want to end the call also?"), primaryButton: Alert.Button.destructive(Text("Cancel"), action: {
+            completion(true, false)
+        }), secondaryButton: Alert.Button.default(Text("Submit"), action: {
+            completion(false, true)
+        }))
+
+        CommonDefaultModifiers.showAlert()
+    }
 }
