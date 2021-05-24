@@ -28,7 +28,7 @@ class DetailedBookDocViewModel : ObservableObject {
     var customerServiceProviderService:CustomerServiceProviderServiceProtocol
     
     var serviceProviderName : String {
-        return "Dr. \(serviceProvider.firstName) \(serviceProvider.lastName)"
+        return "\(serviceProvider.firstName) \(serviceProvider.lastName)"
     }
     
     var serviceProviderFee : String {
@@ -43,8 +43,12 @@ class DetailedBookDocViewModel : ObservableObject {
         self.serviceProvider = serviceProvider
         self.customerServiceProviderService = customerServiceProviderService
         self.retrieveAvailabilities()
-
-        self.docProfPicImageLoader = ImageLoader(urlString: serviceProvider.profilePictureURL) { _ in }
+        
+        if !serviceProvider.profilePictureURL.isEmpty {
+            self.docProfPicImageLoader = ImageLoader(urlString: serviceProvider.profilePictureURL) { _ in }
+        } else {
+            self.docProfPicImageLoader = ImageLoader(urlString: "https://wgsi.utoronto.ca/wp-content/uploads/2020/12/blank-profile-picture-png.png") {_ in}
+        }
     }
     
     func retrieveAvailabilities () {

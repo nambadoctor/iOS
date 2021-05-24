@@ -47,7 +47,6 @@ class DoctorTwilioViewModel: ObservableObject {
     }
 
     func startRoom(completion: @escaping (_ success:Bool)->()) {
-        
         docAutoNav.enterTwilioRoom(appointmentId: self.appointment.appointmentID)
         self.twilioAccessTokenHelper.retrieveToken(appointmentId: self.appointment.appointmentID, userId: self.appointment.serviceProviderID) { (success, token) in
             if success {

@@ -9,10 +9,10 @@ import Foundation
 
 import SwiftUI
 
-var CustomerChatHelperMessages:[String] = ["Hello, I am waiting in the consultation room",
-                               "Hi, can we have our consultation earlier?",
-                               "Sorry, I will be a late for our consultation",
-                               "Please upload reports if any"]
+var CustomerChatHelperMessages:[String] = ["Hello Dr. I am ready for call",
+                               "I have a problem connecting to call",
+                               "Please call me on my phone",
+                               "Is my prescription ready?"]
 
 struct CustomerChatRoomView: View {
 

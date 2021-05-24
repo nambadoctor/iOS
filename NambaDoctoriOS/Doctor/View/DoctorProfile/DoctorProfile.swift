@@ -16,7 +16,7 @@ struct DoctorProfile: View {
         ScrollView {
             VStack (alignment: .leading) {
                 title
-                
+
                 if doctorViewModel.showEdit {
                     EditableDoctorProfile(editDoctorVM: doctorViewModel.editDoctorVM, doctor: $doctorViewModel.doctor)
                 } else {

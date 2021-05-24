@@ -37,6 +37,12 @@ struct CustomerReportsView: View {
                     Spacer()
                 }.padding(.top, 5)
             }
+            
+            LargeButton(title: self.reportsVM.reports.count > 0 ? "Upload Another Report" : "Upload Report",
+                        backgroundColor: Color.blue) {
+                reportsVM.imagePickerVM.showActionSheet()
+            }
+            .modifier(ImagePickerModifier(imagePickerVM: self.reportsVM.imagePickerVM))
         }
     }
 }

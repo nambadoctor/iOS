@@ -15,13 +15,12 @@ class CustomerViewModel : ObservableObject {
     @Published var serviceProviders:[CustomerServiceProviderProfile]? = nil
     
     @Published var customerLoggedIn:Bool = false
+    @Published var showAddChildSheet:Bool = false
 
     @Published var selectedAppointment:CustomerAppointment? = nil
     @Published var takeToDetailedAppointmentView:Bool = false
     
     @Published var imageLoader:ImageLoader? = nil
-    
-    @Published var showAddChildSheet:Bool = false
     
     var customerProfileService:CustomerProfileServiceProtocol
     var customerAppointmentService:CustomerAppointmentServiceProtocol

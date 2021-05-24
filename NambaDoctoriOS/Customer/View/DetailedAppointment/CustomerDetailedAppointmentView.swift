@@ -35,12 +35,6 @@ struct CustomerDetailedAppointmentView: View {
                         allergyEntryView
                         
                         CustomerReportsView(reportsVM: self.customerDetailedAppointmentVM.reportsVM)
-
-                        LargeButton(title: "Click To Upload",
-                                    backgroundColor: Color.blue) {
-                            customerDetailedAppointmentVM.imagePickerVM.showActionSheet()
-                        }
-                        .modifier(ImagePickerModifier(imagePickerVM: self.customerDetailedAppointmentVM.imagePickerVM))
                     }
                 }
                 
@@ -268,7 +262,7 @@ extension CustomerDetailedAppointmentView {
                          object: nil,
                          queue: .main) { (_) in
                 self.customerDetailedAppointmentVM.resetAllValues()
-                self.customerDetailedAppointmentVM.initCalls()
+                self.customerDetailedAppointmentVM.refreshAppointment()
             }
     }
 }

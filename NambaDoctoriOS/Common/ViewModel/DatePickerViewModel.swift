@@ -68,6 +68,11 @@ class DatePickerViewModel : ObservableObject {
         datePickerDelegate?.dateChanged(selectedDate: selectedDate)
     }
     
+    func selectTodayDate () {
+        selectedDate = Date()
+        datePickerDelegate?.dateChanged(selectedDate: selectedDate)
+    }
+    
     func setDatesWithAppointments (appointments:[ServiceProviderAppointment]) {
         
         func clearAllAppointmentVals () {

@@ -17,7 +17,12 @@ class CustomerServiceProviderViewModel : ObservableObject {
          customerProfile:CustomerProfile) {
         self.serviceProvider = serviceProvider
         self.customerProfile = customerProfile
-        self.imageLoader = ImageLoader(urlString: serviceProvider.profilePictureURL) { success in }
+        
+        if !serviceProvider.profilePictureURL.isEmpty {
+            self.imageLoader = ImageLoader(urlString: serviceProvider.profilePictureURL, { _ in })
+        } else {
+            self.imageLoader = ImageLoader(urlString: "https://wgsi.utoronto.ca/wp-content/uploads/2020/12/blank-profile-picture-png.png") {_ in}
+        }
     }
     
     var serviceProviderName:String {

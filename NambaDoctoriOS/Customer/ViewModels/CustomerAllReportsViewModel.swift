@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class CustomerAllReportsViewModel : ObservableObject {
     @Published var reports:[CustomerReport] = [CustomerReport]()
@@ -13,12 +14,15 @@ class CustomerAllReportsViewModel : ObservableObject {
     var appointment:CustomerAppointment
     var customerNotifHelpers:CustomerNotificationHelper
     
+    @Published var imagePickerVM:ImagePickerViewModel = ImagePickerViewModel()
+    
     init(customerReportService:CustomerReportServiceProtocol = CustomerReportService(),
          appointment:CustomerAppointment) {
         self.customerReportService = customerReportService
         self.appointment = appointment
         self.customerNotifHelpers = CustomerNotificationHelper(appointment: appointment)
-        
+        imagePickerVM.imagePickerDelegate = self
+
         getReports()
     }
 
@@ -44,5 +48,17 @@ class CustomerAllReportsViewModel : ObservableObject {
                 //TODO: handle report upload failed
             }
         }
+    }
+}
+
+extension CustomerAllReportsViewModel : ImagePickedDelegate {
+    func imageSelected() {
+        let image:UIImage = imagePickerVM.image!
+        
+        let encodedImage = image.jpegData(compressionQuality: 0.5)?.base64EncodedString()
+        
+        let customerReport = CustomerReportUpload(ReportId: "", ServiceRequestId: self.appointment.serviceRequestID, CustomerId: self.appointment.customerID, FileName: "", Name: "report", FileType: ".jpg", MediaFile: encodedImage!)
+        
+        setReport(report: customerReport)
     }
 }

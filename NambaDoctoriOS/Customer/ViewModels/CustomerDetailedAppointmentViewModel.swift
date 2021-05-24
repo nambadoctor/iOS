@@ -20,7 +20,6 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     @Published var appointmnentUpComing:Bool = false
     @Published var isPaid:Bool = false
 
-    @Published var imagePickerVM:ImagePickerViewModel = ImagePickerViewModel()
     @Published var customerTwilioViewModel:CustomerTwilioViewModel
     @Published var customerChatViewModel:CustomerChatViewModel
 
@@ -57,7 +56,6 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
         self.customerChatViewModel = CustomerChatViewModel(appointment: appointment)
         self.customerNotifHelpers = CustomerNotificationHelper(appointment: appointment)
         self.reportsVM = CustomerAllReportsViewModel(appointment: appointment)
-        imagePickerVM.imagePickerDelegate = self
         reasonPickerVM.reasonPickedDelegate = self
         customerTwilioViewModel.twilioDelegate = self
         initCalls()
@@ -65,7 +63,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
 
     func initCalls () {
         CommonDefaultModifiers.showLoader()
-        self.getAppointment()
+        refreshAppointment()
         self.getServiceProvider()
         self.getServiceRequest()
         
@@ -86,6 +84,8 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
         }
         CommonDefaultModifiers.hideLoader()
     }
+    
+
 
     func checkIfPaid () {
         self.isPaid = appointment.isPaid
@@ -108,20 +108,26 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     }
     
     var serviceProviderName : String {
-        return "Dr. \(appointment.serviceProviderName)"
+        return appointment.serviceProviderName
     }
     
     var serviceProviderFee : String {
         return "Fee: \(appointment.serviceFee.clean)"
     }
+    
+    func refreshAppointment () {
+        self.getAppointment { success in
+            self.checkAppointmentStatus()
+            self.checkForDirectNavigation()
+        }
+    }
 
-    func getAppointment () {
+    func getAppointment (_ completion: @escaping (_ retrieved:Bool)->()) {
         self.customerAppointmentService.getSingleAppointment(appointmentId: self.appointment.appointmentID, serviceProviderId: self.appointment.serviceProviderID) { customerAppointment in
             if customerAppointment != nil {
                 print(customerAppointment!)
                 self.appointment = customerAppointment!
-                self.checkAppointmentStatus()
-                self.checkForDirectNavigation()
+                completion(true)
             }
         }
     }
@@ -149,7 +155,11 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
         CustomerServiceProviderService().getServiceProvider(serviceProviderId: appointment.serviceProviderID) { provider in
             if provider != nil {
                 self.serviceProvider = provider!
-                self.docProfPicImageLoader = ImageLoader(urlString: provider!.profilePictureURL) { _ in }
+                if !provider!.profilePictureURL.isEmpty {
+                    self.docProfPicImageLoader = ImageLoader(urlString: provider!.profilePictureURL) { _ in }
+                } else {
+                    self.docProfPicImageLoader = ImageLoader(urlString: "https://wgsi.utoronto.ca/wp-content/uploads/2020/12/blank-profile-picture-png.png") { _ in }
+                }
             }
         }
     }
@@ -246,18 +256,6 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
                 CustomerAlertHelpers().AllergySetFailed() { _ in }
             }
         }
-    }
-}
-
-extension CustomerDetailedAppointmentViewModel : ImagePickedDelegate {
-    func imageSelected() {
-        let image:UIImage = imagePickerVM.image!
-        
-        let encodedImage = image.jpegData(compressionQuality: 0.5)?.base64EncodedString()
-        
-        let customerReport = CustomerReportUpload(ReportId: "", ServiceRequestId: self.serviceRequest!.serviceRequestID, CustomerId: self.serviceRequest!.customerID, FileName: "", Name: "report", FileType: ".jpg", MediaFile: encodedImage!)
-        
-        reportsVM.setReport(report: customerReport)
     }
 }
 

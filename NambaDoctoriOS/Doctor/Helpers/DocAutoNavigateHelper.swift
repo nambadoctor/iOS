@@ -18,7 +18,7 @@ class DocAutoNavigateHelper {
     var currentyInChat:Bool = false
     var currentlyInTwilioRoom:Bool = false
     var currenltyInIntermediateView:Bool = false
-    
+
     func navigateToAppointment (appointmentId:String) {
         if currentlyInTwilioRoom {
             DoctorAlertHelpers().presentingStackedNavViewError(navType: "appointment")
@@ -76,10 +76,11 @@ class DocAutoNavigateHelper {
     }
 
     func leaveIntermediateView() {
-        self.appointmentId = ""
-        currenltyInIntermediateView = false
+//        self.appointmentId = ""
+//        currenltyInIntermediateView = false
+        self.clearAllValues()
     }
-    
+
     func clearAllValues () {
         appointmentId = ""
         takeToChat = false

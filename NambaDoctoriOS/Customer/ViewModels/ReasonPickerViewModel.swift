@@ -46,15 +46,24 @@ class ReasonPickerViewModel : ObservableObject {
     
     func reasonSelected () {
         let key = reason
-        if key == "Injury" || key == "Fever" || key == "Pregnant" {
-            //do nothing
+        
+        if DeviceHelper.getIfSmallScreen() {
+            if key == "Injury" || key == "Fever" || key == "Pregnant" {
+                //do nothing
+            } else {
+                self.OneLineReasonsToSHowSmallDisplay.remove(at: 0)
+                self.OneLineReasonsToSHowSmallDisplay.insert(key, at: 0)
+            }
         } else {
-            self.OneLineReasonsToSHow.remove(at: 0)
-            self.OneLineReasonsToSHow.insert(key, at: 0)
-            
-            self.OneLineReasonsToSHowSmallDisplay.remove(at: 0)
-            self.OneLineReasonsToSHowSmallDisplay.insert(key, at: 0)
+            if key == "Injury" || key == "Fever" || key == "Pregnant" || key == "Joint Pain" {
+                //do nothing
+            } else {
+                self.OneLineReasonsToSHow.remove(at: 0)
+                self.OneLineReasonsToSHow.insert(key, at: 0)
+            }
         }
+        
+        
         self.reasonPickedDelegate?.reasonSelected(reason: key)
         self.showAllReasons = false
     }

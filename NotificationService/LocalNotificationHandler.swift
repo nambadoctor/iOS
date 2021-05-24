@@ -54,7 +54,7 @@ class LocalNotificationHandler {
         switch notifType {
         case .AppointmentBooked, .AppointmentCancelled:
             DoctorNotificationHandlerHelper().appointmentNotif()
-            CustomerDefaultModifiers.refreshAppointments()
+            CustomerNotificationHandlerHelper().appointmentNotif()
             completion(true)
         case .PrescriptionUploaded:
             CustomerDefaultModifiers.triggerAppointmentStatusChanges()
@@ -65,7 +65,7 @@ class LocalNotificationHandler {
             completion(true)
             break
         case .CallInRoom:
-            cusAutoNav.callNotifRecieved(appointmentId: values["id"]!)
+            CustomerNotificationHandlerHelper().callNotic(appointmentId: values["id"]!)
             completion(true)
         case .NewChatMessage:
             CommonDefaultModifiers.refreshChatCount()

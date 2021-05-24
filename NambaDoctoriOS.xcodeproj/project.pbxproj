@@ -191,6 +191,7 @@
 		1758E1F5265955D60012E571 /* ServiceProviderAndCustomer.pb 8.07.40 AM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1758E1F4265955D60012E571 /* ServiceProviderAndCustomer.pb 8.07.40 AM.swift */; };
 		1758E1F7265A57C60012E571 /* DeviceInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1758E1F6265A57C60012E571 /* DeviceInformation.swift */; };
 		1758E1FB265A58540012E571 /* DeviceInformationMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1758E1FA265A58540012E571 /* DeviceInformationMapper.swift */; };
+		1758E1FD265B20250012E571 /* CustomerNotificationHandlerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1758E1FC265B20250012E571 /* CustomerNotificationHandlerHelper.swift */; };
 		175E8DA9262FDA500000D00E /* DocAutoNavigateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E8DA8262FDA500000D00E /* DocAutoNavigateHelper.swift */; };
 		17626CAD25D5BAC200C36A99 /* LoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626CAC25D5BAC200C36A99 /* LoadingScreen.swift */; };
 		17626CCD25D5C02F00C36A99 /* DoctorHomeListeners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626CCC25D5C02F00C36A99 /* DoctorHomeListeners.swift */; };
@@ -582,6 +583,7 @@
 		1758E1F4265955D60012E571 /* ServiceProviderAndCustomer.pb 8.07.40 AM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ServiceProviderAndCustomer.pb 8.07.40 AM.swift"; sourceTree = "<group>"; };
 		1758E1F6265A57C60012E571 /* DeviceInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInformation.swift; sourceTree = "<group>"; };
 		1758E1FA265A58540012E571 /* DeviceInformationMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInformationMapper.swift; sourceTree = "<group>"; };
+		1758E1FC265B20250012E571 /* CustomerNotificationHandlerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerNotificationHandlerHelper.swift; sourceTree = "<group>"; };
 		175E8DA8262FDA500000D00E /* DocAutoNavigateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocAutoNavigateHelper.swift; sourceTree = "<group>"; };
 		17626CAC25D5BAC200C36A99 /* LoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreen.swift; sourceTree = "<group>"; };
 		17626CCC25D5C02F00C36A99 /* DoctorHomeListeners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorHomeListeners.swift; sourceTree = "<group>"; };
@@ -1553,6 +1555,7 @@
 				1789091A26453003004A9D75 /* CustomerNotificationHelper.swift */,
 				17365DF92646951F00386909 /* CustomerDefaultModifiers.swift */,
 				17365DFB2646997E00386909 /* CustomerAutoNav.swift */,
+				1758E1FC265B20250012E571 /* CustomerNotificationHandlerHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -2268,6 +2271,7 @@
 				171647C32604479900BB5B5A /* ServiceProviderAppointmentService.swift in Sources */,
 				178909152644C2E7004A9D75 /* ReasonPickerCard.swift in Sources */,
 				176AA1792637BF7F00F02346 /* CustomerAppInfoMapper.swift in Sources */,
+				1758E1FD265B20250012E571 /* CustomerNotificationHandlerHelper.swift in Sources */,
 				17626CCD25D5C02F00C36A99 /* DoctorHomeListeners.swift in Sources */,
 				17EC767B260F05140002BA75 /* TagCloudView.swift in Sources */,
 				1716484026092D5800BB5B5A /* ServiceProviderFileInfo.swift in Sources */,

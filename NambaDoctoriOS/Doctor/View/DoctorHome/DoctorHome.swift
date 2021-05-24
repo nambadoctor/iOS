@@ -23,7 +23,8 @@ struct DoctorHome: View {
                         AppointmentsView().tabItem {
                             Image("list.triangle")
                             Text("Appointments")
-                        }.tag(1)
+                        }
+                        .tag(1)
 
                         DoctorProfile().tabItem {
                             Image("person.crop.circle.fill")
