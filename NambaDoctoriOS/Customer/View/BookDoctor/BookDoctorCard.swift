@@ -30,37 +30,40 @@ struct BookDoctorCard: View {
                         .font(.system(size: 15))
                         .foregroundColor(Color.gray)
 
-                    Text(customerServiceProviderVM.experience)
-                        .font(.system(size: 15))
-                        .foregroundColor(Color.gray)
-                    
-                    Text(customerServiceProviderVM.fees)
-                        .font(.system(size: 15))
-                        .foregroundColor(Color.gray)
+                    HStack {
+                        VStack (alignment: .leading) {
+                            Text(customerServiceProviderVM.experience)
+                                .font(.system(size: 15))
+                                .foregroundColor(Color.gray)
+                            
+                            Text(customerServiceProviderVM.fees)
+                                .font(.system(size: 15))
+                                .foregroundColor(Color.gray)
+                        }
 
+                        VStack {
+                            Spacer()
+                            HStack {
+                                Spacer()
+                                Button {
+                                    self.customerServiceProviderVM.takeToBookDocView()
+                                } label: {
+                                    Text("Book")
+                                        .padding(.horizontal)
+                                        .padding(.vertical, 7)
+                                        .background(Color.blue)
+                                        .foregroundColor(Color.white)
+                                        .cornerRadius(5)
+                                }
+                            }
+                        }
+                    }
                 }.padding(.leading, 3)
 
                 if self.customerServiceProviderVM.takeToBookDoc {
                     NavigationLink("",
                                    destination: DetailedBookDoctorView(detailedBookingVM: customerServiceProviderVM.getDetailedBookingVM()),
                                    isActive: self.$customerServiceProviderVM.takeToBookDoc)
-                }
-
-                VStack {
-                    Spacer()
-                    HStack {
-                        Spacer()
-                        Button {
-                            self.customerServiceProviderVM.takeToBookDocView()
-                        } label: {
-                            Text("Book")
-                                .padding(.horizontal)
-                                .padding(.vertical, 7)
-                                .background(Color.blue)
-                                .foregroundColor(Color.white)
-                                .cornerRadius(5)
-                        }
-                    }
                 }
             }.padding()
 

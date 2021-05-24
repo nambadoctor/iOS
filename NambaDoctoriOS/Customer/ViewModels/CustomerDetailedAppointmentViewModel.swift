@@ -208,7 +208,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
             }
         }
     }
-    
+
     func cancelAppointment(completion: @escaping (_ successfullyCancelled:Bool)->()) {
         DoctorAlertHelpers().cancelAppointmentAlert { (cancel) in
             CommonDefaultModifiers.showLoader()
