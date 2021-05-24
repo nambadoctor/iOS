@@ -41,6 +41,9 @@ class IntermediateAppointmentViewModel : ObservableObject {
     @Published var showTwilioRoom:Bool = false
     @Published var collapseExtraDetailEntry:Bool = true
     
+    
+    var DoctorCancellationReason:[String] = ["This is not my specialty", "I am not available at this time", "Patient did not pick up", "Technical Issues", "Other"]
+    
     private var updateAppointmentStatus:ServiceProviderUpdateAppointmentStatusProtocol
     private var docNotifHelper:DocNotifHelpers
     private var doctorAlertHelper:DoctorAlertHelpersProtocol
@@ -334,7 +337,7 @@ extension IntermediateAppointmentViewModel {
     }
 }
 
-extension IntermediateAppointmentViewModel : DoctorCancellationDelegate {
+extension IntermediateAppointmentViewModel : CancellationDelegate {
     func cancel(reasonName: String) {
         
         let cancellation = ServiceProviderCancellation(ReasonName: reasonName,
@@ -351,3 +354,4 @@ extension IntermediateAppointmentViewModel : DoctorCancellationDelegate {
         }
     }
 }
+

@@ -139,6 +139,7 @@ class DetailedBookDocViewModel : ObservableObject {
     }
 
     func makeAppointment(slot:CustomerGeneratedSlot?) -> CustomerAppointment {
+        let cancellation = CustomerCancellation(ReasonName: "", CancelledTime: Date().millisecondsSince1970, CancelledBy: "", CancelledByType: "", Notes: "")
         return CustomerAppointment(appointmentID: "",
                                    serviceRequestID: "",
                                    parentAppointmentID: "",
@@ -158,7 +159,8 @@ class DetailedBookDocViewModel : ObservableObject {
                                    actualAppointmentEndTime: 0,
                                    createdDateTime: Date().millisecondsSince1970,
                                    lastModifiedDate: Date().millisecondsSince1970,
-                                   noOfReports: 0)
+                                   noOfReports: 0,
+                                   cancellation: cancellation)
     }
     
     func makeServiceRequest (appointmentId:String) -> CustomerServiceRequest {

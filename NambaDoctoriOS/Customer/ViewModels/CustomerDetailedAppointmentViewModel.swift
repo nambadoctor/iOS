@@ -14,7 +14,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     @Published var serviceRequest:CustomerServiceRequest? = nil
     @Published var prescription:CustomerPrescription? = nil
     @Published var serviceProvider:CustomerServiceProviderProfile? = nil
-    
+
     @Published var appointmentStarted:Bool = false
     @Published var appointmentFinished:Bool = false
     @Published var appointmnentUpComing:Bool = false
@@ -39,6 +39,11 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     @Published var newChats:Int = 0
 
     @Published var showPayment:Bool = false
+    
+    @Published var killViewTrigger:Bool = false
+    
+    @Published var cancellationSheetOffset:CGFloat = UIScreen.main.bounds.height
+    var CustomerCancellationReasons:[String] = ["I booked by mistake", "Doctor said he is not available", "Doctor did not call me", "Technical Issues", "Other"]
 
     var customerServiceRequestService:CustomerServiceRequestServiceProtocol
     var customerAppointmentService:CustomerAppointmentServiceProtocol
@@ -116,7 +121,9 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     }
     
     func refreshAppointment () {
+        CommonDefaultModifiers.showLoader()
         self.getAppointment { success in
+            CommonDefaultModifiers.hideLoader()
             self.checkAppointmentStatus()
             self.checkForDirectNavigation()
         }
@@ -218,6 +225,10 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
                 }
             }
         }
+    }
+    
+    func showCancellationSheet () {
+        self.cancellationSheetOffset = 0
     }
     
     func setServiceRequest (_ completion: @escaping (_ success:Bool)->()) {
@@ -369,6 +380,24 @@ extension CustomerDetailedAppointmentViewModel {
     func newChatListener () {
         NotificationCenter.default.addObserver(forName: NSNotification.Name("\(SimpleStateK.refreshNewChatCountChange)"), object: nil, queue: .main) { (_) in
             self.getNewChatCount()
+        }
+    }
+}
+
+extension CustomerDetailedAppointmentViewModel : CancellationDelegate {
+    func cancel(reasonName: String) {
+        
+        let cancellation = CustomerCancellation(ReasonName: reasonName,
+                                                       CancelledTime: Date().millisecondsSince1970,
+                                                       CancelledBy: UserIdHelper().retrieveUserId(),
+                                                       CancelledByType: UserTypeHelper.getUserType(),
+                                                       Notes: "")
+        self.appointment.cancellation = cancellation
+        
+        self.cancelAppointment { success in
+            if success {
+                self.killViewTrigger = true
+            }
         }
     }
 }

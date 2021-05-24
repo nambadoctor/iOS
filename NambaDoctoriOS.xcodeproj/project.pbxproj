@@ -192,6 +192,8 @@
 		1758E1F7265A57C60012E571 /* DeviceInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1758E1F6265A57C60012E571 /* DeviceInformation.swift */; };
 		1758E1FB265A58540012E571 /* DeviceInformationMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1758E1FA265A58540012E571 /* DeviceInformationMapper.swift */; };
 		1758E1FD265B20250012E571 /* CustomerNotificationHandlerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1758E1FC265B20250012E571 /* CustomerNotificationHandlerHelper.swift */; };
+		1758E1FF265B2EEA0012E571 /* CustomerCancellation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1758E1FE265B2EEA0012E571 /* CustomerCancellation.swift */; };
+		1758E201265B2F120012E571 /* CustomerCancellationMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1758E200265B2F120012E571 /* CustomerCancellationMapper.swift */; };
 		175E8DA9262FDA500000D00E /* DocAutoNavigateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E8DA8262FDA500000D00E /* DocAutoNavigateHelper.swift */; };
 		17626CAD25D5BAC200C36A99 /* LoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626CAC25D5BAC200C36A99 /* LoadingScreen.swift */; };
 		17626CCD25D5C02F00C36A99 /* DoctorHomeListeners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626CCC25D5C02F00C36A99 /* DoctorHomeListeners.swift */; };
@@ -584,6 +586,8 @@
 		1758E1F6265A57C60012E571 /* DeviceInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInformation.swift; sourceTree = "<group>"; };
 		1758E1FA265A58540012E571 /* DeviceInformationMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInformationMapper.swift; sourceTree = "<group>"; };
 		1758E1FC265B20250012E571 /* CustomerNotificationHandlerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerNotificationHandlerHelper.swift; sourceTree = "<group>"; };
+		1758E1FE265B2EEA0012E571 /* CustomerCancellation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerCancellation.swift; sourceTree = "<group>"; };
+		1758E200265B2F120012E571 /* CustomerCancellationMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerCancellationMapper.swift; sourceTree = "<group>"; };
 		175E8DA8262FDA500000D00E /* DocAutoNavigateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocAutoNavigateHelper.swift; sourceTree = "<group>"; };
 		17626CAC25D5BAC200C36A99 /* LoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreen.swift; sourceTree = "<group>"; };
 		17626CCC25D5C02F00C36A99 /* DoctorHomeListeners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorHomeListeners.swift; sourceTree = "<group>"; };
@@ -1036,6 +1040,7 @@
 		172B851525AEE49E00C6B035 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				172EF1F62655D33E000F2B4E /* CancellationBottomSheet */,
 				172EF1F92655D3CF000F2B4E /* CustomBottomSheet */,
 				17437EB0263E956300AFEF5B /* PDFKitView */,
 				17513B2626102C0300542C00 /* ImageFromWebHelpers */,
@@ -1459,6 +1464,7 @@
 				172EF21E26585D9D000F2B4E /* CustomerDosage.swift */,
 				172EF22026585DAF000F2B4E /* CustomerDuration.swift */,
 				172EF22626586C73000F2B4E /* CustomerChildProfile.swift */,
+				1758E1FE265B2EEA0012E571 /* CustomerCancellation.swift */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
@@ -1490,6 +1496,7 @@
 				172EF22226585E2D000F2B4E /* CustomerDosageMapper.swift */,
 				172EF22426585E83000F2B4E /* CustomerDurationMapper.swift */,
 				1758E1E126590E1D0012E571 /* CustomerChildProfileObjectMapper.swift */,
+				1758E200265B2F120012E571 /* CustomerCancellationMapper.swift */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
@@ -1671,7 +1678,6 @@
 		17B5D11625B74B29009D6A42 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				172EF1F62655D33E000F2B4E /* CancellationBottomSheet */,
 				1705A4FD2653AA220015EFA2 /* PrescriptionPreviewView */,
 				17A0207F2630213100BD828F /* Notifications */,
 				179C44E22628C8600073F4E0 /* DoctorChat */,
@@ -2340,6 +2346,7 @@
 				1748010625B8DF8900C8E3CC /* LoginDefaultMofiers.swift in Sources */,
 				171646B32602B62900BB5B5A /* ServiceProviderFollowUp.swift in Sources */,
 				171646BD2602B68000BB5B5A /* ServiceProviderMedicine.swift in Sources */,
+				1758E201265B2F120012E571 /* CustomerCancellationMapper.swift in Sources */,
 				172B851725AEE4AC00C6B035 /* UIColor.swift in Sources */,
 				171646C72602B70300BB5B5A /* ServiceProviderPrescription.swift in Sources */,
 				17F42E962648B65C00129D17 /* CustomerProfileView.swift in Sources */,
@@ -2440,6 +2447,7 @@
 				171647732603473000BB5B5A /* ServiceProviderServiceRequestService.swift in Sources */,
 				1758E1FB265A58540012E571 /* DeviceInformationMapper.swift in Sources */,
 				172B851025AEE46700C6B035 /* PhoneVerificationview.swift in Sources */,
+				1758E1FF265B2EEA0012E571 /* CustomerCancellation.swift in Sources */,
 				179B07EC264F3EEF00C5C53D /* ClearUserDefaults.swift in Sources */,
 				172EF2192656888C000F2B4E /* PredictingTextView.swift in Sources */,
 				17E869D925CE75E1000B0952 /* PatientReportView.swift in Sources */,

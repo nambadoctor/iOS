@@ -11,7 +11,8 @@ import SwiftUI
 struct CancellationBottomsheetCaller: View {
 
     @Binding var offset:CGFloat
-    var delegate:DoctorCancellationDelegate
+    var cancellationReasons:[String]
+    var delegate:CancellationDelegate
 
     var body: some View {
         
@@ -20,7 +21,7 @@ struct CancellationBottomsheetCaller: View {
                 
                 Spacer()
 
-                CancellationBottomSheet(bottomSheetOffset: $offset, delegate: delegate)
+                CancellationBottomSheet(bottomSheetOffset: $offset, cancellationReasons: self.cancellationReasons, delegate: delegate)
                 .offset(y: self.offset)
                 .gesture(DragGesture()
                 

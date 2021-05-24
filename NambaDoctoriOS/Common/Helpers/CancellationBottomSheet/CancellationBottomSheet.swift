@@ -7,20 +7,22 @@
 
 import SwiftUI
 
-protocol DoctorCancellationDelegate {
+protocol CancellationDelegate {
     func cancel(reasonName:String)
 }
 
 struct CancellationBottomSheet : View {
     
     @Binding var bottomSheetOffset : CGFloat
-    var delegate:DoctorCancellationDelegate
+    var cancellationReasons:[String]
+    var delegate:CancellationDelegate
 
     @State private var checkedOption:String = ""
+    @State private var customReason:String = ""
 
     var body : some View{
 
-        VStack(spacing: 15){
+        VStack(alignment: .leading, spacing: 15){
             
             HStack {
                 Image("reportAbuse").foregroundColor(Color(UIColor.Red))
@@ -36,41 +38,19 @@ struct CancellationBottomSheet : View {
                 .foregroundColor(Color(UIColor.lightGray))
             
             VStack {
-                CheckboxField(
-                    label: "This is not my specialty",
-                    size: 14,
-                    textSize: 14,
-                    callback: checkboxSelected,
-                    checkedOption: self.$checkedOption
-                )
-                CheckboxField(
-                    label: "I am not available at this time",
-                    size: 14,
-                    textSize: 14,
-                    callback: checkboxSelected,
-                    checkedOption: self.$checkedOption
-                )
-                CheckboxField(
-                    label: "Patient did not pick up",
-                    size: 14,
-                    textSize: 14,
-                    callback: checkboxSelected,
-                    checkedOption: self.$checkedOption
-                )
-                CheckboxField(
-                    label: "Technical Issues",
-                    size: 14,
-                    textSize: 14,
-                    callback: checkboxSelected,
-                    checkedOption: self.$checkedOption
-                )
-                CheckboxField(
-                    label: "Other",
-                    size: 14,
-                    textSize: 14,
-                    callback: checkboxSelected,
-                    checkedOption: self.$checkedOption
-                )
+                ForEach(self.cancellationReasons, id: \.self) {reason in
+                    CheckboxField(
+                        label: reason,
+                        size: 14,
+                        textSize: 14,
+                        callback: checkboxSelected,
+                        checkedOption: self.$checkedOption
+                    )
+                    
+                    if self.checkedOption == "Other" && reason == "Other" {
+                        ExpandingTextView(text: self.$customReason)
+                    }
+                }
             }
             
             HStack {
@@ -80,7 +60,11 @@ struct CancellationBottomSheet : View {
                 } .font(Font.system(size:13)).foregroundColor(Color(UIColor.gray)).padding(.trailing, 10)
                 
                 Button ("Confirm") {
-                    self.delegate.cancel(reasonName: self.checkedOption)
+                    if self.checkedOption == "Other" {
+                        self.delegate.cancel(reasonName: "Other: \(self.customReason)")
+                    } else {
+                        self.delegate.cancel(reasonName: self.checkedOption)
+                    }
                 }.frame(width: 90, height: 33)
                     .background(Color(UIColor.red))
                      .font(Font.system(size:13))

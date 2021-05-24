@@ -17,7 +17,7 @@ struct CustomerDetailedAppointmentView: View {
         ZStack {
             VStack {
                 header
-                
+
                 VStack {
                     if customerDetailedAppointmentVM.imageLoader != nil {
                         ImageView(imageLoader: customerDetailedAppointmentVM.imageLoader!)
@@ -56,6 +56,12 @@ struct CustomerDetailedAppointmentView: View {
             if customerDetailedAppointmentVM.showPayment {
                 customerDetailedAppointmentVM.razorPayEndPoint()
             }
+            
+            if self.customerDetailedAppointmentVM.killViewTrigger {
+                Text("").onAppear(){self.killView()}
+            }
+            
+            CancellationBottomsheetCaller(offset: self.$customerDetailedAppointmentVM.cancellationSheetOffset, cancellationReasons: self.customerDetailedAppointmentVM.CustomerCancellationReasons, delegate: self.customerDetailedAppointmentVM)
         }
         .onTapGesture {
             EndEditingHelper.endEditing()
@@ -171,11 +177,7 @@ struct CustomerDetailedAppointmentView: View {
                     
                     if customerDetailedAppointmentVM.appointmnentUpComing {
                         Button(action: {
-                            customerDetailedAppointmentVM.cancelAppointment { success in
-                                if success {
-                                    killView()
-                                }
-                            }
+                            self.customerDetailedAppointmentVM.showCancellationSheet()
                         }, label: {
                             ZStack {
                                 Image("xmark")
