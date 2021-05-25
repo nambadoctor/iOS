@@ -39,17 +39,6 @@ struct EditableAppointmentView: View {
     var detailedUpcomingAppointment : some View {
         ScrollView (.vertical) {
             
-            if self.intermediateVM.childProfile != nil {
-                HStack {
-                    Text("Appointment booked by caretaker for child")
-                        .font(.footnote)
-                        .foregroundColor(.gray)
-                    Spacer()
-                }
-                .padding(.horizontal)
-                .padding(.top, 5)
-            }
-            
             ZStack {
                 header
                     .background(Color(CustomColors.SkyBlue))
@@ -212,9 +201,6 @@ struct EditableAppointmentView: View {
                 }
 
                 VStack (alignment: .leading, spacing: 5) {
-                    Text("Name")
-                        .foregroundColor(Color.white.opacity(0.5))
-                    
                     Text(intermediateVM.customerName)
                         .foregroundColor(Color.white)
                         .bold()
@@ -234,6 +220,14 @@ struct EditableAppointmentView: View {
                     }
 
                     ServiceRequestOverViewDetails(serviceRequestVM: intermediateVM.serviceRequestVM)
+                    
+                    if self.intermediateVM.childProfile != nil {
+                        HStack {
+                            Text("Booked by caretaker")
+                                .foregroundColor(Color.white.opacity(0.5))
+                            Spacer()
+                        }
+                    }
                     
                 }.padding(.horizontal)
                 Spacer()

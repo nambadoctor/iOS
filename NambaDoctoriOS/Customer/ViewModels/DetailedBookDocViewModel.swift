@@ -9,8 +9,10 @@ import Foundation
 
 class DetailedBookDocViewModel : ObservableObject {
     var serviceProvider:CustomerServiceProviderProfile
-    var customerProfile:CustomerProfile
+    
     var slots:[CustomerGeneratedSlot]? = nil
+    
+    @Published var customerProfile:CustomerProfile
 
     @Published var dateDisplay:[Int64] = [Int64]()
     @Published var timeDisplay:[Int64] = [Int64]()
@@ -22,7 +24,10 @@ class DetailedBookDocViewModel : ObservableObject {
     
     @Published var reasonVM:ReasonPickerViewModel = ReasonPickerViewModel()
     
-    @Published var bookingAppointmentFor:String = "Me"
+    @Published var bookingAppointmentFor:String = "myself"
+    
+    @Published var addChildVM:AddChildProfileViewModel = AddChildProfileViewModel()
+    
     var bookingForProfile:CustomerChildProfile? = nil
     
     var customerServiceProviderService:CustomerServiceProviderServiceProtocol
@@ -34,7 +39,6 @@ class DetailedBookDocViewModel : ObservableObject {
     var serviceProviderFee : String {
         return "Fee: \(serviceProvider.serviceFee.clean)"
     }
-    
     
     init(serviceProvider:CustomerServiceProviderProfile,
          customerServiceProviderService:CustomerServiceProviderServiceProtocol = CustomerServiceProviderService(),
@@ -48,6 +52,22 @@ class DetailedBookDocViewModel : ObservableObject {
             self.docProfPicImageLoader = ImageLoader(urlString: serviceProvider.profilePictureURL) { _ in }
         } else {
             self.docProfPicImageLoader = ImageLoader(urlString: "https://wgsi.utoronto.ca/wp-content/uploads/2020/12/blank-profile-picture-png.png") {_ in}
+        }
+    }
+    
+    func refreshCustomerProfile () {
+        CustomerProfileService().getCustomerProfile(customerId: self.customerProfile.customerID) { customerProfile in
+            if customerProfile != nil {
+                self.customerProfile = customerProfile!
+                self.checkForLatestChild()
+            }
+        }
+    }
+    
+    func checkForLatestChild () {
+        let child = addChildVM.findMostRecentChild(children: customerProfile.children)
+        if child != nil {
+            bookForChild(child: child!)
         }
     }
     
@@ -104,7 +124,7 @@ class DetailedBookDocViewModel : ObservableObject {
     func selectTime (time:Int64) {
         self.selectedTime = time
     }
-    
+
     func book (completion: @escaping (_ success:Bool)->()) {
         if selectedDate == 0 || selectedTime == 0 {
             CustomerAlertHelpers().pleaseChooseTimeandDateAlert { _ in }

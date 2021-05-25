@@ -14,7 +14,8 @@ class ServiceProviderCustomerChildProfileMapper {
             $0.name = child.Name.toProto
             $0.age = child.Age.toProto
             $0.gender = child.Gender.toProto
-            $0.gender = child.PreferredPhoneNumber.toProto
+            $0.preferredPhoneNumber = ServiceProviderPhoneNumberObjectMapper.localPhoneNumberToGrpc(phoneNumber: child.PreferredPhoneNumber)
+            $0.isPrimaryContact = child.IsPrimaryContact.toProto
         }
     }
 
@@ -33,7 +34,8 @@ class ServiceProviderCustomerChildProfileMapper {
                                     Name: child.name.toString,
                                     Age: child.age.toString,
                                     Gender: child.gender.toString,
-                                    PreferredPhoneNumber: child.preferredPhoneNumber.toString)
+                                    PreferredPhoneNumber: ServiceProviderPhoneNumberObjectMapper.grpcPhoneNumberToLocal(phoneNumberMessage: child.preferredPhoneNumber),
+                                    IsPrimaryContact: child.isPrimaryContact.toBool)
     }
 
     static func GrpcToLocal (children:[Nd_V1_ServiceProviderCustomerChildProfileMessage]) -> [ServiceProviderCustomerChildProfile] {

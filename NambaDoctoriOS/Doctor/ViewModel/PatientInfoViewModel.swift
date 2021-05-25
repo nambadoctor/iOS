@@ -76,7 +76,7 @@ class PatientInfoViewModel: ObservableObject {
     func getChildProfile (childId:String) -> ServiceProviderCustomerChildProfile? {
         for child in self.patientObj.children {
             if child.ChildProfileId == childId {
-                self.patientPhoneNumber = child.PreferredPhoneNumber
+                self.patientPhoneNumber = child.PreferredPhoneNumber.mapToNumberString()
                 return child
             }
         }

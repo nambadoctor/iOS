@@ -12,5 +12,6 @@ struct CustomerChildProfile {
     var Name:String
     var Age:String
     var Gender:String
-    var PreferredPhoneNumber:String
+    var PreferredPhoneNumber:PhoneNumber
+    var IsPrimaryContact:Bool
 }

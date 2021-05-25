@@ -13,3 +13,9 @@ struct PhoneNumber : Codable {
     var type:String
     var phoneNumberID:String
 }
+
+extension PhoneNumber {
+    func mapToNumberString() -> String {
+        return "\(self.countryCode)\(self.number)"
+    }
+}

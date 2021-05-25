@@ -23,16 +23,21 @@ struct CustomerHome: View {
                             Image("list.triangle")
                             Text("Appointments")
                         }.tag(1)
+                        
+                        MyDoctorsView().tabItem {
+                            Image("heart.fill")
+                            Text("My Doctors")
+                        }.tag(2)
 
                         BookDoctorView().tabItem {
                             Image("stethoscope")
                             Text("Book Doctor")
-                        }.tag(2)
+                        }.tag(3)
                         
                         CustomerProfileView().tabItem {
                             Image("person.crop.circle.fill")
                             Text("Profile")
-                        }.tag(3)
+                        }.tag(4)
                     }
                 }
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
@@ -42,7 +47,6 @@ struct CustomerHome: View {
                 }
                 .environmentObject(customerVM)
                 .navigationBarTitle("NambaDoctor", displayMode: .inline)
-                .navigationBarItems(trailing: self.addChildButton)
             }
         }
         .onAppear(){
@@ -53,20 +57,6 @@ struct CustomerHome: View {
         }
         .alert(item: $alertItem) { alertItem in
             alertToShow(alertItem: alertItem)
-        }
-    }
-    
-    var addChildButton : some View {
-        Button {
-            self.customerVM.showAddChildSheet = true
-        } label: {
-            Text("Add Profile")
-        }
-        .sheet(isPresented: self.$customerVM.showAddChildSheet) {
-            AddChildProfileView()
-                .onDisappear() {
-                    self.customerVM.fetchCustomerProfile()
-                }
         }
     }
 }

@@ -1106,14 +1106,23 @@ struct Nd_V1_ServiceProviderCustomerChildProfileMessage {
   /// Clears the value of `age`. Subsequent reads from it will return its default value.
   mutating func clearAge() {self._age = nil}
 
-  var preferredPhoneNumber: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _preferredPhoneNumber ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+  var preferredPhoneNumber: Nd_V1_ServiceProviderPhoneNumber {
+    get {return _preferredPhoneNumber ?? Nd_V1_ServiceProviderPhoneNumber()}
     set {_preferredPhoneNumber = newValue}
   }
   /// Returns true if `preferredPhoneNumber` has been explicitly set.
   var hasPreferredPhoneNumber: Bool {return self._preferredPhoneNumber != nil}
   /// Clears the value of `preferredPhoneNumber`. Subsequent reads from it will return its default value.
   mutating func clearPreferredPhoneNumber() {self._preferredPhoneNumber = nil}
+
+  var isPrimaryContact: SwiftProtobuf.Google_Protobuf_BoolValue {
+    get {return _isPrimaryContact ?? SwiftProtobuf.Google_Protobuf_BoolValue()}
+    set {_isPrimaryContact = newValue}
+  }
+  /// Returns true if `isPrimaryContact` has been explicitly set.
+  var hasIsPrimaryContact: Bool {return self._isPrimaryContact != nil}
+  /// Clears the value of `isPrimaryContact`. Subsequent reads from it will return its default value.
+  mutating func clearIsPrimaryContact() {self._isPrimaryContact = nil}
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -1123,7 +1132,8 @@ struct Nd_V1_ServiceProviderCustomerChildProfileMessage {
   fileprivate var _name: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _gender: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _age: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _preferredPhoneNumber: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _preferredPhoneNumber: Nd_V1_ServiceProviderPhoneNumber? = nil
+  fileprivate var _isPrimaryContact: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
 }
 
 struct Nd_V1_ServiceProviderCustomerProfileMessage {
@@ -3245,14 +3255,23 @@ struct Nd_V1_CustomerChildProfileMessage {
   /// Clears the value of `age`. Subsequent reads from it will return its default value.
   mutating func clearAge() {self._age = nil}
 
-  var preferredPhoneNumber: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _preferredPhoneNumber ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+  var preferredPhoneNumber: Nd_V1_CustomerPhoneNumber {
+    get {return _preferredPhoneNumber ?? Nd_V1_CustomerPhoneNumber()}
     set {_preferredPhoneNumber = newValue}
   }
   /// Returns true if `preferredPhoneNumber` has been explicitly set.
   var hasPreferredPhoneNumber: Bool {return self._preferredPhoneNumber != nil}
   /// Clears the value of `preferredPhoneNumber`. Subsequent reads from it will return its default value.
   mutating func clearPreferredPhoneNumber() {self._preferredPhoneNumber = nil}
+
+  var isPrimaryContact: SwiftProtobuf.Google_Protobuf_BoolValue {
+    get {return _isPrimaryContact ?? SwiftProtobuf.Google_Protobuf_BoolValue()}
+    set {_isPrimaryContact = newValue}
+  }
+  /// Returns true if `isPrimaryContact` has been explicitly set.
+  var hasIsPrimaryContact: Bool {return self._isPrimaryContact != nil}
+  /// Clears the value of `isPrimaryContact`. Subsequent reads from it will return its default value.
+  mutating func clearIsPrimaryContact() {self._isPrimaryContact = nil}
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -3262,7 +3281,8 @@ struct Nd_V1_CustomerChildProfileMessage {
   fileprivate var _name: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _gender: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _age: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _preferredPhoneNumber: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _preferredPhoneNumber: Nd_V1_CustomerPhoneNumber? = nil
+  fileprivate var _isPrimaryContact: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
 }
 
 struct Nd_V1_CustomerChildProfileUploadMessage {
@@ -5983,6 +6003,7 @@ extension Nd_V1_ServiceProviderCustomerChildProfileMessage: SwiftProtobuf.Messag
     3: .same(proto: "Gender"),
     4: .same(proto: "Age"),
     5: .same(proto: "PreferredPhoneNumber"),
+    6: .same(proto: "isPrimaryContact"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -5996,6 +6017,7 @@ extension Nd_V1_ServiceProviderCustomerChildProfileMessage: SwiftProtobuf.Messag
       case 3: try { try decoder.decodeSingularMessageField(value: &self._gender) }()
       case 4: try { try decoder.decodeSingularMessageField(value: &self._age) }()
       case 5: try { try decoder.decodeSingularMessageField(value: &self._preferredPhoneNumber) }()
+      case 6: try { try decoder.decodeSingularMessageField(value: &self._isPrimaryContact) }()
       default: break
       }
     }
@@ -6017,6 +6039,9 @@ extension Nd_V1_ServiceProviderCustomerChildProfileMessage: SwiftProtobuf.Messag
     if let v = self._preferredPhoneNumber {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
     }
+    if let v = self._isPrimaryContact {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -6026,6 +6051,7 @@ extension Nd_V1_ServiceProviderCustomerChildProfileMessage: SwiftProtobuf.Messag
     if lhs._gender != rhs._gender {return false}
     if lhs._age != rhs._age {return false}
     if lhs._preferredPhoneNumber != rhs._preferredPhoneNumber {return false}
+    if lhs._isPrimaryContact != rhs._isPrimaryContact {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -8339,6 +8365,7 @@ extension Nd_V1_CustomerChildProfileMessage: SwiftProtobuf.Message, SwiftProtobu
     3: .same(proto: "Gender"),
     4: .same(proto: "Age"),
     5: .same(proto: "PreferredPhoneNumber"),
+    6: .same(proto: "isPrimaryContact"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -8352,6 +8379,7 @@ extension Nd_V1_CustomerChildProfileMessage: SwiftProtobuf.Message, SwiftProtobu
       case 3: try { try decoder.decodeSingularMessageField(value: &self._gender) }()
       case 4: try { try decoder.decodeSingularMessageField(value: &self._age) }()
       case 5: try { try decoder.decodeSingularMessageField(value: &self._preferredPhoneNumber) }()
+      case 6: try { try decoder.decodeSingularMessageField(value: &self._isPrimaryContact) }()
       default: break
       }
     }
@@ -8373,6 +8401,9 @@ extension Nd_V1_CustomerChildProfileMessage: SwiftProtobuf.Message, SwiftProtobu
     if let v = self._preferredPhoneNumber {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
     }
+    if let v = self._isPrimaryContact {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -8382,6 +8413,7 @@ extension Nd_V1_CustomerChildProfileMessage: SwiftProtobuf.Message, SwiftProtobu
     if lhs._gender != rhs._gender {return false}
     if lhs._age != rhs._age {return false}
     if lhs._preferredPhoneNumber != rhs._preferredPhoneNumber {return false}
+    if lhs._isPrimaryContact != rhs._isPrimaryContact {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

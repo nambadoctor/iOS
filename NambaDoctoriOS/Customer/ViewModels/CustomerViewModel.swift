@@ -10,17 +10,21 @@ import Foundation
 class CustomerViewModel : ObservableObject {
     @Published var tabSelection:Int = 2
     @Published var customerProfile:CustomerProfile? = nil
+
+    var allAppointments:[CustomerAppointment] = [CustomerAppointment]()
     @Published var upcomingAppointments:[CustomerAppointment] = [CustomerAppointment]()
     @Published var finishedAppointments:[CustomerAppointment] = [CustomerAppointment]()
-    @Published var serviceProviders:[CustomerServiceProviderProfile]? = nil
+    @Published var myServiceProviders:[CustomerServiceProviderProfile] = [CustomerServiceProviderProfile]()
+    @Published var allServiceProviders:[CustomerServiceProviderProfile] = [CustomerServiceProviderProfile]()
     
     @Published var customerLoggedIn:Bool = false
-    @Published var showAddChildSheet:Bool = false
 
     @Published var selectedAppointment:CustomerAppointment? = nil
     @Published var takeToDetailedAppointmentView:Bool = false
     
     @Published var imageLoader:ImageLoader? = nil
+    
+    @Published var addChilVM:AddChildProfileViewModel = AddChildProfileViewModel()
     
     var customerProfileService:CustomerProfileServiceProtocol
     var customerAppointmentService:CustomerAppointmentServiceProtocol
@@ -32,25 +36,30 @@ class CustomerViewModel : ObservableObject {
         self.customerProfileService = customerProfileService
         self.customerAppointmentService = customerAppointmentService
         self.customerServiceProviderService = customerServiceProviderService
+        initialCustomerFetch()
+    }
     
-        self.fetchCustomerProfile()
+    func initialCustomerFetch () {
+        fetchCustomerProfile { retrieved in
+            self.customerLoggedIn = true
+            self.retrieveCustomerAppointments()
+            self.retrieveServiceProviders()
+            self.updateFCMToken()
+
+            if !self.customerProfile!.profilePicURL.isEmpty {
+                self.imageLoader = ImageLoader(urlString: self.customerProfile!.profilePicURL, { _ in })
+            } else {
+                self.imageLoader = ImageLoader(urlString: "https://wgsi.utoronto.ca/wp-content/uploads/2020/12/blank-profile-picture-png.png") {_ in}
+            }
+        }
     }
 
-    func fetchCustomerProfile () {
+    func fetchCustomerProfile (completion: @escaping (_ retrieved:Bool)->()) {
         let userId = UserIdHelper().retrieveUserId()
         customerProfileService.getCustomerProfile(customerId: userId) { (customerProfile) in
             if customerProfile != nil {
                 self.customerProfile = customerProfile!
-                self.customerLoggedIn = true
-                self.retrieveCustomerAppointments()
-                self.retrieveServiceProviders()
-                self.updateFCMToken()
-
-                if !customerProfile!.profilePicURL.isEmpty {
-                    self.imageLoader = ImageLoader(urlString: customerProfile!.profilePicURL, { _ in })
-                } else {
-                    self.imageLoader = ImageLoader(urlString: "https://wgsi.utoronto.ca/wp-content/uploads/2020/12/blank-profile-picture-png.png") {_ in}
-                }
+                completion(true)
             } else {
                 //TODO: handle customer profile null
             }
@@ -94,10 +103,13 @@ class CustomerViewModel : ObservableObject {
     func retrieveCustomerAppointments () {
         customerAppointmentService.getCustomerAppointments(customerId: self.customerProfile!.customerID) { (customerAppointments) in
             if customerAppointments != nil || customerAppointments?.count != 0 {
+                self.allAppointments.removeAll()
                 self.upcomingAppointments.removeAll()
                 self.finishedAppointments.removeAll()
+                self.allAppointments = customerAppointments!
                 self.sortAppointments(appointments: customerAppointments!)
                 self.getNavigationSelectedAppointment()
+                self.setMyDoctors()
             } else {
                 //TODO: handle empty or no appointments
             }
@@ -107,7 +119,8 @@ class CustomerViewModel : ObservableObject {
     func retrieveServiceProviders () {
         customerServiceProviderService.getAllServiceProvider(customerId: customerProfile!.customerID) { (serviceProviders) in
             if serviceProviders != nil || serviceProviders?.count != 0 {
-                self.serviceProviders = serviceProviders!
+                self.allServiceProviders = serviceProviders!
+                self.setMyDoctors()
             } else {
                 //TODO: handle empty or no ServiceProviders
             }
@@ -132,6 +145,27 @@ class CustomerViewModel : ObservableObject {
                 self.takeToDetailedAppointmentView = true
             }
         }
+    }
+    
+    func setMyDoctors () {
+        if allServiceProviders.isEmpty || allAppointments.isEmpty {
+            //cannot get mydoctors
+        } else {
+            var myServiceProviderIds:[String] = [String]()
+            for appointment in allAppointments {
+                myServiceProviderIds.append(appointment.serviceProviderID)
+            }
+            
+            for serviceProvider in self.allServiceProviders {
+                if myServiceProviderIds.contains(serviceProvider.serviceProviderID) {
+                    myServiceProviders.append(serviceProvider)
+                }
+            }
+        }
+    }
+    
+    func addChildCallBack() {
+        self.fetchCustomerProfile { _ in }
     }
 }
 

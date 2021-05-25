@@ -233,7 +233,9 @@ message ServiceProviderCustomerChildProfileMessage {
 
     google.protobuf.StringValue Age = 4;
 
-    google.protobuf.StringValue PreferredPhoneNumber = 5;
+    ServiceProviderPhoneNumber PreferredPhoneNumber = 5;
+
+    google.protobuf.BoolValue isPrimaryContact = 6;
 }
 
 message ServiceProviderCustomerProfileMessage {
@@ -814,7 +816,9 @@ message CustomerChildProfileMessage {
 
     google.protobuf.StringValue Age = 4;
 
-    google.protobuf.StringValue PreferredPhoneNumber = 5;
+    CustomerPhoneNumber PreferredPhoneNumber = 5;
+
+    google.protobuf.BoolValue isPrimaryContact = 6;
 }
 
 message CustomerChildProfileUploadMessage {

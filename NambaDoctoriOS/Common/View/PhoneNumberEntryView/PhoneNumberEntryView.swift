@@ -11,20 +11,27 @@ import SwiftUI
 struct PhoneNumberEntryView: View {
     @Binding var numberObj:PhoneNumberObj
     @State private var showCountryCodePicker:Bool = false
+    var isDisabled:Bool = false
+    
     var body: some View {
         HStack{
             Text(numberObj.countryCode).frame(width: 45)
                 .padding()
-                .onTapGesture {self.showCountryCodePicker.toggle()}
+                .onTapGesture {
+                    if !isDisabled {
+                        self.showCountryCodePicker.toggle()
+                    }
+                }
                 .background(Color(UIColor.LightGrey))
                 .clipShape(RoundedRectangle(cornerRadius: 10))
             
             TextField("Number", text: $numberObj.number.text)
+                .disabled(isDisabled)
                 .keyboardType(.numberPad)
                 .padding()
                 .background(Color(UIColor.LightGrey))
                 .clipShape(RoundedRectangle(cornerRadius: 10))
-        }.padding(15)
+        }
         .padding(.top, 5)
         .sheet(isPresented: self.$showCountryCodePicker) {
             CountryPickerView(selectedCountryCode: $numberObj.countryCode, countryPickerViewDismisser: $showCountryCodePicker)

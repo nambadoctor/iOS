@@ -38,14 +38,20 @@ struct DetailedBookDoctorView: View {
                                     Text(child.Name)
                                 }
                             }
+
+                            Button {
+                                self.detailedBookingVM.addChildVM.showSheet = true
+                            } label: {
+                                Text("Add Profile")
+                            }
                             
                         } label: {
                             Text(self.detailedBookingVM.bookingAppointmentFor)
                             Image("chevron.down.circle")
                         }
+                        .modifier(AddProfileViewMod(addChildVM: self.detailedBookingVM.addChildVM, customerProfile: self.detailedBookingVM.customerProfile, callback: self.detailedBookingVM.refreshCustomerProfile))
                     }
-                    
-                    
+
                     Spacer().frame(height: 10)
                     
                     Text("Reason For Appointment")
@@ -115,8 +121,9 @@ struct DetailedBookDoctorView: View {
         }
         .padding()
         .environmentObject(self.detailedBookingVM.reasonVM)
+        
     }
-    
+
     var header : some View {
         VStack (alignment: .leading) {
             

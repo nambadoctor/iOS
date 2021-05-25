@@ -187,13 +187,14 @@
 		1758E1E72659113D0012E571 /* AddChildProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1758E1E62659113D0012E571 /* AddChildProfileViewModel.swift */; };
 		1758E1EB2659371F0012E571 /* ServiceProviderCustomerChildProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1758E1EA2659371F0012E571 /* ServiceProviderCustomerChildProfile.swift */; };
 		1758E1ED2659373F0012E571 /* ServiceProviderCustomerChildProfileMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1758E1EC2659373F0012E571 /* ServiceProviderCustomerChildProfileMapper.swift */; };
-		1758E1F3265955CD0012E571 /* ServiceProviderAndCustomer.grpc 8.07.40 AM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1758E1F2265955CD0012E571 /* ServiceProviderAndCustomer.grpc 8.07.40 AM.swift */; };
-		1758E1F5265955D60012E571 /* ServiceProviderAndCustomer.pb 8.07.40 AM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1758E1F4265955D60012E571 /* ServiceProviderAndCustomer.pb 8.07.40 AM.swift */; };
 		1758E1F7265A57C60012E571 /* DeviceInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1758E1F6265A57C60012E571 /* DeviceInformation.swift */; };
 		1758E1FB265A58540012E571 /* DeviceInformationMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1758E1FA265A58540012E571 /* DeviceInformationMapper.swift */; };
 		1758E1FD265B20250012E571 /* CustomerNotificationHandlerHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1758E1FC265B20250012E571 /* CustomerNotificationHandlerHelper.swift */; };
 		1758E1FF265B2EEA0012E571 /* CustomerCancellation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1758E1FE265B2EEA0012E571 /* CustomerCancellation.swift */; };
 		1758E201265B2F120012E571 /* CustomerCancellationMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1758E200265B2F120012E571 /* CustomerCancellationMapper.swift */; };
+		1758E204265C3F640012E571 /* MyDoctorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1758E203265C3F640012E571 /* MyDoctorsView.swift */; };
+		1758E20A265C6D0C0012E571 /* ServiceProviderAndCustomer.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1758E209265C6D0C0012E571 /* ServiceProviderAndCustomer.grpc.swift */; };
+		1758E20C265C6D0F0012E571 /* ServiceProviderAndCustomer.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1758E20B265C6D0F0012E571 /* ServiceProviderAndCustomer.pb.swift */; };
 		175E8DA9262FDA500000D00E /* DocAutoNavigateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175E8DA8262FDA500000D00E /* DocAutoNavigateHelper.swift */; };
 		17626CAD25D5BAC200C36A99 /* LoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626CAC25D5BAC200C36A99 /* LoadingScreen.swift */; };
 		17626CCD25D5C02F00C36A99 /* DoctorHomeListeners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17626CCC25D5C02F00C36A99 /* DoctorHomeListeners.swift */; };
@@ -581,13 +582,14 @@
 		1758E1E62659113D0012E571 /* AddChildProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddChildProfileViewModel.swift; sourceTree = "<group>"; };
 		1758E1EA2659371F0012E571 /* ServiceProviderCustomerChildProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderCustomerChildProfile.swift; sourceTree = "<group>"; };
 		1758E1EC2659373F0012E571 /* ServiceProviderCustomerChildProfileMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderCustomerChildProfileMapper.swift; sourceTree = "<group>"; };
-		1758E1F2265955CD0012E571 /* ServiceProviderAndCustomer.grpc 8.07.40 AM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ServiceProviderAndCustomer.grpc 8.07.40 AM.swift"; sourceTree = "<group>"; };
-		1758E1F4265955D60012E571 /* ServiceProviderAndCustomer.pb 8.07.40 AM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ServiceProviderAndCustomer.pb 8.07.40 AM.swift"; sourceTree = "<group>"; };
 		1758E1F6265A57C60012E571 /* DeviceInformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInformation.swift; sourceTree = "<group>"; };
 		1758E1FA265A58540012E571 /* DeviceInformationMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceInformationMapper.swift; sourceTree = "<group>"; };
 		1758E1FC265B20250012E571 /* CustomerNotificationHandlerHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerNotificationHandlerHelper.swift; sourceTree = "<group>"; };
 		1758E1FE265B2EEA0012E571 /* CustomerCancellation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerCancellation.swift; sourceTree = "<group>"; };
 		1758E200265B2F120012E571 /* CustomerCancellationMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerCancellationMapper.swift; sourceTree = "<group>"; };
+		1758E203265C3F640012E571 /* MyDoctorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDoctorsView.swift; sourceTree = "<group>"; };
+		1758E209265C6D0C0012E571 /* ServiceProviderAndCustomer.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderAndCustomer.grpc.swift; sourceTree = "<group>"; };
+		1758E20B265C6D0F0012E571 /* ServiceProviderAndCustomer.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderAndCustomer.pb.swift; sourceTree = "<group>"; };
 		175E8DA8262FDA500000D00E /* DocAutoNavigateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocAutoNavigateHelper.swift; sourceTree = "<group>"; };
 		17626CAC25D5BAC200C36A99 /* LoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreen.swift; sourceTree = "<group>"; };
 		17626CCC25D5C02F00C36A99 /* DoctorHomeListeners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorHomeListeners.swift; sourceTree = "<group>"; };
@@ -1130,6 +1132,7 @@
 		1739EAD82638082F00556044 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1758E202265C3F590012E571 /* MyDoctors */,
 				1758E1E32659100A0012E571 /* AddChildProfile */,
 				176EFAA8264E56CE00A6310B /* ProfileCreation */,
 				17F42E942648B65100129D17 /* CustomerProfile */,
@@ -1198,7 +1201,7 @@
 		173A22BB25CAF8BC0086342A /* ServiceImplementations */ = {
 			isa = PBXGroup;
 			children = (
-				1758E1F4265955D60012E571 /* ServiceProviderAndCustomer.pb 8.07.40 AM.swift */,
+				1758E209265C6D0C0012E571 /* ServiceProviderAndCustomer.grpc.swift */,
 			);
 			path = ServiceImplementations;
 			sourceTree = "<group>";
@@ -1206,7 +1209,7 @@
 		173A22BC25CAF8C60086342A /* ModelImplementations */ = {
 			isa = PBXGroup;
 			children = (
-				1758E1F2265955CD0012E571 /* ServiceProviderAndCustomer.grpc 8.07.40 AM.swift */,
+				1758E20B265C6D0F0012E571 /* ServiceProviderAndCustomer.pb.swift */,
 			);
 			path = ModelImplementations;
 			sourceTree = "<group>";
@@ -1310,6 +1313,14 @@
 				1758E1FA265A58540012E571 /* DeviceInformationMapper.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		1758E202265C3F590012E571 /* MyDoctors */ = {
+			isa = PBXGroup;
+			children = (
+				1758E203265C3F640012E571 /* MyDoctorsView.swift */,
+			);
+			path = MyDoctors;
 			sourceTree = "<group>";
 		};
 		17626CCB25D5C01A00C36A99 /* DoctorHome */ = {
@@ -2221,7 +2232,6 @@
 				1796321C25AEE932002E466C /* CommonDefaultModifiers.swift in Sources */,
 				176AA0FE2637B9DD00F02346 /* CustomerAllergy.swift in Sources */,
 				171646C22602B6B700BB5B5A /* ServiceProviderPaymentInfo.swift in Sources */,
-				1758E1F5265955D60012E571 /* ServiceProviderAndCustomer.pb 8.07.40 AM.swift in Sources */,
 				1742506D25BAE69200523B94 /* PrescriptionFormPickerConstants.swift in Sources */,
 				17424FAA25BACEF600523B94 /* ServiceRequestViewModel.swift in Sources */,
 				17EC7656260DE8940002BA75 /* DatePickerViewModel.swift in Sources */,
@@ -2356,7 +2366,9 @@
 				17E8699E25CE108E000B0952 /* DoctorAppointmentViewModelProtocol.swift in Sources */,
 				176AA1742637BF4700F02346 /* CustomerAllergyMapper.swift in Sources */,
 				172FA711261F126800D14545 /* ServiceProviderCustomerAllergyMapper.swift in Sources */,
+				1758E20C265C6D0F0012E571 /* ServiceProviderAndCustomer.pb.swift in Sources */,
 				1739EAD4263807BB00556044 /* CustomerHome.swift in Sources */,
+				1758E204265C3F640012E571 /* MyDoctorsView.swift in Sources */,
 				176AA13D2637BD5200F02346 /* CustomerMedicalHistory.swift in Sources */,
 				1716E2C0261AFA6600568837 /* ServiceRequestEditableView.swift in Sources */,
 				17E370BE25BF53AD0004C965 /* TwilioDefaultModifiers.swift in Sources */,
@@ -2410,7 +2422,6 @@
 				176AA1562637BDFF00F02346 /* CustomerReportUpload.swift in Sources */,
 				176AA1D62637F39600F02346 /* CustomerDiagnosisMapper.swift in Sources */,
 				1785A5012616E193009667D1 /* ModifyFeeViewModel.swift in Sources */,
-				1758E1F3265955CD0012E571 /* ServiceProviderAndCustomer.grpc 8.07.40 AM.swift in Sources */,
 				171647DF26044DC800BB5B5A /* ServiceProviderReportService.swift in Sources */,
 				176AA1AB2637C91300F02346 /* CustomerGeneratedSlotMapper.swift in Sources */,
 				176AA1B52637C9CF00F02346 /* CustomerPaymentInfoMapper.swift in Sources */,
@@ -2511,6 +2522,7 @@
 				17164706260312DC00BB5B5A /* ServiceProviderAvailaibilityObjectMapper.swift in Sources */,
 				171646CC2602B73C00BB5B5A /* ServiceProviderReport.swift in Sources */,
 				1728B77F25B3838E001D554E /* LoginStatusEnum.swift in Sources */,
+				1758E20A265C6D0C0012E571 /* ServiceProviderAndCustomer.grpc.swift in Sources */,
 				1758E1E52659101D0012E571 /* AddChildProfileView.swift in Sources */,
 				171B8B13261481E7007E722C /* FollowUpView.swift in Sources */,
 				172B850E25AEE46700C6B035 /* CountryPickerView.swift in Sources */,
@@ -2735,7 +2747,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NambaDoctoriOS/NambaDoctoriOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"NambaDoctoriOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 4H9M6DGZQ3;
@@ -2746,7 +2758,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = nambadoctor.iOS.NambaDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -2762,7 +2774,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NambaDoctoriOS/NambaDoctoriOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"NambaDoctoriOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 4H9M6DGZQ3;
 				ENABLE_PREVIEWS = YES;
@@ -2772,7 +2784,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = nambadoctor.iOS.NambaDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

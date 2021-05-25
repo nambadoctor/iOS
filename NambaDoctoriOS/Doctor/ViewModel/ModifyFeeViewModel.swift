@@ -24,9 +24,8 @@ class ModifyFeeViewModel:ObservableObject {
         fee = "0"
         feeWaived = true
     }
-    
+
     func convertFeeToDouble() -> Double {
-        print("DOUBLE VAL \(Double(fee)!)")
-        return Double(fee)!
+        return Double(fee) ?? 0
     }
 }

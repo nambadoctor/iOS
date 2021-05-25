@@ -32,6 +32,7 @@ struct PhoneVerificationview: View {
                     Text("Enter Your Number").font(Font.system(size:25)).padding(.top, 70)
                     
                     PhoneNumberEntryView(numberObj: $preRegUser.user.phNumberObj)
+                        .padding()
                     
                     Button (action: {
                         EndEditingHelper.endEditing()

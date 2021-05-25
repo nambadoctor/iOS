@@ -20,7 +20,7 @@ struct ModifyFeeView: View {
                     .background(Color.blue.opacity(0.1))
                     .foregroundColor(Color.blue)
                     .cornerRadius(5)
-                
+
                 Text("FEE")
                     .font(.footnote)
                     .bold()

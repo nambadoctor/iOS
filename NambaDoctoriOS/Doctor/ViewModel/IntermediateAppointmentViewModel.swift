@@ -239,26 +239,26 @@ extension IntermediateAppointmentViewModel : TwilioDelegate {
     }
 
     func startConsultation() {
+        
+        if self.childProfile == nil || (self.childProfile?.IsPrimaryContact ?? false) {
+            EndEditingHelper.endEditing()
+            CommonDefaultModifiers.showLoader()
+            doctorTwilioManagerViewModel.startRoom() { success in
+                if success {
+                    self.doctorTwilioManagerViewModel.fireStartedNotif() { success in
+                        self.appointment.status = ConsultStateK.StartedConsultation.rawValue //need to refresh from db after. using local update for now.
+                        self.checkIfAppointmentStarted()
+                    }
 
-        guard self.childProfile == nil else {
+                    self.showTwilioRoom = true
+                    CommonDefaultModifiers.hideLoader()
+                } else { }
+            }
+        } else {
+            EndEditingHelper.endEditing()
             doctorAlertHelper.videoCallNotAllowedForChildAlert { _ in
                 self.patientInfoViewModel.callPatient()
             }
-            return
-        }
-
-        EndEditingHelper.endEditing()
-        CommonDefaultModifiers.showLoader()
-        doctorTwilioManagerViewModel.startRoom() { success in
-            if success {
-                self.doctorTwilioManagerViewModel.fireStartedNotif() { success in
-                    self.appointment.status = ConsultStateK.StartedConsultation.rawValue //need to refresh from db after. using local update for now.
-                    self.checkIfAppointmentStarted()
-                }
-
-                self.showTwilioRoom = true
-                CommonDefaultModifiers.hideLoader()
-            } else { }
         }
     }
 }
