@@ -31,7 +31,7 @@ class IntermediateAppointmentViewModel : ObservableObject {
     
     @Published var takeToChat:Bool = false
     @Published var newChats:Int = 0
-
+    
     @Published var appointmentStarted:Bool = false
     @Published var appointmentFinished:Bool = false
     
@@ -47,33 +47,33 @@ class IntermediateAppointmentViewModel : ObservableObject {
     private var updateAppointmentStatus:ServiceProviderUpdateAppointmentStatusProtocol
     private var docNotifHelper:DocNotifHelpers
     private var doctorAlertHelper:DoctorAlertHelpersProtocol
-
+    
     init(appointment:ServiceProviderAppointment,
          updateAppointmentStatus:ServiceProviderUpdateAppointmentStatusProtocol = ServiceProviderUpdateAppointmentStatusHelper(),
          doctorAlertHelper:DoctorAlertHelpersProtocol = DoctorAlertHelpers()) {
         self.appointment = appointment
-
+        
         self.updateAppointmentStatus = updateAppointmentStatus
         self.doctorAlertHelper = doctorAlertHelper
         self.docNotifHelper = DocNotifHelpers(appointment: appointment)
-
+        
         //main view model inits
         self.medicineVM = MedicineViewModel(appointment: appointment)
         self.patientInfoViewModel = PatientInfoViewModel(appointment: appointment)
         self.serviceRequestVM = ServiceRequestViewModel(appointment: appointment)
-
+        
         //helper view model inits
         self.modifyFeeViewModel = ModifyFeeViewModel(fee: appointment.serviceFee.clean)
         self.doctorTwilioManagerViewModel = DoctorTwilioViewModel(appointment: appointment)
         self.chatVM = DoctorChatViewModel(appointment: appointment)
-
+        
         doctorTwilioManagerViewModel.twilioDelegate = self
         serviceRequestVM.gotServiceRequestDelegate = self
-
+        
         docAutoNav.enterIntermediateView(appointmentId: self.appointment.appointmentID)
         refreshAppointment()
     }
-
+    
     func refreshAppointment () {
         CommonDefaultModifiers.showLoader()
         ServiceProviderAppointmentService().getSingleAppointment(appointmentId: appointment.appointmentID, serviceProviderId: appointment.serviceProviderID) { (appointment) in
@@ -83,11 +83,11 @@ class IntermediateAppointmentViewModel : ObservableObject {
             }
         }
     }
-
+    
     func refreshPrescription () {
         self.medicineVM.retrievePrescriptions()
     }
-
+    
     func initChecks () {
         docAutoNav.enterIntermediateView(appointmentId: self.appointment.appointmentID)
         checkDetailedOrView()
@@ -115,7 +115,7 @@ extension IntermediateAppointmentViewModel {
                 }
             }
         }
-
+        
         if docAutoNav.takeToTwilioRoom {
             self.doctorAlertHelper.twilioConnectToRoomAlert { (connect) in
                 if connect {
@@ -133,9 +133,20 @@ extension IntermediateAppointmentViewModel : LoadedServiceRequestDelegate {
     }
     
     func isForChild(childId: String) {
-        let child = patientInfoViewModel.getChildProfile(childId: childId)
-        if child != nil {
-            self.childProfile = child!
+        
+        func getChild () {
+            let child = patientInfoViewModel.getChildProfile(childId: childId)
+            if child != nil {
+                self.childProfile = child!
+            }
+        }
+        
+        if patientInfoViewModel.patientObj != nil {
+            getChild()
+        } else {
+            DoctorAlertHelpers().errorRetrievingChild { _ in
+                getChild()
+            }
         }
     }
 }
@@ -164,19 +175,19 @@ extension IntermediateAppointmentViewModel {
                 completion(true)
             }
         }
-
+        
         self.appointment.serviceFee = modifyFeeViewModel.convertFeeToDouble()
-
+        
         serviceRequestVM.sendToPatient { (success, serviceRequestId) in
             onCompletion(success: success)
         }
-
+        
         self.medicineVM.prescription.serviceRequestID = self.serviceRequestVM.serviceRequest.serviceRequestID
         self.medicineVM.sendToPatient { (success) in
             onCompletion(success: success)
         }
     }
-
+    
     func sendToPatient () {
         CommonDefaultModifiers.showLoader()
         
@@ -186,7 +197,7 @@ extension IntermediateAppointmentViewModel {
                 if self.appointment.serviceFee == 0 {
                     self.appointment.isPaid = true
                 }
-
+                
                 self.updateAppointmentStatus.updateToFinished(appointment: &self.appointment) { (success) in
                     CommonDefaultModifiers.hideLoader()
                     self.docNotifHelper.fireAppointmentOverNotif()
@@ -202,7 +213,7 @@ extension IntermediateAppointmentViewModel {
                     self.doctorTwilioManagerViewModel.leaveRoom()
                     submitFunc()
                 }
-
+                
                 if goBack {
                     CommonDefaultModifiers.hideLoader()
                 }
@@ -210,7 +221,7 @@ extension IntermediateAppointmentViewModel {
         } else {
             submitFunc()
         }
-
+        
         
     }
     
@@ -237,7 +248,7 @@ extension IntermediateAppointmentViewModel : TwilioDelegate {
         self.showTwilioRoom = false
         docAutoNav.leaveTwilioRoom()
     }
-
+    
     func startConsultation() {
         
         if self.childProfile == nil || (self.childProfile?.IsPrimaryContact ?? false) {
@@ -249,7 +260,7 @@ extension IntermediateAppointmentViewModel : TwilioDelegate {
                         self.appointment.status = ConsultStateK.StartedConsultation.rawValue //need to refresh from db after. using local update for now.
                         self.checkIfAppointmentStarted()
                     }
-
+                    
                     self.showTwilioRoom = true
                     CommonDefaultModifiers.hideLoader()
                 } else { }
@@ -268,7 +279,7 @@ extension IntermediateAppointmentViewModel {
     var appointmentServiceFee : String {
         return "₹\(String(appointment.serviceFee.clean))"
     }
-
+    
     var appointmentScheduledStartTime:String {
         return "\(Helpers.getTimeFromTimeStamp(timeStamp: appointment.scheduledAppointmentStartTime))"
     }
@@ -325,7 +336,7 @@ extension IntermediateAppointmentViewModel {
         self.takeToDetailedAppointment = false
         self.takeToViewAppointment = true
     }
-
+    
     func cancelAppointment(completion: @escaping (_ successfullyCancelled:Bool) -> ()) {
         CommonDefaultModifiers.showLoader()
         self.updateAppointmentStatus.toCancelled(appointment: &self.appointment) { (success) in
@@ -348,7 +359,7 @@ extension IntermediateAppointmentViewModel {
     func getNewChatCount () {
         self.newChats = LocalNotifStorer().getNumberOfNewChatsForAppointment(appointmentId: self.appointment.appointmentID)
     }
-
+    
     func newChatListener () {
         NotificationCenter.default.addObserver(forName: NSNotification.Name("\(SimpleStateK.refreshNewChatCountChange)"), object: nil, queue: .main) { (_) in
             self.getNewChatCount()

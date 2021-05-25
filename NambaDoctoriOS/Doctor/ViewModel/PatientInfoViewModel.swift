@@ -11,12 +11,12 @@ import UIKit
 class PatientInfoViewModel: ObservableObject {
     
     @Published var patientObj:ServiceProviderCustomerProfile!
-
+    
     @Published var AppointmentList:[ServiceProviderAppointment]? = nil
     @Published var ReportList:[ServiceProviderReport]? = nil
     
     var patientPhoneNumber:String = ""
-
+    
     var appointment:ServiceProviderAppointment
     private var customerServiceCall:ServiceProviderCustomerServiceProtocol
     private var reportServiceCall:ServiceProviderReportServiceProtocol
@@ -38,15 +38,11 @@ class PatientInfoViewModel: ObservableObject {
         }
     }
     
-    var phoneNumber:String {
-        return "\(patientObj.phoneNumbers[0].number)"
-    }
-
     func callPatient () {
         guard let number = URL(string: "tel://" + self.patientPhoneNumber) else { return }
         UIApplication.shared.open(number)
     }
-
+    
     private func retrievePatientObj () {
         customerServiceCall.getPatientProfile(patientId: self.appointment.requestedBy) { (customer) in
             if customer != nil {
@@ -56,7 +52,7 @@ class PatientInfoViewModel: ObservableObject {
             }
         }
     }
- 
+    
     private func retrieveAppointmentList () {
         appointmentServiceCall.getCustomerAppointmentList(patientId: appointment.requestedBy) { (aptList) in
             if aptList != nil {
@@ -74,12 +70,14 @@ class PatientInfoViewModel: ObservableObject {
     }
     
     func getChildProfile (childId:String) -> ServiceProviderCustomerChildProfile? {
+        
         for child in self.patientObj.children {
             if child.ChildProfileId == childId {
                 self.patientPhoneNumber = child.PreferredPhoneNumber.mapToNumberString()
                 return child
             }
         }
+        
         return nil
     }
 }

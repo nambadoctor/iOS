@@ -190,51 +190,114 @@ struct EditableAppointmentView: View {
     var header : some View {
         VStack (alignment: .leading) {
             
-            HStack (alignment: .center) {
-                
-                if intermediateVM.appointmentStarted {
-                    LetterOnColoredCircle(word: intermediateVM.appointment.customerName, color: .green)
-                        .padding(.vertical)
-                } else {
-                    LetterOnColoredCircle(word: intermediateVM.appointment.customerName, color: intermediateVM.appointmentFinished ? Color.gray : Color.blue)
-                        .padding(.vertical)
-                }
-
-                VStack (alignment: .leading, spacing: 5) {
-                    Text(intermediateVM.customerName)
-                        .foregroundColor(Color.white)
-                        .bold()
-                    
-                    HStack (spacing: 20) {
-                        
-                        PatientOverViewDetails(patientInfoVM: intermediateVM.patientInfoViewModel) //age,gender display
-                        
-                        VStack (alignment: .leading) {
-                            Text("Fee")
-                                .foregroundColor(Color.white.opacity(0.5))
-                            
-                            Text(intermediateVM.appointmentServiceFee)
-                                .foregroundColor(Color.white)
-                                .bold()
-                        }
-                    }
-
-                    ServiceRequestOverViewDetails(serviceRequestVM: intermediateVM.serviceRequestVM)
-                    
-                    if self.intermediateVM.childProfile != nil {
-                        HStack {
-                            Text("Booked by caretaker")
-                                .foregroundColor(Color.white.opacity(0.5))
-                            Spacer()
-                        }
-                    }
-                    
-                }.padding(.horizontal)
-                Spacer()
+            if self.intermediateVM.childProfile == nil {
+                forCareTakerHeader
+            } else {
+                forChildHeader
             }
         }
         .padding([.horizontal, .top])
         .padding(.bottom, 40)
+    }
+    
+    var forCareTakerHeader : some View {
+        HStack (alignment: .center) {
+            
+            if intermediateVM.appointmentStarted {
+                LetterOnColoredCircle(word: intermediateVM.appointment.customerName, color: .green)
+                    .padding(.vertical)
+            } else {
+                LetterOnColoredCircle(word: intermediateVM.appointment.customerName, color: intermediateVM.appointmentFinished ? Color.gray : Color.blue)
+                    .padding(.vertical)
+            }
+
+            VStack (alignment: .leading, spacing: 5) {
+                Text(intermediateVM.customerName)
+                    .foregroundColor(Color.white)
+                    .bold()
+                
+                HStack (spacing: 20) {
+                    
+                    PatientOverViewDetails(patientInfoVM: intermediateVM.patientInfoViewModel) //age,gender display
+                    
+                    VStack (alignment: .leading) {
+                        Text("Fee")
+                            .foregroundColor(Color.white.opacity(0.5))
+                        
+                        Text(intermediateVM.appointmentServiceFee)
+                            .foregroundColor(Color.white)
+                            .bold()
+                    }
+                }
+
+                ServiceRequestOverViewDetails(serviceRequestVM: intermediateVM.serviceRequestVM)
+                
+            }.padding(.horizontal)
+            Spacer()
+        }
+    }
+    
+    var forChildHeader : some View {
+        HStack (alignment: .center) {
+            
+            if intermediateVM.appointmentStarted {
+                LetterOnColoredCircle(word: intermediateVM.childProfile!.Name, color: .green)
+                    .padding(.vertical)
+            } else {
+                LetterOnColoredCircle(word: intermediateVM.childProfile!.Name, color: intermediateVM.appointmentFinished ? Color.gray : Color.blue)
+                    .padding(.vertical)
+            }
+
+            VStack (alignment: .leading, spacing: 5) {
+                Text(intermediateVM.childProfile!.Name)
+                    .foregroundColor(Color.white)
+                    .bold()
+                
+                HStack (spacing: 20) {
+                    
+                    VStack (alignment: .leading) {
+                        Text("Age")
+                            .foregroundColor(Color.white.opacity(0.5))
+                        
+                        Text(intermediateVM.childProfile!.Age)
+                            .foregroundColor(Color.white)
+                            .bold()
+                    }
+                    
+                    VStack (alignment: .leading) {
+                        Text("Gender")
+                            .foregroundColor(Color.white.opacity(0.5))
+                        
+                        Text(intermediateVM.childProfile!.Gender)
+                            .foregroundColor(Color.white)
+                            .bold()
+                    }
+                    
+                    VStack (alignment: .leading) {
+                        Text("Fee")
+                            .foregroundColor(Color.white.opacity(0.5))
+                        
+                        Text(intermediateVM.appointmentServiceFee)
+                            .foregroundColor(Color.white)
+                            .bold()
+                    }
+                }
+
+                ServiceRequestOverViewDetails(serviceRequestVM: intermediateVM.serviceRequestVM)
+                
+                
+                HStack {
+                    Text("BOOKED BY CARETAKER")
+                        .font(.footnote)
+                        .foregroundColor(Color.white)
+                        .padding(.top, 5)
+                    Spacer()
+                }
+                
+            }.padding(.horizontal)
+            
+            Spacer()
+        }
     }
 
     var actionButtons : some View {
