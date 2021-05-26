@@ -54,6 +54,7 @@ struct CustomerHome: View {
             refreshFCMTokenListener()
             refreshAppointmentsListener()
             navigationToDetailedViewListener()
+            navigateToBookDoctorViewListener()
         }
         .alert(item: $alertItem) { alertItem in
             alertToShow(alertItem: alertItem)
@@ -97,6 +98,12 @@ extension CustomerHome {
         NotificationCenter.default.addObserver(forName: NSNotification.Name("\(CustomerViewStatesK.CustomerNavigateToDetailedViewChange)"), object: nil, queue: .main) { (_) in
             self.customerVM.tabSelection = 1
             customerVM.retrieveCustomerAppointments()
+        }
+    }
+    
+    func navigateToBookDoctorViewListener () {
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("\(CustomerViewStatesK.CustomerNavigateToBookDoctorChange)"), object: nil, queue: .main) { (_) in
+            self.customerVM.checkForDirectBookNavigation()
         }
     }
 }

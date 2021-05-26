@@ -34,6 +34,16 @@
 				<string>com.googleusercontent.apps.418517212993-llr02ooqt4b8qgv3p4scq3ag76affdub</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>https://nambadoctor.page.link/</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>nambadoctor.iOS.NambaDoctor</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>

@@ -19,4 +19,7 @@ enum CustomerViewStatesK:String {
     
     case CustomerNavigateToDetailedView
     case CustomerNavigateToDetailedViewChange
+    
+    case CustomerNavigateToBookDoctor
+    case CustomerNavigateToBookDoctorChange
 }

@@ -29,7 +29,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             }
         }
     }
-
+    
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
         // This occurs shortly after the scene enters the background, or when its session is discarded.
@@ -58,5 +58,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
     
-    
+    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        var url:String = userActivity.webpageURL?.absoluteString ?? "nothing"
+
+        guard url != "nothing" else { return }
+        print(url)
+        
+        DeepLinkingHandler().openedWithLink(url: url)
+    }
 }

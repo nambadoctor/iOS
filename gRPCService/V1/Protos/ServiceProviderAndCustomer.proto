@@ -1304,11 +1304,12 @@ service CustomerServiceProviderWorkerV1 {
 
 	rpc GetServiceProviderAvailableSlots (IdMessage) returns (CustomerGeneratedSlotListMessage);
 
+	rpc GetAllSpecialties(VoidMessage) returns (StringArrayMessage);
 }
 
-
-
-
+message StringArrayMessage {
+	repeated google.protobuf.StringValue Messages = 1;
+}
 
 service CustomerServiceRequestWorkerV1{
 

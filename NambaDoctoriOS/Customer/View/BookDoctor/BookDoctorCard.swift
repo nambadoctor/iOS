@@ -60,11 +60,6 @@ struct BookDoctorCard: View {
                     }
                 }.padding(.leading, 3)
 
-                if self.customerServiceProviderVM.takeToBookDoc {
-                    NavigationLink("",
-                                   destination: DetailedBookDoctorView(detailedBookingVM: customerServiceProviderVM.getDetailedBookingVM()),
-                                   isActive: self.$customerServiceProviderVM.takeToBookDoc)
-                }
             }.padding()
 
         }

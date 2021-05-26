@@ -8,15 +8,17 @@
 import Foundation
 
 class CustomerServiceProviderViewModel : ObservableObject {
-    var serviceProvider:CustomerServiceProviderProfile
+    var serviceProvider:CustomerServiceProviderProfile 
     @Published var imageLoader:ImageLoader? = nil
-    @Published var takeToBookDoc:Bool = false
     var customerProfile:CustomerProfile
+    var callBack:(CustomerServiceProviderProfile)->()
     
     init(serviceProvider:CustomerServiceProviderProfile,
-         customerProfile:CustomerProfile) {
+         customerProfile:CustomerProfile,
+         callBack:@escaping (CustomerServiceProviderProfile)->()) {
         self.serviceProvider = serviceProvider
         self.customerProfile = customerProfile
+        self.callBack = callBack
         
         if !serviceProvider.profilePictureURL.isEmpty {
             self.imageLoader = ImageLoader(urlString: serviceProvider.profilePictureURL, { _ in })
@@ -59,7 +61,7 @@ class CustomerServiceProviderViewModel : ObservableObject {
     }
     
     func takeToBookDocView () {
-        self.takeToBookDoc = true
+        self.callBack(serviceProvider)
     }
     
     func getDetailedBookingVM () -> DetailedBookDocViewModel{

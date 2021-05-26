@@ -18,6 +18,9 @@ PODS:
   - Firebase/Database (7.4.0):
     - Firebase/CoreOnly
     - FirebaseDatabase (~> 7.4.0)
+  - Firebase/DynamicLinks (7.4.0):
+    - Firebase/CoreOnly
+    - FirebaseDynamicLinks (~> 7.4.0)
   - Firebase/Messaging (7.4.0):
     - Firebase/CoreOnly
     - FirebaseMessaging (~> 7.4.0)
@@ -53,6 +56,8 @@ PODS:
   - FirebaseDatabase (7.4.0):
     - FirebaseCore (~> 7.0)
     - leveldb-library (~> 1.22)
+  - FirebaseDynamicLinks (7.4.0):
+    - FirebaseCore (~> 7.0)
   - FirebaseInstallations (7.4.0):
     - FirebaseCore (~> 7.0)
     - GoogleUtilities/Environment (~> 7.0)
@@ -116,6 +121,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Crashlytics
   - Firebase/Database
+  - Firebase/DynamicLinks
   - Firebase/Messaging
   - razorpay-pod (~> 1.1.1)
   - TwilioVideo (~> 3.7)
@@ -132,6 +138,7 @@ SPEC REPOS:
     - FirebaseCoreDiagnostics
     - FirebaseCrashlytics
     - FirebaseDatabase
+    - FirebaseDynamicLinks
     - FirebaseInstallations
     - FirebaseInstanceID
     - FirebaseMessaging
@@ -156,6 +163,7 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnostics: 3770093ac4f2be4590fa03cfa1d3a6e5602d4557
   FirebaseCrashlytics: ef6b0947ab6819b5cb335f8c0a7677cd57d544c5
   FirebaseDatabase: 0a619c887a9565bf4808eba37d2f0ed1d62f62d0
+  FirebaseDynamicLinks: f2119c7df57f1d8faf7036629a58a37e89f59aff
   FirebaseInstallations: 30646fc9a61c6f4ee3cd7a8b7231721842b40c95
   FirebaseInstanceID: 46d93d287108246fabbd85371ca27141d2c21ff9
   FirebaseMessaging: 6112b5cd04e0ff58c4a9920e5e29cf193ea88439
@@ -169,6 +177,6 @@ SPEC CHECKSUMS:
   razorpay-pod: e2e8cf25aea59eef51c6851716f188df71adab86
   TwilioVideo: c13a51ceca375e91620eb7578d2573c90cf53b46
 
-PODFILE CHECKSUM: 152b2d901eede38a4d5e9366949d2719b358f93a
+PODFILE CHECKSUM: 174f2c94b8de9e7f66973d10df158e1c51f9858a
 
 COCOAPODS: 1.10.1

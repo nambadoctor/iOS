@@ -13,6 +13,7 @@ struct BookDoctorView: View {
 
     var body: some View {
         VStack {
+            
             if !customerVM.allServiceProviders.isEmpty {
                 ScrollView {
                     Button {
@@ -23,17 +24,28 @@ struct BookDoctorView: View {
                                 .bold()
                         }.frame(width: UIScreen.main.bounds.width)
                     }
-                    .padding()
+                    .padding(.vertical)
                     .background(Color.blue.opacity(0.2))
+                    
+                    CategoryPicker(categoriesList: self.$customerVM.serviceProviderCategories, selectedCategory: self.$customerVM.selectedCategory)
+
                     ForEach(customerVM.allServiceProviders, id: \.serviceProviderID) { serviceProvider in
-                        BookDoctorCard(customerServiceProviderVM: CustomerServiceProviderViewModel(serviceProvider: serviceProvider, customerProfile: self.customerVM.customerProfile!))
+                        if serviceProvider.specialties.contains(self.customerVM.selectedCategory) || customerVM.selectedCategory == "All Doctors" {
+                            BookDoctorCard(customerServiceProviderVM: CustomerServiceProviderViewModel(serviceProvider: serviceProvider, customerProfile: self.customerVM.customerProfile!, callBack: self.customerVM.selectDoctorToBook(doctor:)))
+                        }
                     }
-                    .padding(.horizontal)
                 }
             } else {
                 Indicator()
             }
             Spacer()
+            
+            
+            if self.customerVM.takeToBookDoc {
+                NavigationLink("",
+                               destination: DetailedBookDoctorView(detailedBookingVM: customerVM.getDetailedBookingVM()),
+                               isActive: self.$customerVM.takeToBookDoc)
+            }
         }
         .onAppear() {
             self.customerVM.fetchCustomerProfile { _ in }

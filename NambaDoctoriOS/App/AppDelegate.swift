@@ -2,6 +2,7 @@ import UIKit
 import UserNotifications
 
 import Firebase
+import FirebaseDynamicLinks
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -119,7 +120,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         // [END_EXCLUDE]
         // Print full message.
         print(userInfo)
-
+        
         LoggerService().log(appointmentId: "", eventName: "NOTIFICATION DISPLAYED")
         
         LocalNotificationHandler().notifRecieveHelper(userInfo: userInfo) { (_) in }

@@ -22,4 +22,9 @@ class CustomerDefaultModifiers {
         UserDefaults.standard.set(true, forKey: CustomerViewStatesK.CustomerAppointmentStatus.rawValue)
         NotificationCenter.default.post(name: NSNotification.Name(CustomerViewStatesK.CustomerAppointmentStatusChange.rawValue), object: nil)
     }
+    
+    static func takeToBookDoctor () {
+        UserDefaults.standard.set(true, forKey: CustomerViewStatesK.CustomerNavigateToBookDoctor.rawValue)
+        NotificationCenter.default.post(name: NSNotification.Name(CustomerViewStatesK.CustomerNavigateToBookDoctorChange.rawValue), object: nil)
+    }
 }

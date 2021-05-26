@@ -11,6 +11,7 @@ protocol CustomerServiceProviderServiceProtocol {
     func getServiceProvider (serviceProviderId:String, _ completion : @escaping (_ DoctorObj:CustomerServiceProviderProfile?)->())
     func getAllServiceProvider (customerId:String, _ completion : @escaping (_ DoctorObj:[CustomerServiceProviderProfile]?)->())
     func getServiceProviderAvailabilities (serviceProviderId:String, _ completion : @escaping (_ DoctorObj:[CustomerGeneratedSlot]?)->())
+    func getAllServiceProviderCategories (_ completion : @escaping (_ categories:[String]?)->())
 }
 
 class CustomerServiceProviderService : CustomerServiceProviderServiceProtocol {
@@ -104,6 +105,30 @@ class CustomerServiceProviderService : CustomerServiceProviderServiceProtocol {
                 }
             } catch {
                 print("Get ServiceProviderSlots Client Failed \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            }
+        }
+    }
+    
+    func getAllServiceProviderCategories (_ completion : @escaping (_ categories:[String]?)->()) {
+        let channel = ChannelManager.sharedChannelManager.getChannel()
+        let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
+        
+        let serviceProviderClient = Nd_V1_CustomerServiceProviderWorkerV1Client(channel: channel)
+        let getCategories = serviceProviderClient.getAllSpecialties(Nd_V1_VoidMessage(), callOptions: callOptions)
+        
+        DispatchQueue.global().async {
+            do {
+                print("GETTING ALL CATEGORIES")
+                let response = try getCategories.response.wait()
+                print("Get CATEGORIES Client Success \(response.messages.count)")
+                DispatchQueue.main.async {
+                    completion(response.messages.convert())
+                }
+            } catch {
+                print("Get CATEGORIES Client Failed \(error.localizedDescription)")
                 DispatchQueue.main.async {
                     completion(nil)
                 }

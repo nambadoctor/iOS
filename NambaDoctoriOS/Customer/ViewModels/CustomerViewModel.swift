@@ -5,10 +5,10 @@
 //  Created by Surya Manivannan on 4/27/21.
 //
 
-import Foundation
+import Foundation 
 
 class CustomerViewModel : ObservableObject {
-    @Published var tabSelection:Int = 2
+    @Published var tabSelection:Int = 3
     @Published var customerProfile:CustomerProfile? = nil
 
     var allAppointments:[CustomerAppointment] = [CustomerAppointment]()
@@ -17,11 +17,17 @@ class CustomerViewModel : ObservableObject {
     @Published var myServiceProviders:[CustomerServiceProviderProfile] = [CustomerServiceProviderProfile]()
     @Published var allServiceProviders:[CustomerServiceProviderProfile] = [CustomerServiceProviderProfile]()
     
+    @Published var serviceProviderCategories:[String] = [String]()
+    @Published var selectedCategory:String = ""
+    
+    @Published var takeToBookDoc:Bool = false
+    var selectedDoctor:CustomerServiceProviderProfile? = nil
+    
     @Published var customerLoggedIn:Bool = false
 
     @Published var selectedAppointment:CustomerAppointment? = nil
     @Published var takeToDetailedAppointmentView:Bool = false
-    
+
     @Published var imageLoader:ImageLoader? = nil
     
     @Published var addChilVM:AddChildProfileViewModel = AddChildProfileViewModel()
@@ -50,6 +56,15 @@ class CustomerViewModel : ObservableObject {
                 self.imageLoader = ImageLoader(urlString: self.customerProfile!.profilePicURL, { _ in })
             } else {
                 self.imageLoader = ImageLoader(urlString: "https://wgsi.utoronto.ca/wp-content/uploads/2020/12/blank-profile-picture-png.png") {_ in}
+            }
+        }
+        
+        customerServiceProviderService.getAllServiceProviderCategories { categories in
+            if categories != nil {
+                guard !categories!.isEmpty else {return}
+                self.serviceProviderCategories = categories!
+                self.selectedCategory = categories![0]
+                print("CATEGORIES RETRIVED: \(categories!)")
             }
         }
     }
@@ -100,6 +115,33 @@ class CustomerViewModel : ObservableObject {
         }
     }
 
+    func navigateToBookDoctor () {
+        if !allServiceProviders.isEmpty {
+            for provider in allServiceProviders {
+                if provider.serviceProviderID == docIdFromLink {
+                    docIdFromLink = ""
+                    selectDoctorToBook(doctor: provider)
+                }
+            }
+        }
+    }
+
+    func selectDoctorToBook(doctor:CustomerServiceProviderProfile) {
+        self.selectedDoctor = doctor
+        self.takeToBookDoc = true
+    }
+    
+    func checkForDirectBookNavigation () {
+        if !docIdFromLink.isEmpty {
+            self.tabSelection = 3
+            self.navigateToBookDoctor()
+        }
+    }
+    
+    func getDetailedBookingVM () -> DetailedBookDocViewModel{
+        DetailedBookDocViewModel(serviceProvider: self.selectedDoctor!, customerProfile: self.customerProfile!)
+    }
+
     func retrieveCustomerAppointments () {
         customerAppointmentService.getCustomerAppointments(customerId: self.customerProfile!.customerID) { (customerAppointments) in
             if customerAppointments != nil || customerAppointments?.count != 0 {
@@ -121,6 +163,7 @@ class CustomerViewModel : ObservableObject {
             if serviceProviders != nil || serviceProviders?.count != 0 {
                 self.allServiceProviders = serviceProviders!
                 self.setMyDoctors()
+                self.checkForDirectBookNavigation()
             } else {
                 //TODO: handle empty or no ServiceProviders
             }
