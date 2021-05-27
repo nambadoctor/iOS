@@ -15,8 +15,7 @@ struct InvestigationsView: View {
             
             HStack (spacing: 3){
                 Image("list.triangle")
-                    .scaleEffect(0.8)
-                    .foregroundColor(.gray)
+                    .modifier(DetailedAppointmentViewIconModifier())
                 
                 Text("INVESTIGATIONS")
                     .font(.footnote)
@@ -39,6 +38,6 @@ struct InvestigationsView: View {
                     Spacer()
                 }
             }
-        }.padding()
+        }
     }
 }

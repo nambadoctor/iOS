@@ -15,8 +15,7 @@ struct AdviceView : View {
             HStack {Spacer()}
             HStack (spacing: 3) {
                 Image("cross.circle")
-                    .foregroundColor(.gray)
-                    .scaleEffect(0.8)
+                    .modifier(DetailedAppointmentViewIconModifier())
                 
                 Text("ADVICE")
                     .font(.footnote)
@@ -27,7 +26,7 @@ struct AdviceView : View {
             Text(serviceRequestVM.advice)
 
             Spacer().frame(height: 5)
-        }.padding()
+        }
     }
 }
 
@@ -41,8 +40,7 @@ struct ServiceRequestView: View {
                 
                 HStack (spacing: 3) {
                     Image("eyeglasses")
-                        .scaleEffect(0.8)
-                        .foregroundColor(.gray)
+                        .modifier(DetailedAppointmentViewIconModifier())
                     
                     Text("EXAMINATION")
                         .font(.footnote)
@@ -57,8 +55,8 @@ struct ServiceRequestView: View {
                 
                 HStack (spacing: 3) {
                     Image("cross.case")
-                        .scaleEffect(0.8)
-                        .foregroundColor(.gray)
+                        .modifier(DetailedAppointmentViewIconModifier())
+                    
                     Text("DIAGNOSIS - \(serviceRequestVM.diagnosisType)")
                         .font(.footnote)
                         .foregroundColor(Color.black.opacity(0.4))
@@ -72,6 +70,5 @@ struct ServiceRequestView: View {
 
             Spacer().frame(height: 5)
         }
-        .padding()
     }
 }

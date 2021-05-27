@@ -65,7 +65,6 @@ struct DoctorIntermediateView: View {
     var trailingNavBarButtons : some View {
         HStack {
             if intermediateVM.takeToViewAppointment {
-                chatButton
                 editButton
             }
         }
@@ -82,14 +81,5 @@ struct DoctorIntermediateView: View {
                     .padding(5)
             }
         }
-    }
-
-    var chatButton : some View {
-        Button(action: {
-            self.intermediateVM.takeToChat = true
-        }, label: {
-            Image(systemName: "message")
-                .padding(5)
-        })
     }
 }

@@ -15,8 +15,7 @@ struct MedicineView: View {
             
             HStack (spacing: 3) {
                 Image("pills")
-                    .scaleEffect(0.8)
-                    .foregroundColor(Color.gray)
+                    .modifier(DetailedAppointmentViewIconModifier())
                 
                 Text("PRESCRIPTION")
                     .font(.footnote)
@@ -34,7 +33,7 @@ struct MedicineView: View {
                     Image("checkmark.circle.fill")
                         .resizable()
                         .frame(width: 30, height: 30)
-                        .foregroundColor(Color.green)
+                        .foregroundColor(Color.blue)
                         .padding(.trailing)
                     
                     Text("Sent on \(Helpers.getTimeFromTimeStamp(timeStamp: medicineVM.prescription.createdDateTime))")
@@ -50,54 +49,54 @@ struct MedicineView: View {
                             Text("\(medicine.medicineName) - \(medicine._dosage.Name)")
                                 .font(.callout)
                                 .bold()
-                                .foregroundColor(Color.green)
+                                .foregroundColor(Color.blue)
                             
                             if !medicine._duration.Days.isEmpty {
                                 Text("\(medicine._duration.Days) \(medicine._duration.Unit)")
                                     .font(.callout)
-                                    .foregroundColor(Color.green)
+                                    .foregroundColor(Color.blue)
                             } else {
                                 Text("No duration specified")
                                     .font(.callout)
-                                    .foregroundColor(Color.green)
+                                    .foregroundColor(Color.blue)
                             }
                             
                             if !medicine.routeOfAdministration.isEmpty {
                                 Text("\(medicine.routeOfAdministration)")
                                     .font(.callout)
-                                    .foregroundColor(Color.green)
+                                    .foregroundColor(Color.blue)
                             }
                             
                             
                             if !medicine.intake.isEmpty {
                                 Text("\(medicine.intake)")
                                     .font(.callout)
-                                    .foregroundColor(Color.green)
+                                    .foregroundColor(Color.blue)
                             }
                             
                             if !medicine.timings.isEmpty {
                                 Text("\(medicine.timings)")
                                     .font(.callout)
-                                    .foregroundColor(Color.green)
+                                    .foregroundColor(Color.blue)
                             }
                             
                             if !medicine.specialInstructions.isEmpty {
                                 Text("\(medicine.specialInstructions)")
                                     .font(.callout)
-                                    .foregroundColor(Color.green)
+                                    .foregroundColor(Color.blue)
                             }
                             
                             if !medicine.notes.isEmpty {
                                 Text("\(medicine.notes)")
                                     .font(.callout)
-                                    .foregroundColor(Color.green)
+                                    .foregroundColor(Color.blue)
                             }
                         }
                         Spacer()
                         
                     }
                     .padding()
-                    .background(Color.green.opacity(0.1))
+                    .background(Color.blue.opacity(0.1))
                     .cornerRadius(7)
                 }
                 
@@ -113,6 +112,5 @@ struct MedicineView: View {
                 }
             }
         }
-        .padding()
     }
 }

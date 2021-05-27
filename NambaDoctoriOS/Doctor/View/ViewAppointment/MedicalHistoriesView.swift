@@ -15,8 +15,7 @@ struct MedicalHistoriesView: View {
             HStack{Spacer()}
             HStack (spacing: 3) {
                 Image("nose")
-                    .scaleEffect(0.8)
-                    .foregroundColor(.gray)
+                    .modifier(DetailedAppointmentViewIconModifier())
                 
                 Text("ALLERGIES")
                     .font(.footnote)
@@ -29,8 +28,7 @@ struct MedicalHistoriesView: View {
             Group {
                 HStack (spacing: 3) {
                     Image("heart.text.square")
-                        .scaleEffect(0.8)
-                        .foregroundColor(.gray)
+                        .modifier(DetailedAppointmentViewIconModifier())
                     
                     Text("PRESENTING MEDICAL HISTORY")
                         .font(.footnote)
@@ -45,8 +43,7 @@ struct MedicalHistoriesView: View {
             Group {
                 HStack (spacing: 3) {
                     Image("heart.text.square")
-                        .scaleEffect(0.8)
-                        .foregroundColor(.gray)
+                        .modifier(DetailedAppointmentViewIconModifier())
                     
                     Text("PAST MEDICAL HISTORY")
                         .font(.footnote)
@@ -61,8 +58,7 @@ struct MedicalHistoriesView: View {
             Group {
                 HStack (spacing: 3) {
                     Image("heart.text.square")
-                        .scaleEffect(0.8)
-                        .foregroundColor(.gray)
+                        .modifier(DetailedAppointmentViewIconModifier())
                     
                     Text("MEDICATION HISTORY")
                         .font(.footnote)
@@ -74,6 +70,5 @@ struct MedicalHistoriesView: View {
                     .fixedSize(horizontal: false, vertical: true)
             }
         }
-        .padding(.horizontal)
     }
 }

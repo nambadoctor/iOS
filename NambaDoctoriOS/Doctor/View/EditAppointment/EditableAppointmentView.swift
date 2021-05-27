@@ -57,17 +57,11 @@ struct EditableAppointmentView: View {
             }
 
             MedicineEditableView()
-                .padding()
-                .background(Color.white)
-                .cornerRadius(10)
-                .padding(.horizontal)
+                .modifier(DetailedAppointmentViewCardModifier())
             
             
             PatientInfoEditableView()
-                .padding()
-                .background(Color.white)
-                .cornerRadius(10)
-                .padding(.horizontal)
+                .modifier(DetailedAppointmentViewCardModifier())
 
             HStack {
                 Button {
@@ -114,35 +108,24 @@ struct EditableAppointmentView: View {
                 ServiceRequestEditableView()
                 
                 InvestigationsEditableView()
-                    .padding()
-                    .background(Color.white)
-                    .cornerRadius(10)
-                    .padding(.horizontal)
+                    .modifier(DetailedAppointmentViewCardModifier())
                 
                 AdviceEditableView()
-                    .padding()
-                    .background(Color.white)
-                    .cornerRadius(10)
-                    .padding(.horizontal)
+                    .modifier(DetailedAppointmentViewCardModifier())
                 
                 Spacer()
             }
             
             if !intermediateVM.isPaid {
                 ModifyFeeView(modifyFeeVM: self.intermediateVM.modifyFeeViewModel)
-                    .padding()
-                    .background(Color.white)
-                    .cornerRadius(10)
-                    .padding(.horizontal)
-                    .padding(.vertical, 4)
+                    .modifier(DetailedAppointmentViewCardModifier())
             }
             
             HStack {
                 previewPrescription
                 sendToPatient
             }
-            .padding()
-            .background(Color.white)
+            .modifier(DetailedAppointmentViewCardModifier())
         }
     }
     

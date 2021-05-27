@@ -16,10 +16,7 @@ struct ModifyFeeView: View {
             HStack (spacing: 3) {
                 
                 Image("indianrupeesign.circle")
-                    .scaleEffect(0.8)
-                    .background(Color.blue.opacity(0.1))
-                    .foregroundColor(Color.blue)
-                    .cornerRadius(5)
+                    .modifier(DetailedAppointmentViewIconModifier())
 
                 Text("FEE")
                     .font(.footnote)

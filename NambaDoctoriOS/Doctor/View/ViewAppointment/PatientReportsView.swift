@@ -14,8 +14,7 @@ struct PatientReportsView: View {
         VStack (alignment: .leading) {
             HStack (spacing: 3) {
                 Image("folder")
-                    .scaleEffect(0.8)
-                    .foregroundColor(Color.gray)
+                    .modifier(DetailedAppointmentViewIconModifier())
                 
                 Text("REPORTS")
                     .font(.footnote)
@@ -37,6 +36,6 @@ struct PatientReportsView: View {
                     Spacer()
                 }.padding(.top, 5)
             }
-        }.padding()
+        }
     }
 }

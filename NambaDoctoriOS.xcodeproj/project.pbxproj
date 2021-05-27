@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1705A4FF2653AA2E0015EFA2 /* PrescriptionPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1705A4FE2653AA2E0015EFA2 /* PrescriptionPreviewView.swift */; };
+		1715EA2B266038D80004E01F /* DoctorViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1715EA2A266038D80004E01F /* DoctorViewModifiers.swift */; };
 		171646732602B28F00BB5B5A /* NotificationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171646722602B28F00BB5B5A /* NotificationRequest.swift */; };
 		1716467E2602B33F00BB5B5A /* ServiceProviderAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1716467D2602B33F00BB5B5A /* ServiceProviderAddress.swift */; };
 		171646832602B36700BB5B5A /* ServiceProviderAppointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171646822602B36700BB5B5A /* ServiceProviderAppointment.swift */; };
@@ -407,6 +408,7 @@
 
 /* Begin PBXFileReference section */
 		1705A4FE2653AA2E0015EFA2 /* PrescriptionPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrescriptionPreviewView.swift; sourceTree = "<group>"; };
+		1715EA2A266038D80004E01F /* DoctorViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorViewModifiers.swift; sourceTree = "<group>"; };
 		171646722602B28F00BB5B5A /* NotificationRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRequest.swift; sourceTree = "<group>"; };
 		1716467D2602B33F00BB5B5A /* ServiceProviderAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderAddress.swift; sourceTree = "<group>"; };
 		171646822602B36700BB5B5A /* ServiceProviderAppointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderAppointment.swift; sourceTree = "<group>"; };
@@ -1743,6 +1745,7 @@
 				1763D31B262A39CA00E0E423 /* DefaultPreferencesTracker.swift */,
 				175E8DA8262FDA500000D00E /* DocAutoNavigateHelper.swift */,
 				176EFAA4264DECF400A6310B /* DoctorNotificationHandlerHelper.swift */,
+				1715EA2A266038D80004E01F /* DoctorViewModifiers.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -2395,6 +2398,7 @@
 				173A231B25CBB8F20086342A /* FindUserTypeViewModelProtocol.swift in Sources */,
 				17B5D12D25B75789009D6A42 /* LocalEncodingK.swift in Sources */,
 				172B851C25AEE50C00C6B035 /* EndEditing.swift in Sources */,
+				1715EA2B266038D80004E01F /* DoctorViewModifiers.swift in Sources */,
 				179B07EE264F4C7100C5C53D /* CustomerCreateProfileViewModel.swift in Sources */,
 				171646D42602B78100BB5B5A /* ServiceProviderReportUploadObj.swift in Sources */,
 				17E5185425AED16A001F1A80 /* AppDelegate.swift in Sources */,

@@ -17,11 +17,7 @@ struct ServiceRequestEditableView: View {
                 
                 HStack (spacing: 3) {
                     Image("nose")
-                        .scaleEffect(0.8)
-                        .background(Color.blue.opacity(0.1))
-                        .foregroundColor(Color.blue)
-                        .cornerRadius(5)
-                        .padding(.vertical, 4)
+                        .modifier(DetailedAppointmentViewIconModifier())
                     
                     Text("ALLERGIES")
                         .font(.footnote)
@@ -34,11 +30,7 @@ struct ServiceRequestEditableView: View {
                 Group {
                     HStack (spacing: 3) {
                         Image("heart.text.square")
-                            .scaleEffect(0.8)
-                            .background(Color.blue.opacity(0.1))
-                            .foregroundColor(Color.blue)
-                            .cornerRadius(5)
-                            .padding(.vertical, 4)
+                            .modifier(DetailedAppointmentViewIconModifier())
                         
                         Text("PRESENTING MEDICAL HISTORY")
                             .font(.footnote)
@@ -52,11 +44,7 @@ struct ServiceRequestEditableView: View {
                 Group {
                     HStack (spacing: 3) {
                         Image("heart.text.square")
-                            .scaleEffect(0.8)
-                            .background(Color.blue.opacity(0.1))
-                            .foregroundColor(Color.blue)
-                            .cornerRadius(5)
-                            .padding(.vertical, 4)
+                            .modifier(DetailedAppointmentViewIconModifier())
                         
                         Text("PAST MEDICAL HISTORY")
                             .font(.footnote)
@@ -70,11 +58,7 @@ struct ServiceRequestEditableView: View {
                 Group {
                     HStack (spacing: 3) {
                         Image("heart.text.square")
-                            .scaleEffect(0.8)
-                            .background(Color.blue.opacity(0.1))
-                            .foregroundColor(Color.blue)
-                            .cornerRadius(5)
-                            .padding(.vertical, 4)
+                            .modifier(DetailedAppointmentViewIconModifier())
                         
                         Text("MEDICATION HISTORY")
                             .font(.footnote)
@@ -94,11 +78,7 @@ struct ServiceRequestEditableView: View {
                 
                 HStack (spacing: 3) {
                     Image("eyeglasses")
-                        .scaleEffect(0.8)
-                        .background(Color.blue.opacity(0.1))
-                        .foregroundColor(Color.blue)
-                        .cornerRadius(5)
-                        .padding(.vertical, 4)
+                        .modifier(DetailedAppointmentViewIconModifier())
                     
                     Text("EXAMINATION")
                         .font(.footnote)
@@ -112,11 +92,7 @@ struct ServiceRequestEditableView: View {
                 
                 HStack (spacing: 3) {
                     Image("cross.case")
-                        .scaleEffect(0.8)
-                        .background(Color.blue.opacity(0.1))
-                        .foregroundColor(Color.blue)
-                        .cornerRadius(5)
-                        .padding(.vertical, 4)
+                        .modifier(DetailedAppointmentViewIconModifier())
                     
                     Text("DIAGNOSIS")
                         .font(.footnote)
