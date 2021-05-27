@@ -85,15 +85,11 @@ struct DoctorProfile: View {
                         Text("\(education.course)")
                             .font(.callout)
                             .bold()
-                            .foregroundColor(Color.green)
-                        
-                        Text("\(education.college), \(education.country) - \(String(education.year))")
-                            .font(.callout)
-                            .foregroundColor(Color.green)
+                            .foregroundColor(Color.blue)
                     }.padding()
                     Spacer()
                 }
-                .background(Color.green.opacity(0.3))
+                .background(Color.blue.opacity(0.3))
                 .cornerRadius(7)
             }
         }.padding()
@@ -111,15 +107,15 @@ struct DoctorProfile: View {
                         Text("\(experience.organization)")
                             .font(.callout)
                             .bold()
-                            .foregroundColor(Color.green)
+                            .foregroundColor(Color.blue)
                         
                         Text("\(String(experience.startDate)) - \(String(experience.endDate))")
                             .font(.callout)
-                            .foregroundColor(Color.green)
+                            .foregroundColor(Color.blue)
                     }.padding()
                     Spacer()
                 }
-                .background(Color.green.opacity(0.3))
+                .background(Color.blue.opacity(0.3))
                 .cornerRadius(7)
             }
         }.padding()
@@ -137,15 +133,15 @@ struct DoctorProfile: View {
                         Text("\(address.streetAddress), \(address.state), \(address.country)")
                             .font(.callout)
                             .bold()
-                            .foregroundColor(Color.green)
+                            .foregroundColor(Color.blue)
                         
                         Text("\(address.type)")
                             .font(.callout)
-                            .foregroundColor(Color.green)
+                            .foregroundColor(Color.blue)
                     }.padding()
                     Spacer()
                 }
-                .background(Color.green.opacity(0.3))
+                .background(Color.blue.opacity(0.3))
                 .cornerRadius(7)
             }
         }.padding()
@@ -163,15 +159,15 @@ struct DoctorProfile: View {
                         Text("\(phoneNumber.countryCode)\(phoneNumber.number)")
                             .font(.callout)
                             .bold()
-                            .foregroundColor(Color.green)
+                            .foregroundColor(Color.blue)
                         
                         Text("\(phoneNumber.type)")
                             .font(.callout)
-                            .foregroundColor(Color.green)
+                            .foregroundColor(Color.blue)
                     }.padding()
                     Spacer()
                 }
-                .background(Color.green.opacity(0.3))
+                .background(Color.blue.opacity(0.3))
                 .cornerRadius(7)
             }
         }.padding()

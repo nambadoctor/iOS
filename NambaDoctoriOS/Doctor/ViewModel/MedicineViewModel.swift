@@ -89,7 +89,7 @@ class MedicineViewModel: ObservableObject {
             timingsString = ""
         }
 
-        let medicine = ServiceProviderMedicine(medicineName: medicineEntryVM.medicineName, _dosage: medicineEntryVM.dosage, routeOfAdministration: medicineEntryVM.routeOfAdmin, intake: medicineEntryVM.intake, _duration: medicineEntryVM.duration, timings: timingsString, specialInstructions: medicineEntryVM.frequency, medicineID: "", notes: medicineEntryVM.notes)
+        let medicine = ServiceProviderMedicine(medicineName: medicineEntryVM.medicineName, _dosage: medicineEntryVM.dosage, routeOfAdministration: medicineEntryVM.routeOfAdmin, intake: medicineEntryVM.intake, _duration: medicineEntryVM.duration, timings: timingsString, specialInstructions: medicineEntryVM.frequency, medicineID: UUID().uuidString, notes: medicineEntryVM.notes)
 
         if medicineBeingEdited != nil {
             prescription.medicineList.remove(at: medicineBeingEdited!)
@@ -177,6 +177,13 @@ class MedicineViewModel: ObservableObject {
         
         storeImageValues()
         
+        if !prescription.medicineList.isEmpty {
+            for i in 0..<self.prescription.medicineList.count {
+                self.prescription.medicineList[i].medicineID = ""
+            }
+        }
+        
+
         self.prescription.createdDateTime = Date().millisecondsSince1970
         prescriptionServiceCalls.setPrescription(prescription: self.prescription) { (response) in
             self.imageLoader = nil
