@@ -73,7 +73,12 @@ struct PredictingTextField: View {
                         value.MedicineGenericName.lowercased().contains(self.textFieldInput.lowercased())
                     {
                         if !self.checkPredictedValues(value: value) {
-                            self.predictedValues.append(value)
+                            if checkIfInitialCharMatch(value: value.MedicineGenericName.lowercased(), input: self.textFieldInput.lowercased()) ||
+                                checkIfInitialCharMatch(value: value.MedicineBrandName.lowercased(), input: self.textFieldInput.lowercased()){
+                                self.predictedValues.insert(value, at: 0)
+                            } else {
+                                self.predictedValues.append(value)
+                            }
                         }
                     }
                 }
@@ -92,6 +97,16 @@ struct PredictingTextField: View {
 //            }
 //        }
 //    }
+    
+    func checkIfInitialCharMatch (value:String, input:String) -> Bool {
+        let inputLength = input.count
+        
+        if value.prefix(inputLength) == input {
+            return true
+        }
+        
+        return false
+    }
 
     func checkPredictedValues (value:ServiceProviderAutofillMedicine) -> Bool {
         for val in predictedValues {
