@@ -46,7 +46,7 @@ struct MedicineValuesEntry : View {
                     .bold()
                 
                 HStack {
-                    PredictingTextField(predictableValues: self.$medicineEntryVM.autofillMedicineList, predictedValues: self.$medicineEntryVM.predictedMedicineList, textFieldInput: self.$medicineEntryVM.medicineName, changeDelegate: self.medicineEntryVM)
+                    PredictingTextField(predictableValues: self.$medicineEntryVM.autoFillVM.autofillMedicineList, predictedValues: self.$medicineEntryVM.autoFillVM.predictedMedicineList, textFieldInput: self.$medicineEntryVM.medicineName, changeDelegate: self.medicineEntryVM)
                     
                     if self.medicineEntryVM.medicineNameChanged {
                         Button {
@@ -56,10 +56,10 @@ struct MedicineValuesEntry : View {
                         }
                     }
                 }
-                
+
                 if self.medicineEntryVM.showPredictedMedicines {
                     LazyVStack (spacing: 5) {
-                        ForEach(self.medicineEntryVM.predictedMedicineList, id: \.AutofillMedicineId) {med in
+                        ForEach(self.medicineEntryVM.autoFillVM.predictedMedicineList, id: \.AutofillMedicineId) {med in
                             VStack (alignment: .leading) {
                                 HStack{Spacer()}
                                 Text("\(med.MedicineBrandName) \(med.Dosage.Name) \(med.Dosage.Unit)")

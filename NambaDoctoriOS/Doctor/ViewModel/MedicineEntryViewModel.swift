@@ -11,6 +11,26 @@ protocol MedicineEntryDelegate {
     func addMedicine()
 }
 
+class AutoFillMedicineVM: ObservableObject {
+    @Published var autofillMedicineList:[ServiceProviderAutofillMedicine] = [ServiceProviderAutofillMedicine]()
+    @Published var predictedMedicineList:[ServiceProviderAutofillMedicine] = [ServiceProviderAutofillMedicine]()
+    
+    init() {
+        getAutofillMedicines()
+    }
+
+    func getAutofillMedicines () {
+        ServiceProviderProfileService().getAutofillMedicineList { autoFillMedList in
+            if autoFillMedList != nil {
+                DispatchQueue.main.async {
+                    self.autofillMedicineList = autoFillMedList!
+                    self.predictedMedicineList = autoFillMedList!
+                }
+            }
+        }
+    }
+}
+
 class MedicineEntryViewModel : ObservableObject {
     @Published var medicineName:String = ""
     @Published var medicineNameChanged:Bool = false
@@ -36,17 +56,18 @@ class MedicineEntryViewModel : ObservableObject {
 
     var medicineEditedDelegate:MedicineEntryDelegate? = nil
     
-    @Published var autofillMedicineList:[ServiceProviderAutofillMedicine] = [ServiceProviderAutofillMedicine]()
-    @Published var predictedMedicineList:[ServiceProviderAutofillMedicine] = [ServiceProviderAutofillMedicine]()
+    @Published var autoFillVM:AutoFillMedicineVM
     @Published var showPredictedMedicines:Bool = false
     
-    init(medicine:ServiceProviderMedicine, isNew:Bool, medicineEditedDelegate:MedicineEntryDelegate) {
+    init(medicine:ServiceProviderMedicine, isNew:Bool,
+         medicineEditedDelegate:MedicineEntryDelegate,
+         autoFillVM:AutoFillMedicineVM) {
+        self.medicineEditedDelegate = medicineEditedDelegate
+        self.autoFillVM = autoFillVM
+        
         if !isNew {
             mapExistingMedicine(medicine: medicine)
         }
-        self.medicineEditedDelegate = medicineEditedDelegate
-        
-        self.getAutofillMedicines()
     }
     
     func toggleEmptyWarning () {
@@ -121,18 +142,7 @@ class MedicineEntryViewModel : ObservableObject {
 
     }
     
-    func getAutofillMedicines () {
-        ServiceProviderProfileService().getAutofillMedicineList { autoFillMedList in
-            if autoFillMedList != nil {
-                DispatchQueue.main.async {
-                    self.autofillMedicineList = autoFillMedList!
-                    self.predictedMedicineList = autoFillMedList!
-                }
-                print(autoFillMedList!)
-            }
-        }
-    }
-    
+
     func makeNewMedicine () {
         EndEditingHelper.endEditing()
         medicineNameFinalized()

@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Introspect
 
 struct PredictingTextField: View {
 
@@ -42,6 +43,9 @@ struct PredictingTextField: View {
             .background(Color.gray.opacity(0.09))
             .cornerRadius(10)
             .padding(.trailing)
+            .introspectTextField { textField in
+                textField.becomeFirstResponder()
+            }
     }
 
     private func realTimePrediction(status: Bool) {

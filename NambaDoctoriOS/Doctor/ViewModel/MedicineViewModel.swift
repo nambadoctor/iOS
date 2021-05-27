@@ -23,6 +23,8 @@ class MedicineViewModel: ObservableObject {
     @Published var imageLoader:ImageLoader? = nil
 
     @Published var hasNoMedicineOrImage:Bool = false
+    
+    @Published var autoFillVM:AutoFillMedicineVM = AutoFillMedicineVM()
 
     @Published var prescriptionPDF:Data? = nil
 
@@ -45,29 +47,30 @@ class MedicineViewModel: ObservableObject {
 
         self.imagePickerVM.imagePickerDelegate = self
         
-        self.medicineEntryVM = MedicineEntryViewModel(medicine: MakeEmptyMedicine(), isNew: true, medicineEditedDelegate: self)
+        self.medicineEntryVM = MedicineEntryViewModel(medicine: MakeEmptyMedicine(), isNew: true, medicineEditedDelegate: self, autoFillVM: self.autoFillVM)
         self.medicineEntryVM.medicineEditedDelegate = self
         
         self.retrievePrescriptions()
     }
     
     func uploadManually() {
-        self.medicineEntryVM = MedicineEntryViewModel(medicine: MakeEmptyMedicine(), isNew: true, medicineEditedDelegate: self)
+        self.medicineEntryVM = MedicineEntryViewModel(medicine: MakeEmptyMedicine(), isNew: true, medicineEditedDelegate: self, autoFillVM: self.autoFillVM)
         self.showMedicineEntrySheet = true
     }
     
     func editPrescription (medicine:ServiceProviderMedicine) {
         medicineBeingEdited = checkIfPrescriptionExists(medicine: medicine)
-        self.medicineEntryVM = MedicineEntryViewModel(medicine: medicine, isNew: false, medicineEditedDelegate: self)
+        self.medicineEntryVM = MedicineEntryViewModel(medicine: medicine, isNew: false, medicineEditedDelegate: self, autoFillVM: self.autoFillVM)
         self.showMedicineEntrySheet = true
     }
+    
     
     func removePrescription (medicine:ServiceProviderMedicine) {
         if let index = checkIfPrescriptionExists(medicine: medicine) {
             prescription.medicineList.remove(at: index)
         }
     }
-    
+
     func checkIfPrescriptionExists (medicine:ServiceProviderMedicine) -> Int? {
         var index = 0
         for med in prescription.medicineList {
@@ -78,7 +81,7 @@ class MedicineViewModel: ObservableObject {
         }
         return nil
     }
-
+    
     func makeMedicineObjAndAdd () {
         var timingsString = "\(medicineEntryVM.morning.clean),\(medicineEntryVM.afternoon.clean),\(medicineEntryVM.evening.clean),\(medicineEntryVM.night.clean)"
 
