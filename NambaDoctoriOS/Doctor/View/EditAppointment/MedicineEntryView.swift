@@ -58,7 +58,7 @@ struct MedicineValuesEntry : View {
                 }
                 
                 if self.medicineEntryVM.showPredictedMedicines {
-                    VStack (spacing: 5) {
+                    LazyVStack (spacing: 5) {
                         ForEach(self.medicineEntryVM.predictedMedicineList, id: \.AutofillMedicineId) {med in
                             VStack (alignment: .leading) {
                                 HStack{Spacer()}

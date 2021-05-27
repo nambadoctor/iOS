@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Foundation
 
 protocol CancellationDelegate {
     func cancel(reasonName:String)
@@ -16,12 +17,12 @@ struct CancellationBottomSheet : View {
     @Binding var bottomSheetOffset : CGFloat
     var cancellationReasons:[String]
     var delegate:CancellationDelegate
-
+    
     @State private var checkedOption:String = ""
     @State private var customReason:String = ""
-
+    
     var body : some View{
-
+        
         VStack(alignment: .leading, spacing: 15){
             
             HStack {
@@ -32,9 +33,9 @@ struct CancellationBottomSheet : View {
                 
                 Spacer()
             }
-
+            
             Text("Please select one of the below before cancelling")
-                 .font(Font.system(size:14))
+                .font(Font.system(size:14))
                 .foregroundColor(Color(UIColor.lightGray))
             
             VStack {
@@ -49,6 +50,7 @@ struct CancellationBottomSheet : View {
                     
                     if self.checkedOption == "Other" && reason == "Other" {
                         ExpandingTextView(text: self.$customReason)
+                            .keyboardAdaptive(specificOffSet: 100)
                     }
                 }
             }
@@ -66,18 +68,20 @@ struct CancellationBottomSheet : View {
                         self.delegate.cancel(reasonName: self.checkedOption)
                     }
                 }.frame(width: 90, height: 33)
-                    .background(Color(UIColor.red))
-                     .font(Font.system(size:13))
-                    .foregroundColor(.white)
-                     .font(Font.system(size:13))
-                    .cornerRadius(4)
+                .background(Color(UIColor.red))
+                .font(Font.system(size:13))
+                .foregroundColor(.white)
+                .font(Font.system(size:13))
+                .cornerRadius(4)
             }
-
-        }.padding(.bottom, (UIApplication.shared.windows.last?.safeAreaInsets.bottom)! + 10)
-            .padding(.horizontal)
-            .padding(.top,20)
-            .background(Color(UIColor.systemBackground))
-            .cornerRadius(25)
+            
+        }
+        .padding(.bottom, (UIApplication.shared.windows.last?.safeAreaInsets.bottom)! + 10)
+        .padding(.horizontal)
+        .padding(.top,20)
+        .background(Color(UIColor.systemBackground))
+        .cornerRadius(25)
+        
     }
     
     func checkboxSelected(id: String) {

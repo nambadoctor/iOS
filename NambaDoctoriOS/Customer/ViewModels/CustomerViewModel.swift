@@ -18,7 +18,9 @@ class CustomerViewModel : ObservableObject {
     @Published var allServiceProviders:[CustomerServiceProviderProfile] = [CustomerServiceProviderProfile]()
     
     @Published var serviceProviderCategories:[String] = [String]()
+    
     @Published var selectedCategory:String = ""
+    @Published var noDoctorForCategory:Bool = false
     
     @Published var takeToBookDoc:Bool = false
     var selectedDoctor:CustomerServiceProviderProfile? = nil
@@ -30,7 +32,8 @@ class CustomerViewModel : ObservableObject {
 
     @Published var imageLoader:ImageLoader? = nil
     
-    @Published var addChilVM:AddChildProfileViewModel = AddChildProfileViewModel()
+    @Published var dontShowChildBookingHeader:Bool = false
+    @Published var showAddChildInstructions:Bool = false
     
     var customerProfileService:CustomerProfileServiceProtocol
     var customerAppointmentService:CustomerAppointmentServiceProtocol
@@ -43,6 +46,7 @@ class CustomerViewModel : ObservableObject {
         self.customerAppointmentService = customerAppointmentService
         self.customerServiceProviderService = customerServiceProviderService
         initialCustomerFetch()
+        checkToShowChildBookingNotice()
     }
     
     func initialCustomerFetch () {
@@ -80,7 +84,7 @@ class CustomerViewModel : ObservableObject {
             }
         }
     }
-    
+
     func sortAppointments (appointments:[CustomerAppointment]) {
         for appointment in appointments {
             if appointment.status == ConsultStateK.Confirmed.rawValue || appointment.status == ConsultStateK.StartedConsultation.rawValue {
@@ -198,7 +202,7 @@ class CustomerViewModel : ObservableObject {
             for appointment in allAppointments {
                 myServiceProviderIds.append(appointment.serviceProviderID)
             }
-            
+            myServiceProviders.removeAll()
             for serviceProvider in self.allServiceProviders {
                 if myServiceProviderIds.contains(serviceProvider.serviceProviderID) {
                     myServiceProviders.append(serviceProvider)
@@ -206,9 +210,46 @@ class CustomerViewModel : ObservableObject {
             }
         }
     }
-    
+
+    func doctorsExistForCategory () -> Bool {
+        
+        if self.selectedCategory == "All Doctors" {
+            return false
+        }
+
+        for doctor in allServiceProviders {
+            if doctor.specialties.contains(self.selectedCategory) {
+                return false
+            }
+        }
+        
+        return true
+    }
+
     func addChildCallBack() {
         self.fetchCustomerProfile { _ in }
+    }
+
+    func categoryChangedCallback () {
+        self.noDoctorForCategory = doctorsExistForCategory()
+    }
+    
+    func expandAddChildHeader () {
+        self.showAddChildInstructions = true
+        self.dontShowAddChildHeader()
+    }
+    
+    func collapseChildHeader () {
+        dontShowAddChildHeader()
+        checkToShowChildBookingNotice()
+    }
+
+    func dontShowAddChildHeader () {
+        UserDefaults.standard.set(true, forKey: "dontShowAddChildHeader")
+    }
+
+    func checkToShowChildBookingNotice () {
+        self.dontShowChildBookingHeader = UserDefaults.standard.bool(forKey: "dontShowAddChildHeader")
     }
 }
 

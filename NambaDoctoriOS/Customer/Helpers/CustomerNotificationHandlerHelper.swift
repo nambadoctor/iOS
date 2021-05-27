@@ -17,6 +17,8 @@ class CustomerNotificationHandlerHelper {
     func callNotic (appointmentId:String) {
         if !cusAutoNav.currentlyInTwilioRoom {
             cusAutoNav.callNotifRecieved(appointmentId: appointmentId)
+        } else {
+            
         }
     }
 }

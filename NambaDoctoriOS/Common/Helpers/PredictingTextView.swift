@@ -48,9 +48,9 @@ struct PredictingTextField: View {
         self.changeDelegate.changed()
         self.isBeingEdited = status
         if status == true {
-            Timer.scheduledTimer(withTimeInterval: self.predictionInterval ?? 1, repeats: true) { timer in
+            Timer.scheduledTimer(withTimeInterval: self.predictionInterval ?? 0.0001, repeats: true) { timer in
                 self.makePrediction()
-                
+
                 if self.isBeingEdited == false {
                     timer.invalidate()
                 }
@@ -74,6 +74,8 @@ struct PredictingTextField: View {
                     }
                 }
             }
+        } else {
+            self.predictedValues = self.predictableValues
         }
     }
 

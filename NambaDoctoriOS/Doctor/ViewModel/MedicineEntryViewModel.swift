@@ -124,7 +124,10 @@ class MedicineEntryViewModel : ObservableObject {
     func getAutofillMedicines () {
         ServiceProviderProfileService().getAutofillMedicineList { autoFillMedList in
             if autoFillMedList != nil {
-                self.autofillMedicineList = autoFillMedList!
+                DispatchQueue.main.async {
+                    self.autofillMedicineList = autoFillMedList!
+                    self.predictedMedicineList = autoFillMedList!
+                }
                 print(autoFillMedList!)
             }
         }

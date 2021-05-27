@@ -30,7 +30,6 @@ class LocalDecoder {
                 // Decode Note
                 decodedObj = try decoder.decode(modelType.self, from: data)
 
-                print("DECODED OBJ: \(decodedObj)")
             } catch {
                 print("Unable to Decode Note (\(error))")
             }

@@ -42,6 +42,29 @@ func getNotifType(type:String) -> NotifTypes {
 }
 
 class LocalNotificationHandler {
+    
+    func notifProcessingHelper (userInfo: [AnyHashable: Any]) {
+        let values = getValuesFromAPNPayload(userInfo: userInfo)
+
+        let notifType = getNotifType(type: values["type"]!)
+        print("INCOMING NOTIF TYPE: \(notifType)")
+        switch notifType {
+        case .AppointmentBooked, .AppointmentCancelled, .PrescriptionUploaded, .ReportUploaded, .Paid:
+            break
+        case .CallInRoom:
+            if UserTypeHelper.checkIfDoctor(userType: UserTypeHelper.getUserType()) {
+                FireLocalNotif().fire(userInfo: userInfo)
+            } else {
+                FireLocalNotif().fireRepeatingNotification(userInfo: userInfo)
+            }
+        case .NewChatMessage:
+            FireLocalNotif().fire(userInfo: userInfo)
+        default:
+            FireLocalNotif().fire(userInfo: userInfo)
+        }
+
+        FireLocalNotif().fire(userInfo: userInfo)
+    }
 
     func notifRecieveHelper (userInfo: [AnyHashable: Any], completion: @escaping (_ fire:Bool)->()) {
 
@@ -128,16 +151,22 @@ class LocalNotificationHandler {
     }
 
     private func getValuesFromAPNPayload (userInfo:[AnyHashable: Any]) -> [String:String] {
-        let apnData = userInfo[AnyHashable("aps")] as! NSDictionary
-        let alertData  = apnData["alert"] as! NSDictionary
+        if let apnData = userInfo[AnyHashable("aps")] as? NSDictionary {
+            let alertData  = apnData["alert"] as! NSDictionary
 
-        let body = alertData["body"] as! String
-        let title = alertData["title"] as! String
-        let type = alertData["type"] as! String
-        let id = alertData["id"] as! String
+            let body = alertData["body"] as! String
+            let title = alertData["title"] as! String
+            let type = alertData["type"] as! String
+            let id = alertData["id"] as! String
 
-        var returnDict:[String:String] = ["body":body, "title":title, "type":type, "id":id]
+            let returnDict:[String:String] = ["body":body, "title":title, "type":type, "id":id]
 
-        return returnDict
+            return returnDict
+        } else {
+            let returnDict:[String:String] = ["body":"", "title":"", "type":"", "id":""]
+
+            return returnDict
+        }
+        
     }
 }

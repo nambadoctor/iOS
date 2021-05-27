@@ -287,9 +287,9 @@ struct EditableAppointmentView: View {
                 
                 
                 HStack {
-                    Text("BOOKED BY CARETAKER")
-                        .font(.footnote)
+                    Text("Booked by \(self.intermediateVM.patientInfoViewModel.patientObj.firstName)")
                         .foregroundColor(Color.white)
+                        .bold()
                         .padding(.top, 5)
                     Spacer()
                 }

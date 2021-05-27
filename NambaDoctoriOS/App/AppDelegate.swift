@@ -14,7 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
-        
         // [START set_messaging_delegate]
         // [END set_messaging_delegate]
         // Register for remote notifications. This shows a permission dialog on first run, to
@@ -76,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Print full message.
         print(userInfo)
         
-        FireLocalNotif().fire(userInfo: userInfo)
+        LocalNotificationHandler().notifProcessingHelper(userInfo: userInfo)
         
         completionHandler(UIBackgroundFetchResult.newData)
     }

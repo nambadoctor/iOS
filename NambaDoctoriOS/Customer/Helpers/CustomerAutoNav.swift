@@ -37,6 +37,7 @@ class CustomerAutoNavigateHelper {
         if currentlyInTwilioRoom {
             CustomerAlertHelpers().presentingStackedNavViewError(navType: "Meeting Room")
         } else {
+            showRepeatingCallNotif = false
             self.appointmentId = appointmentId
             self.takeToTwilioRoom = true
             CustomerDefaultModifiers.navigateToDetailedView()

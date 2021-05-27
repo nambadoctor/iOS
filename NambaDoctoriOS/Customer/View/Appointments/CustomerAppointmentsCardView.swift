@@ -32,12 +32,11 @@ struct CustomerAppointmentsCardView: View {
                         Spacer()
                     }
                     Text(customerAppointmentVM.appointment.serviceProviderName)
-                        .font(.system(size: 17))
                         .bold()
 
                     Text(customerAppointmentVM.appointmentStatus)
-                        .font(.system(size: 17))
-                        .bold()
+                    
+                    Text(Helpers.getSimpleTimeForAppointment(timeStamp1: customerAppointmentVM.appointment.scheduledAppointmentStartTime))
 
                 }.padding(.leading, 3)
                 

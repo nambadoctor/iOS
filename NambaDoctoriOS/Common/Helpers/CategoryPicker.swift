@@ -10,6 +10,7 @@ import SwiftUI
 struct CategoryPicker : View {
     @Binding var categoriesList:[String]
     @Binding var selectedCategory:String
+    var categoryChanged:()->()
     
     var body: some View {
         HStack {
@@ -23,6 +24,7 @@ struct CategoryPicker : View {
                             .cornerRadius(10)
                             .onTapGesture {
                                 self.selectedCategory = category
+                                self.categoryChanged()
                             }
                     }
                 }

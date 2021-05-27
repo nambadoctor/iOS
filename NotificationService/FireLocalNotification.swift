@@ -8,6 +8,8 @@
 import Foundation
 import UIKit
 
+var showRepeatingCallNotif:Bool = false
+
 class FireLocalNotif {
     func fire (userInfo:[AnyHashable: Any]) {
         let body = userInfo[AnyHashable("body")] as? String
@@ -32,5 +34,16 @@ class FireLocalNotif {
         // add our notification request
         UNUserNotificationCenter.current().add(request)
         LoggerService().log(appointmentId: "", eventName: "DISPLAYED NOTIFICATION")
+    }
+    
+    func fireRepeatingNotification (userInfo:[AnyHashable: Any]) {
+        showRepeatingCallNotif = true
+        let timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true) { timer in
+            if showRepeatingCallNotif {
+                self.fire(userInfo: userInfo)
+            } else {
+                timer.invalidate()
+            }
+        }
     }
 }

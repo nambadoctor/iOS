@@ -919,6 +919,9 @@
 		1716E2B6261AFA3F00568837 /* EditAppointment */ = {
 			isa = PBXGroup;
 			children = (
+				171648622609B93600BB5B5A /* EditableAppointmentView.swift */,
+				171B8B12261481E7007E722C /* FollowUpView.swift */,
+				171B8B802616CE53007E722C /* ModifyFeeView.swift */,
 				1716E2BF261AFA6600568837 /* ServiceRequestEditableView.swift */,
 				17EC75F6260CEFAB0002BA75 /* InvestigationsEntryView.swift */,
 				1716E2CA261AFB3200568837 /* MedicineEditableView.swift */,
@@ -1708,7 +1711,6 @@
 				1716E2B6261AFA3F00568837 /* EditAppointment */,
 				1716E2A6261AF84100568837 /* ViewAppointment */,
 				171B8AE5261154BB007E722C /* DoctorProfile */,
-				17EC75E3260C61EF0002BA75 /* DetailedAppointmentView */,
 				17626CCB25D5C01A00C36A99 /* DoctorHome */,
 				17E370A025BF196C0004C965 /* DoctorTwilioManager */,
 				17AE6D1525E24B0B00B18292 /* DoctorsPatients */,
@@ -1921,16 +1923,6 @@
 				17E5187725AED16D001F1A80 /* Info.plist */,
 			);
 			path = NambaDoctoriOSUITests;
-			sourceTree = "<group>";
-		};
-		17EC75E3260C61EF0002BA75 /* DetailedAppointmentView */ = {
-			isa = PBXGroup;
-			children = (
-				171648622609B93600BB5B5A /* EditableAppointmentView.swift */,
-				171B8B12261481E7007E722C /* FollowUpView.swift */,
-				171B8B802616CE53007E722C /* ModifyFeeView.swift */,
-			);
-			path = DetailedAppointmentView;
 			sourceTree = "<group>";
 		};
 		17EC7647260DB57A0002BA75 /* HorizontalDatePicker */ = {
@@ -2763,7 +2755,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NambaDoctoriOS/NambaDoctoriOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"NambaDoctoriOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 4H9M6DGZQ3;
@@ -2774,7 +2766,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = nambadoctor.iOS.NambaDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -2790,7 +2782,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NambaDoctoriOS/NambaDoctoriOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_ASSET_PATHS = "\"NambaDoctoriOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 4H9M6DGZQ3;
 				ENABLE_PREVIEWS = YES;
@@ -2800,7 +2792,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.4;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = nambadoctor.iOS.NambaDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

@@ -24,7 +24,8 @@ struct CustomerAppointmentsView: View {
                                     .frame(height: 2.5)
                                     .edgesIgnoringSafeArea(.horizontal)
                             }
-                            Text("UPCOMING APPOINTMENTS")
+                            Text("Upcoming Appointments")
+                                .bold()
                                 .foregroundColor(Color.blue)
                                 .multilineTextAlignment(.center)
                             VStack {

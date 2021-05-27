@@ -16,22 +16,66 @@ struct BookDoctorView: View {
             
             if !customerVM.allServiceProviders.isEmpty {
                 ScrollView {
-                    Button {
-                        self.customerVM.addChilVM.showSheet = true
-                    } label: {
-                        VStack (alignment: .center) {
-                            Text("Booking for somebody else? Click here")
-                                .bold()
-                        }.frame(width: UIScreen.main.bounds.width)
-                    }
-                    .padding(.vertical)
-                    .background(Color.blue.opacity(0.2))
                     
-                    CategoryPicker(categoriesList: self.$customerVM.serviceProviderCategories, selectedCategory: self.$customerVM.selectedCategory)
+                    if !self.customerVM.dontShowChildBookingHeader {
+                        Button {
+                            self.customerVM.expandAddChildHeader()
+                        } label: {
+                            VStack (alignment: .center) {
+                                if customerVM.showAddChildInstructions {
+                                    VStack (alignment: .leading, spacing: 10) {
+                                        Text("You can book an appointment for anybody even if they don't have a smart phone!")
+                                        Text("1) Select any doctor you want to book an appointment for")
+                                        Text("2) Create a profile for whoever you are booking for")
+                                        
+                                        Button(action: {
+                                            self.customerVM.collapseChildHeader()
+                                        }, label: {
+                                            Text("Got It!")
+                                                .underline()
+                                                .bold()
+                                        })
+                                        
+                                    }.padding(.horizontal)
+                                } else {
+                                    HStack {
+                                        Spacer()
+                                        Text("Booking for someone else?")
+                                            .bold()
+                                        Text("Click here")
+                                            .underline()
+                                            .bold()
+                                        Spacer()
+                                    }
+                                }
+                            }
+                        }
+                        .padding(.vertical)
+                        .background(Color.blue.opacity(0.2))
+                    }
+                    
+                    CategoryPicker(categoriesList: self.$customerVM.serviceProviderCategories, selectedCategory: self.$customerVM.selectedCategory, categoryChanged: self.customerVM.categoryChangedCallback)
+                        .padding(.top)
 
-                    ForEach(customerVM.allServiceProviders, id: \.serviceProviderID) { serviceProvider in
-                        if serviceProvider.specialties.contains(self.customerVM.selectedCategory) || customerVM.selectedCategory == "All Doctors" {
-                            BookDoctorCard(customerServiceProviderVM: CustomerServiceProviderViewModel(serviceProvider: serviceProvider, customerProfile: self.customerVM.customerProfile!, callBack: self.customerVM.selectDoctorToBook(doctor:)))
+                    if self.customerVM.noDoctorForCategory {
+                        VStack (alignment: .center) {
+                            Spacer()
+                            Image("figure.walk")
+                                .scaleEffect(3)
+                                .padding()
+                            Text("Coming Soon! There are currently no doctors available for this category.")
+                                .fixedSize(horizontal: false, vertical: true)
+                                .multilineTextAlignment(.center)
+                            Spacer()
+                        }.padding()
+                    } else {
+                        ScrollView {
+                            ForEach(customerVM.allServiceProviders, id: \.serviceProviderID) { serviceProvider in
+                                if serviceProvider.specialties.contains(self.customerVM.selectedCategory) || customerVM.selectedCategory == "All Doctors" {
+                                    BookDoctorCard(customerServiceProviderVM: CustomerServiceProviderViewModel(serviceProvider: serviceProvider, customerProfile: self.customerVM.customerProfile!, callBack: self.customerVM.selectDoctorToBook(doctor:)))
+                                }
+                            }
+                            .padding(.bottom)
                         }
                     }
                 }
@@ -50,6 +94,5 @@ struct BookDoctorView: View {
         .onAppear() {
             self.customerVM.fetchCustomerProfile { _ in }
         }
-        .modifier(AddProfileViewMod(addChildVM: self.customerVM.addChilVM, customerProfile: self.customerVM.customerProfile!, callback: self.customerVM.addChildCallBack))
     }
 }
