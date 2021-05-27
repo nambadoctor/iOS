@@ -50,6 +50,50 @@ struct CustomerProfileView: View {
                 }
                 HStack {Spacer()}
             }
+            
+            Text("Profile's under your account")
+                .bold()
+            
+            ForEach(self.customerVM.customerProfile!.children, id: \.ChildProfileId) {child in
+                VStack (alignment: .leading) {
+                    VStack (alignment: .leading, spacing: 3) {
+                        Text("Name:")
+                            .font(.footnote)
+                            .bold()
+                            .foregroundColor(.gray)
+                        Text(child.Name)
+                    }
+
+                    VStack (alignment: .leading, spacing: 3) {
+                        Text("Age:")
+                            .font(.footnote)
+                            .bold()
+                            .foregroundColor(.gray)
+                        Text(child.Age)
+                    }
+
+                    VStack (alignment: .leading, spacing: 3) {
+                        Text("Gender:")
+                            .font(.footnote)
+                            .bold()
+                            .foregroundColor(.gray)
+                        Text(child.Gender)
+                    }
+
+                    VStack (alignment: .leading, spacing: 3) {
+                        Text("Phone Number:")
+                            .font(.footnote)
+                            .bold()
+                            .foregroundColor(.gray)
+                        Text(child.PreferredPhoneNumber.mapToNumberString())
+                    }
+                    HStack {Spacer()}
+                }
+                .padding()
+                .background(Color.white)
+                .cornerRadius(5)
+                .shadow(radius: 5)
+            }
 
             Spacer()
         }.padding()

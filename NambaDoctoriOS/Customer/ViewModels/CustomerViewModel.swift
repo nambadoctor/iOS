@@ -238,7 +238,7 @@ class CustomerViewModel : ObservableObject {
         self.showAddChildInstructions = true
         self.dontShowAddChildHeader()
     }
-    
+
     func collapseChildHeader () {
         dontShowAddChildHeader()
         checkToShowChildBookingNotice()

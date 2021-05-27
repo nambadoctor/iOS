@@ -28,20 +28,20 @@ struct DoctorProfile: View {
                 
                 DoctorAvailabilityView(availabilityVM: doctorViewModel.availabilityVM)
 
-    //            //will have edit option in future
-    //            Group {
-    //                phoneNumbers
-    //                Divider()
-    //                addresses
-    //                Divider()
-    //            }
-    //
-    //            //non editable | need to contact nambadoctor team to edit
-    //            Group {
-    //                workExperience
-    //                Divider()
-    //                education
-    //            }
+                //will have edit option in future
+                Group {
+                    phoneNumbers
+                    Divider()
+                    addresses
+                    Divider()
+                }
+    
+                //non editable | need to contact nambadoctor team to edit
+                Group {
+                    workExperience
+                    Divider()
+                    education
+                }
             }.padding()
         }
     }
