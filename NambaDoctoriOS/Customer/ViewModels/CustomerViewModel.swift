@@ -35,6 +35,8 @@ class CustomerViewModel : ObservableObject {
     @Published var dontShowChildBookingHeader:Bool = false
     @Published var showAddChildInstructions:Bool = false
     
+    @Published var addChildProfileVM:AddChildProfileViewModel = AddChildProfileViewModel()
+    
     var customerProfileService:CustomerProfileServiceProtocol
     var customerAppointmentService:CustomerAppointmentServiceProtocol
     var customerServiceProviderService:CustomerServiceProviderServiceProtocol
@@ -73,12 +75,24 @@ class CustomerViewModel : ObservableObject {
         }
     }
 
-    func fetchCustomerProfile (completion: @escaping (_ retrieved:Bool)->()) {
+    func fetchCustomerProfile (_ completion: @escaping (_ retrieved:Bool)->()) {
         let userId = UserIdHelper().retrieveUserId()
         customerProfileService.getCustomerProfile(customerId: userId) { (customerProfile) in
             if customerProfile != nil {
                 self.customerProfile = customerProfile!
                 completion(true)
+            } else {
+                //TODO: handle customer profile null
+            }
+        }
+    }
+    
+    //only for edit child profile callback. need to find a way to optimize this
+    func refreshCustomerProfile() {
+        let userId = UserIdHelper().retrieveUserId()
+        customerProfileService.getCustomerProfile(customerId: userId) { (customerProfile) in
+            if customerProfile != nil {
+                self.customerProfile = customerProfile!
             } else {
                 //TODO: handle customer profile null
             }
@@ -250,6 +264,15 @@ class CustomerViewModel : ObservableObject {
 
     func checkToShowChildBookingNotice () {
         self.dontShowChildBookingHeader = UserDefaults.standard.bool(forKey: "dontShowAddChildHeader")
+    }
+    
+    func showEditChildSheet (child:CustomerChildProfile) {
+        self.addChildProfileVM.mapExistingCHild(child: child, careTakerNumbers: self.customerProfile!.phoneNumbers)
+        self.addChildProfileVM.showSheet = true
+    }
+    
+    func addNewChild () {
+        self.addChildProfileVM.showSheet = true
     }
 }
 

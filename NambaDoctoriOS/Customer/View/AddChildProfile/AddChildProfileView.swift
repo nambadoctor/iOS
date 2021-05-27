@@ -85,6 +85,7 @@ struct AddProfileViewMod: ViewModifier {
             .sheet(isPresented: self.$addChildVM.showSheet) {
                 AddChildProfileView(addChilVM: self.addChildVM, caretakerProfile: self.customerProfile)
                     .onDisappear() {
+                        self.addChildVM.resetValues()
                         callback()
                     }
             }

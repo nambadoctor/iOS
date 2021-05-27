@@ -64,6 +64,21 @@ class AddChildProfileViewModel : ObservableObject {
     func mapToPreferredPhoneNumber (phoneNumber:PhoneNumberObj) -> PhoneNumber {
         return PhoneNumber(countryCode: phoneNumber.countryCode, number: phoneNumber.number.text, type: "", phoneNumberID: "")
     }
+    
+    func mapExistingCHild (child:CustomerChildProfile, careTakerNumbers:[PhoneNumber]) {
+        self.child.ChildProfileId = child.ChildProfileId
+        self.child.Name = child.Name
+        self.child.Age = child.Age
+        self.child.Gender = child.Gender
+        self.child.IsPrimaryContact = child.IsPrimaryContact
+        
+        if child.IsPrimaryContact {
+            togglePrimaryNumber(careTakerNumbers: careTakerNumbers)
+        } else {
+            self.phoneNumber.number.text = child.PreferredPhoneNumber.number
+            self.phoneNumber.countryCode = child.PreferredPhoneNumber.countryCode
+        }
+    }
 }
 
 extension AddChildProfileViewModel : SideBySideCheckBoxDelegate {
