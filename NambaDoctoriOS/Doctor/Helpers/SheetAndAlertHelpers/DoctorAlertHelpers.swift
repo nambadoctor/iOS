@@ -110,7 +110,7 @@ class DoctorAlertHelpers: DoctorAlertHelpersProtocol {
     }
     
     func errorRetrievingChild (completion: @escaping (Bool) -> ()) {
-        alertTempItem = AlertItem(title: Text("Unable to retrieve child's profile"), message: Text("please try again"), dismissButton: .default(Text("Try Again"), action: {
+        alertTempItem = AlertItem(title: Text("Loading patient profile..."), dismissButton: .default(Text("Ok"), action: {
             completion(true)
         }))
         CommonDefaultModifiers.showAlert()
