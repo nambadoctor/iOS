@@ -38,48 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // [END register_for_notifications]
         return true
     }
-    
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
-        print("ID1 ENTRY")
-        // If you are receiving a notification message while your app is in the background,
-        // this callback will not be fired till the user taps on the notification launching the application.
-        // TODO: Handle data of notification
-        // With swizzling disabled you must let Messaging know about the message, for Analytics
-        // Messaging.messaging().appDidReceiveMessage(userInfo)
-        // Print message ID.
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID1: \(messageID)")
-        }
-        
-        // Print full message.
-        print(userInfo)
-    }
-    
-    // [START receive_message]
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
-                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        print("ID2 ENTRY")
-        CorrelationId = UUID().uuidString
-        // If you are receiving a notification message while your app is in the background,
-        // this callback will not be fired till the user taps on the notification launching the application.
-        // TODO: Handle data of notification
-        // With swizzling disabled you must let Messaging know about the message, for Analytics
-        // Messaging.messaging().appDidReceiveMessage(userInfo)
-        // Print message ID.
-        if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID2: \(messageID)")
-        }
-        
-        LoggerService().log(appointmentId: "", eventName: "NOTIFICATION RECIEVED")
-        
-        // Print full message.
-        print(userInfo)
-        
-        LocalNotificationHandler().notifProcessingHelper(userInfo: userInfo)
-        
-        completionHandler(UIBackgroundFetchResult.newData)
-    }
-    
+
     // [END receive_message]
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("Unable to register for remote notifications: \(error.localizedDescription)")
@@ -125,7 +84,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         LocalNotificationHandler().notifRecieveHelper(userInfo: userInfo) { (_) in }
         
         // Change this to your preferred presentation option
-        completionHandler([[.alert, .sound]])
+        completionHandler([[.banner]])
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter,
