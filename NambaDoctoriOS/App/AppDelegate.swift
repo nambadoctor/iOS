@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // [END register_for_notifications]
         return true
     }
-
+    
     // [END receive_message]
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("Unable to register for remote notifications: \(error.localizedDescription)")
@@ -114,3 +114,33 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
 }
 // [END ios_10_message_handling]
 var DeviceTokenId = ""
+
+
+//extension AppDelegate {
+//    func application(_ application: UIApplication, continue userActivity: NSUserActivity,
+//                     restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+//        print("HANDLED HERE BRUH")
+//        let handled = DynamicLinks.dynamicLinks().handleUniversalLink(userActivity.webpageURL!) { (dynamiclink, error) in
+//            print("HANDLED HERE BRUH")
+//        }
+//        print("HANDLED HERE BRUH")
+//        return handled
+//    }
+//
+//    @available(iOS 9.0, *)
+//    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
+//        return application(app, open: url,
+//                           sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+//                           annotation: "")
+//    }
+//
+//    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+//        print("HANDLED HERE BRUH")
+//        if let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) {
+//            print("HANDLED HERE BRUH")
+//            return true
+//        }
+//        print("HANDLED HERE BRUH")
+//        return false
+//    }
+//}

@@ -11,7 +11,7 @@ var docIdFromLink:String = ""
 
 class DeepLinkingHandler {
     func openedWithLink(url:String){
-        let docId:String = url.deletingPrefix("https://nambadoctor.page.link/")
+        let docId:String = url.deletingPrefix("https://nambadoctor.com?docId=")
         docIdFromLink = docId
         if UserTypeHelper.checkIfCustomer(userType: UserTypeHelper.getUserType()) {
             print("STARTING TO HANDLE LINK!")

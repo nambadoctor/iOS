@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import FirebaseDynamicLinks
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
@@ -59,11 +60,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
-        var url:String = userActivity.webpageURL?.absoluteString ?? "nothing"
-
-        guard url != "nothing" else { return }
-        print(url)
+        var url = userActivity.webpageURL!
+        print("PRE-URL \(url)")
         
-        DeepLinkingHandler().openedWithLink(url: url)
+        let handled = DynamicLinks.dynamicLinks().handleUniversalLink(userActivity.webpageURL!) { (dynamiclink, error) in
+            print("HANDLED HERE BRUH \(dynamiclink?.url?.absoluteString)")
+            DeepLinkingHandler().openedWithLink(url: dynamiclink?.url?.absoluteString ?? "")
+        }
+        
     }
 }
