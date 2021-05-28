@@ -21,7 +21,21 @@ struct CustomerDoctorProfileView: View {
 
                 HStack {
                     Spacer()
+                    
                     ImageView(imageLoader: doctorProfileVM.imageLoaderVM)
+                    
+                    Button(action: {
+                        CommonDefaultModifiers.showLoader()
+                        CreateDynamicLink().makeLink(doctorId: self.doctorProfileVM.serviceProviderProfile.serviceProviderID) { url in
+                            CommonDefaultModifiers.hideLoader()
+                            shareSheet(url: url)
+                        }
+                    }, label: {
+                        Image("square.and.arrow.up.on.square")
+                            .scaleEffect(1.5)
+                    })
+                    .padding()
+                    
                     Spacer()
                 }
                 

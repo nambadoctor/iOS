@@ -59,6 +59,21 @@ struct DoctorProfile: View {
                     Image("pencil")
                         .scaleEffect(1.5)
                 })
+                .padding()
+            }
+            
+            if !self.doctorViewModel.showEdit {
+                Button(action: {
+                    CommonDefaultModifiers.showLoader()
+                    CreateDynamicLink().makeLink(doctorId: self.doctorViewModel.doctor.serviceProviderID) { url in
+                        CommonDefaultModifiers.hideLoader()
+                        shareSheet(url: url)
+                    }
+                }, label: {
+                    Image("square.and.arrow.up.on.square")
+                        .scaleEffect(1.5)
+                })
+                .padding()
             }
             
             Spacer()

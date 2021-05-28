@@ -56,6 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // With swizzling disabled you must set the APNs token here.
         // Messaging.messaging().apnsToken = deviceToken
     }
+    
 }
 
 // [START ios_10_message_handling]

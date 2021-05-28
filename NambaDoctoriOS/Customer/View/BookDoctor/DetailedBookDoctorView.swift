@@ -154,6 +154,18 @@ struct DetailedBookDoctorView: View {
                     
                 }.padding(.leading, 5)
                 
+                Button(action: {
+                    CommonDefaultModifiers.showLoader()
+                    CreateDynamicLink().makeLink(doctorId: self.detailedBookingVM.serviceProvider.serviceProviderID) { url in
+                        CommonDefaultModifiers.hideLoader()
+                        shareSheet(url: url)
+                    }
+                }, label: {
+                    Image("square.and.arrow.up.on.square")
+                        .scaleEffect(1.5)
+                })
+                .padding()
+                
                 Spacer()
             }
             .padding(.top, 10)
