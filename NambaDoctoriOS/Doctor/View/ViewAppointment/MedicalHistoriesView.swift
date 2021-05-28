@@ -36,7 +36,7 @@ struct MedicalHistoriesView: View {
                         .bold()
                 }
                 
-                Text(self.serviceRequestVM.serviceRequest.medicalHistory.MedicalHistoryName)
+                Text(self.serviceRequestVM.serviceRequest.medicalHistory.MedicalHistoryName.isEmpty ? "No Presenting Medical History Entered" : self.serviceRequestVM.serviceRequest.medicalHistory.MedicalHistoryName)
                     .fixedSize(horizontal: false, vertical: true)
             }
             
@@ -51,7 +51,7 @@ struct MedicalHistoriesView: View {
                         .bold()
                 }
                 
-                Text(self.serviceRequestVM.serviceRequest.medicalHistory.PastMedicalHistory)
+                Text(self.serviceRequestVM.serviceRequest.medicalHistory.PastMedicalHistory.isEmpty ? "No Past Medical History Entered" : self.serviceRequestVM.serviceRequest.medicalHistory.PastMedicalHistory)
                     .fixedSize(horizontal: false, vertical: true)
             }
             
@@ -66,7 +66,7 @@ struct MedicalHistoriesView: View {
                         .bold()
                 }
                 
-                Text(self.serviceRequestVM.serviceRequest.medicalHistory.MedicationHistory)
+                Text(self.serviceRequestVM.serviceRequest.medicalHistory.MedicationHistory.isEmpty ? "No Medication History Entered" : self.serviceRequestVM.serviceRequest.medicalHistory.MedicationHistory)
                     .fixedSize(horizontal: false, vertical: true)
             }
         }

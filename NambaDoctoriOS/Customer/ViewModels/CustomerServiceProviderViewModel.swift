@@ -10,6 +10,7 @@ import Foundation
 class CustomerServiceProviderViewModel : ObservableObject {
     var serviceProvider:CustomerServiceProviderProfile 
     @Published var imageLoader:ImageLoader? = nil
+    @Published var showDetailedProfileSheet:Bool = false
     var customerProfile:CustomerProfile
     var callBack:(CustomerServiceProviderProfile)->()
     
@@ -66,5 +67,9 @@ class CustomerServiceProviderViewModel : ObservableObject {
     
     func getDetailedBookingVM () -> DetailedBookDocViewModel{
         DetailedBookDocViewModel(serviceProvider: serviceProvider, customerProfile: self.customerProfile)
+    }
+    
+    func getDetailedServiceProviderVM() -> CustomerDoctorProfileViewModel {
+        CustomerDoctorProfileViewModel(serviceProviderProfile: self.serviceProvider)
     }
 }

@@ -15,9 +15,15 @@ struct BookDoctorCard: View {
         ZStack {
             HStack {
                 
-                ImageView(imageLoader: customerServiceProviderVM.imageLoader!, height: 70, width: 70)
+                ImageViewWithNoSheet(imageLoader: customerServiceProviderVM.imageLoader!, height: 70, width: 70)
                     .clipShape(Circle())
-                
+                    .onTapGesture {
+                        self.customerServiceProviderVM.showDetailedProfileSheet = true
+                    }
+                    .sheet(isPresented: self.$customerServiceProviderVM.showDetailedProfileSheet, content: {
+                        CustomerDoctorProfileView(doctorProfileVM: self.customerServiceProviderVM.getDetailedServiceProviderVM())
+                    })
+
                 VStack (alignment: .leading, spacing: 5) {
                     HStack {
                         Spacer()

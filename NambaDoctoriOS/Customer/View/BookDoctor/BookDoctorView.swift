@@ -63,10 +63,9 @@ struct BookDoctorView: View {
                             Image("figure.walk")
                                 .scaleEffect(3)
                                 .padding()
-                            Text("Coming Soon! There are currently no doctors available for this category.")
+                            Text("Coming Soon! There are currently no doctors available for this specialty.")
                                 .fixedSize(horizontal: false, vertical: true)
                                 .multilineTextAlignment(.center)
-                            Spacer()
                         }.padding()
                     } else {
                         ScrollView {
@@ -83,7 +82,6 @@ struct BookDoctorView: View {
                 Indicator()
             }
             Spacer()
-            
             
             if self.customerVM.takeToBookDoc {
                 NavigationLink("",

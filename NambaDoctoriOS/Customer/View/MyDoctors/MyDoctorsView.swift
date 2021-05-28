@@ -12,21 +12,43 @@ struct MyDoctorsView: View {
     @EnvironmentObject var customerVM:CustomerViewModel
 
     var body: some View {
-        VStack (alignment: .leading) {
-            if !customerVM.allServiceProviders.isEmpty {
-                Text("My Doctors")
-                    .font(.title)
-                    .bold()
-                    .padding()
-                ScrollView {
-                    ForEach(customerVM.myServiceProviders, id: \.serviceProviderID) { serviceProvider in
-                        BookDoctorCard(customerServiceProviderVM: CustomerServiceProviderViewModel(serviceProvider: serviceProvider, customerProfile: self.customerVM.customerProfile!, callBack: self.customerVM.selectDoctorToBook(doctor:)))
+        ZStack {
+            VStack (alignment: .leading) {
+                if !customerVM.allServiceProviders.isEmpty {
+                    Text("My Doctors")
+                        .font(.title)
+                        .bold()
+                        .padding()
+                    ScrollView {
+                        ForEach(customerVM.myServiceProviders, id: \.serviceProviderID) { serviceProvider in
+                            BookDoctorCard(customerServiceProviderVM: CustomerServiceProviderViewModel(serviceProvider: serviceProvider, customerProfile: self.customerVM.customerProfile!, callBack: self.customerVM.selectDoctorToBook(doctor:)))
+                        }
                     }
+                } else {
+                    Indicator()
                 }
-            } else {
-                Indicator()
+                Spacer()
             }
-            Spacer()
+            
+            VStack {
+                Spacer()
+                HStack {
+                    Spacer()
+                    Button(action: {
+                        self.customerVM.tabSelection = 3
+                    }, label: {
+                        Text("See All Doctors")
+                            .foregroundColor(.white)
+                    })
+                    .padding(10)
+                    .padding(.horizontal, 5)
+                    .background(Color.blue)
+                    .cornerRadius(50)
+                    
+                    Spacer()
+                }
+            }
+            .padding(.bottom, 10)
         }
     }
 }

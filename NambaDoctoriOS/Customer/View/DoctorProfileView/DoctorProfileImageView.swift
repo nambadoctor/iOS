@@ -1,15 +1,15 @@
 //
-//  ImageViewHelper.swift
+//  DoctorProfileImageView.swift
 //  NambaDoctoriOS
 //
-//  Created by Surya Manivannan on 3/27/21.
+//  Created by Surya Manivannan on 5/27/21.
 //
 
-import Foundation
 import SwiftUI
 
-struct ImageView: View {
+struct DoctorProfileImageView: View {
     @ObservedObject var imageLoader:ImageLoader
+    var doctorProfile:CustomerServiceProviderProfile
     @State var showEnlarged:Bool = false
     
     var height:CGFloat = 160
@@ -50,24 +50,6 @@ struct ImageView: View {
                             .onDisappear() {showEnlarged = false}
                     }
                 })
-        }
-    }
-}
-
-struct ImageViewWithNoSheet: View {
-    @ObservedObject var imageLoader:ImageLoader
-    
-    var height:CGFloat = 160
-    var width:CGFloat = 120
-    
-    var body: some View {
-        if imageLoader.image != nil {
-            Image(uiImage: imageLoader.image!)
-                .resizable()
-                .cornerRadius(10)
-                .shadow(radius: 10)
-                .aspectRatio(contentMode: .fit)
-                .frame(width:self.width, height:self.height)
         }
     }
 }

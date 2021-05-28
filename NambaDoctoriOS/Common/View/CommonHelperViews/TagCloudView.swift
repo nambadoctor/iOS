@@ -65,6 +65,7 @@ struct TagCloudViewForDisplayOnly : View {
             .background(Color.blue)
             .foregroundColor(Color.white)
             .cornerRadius(5)
+            .padding([.trailing, .bottom], 5)
     }
 
     private func viewHeightReader(_ binding: Binding<CGFloat>) -> some View {
@@ -76,7 +77,6 @@ struct TagCloudViewForDisplayOnly : View {
             return .clear
         }
     }
-
 }
 
 struct TagCloudView: View {
