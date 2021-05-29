@@ -29,6 +29,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 window.makeKeyAndVisible()
             }
         }
+        
+        // Get URL components from the incoming user activity.
+        guard let userActivity = connectionOptions.userActivities.first,
+            userActivity.activityType == NSUserActivityTypeBrowsingWeb,
+            let incomingURL = userActivity.webpageURL,
+            let components = NSURLComponents(url: incomingURL, resolvingAgainstBaseURL: true) else {
+            return
+        }
+        
+        DeepLinkingHandler().recieveURL(url: incomingURL)
     }
     
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -60,13 +70,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
-        var url = userActivity.webpageURL!
-        print("PRE-URL \(url)")
-        
-        let handled = DynamicLinks.dynamicLinks().handleUniversalLink(userActivity.webpageURL!) { (dynamiclink, error) in
-            print("HANDLED HERE BRUH \(dynamiclink?.url?.absoluteString)")
-            DeepLinkingHandler().openedWithLink(url: dynamiclink?.url?.absoluteString ?? "")
-        }
-        
+        DeepLinkingHandler().recieveURL(url: userActivity.webpageURL!)
     }
 }

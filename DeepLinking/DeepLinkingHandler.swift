@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseDynamicLinks
 
 var docIdFromLink:String = ""
 
@@ -16,6 +17,12 @@ class DeepLinkingHandler {
         if UserTypeHelper.checkIfCustomer(userType: UserTypeHelper.getUserType()) {
             print("STARTING TO HANDLE LINK!")
             CustomerDefaultModifiers.takeToBookDoctor()
+        }
+    }
+    
+    func recieveURL (url:URL) {
+        _ = DynamicLinks.dynamicLinks().handleUniversalLink(url) { (dynamiclink, error) in
+            self.openedWithLink(url: dynamiclink?.url?.absoluteString ?? "")
         }
     }
 }
