@@ -4,6 +4,8 @@ import UserNotifications
 import Firebase
 import FirebaseDynamicLinks
 
+var latestNotificationPayload:[AnyHashable:Any]? = nil
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -34,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         application.registerForRemoteNotifications()
-        
+        callInNotifListener()
         // [END register_for_notifications]
         return true
     }
@@ -79,9 +81,11 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         // [END_EXCLUDE]
         // Print full message.
         print(userInfo)
+        latestNotificationPayload = userInfo
         
         LoggerService().log(appointmentId: "", eventName: "NOTIFICATION DISPLAYED")
         
+        LocalNotificationHandler().notifProcessingHelper(userInfo: userInfo)
         LocalNotificationHandler().notifRecieveHelper(userInfo: userInfo) { (_) in }
         
         // Change this to your preferred presentation option
@@ -111,36 +115,14 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         
         completionHandler()
     }
+    
+    func callInNotifListener () {
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("\(CustomerViewStatesK.CustomerIncomingCallingNotifChange)"), object: nil, queue: .main) { (_) in
+            if latestNotificationPayload != nil {
+                FireLocalNotif().fireRepeatingNotification(userInfo: latestNotificationPayload!)
+            }
+        }
+    }
 }
 // [END ios_10_message_handling]
 var DeviceTokenId = ""
-
-
-//extension AppDelegate {
-//    func application(_ application: UIApplication, continue userActivity: NSUserActivity,
-//                     restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
-//        print("HANDLED HERE BRUH")
-//        let handled = DynamicLinks.dynamicLinks().handleUniversalLink(userActivity.webpageURL!) { (dynamiclink, error) in
-//            print("HANDLED HERE BRUH")
-//        }
-//        print("HANDLED HERE BRUH")
-//        return handled
-//    }
-//
-//    @available(iOS 9.0, *)
-//    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any]) -> Bool {
-//        return application(app, open: url,
-//                           sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
-//                           annotation: "")
-//    }
-//
-//    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-//        print("HANDLED HERE BRUH")
-//        if let dynamicLink = DynamicLinks.dynamicLinks().dynamicLink(fromCustomSchemeURL: url) {
-//            print("HANDLED HERE BRUH")
-//            return true
-//        }
-//        print("HANDLED HERE BRUH")
-//        return false
-//    }
-//}

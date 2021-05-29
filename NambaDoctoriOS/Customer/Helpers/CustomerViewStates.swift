@@ -22,4 +22,7 @@ enum CustomerViewStatesK:String {
     
     case CustomerNavigateToBookDoctor
     case CustomerNavigateToBookDoctorChange
+    
+    case CustomerIncomingCallingNotif
+    case CustomerIncomingCallingNotifChange
 }

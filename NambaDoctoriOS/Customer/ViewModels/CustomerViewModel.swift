@@ -71,6 +71,9 @@ class CustomerViewModel : ObservableObject {
                 self.serviceProviderCategories = categories!
                 self.selectedCategory = categories![0]
                 print("CATEGORIES RETRIVED: \(categories!)")
+            } else {
+                self.serviceProviderCategories.append("All Doctors")
+                self.selectedCategory = "All Doctors"
             }
         }
     }

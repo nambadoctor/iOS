@@ -130,7 +130,7 @@ class CustomerServiceProviderService : CustomerServiceProviderServiceProtocol {
             } catch {
                 print("Get CATEGORIES Client Failed \(error.localizedDescription)")
                 DispatchQueue.main.async {
-                    completion(nil)
+                    completion(["All Doctors"])
                 }
             }
         }

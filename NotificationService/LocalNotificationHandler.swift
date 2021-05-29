@@ -49,21 +49,13 @@ class LocalNotificationHandler {
         let notifType = getNotifType(type: values["type"]!)
         print("INCOMING NOTIF TYPE: \(notifType)")
         switch notifType {
-        case .AppointmentBooked, .AppointmentCancelled, .PrescriptionUploaded, .ReportUploaded, .Paid:
+        case .AppointmentBooked, .AppointmentCancelled, .PrescriptionUploaded, .ReportUploaded, .Paid, .NewChatMessage:
             break
         case .CallInRoom:
-            if UserTypeHelper.checkIfDoctor(userType: UserTypeHelper.getUserType()) {
-                FireLocalNotif().fire(userInfo: userInfo)
-            } else {
-                FireLocalNotif().fireRepeatingNotification(userInfo: userInfo)
-            }
-        case .NewChatMessage:
-            FireLocalNotif().fire(userInfo: userInfo)
+            CustomerDefaultModifiers.fireIncomingCallNotif()
         default:
-            FireLocalNotif().fire(userInfo: userInfo)
+            break
         }
-
-        FireLocalNotif().fire(userInfo: userInfo)
     }
 
     func notifRecieveHelper (userInfo: [AnyHashable: Any], completion: @escaping (_ fire:Bool)->()) {

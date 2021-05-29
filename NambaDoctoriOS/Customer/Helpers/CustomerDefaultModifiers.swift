@@ -27,4 +27,9 @@ class CustomerDefaultModifiers {
         UserDefaults.standard.set(true, forKey: CustomerViewStatesK.CustomerNavigateToBookDoctor.rawValue)
         NotificationCenter.default.post(name: NSNotification.Name(CustomerViewStatesK.CustomerNavigateToBookDoctorChange.rawValue), object: nil)
     }
+    
+    static func fireIncomingCallNotif () {
+        UserDefaults.standard.set(true, forKey: CustomerViewStatesK.CustomerIncomingCallingNotif.rawValue)
+        NotificationCenter.default.post(name: NSNotification.Name(CustomerViewStatesK.CustomerIncomingCallingNotifChange.rawValue), object: nil)
+    }
 }
