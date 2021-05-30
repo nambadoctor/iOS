@@ -23,8 +23,11 @@ struct BookDoctorView: View {
                                 if customerVM.showAddChildInstructions {
                                     VStack (alignment: .leading, spacing: 10) {
                                         Text("You can book an appointment for anybody even if they don't have a smart phone!")
+                                            .fixedSize(horizontal: false, vertical: true).multilineTextAlignment(.leading)
                                         Text("1) Select any doctor you want to book an appointment for")
+                                            .fixedSize(horizontal: false, vertical: true).multilineTextAlignment(.leading)
                                         Text("2) Create a profile for whoever you are booking for")
+                                            .fixedSize(horizontal: false, vertical: true).multilineTextAlignment(.leading)
                                         
                                         Button(action: {
                                             self.customerVM.collapseChildHeader()

@@ -11,7 +11,7 @@ class CustomerGeneratedSlotMapper {
     func grpcSlotToLocal(slot:Nd_V1_CustomerGeneratedSlotMessage) -> CustomerGeneratedSlot {
         return CustomerGeneratedSlot(
             startDateTime: slot.startDateTime.toInt64,
-            endStartDateTime: slot.endStartDateTime.toInt64,
+            endDateTime: slot.endStartDateTime.toInt64,
             duration: slot.duration.toInt32)
     }
     
@@ -19,7 +19,9 @@ class CustomerGeneratedSlotMapper {
         var slotList:[CustomerGeneratedSlot] = [CustomerGeneratedSlot]()
         
         for slot in slots {
-            slotList.append(grpcSlotToLocal(slot: slot))
+            if !slotList.contains { $0.startDateTime == slot.startDateTime.toInt64 } {
+                slotList.append(grpcSlotToLocal(slot: slot))
+            }
         }
         
         return slotList
@@ -28,7 +30,7 @@ class CustomerGeneratedSlotMapper {
     func localSlotToGrpc(slot: CustomerGeneratedSlot) -> Nd_V1_CustomerGeneratedSlotMessage {
         return Nd_V1_CustomerGeneratedSlotMessage.with {
             $0.startDateTime = slot.startDateTime.toProto
-            $0.endStartDateTime = slot.endStartDateTime.toProto
+            $0.endStartDateTime = slot.endDateTime.toProto
             $0.duration = slot.duration.toProto
         }
     }

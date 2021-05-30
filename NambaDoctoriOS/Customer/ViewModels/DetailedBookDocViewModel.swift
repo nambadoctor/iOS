@@ -75,11 +75,9 @@ class DetailedBookDocViewModel : ObservableObject {
         customerServiceProviderService.getServiceProviderAvailabilities(serviceProviderId: serviceProvider.serviceProviderID) { (slots) in
             if slots != nil || slots?.count != 0 {
                 self.slots = slots!
-                
                 self.selectedDate = self.slots![0].startDateTime
                 self.selectedTime = self.slots![0].startDateTime
                 self.getTimesForSelectedDates(selectedDate: self.selectedDate)
-                
                 self.parseSlots()
             } else {
                 //TODO: handle empty slots
@@ -90,7 +88,9 @@ class DetailedBookDocViewModel : ObservableObject {
     func parseSlots () {
         for slot in slots! {
             if !Helpers.compareDate(dates: dateDisplay, toCompareDate: slot.startDateTime) {
-                dateDisplay.append(slot.startDateTime)
+                if !self.dateDisplay.contains(slot.startDateTime) {
+                    dateDisplay.append(slot.startDateTime)
+                }
             }
         }
     }
@@ -174,7 +174,7 @@ class DetailedBookDocViewModel : ObservableObject {
                                    followUpDays: 0,
                                    isPaid: false,
                                    scheduledAppointmentStartTime: slot?.startDateTime ?? 0,
-                                   scheduledAppointmentEndTime: slot?.endStartDateTime ?? 0,
+                                   scheduledAppointmentEndTime: slot?.endDateTime ?? 0,
                                    actualAppointmentStartTime: 0,
                                    actualAppointmentEndTime: 0,
                                    createdDateTime: Date().millisecondsSince1970,

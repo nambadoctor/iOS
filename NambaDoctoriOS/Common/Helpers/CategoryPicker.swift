@@ -17,15 +17,20 @@ struct CategoryPicker : View {
             ScrollView (.horizontal, showsIndicators: false) {
                 LazyHStack {
                     ForEach (self.categoriesList, id: \.SpecialityName) {category in
-                        Text(category.SpecialityName)
-                            .padding(10)
-                            .foregroundColor(category == self.selectedCategory ? Color.white : Color.black)
-                            .background(category == self.selectedCategory ? Color.blue : Color.gray.opacity(0.2))
-                            .cornerRadius(10)
-                            .onTapGesture {
-                                self.selectedCategory = category
-                                self.categoryChanged()
-                            }
+                        HStack {
+                            ImageView(imageLoader: ImageLoader(urlString: category.SpecialityThumbnail, { _ in }), height: 30, width: 30)
+                            
+                            Text(category.SpecialityName)
+                                .foregroundColor(category == self.selectedCategory ? Color.white : .black)
+
+                        }
+                        .padding(10)
+                        .background(category == self.selectedCategory ? Color.blue : Color.gray.opacity(0.2))
+                        .cornerRadius(10)
+                        .onTapGesture {
+                            self.selectedCategory = category
+                            self.categoryChanged()
+                        }
                     }
                 }
             }

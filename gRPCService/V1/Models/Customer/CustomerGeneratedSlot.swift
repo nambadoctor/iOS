@@ -9,6 +9,6 @@ import Foundation
 
 struct CustomerGeneratedSlot {
     var startDateTime:Int64
-    var endStartDateTime:Int64
+    var endDateTime:Int64
     var duration:Int32
 }

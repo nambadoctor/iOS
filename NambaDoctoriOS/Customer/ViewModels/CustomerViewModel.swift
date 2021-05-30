@@ -176,7 +176,7 @@ class CustomerViewModel : ObservableObject {
     
     func retrieveServiceProviders () {
         customerServiceProviderService.getAllServiceProvider(customerId: customerProfile!.customerID) { (serviceProviders) in
-            if serviceProviders != nil || serviceProviders?.count != 0 {
+            if serviceProviders != nil || !serviceProviders!.isEmpty {
                 self.allServiceProviders = serviceProviders!
                 self.setMyDoctors()
                 self.checkForDirectBookNavigation()
