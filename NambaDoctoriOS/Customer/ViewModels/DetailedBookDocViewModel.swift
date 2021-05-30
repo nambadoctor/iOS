@@ -160,27 +160,35 @@ class DetailedBookDocViewModel : ObservableObject {
 
     func makeAppointment(slot:CustomerGeneratedSlot?) -> CustomerAppointment {
         let cancellation = CustomerCancellation(ReasonName: "", CancelledTime: Date().millisecondsSince1970, CancelledBy: "", CancelledByType: "", Notes: "")
-        return CustomerAppointment(appointmentID: "",
-                                   serviceRequestID: "",
-                                   parentAppointmentID: "",
-                                   customerID: UserIdHelper().retrieveUserId(),
-                                   serviceProviderID: self.serviceProvider.serviceProviderID,
-                                   requestedBy: UserIdHelper().retrieveUserId(),
-                                   serviceProviderName: "",
-                                   customerName: "",
-                                   isBlockedByServiceProvider: false,
-                                   status: "Confirmed",
-                                   serviceFee: self.serviceProvider.serviceFee,
-                                   followUpDays: 0,
-                                   isPaid: false,
-                                   scheduledAppointmentStartTime: slot?.startDateTime ?? 0,
-                                   scheduledAppointmentEndTime: slot?.endDateTime ?? 0,
-                                   actualAppointmentStartTime: 0,
-                                   actualAppointmentEndTime: 0,
-                                   createdDateTime: Date().millisecondsSince1970,
-                                   lastModifiedDate: Date().millisecondsSince1970,
-                                   noOfReports: 0,
-                                   cancellation: cancellation)
+        
+        var customerAppointment = CustomerAppointment(appointmentID: "",
+                                                      serviceRequestID: "",
+                                                      parentAppointmentID: "",
+                                                      customerID: UserIdHelper().retrieveUserId(),
+                                                      serviceProviderID: self.serviceProvider.serviceProviderID,
+                                                      requestedBy: UserIdHelper().retrieveUserId(),
+                                                      serviceProviderName: "",
+                                                      customerName: "",
+                                                      isBlockedByServiceProvider: false,
+                                                      status: "Confirmed",
+                                                      serviceFee: self.serviceProvider.serviceFee,
+                                                      followUpDays: 0,
+                                                      isPaid: false,
+                                                      scheduledAppointmentStartTime: slot?.startDateTime ?? 0,
+                                                      scheduledAppointmentEndTime: slot?.endDateTime ?? 0,
+                                                      actualAppointmentStartTime: 0,
+                                                      actualAppointmentEndTime: 0,
+                                                      createdDateTime: Date().millisecondsSince1970,
+                                                      lastModifiedDate: Date().millisecondsSince1970,
+                                                      noOfReports: 0,
+                                                      cancellation: cancellation,
+                                                      childId: "")
+        
+        if self.bookingForProfile != nil {
+            customerAppointment.childId = bookingForProfile!.ChildProfileId
+        }
+
+        return customerAppointment
     }
     
     func makeServiceRequest (appointmentId:String) -> CustomerServiceRequest {

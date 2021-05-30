@@ -86,5 +86,8 @@ class DocAutoNavigateHelper {
         takeToChat = false
         takeToTwilioRoom = false
         takeToIntermediateView = false
+        currentyInChat = false
+        currentlyInTwilioRoom = false
+        currenltyInIntermediateView = false
     }
 }

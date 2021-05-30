@@ -757,6 +757,15 @@ struct Nd_V1_ServiceProviderAppointmentMessage {
   /// Clears the value of `cancellation`. Subsequent reads from it will return its default value.
   mutating func clearCancellation() {_uniqueStorage()._cancellation = nil}
 
+  var childID: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _storage._childID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._childID = newValue}
+  }
+  /// Returns true if `childID` has been explicitly set.
+  var hasChildID: Bool {return _storage._childID != nil}
+  /// Clears the value of `childID`. Subsequent reads from it will return its default value.
+  mutating func clearChildID() {_uniqueStorage()._childID = nil}
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -3049,6 +3058,15 @@ struct Nd_V1_CustomerAppointmentMessage {
   var hasCancellation: Bool {return _storage._cancellation != nil}
   /// Clears the value of `cancellation`. Subsequent reads from it will return its default value.
   mutating func clearCancellation() {_uniqueStorage()._cancellation = nil}
+
+  var childID: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _storage._childID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._childID = newValue}
+  }
+  /// Returns true if `childID` has been explicitly set.
+  var hasChildID: Bool {return _storage._childID != nil}
+  /// Clears the value of `childID`. Subsequent reads from it will return its default value.
+  mutating func clearChildID() {_uniqueStorage()._childID = nil}
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -5610,6 +5628,7 @@ extension Nd_V1_ServiceProviderAppointmentMessage: SwiftProtobuf.Message, SwiftP
     19: .same(proto: "LastModifedDate"),
     20: .same(proto: "NoOfReports"),
     21: .same(proto: "Cancellation"),
+    22: .same(proto: "ChildId"),
   ]
 
   fileprivate class _StorageClass {
@@ -5634,6 +5653,7 @@ extension Nd_V1_ServiceProviderAppointmentMessage: SwiftProtobuf.Message, SwiftP
     var _lastModifedDate: SwiftProtobuf.Google_Protobuf_Int64Value? = nil
     var _noOfReports: SwiftProtobuf.Google_Protobuf_Int32Value? = nil
     var _cancellation: Nd_V1_ServiceProviderCancellationMessage? = nil
+    var _childID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -5661,6 +5681,7 @@ extension Nd_V1_ServiceProviderAppointmentMessage: SwiftProtobuf.Message, SwiftP
       _lastModifedDate = source._lastModifedDate
       _noOfReports = source._noOfReports
       _cancellation = source._cancellation
+      _childID = source._childID
     }
   }
 
@@ -5700,6 +5721,7 @@ extension Nd_V1_ServiceProviderAppointmentMessage: SwiftProtobuf.Message, SwiftP
         case 19: try { try decoder.decodeSingularMessageField(value: &_storage._lastModifedDate) }()
         case 20: try { try decoder.decodeSingularMessageField(value: &_storage._noOfReports) }()
         case 21: try { try decoder.decodeSingularMessageField(value: &_storage._cancellation) }()
+        case 22: try { try decoder.decodeSingularMessageField(value: &_storage._childID) }()
         default: break
         }
       }
@@ -5771,6 +5793,9 @@ extension Nd_V1_ServiceProviderAppointmentMessage: SwiftProtobuf.Message, SwiftP
       if let v = _storage._cancellation {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 21)
       }
+      if let v = _storage._childID {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 22)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -5801,6 +5826,7 @@ extension Nd_V1_ServiceProviderAppointmentMessage: SwiftProtobuf.Message, SwiftP
         if _storage._lastModifedDate != rhs_storage._lastModifedDate {return false}
         if _storage._noOfReports != rhs_storage._noOfReports {return false}
         if _storage._cancellation != rhs_storage._cancellation {return false}
+        if _storage._childID != rhs_storage._childID {return false}
         return true
       }
       if !storagesAreEqual {return false}
@@ -8122,6 +8148,7 @@ extension Nd_V1_CustomerAppointmentMessage: SwiftProtobuf.Message, SwiftProtobuf
     19: .same(proto: "LastModifedDate"),
     20: .same(proto: "NoOfReports"),
     21: .same(proto: "Cancellation"),
+    22: .same(proto: "ChildId"),
   ]
 
   fileprivate class _StorageClass {
@@ -8146,6 +8173,7 @@ extension Nd_V1_CustomerAppointmentMessage: SwiftProtobuf.Message, SwiftProtobuf
     var _lastModifedDate: SwiftProtobuf.Google_Protobuf_Int64Value? = nil
     var _noOfReports: SwiftProtobuf.Google_Protobuf_Int32Value? = nil
     var _cancellation: Nd_V1_CustomerCancellationMessage? = nil
+    var _childID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -8173,6 +8201,7 @@ extension Nd_V1_CustomerAppointmentMessage: SwiftProtobuf.Message, SwiftProtobuf
       _lastModifedDate = source._lastModifedDate
       _noOfReports = source._noOfReports
       _cancellation = source._cancellation
+      _childID = source._childID
     }
   }
 
@@ -8212,6 +8241,7 @@ extension Nd_V1_CustomerAppointmentMessage: SwiftProtobuf.Message, SwiftProtobuf
         case 19: try { try decoder.decodeSingularMessageField(value: &_storage._lastModifedDate) }()
         case 20: try { try decoder.decodeSingularMessageField(value: &_storage._noOfReports) }()
         case 21: try { try decoder.decodeSingularMessageField(value: &_storage._cancellation) }()
+        case 22: try { try decoder.decodeSingularMessageField(value: &_storage._childID) }()
         default: break
         }
       }
@@ -8283,6 +8313,9 @@ extension Nd_V1_CustomerAppointmentMessage: SwiftProtobuf.Message, SwiftProtobuf
       if let v = _storage._cancellation {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 21)
       }
+      if let v = _storage._childID {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 22)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -8313,6 +8346,7 @@ extension Nd_V1_CustomerAppointmentMessage: SwiftProtobuf.Message, SwiftProtobuf
         if _storage._lastModifedDate != rhs_storage._lastModifedDate {return false}
         if _storage._noOfReports != rhs_storage._noOfReports {return false}
         if _storage._cancellation != rhs_storage._cancellation {return false}
+        if _storage._childID != rhs_storage._childID {return false}
         return true
       }
       if !storagesAreEqual {return false}

@@ -29,4 +29,5 @@ struct ServiceProviderAppointment : Codable {
     var lastModifiedDate:Int64
     var noOfReports:Int32
     var cancellation:ServiceProviderCancellation
+    var childId:String
 }

@@ -29,4 +29,5 @@ struct CustomerAppointment {
     var lastModifiedDate:Int64
     var noOfReports:Int32
     var cancellation:CustomerCancellation
+    var childId:String
 }

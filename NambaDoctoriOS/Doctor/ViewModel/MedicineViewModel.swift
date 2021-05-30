@@ -150,6 +150,7 @@ class MedicineViewModel: ObservableObject {
     
     
     func getPrescriptionPDF () {
+        self.prescriptionPDF = nil
         retrievePrescriptionHelper.getPrescriptionPDF(customerId: appointment.customerID, serviceProviderId: appointment.serviceProviderID, appointmentId: appointment.appointmentID, serviceRequestId: appointment.serviceRequestID) { data in
             if data != nil {
                 CommonDefaultModifiers.hideLoader()
