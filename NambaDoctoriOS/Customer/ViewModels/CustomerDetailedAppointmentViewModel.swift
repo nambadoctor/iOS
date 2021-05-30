@@ -26,7 +26,8 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     @Published var allergy:String = ""
     @Published var allergyChanged:Bool = false
     @Published var reasonPickerVM:ReasonPickerViewModel = ReasonPickerViewModel()
-    
+    @Published var reasonChanged:Bool = false
+
     @Published var reportsVM:CustomerAllReportsViewModel
     
     @Published var prescriptionPDF:Data? = nil
@@ -268,6 +269,20 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
             }
         }
     }
+    
+    func commitReason () {
+        CommonDefaultModifiers.showLoader()
+        self.setServiceRequest() { success in
+            if success {
+                self.reasonChanged = false
+                CommonDefaultModifiers.hideLoader()
+                CustomerAlertHelpers().ReasonSetSuccessfully { _ in }
+                EndEditingHelper.endEditing()
+            } else {
+                CustomerAlertHelpers().ReasonSetFailed() { _ in }
+            }
+        }
+    }
 }
 
 extension CustomerDetailedAppointmentViewModel : ReasonPickedDelegate {
@@ -326,12 +341,6 @@ extension CustomerDetailedAppointmentViewModel : RazorPayDelegate {
                 CommonDefaultModifiers.hideLoader()
             }
         }
-    }
-}
-
-extension CustomerDetailedAppointmentViewModel : ExpandingTextViewEditedDelegate {
-    func changed() {
-        self.allergyChanged = true
     }
 }
 
@@ -399,5 +408,15 @@ extension CustomerDetailedAppointmentViewModel : CancellationDelegate {
                 self.killViewTrigger = true
             }
         }
+    }
+}
+
+extension CustomerDetailedAppointmentViewModel {
+    func allergyChangedTrigger () {
+        allergyChanged = true
+    }
+    
+    func reasonChangedTrigger () {
+        reasonChanged = true
     }
 }

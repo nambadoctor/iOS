@@ -155,7 +155,7 @@ class MedicineEntryViewModel : ObservableObject {
     }
 }
 
-extension MedicineEntryViewModel : ExpandingTextViewEditedDelegate {
+extension MedicineEntryViewModel {
     func changed() {
         self.showPredictedMedicines = true
         self.medicineNameChanged = true

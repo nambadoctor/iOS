@@ -46,7 +46,7 @@ struct MedicineValuesEntry : View {
                     .bold()
                 
                 HStack {
-                    PredictingTextField(predictableValues: self.$medicineEntryVM.autoFillVM.autofillMedicineList, predictedValues: self.$medicineEntryVM.autoFillVM.predictedMedicineList, textFieldInput: self.$medicineEntryVM.medicineName, changeDelegate: self.medicineEntryVM)
+                    PredictingTextField(predictableValues: self.$medicineEntryVM.autoFillVM.autofillMedicineList, predictedValues: self.$medicineEntryVM.autoFillVM.predictedMedicineList, textFieldInput: self.$medicineEntryVM.medicineName, changeDelegate: self.medicineEntryVM.changed)
                     
                     if self.medicineEntryVM.medicineNameChanged {
                         Button {

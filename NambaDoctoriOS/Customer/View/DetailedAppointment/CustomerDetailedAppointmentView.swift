@@ -107,7 +107,7 @@ struct CustomerDetailedAppointmentView: View {
                     .padding(.top, 10)
 
                 HStack {
-                    ExpandingTextView(text: self.$customerDetailedAppointmentVM.allergy, changeDelegate: self.customerDetailedAppointmentVM)
+                    ExpandingTextView(text: self.$customerDetailedAppointmentVM.allergy, changeDelegate: self.customerDetailedAppointmentVM.allergyChangedTrigger)
 
                     if self.customerDetailedAppointmentVM.allergyChanged {
                         Button {
@@ -123,8 +123,18 @@ struct CustomerDetailedAppointmentView: View {
                 Text("SELECT YOUR REASON")
                     .font(.footnote)
                     .foregroundColor(.gray)
+                
+                HStack {
+                    ExpandingTextView(text: self.$customerDetailedAppointmentVM.reasonPickerVM.reason, changeDelegate: self.customerDetailedAppointmentVM.reasonChangedTrigger)
 
-                OneLineReasonDisplay()
+                    if self.customerDetailedAppointmentVM.reasonChanged {
+                        Button {
+                            self.customerDetailedAppointmentVM.commitReason()
+                        } label: {
+                            Text("Submit")
+                        }
+                    }
+                }
 
                 Spacer().frame(height: 17)
             }

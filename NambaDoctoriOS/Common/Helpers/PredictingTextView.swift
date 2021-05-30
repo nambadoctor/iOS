@@ -23,9 +23,9 @@ struct PredictingTextField: View {
 
     @State private var isBeingEdited: Bool = false
 
-    var changeDelegate:ExpandingTextViewEditedDelegate
+    var changeDelegate:(()->Void)?
 
-    init(predictableValues: Binding<Array<ServiceProviderAutofillMedicine>>, predictedValues: Binding<Array<ServiceProviderAutofillMedicine>>, textFieldInput: Binding<String>, changeDelegate:ExpandingTextViewEditedDelegate, textFieldTitle: String? = "", predictionInterval: Double? = 0.001) {
+    init(predictableValues: Binding<Array<ServiceProviderAutofillMedicine>>, predictedValues: Binding<Array<ServiceProviderAutofillMedicine>>, textFieldInput: Binding<String>, changeDelegate:@escaping () -> Void, textFieldTitle: String? = "", predictionInterval: Double? = 0.001) {
 
         self._predictableValues = predictableValues
         self._predictedValues = predictedValues
@@ -49,7 +49,7 @@ struct PredictingTextField: View {
     }
 
     private func realTimePrediction(status: Bool) {
-        self.changeDelegate.changed()
+        self.changeDelegate!()
         self.isBeingEdited = status
         if status == true {
             Timer.scheduledTimer(withTimeInterval: self.predictionInterval ?? 0.0001, repeats: true) { timer in

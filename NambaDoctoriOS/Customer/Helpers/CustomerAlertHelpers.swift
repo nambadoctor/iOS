@@ -38,8 +38,22 @@ class CustomerAlertHelpers {
         CommonDefaultModifiers.showAlert()
     }
     
+    func ReasonSetSuccessfully (completion: @escaping (Bool) -> ()) {
+        alertTempItem = AlertItem(title: Text("Reason Set Successfully"), dismissButton: Alert.Button.default(Text("Ok"), action: {
+            completion(true)
+        }))
+        CommonDefaultModifiers.showAlert()
+    }
+    
     func AllergySetFailed (completion: @escaping (Bool) -> ()) {
         alertTempItem = AlertItem(title: Text("Setting Allergy Failed"), message: Text("Please try again"), dismissButton: Alert.Button.default(Text("Ok"), action: {
+            completion(true)
+        }))
+        CommonDefaultModifiers.showAlert()
+    }
+    
+    func ReasonSetFailed (completion: @escaping (Bool) -> ()) {
+        alertTempItem = AlertItem(title: Text("Setting Reason Failed"), dismissButton: Alert.Button.default(Text("Ok"), action: {
             completion(true)
         }))
         CommonDefaultModifiers.showAlert()

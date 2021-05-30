@@ -13,7 +13,7 @@ struct WrappedTextView: UIViewRepresentable {
 
     @Binding var text: String
     var keyboardType:UIKeyboardType
-    var changeDelegate:ExpandingTextViewEditedDelegate? = nil
+    var changeDelegate:(()->Void)?
     let textDidChange: (UITextView) -> Void
 
     func makeUIView(context: Context) -> UITextView {
@@ -34,15 +34,19 @@ struct WrappedTextView: UIViewRepresentable {
     }
 
     func makeCoordinator() -> Coordinator {
-        return Coordinator(text: $text, textDidChange: textDidChange, changeDelegate: self.changeDelegate)
+        return Coordinator(text: $text, textDidChange: textDidChange, changeDelegate: self.changeDelegate ?? dummyCallBack)
+    }
+    
+    func dummyCallBack() {
+        
     }
 
     class Coordinator: NSObject, UITextViewDelegate {
         @Binding var text: String
         let textDidChange: (UITextView) -> Void
-        var changeDelegate:ExpandingTextViewEditedDelegate? = nil
+        var changeDelegate:(()->Void)?
 
-        init(text: Binding<String>, textDidChange: @escaping (UITextView) -> Void, changeDelegate:ExpandingTextViewEditedDelegate?) {
+        init(text: Binding<String>, textDidChange: @escaping (UITextView) -> Void, changeDelegate:@escaping () -> Void) {
             self._text = text
             self.textDidChange = textDidChange
             self.changeDelegate = changeDelegate
@@ -51,7 +55,7 @@ struct WrappedTextView: UIViewRepresentable {
         func textViewDidChange(_ textView: UITextView) {
             self.text = textView.text
             self.textDidChange(textView)
-            self.changeDelegate?.changed()
+            self.changeDelegate!()
         }
     }
 }
@@ -60,7 +64,7 @@ struct ExpandingTextView: View {
     @Binding var text: String
     let minHeight: CGFloat = 25
     var keyboardType:UIKeyboardType = .default
-    var changeDelegate:ExpandingTextViewEditedDelegate? = nil
+    var changeDelegate:(()->Void)?
     
     @State private var textViewHeight: CGFloat?
 
@@ -73,8 +77,4 @@ struct ExpandingTextView: View {
     private func textDidChange(_ textView: UITextView) {
         self.textViewHeight = max(textView.contentSize.height, minHeight)
     }
-}
-
-protocol ExpandingTextViewEditedDelegate {
-    func changed()
 }
