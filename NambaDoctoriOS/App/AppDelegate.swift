@@ -84,8 +84,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         latestNotificationPayload = userInfo
         
         LoggerService().log(appointmentId: "", eventName: "NOTIFICATION DISPLAYED")
-        
-        LocalNotificationHandler().notifProcessingHelper(userInfo: userInfo)
+
         LocalNotificationHandler().notifRecieveHelper(userInfo: userInfo) { (_) in }
         
         // Change this to your preferred presentation option

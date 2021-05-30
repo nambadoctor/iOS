@@ -56,7 +56,7 @@ struct DetailedBookDoctorView: View {
                     
                     Text("Reason For Appointment")
                     
-                    OneLineReasonDisplay()
+                    ExpandingTextView(text: self.$detailedBookingVM.reasonVM.reason)
                     
                     Spacer().frame(height: 10)
                     

@@ -1767,7 +1767,7 @@ internal protocol Nd_V1_CustomerServiceProviderWorkerV1ClientProtocol: GRPCClien
   func getAllSpecialties(
     _ request: Nd_V1_VoidMessage,
     callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_VoidMessage, Nd_V1_StringArrayMessage>
+  ) -> UnaryCall<Nd_V1_VoidMessage, Nd_V1_CategoryListMessage>
 }
 
 extension Nd_V1_CustomerServiceProviderWorkerV1ClientProtocol {
@@ -1856,7 +1856,7 @@ extension Nd_V1_CustomerServiceProviderWorkerV1ClientProtocol {
   internal func getAllSpecialties(
     _ request: Nd_V1_VoidMessage,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_VoidMessage, Nd_V1_StringArrayMessage> {
+  ) -> UnaryCall<Nd_V1_VoidMessage, Nd_V1_CategoryListMessage> {
     return self.makeUnaryCall(
       path: "/nd.v1.CustomerServiceProviderWorkerV1/GetAllSpecialties",
       request: request,
@@ -1881,7 +1881,7 @@ internal protocol Nd_V1_CustomerServiceProviderWorkerV1ClientInterceptorFactoryP
   func makeGetServiceProviderAvailableSlotsInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_CustomerGeneratedSlotListMessage>]
 
   /// - Returns: Interceptors to use when invoking 'getAllSpecialties'.
-  func makeGetAllSpecialtiesInterceptors() -> [ClientInterceptor<Nd_V1_VoidMessage, Nd_V1_StringArrayMessage>]
+  func makeGetAllSpecialtiesInterceptors() -> [ClientInterceptor<Nd_V1_VoidMessage, Nd_V1_CategoryListMessage>]
 }
 
 internal final class Nd_V1_CustomerServiceProviderWorkerV1Client: Nd_V1_CustomerServiceProviderWorkerV1ClientProtocol {
@@ -3019,7 +3019,7 @@ internal protocol Nd_V1_CustomerServiceProviderWorkerV1Provider: CallHandlerProv
 
   func getServiceProviderAvailableSlots(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_CustomerGeneratedSlotListMessage>
 
-  func getAllSpecialties(request: Nd_V1_VoidMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_StringArrayMessage>
+  func getAllSpecialties(request: Nd_V1_VoidMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_CategoryListMessage>
 }
 
 extension Nd_V1_CustomerServiceProviderWorkerV1Provider {
@@ -3072,7 +3072,7 @@ extension Nd_V1_CustomerServiceProviderWorkerV1Provider {
       return UnaryServerHandler(
         context: context,
         requestDeserializer: ProtobufDeserializer<Nd_V1_VoidMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_StringArrayMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_CategoryListMessage>(),
         interceptors: self.interceptors?.makeGetAllSpecialtiesInterceptors() ?? [],
         userFunction: self.getAllSpecialties(request:context:)
       )
@@ -3103,7 +3103,7 @@ internal protocol Nd_V1_CustomerServiceProviderWorkerV1ServerInterceptorFactoryP
 
   /// - Returns: Interceptors to use when handling 'getAllSpecialties'.
   ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetAllSpecialtiesInterceptors() -> [ServerInterceptor<Nd_V1_VoidMessage, Nd_V1_StringArrayMessage>]
+  func makeGetAllSpecialtiesInterceptors() -> [ServerInterceptor<Nd_V1_VoidMessage, Nd_V1_CategoryListMessage>]
 }
 /// To build a server, implement a class that conforms to this protocol.
 internal protocol Nd_V1_CustomerServiceRequestWorkerV1Provider: CallHandlerProvider {

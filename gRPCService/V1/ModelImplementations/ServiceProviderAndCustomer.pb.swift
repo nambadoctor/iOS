@@ -388,6 +388,59 @@ struct Nd_V1_VoidMessage {
   init() {}
 }
 
+struct Nd_V1_CategoryMessage {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var id: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _id ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_id = newValue}
+  }
+  /// Returns true if `id` has been explicitly set.
+  var hasID: Bool {return self._id != nil}
+  /// Clears the value of `id`. Subsequent reads from it will return its default value.
+  mutating func clearID() {self._id = nil}
+
+  var specialityName: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _specialityName ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_specialityName = newValue}
+  }
+  /// Returns true if `specialityName` has been explicitly set.
+  var hasSpecialityName: Bool {return self._specialityName != nil}
+  /// Clears the value of `specialityName`. Subsequent reads from it will return its default value.
+  mutating func clearSpecialityName() {self._specialityName = nil}
+
+  var specialityThumbnail: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _specialityThumbnail ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_specialityThumbnail = newValue}
+  }
+  /// Returns true if `specialityThumbnail` has been explicitly set.
+  var hasSpecialityThumbnail: Bool {return self._specialityThumbnail != nil}
+  /// Clears the value of `specialityThumbnail`. Subsequent reads from it will return its default value.
+  mutating func clearSpecialityThumbnail() {self._specialityThumbnail = nil}
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _id: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _specialityName: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _specialityThumbnail: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+}
+
+struct Nd_V1_CategoryListMessage {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var categories: [Nd_V1_CategoryMessage] = []
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
 struct Nd_V1_ServiceProviderAddress {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -1854,6 +1907,15 @@ struct Nd_V1_ServiceProviderMedicineMessage {
   /// Clears the value of `dosageObj`. Subsequent reads from it will return its default value.
   mutating func clearDosageObj() {self._dosageObj = nil}
 
+  var intakeDosageObj: Nd_V1_ServiceProviderIntakeDosageMessage {
+    get {return _intakeDosageObj ?? Nd_V1_ServiceProviderIntakeDosageMessage()}
+    set {_intakeDosageObj = newValue}
+  }
+  /// Returns true if `intakeDosageObj` has been explicitly set.
+  var hasIntakeDosageObj: Bool {return self._intakeDosageObj != nil}
+  /// Clears the value of `intakeDosageObj`. Subsequent reads from it will return its default value.
+  mutating func clearIntakeDosageObj() {self._intakeDosageObj = nil}
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -1869,6 +1931,7 @@ struct Nd_V1_ServiceProviderMedicineMessage {
   fileprivate var _notes: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _durationObj: Nd_V1_ServiceProviderDurationMessage? = nil
   fileprivate var _dosageObj: Nd_V1_ServiceProviderDosageMessage? = nil
+  fileprivate var _intakeDosageObj: Nd_V1_ServiceProviderIntakeDosageMessage? = nil
 }
 
 struct Nd_V1_ServiceProviderPaymentInfoMessage {
@@ -2638,6 +2701,37 @@ struct Nd_V1_ServiceProviderServiceRequestRequestMessage {
   fileprivate var _customerID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _appointmentID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _serviceRequestID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+}
+
+struct Nd_V1_ServiceProviderIntakeDosageMessage {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var name: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _name ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_name = newValue}
+  }
+  /// Returns true if `name` has been explicitly set.
+  var hasName: Bool {return self._name != nil}
+  /// Clears the value of `name`. Subsequent reads from it will return its default value.
+  mutating func clearName() {self._name = nil}
+
+  var unit: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _unit ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_unit = newValue}
+  }
+  /// Returns true if `unit` has been explicitly set.
+  var hasUnit: Bool {return self._unit != nil}
+  /// Clears the value of `unit`. Subsequent reads from it will return its default value.
+  mutating func clearUnit() {self._unit = nil}
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _name: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _unit: SwiftProtobuf.Google_Protobuf_StringValue? = nil
 }
 
 struct Nd_V1_CustomerAddress {
@@ -4285,6 +4379,15 @@ struct Nd_V1_CustomerMedicineMessage {
   /// Clears the value of `dosageObj`. Subsequent reads from it will return its default value.
   mutating func clearDosageObj() {self._dosageObj = nil}
 
+  var intakeDosageObj: Nd_V1_CustomerIntakeDosageMessage {
+    get {return _intakeDosageObj ?? Nd_V1_CustomerIntakeDosageMessage()}
+    set {_intakeDosageObj = newValue}
+  }
+  /// Returns true if `intakeDosageObj` has been explicitly set.
+  var hasIntakeDosageObj: Bool {return self._intakeDosageObj != nil}
+  /// Clears the value of `intakeDosageObj`. Subsequent reads from it will return its default value.
+  mutating func clearIntakeDosageObj() {self._intakeDosageObj = nil}
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -4300,6 +4403,7 @@ struct Nd_V1_CustomerMedicineMessage {
   fileprivate var _notes: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _durationObj: Nd_V1_CustomerDurationMessage? = nil
   fileprivate var _dosageObj: Nd_V1_CustomerDosageMessage? = nil
+  fileprivate var _intakeDosageObj: Nd_V1_CustomerIntakeDosageMessage? = nil
 }
 
 struct Nd_V1_CustomerPaymentInfoMessage {
@@ -4858,6 +4962,37 @@ struct Nd_V1_CustomerServiceRequestRequestMessage {
   fileprivate var _serviceRequestID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
 }
 
+struct Nd_V1_CustomerIntakeDosageMessage {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var name: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _name ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_name = newValue}
+  }
+  /// Returns true if `name` has been explicitly set.
+  var hasName: Bool {return self._name != nil}
+  /// Clears the value of `name`. Subsequent reads from it will return its default value.
+  mutating func clearName() {self._name = nil}
+
+  var unit: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _unit ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_unit = newValue}
+  }
+  /// Returns true if `unit` has been explicitly set.
+  var hasUnit: Bool {return self._unit != nil}
+  /// Clears the value of `unit`. Subsequent reads from it will return its default value.
+  mutating func clearUnit() {self._unit = nil}
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _name: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _unit: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+}
+
 struct Nd_V1_StringArrayMessage {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -5258,6 +5393,82 @@ extension Nd_V1_VoidMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplem
   }
 
   static func ==(lhs: Nd_V1_VoidMessage, rhs: Nd_V1_VoidMessage) -> Bool {
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Nd_V1_CategoryMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".CategoryMessage"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "Id"),
+    2: .same(proto: "SpecialityName"),
+    3: .same(proto: "SpecialityThumbnail"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularMessageField(value: &self._id) }()
+      case 2: try { try decoder.decodeSingularMessageField(value: &self._specialityName) }()
+      case 3: try { try decoder.decodeSingularMessageField(value: &self._specialityThumbnail) }()
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if let v = self._id {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+    }
+    if let v = self._specialityName {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+    }
+    if let v = self._specialityThumbnail {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Nd_V1_CategoryMessage, rhs: Nd_V1_CategoryMessage) -> Bool {
+    if lhs._id != rhs._id {return false}
+    if lhs._specialityName != rhs._specialityName {return false}
+    if lhs._specialityThumbnail != rhs._specialityThumbnail {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Nd_V1_CategoryListMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".CategoryListMessage"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "Categories"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeRepeatedMessageField(value: &self.categories) }()
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.categories.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.categories, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Nd_V1_CategoryListMessage, rhs: Nd_V1_CategoryListMessage) -> Bool {
+    if lhs.categories != rhs.categories {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -6805,6 +7016,7 @@ extension Nd_V1_ServiceProviderMedicineMessage: SwiftProtobuf.Message, SwiftProt
     9: .same(proto: "Notes"),
     10: .same(proto: "DurationObj"),
     11: .same(proto: "DosageObj"),
+    12: .same(proto: "IntakeDosageObj"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -6824,6 +7036,7 @@ extension Nd_V1_ServiceProviderMedicineMessage: SwiftProtobuf.Message, SwiftProt
       case 9: try { try decoder.decodeSingularMessageField(value: &self._notes) }()
       case 10: try { try decoder.decodeSingularMessageField(value: &self._durationObj) }()
       case 11: try { try decoder.decodeSingularMessageField(value: &self._dosageObj) }()
+      case 12: try { try decoder.decodeSingularMessageField(value: &self._intakeDosageObj) }()
       default: break
       }
     }
@@ -6863,6 +7076,9 @@ extension Nd_V1_ServiceProviderMedicineMessage: SwiftProtobuf.Message, SwiftProt
     if let v = self._dosageObj {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
     }
+    if let v = self._intakeDosageObj {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 12)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -6878,6 +7094,7 @@ extension Nd_V1_ServiceProviderMedicineMessage: SwiftProtobuf.Message, SwiftProt
     if lhs._notes != rhs._notes {return false}
     if lhs._durationObj != rhs._durationObj {return false}
     if lhs._dosageObj != rhs._dosageObj {return false}
+    if lhs._intakeDosageObj != rhs._intakeDosageObj {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -7726,6 +7943,44 @@ extension Nd_V1_ServiceProviderServiceRequestRequestMessage: SwiftProtobuf.Messa
     if lhs._customerID != rhs._customerID {return false}
     if lhs._appointmentID != rhs._appointmentID {return false}
     if lhs._serviceRequestID != rhs._serviceRequestID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Nd_V1_ServiceProviderIntakeDosageMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".ServiceProviderIntakeDosageMessage"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "Name"),
+    2: .same(proto: "Unit"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularMessageField(value: &self._name) }()
+      case 2: try { try decoder.decodeSingularMessageField(value: &self._unit) }()
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if let v = self._name {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+    }
+    if let v = self._unit {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Nd_V1_ServiceProviderIntakeDosageMessage, rhs: Nd_V1_ServiceProviderIntakeDosageMessage) -> Bool {
+    if lhs._name != rhs._name {return false}
+    if lhs._unit != rhs._unit {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -9541,6 +9796,7 @@ extension Nd_V1_CustomerMedicineMessage: SwiftProtobuf.Message, SwiftProtobuf._M
     9: .same(proto: "Notes"),
     10: .same(proto: "DurationObj"),
     11: .same(proto: "DosageObj"),
+    12: .same(proto: "IntakeDosageObj"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -9560,6 +9816,7 @@ extension Nd_V1_CustomerMedicineMessage: SwiftProtobuf.Message, SwiftProtobuf._M
       case 9: try { try decoder.decodeSingularMessageField(value: &self._notes) }()
       case 10: try { try decoder.decodeSingularMessageField(value: &self._durationObj) }()
       case 11: try { try decoder.decodeSingularMessageField(value: &self._dosageObj) }()
+      case 12: try { try decoder.decodeSingularMessageField(value: &self._intakeDosageObj) }()
       default: break
       }
     }
@@ -9599,6 +9856,9 @@ extension Nd_V1_CustomerMedicineMessage: SwiftProtobuf.Message, SwiftProtobuf._M
     if let v = self._dosageObj {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
     }
+    if let v = self._intakeDosageObj {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 12)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -9614,6 +9874,7 @@ extension Nd_V1_CustomerMedicineMessage: SwiftProtobuf.Message, SwiftProtobuf._M
     if lhs._notes != rhs._notes {return false}
     if lhs._durationObj != rhs._durationObj {return false}
     if lhs._dosageObj != rhs._dosageObj {return false}
+    if lhs._intakeDosageObj != rhs._intakeDosageObj {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -10206,6 +10467,44 @@ extension Nd_V1_CustomerServiceRequestRequestMessage: SwiftProtobuf.Message, Swi
     if lhs._customerID != rhs._customerID {return false}
     if lhs._appointmentID != rhs._appointmentID {return false}
     if lhs._serviceRequestID != rhs._serviceRequestID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Nd_V1_CustomerIntakeDosageMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".CustomerIntakeDosageMessage"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "Name"),
+    2: .same(proto: "Unit"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularMessageField(value: &self._name) }()
+      case 2: try { try decoder.decodeSingularMessageField(value: &self._unit) }()
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if let v = self._name {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+    }
+    if let v = self._unit {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Nd_V1_CustomerIntakeDosageMessage, rhs: Nd_V1_CustomerIntakeDosageMessage) -> Bool {
+    if lhs._name != rhs._name {return false}
+    if lhs._unit != rhs._unit {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

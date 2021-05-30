@@ -27,7 +27,6 @@ class MedicineViewModel: ObservableObject {
     @Published var autoFillVM:AutoFillMedicineVM = AutoFillMedicineVM()
 
     @Published var prescriptionPDF:Data? = nil
-
     var medicineBeingEdited:Int? = nil
 
     var generalDoctorHelpers:GeneralDoctorHelpersProtocol!
@@ -155,6 +154,7 @@ class MedicineViewModel: ObservableObject {
             if data != nil {
                 CommonDefaultModifiers.hideLoader()
                 self.prescriptionPDF = data!
+                print("PDF IS SET: \(self.prescriptionPDF)")
             }
         }
     }

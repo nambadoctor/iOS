@@ -17,9 +17,9 @@ class CustomerViewModel : ObservableObject {
     @Published var myServiceProviders:[CustomerServiceProviderProfile] = [CustomerServiceProviderProfile]()
     @Published var allServiceProviders:[CustomerServiceProviderProfile] = [CustomerServiceProviderProfile]()
     
-    @Published var serviceProviderCategories:[String] = [String]()
+    @Published var serviceProviderCategories:[SpecialtyCategory] = [SpecialtyCategory]()
     
-    @Published var selectedCategory:String = ""
+    @Published var selectedCategory:SpecialtyCategory = SpecialtyCategory(SpecialityId: "", SpecialityName: "All Doctors", SpecialityThumbnail: "")
     @Published var noDoctorForCategory:Bool = false
     
     @Published var takeToBookDoc:Bool = false
@@ -67,13 +67,8 @@ class CustomerViewModel : ObservableObject {
         
         customerServiceProviderService.getAllServiceProviderCategories { categories in
             if categories != nil {
-                guard !categories!.isEmpty else {return}
                 self.serviceProviderCategories = categories!
                 self.selectedCategory = categories![0]
-                print("CATEGORIES RETRIVED: \(categories!)")
-            } else {
-                self.serviceProviderCategories.append("All Doctors")
-                self.selectedCategory = "All Doctors"
             }
         }
     }
@@ -230,12 +225,12 @@ class CustomerViewModel : ObservableObject {
 
     func doctorsExistForCategory () -> Bool {
         
-        if self.selectedCategory == "All Doctors" {
+        if self.selectedCategory.SpecialityName == "All Doctors" {
             return false
         }
 
         for doctor in allServiceProviders {
-            if doctor.specialties.contains(self.selectedCategory) {
+            if doctor.specialties.contains(self.selectedCategory.SpecialityName) {
                 return false
             }
         }

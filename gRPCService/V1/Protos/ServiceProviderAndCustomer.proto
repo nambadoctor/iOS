@@ -68,6 +68,16 @@ message TwilioAuthRequest{
 message VoidMessage {
 }
 
+message CategoryMessage {
+	google.protobuf.StringValue Id = 1;
+	google.protobuf.StringValue SpecialityName = 2;
+	google.protobuf.StringValue SpecialityThumbnail = 3;
+}
+
+message CategoryListMessage {
+	repeated CategoryMessage Categories = 1;
+}
+
 message ServiceProviderAddress{
 
 	google.protobuf.StringValue StreetAddress = 1;
@@ -400,6 +410,8 @@ message ServiceProviderMedicineMessage{
     ServiceProviderDurationMessage DurationObj = 10;
 
     ServiceProviderDosageMessage DosageObj = 11;
+
+    ServiceProviderIntakeDosageMessage IntakeDosageObj = 12;
 }
 
 message ServiceProviderPaymentInfoMessage{
@@ -602,8 +614,11 @@ service ServiceProviderAppointmentWorkerV1{
 }
 
 
+message ServiceProviderIntakeDosageMessage{
+	google.protobuf.StringValue Name = 1;
 
-
+    google.protobuf.StringValue Unit = 2;
+}
 
 service ServiceProviderCustomerWorkerV1 {
 
@@ -1057,6 +1072,8 @@ message CustomerMedicineMessage{
     CustomerDurationMessage DurationObj = 10;
 
     CustomerDosageMessage DosageObj = 11;
+
+    CustomerIntakeDosageMessage IntakeDosageObj = 12;
 }
 
 message CustomerPaymentInfoMessage{
@@ -1291,7 +1308,11 @@ service CustomerReportWorkerV1{
 }
 
 
+message CustomerIntakeDosageMessage{
+	google.protobuf.StringValue Name = 1;
 
+    google.protobuf.StringValue Unit = 2;
+}
 
 
 service CustomerServiceProviderWorkerV1 {
@@ -1304,7 +1325,7 @@ service CustomerServiceProviderWorkerV1 {
 
 	rpc GetServiceProviderAvailableSlots (IdMessage) returns (CustomerGeneratedSlotListMessage);
 
-	rpc GetAllSpecialties(VoidMessage) returns (StringArrayMessage);
+	rpc GetAllSpecialties(VoidMessage) returns (CategoryListMessage);
 }
 
 message StringArrayMessage {

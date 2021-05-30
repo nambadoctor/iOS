@@ -10,13 +10,11 @@ import SwiftUI
 struct BookDoctorView: View {
     
     @EnvironmentObject var customerVM:CustomerViewModel
-
+    
     var body: some View {
         VStack {
-            
             if !customerVM.allServiceProviders.isEmpty {
                 ScrollView {
-                    
                     if !self.customerVM.dontShowChildBookingHeader {
                         Button {
                             self.customerVM.expandAddChildHeader()
@@ -56,7 +54,7 @@ struct BookDoctorView: View {
                     
                     CategoryPicker(categoriesList: self.$customerVM.serviceProviderCategories, selectedCategory: self.$customerVM.selectedCategory, categoryChanged: self.customerVM.categoryChangedCallback)
                         .padding(.top)
-
+                    
                     if self.customerVM.noDoctorForCategory {
                         VStack (alignment: .center) {
                             Spacer()
@@ -68,14 +66,12 @@ struct BookDoctorView: View {
                                 .multilineTextAlignment(.center)
                         }.padding()
                     } else {
-                        ScrollView {
-                            ForEach(customerVM.allServiceProviders, id: \.serviceProviderID) { serviceProvider in
-                                if serviceProvider.specialties.contains(self.customerVM.selectedCategory) || customerVM.selectedCategory == "All Doctors" {
-                                    BookDoctorCard(customerServiceProviderVM: CustomerServiceProviderViewModel(serviceProvider: serviceProvider, customerProfile: self.customerVM.customerProfile!, callBack: self.customerVM.selectDoctorToBook(doctor:)))
-                                }
+                        ForEach(customerVM.allServiceProviders, id: \.serviceProviderID) { serviceProvider in
+                            if serviceProvider.specialties.contains(self.customerVM.selectedCategory.SpecialityName) || customerVM.selectedCategory.SpecialityName == "All Doctors" {
+                                BookDoctorCard(customerServiceProviderVM: CustomerServiceProviderViewModel(serviceProvider: serviceProvider, customerProfile: self.customerVM.customerProfile!, callBack: self.customerVM.selectDoctorToBook(doctor:)))
                             }
-                            .padding(.bottom)
                         }
+                        .padding(.bottom)
                     }
                 }
             } else {

@@ -79,4 +79,9 @@ class CustomerAlertHelpers {
         alertTempItem = AlertItem(title: Text("Select All Values"), message: Text("Please select both date and time to continue"), dismissButton: .default(Text("OK")))
         CommonDefaultModifiers.showAlert()
     }
+    
+    func payOnlyAfterAppointmentFinished () {
+        alertTempItem = AlertItem(title: Text("Please pay after doctor sends you the prescription"), dismissButton: .default(Text("OK")))
+        CommonDefaultModifiers.showAlert()
+    }
 }

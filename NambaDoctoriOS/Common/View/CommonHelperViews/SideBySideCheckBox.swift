@@ -14,7 +14,7 @@ protocol SideBySideCheckBoxDelegate {
 struct SideBySideCheckBox: View {
     @Binding var isChecked:String
     var title1:String
-    var title2:String
+    var title2:String  
     
     init(isChecked: Binding<String>,
         title1:String,

@@ -11,7 +11,7 @@ protocol CustomerServiceProviderServiceProtocol {
     func getServiceProvider (serviceProviderId:String, _ completion : @escaping (_ DoctorObj:CustomerServiceProviderProfile?)->())
     func getAllServiceProvider (customerId:String, _ completion : @escaping (_ DoctorObj:[CustomerServiceProviderProfile]?)->())
     func getServiceProviderAvailabilities (serviceProviderId:String, _ completion : @escaping (_ DoctorObj:[CustomerGeneratedSlot]?)->())
-    func getAllServiceProviderCategories (_ completion : @escaping (_ categories:[String]?)->())
+    func getAllServiceProviderCategories (_ completion : @escaping (_ categories:[SpecialtyCategory]?)->())
 }
 
 class CustomerServiceProviderService : CustomerServiceProviderServiceProtocol {
@@ -112,25 +112,40 @@ class CustomerServiceProviderService : CustomerServiceProviderServiceProtocol {
         }
     }
     
-    func getAllServiceProviderCategories (_ completion : @escaping (_ categories:[String]?)->()) {
+    func getAllServiceProviderCategories (_ completion : @escaping (_ categories:[SpecialtyCategory]?)->()) {
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
         
         let serviceProviderClient = Nd_V1_CustomerServiceProviderWorkerV1Client(channel: channel)
         let getCategories = serviceProviderClient.getAllSpecialties(Nd_V1_VoidMessage(), callOptions: callOptions)
         
+        func getAllDoctorsFirst (categories:[SpecialtyCategory]) -> [SpecialtyCategory] {
+            var categoriesToReturn:[SpecialtyCategory] = categories
+            
+            for index in 0..<categoriesToReturn.count {
+                if categoriesToReturn[index].SpecialityName == "All Doctors" {
+                    var tempCategory = categoriesToReturn[index]
+                    categoriesToReturn.remove(at: index)
+                    categoriesToReturn.insert(tempCategory, at: 0)
+                }
+            }
+
+            return categoriesToReturn
+        }
+        
         DispatchQueue.global().async {
             do {
                 print("GETTING ALL CATEGORIES")
                 let response = try getCategories.response.wait()
-                print("Get CATEGORIES Client Success \(response.messages.count)")
+                let categories = SpecialtyCategoryMapper().GrpcToLocalCategory(categories: response.categories)
+                print("Get CATEGORIES Client Success \(categories)")
                 DispatchQueue.main.async {
-                    completion(response.messages.convert())
+                    completion(getAllDoctorsFirst(categories: categories))
                 }
             } catch {
                 print("Get CATEGORIES Client Failed \(error.localizedDescription)")
                 DispatchQueue.main.async {
-                    completion(["All Doctors"])
+                    completion([SpecialtyCategory(SpecialityId: "", SpecialityName: "All Doctors", SpecialityThumbnail: "")])
                 }
             }
         }

@@ -68,15 +68,6 @@ struct EditableAppointmentView: View {
                     self.intermediateVM.toggleCollapseOfClinicalInformation()
                 } label: {
                     HStack {
-                        if self.intermediateVM.collapseExtraDetailEntry {
-                            Image("chevron.right.circle")
-                                .foregroundColor(.blue)
-                            
-                        } else {
-                            Image("chevron.down.circle")
-                                .foregroundColor(.blue)
-                        }
-
                         VStack (alignment: .leading) {
                             Text("Clinical Information")
                                 .bold()
@@ -91,8 +82,17 @@ struct EditableAppointmentView: View {
                                     .foregroundColor(Color.gray.opacity(0.5))
                             }
                         }
-
+                        
                         Spacer()
+                        
+                        if self.intermediateVM.collapseExtraDetailEntry {
+                            Image("chevron.left.circle")
+                                .foregroundColor(.blue)
+                        } else {
+                            Image("chevron.down.circle")
+                                .foregroundColor(.blue)
+                        }
+
                     }
                 }
                 Spacer()

@@ -31,7 +31,7 @@ struct PrescriptionPreviewView: View {
 
             DoctorPrescriptionPreviewHelper()
         }
-        .onAppear() {intermediateVM.medicineVM.retrievePrescriptions()}
+        .onAppear() {intermediateVM.medicineVM.getPrescriptionPDF()}
     }
 }
 
@@ -40,7 +40,11 @@ struct DoctorPrescriptionPreviewHelper : View {
     @EnvironmentObject var medicineVM:MedicineViewModel
     
     var body: some View {
-        PDFKitRepresentedView(medicineVM.prescriptionPDF!)
+        if medicineVM.prescriptionPDF != nil {
+            PDFKitRepresentedView(medicineVM.prescriptionPDF!)
+        } else {
+            Indicator()
+        }
         Spacer()
     }
 }

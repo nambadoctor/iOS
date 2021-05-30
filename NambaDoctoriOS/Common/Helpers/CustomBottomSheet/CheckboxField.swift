@@ -38,7 +38,7 @@ struct CheckboxField: View {
             self.callback(self.label)
         }) {
             HStack(alignment: .center, spacing: 10) {
-                Image(systemName: self.checkedOption == self.label ? "checkmark.square" : "square")
+                Image(systemName: self.checkedOption == self.label ? "smallcircle.fill.circle": "circle")
                     .renderingMode(.original)
                     .resizable()
                     .aspectRatio(contentMode: .fit)

@@ -28,13 +28,19 @@ class DocNotifHelpers : DocNotifHelpersProtocol {
         sendPushNotification.sendNotif(notifObj: cancelNotifObj)
     }
 
-    func fireCancelNotif (appointmentTime:Int64) {
+    func fireCancelNotif (appointmentTime:Int64, cancellationReason:String) {
         
         let readableTime = Helpers.getTimeFromTimeStamp(timeStamp: appointmentTime)
 
+        var bodyString = "\(appointment.serviceProviderName) has cancelled the appointment at \(readableTime)"
+        
+        if !cancellationReason.isEmpty {
+            bodyString.append(" because \(cancellationReason)")
+        }
+        
         let cancelNotifObj = Nd_V1_NotificationRequestMessage.with {
             $0.title = "Your Appointment Cancelled".toProto
-            $0.body = "\(appointment.serviceProviderName) has cancelled the appointment at \(readableTime)".toProto
+            $0.body = bodyString.toProto
             $0.userID = appointment.customerID.toProto
             $0.id = appointment.appointmentID.toProto
             $0.type = NotifTypes.AppointmentCancelled.rawValue.toProto

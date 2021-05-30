@@ -2,11 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>FirebaseDynamicLinksCustomDomains</key>
-	<array>
-		<string>https://nambadoctor.page.link</string>
-		<string>https://nambadoctor.com</string>
-	</array>
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
 		<string>dsconnect.iOS.NambaDoctoriOS</string>
@@ -54,6 +49,11 @@
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<true/>
+	<key>FirebaseDynamicLinksCustomDomains</key>
+	<array>
+		<string>https://nambadoctor.page.link</string>
+		<string>https://nambadoctor.com</string>
+	</array>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>paytmmp</string>

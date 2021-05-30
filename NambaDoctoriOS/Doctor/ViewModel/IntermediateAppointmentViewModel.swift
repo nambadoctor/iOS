@@ -341,7 +341,7 @@ extension IntermediateAppointmentViewModel {
         CommonDefaultModifiers.showLoader()
         self.updateAppointmentStatus.toCancelled(appointment: &self.appointment) { (success) in
             if success {
-                self.docNotifHelper.fireCancelNotif(appointmentTime: self.appointment.scheduledAppointmentStartTime)
+                self.docNotifHelper.fireCancelNotif(appointmentTime: self.appointment.scheduledAppointmentStartTime, cancellationReason: self.appointment.cancellation.ReasonName)
                 DoctorDefaultModifiers.refreshAppointments()
                 CommonDefaultModifiers.hideLoader()
                 completion(success)

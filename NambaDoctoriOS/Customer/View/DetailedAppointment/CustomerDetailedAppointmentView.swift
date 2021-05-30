@@ -231,21 +231,24 @@ struct CustomerDetailedAppointmentView: View {
                 .padding(.vertical, 10)
                 Divider().background(Color.blue.opacity(0.4))
             }
-            else {
-                if !customerDetailedAppointmentVM.isPaid {
-                    LargeButton(title: "Pay Now") {
+            
+            if !customerDetailedAppointmentVM.isPaid {
+                LargeButton(title: "Pay Now") {
+                    if customerDetailedAppointmentVM.appointmentFinished {
                         customerDetailedAppointmentVM.makePayment()
+                    } else {
+                        CustomerAlertHelpers().payOnlyAfterAppointmentFinished()
                     }
-                } else {
-                    HStack {
-                        Image("checkmark.circle.fill")
-                            .resizable()
-                            .frame(width: 30, height: 30)
-                            .foregroundColor(Color.green)
-                            .padding(.trailing)
-                        
-                        Text("Paid Successfully")
-                    }
+                }
+            } else {
+                HStack {
+                    Image("checkmark.circle.fill")
+                        .resizable()
+                        .frame(width: 30, height: 30)
+                        .foregroundColor(Color.green)
+                        .padding(.trailing)
+                    
+                    Text("Paid Successfully")
                 }
             }
         }

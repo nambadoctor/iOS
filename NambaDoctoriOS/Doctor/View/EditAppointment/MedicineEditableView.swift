@@ -30,47 +30,47 @@ struct MedicineEditableView: View {
                         Text("\(medicine.medicineName) - \(medicine._dosage.Name)")
                             .font(.callout)
                             .bold()
-                            .foregroundColor(Color.green)
+                            .foregroundColor(Color.blue)
                         
                         if !medicine._duration.Days.isEmpty {
                             Text("\(medicine._duration.Days) \(medicine._duration.Unit)")
                                 .font(.callout)
-                                .foregroundColor(Color.green)
+                                .foregroundColor(Color.blue)
                         } else {
                             Text("No duration specified")
                                 .font(.callout)
-                                .foregroundColor(Color.green)
+                                .foregroundColor(Color.blue)
                         }
                         
                         if !medicine.routeOfAdministration.isEmpty {
                             Text("\(medicine.routeOfAdministration)")
                                 .font(.callout)
-                                .foregroundColor(Color.green)
+                                .foregroundColor(Color.blue)
                         }
                         
                         
                         if !medicine.intake.isEmpty {
                             Text("\(medicine.intake)")
                                 .font(.callout)
-                                .foregroundColor(Color.green)
+                                .foregroundColor(Color.blue)
                         }
                         
                         if !medicine.timings.isEmpty {
                             Text("\(medicine.timings)")
                                 .font(.callout)
-                                .foregroundColor(Color.green)
+                                .foregroundColor(Color.blue)
                         }
                         
                         if !medicine.specialInstructions.isEmpty {
                             Text("\(medicine.specialInstructions)")
                                 .font(.callout)
-                                .foregroundColor(Color.green)
+                                .foregroundColor(Color.blue)
                         }
                         
                         if !medicine.notes.isEmpty {
                             Text("\(medicine.notes)")
                                 .font(.callout)
-                                .foregroundColor(Color.green)
+                                .foregroundColor(Color.blue)
                         }
                     }
                     Spacer()
@@ -92,7 +92,7 @@ struct MedicineEditableView: View {
                     }
                 }
                 .padding()
-                .background(Color.green.opacity(0.1))
+                .background(Color.blue.opacity(0.08))
                 .cornerRadius(7)
             }
 
