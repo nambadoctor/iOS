@@ -64,7 +64,7 @@ struct DoctorProfile: View {
             
             if !self.doctorViewModel.showEdit {
                 Button(action: {
-                    CommonDefaultModifiers.showLoader()
+                    CommonDefaultModifiers.showLoader(incomingLoadingText: "Generating Link")
                     CreateDynamicLink().makeLink(doctorId: self.doctorViewModel.doctor.serviceProviderID) { url in
                         CommonDefaultModifiers.hideLoader()
                         shareSheet(url: url)

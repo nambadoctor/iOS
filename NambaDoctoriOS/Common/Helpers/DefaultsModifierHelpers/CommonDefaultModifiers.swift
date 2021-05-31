@@ -10,11 +10,18 @@ import Foundation
 
 class CommonDefaultModifiers {
     //MARK: TOGGLE LOADER
-    static func showLoader () {
+    static func showLoader (incomingLoadingText:String?) {
+        
+        if incomingLoadingText != nil {
+            loadingText = "\(incomingLoadingText!)..."
+        } else {
+            loadingText = "Loading..."
+        }
+
         UserDefaults.standard.set(true, forKey: "\(SimpleStateK.showLoader)")
         NotificationCenter.default.post(name: NSNotification.Name("\(SimpleStateK.showLoaderChange)"), object: nil)
     }
-    
+      
     static func hideLoader () {
         UserDefaults.standard.set(false, forKey: "\(SimpleStateK.showLoader)")
         NotificationCenter.default.post(name: NSNotification.Name("\(SimpleStateK.showLoaderChange)"), object: nil)

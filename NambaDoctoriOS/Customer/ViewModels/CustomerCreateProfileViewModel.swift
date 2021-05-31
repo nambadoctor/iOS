@@ -54,7 +54,7 @@ class CustomerCreateProfileViewModel: ObservableObject {
                                               children: [CustomerChildProfile](),
                                               customerProviderDeviceInfo: deviceInfoObj)
 
-        CommonDefaultModifiers.showLoader()
+        CommonDefaultModifiers.showLoader(incomingLoadingText: "Creating Customer Profile")
         CustomerProfileService().setCustomerProfile(customerProfile: customerProfile) { customerId in
             if customerId != nil {
                 UserIdHelper().storeUserId(userId: customerId!)

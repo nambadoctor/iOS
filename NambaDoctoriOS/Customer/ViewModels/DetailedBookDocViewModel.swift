@@ -129,7 +129,7 @@ class DetailedBookDocViewModel : ObservableObject {
         if selectedDate == 0 || selectedTime == 0 {
             CustomerAlertHelpers().pleaseChooseTimeandDateAlert { _ in }
         } else {
-            CommonDefaultModifiers.showLoader()
+            CommonDefaultModifiers.showLoader(incomingLoadingText: "Booking Appointment")
             let slot = getCorrespondingSlot(timestamp: selectedTime)
 
             let customerAppointment:CustomerAppointment = makeAppointment(slot: slot)

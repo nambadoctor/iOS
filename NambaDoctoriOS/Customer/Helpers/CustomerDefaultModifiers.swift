@@ -18,7 +18,7 @@ class CustomerDefaultModifiers {
         NotificationCenter.default.post(name: NSNotification.Name(CustomerViewStatesK.CustomerNavigateToDetailedViewChange.rawValue), object: nil)
     }
     
-    static func triggerAppointmentStatusChanges () {
+    static func triggerAppointmentStatusChanges() {
         UserDefaults.standard.set(true, forKey: CustomerViewStatesK.CustomerAppointmentStatus.rawValue)
         NotificationCenter.default.post(name: NSNotification.Name(CustomerViewStatesK.CustomerAppointmentStatusChange.rawValue), object: nil)
     }

@@ -16,7 +16,7 @@ class AddChildProfileViewModel : ObservableObject {
     var mostRecentlyAddedChild:String = ""
     
     func makeProfile () {
-        CommonDefaultModifiers.showLoader()
+        CommonDefaultModifiers.showLoader(incomingLoadingText: "Adding Child Profile")
         child.PreferredPhoneNumber = mapToPreferredPhoneNumber(phoneNumber: phoneNumber)
         CustomerProfileService().setChildProfile(child: child) { response in
             if response != nil {

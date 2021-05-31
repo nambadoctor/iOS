@@ -11,6 +11,7 @@ struct ContentView: View {
 
     @State private var loginStatus:UserLoginStatus = UserLoginStatus.NotSignedIn
     @State private var showLoader:Bool = false
+    @State private var loaderCompleted:Bool = false
 
     var body: some View {
         ZStack {
@@ -27,7 +28,7 @@ struct ContentView: View {
                 }
             }
         }
-        .overlay(LoadingScreen(showLoader: self.$showLoader))
+        .overlay(LoadingScreen(showLoader: self.$showLoader, completed: self.$loaderCompleted))
         .onAppear() {
             loginStateListener()
             showLoaderListener()
@@ -56,8 +57,17 @@ extension ContentView {
             .addObserver(forName: NSNotification.Name("\(SimpleStateK.showLoaderChange)"),
                          object: nil,
                          queue: .main) { (_) in
-                let loaderStatus = UserDefaults.standard.value(forKey: "\(SimpleStateK.showLoader)")
-                self.showLoader = loaderStatus as! Bool
+                let loaderStatus = UserDefaults.standard.value(forKey: "\(SimpleStateK.showLoader)")  as! Bool
+                
+                if loaderStatus {
+                    self.showLoader = loaderStatus
+                } else {
+                    self.loaderCompleted = true
+                    Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { timer in
+                        self.loaderCompleted = false
+                        self.showLoader = false
+                    }
+                }
             }
     }
 }

@@ -39,7 +39,7 @@ class CustomerAllReportsViewModel : ObservableObject {
     }
     
     func setReport(report:CustomerReportUpload) {
-        CommonDefaultModifiers.showLoader()
+        CommonDefaultModifiers.showLoader(incomingLoadingText: "Uploading Report")
         self.customerReportService.setReport(report: report) { success in
             if success {
                 self.getReports()

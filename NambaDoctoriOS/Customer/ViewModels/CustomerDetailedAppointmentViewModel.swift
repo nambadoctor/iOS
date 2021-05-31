@@ -68,11 +68,29 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     }
 
     func initCalls () {
-        CommonDefaultModifiers.showLoader()
-        refreshAppointment()
-        self.getServiceProvider()
-        self.getServiceRequest()
+        CommonDefaultModifiers.showLoader(incomingLoadingText: "Getting Appointment Details")
         
+        var allCallsDone:[Bool] = [Bool]()
+        
+        func onCompletion(success:Bool) {
+            allCallsDone.append(success)
+            
+            if allCallsDone.count == 2 && !allCallsDone.contains(false) {
+                viewSettingChecks()
+                CommonDefaultModifiers.hideLoader()
+            }
+        }
+        
+        self.getAppointment { getAppointmentCompletion in
+            onCompletion(success: getAppointmentCompletion)
+        }
+
+        self.getServiceRequest() { getServiceRequestCompletion in
+            onCompletion(success: getServiceRequestCompletion)
+        }
+        
+        self.getServiceProvider()
+
         self.newChatListener()
         self.getNewChatCount()
     }
@@ -120,14 +138,10 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     var serviceProviderFee : String {
         return "Fee: \(appointment.serviceFee.clean)"
     }
-    
-    func refreshAppointment () {
-        CommonDefaultModifiers.showLoader()
-        self.getAppointment { success in
-            CommonDefaultModifiers.hideLoader()
-            self.checkAppointmentStatus()
-            self.checkForDirectNavigation()
-        }
+
+    func viewSettingChecks () {
+        self.checkAppointmentStatus()
+        self.checkForDirectNavigation()
     }
 
     func getAppointment (_ completion: @escaping (_ retrieved:Bool)->()) {
@@ -140,7 +154,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
         }
     }
 
-    func getServiceRequest() {
+    func getServiceRequest(_ completion: @escaping (_ retrieved:Bool)->()) {
         self.customerServiceRequestService.getServiceRequest(appointmentId: self.appointment.appointmentID,
                                                              serviceRequestId: self.appointment.serviceRequestID,
                                                              customerId: self.appointment.customerID) { serviceRequest in
@@ -152,7 +166,8 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
                     self.reasonPickerVM.reason = serviceRequest!.reason
                     self.reasonPickerVM.reasonSelected()
                 }
-
+                
+                completion(true)
             } else {
                 //TODO: handle no service request returned
             }
@@ -177,7 +192,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
             if prescription != nil {
                 self.prescription = prescription!
                 
-                CommonDefaultModifiers.showLoader()
+                CommonDefaultModifiers.showLoader(incomingLoadingText: "Geting Prescription")
                 self.getPrescriptionPDF()
                 
                 self.getPrescriptionImage()
@@ -212,7 +227,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
 
     func cancelAppointment(completion: @escaping (_ successfullyCancelled:Bool)->()) {
         DoctorAlertHelpers().cancelAppointmentAlert { (cancel) in
-            CommonDefaultModifiers.showLoader()
+            CommonDefaultModifiers.showLoader(incomingLoadingText: "Cancelling Appointment")
             CustomerUpdateAppointmentStatusHelper().toCancelled(appointment: &self.appointment) { (success) in
                 if success {
                     //TODO: Fire cancelled notification
@@ -257,7 +272,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     }
     
     func commitAllergy () {
-        CommonDefaultModifiers.showLoader()
+        CommonDefaultModifiers.showLoader(incomingLoadingText: "Saving Allergy")
         self.setServiceRequest() { success in
             if success {
                 self.allergyChanged = false
@@ -271,7 +286,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     }
     
     func commitReason () {
-        CommonDefaultModifiers.showLoader()
+        CommonDefaultModifiers.showLoader(incomingLoadingText: "Saving Reason")
         self.setServiceRequest() { success in
             if success {
                 self.reasonChanged = false
@@ -302,7 +317,7 @@ extension CustomerDetailedAppointmentViewModel : TwilioDelegate {
 
     func startConsultation() {
         if appointmentStarted {
-            CommonDefaultModifiers.showLoader()
+            CommonDefaultModifiers.showLoader(incomingLoadingText: "Starting Consultation")
             customerTwilioViewModel.startRoom() { success in
                 if success {
                     self.showTwilioRoom = true
@@ -323,7 +338,7 @@ extension CustomerDetailedAppointmentViewModel : RazorPayDelegate {
     }
     
     func paymentSucceeded(paymentId: String) {
-        CommonDefaultModifiers.showLoader()
+        CommonDefaultModifiers.showLoader(incomingLoadingText: "Verifying Payment")
         let paymentInfo = CustomerPaymentInfo(serviceProviderID: self.appointment.serviceProviderID,
                                               appointmentID: self.appointment.appointmentID,
                                               paidAmmount: self.appointment.serviceFee,

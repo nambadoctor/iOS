@@ -75,7 +75,7 @@ class IntermediateAppointmentViewModel : ObservableObject {
     }
     
     func refreshAppointment () {
-        CommonDefaultModifiers.showLoader()
+        CommonDefaultModifiers.showLoader(incomingLoadingText: "Fetching Changes")
         ServiceProviderAppointmentService().getSingleAppointment(appointmentId: appointment.appointmentID, serviceProviderId: appointment.serviceProviderID) { (appointment) in
             if appointment != nil {
                 self.appointment = appointment!
@@ -189,7 +189,7 @@ extension IntermediateAppointmentViewModel {
     }
     
     func sendToPatient () {
-        CommonDefaultModifiers.showLoader()
+        CommonDefaultModifiers.showLoader(incomingLoadingText: "Sending Prescription")
         
         func submitFunc () {
             self.saveForLater { (success) in
@@ -226,7 +226,7 @@ extension IntermediateAppointmentViewModel {
     }
     
     func previewPrescription () {
-        CommonDefaultModifiers.showLoader()
+        CommonDefaultModifiers.showLoader(incomingLoadingText: "Generating PDF")
         self.saveForLater { saved in
             CommonDefaultModifiers.hideLoader()
             self.showPDFPreview = true
@@ -253,7 +253,7 @@ extension IntermediateAppointmentViewModel : TwilioDelegate {
         
         if self.childProfile == nil || (self.childProfile?.IsPrimaryContact ?? false) {
             EndEditingHelper.endEditing()
-            CommonDefaultModifiers.showLoader()
+            CommonDefaultModifiers.showLoader(incomingLoadingText: "Starting Consultation Room")
             doctorTwilioManagerViewModel.startRoom() { success in
                 if success {
                     self.doctorTwilioManagerViewModel.fireStartedNotif() { success in
@@ -338,7 +338,7 @@ extension IntermediateAppointmentViewModel {
     }
     
     func cancelAppointment(completion: @escaping (_ successfullyCancelled:Bool) -> ()) {
-        CommonDefaultModifiers.showLoader()
+        CommonDefaultModifiers.showLoader(incomingLoadingText: "Cancelling Appointment")
         self.updateAppointmentStatus.toCancelled(appointment: &self.appointment) { (success) in
             if success {
                 self.docNotifHelper.fireCancelNotif(appointmentTime: self.appointment.scheduledAppointmentStartTime, cancellationReason: self.appointment.cancellation.ReasonName)

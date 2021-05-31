@@ -89,7 +89,7 @@ class DoctorViewModel: ObservableObject {
     }
     
     func retrieveAppointments () {
-        CommonDefaultModifiers.showLoader()
+        CommonDefaultModifiers.showLoader(incomingLoadingText: "Getting your appointments")
         doctorAppointmentViewModel.getDocAppointments(serviceProviderId: doctor.serviceProviderID) { (appointments) in
             if appointments != nil {
                 self.appointments.removeAll()
@@ -135,7 +135,7 @@ class DoctorViewModel: ObservableObject {
 
     func commitEdits () {
         
-        CommonDefaultModifiers.showLoader()
+        CommonDefaultModifiers.showLoader(incomingLoadingText: "Saving Profile")
         
         if editDoctorVM.imagePickerViewModel.image != nil {
             //upload to firebase and update url here...

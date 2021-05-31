@@ -277,7 +277,11 @@ extension CustomerDetailedAppointmentView {
                          object: nil,
                          queue: .main) { (_) in
                 self.customerDetailedAppointmentVM.resetAllValues()
-                self.customerDetailedAppointmentVM.refreshAppointment()
+                self.customerDetailedAppointmentVM.getAppointment { success in
+                    if success {
+                        self.customerDetailedAppointmentVM.viewSettingChecks()
+                    }
+                }
             }
     }
 }

@@ -54,7 +54,7 @@ class PreRegisteredUserVM:ObservableObject {
     }
 
     func registerUser () {
-        CommonDefaultModifiers.showLoader()
+        CommonDefaultModifiers.showLoader(incomingLoadingText: "Verifying User")
         AuthService.verifyUser(verificationId: self.user.verificationId, otp: self.otp) { (verified, errorString) in
             if verified == true {
                 RetrieveAuthId().getAuthId { (success) in

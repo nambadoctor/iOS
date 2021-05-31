@@ -55,7 +55,7 @@ struct DetailedBookDoctorView: View {
                     Spacer().frame(height: 10)
                     
                     Text("Reason For Appointment")
-                    
+ 
                     ExpandingTextView(text: self.$detailedBookingVM.reasonVM.reason)
                     
                     Spacer().frame(height: 10)
@@ -104,13 +104,13 @@ struct DetailedBookDoctorView: View {
                         }
                     }
                 }
-                
+
                 LargeButton(title: "Book Appointment",
                             backgroundColor: Color.blue) {
                     self.detailedBookingVM.book() { success in
                         if success {
                             CustomerAlertHelpers().AppointmentBookedAlert(timeStamp: self.detailedBookingVM.selectedTime) { (done) in
-                                CommonDefaultModifiers.showLoader()
+                                CommonDefaultModifiers.showLoader(incomingLoadingText: "Loading Appointment")
                                 CustomerDefaultModifiers.navigateToDetailedView()
                                 self.presentationMode.wrappedValue.dismiss()
                             }

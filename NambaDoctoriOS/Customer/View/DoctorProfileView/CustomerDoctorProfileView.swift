@@ -25,7 +25,7 @@ struct CustomerDoctorProfileView: View {
                     ImageView(imageLoader: doctorProfileVM.imageLoaderVM)
                     
                     Button(action: {
-                        CommonDefaultModifiers.showLoader()
+                        CommonDefaultModifiers.showLoader(incomingLoadingText: "Generating Link")
                         CreateDynamicLink().makeLink(doctorId: self.doctorProfileVM.serviceProviderProfile.serviceProviderID) { url in
                             CommonDefaultModifiers.hideLoader()
                             shareSheet(url: url)

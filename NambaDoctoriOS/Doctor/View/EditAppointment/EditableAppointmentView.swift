@@ -134,7 +134,7 @@ struct EditableAppointmentView: View {
             LargeButton(title: "Save For Later",
                         backgroundColor: Color.white,
                         foregroundColor: Color.blue) {
-                CommonDefaultModifiers.showLoader()
+                CommonDefaultModifiers.showLoader(incomingLoadingText: "Saving Changes")
                 intermediateVM.saveForLater { _ in
                     CommonDefaultModifiers.hideLoader()
                     DoctorAlertHelpers().isSavedAlert()
