@@ -75,7 +75,7 @@ class IntermediateAppointmentViewModel : ObservableObject {
     }
     
     func refreshAppointment () {
-        CommonDefaultModifiers.showLoader(incomingLoadingText: "Fetching Changes")
+        CommonDefaultModifiers.showLoader(incomingLoadingText: "Loading Appointment")
         ServiceProviderAppointmentService().getSingleAppointment(appointmentId: appointment.appointmentID, serviceProviderId: appointment.serviceProviderID) { (appointment) in
             if appointment != nil {
                 self.appointment = appointment!

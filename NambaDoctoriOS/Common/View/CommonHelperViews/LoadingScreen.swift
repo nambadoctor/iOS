@@ -16,21 +16,22 @@ struct LoadingScreen: View {
     let screenFrame = Color(.systemBackground)
     @Binding var showLoader:Bool
     @Binding var completed:Bool
-
+    
     var body: some View {
         if showLoader {
             ZStack {
-                if completed {
-                    CheckBoxAnimation()
-                } else {
-                    screenFrame.edgesIgnoringSafeArea(.all)
+                screenFrame.edgesIgnoringSafeArea(.all)
+                
+                VStack {
                     
-                    VStack {
+                    if completed {
+                        CheckBoxAnimation()
+                    } else {
                         ZStack {
                             Capsule()
                                 .frame(width: 128, height: 6, alignment: .center)
                                 .foregroundColor(Color(.systemGray4))
-
+                            
                             Capsule()
                                 .clipShape(Rectangle().offset(x: moveRightLeft ? 80 : -80))
                                 .frame(width: 100, height: 6, alignment: .leading)
@@ -41,9 +42,9 @@ struct LoadingScreen: View {
                                     moveRightLeft.toggle()
                                 }
                         }
-                        
-                        Text(loadingText)
                     }
+                    
+                    Text(loadingText)
                 }
             }
         }
@@ -83,7 +84,7 @@ struct CheckBoxAnimation : View {
             .scale(2, anchor: .topLeading)
             .stroke(Color.white, lineWidth: 10)
             .animation(Animation.easeOut(duration: 0.0).delay(0.7))
-            .offset(x: 35, y: 210)
+            .offset(x: 35, y: 190)
             .onAppear() { self.drawCheckMark.toggle() }
         }
     }
