@@ -9,11 +9,9 @@ import Foundation
 
 struct ServiceProviderAutofillMedicine {
     var AutofillMedicineId:String
-    var MedicineGenericName:String
-    var MedicineBrandName:String
-    var RouteOfAdmission:String
-    var Intake:String
-    var Frequency:String
-    var Dosage:ServiceProviderDosage
-    var Duration:ServiceProviderDuration
+    var Ingredients:String
+    var IngredientCount:Int32
+    var BrandName:String
+    var RouteOfAdministration:String
+    var DrugType:String
 }

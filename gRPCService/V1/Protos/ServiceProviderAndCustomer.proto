@@ -176,21 +176,22 @@ message ServiceProviderAppInfo{
 
 }
 
+
 message ServiceProviderAutofillMedicineMessage {
 
 	google.protobuf.StringValue AutofillMedicineId = 1;
 
-    google.protobuf.StringValue MedicineGenericName = 2;
+    google.protobuf.StringValue Ingredients = 2;
 
-    google.protobuf.StringValue MedicineBrandName = 3;
+    google.protobuf.Int32Value IngredientCount = 3;
 
-    google.protobuf.StringValue RouteOfAdmission = 4;
+    google.protobuf.StringValue BrandName = 4;
 
-    google.protobuf.StringValue Intake = 5;
+    google.protobuf.StringValue RouteOfAdministration = 5;
 
-    google.protobuf.StringValue Frequency = 6;
+    google.protobuf.StringValue DrugType = 6;
 
-    ServiceProviderDosageMessage Dosage = 7;
+    ServiceProviderDosageMessage CompanyName = 7;
 
     ServiceProviderDurationMessage Duration = 8;
 }

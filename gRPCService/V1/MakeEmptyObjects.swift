@@ -8,15 +8,15 @@
 import Foundation
 
 func MakeEmptyMedicine() -> ServiceProviderMedicine {
-    return ServiceProviderMedicine(medicineName: "", _dosage: MakeEmptyDosage(), routeOfAdministration: "", intake: "", _duration: MakeEmptyDuration(), timings: "", specialInstructions: "", medicineID: "", notes: "")
+    return ServiceProviderMedicine(medicineName: "", intakeDosage: MakeEmptyDosage(), routeOfAdministration: "", intake: "", _duration: MakeEmptyDuration(), timings: "", specialInstructions: "", medicineID: "", notes: "")
 }
 
-func MakeEmptyDosage() -> ServiceProviderDosage {
-    return ServiceProviderDosage(Name: "", Unit: "")
+func MakeEmptyDosage() -> ServiceProviderIntakeDosage {
+    return ServiceProviderIntakeDosage(Name: "", Unit: "")
 }
 
 func MakeEmptyDuration() -> ServiceProviderDuration {
-    return ServiceProviderDuration(Days: "", Unit: "")
+    return ServiceProviderDuration(Days: "", Unit: "Days")
 }
 
 func MakeEmptyServiceRequest(appointment:ServiceProviderAppointment) -> ServiceProviderServiceRequest {

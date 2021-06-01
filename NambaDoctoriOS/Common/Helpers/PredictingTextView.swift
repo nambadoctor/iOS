@@ -24,28 +24,40 @@ struct PredictingTextField: View {
     @State private var isBeingEdited: Bool = false
 
     var changeDelegate:(()->Void)?
+    
+    @Binding var isFirstResponder:Bool
 
-    init(predictableValues: Binding<Array<ServiceProviderAutofillMedicine>>, predictedValues: Binding<Array<ServiceProviderAutofillMedicine>>, textFieldInput: Binding<String>, changeDelegate:@escaping () -> Void, textFieldTitle: String? = "", predictionInterval: Double? = 0.001) {
-
+    init(predictableValues: Binding<Array<ServiceProviderAutofillMedicine>>, predictedValues: Binding<Array<ServiceProviderAutofillMedicine>>, textFieldInput: Binding<String>, changeDelegate:@escaping () -> Void, textFieldTitle: String? = "", predictionInterval: Double? = 0.001, isFirstResponder:Binding<Bool>) {
         self._predictableValues = predictableValues
         self._predictedValues = predictedValues
         self._textFieldInput = textFieldInput
         self.changeDelegate = changeDelegate
         self.textFieldTitle = textFieldTitle
         self.predictionInterval = predictionInterval
+        self._isFirstResponder = isFirstResponder
     }
 
     var body: some View {
-        TextField(self.textFieldTitle ?? "", text: self.$textFieldInput, onEditingChanged: { editing in self.realTimePrediction(status: editing)}, onCommit: { self.makePrediction()})
-            .frame(height: 5)
-            .padding()
-            .font(.system(size: 14))
-            .background(Color.gray.opacity(0.09))
-            .cornerRadius(10)
-            .padding(.trailing)
-            .introspectTextField { textField in
-                textField.becomeFirstResponder()
-            }
+        if isFirstResponder {
+            TextField(self.textFieldTitle ?? "", text: self.$textFieldInput, onEditingChanged: { editing in self.realTimePrediction(status: editing)}, onCommit: { self.makePrediction()})
+                .frame(height: 5)
+                .padding()
+                .font(.system(size: 14))
+                .background(Color.gray.opacity(0.09))
+                .cornerRadius(10)
+                .padding(.trailing)
+                .introspectTextField { textField in
+                    textField.becomeFirstResponder()
+                }
+        } else {
+            TextField(self.textFieldTitle ?? "", text: self.$textFieldInput, onEditingChanged: { editing in self.realTimePrediction(status: editing)}, onCommit: { self.makePrediction()})
+                .frame(height: 5)
+                .padding()
+                .font(.system(size: 14))
+                .background(Color.gray.opacity(0.09))
+                .cornerRadius(10)
+                .padding(.trailing)
+        }
     }
 
     private func realTimePrediction(status: Bool) {
@@ -69,12 +81,12 @@ struct PredictingTextField: View {
                 if self.textFieldInput.split(separator: " ").count > 1 {
                     //self.makeMultiPrediction(value: value)
                 }else {
-                    if value.MedicineBrandName.lowercased().contains(self.textFieldInput.lowercased()) ||
-                        value.MedicineGenericName.lowercased().contains(self.textFieldInput.lowercased())
+                    if value.BrandName.lowercased().contains(self.textFieldInput.lowercased()) ||
+                        value.Ingredients.lowercased().contains(self.textFieldInput.lowercased())
                     {
                         if !self.checkPredictedValues(value: value) {
-                            if checkIfInitialCharMatch(value: value.MedicineGenericName.lowercased(), input: self.textFieldInput.lowercased()) ||
-                                checkIfInitialCharMatch(value: value.MedicineBrandName.lowercased(), input: self.textFieldInput.lowercased()){
+                            if checkIfInitialCharMatch(value: value.Ingredients.lowercased(), input: self.textFieldInput.lowercased()) ||
+                                checkIfInitialCharMatch(value: value.BrandName.lowercased(), input: self.textFieldInput.lowercased()){
                                 self.predictedValues.insert(value, at: 0)
                             } else {
                                 self.predictedValues.append(value)
@@ -86,18 +98,10 @@ struct PredictingTextField: View {
         } else {
             self.predictedValues = self.predictableValues
         }
+        
+        self.predictedValues.sorted(by: { $0.AutofillMedicineId > $1.AutofillMedicineId })
     }
 
-//    private func makeMultiPrediction(value: ServiceProviderAutofillMedicine) {
-//        for subString in self.textFieldInput.split(separator: " ") {
-//            if value.contains(String(subString)) || value.contains(self.capitalizeFirstLetter(smallString: String(subString))){
-//                if !self.predictedValues.contains(value) {
-//                    self.predictedValues.append(value)
-//                }
-//            }
-//        }
-//    }
-    
     func checkIfInitialCharMatch (value:String, input:String) -> Bool {
         let inputLength = input.count
         

@@ -46,7 +46,7 @@ struct MedicineView: View {
                 ForEach (medicineVM.prescription.medicineList, id: \.medicineID) { medicine in
                     HStack {
                         VStack (alignment: .leading, spacing: 5) {
-                            Text("\(medicine.medicineName) - \(medicine._dosage.Name)")
+                            Text("\(medicine.medicineName)")
                                 .font(.callout)
                                 .bold()
                                 .foregroundColor(Color.blue)

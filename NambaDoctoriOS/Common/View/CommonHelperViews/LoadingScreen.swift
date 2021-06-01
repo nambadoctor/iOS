@@ -84,7 +84,7 @@ struct CheckBoxAnimation : View {
             .scale(2, anchor: .topLeading)
             .stroke(Color.white, lineWidth: 10)
             .animation(Animation.easeOut(duration: 0.0).delay(0.7))
-            .offset(x: 35, y: 190)
+            .offset(x: 35, y: 210)
             .onAppear() { self.drawCheckMark.toggle() }
         }
     }

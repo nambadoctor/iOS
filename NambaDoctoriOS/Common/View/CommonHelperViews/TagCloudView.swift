@@ -140,7 +140,11 @@ struct TagCloudView: View {
             .foregroundColor(selectedTag == text ? Color.white : Color.blue)
             .cornerRadius(5)
             .onTapGesture {
-                selectedTag = text
+                if selectedTag == text {
+                    selectedTag = ""
+                } else {
+                    selectedTag = text
+                }
                 EndEditingHelper.endEditing()
             }
     }

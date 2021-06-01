@@ -36,7 +36,7 @@ class MedicineEntryViewModel : ObservableObject {
     @Published var medicineNameChanged:Bool = false
     @Published var medicineNameConfirmed:Bool = false
 
-    @Published var dosage:ServiceProviderDosage = MakeEmptyDosage()
+    @Published var dosage:ServiceProviderIntakeDosage = MakeEmptyDosage()
 
     @Published var duration:ServiceProviderDuration = MakeEmptyDuration()
 
@@ -59,13 +59,17 @@ class MedicineEntryViewModel : ObservableObject {
     @Published var autoFillVM:AutoFillMedicineVM
     @Published var showPredictedMedicines:Bool = false
     
-    init(medicine:ServiceProviderMedicine, isNew:Bool,
+    @Published var isFirstResponder:Bool = true
+    
+    init(medicine:ServiceProviderMedicine,
+         isNew:Bool,
          medicineEditedDelegate:MedicineEntryDelegate,
          autoFillVM:AutoFillMedicineVM) {
         self.medicineEditedDelegate = medicineEditedDelegate
         self.autoFillVM = autoFillVM
         
         if !isNew {
+            self.isFirstResponder = false
             mapExistingMedicine(medicine: medicine)
         }
     }
@@ -77,13 +81,12 @@ class MedicineEntryViewModel : ObservableObject {
 
     func mapExistingMedicine(medicine:ServiceProviderMedicine) {
         medicineName = medicine.medicineName
+        dosage = medicine.intakeDosage
         duration = medicine._duration
-        dosage = medicine._dosage
         frequency = medicine.specialInstructions
         routeOfAdmin = medicine.routeOfAdministration
         notes = medicine.notes
         intake = medicine.intake
-
         if !medicine.timings.isEmpty {
             let timingsSplit = medicine.timings.components(separatedBy: ",")
             morning = Double(timingsSplit[0]) ?? 0.0
@@ -98,7 +101,7 @@ class MedicineEntryViewModel : ObservableObject {
             night = 0
         }
         
-        self.medicineNameFinalized()
+        self.makeNewMedicine()
     }
 
     func clearValues () {
@@ -118,34 +121,17 @@ class MedicineEntryViewModel : ObservableObject {
     
     func autoSelectMedicine (medicine:ServiceProviderAutofillMedicine) {
         EndEditingHelper.endEditing()
-        medicineName = medicine.MedicineBrandName
-        dosage = medicine.Dosage
-        duration = medicine.Duration
-        routeOfAdmin = medicine.RouteOfAdmission
-        intake = medicine.Intake
+        medicineName = medicine.BrandName
+        routeOfAdmin = medicine.RouteOfAdministration
 
-        if !medicine.Frequency.isEmpty {
-            let timingsSplit = medicine.Frequency.components(separatedBy: ",")
-            morning = Double(timingsSplit[0]) ?? 0.0
-            afternoon = Double(timingsSplit[1]) ?? 0.0
-            evening = Double(timingsSplit[2]) ?? 0.0
-            night = Double(timingsSplit[3]) ?? 0.0
-        } else {
-            wheneverNecessary = true
-            morning = 0
-            afternoon = 0
-            evening = 0
-            night = 0
-        }
-        
         medicineNameFinalized()
-
     }
     
 
     func makeNewMedicine () {
         EndEditingHelper.endEditing()
         medicineNameFinalized()
+        self.isFirstResponder = false
     }
     
     func medicineNameFinalized() {

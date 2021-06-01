@@ -9,33 +9,54 @@ import SwiftUI
 
 struct CustomStepperBox: View {
     @Binding var number:Double
+    var displayName:String
     var body: some View {
         HStack {
-            HStack {
-                Button(action: {
-                    if number != 0 {
-                        number -= 0.5
-                    }
-                }, label: {
-                    Image("minus")
-                        .padding(7)
-                })
-                
-                Text("\(number.clean)")
-                    .foregroundColor(.blue)
-                    .bold()
-                Button(action: {
-                    number += 0.5
-                }, label: {
-                    Image("plus")
-                        .padding(7)
-                })
+            Image(systemName: number == 1  ? "checkmark.square": "square")
+                .foregroundColor(number == 1  ? .white : .black)
+            Text(displayName)
+                .foregroundColor(number == 1  ? .white : .black)
+                .bold()
+        }
+        .padding(.horizontal)
+        .padding(.vertical, 5)
+        .background(number == 1 ? Color.blue : Color.gray.opacity(0.5))
+        .foregroundColor(number == 1 ? Color.white : Color.black)
+        .cornerRadius(10)
+        .onTapGesture {
+            if number != 0.0 {
+                number = 0.0
+            } else {
+                number = 1.0
             }
-            .padding(.horizontal)
-            .padding(.vertical, 5)
-            .background(Color.blue.opacity(0.3))
-            .cornerRadius(10)
-            Spacer()
         }
     }
 }
+
+//HStack {
+//    HStack {
+//        Button(action: {
+//            if number != 0 {
+//                number -= 0.5
+//            }
+//        }, label: {
+//            Image("minus")
+//                .padding(7)
+//        })
+//
+//        Text("\(number.clean)")
+//            .foregroundColor(.blue)
+//            .bold()
+//        Button(action: {
+//            number += 0.5
+//        }, label: {
+//            Image("plus")
+//                .padding(7)
+//        })
+//    }
+//    .padding(.horizontal)
+//    .padding(.vertical, 5)
+//    .background(Color.blue.opacity(0.3))
+//    .cornerRadius(10)
+//    Spacer()
+//}

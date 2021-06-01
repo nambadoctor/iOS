@@ -16,6 +16,22 @@ struct DoctorProfile: View {
         ScrollView {
             VStack (alignment: .leading) {
                 title
+                
+                Button(action: {
+                    CommonDefaultModifiers.showLoader(incomingLoadingText: "Generating Link")
+                    CreateDynamicLink().makeLink(doctorId: self.doctorViewModel.doctor.serviceProviderID) { url in
+                        CommonDefaultModifiers.hideLoader()
+                        shareSheet(url: url)
+                    }
+                }, label: {
+                    HStack {
+                        Text("Click here to share your profile with others")
+                            .fixedSize(horizontal: false, vertical: true)
+                        Image("square.and.arrow.up.on.square")
+                            .scaleEffect(1)
+                    }
+                })
+                .padding()
 
                 if doctorViewModel.showEdit {
                     EditableDoctorProfile(editDoctorVM: doctorViewModel.editDoctorVM, doctor: $doctorViewModel.doctor)
@@ -57,20 +73,6 @@ struct DoctorProfile: View {
                     self.doctorViewModel.showEdit.toggle()
                 }, label: {
                     Image("pencil")
-                        .scaleEffect(1.5)
-                })
-                .padding()
-            }
-            
-            if !self.doctorViewModel.showEdit {
-                Button(action: {
-                    CommonDefaultModifiers.showLoader(incomingLoadingText: "Generating Link")
-                    CreateDynamicLink().makeLink(doctorId: self.doctorViewModel.doctor.serviceProviderID) { url in
-                        CommonDefaultModifiers.hideLoader()
-                        shareSheet(url: url)
-                    }
-                }, label: {
-                    Image("square.and.arrow.up.on.square")
                         .scaleEffect(1.5)
                 })
                 .padding()

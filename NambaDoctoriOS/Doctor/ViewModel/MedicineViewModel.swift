@@ -56,14 +56,13 @@ class MedicineViewModel: ObservableObject {
         self.medicineEntryVM = MedicineEntryViewModel(medicine: MakeEmptyMedicine(), isNew: true, medicineEditedDelegate: self, autoFillVM: self.autoFillVM)
         self.showMedicineEntrySheet = true
     }
-    
+
     func editPrescription (medicine:ServiceProviderMedicine) {
         medicineBeingEdited = checkIfPrescriptionExists(medicine: medicine)
         self.medicineEntryVM = MedicineEntryViewModel(medicine: medicine, isNew: false, medicineEditedDelegate: self, autoFillVM: self.autoFillVM)
         self.showMedicineEntrySheet = true
     }
-    
-    
+
     func removePrescription (medicine:ServiceProviderMedicine) {
         if let index = checkIfPrescriptionExists(medicine: medicine) {
             prescription.medicineList.remove(at: index)
@@ -73,14 +72,14 @@ class MedicineViewModel: ObservableObject {
     func checkIfPrescriptionExists (medicine:ServiceProviderMedicine) -> Int? {
         var index = 0
         for med in prescription.medicineList {
-            if med.medicineName == medicine.medicineName && med._dosage.Name == medicine._dosage.Name {
+            if med.medicineName == medicine.medicineName {
                 return index
             }
             index += 1
         }
         return nil
     }
-    
+
     func makeMedicineObjAndAdd () {
         var timingsString = "\(medicineEntryVM.morning.clean),\(medicineEntryVM.afternoon.clean),\(medicineEntryVM.evening.clean),\(medicineEntryVM.night.clean)"
 
@@ -88,7 +87,7 @@ class MedicineViewModel: ObservableObject {
             timingsString = ""
         }
 
-        let medicine = ServiceProviderMedicine(medicineName: medicineEntryVM.medicineName, _dosage: medicineEntryVM.dosage, routeOfAdministration: medicineEntryVM.routeOfAdmin, intake: medicineEntryVM.intake, _duration: medicineEntryVM.duration, timings: timingsString, specialInstructions: medicineEntryVM.frequency, medicineID: UUID().uuidString, notes: medicineEntryVM.notes)
+        let medicine = ServiceProviderMedicine(medicineName: medicineEntryVM.medicineName, intakeDosage: medicineEntryVM.dosage, routeOfAdministration: medicineEntryVM.routeOfAdmin, intake: medicineEntryVM.intake, _duration: medicineEntryVM.duration, timings: timingsString, specialInstructions: medicineEntryVM.frequency, medicineID: UUID().uuidString, notes: medicineEntryVM.notes)
 
         if medicineBeingEdited != nil {
             prescription.medicineList.remove(at: medicineBeingEdited!)
@@ -96,7 +95,7 @@ class MedicineViewModel: ObservableObject {
             showMedicineEntrySheet = false
         } else {
             prescription.medicineList.append(medicine)
-            showMedicineEntrySheet = false
+            showMedicineEntrySheet = false 
         }
 
         self.medicineEntryVM.clearValues()
@@ -148,7 +147,6 @@ class MedicineViewModel: ObservableObject {
         }
     }
     
-    
     func getPrescriptionPDF () {
         self.prescriptionPDF = nil
         retrievePrescriptionHelper.getPrescriptionPDF(customerId: appointment.customerID, serviceProviderId: appointment.serviceProviderID, appointmentId: appointment.appointmentID, serviceRequestId: appointment.serviceRequestID) { data in
@@ -183,7 +181,6 @@ class MedicineViewModel: ObservableObject {
                 self.prescription.medicineList[i].medicineID = ""
             }
         }
-        
 
         self.prescription.createdDateTime = Date().millisecondsSince1970
         prescriptionServiceCalls.setPrescription(prescription: self.prescription) { (response) in

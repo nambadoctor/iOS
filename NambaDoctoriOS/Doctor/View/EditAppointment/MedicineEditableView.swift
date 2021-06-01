@@ -27,17 +27,17 @@ struct MedicineEditableView: View {
             ForEach (medicineVM.prescription.medicineList, id: \.medicineID) { medicine in
                 HStack {
                     VStack (alignment: .leading, spacing: 5) {
-                        Text("\(medicine.medicineName) - \(medicine._dosage.Name)")
+                        Text("\(medicine.medicineName)")
                             .font(.callout)
                             .bold()
                             .foregroundColor(Color.blue)
                         
-                        if !medicine._duration.Days.isEmpty {
-                            Text("\(medicine._duration.Days) \(medicine._duration.Unit)")
-                                .font(.callout)
-                                .foregroundColor(Color.blue)
-                        } else {
-                            Text("No duration specified")
+                        Text("\(medicine.intakeDosage.Name) \(medicine.intakeDosage.Unit)")
+                            .font(.callout)
+                            .foregroundColor(Color.blue)
+                        
+                        if !medicine.specialInstructions.isEmpty {
+                            Text("\(medicine.specialInstructions)")
                                 .font(.callout)
                                 .foregroundColor(Color.blue)
                         }
@@ -47,7 +47,6 @@ struct MedicineEditableView: View {
                                 .font(.callout)
                                 .foregroundColor(Color.blue)
                         }
-                        
                         
                         if !medicine.intake.isEmpty {
                             Text("\(medicine.intake)")
@@ -61,8 +60,12 @@ struct MedicineEditableView: View {
                                 .foregroundColor(Color.blue)
                         }
                         
-                        if !medicine.specialInstructions.isEmpty {
-                            Text("\(medicine.specialInstructions)")
+                        if !medicine._duration.Days.isEmpty {
+                            Text("\(medicine._duration.Days) \(medicine._duration.Unit)")
+                                .font(.callout)
+                                .foregroundColor(Color.blue)
+                        } else {
+                            Text("No duration specified")
                                 .font(.callout)
                                 .foregroundColor(Color.blue)
                         }

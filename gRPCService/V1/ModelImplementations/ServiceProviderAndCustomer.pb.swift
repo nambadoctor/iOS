@@ -891,59 +891,59 @@ struct Nd_V1_ServiceProviderAutofillMedicineMessage {
   /// Clears the value of `autofillMedicineID`. Subsequent reads from it will return its default value.
   mutating func clearAutofillMedicineID() {self._autofillMedicineID = nil}
 
-  var medicineGenericName: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _medicineGenericName ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_medicineGenericName = newValue}
+  var ingredients: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _ingredients ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_ingredients = newValue}
   }
-  /// Returns true if `medicineGenericName` has been explicitly set.
-  var hasMedicineGenericName: Bool {return self._medicineGenericName != nil}
-  /// Clears the value of `medicineGenericName`. Subsequent reads from it will return its default value.
-  mutating func clearMedicineGenericName() {self._medicineGenericName = nil}
+  /// Returns true if `ingredients` has been explicitly set.
+  var hasIngredients: Bool {return self._ingredients != nil}
+  /// Clears the value of `ingredients`. Subsequent reads from it will return its default value.
+  mutating func clearIngredients() {self._ingredients = nil}
 
-  var medicineBrandName: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _medicineBrandName ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_medicineBrandName = newValue}
+  var ingredientCount: SwiftProtobuf.Google_Protobuf_Int32Value {
+    get {return _ingredientCount ?? SwiftProtobuf.Google_Protobuf_Int32Value()}
+    set {_ingredientCount = newValue}
   }
-  /// Returns true if `medicineBrandName` has been explicitly set.
-  var hasMedicineBrandName: Bool {return self._medicineBrandName != nil}
-  /// Clears the value of `medicineBrandName`. Subsequent reads from it will return its default value.
-  mutating func clearMedicineBrandName() {self._medicineBrandName = nil}
+  /// Returns true if `ingredientCount` has been explicitly set.
+  var hasIngredientCount: Bool {return self._ingredientCount != nil}
+  /// Clears the value of `ingredientCount`. Subsequent reads from it will return its default value.
+  mutating func clearIngredientCount() {self._ingredientCount = nil}
 
-  var routeOfAdmission: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _routeOfAdmission ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_routeOfAdmission = newValue}
+  var brandName: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _brandName ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_brandName = newValue}
   }
-  /// Returns true if `routeOfAdmission` has been explicitly set.
-  var hasRouteOfAdmission: Bool {return self._routeOfAdmission != nil}
-  /// Clears the value of `routeOfAdmission`. Subsequent reads from it will return its default value.
-  mutating func clearRouteOfAdmission() {self._routeOfAdmission = nil}
+  /// Returns true if `brandName` has been explicitly set.
+  var hasBrandName: Bool {return self._brandName != nil}
+  /// Clears the value of `brandName`. Subsequent reads from it will return its default value.
+  mutating func clearBrandName() {self._brandName = nil}
 
-  var intake: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _intake ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_intake = newValue}
+  var routeOfAdministration: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _routeOfAdministration ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_routeOfAdministration = newValue}
   }
-  /// Returns true if `intake` has been explicitly set.
-  var hasIntake: Bool {return self._intake != nil}
-  /// Clears the value of `intake`. Subsequent reads from it will return its default value.
-  mutating func clearIntake() {self._intake = nil}
+  /// Returns true if `routeOfAdministration` has been explicitly set.
+  var hasRouteOfAdministration: Bool {return self._routeOfAdministration != nil}
+  /// Clears the value of `routeOfAdministration`. Subsequent reads from it will return its default value.
+  mutating func clearRouteOfAdministration() {self._routeOfAdministration = nil}
 
-  var frequency: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _frequency ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_frequency = newValue}
+  var drugType: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _drugType ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_drugType = newValue}
   }
-  /// Returns true if `frequency` has been explicitly set.
-  var hasFrequency: Bool {return self._frequency != nil}
-  /// Clears the value of `frequency`. Subsequent reads from it will return its default value.
-  mutating func clearFrequency() {self._frequency = nil}
+  /// Returns true if `drugType` has been explicitly set.
+  var hasDrugType: Bool {return self._drugType != nil}
+  /// Clears the value of `drugType`. Subsequent reads from it will return its default value.
+  mutating func clearDrugType() {self._drugType = nil}
 
-  var dosage: Nd_V1_ServiceProviderDosageMessage {
-    get {return _dosage ?? Nd_V1_ServiceProviderDosageMessage()}
-    set {_dosage = newValue}
+  var companyName: Nd_V1_ServiceProviderDosageMessage {
+    get {return _companyName ?? Nd_V1_ServiceProviderDosageMessage()}
+    set {_companyName = newValue}
   }
-  /// Returns true if `dosage` has been explicitly set.
-  var hasDosage: Bool {return self._dosage != nil}
-  /// Clears the value of `dosage`. Subsequent reads from it will return its default value.
-  mutating func clearDosage() {self._dosage = nil}
+  /// Returns true if `companyName` has been explicitly set.
+  var hasCompanyName: Bool {return self._companyName != nil}
+  /// Clears the value of `companyName`. Subsequent reads from it will return its default value.
+  mutating func clearCompanyName() {self._companyName = nil}
 
   var duration: Nd_V1_ServiceProviderDurationMessage {
     get {return _duration ?? Nd_V1_ServiceProviderDurationMessage()}
@@ -959,12 +959,12 @@ struct Nd_V1_ServiceProviderAutofillMedicineMessage {
   init() {}
 
   fileprivate var _autofillMedicineID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _medicineGenericName: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _medicineBrandName: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _routeOfAdmission: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _intake: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _frequency: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _dosage: Nd_V1_ServiceProviderDosageMessage? = nil
+  fileprivate var _ingredients: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _ingredientCount: SwiftProtobuf.Google_Protobuf_Int32Value? = nil
+  fileprivate var _brandName: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _routeOfAdministration: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _drugType: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _companyName: Nd_V1_ServiceProviderDosageMessage? = nil
   fileprivate var _duration: Nd_V1_ServiceProviderDurationMessage? = nil
 }
 
@@ -5966,12 +5966,12 @@ extension Nd_V1_ServiceProviderAutofillMedicineMessage: SwiftProtobuf.Message, S
   static let protoMessageName: String = _protobuf_package + ".ServiceProviderAutofillMedicineMessage"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "AutofillMedicineId"),
-    2: .same(proto: "MedicineGenericName"),
-    3: .same(proto: "MedicineBrandName"),
-    4: .same(proto: "RouteOfAdmission"),
-    5: .same(proto: "Intake"),
-    6: .same(proto: "Frequency"),
-    7: .same(proto: "Dosage"),
+    2: .same(proto: "Ingredients"),
+    3: .same(proto: "IngredientCount"),
+    4: .same(proto: "BrandName"),
+    5: .same(proto: "RouteOfAdministration"),
+    6: .same(proto: "DrugType"),
+    7: .same(proto: "CompanyName"),
     8: .same(proto: "Duration"),
   ]
 
@@ -5982,12 +5982,12 @@ extension Nd_V1_ServiceProviderAutofillMedicineMessage: SwiftProtobuf.Message, S
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
       case 1: try { try decoder.decodeSingularMessageField(value: &self._autofillMedicineID) }()
-      case 2: try { try decoder.decodeSingularMessageField(value: &self._medicineGenericName) }()
-      case 3: try { try decoder.decodeSingularMessageField(value: &self._medicineBrandName) }()
-      case 4: try { try decoder.decodeSingularMessageField(value: &self._routeOfAdmission) }()
-      case 5: try { try decoder.decodeSingularMessageField(value: &self._intake) }()
-      case 6: try { try decoder.decodeSingularMessageField(value: &self._frequency) }()
-      case 7: try { try decoder.decodeSingularMessageField(value: &self._dosage) }()
+      case 2: try { try decoder.decodeSingularMessageField(value: &self._ingredients) }()
+      case 3: try { try decoder.decodeSingularMessageField(value: &self._ingredientCount) }()
+      case 4: try { try decoder.decodeSingularMessageField(value: &self._brandName) }()
+      case 5: try { try decoder.decodeSingularMessageField(value: &self._routeOfAdministration) }()
+      case 6: try { try decoder.decodeSingularMessageField(value: &self._drugType) }()
+      case 7: try { try decoder.decodeSingularMessageField(value: &self._companyName) }()
       case 8: try { try decoder.decodeSingularMessageField(value: &self._duration) }()
       default: break
       }
@@ -5998,22 +5998,22 @@ extension Nd_V1_ServiceProviderAutofillMedicineMessage: SwiftProtobuf.Message, S
     if let v = self._autofillMedicineID {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
     }
-    if let v = self._medicineGenericName {
+    if let v = self._ingredients {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
     }
-    if let v = self._medicineBrandName {
+    if let v = self._ingredientCount {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
     }
-    if let v = self._routeOfAdmission {
+    if let v = self._brandName {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
     }
-    if let v = self._intake {
+    if let v = self._routeOfAdministration {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
     }
-    if let v = self._frequency {
+    if let v = self._drugType {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
     }
-    if let v = self._dosage {
+    if let v = self._companyName {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
     }
     if let v = self._duration {
@@ -6024,12 +6024,12 @@ extension Nd_V1_ServiceProviderAutofillMedicineMessage: SwiftProtobuf.Message, S
 
   static func ==(lhs: Nd_V1_ServiceProviderAutofillMedicineMessage, rhs: Nd_V1_ServiceProviderAutofillMedicineMessage) -> Bool {
     if lhs._autofillMedicineID != rhs._autofillMedicineID {return false}
-    if lhs._medicineGenericName != rhs._medicineGenericName {return false}
-    if lhs._medicineBrandName != rhs._medicineBrandName {return false}
-    if lhs._routeOfAdmission != rhs._routeOfAdmission {return false}
-    if lhs._intake != rhs._intake {return false}
-    if lhs._frequency != rhs._frequency {return false}
-    if lhs._dosage != rhs._dosage {return false}
+    if lhs._ingredients != rhs._ingredients {return false}
+    if lhs._ingredientCount != rhs._ingredientCount {return false}
+    if lhs._brandName != rhs._brandName {return false}
+    if lhs._routeOfAdministration != rhs._routeOfAdministration {return false}
+    if lhs._drugType != rhs._drugType {return false}
+    if lhs._companyName != rhs._companyName {return false}
     if lhs._duration != rhs._duration {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
