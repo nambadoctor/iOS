@@ -73,12 +73,12 @@ class CustomerAppointmentService : CustomerAppointmentServiceProtocol {
             do {
                 let response = try getDoctorsAppointment.response.wait()
                 let appointment = self.customerAppointmentMapper.grpcAppointmentToLocal(appointment: response)
-                print("Doctor Appointment Client Success \(appointment)")
+                print("Customer Appointment Client Success \(appointment)")
                 DispatchQueue.main.async {
                     completion(appointment)
                 }
             } catch {
-                print("Doctor Appointment Client Failed")
+                print("Customer Appointment Client Failed")
                 DispatchQueue.main.async {
                     completion(nil)
                 }

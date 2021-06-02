@@ -15,53 +15,55 @@ struct CustomerDetailedAppointmentView: View {
     
     var body: some View {
         ZStack {
-            VStack {
-                header
-
+            if customerDetailedAppointmentVM.refreshViewTrigger {
                 VStack {
-                    if customerDetailedAppointmentVM.imageLoader != nil {
-                        ImageView(imageLoader: customerDetailedAppointmentVM.imageLoader!)
-                            .padding(.top, 10)
+                    header
+
+                    VStack {
+                        if customerDetailedAppointmentVM.imageLoader != nil {
+                            ImageView(imageLoader: customerDetailedAppointmentVM.imageLoader!)
+                                .padding(.top, 10)
+                        }
+                        
+                        if customerDetailedAppointmentVM.prescriptionPDF != nil {
+                            PDFKitView(data: customerDetailedAppointmentVM.prescriptionPDF!)
+                                .padding(.top, 10)
+                        }
+                    }
+
+                    if customerDetailedAppointmentVM.appointmentStarted || customerDetailedAppointmentVM.appointmnentUpComing {
+                        ScrollView {
+                            allergyEntryView
+                            
+                            CustomerReportsView(reportsVM: self.customerDetailedAppointmentVM.reportsVM)
+                        }
                     }
                     
-                    if customerDetailedAppointmentVM.prescriptionPDF != nil {
-                        PDFKitView(data: customerDetailedAppointmentVM.prescriptionPDF!)
-                            .padding(.top, 10)
-                    }
+                    Spacer()
                 }
-
-                if customerDetailedAppointmentVM.appointmentStarted || customerDetailedAppointmentVM.appointmnentUpComing {
-                    ScrollView {
-                        allergyEntryView
-                        
-                        CustomerReportsView(reportsVM: self.customerDetailedAppointmentVM.reportsVM)
-                    }
+                .padding(.horizontal)
+                
+                if customerDetailedAppointmentVM.showTwilioRoom {
+                    CustomerTwilioManager(customerTwilioViewModel: customerDetailedAppointmentVM.customerTwilioViewModel)
+                        .onAppear(){self.customerDetailedAppointmentVM.customerTwilioViewModel.viewController?.connect(sender: customerDetailedAppointmentVM)}
                 }
                 
-                Spacer()
+                if customerDetailedAppointmentVM.takeToChat {
+                    NavigationLink("",
+                                   destination: CustomerChatRoomView(chatVM: self.customerDetailedAppointmentVM.customerChatViewModel),
+                                   isActive: $customerDetailedAppointmentVM.takeToChat)
+                }
+                
+                if customerDetailedAppointmentVM.showPayment {
+                    customerDetailedAppointmentVM.razorPayEndPoint()
+                }
+                
+                if self.customerDetailedAppointmentVM.killViewTrigger {
+                    Text("").onAppear(){self.killView()}
+                }
+                
+                CancellationBottomsheetCaller(offset: self.$customerDetailedAppointmentVM.cancellationSheetOffset, cancellationReasons: self.customerDetailedAppointmentVM.CustomerCancellationReasons, delegate: self.customerDetailedAppointmentVM)
             }
-            .padding(.horizontal)
-            
-            if customerDetailedAppointmentVM.showTwilioRoom {
-                CustomerTwilioManager(customerTwilioViewModel: customerDetailedAppointmentVM.customerTwilioViewModel)
-                    .onAppear(){self.customerDetailedAppointmentVM.customerTwilioViewModel.viewController?.connect(sender: customerDetailedAppointmentVM)}
-            }
-            
-            if customerDetailedAppointmentVM.takeToChat {
-                NavigationLink("",
-                               destination: CustomerChatRoomView(chatVM: self.customerDetailedAppointmentVM.customerChatViewModel),
-                               isActive: $customerDetailedAppointmentVM.takeToChat)
-            }
-            
-            if customerDetailedAppointmentVM.showPayment {
-                customerDetailedAppointmentVM.razorPayEndPoint()
-            }
-            
-            if self.customerDetailedAppointmentVM.killViewTrigger {
-                Text("").onAppear(){self.killView()}
-            }
-            
-            CancellationBottomsheetCaller(offset: self.$customerDetailedAppointmentVM.cancellationSheetOffset, cancellationReasons: self.customerDetailedAppointmentVM.CustomerCancellationReasons, delegate: self.customerDetailedAppointmentVM)
         }
         .onTapGesture {
             EndEditingHelper.endEditing()
@@ -276,7 +278,6 @@ extension CustomerDetailedAppointmentView {
             .addObserver(forName: NSNotification.Name("\(CustomerViewStatesK.CustomerAppointmentStatusChange)"),
                          object: nil,
                          queue: .main) { (_) in
-                self.customerDetailedAppointmentVM.resetAllValues()
                 self.customerDetailedAppointmentVM.getAppointment { success in
                     if success {
                         self.customerDetailedAppointmentVM.viewSettingChecks()

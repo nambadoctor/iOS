@@ -23,7 +23,7 @@ struct MedicineEditableView: View {
                     .foregroundColor(Color.black.opacity(0.4))
                     .bold()
             }
-            
+
             ForEach (medicineVM.prescription.medicineList, id: \.medicineID) { medicine in
                 HStack {
                     VStack (alignment: .leading, spacing: 5) {

@@ -9,6 +9,7 @@ import Foundation
 import Firebase
 
 var AuthTokenId:String = ""
+var tokenRetrievedDate = Date()
 
 class RetrieveAuthId {
     
@@ -19,10 +20,11 @@ class RetrieveAuthId {
         if Auth.auth().currentUser != nil {
             Auth.auth().currentUser?.getIDToken(completion: { (token, err) in
                 if err == nil {
+                    
                     self.stopwatch.stop()
                     AuthTokenId = token!
-                    print("AUTH ID:")
-                    print(AuthTokenId)
+                    
+                    tokenRetrievedDate = Date()
                     completion(true)
                 } else {
                     completion(false)

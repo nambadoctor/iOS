@@ -221,8 +221,6 @@ extension IntermediateAppointmentViewModel {
         } else {
             submitFunc()
         }
-        
-        
     }
     
     func previewPrescription () {

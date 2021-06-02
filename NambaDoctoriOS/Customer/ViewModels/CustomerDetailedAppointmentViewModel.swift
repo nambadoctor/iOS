@@ -43,6 +43,8 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     
     @Published var killViewTrigger:Bool = false
     
+    @Published var refreshViewTrigger:Bool = true
+    
     @Published var cancellationSheetOffset:CGFloat = UIScreen.main.bounds.height
     var CustomerCancellationReasons:[String] = ["I booked by mistake", "Doctor said he is not available", "Doctor did not call me", "Technical Issues", "Other"]
 
@@ -109,7 +111,10 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
         CommonDefaultModifiers.hideLoader()
     }
     
-
+    func refreshView () {
+        refreshViewTrigger = false
+        refreshViewTrigger = true
+    }
 
     func checkIfPaid () {
         self.isPaid = appointment.isPaid
@@ -140,6 +145,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     }
 
     func viewSettingChecks () {
+        self.resetAllValues()
         self.checkAppointmentStatus()
         self.checkForDirectNavigation()
     }
@@ -147,7 +153,6 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     func getAppointment (_ completion: @escaping (_ retrieved:Bool)->()) {
         self.customerAppointmentService.getSingleAppointment(appointmentId: self.appointment.appointmentID, serviceProviderId: self.appointment.serviceProviderID) { customerAppointment in
             if customerAppointment != nil {
-                print(customerAppointment!)
                 self.appointment = customerAppointment!
                 completion(true)
             }

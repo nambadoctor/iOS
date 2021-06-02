@@ -64,7 +64,7 @@ struct PredictingTextField: View {
         self.changeDelegate!()
         self.isBeingEdited = status
         if status == true {
-            Timer.scheduledTimer(withTimeInterval: self.predictionInterval ?? 0.0001, repeats: true) { timer in
+            Timer.scheduledTimer(withTimeInterval: self.predictionInterval ?? 0.01, repeats: true) { timer in
                 self.makePrediction()
 
                 if self.isBeingEdited == false {
@@ -85,8 +85,7 @@ struct PredictingTextField: View {
                         value.Ingredients.lowercased().contains(self.textFieldInput.lowercased())
                     {
                         if !self.checkPredictedValues(value: value) {
-                            if checkIfInitialCharMatch(value: value.Ingredients.lowercased(), input: self.textFieldInput.lowercased()) ||
-                                checkIfInitialCharMatch(value: value.BrandName.lowercased(), input: self.textFieldInput.lowercased()){
+                            if checkIfInitialCharMatch(value: value.BrandName.lowercased(), input: self.textFieldInput.lowercased()){
                                 self.predictedValues.insert(value, at: 0)
                             } else {
                                 self.predictedValues.append(value)
@@ -99,7 +98,7 @@ struct PredictingTextField: View {
             self.predictedValues = self.predictableValues
         }
         
-        self.predictedValues.sorted(by: { $0.AutofillMedicineId > $1.AutofillMedicineId })
+        self.predictedValues.sorted(by: { $0.IngredientCount < $1.IngredientCount })
     }
 
     func checkIfInitialCharMatch (value:String, input:String) -> Bool {
