@@ -39,8 +39,7 @@ class PatientInfoViewModel: ObservableObject {
     }
     
     func callPatient () {
-        guard let number = URL(string: "tel://" + self.patientPhoneNumber) else { return }
-        UIApplication.shared.open(number)
+        callNumber(phoneNumber: self.patientPhoneNumber)
     }
     
     private func retrievePatientObj () {

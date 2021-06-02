@@ -27,7 +27,7 @@ class CustomerServiceProviderViewModel : ObservableObject {
             self.imageLoader = ImageLoader(urlString: "https://wgsi.utoronto.ca/wp-content/uploads/2020/12/blank-profile-picture-png.png") {_ in}
         }
     }
-    
+
     var serviceProviderName:String {
         return "\(serviceProvider.firstName) \(serviceProvider.lastName)"
     }
@@ -63,10 +63,6 @@ class CustomerServiceProviderViewModel : ObservableObject {
     
     func takeToBookDocView () {
         self.callBack(serviceProvider)
-    }
-    
-    func getDetailedBookingVM () -> DetailedBookDocViewModel{
-        DetailedBookDocViewModel(serviceProvider: serviceProvider, customerProfile: self.customerProfile)
     }
     
     func getDetailedServiceProviderVM() -> CustomerDoctorProfileViewModel {

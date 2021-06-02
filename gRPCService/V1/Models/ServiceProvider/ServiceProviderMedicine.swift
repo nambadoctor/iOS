@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct ServiceProviderMedicine : Codable {
+struct ServiceProviderMedicine : Codable, Hashable {
+    static func == (lhs: ServiceProviderMedicine, rhs: ServiceProviderMedicine) -> Bool {
+        return "\(lhs.medicineName)-\(lhs.intakeDosage.Name)".lowercased() == "\(rhs.medicineName)-\(rhs.intakeDosage.Name)".lowercased()
+    }
+    
     var medicineName:String
     var intakeDosage:ServiceProviderIntakeDosage
     var routeOfAdministration:String

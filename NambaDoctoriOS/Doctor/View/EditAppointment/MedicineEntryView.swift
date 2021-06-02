@@ -193,12 +193,11 @@ struct FrequencyPickerView : View {
 
     var body: some View {
         HStack {
-            CustomStepperBox(number: $medicineEntryVM.morning, displayName: "Morning")
-            CustomStepperBox(number: $medicineEntryVM.afternoon, displayName: "Afternoon")
-            CustomStepperBox(number: $medicineEntryVM.night, displayName: "Night")
+            CustomStepperBox(number: $medicineEntryVM.morning, displayName: "Morn.", imageName: "sunrise.fill")
+            CustomStepperBox(number: $medicineEntryVM.afternoon, displayName: "Aft.", imageName: "sun.max.fill")
+            CustomStepperBox(number: $medicineEntryVM.night, displayName: "Nig.", imageName: "moon.stars.fill")
         }
     }
-
 }
 
 struct MedEntryAddButton : View {

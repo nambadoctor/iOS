@@ -49,7 +49,6 @@ class MedicineEntryViewModel : ObservableObject {
 
     @Published var morning:Double = 0.0
     @Published var afternoon:Double = 0.0
-    @Published var evening:Double = 0.0
     @Published var night:Double = 0.0
 
     @Published var showEmptyWarningText:Bool = false
@@ -91,13 +90,16 @@ class MedicineEntryViewModel : ObservableObject {
             let timingsSplit = medicine.timings.components(separatedBy: ",")
             morning = Double(timingsSplit[0]) ?? 0.0
             afternoon = Double(timingsSplit[1]) ?? 0.0
-            evening = Double(timingsSplit[2]) ?? 0.0
-            night = Double(timingsSplit[3]) ?? 0.0
+            night = Double(timingsSplit[2]) ?? 0.0
+            
+            if timingsSplit.count == 4 {
+                night = Double(timingsSplit[3]) ?? 0.0
+            }
+            
         } else {
             wheneverNecessary = true
             morning = 0
             afternoon = 0
-            evening = 0
             night = 0
         }
         

@@ -12,6 +12,8 @@ class DetailedBookDocViewModel : ObservableObject {
     
     var slots:[CustomerGeneratedSlot]? = nil
     
+    var notAbleToBookCallBack:()->()
+    
     @Published var customerProfile:CustomerProfile
 
     @Published var dateDisplay:[Int64] = [Int64]()
@@ -19,7 +21,7 @@ class DetailedBookDocViewModel : ObservableObject {
     
     @Published var selectedDate:Int64 = 0
     @Published var selectedTime:Int64 = 0
-    
+
     @Published var docProfPicImageLoader:ImageLoader? = nil
     
     @Published var reasonVM:ReasonPickerViewModel = ReasonPickerViewModel()
@@ -42,10 +44,12 @@ class DetailedBookDocViewModel : ObservableObject {
     
     init(serviceProvider:CustomerServiceProviderProfile,
          customerServiceProviderService:CustomerServiceProviderServiceProtocol = CustomerServiceProviderService(),
-         customerProfile:CustomerProfile) {
+         customerProfile:CustomerProfile,
+         notAbleToBookCallBack:@escaping ()->()) {
         self.customerProfile = customerProfile
         self.serviceProvider = serviceProvider
         self.customerServiceProviderService = customerServiceProviderService
+        self.notAbleToBookCallBack = notAbleToBookCallBack
         self.retrieveAvailabilities()
         
         if !serviceProvider.profilePictureURL.isEmpty {
@@ -70,7 +74,7 @@ class DetailedBookDocViewModel : ObservableObject {
             bookForChild(child: child!)
         }
     }
-    
+
     func retrieveAvailabilities () {
         customerServiceProviderService.getServiceProviderAvailabilities(serviceProviderId: serviceProvider.serviceProviderID) { (slots) in
             if slots != nil || slots?.count != 0 {
@@ -147,6 +151,7 @@ class DetailedBookDocViewModel : ObservableObject {
                         }
                     }
                 } else {
+                    self.notAbleToBookCallBack()
                     completion(false)
                 }
             }

@@ -7,7 +7,11 @@
 
 import Foundation
 
-struct ServiceProviderIntakeDosage : Codable {
+struct ServiceProviderIntakeDosage : Codable, Hashable {
+    static func == (lhs: ServiceProviderIntakeDosage, rhs: ServiceProviderIntakeDosage) -> Bool {
+        return lhs.Name.lowercased() == lhs.Name.lowercased()
+    }
+    
     var Name:String
     var Unit:String
 }

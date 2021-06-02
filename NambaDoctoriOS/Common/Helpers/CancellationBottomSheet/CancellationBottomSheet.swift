@@ -50,11 +50,11 @@ struct CancellationBottomSheet : View {
                     
                     if self.checkedOption == "Other" && reason == "Other" {
                         ExpandingTextView(text: self.$customReason)
-                            .keyboardAdaptive(specificOffSet: 100)
+                            .keyboardAdaptive(specificOffSet: 0)
                     }
                 }
             }
-            
+
             HStack {
                 Spacer()
                 Button ("Back") {
@@ -74,6 +74,7 @@ struct CancellationBottomSheet : View {
                 .font(Font.system(size:13))
                 .cornerRadius(4)
             }
+            
             
         }
         .padding(.bottom, (UIApplication.shared.windows.last?.safeAreaInsets.bottom)! + 10)

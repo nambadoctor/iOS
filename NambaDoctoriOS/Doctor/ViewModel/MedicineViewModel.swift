@@ -81,13 +81,13 @@ class MedicineViewModel: ObservableObject {
     }
 
     func makeMedicineObjAndAdd () {
-        var timingsString = "\(medicineEntryVM.morning.clean),\(medicineEntryVM.afternoon.clean),\(medicineEntryVM.evening.clean),\(medicineEntryVM.night.clean)"
+        var timingsString = "\(medicineEntryVM.morning.clean),\(medicineEntryVM.afternoon.clean),\(medicineEntryVM.night.clean)"
 
-        if medicineEntryVM.wheneverNecessary || timingsString == "0,0,0,0" {
+        if medicineEntryVM.wheneverNecessary || timingsString == "0,0,0" {
             timingsString = ""
         }
 
-        let medicine = ServiceProviderMedicine(medicineName: medicineEntryVM.medicineName, intakeDosage: medicineEntryVM.dosage, routeOfAdministration: medicineEntryVM.routeOfAdmin, intake: medicineEntryVM.intake, _duration: medicineEntryVM.duration, timings: timingsString, specialInstructions: medicineEntryVM.frequency, medicineID: UUID().uuidString, notes: medicineEntryVM.notes)
+        let medicine = ServiceProviderMedicine(medicineName: medicineEntryVM.medicineName, intakeDosage: medicineEntryVM.dosage, routeOfAdministration: medicineEntryVM.routeOfAdmin, intake: medicineEntryVM.intake, _duration: medicineEntryVM.duration, timings: timingsString, specialInstructions: medicineEntryVM.frequency, medicineID: "", notes: medicineEntryVM.notes)
 
         if medicineBeingEdited != nil {
             prescription.medicineList.remove(at: medicineBeingEdited!)
@@ -176,12 +176,6 @@ class MedicineViewModel: ObservableObject {
         
         storeImageValues()
         
-        if !prescription.medicineList.isEmpty {
-            for i in 0..<self.prescription.medicineList.count {
-                self.prescription.medicineList[i].medicineID = ""
-            }
-        }
-
         self.prescription.createdDateTime = Date().millisecondsSince1970
         prescriptionServiceCalls.setPrescription(prescription: self.prescription) { (response) in
             self.imageLoader = nil

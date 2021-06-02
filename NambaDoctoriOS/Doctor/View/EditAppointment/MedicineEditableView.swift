@@ -24,7 +24,7 @@ struct MedicineEditableView: View {
                     .bold()
             }
 
-            ForEach (medicineVM.prescription.medicineList, id: \.medicineID) { medicine in
+            ForEach (medicineVM.prescription.medicineList, id: \.self) { medicine in
                 HStack {
                     VStack (alignment: .leading, spacing: 5) {
                         Text("\(medicine.medicineName)")

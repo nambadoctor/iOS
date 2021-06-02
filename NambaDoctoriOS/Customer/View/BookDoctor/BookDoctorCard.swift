@@ -64,7 +64,7 @@ struct BookDoctorCard: View {
                                 
                                 Button(action: {
                                     CommonDefaultModifiers.showLoader(incomingLoadingText: "Generating Link")
-                                    CreateDynamicLink().makeLink(doctorId: self.customerServiceProviderVM.serviceProvider.serviceProviderID) { url in
+                                    CreateDynamicLink().makeLink(doctorId: self.customerServiceProviderVM.serviceProvider.serviceProviderID, doctorName: self.customerServiceProviderVM.serviceProviderName, profilePicURL: self.customerServiceProviderVM.serviceProvider.profilePictureURL) { url in
                                         CommonDefaultModifiers.hideLoader()
                                         shareSheet(url: url)
                                     }

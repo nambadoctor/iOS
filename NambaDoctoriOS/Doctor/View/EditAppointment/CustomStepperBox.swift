@@ -10,16 +10,18 @@ import SwiftUI
 struct CustomStepperBox: View {
     @Binding var number:Double
     var displayName:String
+    var imageName:String
+    
     var body: some View {
         HStack {
-            Image(systemName: number == 1  ? "checkmark.square": "square")
+            Image(imageName)
                 .foregroundColor(number == 1  ? .white : .black)
             Text(displayName)
                 .foregroundColor(number == 1  ? .white : .black)
                 .bold()
         }
-        .padding(.horizontal)
-        .padding(.vertical, 5)
+        .padding(.horizontal, 10)
+        .padding(.vertical, 10)
         .background(number == 1 ? Color.blue : Color.gray.opacity(0.5))
         .foregroundColor(number == 1 ? Color.white : Color.black)
         .cornerRadius(10)

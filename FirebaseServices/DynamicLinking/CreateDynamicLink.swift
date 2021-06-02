@@ -9,7 +9,7 @@ import Foundation
 import FirebaseDynamicLinks
 
 class CreateDynamicLink {
-    func makeLink (doctorId:String, completion: @escaping (_ url:String)->()) {
+    func makeLink (doctorId:String, doctorName:String, profilePicURL:String, completion: @escaping (_ url:String)->()) {
         guard let link = URL(string: "https://nambadoctor.com?docId=\(doctorId)") else { return }
         let dynamicLinksDomainURIPrefix = "https://nambadoctor.page.link"
         let linkBuilder = DynamicLinkComponents(link: link, domainURIPrefix: dynamicLinksDomainURIPrefix)
@@ -17,9 +17,9 @@ class CreateDynamicLink {
         linkBuilder!.androidParameters = DynamicLinkAndroidParameters(packageName: "com.nambadoctor")
         
         linkBuilder!.socialMetaTagParameters = DynamicLinkSocialMetaTagParameters()
-        linkBuilder!.socialMetaTagParameters!.title = "Share my profile"
-        linkBuilder!.socialMetaTagParameters!.descriptionText = "Click the link to consult with me online!"
-        linkBuilder!.socialMetaTagParameters!.imageURL = URL(string: "https://www.example.com/my-image.jpg")
+        linkBuilder!.socialMetaTagParameters!.title = doctorName
+        linkBuilder!.socialMetaTagParameters!.descriptionText = "Click the link to consult with \(doctorName)!"
+        linkBuilder!.socialMetaTagParameters!.imageURL = URL(string: profilePicURL)
         
         linkBuilder!.options = DynamicLinkComponentsOptions()
         linkBuilder!.options!.pathLength = .short

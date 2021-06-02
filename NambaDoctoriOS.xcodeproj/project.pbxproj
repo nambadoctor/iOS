@@ -82,6 +82,8 @@
 		171B8B13261481E7007E722C /* FollowUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171B8B12261481E7007E722C /* FollowUpView.swift */; };
 		171B8B812616CE53007E722C /* ModifyFeeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171B8B802616CE53007E722C /* ModifyFeeView.swift */; };
 		171FAC0F265E474D00503397 /* DeepLinkingHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171FAC0E265E474D00503397 /* DeepLinkingHandler.swift */; };
+		1726BB7B26677BE700C9B764 /* CustomerSupportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1726BB7A26677BE700C9B764 /* CustomerSupportView.swift */; };
+		1726BB7E26677D7B00C9B764 /* Intents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1726BB7D26677D7B00C9B764 /* Intents.swift */; };
 		1728B76D25B38156001D554E /* Logon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728B76C25B38156001D554E /* Logon.swift */; };
 		1728B77525B381D1001D554E /* PreRegisteredUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728B77425B381D1001D554E /* PreRegisteredUser.swift */; };
 		1728B77A25B381E7001D554E /* PreRegisteredUserVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1728B77925B381E7001D554E /* PreRegisteredUserVM.swift */; };
@@ -489,6 +491,8 @@
 		171B8B12261481E7007E722C /* FollowUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowUpView.swift; sourceTree = "<group>"; };
 		171B8B802616CE53007E722C /* ModifyFeeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyFeeView.swift; sourceTree = "<group>"; };
 		171FAC0E265E474D00503397 /* DeepLinkingHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeepLinkingHandler.swift; sourceTree = "<group>"; };
+		1726BB7A26677BE700C9B764 /* CustomerSupportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerSupportView.swift; sourceTree = "<group>"; };
+		1726BB7D26677D7B00C9B764 /* Intents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Intents.swift; sourceTree = "<group>"; };
 		1728B76C25B38156001D554E /* Logon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logon.swift; sourceTree = "<group>"; };
 		1728B77425B381D1001D554E /* PreRegisteredUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreRegisteredUser.swift; sourceTree = "<group>"; };
 		1728B77925B381E7001D554E /* PreRegisteredUserVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreRegisteredUserVM.swift; sourceTree = "<group>"; };
@@ -983,6 +987,14 @@
 			path = DeepLinking;
 			sourceTree = "<group>";
 		};
+		1726BB7726677BB700C9B764 /* CustomerSupport */ = {
+			isa = PBXGroup;
+			children = (
+				1726BB7A26677BE700C9B764 /* CustomerSupportView.swift */,
+			);
+			path = CustomerSupport;
+			sourceTree = "<group>";
+		};
 		1728B76B25B38138001D554E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -1118,6 +1130,7 @@
 				172EF2182656888C000F2B4E /* PredictingTextView.swift */,
 				177F28B8265DCBE300A5CC99 /* CategoryPicker.swift */,
 				17B9918E2660ED5900AB5A35 /* ShareSheet.swift */,
+				1726BB7D26677D7B00C9B764 /* Intents.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1182,6 +1195,7 @@
 		1739EAD82638082F00556044 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1726BB7726677BB700C9B764 /* CustomerSupport */,
 				1715EA2C266043E20004E01F /* DoctorProfileView */,
 				1758E202265C3F590012E571 /* MyDoctors */,
 				1758E1E32659100A0012E571 /* AddChildProfile */,
@@ -2328,6 +2342,7 @@
 				1716E2DC261B0FB500568837 /* IntermediateAppointmentViewModel.swift in Sources */,
 				17B5D16925B75EE9009D6A42 /* Indicator.swift in Sources */,
 				172B84BA25AED42800C6B035 /* AuthenticateService.swift in Sources */,
+				1726BB7B26677BE700C9B764 /* CustomerSupportView.swift in Sources */,
 				1715EA3526608D0D0004E01F /* CustomerDoctorProfileViewModel.swift in Sources */,
 				172EF1F12655291C000F2B4E /* MedicalHistoriesView.swift in Sources */,
 				1772755825B8A3DF0012B9DE /* AuthenticateServiceProtocol.swift in Sources */,
@@ -2565,6 +2580,7 @@
 				178EB6B22638BCF1009286B1 /* CustomerViewStates.swift in Sources */,
 				17E5185825AED16A001F1A80 /* ContentView.swift in Sources */,
 				174800B725B8DC0A00C8E3CC /* DocNotifHelpers.swift in Sources */,
+				1726BB7E26677D7B00C9B764 /* Intents.swift in Sources */,
 				176EFAA5264DECF400A6310B /* DoctorNotificationHandlerHelper.swift in Sources */,
 				173028AA2664CCF200E9F5F3 /* ServiceProviderAndCustomer.pb.swift in Sources */,
 				1796320E25AEE865002E466C /* UIResponder+Current.swift in Sources */,

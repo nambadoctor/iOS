@@ -43,6 +43,11 @@ class DoctorViewModel: ObservableObject {
         
         fetchDoctor()
     }
+    
+    var serviceProviderName:String {
+        return "\(doctor.firstName) \(doctor.lastName)"
+    }
+    
 
     func fetchDoctor () {
         let userId = UserIdHelper().retrieveUserId()

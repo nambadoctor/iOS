@@ -98,4 +98,15 @@ class CustomerAlertHelpers {
         alertTempItem = AlertItem(title: Text("Please pay after doctor sends you the prescription"), dismissButton: .default(Text("OK")))
         CommonDefaultModifiers.showAlert()
     }
+    
+    func payForExistingAppointment (doctorName:String, completion: @escaping (Bool) -> ()) {
+        alertTempItem = AlertItem(title: Text("Cannot book appointment"), message: Text("Please pay for your appointment with \(doctorName) to be able to book another appointment"), dismissButton: .default(Text("OK")))
+        CommonDefaultModifiers.showAlert()
+    }
+    
+    func finishExistingAppointment (doctorName:String, completion: @escaping (Bool) -> ()) {
+        alertTempItem = AlertItem(title: Text("Cannot book appointment"), message: Text("You already have an appointment with \(doctorName). Finish or cancel that appointment to book another one."), dismissButton: .default(Text("OK")))
+        CommonDefaultModifiers.showAlert()
+    }
+
 }

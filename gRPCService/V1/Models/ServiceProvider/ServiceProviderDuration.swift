@@ -7,7 +7,12 @@
 
 import Foundation
 
-struct ServiceProviderDuration : Codable {
+struct ServiceProviderDuration : Codable, Hashable {
+    static func == (lhs: ServiceProviderDuration, rhs: ServiceProviderDuration) -> Bool {
+        return lhs.Days.lowercased() == lhs.Days.lowercased()
+    }
+ 
+    
     var Days:String
     var Unit:String
 }

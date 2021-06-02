@@ -73,12 +73,11 @@ class GeneralDoctorHelpers : GeneralDoctorHelpersProtocol {
         if split.count > 1 {
             let mornAsFraction = convertingToFraction(decimal: Double(split[0]) ?? 0)
             let noonAsFraction = convertingToFraction(decimal: Double(split[1]) ?? 0)
-            let eveAsFraction = convertingToFraction(decimal: Double(split[2]) ?? 0)
-            let nightAsFraction = convertingToFraction(decimal: Double(split[3]) ?? 0)
+            let nightAsFraction = convertingToFraction(decimal: Double(split[2]) ?? 0)
             
-            return "\(mornAsFraction)-\(noonAsFraction)-\(eveAsFraction)-\(nightAsFraction)"
+            return "\(mornAsFraction)-\(noonAsFraction)-\(nightAsFraction)"
         } else {
-            return "0,0,0,0"
+            return "0,0,0"
         }
     }
     

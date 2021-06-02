@@ -155,7 +155,7 @@ class CustomerViewModel : ObservableObject {
     }
     
     func getDetailedBookingVM () -> DetailedBookDocViewModel{
-        DetailedBookDocViewModel(serviceProvider: self.selectedDoctor!, customerProfile: self.customerProfile!)
+        DetailedBookDocViewModel(serviceProvider: self.selectedDoctor!, customerProfile: self.customerProfile!, notAbleToBookCallBack: cannotBookAppointmentHandler)
     }
 
     func retrieveCustomerAppointments () {
@@ -278,5 +278,19 @@ extension CustomerViewModel : CustomerSelectAppointmentDelegate {
     func selected(appointment: CustomerAppointment) {
         self.selectedAppointment = appointment
         self.takeToDetailedAppointmentView = true
+    }
+}
+
+extension CustomerViewModel {
+    func cannotBookAppointmentHandler () {
+        if !upcomingAppointments.isEmpty {
+            let appointment = upcomingAppointments.first!
+            
+            if appointment.status == ConsultStateK.Finished.rawValue && !appointment.isPaid {
+                CustomerAlertHelpers().payForExistingAppointment(doctorName: appointment.serviceProviderName) { _ in }
+            } else {
+                CustomerAlertHelpers().finishExistingAppointment(doctorName: appointment.serviceProviderName) { _ in }
+            }
+        }
     }
 }
