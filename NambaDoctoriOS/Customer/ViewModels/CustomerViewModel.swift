@@ -211,7 +211,7 @@ class CustomerViewModel : ObservableObject {
         if allServiceProviders.isEmpty || allAppointments.isEmpty {
             //cannot get mydoctors
         } else {
-            var myServiceProviderIds:[String] = [String]()
+            var myServiceProviderIds:[String] = CustomerMyDoctorsLocalList().getList()
             for appointment in allAppointments {
                 myServiceProviderIds.append(appointment.serviceProviderID)
             }
@@ -284,9 +284,9 @@ extension CustomerViewModel : CustomerSelectAppointmentDelegate {
 
 extension CustomerViewModel {
     func cannotBookAppointmentHandler () {
+        CommonDefaultModifiers.hideLoader()
         if !upcomingAppointments.isEmpty {
             let appointment = upcomingAppointments.first!
-            
             if appointment.status == ConsultStateK.Finished.rawValue && !appointment.isPaid {
                 CustomerAlertHelpers().payForExistingAppointment(doctorName: appointment.serviceProviderName) { _ in }
             } else {
