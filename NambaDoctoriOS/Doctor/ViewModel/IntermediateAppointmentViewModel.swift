@@ -342,6 +342,7 @@ extension IntermediateAppointmentViewModel {
                 self.docNotifHelper.fireCancelNotif(appointmentTime: self.appointment.scheduledAppointmentStartTime, cancellationReason: self.appointment.cancellation.ReasonName)
                 DoctorDefaultModifiers.refreshAppointments()
                 CommonDefaultModifiers.hideLoader()
+                docAutoNav.leaveIntermediateView()
                 completion(success)
             } else {
                 GlobalPopupHelpers.setErrorAlert()

@@ -14,11 +14,15 @@ class CustomerNotificationHandlerHelper {
         }
     }
     
-    func callNotic (appointmentId:String) {
-        if !cusAutoNav.currentlyInTwilioRoom {
+    func callNotic (appointmentId:String, userInfo:[AnyHashable:Any]) {
+        if cusAutoNav.currenltyInIntermediateView && cusAutoNav.appointmentId == appointmentId {
+            cusAutoNav.navigateToCall(appointmentId: appointmentId)
+        } else if !cusAutoNav.currentlyInTwilioRoom && !cusAutoNav.currenltyInIntermediateView && cusAutoNav.appointmentId.isEmpty {
+            if UserTypeHelper.checkIfCustomer(userType: UserTypeHelper.getUserType()) && showRepeatingCallNotif == false {
+                showRepeatingCallNotif = true
+                FireLocalNotif().fireRepeatingNotification(userInfo: userInfo)
+            }
             cusAutoNav.callNotifRecieved(appointmentId: appointmentId)
-        } else {
-            
         }
     }
 }

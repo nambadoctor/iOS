@@ -144,6 +144,8 @@
 		173A231225CAFE2B0086342A /* ChannelManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173A231125CAFE2B0086342A /* ChannelManager.swift */; };
 		173A231B25CBB8F20086342A /* FindUserTypeViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173A231A25CBB8F20086342A /* FindUserTypeViewModelProtocol.swift */; };
 		173A7EC4262BC212004C214C /* AdviceEditableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173A7EC3262BC212004C214C /* AdviceEditableView.swift */; };
+		1741BFC22669F38A00BAB18B /* AuthTokenTimeOutHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1741BFC12669F38A00BAB18B /* AuthTokenTimeOutHelper.swift */; };
+		1741BFC4266A162E00BAB18B /* ApnPayloadDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1741BFC3266A162E00BAB18B /* ApnPayloadDecoder.swift */; };
 		17424F1E25BA0C2B00523B94 /* FinishedAppointmentsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17424F1D25BA0C2B00523B94 /* FinishedAppointmentsViewModelTests.swift */; };
 		17424F2625BA138F00523B94 /* DoctorAlertHelperProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17424F2525BA138F00523B94 /* DoctorAlertHelperProtocol.swift */; };
 		17424F3C25BA3BE400523B94 /* MockDataAlertHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17424F3B25BA3BE400523B94 /* MockDataAlertHelpers.swift */; };
@@ -551,6 +553,8 @@
 		173A231125CAFE2B0086342A /* ChannelManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelManager.swift; sourceTree = "<group>"; };
 		173A231A25CBB8F20086342A /* FindUserTypeViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindUserTypeViewModelProtocol.swift; sourceTree = "<group>"; };
 		173A7EC3262BC212004C214C /* AdviceEditableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdviceEditableView.swift; sourceTree = "<group>"; };
+		1741BFC12669F38A00BAB18B /* AuthTokenTimeOutHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTokenTimeOutHelper.swift; sourceTree = "<group>"; };
+		1741BFC3266A162E00BAB18B /* ApnPayloadDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApnPayloadDecoder.swift; sourceTree = "<group>"; };
 		17424F1D25BA0C2B00523B94 /* FinishedAppointmentsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedAppointmentsViewModelTests.swift; sourceTree = "<group>"; };
 		17424F2525BA138F00523B94 /* DoctorAlertHelperProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorAlertHelperProtocol.swift; sourceTree = "<group>"; };
 		17424F3B25BA3BE400523B94 /* MockDataAlertHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataAlertHelpers.swift; sourceTree = "<group>"; };
@@ -1131,6 +1135,7 @@
 				177F28B8265DCBE300A5CC99 /* CategoryPicker.swift */,
 				17B9918E2660ED5900AB5A35 /* ShareSheet.swift */,
 				1726BB7D26677D7B00C9B764 /* Intents.swift */,
+				1741BFC12669F38A00BAB18B /* AuthTokenTimeOutHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1342,6 +1347,7 @@
 				1748006925B8C14400C8E3CC /* SendPushNotification.swift */,
 				17A020772630201200BD828F /* LocalNotifStoreHelper.swift */,
 				176EFAA6264DF10300A6310B /* FireLocalNotification.swift */,
+				1741BFC3266A162E00BAB18B /* ApnPayloadDecoder.swift */,
 			);
 			path = NotificationService;
 			sourceTree = "<group>";
@@ -2303,6 +2309,7 @@
 				1742506D25BAE69200523B94 /* PrescriptionFormPickerConstants.swift in Sources */,
 				17424FAA25BACEF600523B94 /* ServiceRequestViewModel.swift in Sources */,
 				17EC7656260DE8940002BA75 /* DatePickerViewModel.swift in Sources */,
+				1741BFC22669F38A00BAB18B /* AuthTokenTimeOutHelper.swift in Sources */,
 				176EFAA7264DF10300A6310B /* FireLocalNotification.swift in Sources */,
 				172B850F25AEE46700C6B035 /* PhoneNumberEntryView.swift in Sources */,
 				176AA16C2637BEEA00F02346 /* CustomerAddressMapper.swift in Sources */,
@@ -2317,6 +2324,7 @@
 				17B9918F2660ED5900AB5A35 /* ShareSheet.swift in Sources */,
 				17BD2E8A263A3A1500BB0BDD /* CustomerReportViewModel.swift in Sources */,
 				1796320525AEE7B5002E466C /* Helpers.swift in Sources */,
+				1741BFC4266A162E00BAB18B /* ApnPayloadDecoder.swift in Sources */,
 				176AA1422637BD8000F02346 /* CustomerMedicine.swift in Sources */,
 				179BD39E25DE452D0076F391 /* LocalNotificationHandler.swift in Sources */,
 				171B8AE7261154C6007E722C /* DoctorProfile.swift in Sources */,
@@ -2827,7 +2835,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NambaDoctoriOS/NambaDoctoriOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 18;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"NambaDoctoriOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 4H9M6DGZQ3;
@@ -2838,7 +2846,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.15;
+				MARKETING_VERSION = 1.18;
 				PRODUCT_BUNDLE_IDENTIFIER = nambadoctor.iOS.NambaDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -2854,7 +2862,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NambaDoctoriOS/NambaDoctoriOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 15;
+				CURRENT_PROJECT_VERSION = 18;
 				DEVELOPMENT_ASSET_PATHS = "\"NambaDoctoriOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 4H9M6DGZQ3;
 				ENABLE_PREVIEWS = YES;
@@ -2864,7 +2872,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.15;
+				MARKETING_VERSION = 1.18;
 				PRODUCT_BUNDLE_IDENTIFIER = nambadoctor.iOS.NambaDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

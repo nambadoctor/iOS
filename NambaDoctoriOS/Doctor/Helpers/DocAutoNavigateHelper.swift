@@ -76,8 +76,6 @@ class DocAutoNavigateHelper {
     }
 
     func leaveIntermediateView() {
-//        self.appointmentId = ""
-//        currenltyInIntermediateView = false
         self.clearAllValues()
     }
 

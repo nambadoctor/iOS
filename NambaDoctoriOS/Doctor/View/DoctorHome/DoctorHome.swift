@@ -38,8 +38,10 @@ struct DoctorHome: View {
                     }
                 }
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
-                    if !docAutoNav.currenltyInIntermediateView {
-                        DoctorDefaultModifiers.refreshAppointments()
+                    AuthTokenTimeOutHelper().refresh {
+                        if !docAutoNav.currenltyInIntermediateView {
+                            DoctorDefaultModifiers.refreshAppointments()
+                        }
                     }
                 }
                 .environmentObject(doctorViewModel)

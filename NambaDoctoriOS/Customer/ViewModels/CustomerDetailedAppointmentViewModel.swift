@@ -151,6 +151,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     }
 
     func getAppointment (_ completion: @escaping (_ retrieved:Bool)->()) {
+        print("GETTING APPOINTMENT CALL")
         self.customerAppointmentService.getSingleAppointment(appointmentId: self.appointment.appointmentID, serviceProviderId: self.appointment.serviceProviderID) { customerAppointment in
             if customerAppointment != nil {
                 self.appointment = customerAppointment!
@@ -385,8 +386,8 @@ extension CustomerDetailedAppointmentViewModel {
             CustomerAlertHelpers().takeToChatAlert { (open) in
                 if open {
                     self.takeToChat = true
-                    cusAutoNav.clearAllValues()
                 }
+                cusAutoNav.leaveChatRoom()
             }
         }
 
@@ -394,8 +395,8 @@ extension CustomerDetailedAppointmentViewModel {
             CustomerAlertHelpers().twilioConnectToRoomAlert { (connect) in
                 if connect {
                     self.startConsultation()
-                    cusAutoNav.clearAllValues()
                 }
+                cusAutoNav.leaveTwilioRoom()
             }
         }
     }

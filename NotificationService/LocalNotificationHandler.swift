@@ -42,29 +42,16 @@ func getNotifType(type:String) -> NotifTypes {
 }
 
 class LocalNotificationHandler {
-    
-    func notifProcessingHelper (userInfo: [AnyHashable: Any]) {
-        let values = getValuesFromAPNPayload(userInfo: userInfo)
-
-        let notifType = getNotifType(type: values["type"]!)
-        print("INCOMING NOTIF TYPE: \(notifType)")
-        switch notifType {
-        case .AppointmentBooked, .AppointmentCancelled, .PrescriptionUploaded, .ReportUploaded, .Paid, .NewChatMessage:
-            break
-        case .CallInRoom:
-            CustomerDefaultModifiers.fireIncomingCallNotif()
-        default:
-            break
-        }
-    }
 
     func notifRecieveHelper (userInfo: [AnyHashable: Any], completion: @escaping (_ fire:Bool)->()) {
 
-        let values = getValuesFromAPNPayload(userInfo: userInfo)
+        let values = ApnPayloadDecoder().getValuesFromAPNPayload(userInfo: userInfo)
 
-        let notifType = getNotifType(type: values["type"]!)
+        let notifType = getNotifType(type: values[APNPayloadKeys.type.rawValue]!)
         
-        LocalNotifStorer().storeLocalNotif(title: values["title"]!, body: values["body"]!, appointmentId: values["id"]!, notifType: notifType)
+        LocalNotifStorer().storeLocalNotif(title: values[APNPayloadKeys.title.rawValue]!,
+                                           body: values[APNPayloadKeys.body.rawValue]!,
+                                           appointmentId: values[APNPayloadKeys.id.rawValue]!, notifType: notifType)
         
         switch notifType {
         case .AppointmentBooked, .AppointmentCancelled:
@@ -80,7 +67,7 @@ class LocalNotificationHandler {
             completion(true)
             break
         case .CallInRoom:
-            CustomerNotificationHandlerHelper().callNotic(appointmentId: values["id"]!)
+            CustomerNotificationHandlerHelper().callNotic(appointmentId: values[APNPayloadKeys.id.rawValue]!, userInfo: userInfo)
             completion(true)
         case .NewChatMessage:
             CommonDefaultModifiers.refreshChatCount()
@@ -93,25 +80,26 @@ class LocalNotificationHandler {
     }
 
     func notifTappedHelper (userInfo: [AnyHashable: Any]) {
-        let values = getValuesFromAPNPayload(userInfo: userInfo)
+        let values = ApnPayloadDecoder().getValuesFromAPNPayload(userInfo: userInfo)
 
-        let notifType = getNotifType(type: values["type"]!)
+        let notifType = getNotifType(type: values[APNPayloadKeys.type.rawValue]!)
+        let id = values[APNPayloadKeys.id.rawValue]!
 
         switch notifType {
         case .AppointmentBooked:
-            docAutoNav.navigateToAppointment(appointmentId: values["id"]!)
+            docAutoNav.navigateToAppointment(appointmentId: id)
             DoctorDefaultModifiers.refreshAppointments()
         case .AppointmentCancelled:
             DoctorDefaultModifiers.refreshAppointments()
         case .Paid, .ReportUploaded :
             break
         case .CallInRoom:
-            docAutoNav.navigateToCall(appointmentId: values["id"]!)
-            cusAutoNav.navigateToCall(appointmentId: values["id"]!)
+            docAutoNav.navigateToCall(appointmentId: id)
+            cusAutoNav.navigateToCall(appointmentId: id)
             break
         case .NewChatMessage:
-            docAutoNav.navigateToChat(appointmentId: values["id"]!)
-            cusAutoNav.navigateToChat(appointmentId: values["id"]!)
+            docAutoNav.navigateToChat(appointmentId: id)
+            cusAutoNav.navigateToChat(appointmentId: id)
             break
         default:
             break
@@ -140,25 +128,5 @@ class LocalNotificationHandler {
             break
         }
         LoggerService().log(appointmentId: "", eventName: "TAPPED NOTIFICATION")
-    }
-
-    private func getValuesFromAPNPayload (userInfo:[AnyHashable: Any]) -> [String:String] {
-        if let apnData = userInfo[AnyHashable("aps")] as? NSDictionary {
-            let alertData  = apnData["alert"] as! NSDictionary
-
-            let body = alertData["body"] as! String
-            let title = alertData["title"] as! String
-            let type = alertData["type"] as! String
-            let id = alertData["id"] as! String
-
-            let returnDict:[String:String] = ["body":body, "title":title, "type":type, "id":id]
-
-            return returnDict
-        } else {
-            let returnDict:[String:String] = ["body":"", "title":"", "type":"", "id":""]
-
-            return returnDict
-        }
-        
     }
 }

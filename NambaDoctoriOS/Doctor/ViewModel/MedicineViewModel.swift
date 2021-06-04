@@ -89,7 +89,7 @@ class MedicineViewModel: ObservableObject {
 
         let medicine = ServiceProviderMedicine(medicineName: medicineEntryVM.medicineName, intakeDosage: medicineEntryVM.dosage, routeOfAdministration: medicineEntryVM.routeOfAdmin, intake: medicineEntryVM.intake, _duration: medicineEntryVM.duration, timings: timingsString, specialInstructions: medicineEntryVM.frequency, medicineID: "", notes: medicineEntryVM.notes)
 
-        if medicineBeingEdited != nil {
+        if medicineBeingEdited != nil && !prescription.medicineList.isEmpty {
             prescription.medicineList.remove(at: medicineBeingEdited!)
             prescription.medicineList.insert(medicine, at: medicineBeingEdited!)
             showMedicineEntrySheet = false

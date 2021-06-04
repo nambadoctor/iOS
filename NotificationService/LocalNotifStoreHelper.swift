@@ -64,7 +64,7 @@ class LocalNotifStorer {
     }
     
     func getNumberOfNewChatsForAppointment (appointmentId:String) -> Int {
-        var notifs = LocalDecoder.decode(modelType: [LocalNotifObj].self, from: localNotifsEncodingString)
+        let notifs = LocalDecoder.decode(modelType: [LocalNotifObj].self, from: localNotifsEncodingString)
         
         var countToReturn:Int = 0
         

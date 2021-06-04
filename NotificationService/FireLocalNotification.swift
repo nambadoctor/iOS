@@ -12,16 +12,12 @@ var showRepeatingCallNotif:Bool = false
 
 class FireLocalNotif {
     func fire (userInfo:[AnyHashable: Any]) {
-        let body = userInfo[AnyHashable("body")] as? String
-        let title = userInfo[AnyHashable("title")] as? String
         
-        let warning = userInfo[AnyHashable("title")] as? String
+        let payload = ApnPayloadDecoder().getValuesFromAPNPayload(userInfo: userInfo)
         
-        guard warning != nil else { return }
-
         let content = UNMutableNotificationContent()
-        content.title = "\(title ?? "")"
-        content.subtitle = "\(body ?? "")"
+        content.title = payload[APNPayloadKeys.title.rawValue]!
+        content.subtitle = payload[APNPayloadKeys.body.rawValue]!
         content.userInfo = userInfo
         content.sound = UNNotificationSound.default
         
@@ -33,12 +29,12 @@ class FireLocalNotif {
         
         // add our notification request
         UNUserNotificationCenter.current().add(request)
-        LoggerService().log(appointmentId: "", eventName: "DISPLAYED NOTIFICATION")
+        //LoggerService().log(appointmentId: "", eventName: "DISPLAYED NOTIFICATION")
     }
     
     func fireRepeatingNotification (userInfo:[AnyHashable: Any]) {
-        showRepeatingCallNotif = true
         let timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true) { timer in
+            print("HEHEHAHA: \(showRepeatingCallNotif)")
             if showRepeatingCallNotif {
                 self.fire(userInfo: userInfo)
             } else {

@@ -187,9 +187,10 @@ class CustomerViewModel : ObservableObject {
     }
 
     func makeDetailedAppointmentVM() -> CustomerDetailedAppointmentViewModel {
+        cusAutoNav.enterDetailedView(appointmentId: self.selectedAppointment!.appointmentID)
         return CustomerDetailedAppointmentViewModel(appointment: self.selectedAppointment!)
     }
-    
+
     func getNavigationSelectedAppointment () {
         for appointment in upcomingAppointments {
             if cusAutoNav.appointmentId == appointment.appointmentID {

@@ -38,11 +38,18 @@ struct CustomerHome: View {
                             Image("person.crop.circle.fill")
                             Text("Profile")
                         }.tag(4)
+                        
+                        CustomerSupportView().tabItem {
+                            Image("questionmark.circle.fill")
+                            Text("Support")
+                        }.tag(5)
                     }
                 }
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
-                    if !cusAutoNav.currenltyInIntermediateView {
-                        CustomerDefaultModifiers.refreshAppointments()
+                    AuthTokenTimeOutHelper().refresh {
+                        if !cusAutoNav.currenltyInIntermediateView {
+                            CustomerDefaultModifiers.refreshAppointments()
+                        }
                     }
                 }
                 .environmentObject(customerVM)

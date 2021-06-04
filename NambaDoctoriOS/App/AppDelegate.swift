@@ -36,7 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         application.registerForRemoteNotifications()
-        callInNotifListener()
         // [END register_for_notifications]
         return true
     }
@@ -80,7 +79,6 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         }
         // [END_EXCLUDE]
         // Print full message.
-        print(userInfo)
         latestNotificationPayload = userInfo
         
         LoggerService().log(appointmentId: "", eventName: "NOTIFICATION DISPLAYED")
@@ -88,7 +86,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         LocalNotificationHandler().notifRecieveHelper(userInfo: userInfo) { (_) in }
         
         // Change this to your preferred presentation option
-        completionHandler([[.banner]])
+        completionHandler([[.banner]]) 
     }
     
     func userNotificationCenter(_ center: UNUserNotificationCenter,
@@ -98,29 +96,14 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         let userInfo = response.notification.request.content.userInfo
         
         LoggerService().log(appointmentId: "", eventName: "NOTIFICATION TAPPED")
-        
-        // [START_EXCLUDE]
-        // Print message ID.
+
         if let messageID = userInfo[gcmMessageIDKey] {
             print("Message ID4: \(messageID)")
         }
-        // [END_EXCLUDE]
-        // With swizzling disabled you must let Messaging know about the message, for Analytics
-        // Messaging.messaging().appDidReceiveMessage(userInfo)
-        // Print full message.
-        print(userInfo)
         
         LocalNotificationHandler().notifTappedHelper(userInfo: userInfo)
         
         completionHandler()
-    }
-    
-    func callInNotifListener () {
-        NotificationCenter.default.addObserver(forName: NSNotification.Name("\(CustomerViewStatesK.CustomerIncomingCallingNotifChange)"), object: nil, queue: .main) { (_) in
-            if latestNotificationPayload != nil {
-                FireLocalNotif().fireRepeatingNotification(userInfo: latestNotificationPayload!)
-            }
-        }
     }
 }
 // [END ios_10_message_handling]

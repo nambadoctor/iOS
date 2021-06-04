@@ -34,13 +34,18 @@ class CustomerAutoNavigateHelper {
     }
 
     func navigateToCall (appointmentId:String) {
+        showRepeatingCallNotif = false
         if currentlyInTwilioRoom {
             CustomerAlertHelpers().presentingStackedNavViewError(navType: "Meeting Room")
         } else {
-            showRepeatingCallNotif = false
             self.appointmentId = appointmentId
             self.takeToTwilioRoom = true
-            CustomerDefaultModifiers.navigateToDetailedView()
+            
+            if currenltyInIntermediateView && self.appointmentId == appointmentId {
+                CustomerDefaultModifiers.triggerAppointmentStatusChanges()
+            } else {
+                CustomerDefaultModifiers.navigateToDetailedView()
+            }
         }
     }
     
@@ -66,11 +71,14 @@ class CustomerAutoNavigateHelper {
     }
     
     func leaveChatRoom () {
+        self.takeToChat = true
         self.currentyInChat = false
     }
     
     func leaveTwilioRoom () {
         self.currentlyInTwilioRoom = false
+        self.takeToTwilioRoom = false
+        showRepeatingCallNotif = false
     }
 
     func enterDetailedView (appointmentId:String) {
@@ -82,7 +90,7 @@ class CustomerAutoNavigateHelper {
         self.appointmentId = ""
         currenltyInIntermediateView = false
     }
-    
+
     func clearAllValues () {
         appointmentId = ""
         takeToChat = false

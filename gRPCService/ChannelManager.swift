@@ -18,7 +18,7 @@ class ChannelManager {
     //production ip:- 52.182.227.174
     //testing ip:- 52.233.76.64
     //traffic manager url: nambadocservice.trafficmanager.net
-    static let sharedChannelManager = ChannelManager(host: "nambadocservice.trafficmanager.net", port: 80)
+    static let sharedChannelManager = ChannelManager(host: "52.233.76.64", port: 80)
     private var channel:ClientConnection?
     private var callOptions:CallOptions?
 
@@ -62,11 +62,7 @@ class ChannelManager {
                                     "IsProduction":"true",
                                     "DeviceInfo":""]
         
-        let dateDif = Calendar.current.dateComponents([.minute], from: tokenRetrievedDate, to: Date())
-        
-        if (dateDif.minute ?? 0) >= 45 {
-            RetrieveAuthId().getAuthId { _ in }
-        }
+        AuthTokenTimeOutHelper().refresh() {}
 
         return CallOptions(customMetadata: headers)
     }

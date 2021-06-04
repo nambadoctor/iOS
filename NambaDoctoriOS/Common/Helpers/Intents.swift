@@ -14,19 +14,12 @@ func callNumber (phoneNumber:String) {
 }
 
 func openWhatsapp(phoneNumber:String){
-    let urlWhats = "whatsapp://send?phone=\(phoneNumber)"
-    if let urlString = urlWhats.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed){
-        if let whatsappURL = URL(string: urlString) {
-            if UIApplication.shared.canOpenURL(whatsappURL){
-                if #available(iOS 10.0, *) {
-                    UIApplication.shared.open(whatsappURL, options: [:], completionHandler: nil)
-                } else {
-                    UIApplication.shared.openURL(whatsappURL)
-                }
-            }
-            else {
-                print("Install Whatsapp")
-            }
+    let appURL = URL(string: "https://wa.me/\(phoneNumber)")!
+    if UIApplication.shared.canOpenURL(appURL) {
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(appURL, options: [:], completionHandler: nil)
+        } else {
+            UIApplication.shared.openURL(appURL)
         }
     }
 }

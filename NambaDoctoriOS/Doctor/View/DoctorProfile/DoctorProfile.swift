@@ -25,7 +25,7 @@ struct DoctorProfile: View {
                     }
                 }, label: {
                     HStack {
-                        Text("Click here to share your profile with others")
+                        Text("Share Profile")
                             .fixedSize(horizontal: false, vertical: true)
                         Image("square.and.arrow.up.on.square")
                             .scaleEffect(1)

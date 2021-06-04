@@ -74,6 +74,7 @@ class CustomerTwilioViewModel : ObservableObject {
         }
         self.viewController = nil
         twilioDelegate?.leftRoom()
+        cusAutoNav.leaveTwilioRoom()
     }
 
     func toggleTwilioViewSize() {
