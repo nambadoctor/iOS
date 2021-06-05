@@ -8,20 +8,21 @@
 import Foundation
 
 class ServiceProviderAutofillMedicineMapper {
-    static func LocalToGrpc (medicine:Nd_V1_ServiceProviderAutofillMedicineMessage) -> ServiceProviderAutofillMedicine {
+    static func GrpcToLocal (medicine:Nd_V1_ServiceProviderAutofillMedicineMessage) -> ServiceProviderAutofillMedicine {
         return ServiceProviderAutofillMedicine(AutofillMedicineId: medicine.autofillMedicineID.toString,
                                                Ingredients: medicine.ingredients.toString,
                                                IngredientCount: medicine.ingredientCount.toInt32,
                                                BrandName: medicine.brandName.toString,
                                                RouteOfAdministration: medicine.routeOfAdministration.toString,
-                                               DrugType: medicine.drugType.toString)
+                                               DrugType: medicine.drugType.toString,
+                                               IsVerified: medicine.isVerified.toBool)
     }
     
-    static func LocalToGrpc (medicines:[Nd_V1_ServiceProviderAutofillMedicineMessage]) -> [ServiceProviderAutofillMedicine] {
+    static func GrpcToLocal (medicines:[Nd_V1_ServiceProviderAutofillMedicineMessage]) -> [ServiceProviderAutofillMedicine] {
         var localMedicines:[ServiceProviderAutofillMedicine] = [ServiceProviderAutofillMedicine]()
         
         for med in medicines {
-            localMedicines.append(LocalToGrpc(medicine: med))
+            localMedicines.append(GrpcToLocal(medicine: med))
         }
         
         return localMedicines

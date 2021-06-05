@@ -644,6 +644,11 @@ internal protocol Nd_V1_ServiceProviderWorkerV1ClientProtocol: GRPCClient {
     _ request: Nd_V1_IdMessage,
     callOptions: CallOptions?
   ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderAutofillMedicineListMessage>
+
+  func setAutoFillMedicines(
+    _ request: Nd_V1_ServiceProviderMedicineMessageList,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_ServiceProviderMedicineMessageList, Nd_V1_IdMessage>
 }
 
 extension Nd_V1_ServiceProviderWorkerV1ClientProtocol {
@@ -740,6 +745,24 @@ extension Nd_V1_ServiceProviderWorkerV1ClientProtocol {
       interceptors: self.interceptors?.makeGetAutoFillMedicinesInterceptors() ?? []
     )
   }
+
+  /// Unary call to SetAutoFillMedicines
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to SetAutoFillMedicines.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func setAutoFillMedicines(
+    _ request: Nd_V1_ServiceProviderMedicineMessageList,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_ServiceProviderMedicineMessageList, Nd_V1_IdMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderWorkerV1/SetAutoFillMedicines",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeSetAutoFillMedicinesInterceptors() ?? []
+    )
+  }
 }
 
 internal protocol Nd_V1_ServiceProviderWorkerV1ClientInterceptorFactoryProtocol {
@@ -758,6 +781,9 @@ internal protocol Nd_V1_ServiceProviderWorkerV1ClientInterceptorFactoryProtocol 
 
   /// - Returns: Interceptors to use when invoking 'getAutoFillMedicines'.
   func makeGetAutoFillMedicinesInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderAutofillMedicineListMessage>]
+
+  /// - Returns: Interceptors to use when invoking 'setAutoFillMedicines'.
+  func makeSetAutoFillMedicinesInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderMedicineMessageList, Nd_V1_IdMessage>]
 }
 
 internal final class Nd_V1_ServiceProviderWorkerV1Client: Nd_V1_ServiceProviderWorkerV1ClientProtocol {
@@ -2355,6 +2381,8 @@ internal protocol Nd_V1_ServiceProviderWorkerV1Provider: CallHandlerProvider {
   func getServiceProviderAvailablity(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderAvailabilityConfigList>
 
   func getAutoFillMedicines(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderAutofillMedicineListMessage>
+
+  func setAutoFillMedicines(request: Nd_V1_ServiceProviderMedicineMessageList, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_IdMessage>
 }
 
 extension Nd_V1_ServiceProviderWorkerV1Provider {
@@ -2412,6 +2440,15 @@ extension Nd_V1_ServiceProviderWorkerV1Provider {
         userFunction: self.getAutoFillMedicines(request:context:)
       )
 
+    case "SetAutoFillMedicines":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderMedicineMessageList>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_IdMessage>(),
+        interceptors: self.interceptors?.makeSetAutoFillMedicinesInterceptors() ?? [],
+        userFunction: self.setAutoFillMedicines(request:context:)
+      )
+
     default:
       return nil
     }
@@ -2439,6 +2476,10 @@ internal protocol Nd_V1_ServiceProviderWorkerV1ServerInterceptorFactoryProtocol 
   /// - Returns: Interceptors to use when handling 'getAutoFillMedicines'.
   ///   Defaults to calling `self.makeInterceptors()`.
   func makeGetAutoFillMedicinesInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderAutofillMedicineListMessage>]
+
+  /// - Returns: Interceptors to use when handling 'setAutoFillMedicines'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeSetAutoFillMedicinesInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderMedicineMessageList, Nd_V1_IdMessage>]
 }
 /// To build a server, implement a class that conforms to this protocol.
 internal protocol Nd_V1_ServiceProviderServiceRequestWorkerV1Provider: CallHandlerProvider {

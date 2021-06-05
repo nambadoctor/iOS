@@ -936,8 +936,8 @@ struct Nd_V1_ServiceProviderAutofillMedicineMessage {
   /// Clears the value of `drugType`. Subsequent reads from it will return its default value.
   mutating func clearDrugType() {self._drugType = nil}
 
-  var companyName: Nd_V1_ServiceProviderDosageMessage {
-    get {return _companyName ?? Nd_V1_ServiceProviderDosageMessage()}
+  var companyName: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _companyName ?? SwiftProtobuf.Google_Protobuf_StringValue()}
     set {_companyName = newValue}
   }
   /// Returns true if `companyName` has been explicitly set.
@@ -945,14 +945,14 @@ struct Nd_V1_ServiceProviderAutofillMedicineMessage {
   /// Clears the value of `companyName`. Subsequent reads from it will return its default value.
   mutating func clearCompanyName() {self._companyName = nil}
 
-  var duration: Nd_V1_ServiceProviderDurationMessage {
-    get {return _duration ?? Nd_V1_ServiceProviderDurationMessage()}
-    set {_duration = newValue}
+  var isVerified: SwiftProtobuf.Google_Protobuf_BoolValue {
+    get {return _isVerified ?? SwiftProtobuf.Google_Protobuf_BoolValue()}
+    set {_isVerified = newValue}
   }
-  /// Returns true if `duration` has been explicitly set.
-  var hasDuration: Bool {return self._duration != nil}
-  /// Clears the value of `duration`. Subsequent reads from it will return its default value.
-  mutating func clearDuration() {self._duration = nil}
+  /// Returns true if `isVerified` has been explicitly set.
+  var hasIsVerified: Bool {return self._isVerified != nil}
+  /// Clears the value of `isVerified`. Subsequent reads from it will return its default value.
+  mutating func clearIsVerified() {self._isVerified = nil}
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -964,8 +964,8 @@ struct Nd_V1_ServiceProviderAutofillMedicineMessage {
   fileprivate var _brandName: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _routeOfAdministration: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _drugType: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _companyName: Nd_V1_ServiceProviderDosageMessage? = nil
-  fileprivate var _duration: Nd_V1_ServiceProviderDurationMessage? = nil
+  fileprivate var _companyName: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _isVerified: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
 }
 
 struct Nd_V1_ServiceProviderAutofillMedicineListMessage {
@@ -1941,6 +1941,18 @@ struct Nd_V1_ServiceProviderMedicineMessage {
   fileprivate var _durationObj: Nd_V1_ServiceProviderDurationMessage? = nil
   fileprivate var _dosageObj: Nd_V1_ServiceProviderDosageMessage? = nil
   fileprivate var _intakeDosageObj: Nd_V1_ServiceProviderIntakeDosageMessage? = nil
+}
+
+struct Nd_V1_ServiceProviderMedicineMessageList {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var medicines: [Nd_V1_ServiceProviderMedicineMessage] = []
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
 }
 
 struct Nd_V1_ServiceProviderPaymentInfoMessage {
@@ -5972,7 +5984,7 @@ extension Nd_V1_ServiceProviderAutofillMedicineMessage: SwiftProtobuf.Message, S
     5: .same(proto: "RouteOfAdministration"),
     6: .same(proto: "DrugType"),
     7: .same(proto: "CompanyName"),
-    8: .same(proto: "Duration"),
+    8: .same(proto: "IsVerified"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -5988,7 +6000,7 @@ extension Nd_V1_ServiceProviderAutofillMedicineMessage: SwiftProtobuf.Message, S
       case 5: try { try decoder.decodeSingularMessageField(value: &self._routeOfAdministration) }()
       case 6: try { try decoder.decodeSingularMessageField(value: &self._drugType) }()
       case 7: try { try decoder.decodeSingularMessageField(value: &self._companyName) }()
-      case 8: try { try decoder.decodeSingularMessageField(value: &self._duration) }()
+      case 8: try { try decoder.decodeSingularMessageField(value: &self._isVerified) }()
       default: break
       }
     }
@@ -6016,7 +6028,7 @@ extension Nd_V1_ServiceProviderAutofillMedicineMessage: SwiftProtobuf.Message, S
     if let v = self._companyName {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
     }
-    if let v = self._duration {
+    if let v = self._isVerified {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -6030,7 +6042,7 @@ extension Nd_V1_ServiceProviderAutofillMedicineMessage: SwiftProtobuf.Message, S
     if lhs._routeOfAdministration != rhs._routeOfAdministration {return false}
     if lhs._drugType != rhs._drugType {return false}
     if lhs._companyName != rhs._companyName {return false}
-    if lhs._duration != rhs._duration {return false}
+    if lhs._isVerified != rhs._isVerified {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -7121,6 +7133,38 @@ extension Nd_V1_ServiceProviderMedicineMessage: SwiftProtobuf.Message, SwiftProt
     if lhs._durationObj != rhs._durationObj {return false}
     if lhs._dosageObj != rhs._dosageObj {return false}
     if lhs._intakeDosageObj != rhs._intakeDosageObj {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Nd_V1_ServiceProviderMedicineMessageList: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".ServiceProviderMedicineMessageList"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "medicines"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeRepeatedMessageField(value: &self.medicines) }()
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.medicines.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.medicines, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Nd_V1_ServiceProviderMedicineMessageList, rhs: Nd_V1_ServiceProviderMedicineMessageList) -> Bool {
+    if lhs.medicines != rhs.medicines {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

@@ -191,16 +191,15 @@ message ServiceProviderAutofillMedicineMessage {
 
     google.protobuf.StringValue DrugType = 6;
 
-    ServiceProviderDosageMessage CompanyName = 7;
+    google.protobuf.StringValue CompanyName = 7;
 
-    ServiceProviderDurationMessage Duration = 8;
+    google.protobuf.BoolValue IsVerified = 8;
 }
-
 
 message ServiceProviderAutofillMedicineListMessage{
 	repeated ServiceProviderAutofillMedicineMessage Medicines = 1;
 }
-
+    
 message ServiceProviderAvailability{
 
 	google.protobuf.Int32Value DayOfWeek = 1;
@@ -415,6 +414,10 @@ message ServiceProviderMedicineMessage{
     ServiceProviderDosageMessage DosageObj = 11;
 
     ServiceProviderIntakeDosageMessage IntakeDosageObj = 12;
+}
+
+message ServiceProviderMedicineMessageList {
+    repeated ServiceProviderMedicineMessage medicines = 1;
 }
 
 message ServiceProviderPaymentInfoMessage{
@@ -677,6 +680,9 @@ service ServiceProviderWorkerV1 {
 	rpc GetServiceProviderAvailablity(IdMessage) returns (ServiceProviderAvailabilityConfigList);
 
 	rpc GetAutoFillMedicines(IdMessage) returns (ServiceProviderAutofillMedicineListMessage);
+
+         rpc SetAutoFillMedicines (ServiceProviderMedicineMessageList) returns (IdMessage);
+
 }
 
 

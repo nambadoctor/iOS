@@ -19,6 +19,8 @@ protocol ServiceProviderProfileServiceProtocol {
     func setServiceProviderAvailabilities(serviceProviderId:String, availabilities:[ServiceProviderAvailability], _ completion: @escaping (_ success:Bool)->())
     
     func getAutofillMedicineList (_ completion: @escaping (([ServiceProviderAutofillMedicine]?) -> ()))
+    
+    func setNewMedicineList (medicines:[ServiceProviderMedicine] ,_ completion: @escaping (Bool) -> ())
 }
 
 class ServiceProviderProfileService : ServiceProviderProfileServiceProtocol {
@@ -204,10 +206,35 @@ class ServiceProviderProfileService : ServiceProviderProfileServiceProtocol {
             do {
                 let response = try getAutofillMedicines.response.wait()
                 print("Doctors AUTOFILL MEDICINES GET: success")
-                completion(ServiceProviderAutofillMedicineMapper.LocalToGrpc(medicines: response.medicines))
+                completion(ServiceProviderAutofillMedicineMapper.GrpcToLocal(medicines: response.medicines))
             } catch {
                 print("Doctors AUTOFILL MEDICINES GET: failed \(error)")
                 completion(nil)
+            }
+        }
+    }
+    
+    func setNewMedicineList (medicines:[ServiceProviderMedicine] ,_ completion: @escaping (Bool) -> ()) {
+        let channel = ChannelManager.sharedChannelManager.getChannel()
+        let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
+        
+        // Provide the connection to the generated client.
+        let serviceProviderClient = Nd_V1_ServiceProviderWorkerV1Client(channel: channel)
+        
+        let request = Nd_V1_ServiceProviderMedicineMessageList.with {
+            $0.medicines = ServiceProviderMedicineMapper.localMedicineToGrpc(medicines: medicines)
+        }
+
+        let getAutofillMedicines = serviceProviderClient.setAutoFillMedicines(request, callOptions: callOptions)
+
+        DispatchQueue.global().async {
+            do {
+                let response = try getAutofillMedicines.response.wait()
+                print("Doctors NEW AUTOFILL MEDICINES SET: success \(response)")
+                completion(true)
+            } catch {
+                print("Doctors NEW AUTOFILL MEDICINES SET: failed \(error)")
+                completion(false)
             }
         }
     }

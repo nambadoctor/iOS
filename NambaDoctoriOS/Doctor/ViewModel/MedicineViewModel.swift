@@ -176,6 +176,8 @@ class MedicineViewModel: ObservableObject {
         
         storeImageValues()
         
+        self.checkForNewMedicines()
+        
         self.prescription.createdDateTime = Date().millisecondsSince1970
         prescriptionServiceCalls.setPrescription(prescription: self.prescription) { (response) in
             self.imageLoader = nil
@@ -185,6 +187,22 @@ class MedicineViewModel: ObservableObject {
 
     func saveCurrentChanges () {
         storeImageValues()
+    }
+    
+    
+    func checkForNewMedicines () {
+        var newMedicines:[ServiceProviderMedicine] = [ServiceProviderMedicine]()
+        
+        for index in 0..<self.prescription.medicineList.count {
+            if !self.autoFillVM.autofillMedicineList.contains { $0.BrandName.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) == self.prescription.medicineList[index].medicineName.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) } {
+                print("NEW MED: \(self.prescription.medicineList[index])")
+                newMedicines.append(self.prescription.medicineList[index])
+            }
+        }
+        
+        if newMedicines.count > 0 {
+            ServiceProviderProfileService().setNewMedicineList(medicines: newMedicines) { _ in }
+        }
     }
 }
 

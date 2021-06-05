@@ -126,8 +126,6 @@
 		173028A32664AB6200E9F5F3 /* ServiceProviderIntakeDosage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173028A22664AB6200E9F5F3 /* ServiceProviderIntakeDosage.swift */; };
 		173028A52664AFF700E9F5F3 /* CustomerIntakeDosageMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173028A42664AFF700E9F5F3 /* CustomerIntakeDosageMapper.swift */; };
 		173028A72664B02300E9F5F3 /* ServiceProviderIntakeDosageMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173028A62664B02300E9F5F3 /* ServiceProviderIntakeDosageMapper.swift */; };
-		173028AA2664CCF200E9F5F3 /* ServiceProviderAndCustomer.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173028A82664CCF200E9F5F3 /* ServiceProviderAndCustomer.pb.swift */; };
-		173028AB2664CCF200E9F5F3 /* ServiceProviderAndCustomer.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173028A92664CCF200E9F5F3 /* ServiceProviderAndCustomer.grpc.swift */; };
 		17365DFA2646951F00386909 /* CustomerDefaultModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17365DF92646951F00386909 /* CustomerDefaultModifiers.swift */; };
 		17365DFC2646997E00386909 /* CustomerAutoNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17365DFB2646997E00386909 /* CustomerAutoNav.swift */; };
 		17365DFF2647695600386909 /* RazorPayDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17365DFE2647695600386909 /* RazorPayDisplay.swift */; };
@@ -147,6 +145,8 @@
 		1741BFC22669F38A00BAB18B /* AuthTokenTimeOutHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1741BFC12669F38A00BAB18B /* AuthTokenTimeOutHelper.swift */; };
 		1741BFC4266A162E00BAB18B /* ApnPayloadDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1741BFC3266A162E00BAB18B /* ApnPayloadDecoder.swift */; };
 		1741BFC8266A2F1000BAB18B /* CustomerMyDoctorsLocalList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1741BFC7266A2F1000BAB18B /* CustomerMyDoctorsLocalList.swift */; };
+		1741BFCF266B4CC100BAB18B /* ServiceProviderAndCustomer.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1741BFCD266B4CC000BAB18B /* ServiceProviderAndCustomer.grpc.swift */; };
+		1741BFD0266B4CC100BAB18B /* ServiceProviderAndCustomer.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1741BFCE266B4CC100BAB18B /* ServiceProviderAndCustomer.pb.swift */; };
 		17424F1E25BA0C2B00523B94 /* FinishedAppointmentsViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17424F1D25BA0C2B00523B94 /* FinishedAppointmentsViewModelTests.swift */; };
 		17424F2625BA138F00523B94 /* DoctorAlertHelperProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17424F2525BA138F00523B94 /* DoctorAlertHelperProtocol.swift */; };
 		17424F3C25BA3BE400523B94 /* MockDataAlertHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17424F3B25BA3BE400523B94 /* MockDataAlertHelpers.swift */; };
@@ -539,8 +539,6 @@
 		173028A22664AB6200E9F5F3 /* ServiceProviderIntakeDosage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderIntakeDosage.swift; sourceTree = "<group>"; };
 		173028A42664AFF700E9F5F3 /* CustomerIntakeDosageMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerIntakeDosageMapper.swift; sourceTree = "<group>"; };
 		173028A62664B02300E9F5F3 /* ServiceProviderIntakeDosageMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderIntakeDosageMapper.swift; sourceTree = "<group>"; };
-		173028A82664CCF200E9F5F3 /* ServiceProviderAndCustomer.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderAndCustomer.pb.swift; sourceTree = "<group>"; };
-		173028A92664CCF200E9F5F3 /* ServiceProviderAndCustomer.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderAndCustomer.grpc.swift; sourceTree = "<group>"; };
 		17365DF92646951F00386909 /* CustomerDefaultModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerDefaultModifiers.swift; sourceTree = "<group>"; };
 		17365DFB2646997E00386909 /* CustomerAutoNav.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerAutoNav.swift; sourceTree = "<group>"; };
 		17365DFE2647695600386909 /* RazorPayDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RazorPayDisplay.swift; sourceTree = "<group>"; };
@@ -557,6 +555,8 @@
 		1741BFC12669F38A00BAB18B /* AuthTokenTimeOutHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTokenTimeOutHelper.swift; sourceTree = "<group>"; };
 		1741BFC3266A162E00BAB18B /* ApnPayloadDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApnPayloadDecoder.swift; sourceTree = "<group>"; };
 		1741BFC7266A2F1000BAB18B /* CustomerMyDoctorsLocalList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerMyDoctorsLocalList.swift; sourceTree = "<group>"; };
+		1741BFCD266B4CC000BAB18B /* ServiceProviderAndCustomer.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderAndCustomer.grpc.swift; sourceTree = "<group>"; };
+		1741BFCE266B4CC100BAB18B /* ServiceProviderAndCustomer.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderAndCustomer.pb.swift; sourceTree = "<group>"; };
 		17424F1D25BA0C2B00523B94 /* FinishedAppointmentsViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedAppointmentsViewModelTests.swift; sourceTree = "<group>"; };
 		17424F2525BA138F00523B94 /* DoctorAlertHelperProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorAlertHelperProtocol.swift; sourceTree = "<group>"; };
 		17424F3B25BA3BE400523B94 /* MockDataAlertHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDataAlertHelpers.swift; sourceTree = "<group>"; };
@@ -1274,7 +1274,7 @@
 		173A22BB25CAF8BC0086342A /* ServiceImplementations */ = {
 			isa = PBXGroup;
 			children = (
-				173028A92664CCF200E9F5F3 /* ServiceProviderAndCustomer.grpc.swift */,
+				1741BFCD266B4CC000BAB18B /* ServiceProviderAndCustomer.grpc.swift */,
 			);
 			path = ServiceImplementations;
 			sourceTree = "<group>";
@@ -1282,7 +1282,7 @@
 		173A22BC25CAF8C60086342A /* ModelImplementations */ = {
 			isa = PBXGroup;
 			children = (
-				173028A82664CCF200E9F5F3 /* ServiceProviderAndCustomer.pb.swift */,
+				1741BFCE266B4CC100BAB18B /* ServiceProviderAndCustomer.pb.swift */,
 			);
 			path = ModelImplementations;
 			sourceTree = "<group>";
@@ -2594,10 +2594,8 @@
 				174800B725B8DC0A00C8E3CC /* DocNotifHelpers.swift in Sources */,
 				1726BB7E26677D7B00C9B764 /* Intents.swift in Sources */,
 				176EFAA5264DECF400A6310B /* DoctorNotificationHandlerHelper.swift in Sources */,
-				173028AA2664CCF200E9F5F3 /* ServiceProviderAndCustomer.pb.swift in Sources */,
 				1796320E25AEE865002E466C /* UIResponder+Current.swift in Sources */,
 				1728B77A25B381E7001D554E /* PreRegisteredUserVM.swift in Sources */,
-				173028AB2664CCF200E9F5F3 /* ServiceProviderAndCustomer.grpc.swift in Sources */,
 				17424FE525BAD1B100523B94 /* SideBySideCheckBox.swift in Sources */,
 				176AA1122637BADA00F02346 /* CustomerProfile.swift in Sources */,
 				171646DE2602B88000BB5B5A /* ServiceProviderServiceRequest.swift in Sources */,
@@ -2605,6 +2603,7 @@
 				173028A52664AFF700E9F5F3 /* CustomerIntakeDosageMapper.swift in Sources */,
 				171646A12602B5B400BB5B5A /* ServiceProviderEducation.swift in Sources */,
 				171647392603242200BB5B5A /* ServiceProviderPrescriptionMapper.swift in Sources */,
+				1741BFCF266B4CC100BAB18B /* ServiceProviderAndCustomer.grpc.swift in Sources */,
 				179C453026296AFE0073F4E0 /* CustomStepperBox.swift in Sources */,
 				176AA19C2637C6D000F02346 /* CustomerEducationMapper.swift in Sources */,
 				171646832602B36700BB5B5A /* ServiceProviderAppointment.swift in Sources */,
@@ -2623,6 +2622,7 @@
 				17AE6D2025E24B2A00B18292 /* DoctorsPatientsCardView.swift in Sources */,
 				17BA0AC725B9AE6200EDE4D1 /* ServiceProviderUpdateAppointmentStatusProtocol.swift in Sources */,
 				171648722609DFC400BB5B5A /* ColoredButtons.swift in Sources */,
+				1741BFD0266B4CC100BAB18B /* ServiceProviderAndCustomer.pb.swift in Sources */,
 				1705A4FF2653AA2E0015EFA2 /* PrescriptionPreviewView.swift in Sources */,
 				17A020782630201200BD828F /* LocalNotifStoreHelper.swift in Sources */,
 				17437EB2263E957000AFEF5B /* PDFKitView.swift in Sources */,

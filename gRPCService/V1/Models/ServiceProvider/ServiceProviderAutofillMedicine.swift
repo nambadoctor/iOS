@@ -14,4 +14,5 @@ struct ServiceProviderAutofillMedicine {
     var BrandName:String
     var RouteOfAdministration:String
     var DrugType:String
+    var IsVerified:Bool
 }
