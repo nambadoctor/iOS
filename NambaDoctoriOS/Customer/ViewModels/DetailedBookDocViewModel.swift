@@ -76,6 +76,7 @@ class DetailedBookDocViewModel : ObservableObject {
     }
 
     func retrieveAvailabilities () {
+        CommonDefaultModifiers.showLoader(incomingLoadingText: "Getting Doctor's Availability")
         customerServiceProviderService.getServiceProviderAvailabilities(serviceProviderId: serviceProvider.serviceProviderID) { (slots) in
             if slots != nil || slots?.count != 0 {
                 self.slots = slots!
@@ -83,6 +84,7 @@ class DetailedBookDocViewModel : ObservableObject {
                 self.selectedTime = self.slots![0].startDateTime
                 self.getTimesForSelectedDates(selectedDate: self.selectedDate)
                 self.parseSlots()
+                CommonDefaultModifiers.hideLoader()
             } else {
                 //TODO: handle empty slots
             }
