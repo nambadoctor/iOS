@@ -175,9 +175,7 @@ class MedicineViewModel: ObservableObject {
         prescription.prescriptionID = "" //service will make new prescription ID to update not overwrite
         
         storeImageValues()
-        
-        self.checkForNewMedicines()
-        
+                
         self.prescription.createdDateTime = Date().millisecondsSince1970
         prescriptionServiceCalls.setPrescription(prescription: self.prescription) { (response) in
             self.imageLoader = nil
@@ -189,21 +187,21 @@ class MedicineViewModel: ObservableObject {
         storeImageValues()
     }
     
-    
-    func checkForNewMedicines () {
-        var newMedicines:[ServiceProviderMedicine] = [ServiceProviderMedicine]()
-        
-        for index in 0..<self.prescription.medicineList.count {
-            if !self.autoFillVM.autofillMedicineList.contains { $0.BrandName.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) == self.prescription.medicineList[index].medicineName.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) } {
-                print("NEW MED: \(self.prescription.medicineList[index])")
-                newMedicines.append(self.prescription.medicineList[index])
-            }
-        }
-        
-        if newMedicines.count > 0 {
-            ServiceProviderProfileService().setNewMedicineList(medicines: newMedicines) { _ in }
-        }
-    }
+//
+//    func checkForNewMedicines () {
+//        var newMedicines:[ServiceProviderMedicine] = [ServiceProviderMedicine]()
+//
+//        for index in 0..<self.prescription.medicineList.count {
+//            if !self.autoFillVM.autofillMedicineList.contains { $0.BrandName.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) == self.prescription.medicineList[index].medicineName.lowercased().trimmingCharacters(in: .whitespacesAndNewlines) } {
+//                print("NEW MED: \(self.prescription.medicineList[index])")
+//                newMedicines.append(self.prescription.medicineList[index])
+//            }
+//        }
+//
+//        if newMedicines.count > 0 {
+//            ServiceProviderProfileService().setNewMedicineList(medicines: newMedicines) { _ in }
+//        }
+//    }
 }
 
 extension MedicineViewModel : MedicineEntryDelegate {

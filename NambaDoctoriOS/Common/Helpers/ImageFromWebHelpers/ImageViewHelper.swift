@@ -77,4 +77,3 @@ struct ImageViewWithNoSheet: View {
             .frame(width: width, height: height, alignment: .center)
     }
 }
-

@@ -65,7 +65,7 @@ struct ExpandingTextView: View {
     let minHeight: CGFloat = 25
     var keyboardType:UIKeyboardType = .default
     var changeDelegate:(()->Void)?
-    
+
     @State private var textViewHeight: CGFloat?
 
     var body: some View {
