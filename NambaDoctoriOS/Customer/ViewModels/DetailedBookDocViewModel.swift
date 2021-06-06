@@ -46,12 +46,12 @@ class DetailedBookDocViewModel : ObservableObject {
          customerServiceProviderService:CustomerServiceProviderServiceProtocol = CustomerServiceProviderService(),
          customerProfile:CustomerProfile,
          notAbleToBookCallBack:@escaping ()->()) {
+        print("INITIALIZINGBRUHHHH")
         self.customerProfile = customerProfile
         self.serviceProvider = serviceProvider
         self.customerServiceProviderService = customerServiceProviderService
         self.notAbleToBookCallBack = notAbleToBookCallBack
         self.retrieveAvailabilities()
-        
         if !serviceProvider.profilePictureURL.isEmpty {
             self.docProfPicImageLoader = ImageLoader(urlString: serviceProvider.profilePictureURL) { _ in }
         } else {

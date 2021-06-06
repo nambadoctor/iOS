@@ -9,27 +9,31 @@ import SwiftUI
 
 struct CustomerSupportView: View {
     var body: some View {
-        VStack (alignment: .center, spacing: 20) {
+        VStack (alignment: .center, spacing: 60) {
             
             Spacer()
             Text("Reach out to us anytime!")
+                .bold()
             
             Button(action: {
-                Image("whatsapp")
-                    .scaleEffect(2)
+                
                 openWhatsapp(phoneNumber: "+917530043008")
             }, label: {
-                Image("")
-                Text("Whatsapp")
+                HStack (spacing: 20) {
+                    Image("whatsapp")
+                        .scaleEffect(2)
+                    Text("Whatsapp")
+                }
             })
             
             Button(action: {
-                Image("phone.circle.fill")
-                    .scaleEffect(2)
                 callNumber(phoneNumber: "+917907144815")
             }, label: {
-                Image("")
-                Text("Call Us")
+                HStack (spacing: 20) {
+                    Image("phone.circle.fill")
+                        .scaleEffect(2)
+                    Text("Call Us")
+                }
             })
             
             Spacer()

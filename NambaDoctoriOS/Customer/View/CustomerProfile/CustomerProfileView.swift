@@ -17,6 +17,7 @@ struct CustomerProfileView: View {
 
                 HStack {
                     ImageView(imageLoader: customerVM.imageLoader!)
+                        .padding(.trailing, 10)
                     
                     VStack (alignment: .leading, spacing: 10) {
                         VStack (alignment: .leading, spacing: 3) {
@@ -53,6 +54,8 @@ struct CustomerProfileView: View {
                         HStack {Spacer()}
                     }
                 }
+                
+                Divider()
                 
                 HStack {
                     Text("Profile's under your account")

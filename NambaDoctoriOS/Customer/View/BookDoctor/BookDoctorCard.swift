@@ -4,7 +4,7 @@
 //
 //  Created by Surya Manivannan on 4/27/21.
 //
-
+ 
 import SwiftUI
 
 struct BookDoctorCard: View {
@@ -15,7 +15,7 @@ struct BookDoctorCard: View {
         ZStack {
             HStack {
                 
-                ImageViewWithNoSheet(imageLoader: customerServiceProviderVM.imageLoader!, height: 70, width: 70)
+                ImageViewWithNoSheet(url: self.customerServiceProviderVM.serviceProvider.profilePictureURL, height: 80, width: 80)
                     .clipShape(Circle())
                     .onTapGesture {
                         self.customerServiceProviderVM.showDetailedProfileSheet = true

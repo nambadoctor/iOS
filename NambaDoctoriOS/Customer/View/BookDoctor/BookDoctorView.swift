@@ -84,7 +84,7 @@ struct BookDoctorView: View {
             
             if self.customerVM.takeToBookDoc {
                 NavigationLink("",
-                               destination: DetailedBookDoctorView(detailedBookingVM: customerVM.getDetailedBookingVM()),
+                               destination: DetailedBookDoctorView(detailedBookingVM: customerVM.detailedViewDoctorVM!),
                                isActive: self.$customerVM.takeToBookDoc)
             }
         }

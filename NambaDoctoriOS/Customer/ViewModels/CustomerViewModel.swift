@@ -29,6 +29,7 @@ class CustomerViewModel : ObservableObject {
 
     @Published var selectedAppointment:CustomerAppointment? = nil
     @Published var takeToDetailedAppointmentView:Bool = false
+    @Published var detailedViewDoctorVM:DetailedBookDocViewModel? = nil
 
     @Published var imageLoader:ImageLoader? = nil
     
@@ -144,18 +145,15 @@ class CustomerViewModel : ObservableObject {
 
     func selectDoctorToBook(doctor:CustomerServiceProviderProfile) {
         self.selectedDoctor = doctor
+        self.detailedViewDoctorVM = DetailedBookDocViewModel(serviceProvider: self.selectedDoctor!, customerProfile: self.customerProfile!, notAbleToBookCallBack: cannotBookAppointmentHandler)
         self.takeToBookDoc = true
     }
-    
+
     func checkForDirectBookNavigation () {
         if !docIdFromLink.isEmpty {
             self.tabSelection = 3
             self.navigateToBookDoctor()
         }
-    }
-    
-    func getDetailedBookingVM () -> DetailedBookDocViewModel{
-        DetailedBookDocViewModel(serviceProvider: self.selectedDoctor!, customerProfile: self.customerProfile!, notAbleToBookCallBack: cannotBookAppointmentHandler)
     }
 
     func retrieveCustomerAppointments () {

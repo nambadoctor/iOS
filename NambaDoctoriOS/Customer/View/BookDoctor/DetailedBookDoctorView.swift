@@ -121,7 +121,6 @@ struct DetailedBookDoctorView: View {
         }
         .padding()
         .environmentObject(self.detailedBookingVM.reasonVM)
-        
     }
 
     var header : some View {

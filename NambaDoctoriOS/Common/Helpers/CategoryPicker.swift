@@ -18,7 +18,7 @@ struct CategoryPicker : View {
                 LazyHStack {
                     ForEach (self.categoriesList, id: \.SpecialityName) {category in
                         HStack {
-                            ImageView(imageLoader: ImageLoader(urlString: category.SpecialityThumbnail, { _ in }), height: 30, width: 30)
+                            ImageViewWithNoSheet(url: category.SpecialityThumbnail, height: 30, width: 30)
                             
                             Text(category.SpecialityName)
                                 .foregroundColor(category == self.selectedCategory ? Color.white : .black)

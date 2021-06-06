@@ -985,14 +985,6 @@
 			path = DoctorProfile;
 			sourceTree = "<group>";
 		};
-		171FAC0D265E474400503397 /* DeepLinking */ = {
-			isa = PBXGroup;
-			children = (
-				171FAC0E265E474D00503397 /* DeepLinkingHandler.swift */,
-			);
-			path = DeepLinking;
-			sourceTree = "<group>";
-		};
 		1726BB7726677BB700C9B764 /* CustomerSupport */ = {
 			isa = PBXGroup;
 			children = (
@@ -1813,6 +1805,7 @@
 		17B9918B2660DC8400AB5A35 /* DynamicLinking */ = {
 			isa = PBXGroup;
 			children = (
+				171FAC0E265E474D00503397 /* DeepLinkingHandler.swift */,
 				17B9918C2660DC9500AB5A35 /* CreateDynamicLink.swift */,
 			);
 			path = DynamicLinking;
@@ -1923,7 +1916,6 @@
 		17E5184725AED16A001F1A80 = {
 			isa = PBXGroup;
 			children = (
-				171FAC0D265E474400503397 /* DeepLinking */,
 				17365DFD2647694A00386909 /* RazorPay */,
 				173A229325CAF7150086342A /* gRPCService */,
 				17E3706825BF12340004C965 /* TwilioService */,

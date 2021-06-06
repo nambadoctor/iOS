@@ -19,6 +19,7 @@ pod 'razorpay-pod', '~> 1.1.1'
 pod "Device", '~> 3.2.1'
 pod 'Firebase/DynamicLinks'
 pod 'Introspect'
+pod 'SDWebImageSwiftUI'
 
   target 'NambaDoctoriOSTests' do
     inherit! :search_paths

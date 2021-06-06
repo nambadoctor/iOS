@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct ImageView: View {
     @ObservedObject var imageLoader:ImageLoader
@@ -55,20 +56,25 @@ struct ImageView: View {
 }
 
 struct ImageViewWithNoSheet: View {
-    @ObservedObject var imageLoader:ImageLoader
+    var url:String
     
     var height:CGFloat = 160
     var width:CGFloat = 120
     
     var body: some View {
-        if imageLoader.image != nil {
-            Image(uiImage: imageLoader.image!)
-                .resizable()
-                .cornerRadius(10)
-                .shadow(radius: 10)
-                .aspectRatio(contentMode: .fit)
-                .frame(width:self.width, height:self.height)
-        }
+        WebImage(url: URL(string: url))
+            .resizable()
+            .placeholder(Image(systemName: "questionmark.circle.fill")) // Placeholder Image
+            // Supports ViewBuilder as well
+            .placeholder {
+                Image("questionmark.circle.fill")
+                    .resizable()
+                    .scaledToFill()
+                    .foregroundColor(.gray)
+            }
+            .indicator(.activity) // Activity Indicator
+            .aspectRatio(contentMode: .fit)
+            .frame(width: width, height: height, alignment: .center)
     }
 }
 

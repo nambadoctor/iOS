@@ -112,6 +112,11 @@ PODS:
   - nanopb/encode (2.30907.0)
   - PromisesObjC (1.2.12)
   - razorpay-pod (1.1.12)
+  - SDWebImage (5.11.1):
+    - SDWebImage/Core (= 5.11.1)
+  - SDWebImage/Core (5.11.1)
+  - SDWebImageSwiftUI (2.0.2):
+    - SDWebImage (~> 5.10)
   - TwilioVideo (3.8.0)
 
 DEPENDENCIES:
@@ -126,6 +131,7 @@ DEPENDENCIES:
   - Firebase/Messaging
   - Introspect
   - razorpay-pod (~> 1.1.1)
+  - SDWebImageSwiftUI
   - TwilioVideo (~> 3.7)
 
 SPEC REPOS:
@@ -153,6 +159,8 @@ SPEC REPOS:
     - nanopb
     - PromisesObjC
     - razorpay-pod
+    - SDWebImage
+    - SDWebImageSwiftUI
     - TwilioVideo
 
 SPEC CHECKSUMS:
@@ -179,8 +187,10 @@ SPEC CHECKSUMS:
   nanopb: 59221d7f958fb711001e6a449489542d92ae113e
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
   razorpay-pod: e2e8cf25aea59eef51c6851716f188df71adab86
+  SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
+  SDWebImageSwiftUI: 8a3923c95108312b03a599ec1498754af55a6819
   TwilioVideo: c13a51ceca375e91620eb7578d2573c90cf53b46
 
-PODFILE CHECKSUM: 8f2f87c1fda6dc816fbdbcdfd92401996ef4c804
+PODFILE CHECKSUM: fb8edd6225c3bec9af4ec25ceef8423c627643e6
 
 COCOAPODS: 1.10.1
