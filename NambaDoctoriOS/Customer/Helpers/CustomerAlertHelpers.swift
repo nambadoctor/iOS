@@ -109,4 +109,8 @@ class CustomerAlertHelpers {
         CommonDefaultModifiers.showAlert()
     }
 
+    func thanksForFeedback () {
+        alertTempItem = AlertItem(title: Text("Thank you!"), message: Text("Your feedback is very valuable to us"), dismissButton: .default(Text("Ok")))
+        CommonDefaultModifiers.showAlert()
+    }
 }

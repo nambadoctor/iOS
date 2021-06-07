@@ -45,4 +45,9 @@ class GlobalPopupHelpers {
                           }))
         return alert
     }
+    
+    func ThankYouAlert () {
+        alertTempItem = AlertItem(title: Text("Thank you!"), dismissButton: .default(Text("Ok")))
+        CommonDefaultModifiers.showAlert()
+    }
 }

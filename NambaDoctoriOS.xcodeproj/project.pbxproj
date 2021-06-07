@@ -188,6 +188,8 @@
 		1747F8A0266D9CD900AEA532 /* RatingAndReviewService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1747F89F266D9CD900AEA532 /* RatingAndReviewService.swift */; };
 		1747F8A2266D9D0000AEA532 /* RatingAndReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1747F8A1266D9D0000AEA532 /* RatingAndReview.swift */; };
 		1747F8A4266D9EA500AEA532 /* RatingAndReviewMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1747F8A3266D9EA500AEA532 /* RatingAndReviewMapper.swift */; };
+		1747F8A6266EBEB200AEA532 /* CustomerRatingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1747F8A5266EBEB200AEA532 /* CustomerRatingViewModel.swift */; };
+		1747F8A8266EBEDB00AEA532 /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1747F8A7266EBEDB00AEA532 /* Animations.swift */; };
 		1748003425B8BCA800C8E3CC /* AppointmentCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748003325B8BCA800C8E3CC /* AppointmentCard.swift */; };
 		1748005F25B8BDB000C8E3CC /* AppointmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748005E25B8BDB000C8E3CC /* AppointmentViewModel.swift */; };
 		1748006425B8C00300C8E3CC /* ServiceProviderUpdateAppointmentStatusHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748006325B8C00300C8E3CC /* ServiceProviderUpdateAppointmentStatusHelper.swift */; };
@@ -602,6 +604,8 @@
 		1747F89F266D9CD900AEA532 /* RatingAndReviewService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingAndReviewService.swift; sourceTree = "<group>"; };
 		1747F8A1266D9D0000AEA532 /* RatingAndReview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingAndReview.swift; sourceTree = "<group>"; };
 		1747F8A3266D9EA500AEA532 /* RatingAndReviewMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingAndReviewMapper.swift; sourceTree = "<group>"; };
+		1747F8A5266EBEB200AEA532 /* CustomerRatingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerRatingViewModel.swift; sourceTree = "<group>"; };
+		1747F8A7266EBEDB00AEA532 /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
 		1748003325B8BCA800C8E3CC /* AppointmentCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentCard.swift; sourceTree = "<group>"; };
 		1748005E25B8BDB000C8E3CC /* AppointmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentViewModel.swift; sourceTree = "<group>"; };
 		1748006325B8C00300C8E3CC /* ServiceProviderUpdateAppointmentStatusHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderUpdateAppointmentStatusHelper.swift; sourceTree = "<group>"; };
@@ -1060,6 +1064,7 @@
 				17626E5525DB207000C36A99 /* LoginModels */,
 				172B851525AEE49E00C6B035 /* Helpers */,
 				172B852925AEE66600C6B035 /* View */,
+				1747F8A7266EBEDB00AEA532 /* Animations.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1236,6 +1241,7 @@
 				17BFEF1D264FAEC9000443C9 /* CustomerAllReportsViewModel.swift */,
 				1758E1E62659113D0012E571 /* AddChildProfileViewModel.swift */,
 				1715EA3426608D0D0004E01F /* CustomerDoctorProfileViewModel.swift */,
+				1747F8A5266EBEB200AEA532 /* CustomerRatingViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -2431,6 +2437,7 @@
 				17E3707025BF123F0004C965 /* Settings.swift in Sources */,
 				171646732602B28F00BB5B5A /* NotificationRequest.swift in Sources */,
 				176AA10D2637BAAF00F02346 /* CustomerServiceProviderAvailability.swift in Sources */,
+				1747F8A6266EBEB200AEA532 /* CustomerRatingViewModel.swift in Sources */,
 				171B8B812616CE53007E722C /* ModifyFeeView.swift in Sources */,
 				17424F2625BA138F00523B94 /* DoctorAlertHelperProtocol.swift in Sources */,
 				177233BE25B745C2002B814A /* EncoderDecoder.swift in Sources */,
@@ -2644,6 +2651,7 @@
 				17437EB2263E957000AFEF5B /* PDFKitView.swift in Sources */,
 				17BD2E93263C759600BB0BDD /* CustomerTwilioManager.swift in Sources */,
 				1796322E25AEE9D6002E466C /* GlobalPopupHelpers.swift in Sources */,
+				1747F8A8266EBEDB00AEA532 /* Animations.swift in Sources */,
 				17513B2226102BF600542C00 /* ImageViewHelper.swift in Sources */,
 				176AA14C2637BDBD00F02346 /* CustomerPrescription.swift in Sources */,
 				1716472A260321F900BB5B5A /* ServiceProviderGeneratedSlotMapper.swift in Sources */,

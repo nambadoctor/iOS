@@ -81,7 +81,6 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
             
             if allCallsDone.count == 2 && !allCallsDone.contains(false) {
                 viewSettingChecks()
-                self.checkIfAlreadyReviewed()
                 CommonDefaultModifiers.hideLoader()
             }
         }
@@ -111,6 +110,8 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
         } else if appointment.status == ConsultStateK.Confirmed.rawValue {
             appointmnentUpComing = true
         }
+        
+        self.checkIfAlreadyReviewed()
         CommonDefaultModifiers.hideLoader()
     }
     
@@ -447,8 +448,10 @@ extension CustomerDetailedAppointmentViewModel {
 extension CustomerDetailedAppointmentViewModel {
     func checkIfAlreadyReviewed () {
         RatingAndReviewService().getRatingAndReview(appointmentId: self.appointment.appointmentID) { rating in
-            if rating == nil {
-                self.ratingVM.presentRatingSheet = true
+            if rating == nil && self.appointmentFinished {
+                DispatchQueue.main.async {
+                    self.ratingVM.presentRatingSheet = true
+                }
             }
         }
     }

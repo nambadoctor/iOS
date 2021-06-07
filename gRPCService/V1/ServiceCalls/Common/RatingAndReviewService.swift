@@ -25,8 +25,10 @@ class RatingAndReviewService {
             do {
                 let response = try setRatingsCall.response.wait()
                 print("SET RATING CALL SUCCESS: \(response)")
+                completion(true)
             } catch {
                 print("SET RATING CALL FAILED: \(error.localizedDescription)")
+                completion(false)
             }
         }
     }

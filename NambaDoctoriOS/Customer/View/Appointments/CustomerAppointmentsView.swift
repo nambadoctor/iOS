@@ -85,7 +85,7 @@ struct CustomerAppointmentsView: View {
             
             if self.customerVM.takeToDetailedAppointmentView {
                 NavigationLink("",
-                               destination: CustomerDetailedAppointmentView(customerDetailedAppointmentVM: customerVM.makeDetailedAppointmentVM()),
+                               destination: CustomerDetailedAppointmentView(customerDetailedAppointmentVM: customerVM.customerAppointmentVM!),
                                isActive: self.$customerVM.takeToDetailedAppointmentView)
             }
         }

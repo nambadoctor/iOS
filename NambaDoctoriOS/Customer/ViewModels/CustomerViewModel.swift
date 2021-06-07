@@ -29,6 +29,7 @@ class CustomerViewModel : ObservableObject {
 
     @Published var selectedAppointment:CustomerAppointment? = nil
     @Published var takeToDetailedAppointmentView:Bool = false
+    var customerAppointmentVM:CustomerDetailedAppointmentViewModel? = nil
     @Published var detailedViewDoctorVM:DetailedBookDocViewModel? = nil
 
     @Published var imageLoader:ImageLoader? = nil
@@ -184,16 +185,10 @@ class CustomerViewModel : ObservableObject {
         }
     }
 
-    func makeDetailedAppointmentVM() -> CustomerDetailedAppointmentViewModel {
-        cusAutoNav.enterDetailedView(appointmentId: self.selectedAppointment!.appointmentID)
-        return CustomerDetailedAppointmentViewModel(appointment: self.selectedAppointment!)
-    }
-
     func getNavigationSelectedAppointment () {
         for appointment in upcomingAppointments {
             if cusAutoNav.appointmentId == appointment.appointmentID {
-                self.selectedAppointment = appointment
-                self.takeToDetailedAppointmentView = true
+                self.takeToAppointment(appointment: appointment)
             }
         }
 
@@ -275,8 +270,7 @@ class CustomerViewModel : ObservableObject {
 
 extension CustomerViewModel : CustomerSelectAppointmentDelegate {
     func selected(appointment: CustomerAppointment) {
-        self.selectedAppointment = appointment
-        self.takeToDetailedAppointmentView = true
+        takeToAppointment(appointment: appointment)
     }
 }
 
@@ -291,5 +285,14 @@ extension CustomerViewModel {
                 CustomerAlertHelpers().finishExistingAppointment(doctorName: appointment.serviceProviderName) { _ in }
             }
         }
+    }
+}
+
+extension CustomerViewModel {
+    func takeToAppointment (appointment:CustomerAppointment) {
+        self.selectedAppointment = appointment
+        cusAutoNav.enterDetailedView(appointmentId: self.selectedAppointment!.appointmentID)
+        self.customerAppointmentVM = CustomerDetailedAppointmentViewModel(appointment: appointment)
+        self.takeToDetailedAppointmentView = true
     }
 }
