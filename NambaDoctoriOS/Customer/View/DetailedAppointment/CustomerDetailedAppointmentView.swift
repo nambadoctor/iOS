@@ -72,6 +72,7 @@ struct CustomerDetailedAppointmentView: View {
             self.customerDetailedAppointmentVM.getNewChatCount()
             showLoaderListener()
         }
+        .modifier(CustomerRatingViewModifier(ratingVM: self.customerDetailedAppointmentVM.ratingVM))
         .environmentObject(self.customerDetailedAppointmentVM.reasonPickerVM)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: backButton, trailing: navBarChatButton)

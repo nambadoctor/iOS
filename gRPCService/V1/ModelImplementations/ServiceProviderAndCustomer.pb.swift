@@ -183,6 +183,148 @@ struct Nd_V1_IdMessage {
   fileprivate var _id: SwiftProtobuf.Google_Protobuf_StringValue? = nil
 }
 
+struct Nd_V1_RatingAndReviewMessage {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var ratingAndReviewID: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _ratingAndReviewID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_ratingAndReviewID = newValue}
+  }
+  /// Returns true if `ratingAndReviewID` has been explicitly set.
+  var hasRatingAndReviewID: Bool {return self._ratingAndReviewID != nil}
+  /// Clears the value of `ratingAndReviewID`. Subsequent reads from it will return its default value.
+  mutating func clearRatingAndReviewID() {self._ratingAndReviewID = nil}
+
+  var stars: SwiftProtobuf.Google_Protobuf_Int32Value {
+    get {return _stars ?? SwiftProtobuf.Google_Protobuf_Int32Value()}
+    set {_stars = newValue}
+  }
+  /// Returns true if `stars` has been explicitly set.
+  var hasStars: Bool {return self._stars != nil}
+  /// Clears the value of `stars`. Subsequent reads from it will return its default value.
+  mutating func clearStars() {self._stars = nil}
+
+  var comment: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _comment ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_comment = newValue}
+  }
+  /// Returns true if `comment` has been explicitly set.
+  var hasComment: Bool {return self._comment != nil}
+  /// Clears the value of `comment`. Subsequent reads from it will return its default value.
+  mutating func clearComment() {self._comment = nil}
+
+  var serviceProviderID: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _serviceProviderID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_serviceProviderID = newValue}
+  }
+  /// Returns true if `serviceProviderID` has been explicitly set.
+  var hasServiceProviderID: Bool {return self._serviceProviderID != nil}
+  /// Clears the value of `serviceProviderID`. Subsequent reads from it will return its default value.
+  mutating func clearServiceProviderID() {self._serviceProviderID = nil}
+
+  var customerID: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _customerID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_customerID = newValue}
+  }
+  /// Returns true if `customerID` has been explicitly set.
+  var hasCustomerID: Bool {return self._customerID != nil}
+  /// Clears the value of `customerID`. Subsequent reads from it will return its default value.
+  mutating func clearCustomerID() {self._customerID = nil}
+
+  var appointmentID: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _appointmentID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_appointmentID = newValue}
+  }
+  /// Returns true if `appointmentID` has been explicitly set.
+  var hasAppointmentID: Bool {return self._appointmentID != nil}
+  /// Clears the value of `appointmentID`. Subsequent reads from it will return its default value.
+  mutating func clearAppointmentID() {self._appointmentID = nil}
+
+  var userType: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _userType ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_userType = newValue}
+  }
+  /// Returns true if `userType` has been explicitly set.
+  var hasUserType: Bool {return self._userType != nil}
+  /// Clears the value of `userType`. Subsequent reads from it will return its default value.
+  mutating func clearUserType() {self._userType = nil}
+
+  var reviewerID: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _reviewerID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_reviewerID = newValue}
+  }
+  /// Returns true if `reviewerID` has been explicitly set.
+  var hasReviewerID: Bool {return self._reviewerID != nil}
+  /// Clears the value of `reviewerID`. Subsequent reads from it will return its default value.
+  mutating func clearReviewerID() {self._reviewerID = nil}
+
+  var skippedReview: SwiftProtobuf.Google_Protobuf_BoolValue {
+    get {return _skippedReview ?? SwiftProtobuf.Google_Protobuf_BoolValue()}
+    set {_skippedReview = newValue}
+  }
+  /// Returns true if `skippedReview` has been explicitly set.
+  var hasSkippedReview: Bool {return self._skippedReview != nil}
+  /// Clears the value of `skippedReview`. Subsequent reads from it will return its default value.
+  mutating func clearSkippedReview() {self._skippedReview = nil}
+
+  var isDeleted: SwiftProtobuf.Google_Protobuf_BoolValue {
+    get {return _isDeleted ?? SwiftProtobuf.Google_Protobuf_BoolValue()}
+    set {_isDeleted = newValue}
+  }
+  /// Returns true if `isDeleted` has been explicitly set.
+  var hasIsDeleted: Bool {return self._isDeleted != nil}
+  /// Clears the value of `isDeleted`. Subsequent reads from it will return its default value.
+  mutating func clearIsDeleted() {self._isDeleted = nil}
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _ratingAndReviewID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _stars: SwiftProtobuf.Google_Protobuf_Int32Value? = nil
+  fileprivate var _comment: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _serviceProviderID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _customerID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _appointmentID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _userType: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _reviewerID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _skippedReview: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
+  fileprivate var _isDeleted: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
+}
+
+struct Nd_V1_RatingRequestMessage {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var appointmentID: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _appointmentID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_appointmentID = newValue}
+  }
+  /// Returns true if `appointmentID` has been explicitly set.
+  var hasAppointmentID: Bool {return self._appointmentID != nil}
+  /// Clears the value of `appointmentID`. Subsequent reads from it will return its default value.
+  mutating func clearAppointmentID() {self._appointmentID = nil}
+
+  var reviewerID: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _reviewerID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_reviewerID = newValue}
+  }
+  /// Returns true if `reviewerID` has been explicitly set.
+  var hasReviewerID: Bool {return self._reviewerID != nil}
+  /// Clears the value of `reviewerID`. Subsequent reads from it will return its default value.
+  mutating func clearReviewerID() {self._reviewerID = nil}
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _appointmentID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _reviewerID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+}
+
 struct Nd_V1_NotificationRequestMessage {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -5190,6 +5332,130 @@ extension Nd_V1_IdMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplemen
 
   static func ==(lhs: Nd_V1_IdMessage, rhs: Nd_V1_IdMessage) -> Bool {
     if lhs._id != rhs._id {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Nd_V1_RatingAndReviewMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".RatingAndReviewMessage"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "RatingAndReviewId"),
+    2: .same(proto: "Stars"),
+    3: .same(proto: "Comment"),
+    4: .same(proto: "ServiceProviderId"),
+    5: .same(proto: "CustomerId"),
+    6: .same(proto: "AppointmentId"),
+    7: .same(proto: "UserType"),
+    8: .same(proto: "ReviewerId"),
+    9: .same(proto: "SkippedReview"),
+    10: .same(proto: "IsDeleted"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularMessageField(value: &self._ratingAndReviewID) }()
+      case 2: try { try decoder.decodeSingularMessageField(value: &self._stars) }()
+      case 3: try { try decoder.decodeSingularMessageField(value: &self._comment) }()
+      case 4: try { try decoder.decodeSingularMessageField(value: &self._serviceProviderID) }()
+      case 5: try { try decoder.decodeSingularMessageField(value: &self._customerID) }()
+      case 6: try { try decoder.decodeSingularMessageField(value: &self._appointmentID) }()
+      case 7: try { try decoder.decodeSingularMessageField(value: &self._userType) }()
+      case 8: try { try decoder.decodeSingularMessageField(value: &self._reviewerID) }()
+      case 9: try { try decoder.decodeSingularMessageField(value: &self._skippedReview) }()
+      case 10: try { try decoder.decodeSingularMessageField(value: &self._isDeleted) }()
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if let v = self._ratingAndReviewID {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+    }
+    if let v = self._stars {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+    }
+    if let v = self._comment {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+    }
+    if let v = self._serviceProviderID {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+    }
+    if let v = self._customerID {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+    }
+    if let v = self._appointmentID {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+    }
+    if let v = self._userType {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+    }
+    if let v = self._reviewerID {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
+    }
+    if let v = self._skippedReview {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
+    }
+    if let v = self._isDeleted {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Nd_V1_RatingAndReviewMessage, rhs: Nd_V1_RatingAndReviewMessage) -> Bool {
+    if lhs._ratingAndReviewID != rhs._ratingAndReviewID {return false}
+    if lhs._stars != rhs._stars {return false}
+    if lhs._comment != rhs._comment {return false}
+    if lhs._serviceProviderID != rhs._serviceProviderID {return false}
+    if lhs._customerID != rhs._customerID {return false}
+    if lhs._appointmentID != rhs._appointmentID {return false}
+    if lhs._userType != rhs._userType {return false}
+    if lhs._reviewerID != rhs._reviewerID {return false}
+    if lhs._skippedReview != rhs._skippedReview {return false}
+    if lhs._isDeleted != rhs._isDeleted {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Nd_V1_RatingRequestMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".RatingRequestMessage"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    6: .same(proto: "AppointmentId"),
+    8: .same(proto: "ReviewerId"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 6: try { try decoder.decodeSingularMessageField(value: &self._appointmentID) }()
+      case 8: try { try decoder.decodeSingularMessageField(value: &self._reviewerID) }()
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if let v = self._appointmentID {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+    }
+    if let v = self._reviewerID {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Nd_V1_RatingRequestMessage, rhs: Nd_V1_RatingRequestMessage) -> Bool {
+    if lhs._appointmentID != rhs._appointmentID {return false}
+    if lhs._reviewerID != rhs._reviewerID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

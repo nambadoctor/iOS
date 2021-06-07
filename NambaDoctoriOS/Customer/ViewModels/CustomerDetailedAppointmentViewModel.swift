@@ -29,6 +29,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     @Published var reasonChanged:Bool = false
 
     @Published var reportsVM:CustomerAllReportsViewModel
+    @Published var ratingVM:CustomerRatingViewModel
     
     @Published var prescriptionPDF:Data? = nil
 
@@ -64,6 +65,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
         self.customerChatViewModel = CustomerChatViewModel(appointment: appointment)
         self.customerNotifHelpers = CustomerNotificationHelper(appointment: appointment)
         self.reportsVM = CustomerAllReportsViewModel(appointment: appointment)
+        self.ratingVM = CustomerRatingViewModel(appointment: appointment)
         reasonPickerVM.reasonPickedDelegate = self
         customerTwilioViewModel.twilioDelegate = self
         initCalls()
@@ -79,10 +81,11 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
             
             if allCallsDone.count == 2 && !allCallsDone.contains(false) {
                 viewSettingChecks()
+                self.checkIfAlreadyReviewed()
                 CommonDefaultModifiers.hideLoader()
             }
         }
-        
+
         self.getAppointment { getAppointmentCompletion in
             onCompletion(success: getAppointmentCompletion)
         }
@@ -151,7 +154,6 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     }
 
     func getAppointment (_ completion: @escaping (_ retrieved:Bool)->()) {
-        print("GETTING APPOINTMENT CALL")
         self.customerAppointmentService.getSingleAppointment(appointmentId: self.appointment.appointmentID, serviceProviderId: self.appointment.serviceProviderID) { customerAppointment in
             if customerAppointment != nil {
                 self.appointment = customerAppointment!
@@ -439,5 +441,15 @@ extension CustomerDetailedAppointmentViewModel {
     
     func reasonChangedTrigger () {
         reasonChanged = true
+    }
+}
+
+extension CustomerDetailedAppointmentViewModel {
+    func checkIfAlreadyReviewed () {
+        RatingAndReviewService().getRatingAndReview(appointmentId: self.appointment.appointmentID) { rating in
+            if rating == nil {
+                self.ratingVM.presentRatingSheet = true
+            }
+        }
     }
 }

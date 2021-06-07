@@ -25,6 +25,95 @@ import NIO
 import SwiftProtobuf
 
 
+/// Usage: instantiate `Nd_V1_RatingAndReviewWorkerV1Client`, then call methods of this protocol to make API calls.
+internal protocol Nd_V1_RatingAndReviewWorkerV1ClientProtocol: GRPCClient {
+  var serviceName: String { get }
+  var interceptors: Nd_V1_RatingAndReviewWorkerV1ClientInterceptorFactoryProtocol? { get }
+
+  func setRating(
+    _ request: Nd_V1_RatingAndReviewMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_RatingAndReviewMessage, Nd_V1_StringMessage>
+
+  func getRating(
+    _ request: Nd_V1_RatingRequestMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_RatingRequestMessage, Nd_V1_RatingAndReviewMessage>
+}
+
+extension Nd_V1_RatingAndReviewWorkerV1ClientProtocol {
+  internal var serviceName: String {
+    return "nd.v1.RatingAndReviewWorkerV1"
+  }
+
+  /// Unary call to SetRating
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to SetRating.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func setRating(
+    _ request: Nd_V1_RatingAndReviewMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_RatingAndReviewMessage, Nd_V1_StringMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.RatingAndReviewWorkerV1/SetRating",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeSetRatingInterceptors() ?? []
+    )
+  }
+
+  /// Unary call to GetRating
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetRating.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getRating(
+    _ request: Nd_V1_RatingRequestMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_RatingRequestMessage, Nd_V1_RatingAndReviewMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.RatingAndReviewWorkerV1/GetRating",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetRatingInterceptors() ?? []
+    )
+  }
+}
+
+internal protocol Nd_V1_RatingAndReviewWorkerV1ClientInterceptorFactoryProtocol {
+
+  /// - Returns: Interceptors to use when invoking 'setRating'.
+  func makeSetRatingInterceptors() -> [ClientInterceptor<Nd_V1_RatingAndReviewMessage, Nd_V1_StringMessage>]
+
+  /// - Returns: Interceptors to use when invoking 'getRating'.
+  func makeGetRatingInterceptors() -> [ClientInterceptor<Nd_V1_RatingRequestMessage, Nd_V1_RatingAndReviewMessage>]
+}
+
+internal final class Nd_V1_RatingAndReviewWorkerV1Client: Nd_V1_RatingAndReviewWorkerV1ClientProtocol {
+  internal let channel: GRPCChannel
+  internal var defaultCallOptions: CallOptions
+  internal var interceptors: Nd_V1_RatingAndReviewWorkerV1ClientInterceptorFactoryProtocol?
+
+  /// Creates a client for the nd.v1.RatingAndReviewWorkerV1 service.
+  ///
+  /// - Parameters:
+  ///   - channel: `GRPCChannel` to the service host.
+  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
+  ///   - interceptors: A factory providing interceptors for each RPC.
+  internal init(
+    channel: GRPCChannel,
+    defaultCallOptions: CallOptions = CallOptions(),
+    interceptors: Nd_V1_RatingAndReviewWorkerV1ClientInterceptorFactoryProtocol? = nil
+  ) {
+    self.channel = channel
+    self.defaultCallOptions = defaultCallOptions
+    self.interceptors = interceptors
+  }
+}
+
 /// Usage: instantiate `Nd_V1_ServiceProviderAppointmentWorkerV1Client`, then call methods of this protocol to make API calls.
 internal protocol Nd_V1_ServiceProviderAppointmentWorkerV1ClientProtocol: GRPCClient {
   var serviceName: String { get }
@@ -2021,6 +2110,59 @@ internal final class Nd_V1_CustomerServiceRequestWorkerV1Client: Nd_V1_CustomerS
   }
 }
 
+/// To build a server, implement a class that conforms to this protocol.
+internal protocol Nd_V1_RatingAndReviewWorkerV1Provider: CallHandlerProvider {
+  var interceptors: Nd_V1_RatingAndReviewWorkerV1ServerInterceptorFactoryProtocol? { get }
+
+  func setRating(request: Nd_V1_RatingAndReviewMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_StringMessage>
+
+  func getRating(request: Nd_V1_RatingRequestMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_RatingAndReviewMessage>
+}
+
+extension Nd_V1_RatingAndReviewWorkerV1Provider {
+  internal var serviceName: Substring { return "nd.v1.RatingAndReviewWorkerV1" }
+
+  /// Determines, calls and returns the appropriate request handler, depending on the request's method.
+  /// Returns nil for methods not handled by this service.
+  internal func handle(
+    method name: Substring,
+    context: CallHandlerContext
+  ) -> GRPCServerHandlerProtocol? {
+    switch name {
+    case "SetRating":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_RatingAndReviewMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_StringMessage>(),
+        interceptors: self.interceptors?.makeSetRatingInterceptors() ?? [],
+        userFunction: self.setRating(request:context:)
+      )
+
+    case "GetRating":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_RatingRequestMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_RatingAndReviewMessage>(),
+        interceptors: self.interceptors?.makeGetRatingInterceptors() ?? [],
+        userFunction: self.getRating(request:context:)
+      )
+
+    default:
+      return nil
+    }
+  }
+}
+
+internal protocol Nd_V1_RatingAndReviewWorkerV1ServerInterceptorFactoryProtocol {
+
+  /// - Returns: Interceptors to use when handling 'setRating'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeSetRatingInterceptors() -> [ServerInterceptor<Nd_V1_RatingAndReviewMessage, Nd_V1_StringMessage>]
+
+  /// - Returns: Interceptors to use when handling 'getRating'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetRatingInterceptors() -> [ServerInterceptor<Nd_V1_RatingRequestMessage, Nd_V1_RatingAndReviewMessage>]
+}
 /// To build a server, implement a class that conforms to this protocol.
 internal protocol Nd_V1_ServiceProviderAppointmentWorkerV1Provider: CallHandlerProvider {
   var interceptors: Nd_V1_ServiceProviderAppointmentWorkerV1ServerInterceptorFactoryProtocol? { get }

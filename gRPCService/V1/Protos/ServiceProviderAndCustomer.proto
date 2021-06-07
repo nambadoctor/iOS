@@ -27,6 +27,30 @@ message IdMessage {
 	google.protobuf.StringValue id = 1;
 }
 
+
+message RatingAndReviewMessage {
+    google.protobuf.StringValue RatingAndReviewId = 1;
+    google.protobuf.Int32Value Stars = 2;
+    google.protobuf.StringValue Comment = 3;
+    google.protobuf.StringValue ServiceProviderId = 4;
+    google.protobuf.StringValue CustomerId = 5;
+    google.protobuf.StringValue AppointmentId = 6;
+    google.protobuf.StringValue UserType = 7;
+    google.protobuf.StringValue ReviewerId = 8;
+    google.protobuf.BoolValue SkippedReview = 9;
+    google.protobuf.BoolValue IsDeleted = 10;
+}
+
+message RatingRequestMessage {
+    google.protobuf.StringValue AppointmentId = 6;
+    google.protobuf.StringValue ReviewerId = 8;
+}
+
+service RatingAndReviewWorkerV1 {
+	rpc SetRating(RatingAndReviewMessage) returns (StringMessage);
+	rpc GetRating(RatingRequestMessage) returns (RatingAndReviewMessage);
+}
+
 message NotificationRequestMessage{
 
 	google.protobuf.StringValue Title = 1;

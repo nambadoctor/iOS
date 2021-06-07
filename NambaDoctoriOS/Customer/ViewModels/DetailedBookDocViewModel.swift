@@ -38,7 +38,7 @@ class DetailedBookDocViewModel : ObservableObject {
         return "\(serviceProvider.firstName) \(serviceProvider.lastName)"
     }
     
-    var serviceProviderFee : String {
+    var serviceProviderFee : String { 
         return "Fee: \(serviceProvider.serviceFee.clean)"
     }
     
@@ -46,7 +46,6 @@ class DetailedBookDocViewModel : ObservableObject {
          customerServiceProviderService:CustomerServiceProviderServiceProtocol = CustomerServiceProviderService(),
          customerProfile:CustomerProfile,
          notAbleToBookCallBack:@escaping ()->()) {
-        print("INITIALIZINGBRUHHHH")
         self.customerProfile = customerProfile
         self.serviceProvider = serviceProvider
         self.customerServiceProviderService = customerServiceProviderService
@@ -55,7 +54,7 @@ class DetailedBookDocViewModel : ObservableObject {
         if !serviceProvider.profilePictureURL.isEmpty {
             self.docProfPicImageLoader = ImageLoader(urlString: serviceProvider.profilePictureURL) { _ in }
         } else {
-            self.docProfPicImageLoader = ImageLoader(urlString: "https://wgsi.utoronto.ca/wp-content/uploads/2020/12/blank-profile-picture-png.png") {_ in}
+            self.docProfPicImageLoader = ImageLoader(urlString: "https://wgsi.utoronto.ca/wp-content/uploads/2020/12/blank-profile-picture-png.png") { _ in }
         }
     }
     
