@@ -42,8 +42,9 @@ struct MedicineValuesEntry : View {
             VStack (alignment: .leading) {
                 Text("MEDICINE NAME")
                     .font(.footnote)
-                    .foregroundColor(Color.black.opacity(0.4))
+                    .foregroundColor(self.medicineEntryVM.invalidMedNameAttempt == 0 ? Color.black.opacity(0.4) : Color.red)
                     .bold()
+                    .modifier(Shake(animatableData: CGFloat(self.medicineEntryVM.invalidMedNameAttempt)))
 
                 HStack {
                     PredictingTextField(predictableValues: self.$medicineEntryVM.autoFillVM.autofillMedicineList, predictedValues: self.$medicineEntryVM.autoFillVM.predictedMedicineList, textFieldInput: self.$medicineEntryVM.medicineName, changeDelegate: self.medicineEntryVM.changed, isFirstResponder: self.$medicineEntryVM.isFirstResponder)
@@ -81,8 +82,9 @@ struct MedicineValuesEntry : View {
                 VStack (alignment: .leading) {
                     Text("DOSAGE")
                         .font(.footnote)
-                        .foregroundColor(Color.black.opacity(0.4))
+                        .foregroundColor(self.medicineEntryVM.invalidDosageAttempt == 0 ? Color.black.opacity(0.4) : Color.red)
                         .bold()
+                        .modifier(Shake(animatableData: CGFloat(self.medicineEntryVM.invalidDosageAttempt)))
                     
                     ExpandingTextView(text: self.$medicineEntryVM.dosage.Name)
                 }
@@ -92,7 +94,7 @@ struct MedicineValuesEntry : View {
                         .font(.footnote)
                         .foregroundColor(Color.black.opacity(0.4))
                         .bold()
-                    
+
                     FrequencyPicker(medicineEntryVM: self.medicineEntryVM)
                 }
                 
@@ -204,21 +206,8 @@ struct MedEntryAddButton : View {
     @ObservedObject var medicineEntryVM:MedicineEntryViewModel
     
     var body: some View {
-        VStack {
-            if medicineEntryVM.dosage.Name .isEmpty || medicineEntryVM.medicineName.isEmpty {
-                if medicineEntryVM.showEmptyWarningText {
-                    Text("PLEASE FILL MEDICINE NAME AND DOSAGE")
-                        .font(.footnote)
-                        .foregroundColor(Color.red.opacity(0.5))
-                }
-                LargeButton(title: "Save Medicine", disabled: false, backgroundColor: .gray, foregroundColor: .white) {
-                    medicineEntryVM.toggleEmptyWarning()
-                }
-            } else {
-                LargeButton(title: "Save Medicine") {
-                    medicineEntryVM.makeMedObjAndAdd()
-                }
-            }
+        LargeButton(title: "Save Medicine") {
+            medicineEntryVM.makeMedObjAndAdd()
         }
     }
 }

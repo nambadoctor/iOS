@@ -22,7 +22,7 @@ struct CustomStepperBox: View {
         }
         .padding(.horizontal, 10)
         .padding(.vertical, 10)
-        .background(number == 1 ? Color.blue : Color.gray.opacity(0.5))
+        .background(number == 1 ? Color.blue : Color.gray.opacity(0.3))
         .foregroundColor(number == 1 ? Color.white : Color.black)
         .cornerRadius(10)
         .onTapGesture {

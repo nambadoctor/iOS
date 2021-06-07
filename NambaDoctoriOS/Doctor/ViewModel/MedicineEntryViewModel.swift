@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 protocol MedicineEntryDelegate {
     func addMedicine()
@@ -37,6 +38,9 @@ class MedicineEntryViewModel : ObservableObject {
     @Published var medicineNameConfirmed:Bool = false
 
     @Published var dosage:ServiceProviderIntakeDosage = MakeEmptyDosage()
+    
+    @Published var invalidMedNameAttempt:Int = 0
+    @Published var invalidDosageAttempt:Int = 0
 
     @Published var duration:ServiceProviderDuration = MakeEmptyDuration()
 
@@ -115,9 +119,28 @@ class MedicineEntryViewModel : ObservableObject {
         frequency = ""
         notes = ""
         wheneverNecessary = false
+        invalidDosageAttempt = 0
+        invalidMedNameAttempt = 0
     }
     
     func makeMedObjAndAdd() {
+        
+        guard !dosage.Name.isEmpty, !medicineName.isEmpty else {
+            if dosage.Name.isEmpty {
+                withAnimation(.default) {
+                    invalidDosageAttempt += 1
+                }
+            }
+            
+            if medicineName.isEmpty {
+                withAnimation(.default) {
+                    invalidMedNameAttempt += 1
+                }
+            }
+
+            return
+        }
+        
         medicineEditedDelegate?.addMedicine()
     }
     
@@ -131,6 +154,14 @@ class MedicineEntryViewModel : ObservableObject {
     
 
     func makeNewMedicine () {
+        
+        guard !medicineName.isEmpty else {
+            withAnimation(.default) {
+                invalidMedNameAttempt += 1
+            }
+            return
+        }
+        
         EndEditingHelper.endEditing()
         medicineNameFinalized()
         self.isFirstResponder = false
