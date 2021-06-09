@@ -111,7 +111,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
             appointmnentUpComing = true
         }
         
-        self.checkIfAlreadyReviewed()
+        //self.checkIfAlreadyReviewed()
         CommonDefaultModifiers.hideLoader()
     }
     

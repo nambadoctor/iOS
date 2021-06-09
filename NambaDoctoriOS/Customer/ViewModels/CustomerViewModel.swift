@@ -14,8 +14,10 @@ class CustomerViewModel : ObservableObject {
     var allAppointments:[CustomerAppointment] = [CustomerAppointment]()
     @Published var upcomingAppointments:[CustomerAppointment] = [CustomerAppointment]()
     @Published var finishedAppointments:[CustomerAppointment] = [CustomerAppointment]()
+    
     @Published var myServiceProviders:[CustomerServiceProviderProfile] = [CustomerServiceProviderProfile]()
     @Published var allServiceProviders:[CustomerServiceProviderProfile] = [CustomerServiceProviderProfile]()
+    @Published var serviceProvidersToDisplay:[CustomerServiceProviderProfile] = [CustomerServiceProviderProfile]()
     
     @Published var serviceProviderCategories:[SpecialtyCategory] = [SpecialtyCategory]()
     
@@ -177,6 +179,7 @@ class CustomerViewModel : ObservableObject {
         customerServiceProviderService.getAllServiceProvider(customerId: customerProfile!.customerID) { (serviceProviders) in
             if serviceProviders != nil || !serviceProviders!.isEmpty {
                 self.allServiceProviders = serviceProviders!
+                self.doctorsExistForCategory()
                 self.setMyDoctors()
                 self.checkForDirectBookNavigation()
             } else {
@@ -217,19 +220,26 @@ class CustomerViewModel : ObservableObject {
         }
     }
 
-    func doctorsExistForCategory () -> Bool {
-        
+    func doctorsExistForCategory () {
+        self.noDoctorForCategory = false
+        self.serviceProvidersToDisplay.removeAll()
         if self.selectedCategory.SpecialityName == "All Doctors" {
-            return false
+            self.serviceProvidersToDisplay = self.allServiceProviders
         }
-
-        for doctor in allServiceProviders {
-            if doctor.specialties.contains(self.selectedCategory.SpecialityName) {
-                return false
+        
+        for serviceProvider in self.allServiceProviders {
+            var appended:Bool = false
+            for specialty in serviceProvider.specialties {
+                if self.selectedCategory.SpecialityName.lowercased().trimmingCharacters(in: .whitespacesAndNewlines).contains(specialty.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)) && !appended {
+                    self.serviceProvidersToDisplay.append(serviceProvider)
+                    appended = true
+                }
             }
         }
-        
-        return true
+
+        if self.serviceProvidersToDisplay.count == 0 {
+            self.noDoctorForCategory = true
+        }
     }
 
     func addChildCallBack() {
@@ -237,7 +247,7 @@ class CustomerViewModel : ObservableObject {
     }
 
     func categoryChangedCallback () {
-        self.noDoctorForCategory = doctorsExistForCategory()
+        doctorsExistForCategory()
     }
     
     func expandAddChildHeader () {

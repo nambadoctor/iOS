@@ -152,7 +152,6 @@ class MedicineEntryViewModel : ObservableObject {
         medicineNameFinalized()
     }
     
-
     func makeNewMedicine () {
         
         guard !medicineName.isEmpty else {

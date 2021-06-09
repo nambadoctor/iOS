@@ -56,6 +56,7 @@ struct BookDoctorView: View {
                     }
                     
                     CategoryPicker(categoriesList: self.$customerVM.serviceProviderCategories, selectedCategory: self.$customerVM.selectedCategory, categoryChanged: self.customerVM.categoryChangedCallback)
+                        .frame(height: 45)
                         .padding(.top)
                     
                     if self.customerVM.noDoctorForCategory {
@@ -69,10 +70,8 @@ struct BookDoctorView: View {
                                 .multilineTextAlignment(.center)
                         }.padding()
                     } else {
-                        ForEach(customerVM.allServiceProviders, id: \.serviceProviderID) { serviceProvider in
-                            if serviceProvider.specialties.contains(self.customerVM.selectedCategory.SpecialityName.trimmingCharacters(in: .whitespacesAndNewlines)) || customerVM.selectedCategory.SpecialityName == "All Doctors" {
-                                BookDoctorCard(customerServiceProviderVM: CustomerServiceProviderViewModel(serviceProvider: serviceProvider, customerProfile: self.customerVM.customerProfile!, callBack: self.customerVM.selectDoctorToBook(doctor:)))
-                            }
+                        ForEach(customerVM.serviceProvidersToDisplay, id: \.serviceProviderID) { serviceProvider in
+                            BookDoctorCard(customerServiceProviderVM: CustomerServiceProviderViewModel(serviceProvider: serviceProvider, customerProfile: self.customerVM.customerProfile!, callBack: self.customerVM.selectDoctorToBook(doctor:)))
                         }
                         .padding(.bottom)
                     }
