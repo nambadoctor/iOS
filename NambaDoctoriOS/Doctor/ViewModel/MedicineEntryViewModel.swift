@@ -124,7 +124,7 @@ class MedicineEntryViewModel : ObservableObject {
     }
     
     func makeMedObjAndAdd() {
-        
+
         guard !dosage.Name.isEmpty, !medicineName.isEmpty else {
             if dosage.Name.isEmpty {
                 withAnimation(.default) {
@@ -137,14 +137,18 @@ class MedicineEntryViewModel : ObservableObject {
                     invalidMedNameAttempt += 1
                 }
             }
+            
+            LoggerService().log(eventName: "Trying to add medicine without entering all fields")
 
             return
         }
         
+        LoggerService().log(eventName: "Saving medicine")
         medicineEditedDelegate?.addMedicine()
     }
     
     func autoSelectMedicine (medicine:ServiceProviderAutofillMedicine) {
+        LoggerService().log(eventName: "Selected Autofill medicine: \(medicine.AutofillMedicineId)")
         EndEditingHelper.endEditing()
         medicineName = medicine.BrandName
         routeOfAdmin = medicine.RouteOfAdministration
@@ -160,6 +164,8 @@ class MedicineEntryViewModel : ObservableObject {
             }
             return
         }
+        
+        LoggerService().log(eventName: "Entered custom medicine: \(medicineName)")
         
         EndEditingHelper.endEditing()
         medicineNameFinalized()

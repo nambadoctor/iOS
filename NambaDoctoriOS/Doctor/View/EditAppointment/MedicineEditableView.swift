@@ -80,6 +80,7 @@ struct MedicineEditableView: View {
                     
                     VStack (spacing: 15) {
                         Button {
+                            LoggerService().log(eventName: "Edit already entered medicine")
                             medicineVM.editPrescription(medicine: medicine)
                         } label: {
                             Image("pencil")
@@ -87,6 +88,7 @@ struct MedicineEditableView: View {
                         }
                         
                         Button {
+                            LoggerService().log(eventName: "Remove already entered medicine")
                             medicineVM.removePrescription(medicine: medicine)
                         } label: {
                             Image("xmark.circle")
@@ -115,6 +117,7 @@ struct MedicineEditableView: View {
                 LargeButton(title: "Add Medicine",
                             backgroundColor: Color.white,
                             foregroundColor: Color.blue) {
+                    LoggerService().log(eventName: "Add new medicine")
                     medicineVM.uploadManually()
                 }
                 .sheet(isPresented: $medicineVM.showMedicineEntrySheet) {
@@ -125,6 +128,7 @@ struct MedicineEditableView: View {
                 if medicineVM.showRemoveButton {
                     LargeButton(title: "Remove Image",
                                 backgroundColor: Color.red) {
+                        LoggerService().log(eventName: "Remove image")
                         self.medicineVM.removeSelectImage()
                         self.medicineVM.removeLoadedImage()
                     }
@@ -132,6 +136,11 @@ struct MedicineEditableView: View {
                 } else {
                     LargeButton(title: "Upload Image",
                                 backgroundColor: Color.blue) {
+                        LoggerService().log(eventName: "Upload image")
+
+                        if self.medicineVM.imagePickerVM.image != nil {
+                            LoggerService().log(eventName: "Trying to upload image with existing image (maybe trying for multiple image upload)")
+                        }
                         medicineVM.imagePickerVM.showActionSheet()
                     }
                     .modifier(ImagePickerModifier(imagePickerVM: self.medicineVM.imagePickerVM))

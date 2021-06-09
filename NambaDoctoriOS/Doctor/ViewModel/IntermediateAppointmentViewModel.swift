@@ -155,6 +155,13 @@ extension IntermediateAppointmentViewModel : LoadedServiceRequestDelegate {
 //MARK:- VIEW RELATED CALLS
 extension IntermediateAppointmentViewModel {
     func toggleCollapseOfClinicalInformation () {
+        
+        if self.collapseExtraDetailEntry {
+            LoggerService().log(eventName: "Expanding clinical details")
+        } else {
+            LoggerService().log(eventName: "Collapsing Clinical details")
+        }
+        
         self.collapseExtraDetailEntry.toggle()
         DefaultPreferencesTracker().setClinicalInfoCollapseExpandSetting(expand: collapseExtraDetailEntry)
     }
@@ -167,6 +174,7 @@ extension IntermediateAppointmentViewModel {
 //MARK:- UPDATING INFORMATION CALLS
 extension IntermediateAppointmentViewModel {
     func saveForLater(completion: @escaping (_ success:Bool)->()) {
+        LoggerService().log(eventName: "Saving Prescription")
         var allSendsDone:[Bool] = [Bool]()
         
         func onCompletion(success:Bool) {
@@ -188,7 +196,7 @@ extension IntermediateAppointmentViewModel {
             onCompletion(success: success)
         }
     }
-    
+
     func sendToPatient () {
         CommonDefaultModifiers.showLoader(incomingLoadingText: "Sending Prescription")
         

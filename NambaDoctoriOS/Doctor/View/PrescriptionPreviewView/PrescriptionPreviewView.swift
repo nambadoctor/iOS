@@ -31,7 +31,9 @@ struct PrescriptionPreviewView: View {
 
             DoctorPrescriptionPreviewHelper()
         }
-        .onAppear() {intermediateVM.medicineVM.getPrescriptionPDF()}
+        .onAppear() {
+            intermediateVM.medicineVM.getPrescriptionPDF()
+        }
     }
 }
 
@@ -42,6 +44,7 @@ struct DoctorPrescriptionPreviewHelper : View {
     var body: some View {
         if medicineVM.prescriptionPDF != nil {
             PDFKitRepresentedView(medicineVM.prescriptionPDF!)
+                .onAppear() {LoggerService().log(eventName: "DISPLAYED PDF")}
         } else {
             Indicator()
         }

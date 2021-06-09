@@ -129,25 +129,12 @@ struct EditableAppointmentView: View {
         }
     }
     
-    var saveButton : some View {
-        VStack {
-            LargeButton(title: "Save For Later",
-                        backgroundColor: Color.white,
-                        foregroundColor: Color.blue) {
-                CommonDefaultModifiers.showLoader(incomingLoadingText: "Saving Changes")
-                intermediateVM.saveForLater { _ in
-                    CommonDefaultModifiers.hideLoader()
-                    DoctorAlertHelpers().isSavedAlert()
-                }
-            }
-        }
-    }
-    
     var previewPrescription : some View {
         VStack {
             LargeButton(title: "Preview",
                         backgroundColor: Color.white,
                         foregroundColor: Color.blue) {
+                LoggerService().log(eventName: "Click preview pdf")
                 self.intermediateVM.previewPrescription()
             }
         }
@@ -160,10 +147,15 @@ struct EditableAppointmentView: View {
         VStack {
             LargeButton(title: intermediateVM.appointmentFinished ? "Amend and Submit" : "Submit",
                         backgroundColor: Color.blue) {
+                LoggerService().log(eventName: "Clicked send to patient")
+                LoggerService().log(eventName: "Displaying send prescription confirmation alert")
                 DoctorAlertHelpers().sendPrescriptionAlert { sendPrescription in
                     if sendPrescription {
+                        LoggerService().log(eventName: "Confirmed send to patient")
                         EndEditingHelper.endEditing()
                         intermediateVM.sendToPatient()
+                    } else {
+                        LoggerService().log(eventName: "Closed confirmation popup")
                     }
                 }
             }
