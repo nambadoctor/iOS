@@ -129,7 +129,7 @@ class DoctorViewModel: ObservableObject {
     }
     
     func getMyPatients () {
-        serviceProviderServiceCall.getListOfPatients(serviceProviderId: self.doctor.serviceProviderID) { (listOfPatients) in
+        ServiceProviderCustomerService().getListOfPatients(serviceProviderId: self.doctor.serviceProviderID) { (listOfPatients) in
             if listOfPatients != nil {
                 self.myPatients = listOfPatients!
             } else {

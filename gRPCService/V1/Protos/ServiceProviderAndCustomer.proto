@@ -711,13 +711,10 @@ message ServiceProviderAppointmentSummaryListMessage {
 }
 
 message ServiceProviderAppointmentSummaryRequestMessage{
-
-	//Be either parent or child id
-	google.protobuf.StringValue CustomerId = 1;
-
-	google.protobuf.StringValue ServiceProviderId = 2;
+        google.protobuf.StringValue ParentCustomerId = 1;     	
+     	google.protobuf.StringValue ServiceProviderId = 2;
+      	google.protobuf.StringValue ChildId = 3;
 }
-
 
 service ServiceProviderReportWorkerV1{
 

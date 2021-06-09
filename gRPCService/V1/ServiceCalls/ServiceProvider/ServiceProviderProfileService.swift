@@ -12,8 +12,6 @@ protocol ServiceProviderProfileServiceProtocol {
     
     func getServiceProvider (serviceProviderId:String, _ completion : @escaping (_ DoctorObj:ServiceProviderProfile?)->())
     
-    func getListOfPatients(serviceProviderId:String, _ completion: @escaping (([ServiceProviderMyPatientProfile]?) -> ()))
-    
     func getServiceProviderAvailabilities(serviceProviderId:String, _ completion: @escaping (([ServiceProviderAvailability]?) -> ()))
     
     func setServiceProviderAvailabilities(serviceProviderId:String, availabilities:[ServiceProviderAvailability], _ completion: @escaping (_ success:Bool)->())
@@ -97,38 +95,6 @@ class ServiceProviderProfileService : ServiceProviderProfileServiceProtocol {
         }
     }
 
-
-    func getListOfPatients(serviceProviderId:String, _ completion: @escaping (([ServiceProviderMyPatientProfile]?) -> ())) {
-                
-        let channel = ChannelManager.sharedChannelManager.getChannel()
-        let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
-        
-        // Provide the connection to the generated client.
-        let patientClient = Nd_V1_ServiceProviderCustomerWorkerV1Client(channel: channel)
-
-        let request = Nd_V1_IdMessage.with {
-            $0.id = serviceProviderId.toProto
-        }
-
-        let getDoctorsPatients = patientClient.getCustomers(request, callOptions: callOptions)
-
-        DispatchQueue.global().async {
-            do {
-                let response = try getDoctorsPatients.response.wait()
-                let patientList = ServiceProviderMyPatientProfileMapper.GrpcToLocal(profileMessages: response.myPatients)
-                print("Doctors Patients received: success")
-                DispatchQueue.main.async {
-                    completion(patientList)
-                }
-            } catch {
-                print("Doctors Patients received failed: \(error)")
-                DispatchQueue.main.async {
-                    completion(nil)
-                }
-            }
-        }
-    }
-    
     func getServiceProviderAvailabilities(serviceProviderId:String, _ completion: @escaping (([ServiceProviderAvailability]?) -> ())) {
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()

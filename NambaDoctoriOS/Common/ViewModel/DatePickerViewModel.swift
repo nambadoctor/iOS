@@ -57,7 +57,7 @@ class DatePickerViewModel : ObservableObject {
     func getDateNumber (index:Int) -> String {
         Helpers.getDatePickerStringFromDate(date: Dates[index].date)[1]
     }
-    
+
     func compareDate (index:Int) -> Bool {
         return Helpers.compareDate(date1: Dates[index].date, date2: selectedDate)
     }

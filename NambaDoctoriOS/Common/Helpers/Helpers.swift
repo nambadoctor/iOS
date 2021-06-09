@@ -204,6 +204,18 @@ class Helpers {
         return "\(dateString1)"
     }
     
+    static func ThreeLetterMonthDateString (date : Date) -> String {
+        let formatter = DateFormatter()
+        
+        formatter.timeZone = TimeZone.current
+        
+        formatter.dateFormat = "MMM"
+
+        let dateString1 = formatter.string(from: date)
+        
+        return "\(dateString1)"
+    }
+    
     static func getDisplayForDateSelector (timeStamp : Int64) -> String {
         let formatter = DateFormatter()
         

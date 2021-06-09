@@ -30,11 +30,16 @@ struct DoctorHome: View {
                             Image("person.crop.circle.fill")
                             Text("My Profile")
                         }.tag(2)
+                        
+                        DoctorsPatientsView().tabItem {
+                            Image("folder.fill.badge.person.crop")
+                            Text("My Patients")
+                        }.tag(3)
 
                         DocNotificationDisplayView().tabItem {
                             Image("bell")
                             Text("Notifications")
-                        }.tag(3)
+                        }.tag(4)
                     }
                 }
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in

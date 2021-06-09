@@ -3068,15 +3068,14 @@ struct Nd_V1_ServiceProviderAppointmentSummaryRequestMessage {
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  ///Be either parent or child id
-  var customerID: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _customerID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_customerID = newValue}
+  var parentCustomerID: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _parentCustomerID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_parentCustomerID = newValue}
   }
-  /// Returns true if `customerID` has been explicitly set.
-  var hasCustomerID: Bool {return self._customerID != nil}
-  /// Clears the value of `customerID`. Subsequent reads from it will return its default value.
-  mutating func clearCustomerID() {self._customerID = nil}
+  /// Returns true if `parentCustomerID` has been explicitly set.
+  var hasParentCustomerID: Bool {return self._parentCustomerID != nil}
+  /// Clears the value of `parentCustomerID`. Subsequent reads from it will return its default value.
+  mutating func clearParentCustomerID() {self._parentCustomerID = nil}
 
   var serviceProviderID: SwiftProtobuf.Google_Protobuf_StringValue {
     get {return _serviceProviderID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
@@ -3087,12 +3086,22 @@ struct Nd_V1_ServiceProviderAppointmentSummaryRequestMessage {
   /// Clears the value of `serviceProviderID`. Subsequent reads from it will return its default value.
   mutating func clearServiceProviderID() {self._serviceProviderID = nil}
 
+  var childID: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _childID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_childID = newValue}
+  }
+  /// Returns true if `childID` has been explicitly set.
+  var hasChildID: Bool {return self._childID != nil}
+  /// Clears the value of `childID`. Subsequent reads from it will return its default value.
+  mutating func clearChildID() {self._childID = nil}
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
 
-  fileprivate var _customerID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _parentCustomerID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _serviceProviderID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _childID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
 }
 
 struct Nd_V1_CustomerAddress {
@@ -8711,8 +8720,9 @@ extension Nd_V1_ServiceProviderAppointmentSummaryListMessage: SwiftProtobuf.Mess
 extension Nd_V1_ServiceProviderAppointmentSummaryRequestMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".ServiceProviderAppointmentSummaryRequestMessage"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
-    1: .same(proto: "CustomerId"),
+    1: .same(proto: "ParentCustomerId"),
     2: .same(proto: "ServiceProviderId"),
+    3: .same(proto: "ChildId"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -8721,26 +8731,31 @@ extension Nd_V1_ServiceProviderAppointmentSummaryRequestMessage: SwiftProtobuf.M
       // allocates stack space for every case branch when no optimizations are
       // enabled. https://github.com/apple/swift-protobuf/issues/1034
       switch fieldNumber {
-      case 1: try { try decoder.decodeSingularMessageField(value: &self._customerID) }()
+      case 1: try { try decoder.decodeSingularMessageField(value: &self._parentCustomerID) }()
       case 2: try { try decoder.decodeSingularMessageField(value: &self._serviceProviderID) }()
+      case 3: try { try decoder.decodeSingularMessageField(value: &self._childID) }()
       default: break
       }
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if let v = self._customerID {
+    if let v = self._parentCustomerID {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
     }
     if let v = self._serviceProviderID {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
     }
+    if let v = self._childID {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   static func ==(lhs: Nd_V1_ServiceProviderAppointmentSummaryRequestMessage, rhs: Nd_V1_ServiceProviderAppointmentSummaryRequestMessage) -> Bool {
-    if lhs._customerID != rhs._customerID {return false}
+    if lhs._parentCustomerID != rhs._parentCustomerID {return false}
     if lhs._serviceProviderID != rhs._serviceProviderID {return false}
+    if lhs._childID != rhs._childID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

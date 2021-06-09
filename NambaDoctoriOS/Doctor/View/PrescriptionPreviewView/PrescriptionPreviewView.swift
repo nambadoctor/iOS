@@ -10,7 +10,7 @@ import SwiftUI
 struct PrescriptionPreviewView: View {
     
     @EnvironmentObject var intermediateVM:IntermediateAppointmentViewModel
-    
+
     var body: some View {
         VStack {
             HStack {

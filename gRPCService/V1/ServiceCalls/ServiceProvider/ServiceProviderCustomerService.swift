@@ -13,6 +13,8 @@ protocol ServiceProviderCustomerServiceProtocol {
                             completion: @escaping (_ returnId:String?) -> ())
     func getPatientProfile(patientId: String,
                            completion: @escaping (_ profile:ServiceProviderCustomerProfile?) -> ())
+    
+    func getListOfPatients(serviceProviderId:String, _ completion: @escaping (([ServiceProviderMyPatientProfile]?) -> ()))
 }
 
 class ServiceProviderCustomerService: ServiceProviderCustomerServiceProtocol {
@@ -87,4 +89,68 @@ class ServiceProviderCustomerService: ServiceProviderCustomerServiceProtocol {
             }
         }
     }
+    
+    func getListOfPatients(serviceProviderId:String, _ completion: @escaping ([ServiceProviderMyPatientProfile]?) -> ()) {
+                
+        let channel = ChannelManager.sharedChannelManager.getChannel()
+        let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
+        
+        // Provide the connection to the generated client.
+        let patientClient = Nd_V1_ServiceProviderCustomerWorkerV1Client(channel: channel)
+
+        let request = Nd_V1_IdMessage.with {
+            $0.id = serviceProviderId.toProto
+        }
+
+        let getDoctorsPatients = patientClient.getCustomers(request, callOptions: callOptions)
+
+        DispatchQueue.global().async {
+            do {
+                let response = try getDoctorsPatients.response.wait()
+                let patientList = ServiceProviderMyPatientProfileMapper.GrpcToLocal(profileMessages: response.myPatients)
+                print("Doctors Patients received: success")
+                DispatchQueue.main.async {
+                    completion(patientList)
+                }
+            } catch {
+                print("Doctors Patients received failed: \(error)")
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            }
+        }
+    }
+    
+    func getAppointmentSummary (parentCustomerId:String, serviceProviderId:String, childId:String, _ completion: @escaping ([ServiceProviderAppointmentSummary]?) -> ()) {
+        let channel = ChannelManager.sharedChannelManager.getChannel()
+        let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
+
+        // Provide the connection to the generated client.
+        let patientClient = Nd_V1_ServiceProviderCustomerWorkerV1Client(channel: channel)
+
+        let request = Nd_V1_ServiceProviderAppointmentSummaryRequestMessage.with {
+            $0.parentCustomerID = parentCustomerId.toProto
+            $0.serviceProviderID = serviceProviderId.toProto
+            $0.childID = childId.toProto
+        }
+
+        let getAppointmentSummary = patientClient.getCustomerAppointmentSummary(request, callOptions: callOptions)
+
+        DispatchQueue.global().async {
+            do {
+                let response = try getAppointmentSummary.response.wait()
+                let appointmentSummary = ServiceProviderAppointmentSummaryMapper.GrpcToLocal(appointmentSummary: response.serviceProviderAppointmentSummaryList)
+                print("Appointment Summary received: success")
+                DispatchQueue.main.async {
+                    completion(appointmentSummary)
+                }
+            } catch {
+                print("Appointment Summary received failed: \(error)")
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            }
+        }
+    }
+    
 }
