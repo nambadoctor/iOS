@@ -200,6 +200,23 @@ message ServiceProviderAppInfo{
 
 }
 
+message ServiceProviderMyPatientsProfileMessage{
+	google.protobuf.StringValue CustomerId = 1;
+
+    google.protobuf.StringValue Name = 2;
+
+    google.protobuf.StringValue Gender = 3;
+
+    google.protobuf.StringValue Age = 4;
+
+    google.protobuf.BoolValue IsChild = 5;
+
+    google.protobuf.StringValue CareTakerId = 6;
+}
+
+message ServiceProviderMyPatientsProfileMessageList{
+    repeated ServiceProviderMyPatientsProfileMessage MyPatients = 1;
+}
 
 message ServiceProviderAutofillMedicineMessage {
 
@@ -651,16 +668,15 @@ message ServiceProviderIntakeDosageMessage{
 }
 
 service ServiceProviderCustomerWorkerV1 {
-
 	rpc SetCustomerProfile (ServiceProviderCustomerProfileMessage) returns (IdMessage);
 
 	rpc GetCustomerProfile (IdMessage) returns (ServiceProviderCustomerProfileMessage);
 
-	rpc GetCustomers (IdMessage) returns (ServiceProviderCustomerProfileListMessage);
+	rpc GetCustomers (IdMessage) returns (ServiceProviderMyPatientsProfileMessageList);
+
+	rpc GetCustomerAppointmentSummary (ServiceProviderAppointmentSummaryRequestMessage) returns (ServiceProviderAppointmentSummaryListMessage);
+
 }
-
-
-
 
 
 service ServiceProviderPrescriptionWorkerV1{
@@ -675,7 +691,32 @@ service ServiceProviderPrescriptionWorkerV1{
 }
 
 
+message ServiceProviderAppointmentSummaryMessage{
 
+	google.protobuf.StringValue AppointmentId = 1;
+
+	ResponsePdf PDFBytes = 2;
+
+	google.protobuf.StringValue PrescriptionImageByteString = 3;
+
+	ServiceProviderReportListMessage ReportsList = 4;
+
+	google.protobuf.Int64Value AppointmentTime = 5;
+
+	google.protobuf.StringValue AppointmentStatus = 6;
+}
+
+message ServiceProviderAppointmentSummaryListMessage {
+	repeated ServiceProviderAppointmentSummaryMessage ServiceProviderAppointmentSummaryList = 1;
+}
+
+message ServiceProviderAppointmentSummaryRequestMessage{
+
+	//Be either parent or child id
+	google.protobuf.StringValue CustomerId = 1;
+
+	google.protobuf.StringValue ServiceProviderId = 2;
+}
 
 
 service ServiceProviderReportWorkerV1{

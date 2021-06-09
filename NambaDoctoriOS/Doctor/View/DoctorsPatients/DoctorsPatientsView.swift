@@ -22,8 +22,8 @@ struct DoctorsPatientsView: View {
                 ScrollView {
                     GeometryReader { geo in
                         LazyVGrid(columns: gridItemLayout, spacing: 20) {
-                            ForEach(self.doctorViewModel.myPatients, id: \.customerID) { patient in
-                                DoctorsPatientsCardView(patientObj: patient)
+                            ForEach(self.doctorViewModel.myPatients, id: \.CustomerId) { patient in
+                                Text("\(patient.Name)")
                             }
                         }
                     }

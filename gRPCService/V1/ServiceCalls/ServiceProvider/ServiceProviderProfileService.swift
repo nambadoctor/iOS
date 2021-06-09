@@ -12,7 +12,7 @@ protocol ServiceProviderProfileServiceProtocol {
     
     func getServiceProvider (serviceProviderId:String, _ completion : @escaping (_ DoctorObj:ServiceProviderProfile?)->())
     
-    func getListOfPatients(serviceProviderId:String, _ completion: @escaping (([ServiceProviderCustomerProfile]?) -> ()))
+    func getListOfPatients(serviceProviderId:String, _ completion: @escaping (([ServiceProviderMyPatientProfile]?) -> ()))
     
     func getServiceProviderAvailabilities(serviceProviderId:String, _ completion: @escaping (([ServiceProviderAvailability]?) -> ()))
     
@@ -98,7 +98,7 @@ class ServiceProviderProfileService : ServiceProviderProfileServiceProtocol {
     }
 
 
-    func getListOfPatients(serviceProviderId:String, _ completion: @escaping (([ServiceProviderCustomerProfile]?) -> ())) {
+    func getListOfPatients(serviceProviderId:String, _ completion: @escaping (([ServiceProviderMyPatientProfile]?) -> ())) {
                 
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
@@ -115,7 +115,7 @@ class ServiceProviderProfileService : ServiceProviderProfileServiceProtocol {
         DispatchQueue.global().async {
             do {
                 let response = try getDoctorsPatients.response.wait()
-                let patientList = self.customerObjectMapper.grpcCustomerToLocal(customer: response.customers)
+                let patientList = ServiceProviderMyPatientProfileMapper.GrpcToLocal(profileMessages: response.myPatients)
                 print("Doctors Patients received: success")
                 DispatchQueue.main.async {
                     completion(patientList)
