@@ -76,7 +76,7 @@ class LocalNotificationHandler {
             completion(true)
         }
 
-        LoggerService().log(appointmentId: "", eventName: "PROCESSED NOTIFICATION")
+        LoggerService().log(eventName: "PROCESSED NOTIFICATION")
     }
 
     func notifTappedHelper (userInfo: [AnyHashable: Any]) {
@@ -104,7 +104,7 @@ class LocalNotificationHandler {
         default:
             break
         }
-        LoggerService().log(appointmentId: "", eventName: "TAPPED NOTIFICATION")
+        LoggerService().log(eventName: "TAPPED NOTIFICATION")
     }
 
     func notifTappedHelper (notifObj: LocalNotifObj) {
@@ -127,6 +127,6 @@ class LocalNotificationHandler {
         default:
             break
         }
-        LoggerService().log(appointmentId: "", eventName: "TAPPED NOTIFICATION")
+        LoggerService().log(eventName: "TAPPED NOTIFICATION")
     }
 }

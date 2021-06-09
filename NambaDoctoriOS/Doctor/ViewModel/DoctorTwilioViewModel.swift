@@ -48,12 +48,15 @@ class DoctorTwilioViewModel: ObservableObject {
 
     func startRoom(completion: @escaping (_ success:Bool)->()) {
         docAutoNav.enterTwilioRoom(appointmentId: self.appointment.appointmentID)
+        LoggerService().log(eventName: "Firing retrieve token call")
         self.twilioAccessTokenHelper.retrieveToken(appointmentId: self.appointment.appointmentID, userId: self.appointment.serviceProviderID) { (success, token) in
             if success {
+                LoggerService().log(eventName: "Retrieved twilio token")
                 self.viewController = UIStoryboard(name: "Twilio", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as? ViewController
                 self.viewController!.twilioEventDelegate = self
                 completion(success)
             } else {
+                LoggerService().log(eventName: "Failed to retrieve twilio token")
                 completion(false)
                 //TODO: show doctor alert issue with video call and tell them to use phone. USE LOGS
                 //show failed alert
@@ -63,10 +66,13 @@ class DoctorTwilioViewModel: ObservableObject {
 
     func fireStartedNotif (_ completion: @escaping (_ success:Bool)->()) {
         let replicatedAppointment = self.appointment //cannot do simultanueous access...
+        LoggerService().log(eventName: "Updating appointment status to StartedConsultation")
         self.updateAppointmentStatus.updateToStartedConsultation(appointment: &self.appointment) { (success) in
             if success {
                 //TODO: LOG - room started, consultation not updated
+                LoggerService().log(eventName: "Successfully updated appointment status to StartedConsultation")
                 completion(success)
+                LoggerService().log(eventName: "Firing Appointment Started Notification")
                 self.docNotificationHelpers.fireStartedConsultationNotif(appointmentTime: replicatedAppointment.scheduledAppointmentStartTime)
             }
         }

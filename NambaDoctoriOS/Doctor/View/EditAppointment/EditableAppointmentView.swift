@@ -287,6 +287,7 @@ struct EditableAppointmentView: View {
         HStack (spacing: 10) {
             if !intermediateVM.appointmentFinished {
                 Button(action: {
+                    LoggerService().log(eventName: "Cancel Button pressed")
                     self.intermediateVM.showCancellationSheet()
                 }, label: {
                     ZStack {
@@ -304,6 +305,7 @@ struct EditableAppointmentView: View {
             }
             
             Button(action: {
+                LoggerService().log(eventName: "Open Chat button pressed")
                 self.intermediateVM.takeToChat = true
             }, label: {
                 ZStack {
@@ -328,6 +330,7 @@ struct EditableAppointmentView: View {
             
             if !intermediateVM.appointmentFinished {
                 Button(action: {
+                    LoggerService().log(eventName: "Call Phone Button Pressed")
                     intermediateVM.patientInfoViewModel.callPatient()
                 }, label: {
                     ZStack {
@@ -345,6 +348,7 @@ struct EditableAppointmentView: View {
 
             if !intermediateVM.appointmentFinished {
                 Button(action: {
+                    LoggerService().log(eventName: "Video call button pressed")
                     intermediateVM.startConsultation()
                 }, label: {
                     ZStack {

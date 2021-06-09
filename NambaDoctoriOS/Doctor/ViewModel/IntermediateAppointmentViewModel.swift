@@ -52,6 +52,7 @@ class IntermediateAppointmentViewModel : ObservableObject {
          updateAppointmentStatus:ServiceProviderUpdateAppointmentStatusProtocol = ServiceProviderUpdateAppointmentStatusHelper(),
          doctorAlertHelper:DoctorAlertHelpersProtocol = DoctorAlertHelpers()) {
         self.appointment = appointment
+        AppointmentID = appointment.appointmentID
         
         self.updateAppointmentStatus = updateAppointmentStatus
         self.doctorAlertHelper = doctorAlertHelper
@@ -208,13 +209,16 @@ extension IntermediateAppointmentViewModel {
         }
         
         if showTwilioRoom {
+            LoggerService().log(eventName: "Showing sumbitting prescription will terminate call alert")
             doctorAlertHelper.callWillTerminateAfterSubmitAlert { goBack, submit in
                 if submit {
+                    LoggerService().log(eventName: "Choosing to terminate call")
                     self.doctorTwilioManagerViewModel.leaveRoom()
                     submitFunc()
                 }
                 
                 if goBack {
+                    LoggerService().log(eventName: "Choosing not to terminate call")
                     CommonDefaultModifiers.hideLoader()
                 }
             }
@@ -376,9 +380,13 @@ extension IntermediateAppointmentViewModel : CancellationDelegate {
                                                        Notes: "")
         self.appointment.cancellation = cancellation
         
+        LoggerService().log(eventName: "Cancel Appointment Confirmation Popup Display")
         self.cancelAppointment { success in
             if success {
+                LoggerService().log(eventName: "Successfuly cancelled appointment")
                 self.killView = true
+            } else {
+                LoggerService().log(eventName: "Closed cancel appointment confirmation popup (didnt cancel appointment)")
             }
         }
     }

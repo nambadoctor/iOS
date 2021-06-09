@@ -58,13 +58,16 @@ struct CancellationBottomSheet : View {
             HStack {
                 Spacer()
                 Button ("Back") {
+                    LoggerService().log(eventName: "Closed cancellation sheet (did not cancel appointment)")
                     self.bottomSheetOffset = UIScreen.main.bounds.height
                 } .font(Font.system(size:13)).foregroundColor(Color(UIColor.gray)).padding(.trailing, 10)
                 
                 Button ("Confirm") {
                     if self.checkedOption == "Other" {
+                        LoggerService().log(eventName: "Custom cancel option \(self.customReason)")
                         self.delegate.cancel(reasonName: "Other: \(self.customReason)")
                     } else {
+                        LoggerService().log(eventName: "Preset cancel option selected \(self.checkedOption)")
                         self.delegate.cancel(reasonName: self.checkedOption)
                     }
                 }.frame(width: 90, height: 33)

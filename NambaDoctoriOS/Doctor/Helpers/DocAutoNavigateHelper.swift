@@ -63,6 +63,7 @@ class DocAutoNavigateHelper {
     }
     
     func leaveChatRoom () {
+        LoggerService().log(eventName: "Left Chat Room")
         self.currentyInChat = false
     }
     
@@ -76,6 +77,7 @@ class DocAutoNavigateHelper {
     }
 
     func leaveIntermediateView() {
+        AppointmentID = ""
         self.clearAllValues()
     }
 

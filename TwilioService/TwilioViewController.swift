@@ -340,7 +340,7 @@ extension ViewController : UITextFieldDelegate {
 extension ViewController : RoomDelegate {
     func roomDidConnect(room: Room) {
         logMessage(messageText: "Connected to consulting room...")
-        
+        LoggerService().log(eventName: "Doctor Connected to twilio room")
         self.twilioEventDelegate?.hostConnected()
 
         // This example only renders 1 RemoteVideoTrack at a time. Listen for all events to decide which track to render.
@@ -353,7 +353,7 @@ extension ViewController : RoomDelegate {
 
     func roomDidDisconnect(room: Room, error: Error?) {
         logMessage(messageText: "Disconnected from room")
-        
+        LoggerService().log(eventName: "Doctor Disconnected from twilio room")
         self.cleanupRemoteParticipant()
         self.room = nil
         
@@ -363,7 +363,7 @@ extension ViewController : RoomDelegate {
     func roomDidFailToConnect(room: Room, error: Error) {
         logMessage(messageText: "Failed to connect to room")
         self.room = nil
-        
+        LoggerService().log(eventName: "Doctor Failed to connect to twilio room")
         self.showRoomUI(inRoom: false)
     }
 
@@ -380,6 +380,7 @@ extension ViewController : RoomDelegate {
         participant.delegate = self
         twilioEventDelegate?.participantConnected()
         if UserTypeHelper.checkIfDoctor(userType: self.currentUserType) {
+            LoggerService().log(eventName: "Doctor side - patient connected to room")
             logMessage(messageText: "Patient connected")
         } else {
             logMessage(messageText: "Doctor connected")
@@ -389,6 +390,7 @@ extension ViewController : RoomDelegate {
     func participantDidDisconnect(room: Room, participant: RemoteParticipant) {
         
         if UserTypeHelper.checkIfDoctor(userType: self.currentUserType) {
+            LoggerService().log(eventName: "Doctor side - patient disconnected from room")
             logMessage(messageText: "Patient disconnected")
         } else {
             logMessage(messageText: "Doctor disconnected")

@@ -289,10 +289,12 @@ extension CustomerViewModel {
         CommonDefaultModifiers.hideLoader()
         if !upcomingAppointments.isEmpty {
             let appointment = upcomingAppointments.first!
-            if appointment.status == ConsultStateK.Finished.rawValue && !appointment.isPaid {
-                CustomerAlertHelpers().payForExistingAppointment(doctorName: appointment.serviceProviderName) { _ in }
-            } else {
-                CustomerAlertHelpers().finishExistingAppointment(doctorName: appointment.serviceProviderName) { _ in }
+            CustomerAlertHelpers().finishExistingAppointment(doctorName: appointment.serviceProviderName) { _ in }
+        } else if !finishedAppointments.isEmpty {
+            for appointment in finishedAppointments {
+                if appointment.status == ConsultStateK.Finished.rawValue && !appointment.isPaid {
+                    CustomerAlertHelpers().payForExistingAppointment(doctorName: appointment.serviceProviderName) { _ in }
+                }
             }
         }
     }

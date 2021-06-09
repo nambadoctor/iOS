@@ -75,6 +75,8 @@ class DoctorChatViewModel: ObservableObject {
         var message = makeMessage()
         self.currentTextEntry = ""
         
+        LoggerService().log(eventName: "Sending custom message")
+        
         dbRef.getSpecificChatRefToWrite() { dbRef, keyId in
             let dbWriter = RealtimeDBWriter(dbRef: dbRef)
             message.messageId = keyId
@@ -92,6 +94,7 @@ class DoctorChatViewModel: ObservableObject {
     }
     
     public func preSetMessageSelected (message:String) {
+        LoggerService().log(eventName: "Sending preset messages \(message)")
         currentTextEntry = message
         writeMessage()
     }

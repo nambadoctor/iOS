@@ -24,9 +24,9 @@ class Logon : FindUserTypeViewModelProtocol {
 
         DispatchQueue.global().async {
             do {
-                LoggerService().log(appointmentId: "", eventName: "REQUESTING USER TYPE")
+                LoggerService().log(eventName: "REQUESTING USER TYPE")
                 let response = try getUserType.response.wait()
-                LoggerService().log(appointmentId: "", eventName: "RECIEVED USER TYPE SUCCESS")
+                LoggerService().log(eventName: "RECIEVED USER TYPE SUCCESS")
                 print("UserTypeClient received: \(response.message.toString)")
                 
                 let responseSplit = response.message.toString.components(separatedBy: ",")
@@ -45,7 +45,7 @@ class Logon : FindUserTypeViewModelProtocol {
             } catch {
                 completion(nil)
                 print("UserTypeClient failed: \(error.localizedDescription)")
-                LoggerService().log(appointmentId: "", eventName: "RECIEVED USER TYPE FAILED")
+                LoggerService().log(eventName: "RECIEVED USER TYPE FAILED")
             }
         }
     }

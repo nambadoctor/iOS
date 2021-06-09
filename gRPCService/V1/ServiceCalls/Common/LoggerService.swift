@@ -11,12 +11,10 @@ var SessionId:String = ""
 var CorrelationId:String = ""
 var AppointmentID:String = ""
 var EventMessage:String = ""
-var VersionNumber:String = "1.54"
+var VersionNumber:String = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.19"
 
 class LoggerService {
-    func log(appointmentId:String, eventName:String) {
-        
-        AppointmentID = appointmentId
+    func log(eventName:String) {
         EventMessage = eventName
 
         let channel = ChannelManager.sharedChannelManager.getChannel()

@@ -81,7 +81,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         // Print full message.
         latestNotificationPayload = userInfo
         
-        LoggerService().log(appointmentId: "", eventName: "NOTIFICATION DISPLAYED")
+        LoggerService().log(eventName: "NOTIFICATION DISPLAYED")
 
         LocalNotificationHandler().notifRecieveHelper(userInfo: userInfo) { (_) in }
         
@@ -95,7 +95,7 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
         print("ID4 ENTRY")
         let userInfo = response.notification.request.content.userInfo
         
-        LoggerService().log(appointmentId: "", eventName: "NOTIFICATION TAPPED")
+        LoggerService().log(eventName: "NOTIFICATION TAPPED")
 
         if let messageID = userInfo[gcmMessageIDKey] {
             print("Message ID4: \(messageID)")
