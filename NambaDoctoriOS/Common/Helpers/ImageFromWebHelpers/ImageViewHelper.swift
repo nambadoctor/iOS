@@ -64,10 +64,10 @@ struct ImageViewWithNoSheet: View {
     var body: some View {
         WebImage(url: URL(string: url))
             .resizable()
-            .placeholder(Image(systemName: "questionmark.circle.fill")) // Placeholder Image
+            .placeholder(Image(systemName: "person.crop.circle.fill")) // Placeholder Image
             // Supports ViewBuilder as well
             .placeholder {
-                Image("questionmark.circle.fill")
+                Image("person.crop.circle.fill")
                     .resizable()
                     .scaledToFill()
                     .foregroundColor(.gray)

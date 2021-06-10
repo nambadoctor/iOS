@@ -61,17 +61,6 @@ struct BookDoctorCard: View {
                                         .foregroundColor(Color.white)
                                         .cornerRadius(5)
                                 }
-                                
-                                Button(action: {
-                                    CommonDefaultModifiers.showLoader(incomingLoadingText: "Generating Link")
-                                    CreateDynamicLink().makeLink(doctorId: self.customerServiceProviderVM.serviceProvider.serviceProviderID, doctorName: self.customerServiceProviderVM.serviceProviderName, profilePicURL: self.customerServiceProviderVM.serviceProvider.profilePictureURL) { url in
-                                        CommonDefaultModifiers.hideLoader()
-                                        shareSheet(url: url)
-                                    }
-                                }, label: {
-                                    Image("square.and.arrow.up.on.square")
-                                })
-                                .padding()
                             }
                         }
                     }
