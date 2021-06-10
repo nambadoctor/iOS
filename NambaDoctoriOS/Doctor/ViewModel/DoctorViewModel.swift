@@ -130,9 +130,11 @@ class DoctorViewModel: ObservableObject {
     
     func getMyPatients () {
         ServiceProviderCustomerService().getListOfPatients(serviceProviderId: self.doctor.serviceProviderID) { (listOfPatients) in
-            if listOfPatients != nil {
+
+            if listOfPatients != nil && !(listOfPatients?.isEmpty ?? true){
                 self.myPatients = listOfPatients!
             } else {
+                print("HITTING THIS BRUH")
                 self.noPatients = true
             }
         }

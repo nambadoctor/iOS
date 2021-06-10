@@ -12,9 +12,7 @@ struct DoctorsPatientsView: View {
     
     var body: some View {
         VStack {
-            if doctorViewModel.myPatients.isEmpty {
-                Indicator()
-            } else if doctorViewModel.noPatients {
+            if doctorViewModel.noPatients {
                 Text("Looks like you dont have any patients yet")
             } else {
                 ScrollView {

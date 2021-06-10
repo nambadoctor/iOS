@@ -230,7 +230,11 @@ class CustomerViewModel : ObservableObject {
         for serviceProvider in self.allServiceProviders {
             var appended:Bool = false
             for specialty in serviceProvider.specialties {
-                if self.selectedCategory.SpecialityName.lowercased().trimmingCharacters(in: .whitespacesAndNewlines).contains(specialty.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)) && !appended {
+                
+                let trimmedCategory = self.selectedCategory.SpecialityName.lowercased().trimmingCharacters(in: .whitespacesAndNewlines).dropLast()
+                let trimmedSpecialty = specialty.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+                
+                if trimmedCategory.contains(trimmedSpecialty) || trimmedSpecialty.contains(trimmedCategory) && !appended {
                     self.serviceProvidersToDisplay.append(serviceProvider)
                     appended = true
                 }
