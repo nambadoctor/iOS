@@ -271,7 +271,7 @@ class CustomerViewModel : ObservableObject {
     func checkToShowChildBookingNotice () {
         self.dontShowChildBookingHeader = UserDefaults.standard.bool(forKey: "dontShowAddChildHeader")
     }
-    
+
     func showEditChildSheet (child:CustomerChildProfile) {
         self.addChildProfileVM.mapExistingCHild(child: child, careTakerNumbers: self.customerProfile!.phoneNumbers)
         self.addChildProfileVM.showSheet = true

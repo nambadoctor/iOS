@@ -16,6 +16,10 @@ class CustomerAllReportsViewModel : ObservableObject {
     
     @Published var imagePickerVM:ImagePickerViewModel = ImagePickerViewModel()
     
+    @Published var showUploadingIndicator:Bool = false
+    
+    @Published var showUploadReportSheet:Bool = false
+    
     init(customerReportService:CustomerReportServiceProtocol = CustomerReportService(),
          appointment:CustomerAppointment) {
         self.customerReportService = customerReportService
@@ -24,6 +28,7 @@ class CustomerAllReportsViewModel : ObservableObject {
         imagePickerVM.imagePickerDelegate = self
 
         getReports()
+        checkIfFirstTimeOpeningAppointment()
     }
 
     func getReports() {
@@ -32,6 +37,7 @@ class CustomerAllReportsViewModel : ObservableObject {
             if reports != nil {
                 self.reports = reports!
                 CommonDefaultModifiers.hideLoader()
+                self.showUploadingIndicator = false
             } else {
                 //TODO: handle empty reports list
             }
@@ -39,6 +45,7 @@ class CustomerAllReportsViewModel : ObservableObject {
     }
     
     func setReport(report:CustomerReportUpload) {
+        self.showUploadingIndicator = true
         CommonDefaultModifiers.showLoader(incomingLoadingText: "Uploading Report")
         self.customerReportService.setReport(report: report) { success in
             if success {
@@ -60,5 +67,14 @@ extension CustomerAllReportsViewModel : ImagePickedDelegate {
         let customerReport = CustomerReportUpload(ReportId: "", ServiceRequestId: self.appointment.serviceRequestID, CustomerId: self.appointment.customerID, FileName: "", Name: "report", FileType: ".jpg", MediaFile: encodedImage!)
         
         setReport(report: customerReport)
+    }
+    
+    func dontShowUploadReportSheetAnymore () {
+        UserDefaults.standard.set(true, forKey: self.appointment.appointmentID)
+        self.showUploadReportSheet = false
+    }
+
+    func checkIfFirstTimeOpeningAppointment () {
+        self.showUploadReportSheet = !UserDefaults.standard.bool(forKey: self.appointment.appointmentID)
     }
 }

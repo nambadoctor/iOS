@@ -34,11 +34,14 @@ struct CustomerDetailedAppointmentView: View {
                     if customerDetailedAppointmentVM.appointmentStarted || customerDetailedAppointmentVM.appointmnentUpComing {
                         ScrollView {
                             allergyEntryView
+                                .sheet(isPresented: self.$customerDetailedAppointmentVM.reportsVM.showUploadReportSheet, content: {
+                                    UploadReportSheet(reportsVM: self.customerDetailedAppointmentVM.reportsVM, appointment: self.customerDetailedAppointmentVM.appointment)
+                                })
                             
                             CustomerReportsView(reportsVM: self.customerDetailedAppointmentVM.reportsVM)
                         }
                     }
-                    
+
                     Spacer()
                 }
                 .padding(.horizontal)
@@ -72,7 +75,6 @@ struct CustomerDetailedAppointmentView: View {
             self.customerDetailedAppointmentVM.getNewChatCount()
             showLoaderListener()
         }
-        .modifier(CustomerRatingViewModifier(ratingVM: self.customerDetailedAppointmentVM.ratingVM))
         .environmentObject(self.customerDetailedAppointmentVM.reasonPickerVM)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: backButton, trailing: navBarChatButton)

@@ -28,20 +28,17 @@ struct ImageView: View {
                     showEnlarged = true
                 }
                 .sheet(isPresented: self.$showEnlarged, content: {
-                    ZStack (alignment: .center) {
-                        VStack{
-                            HStack {
-                                Spacer()
-                                Button {
-                                    self.showEnlarged = false
-                                } label: {
-                                    Image("xmark.circle")
-                                        .resizable()
-                                        .frame(width: 35, height: 35)
-                                        .foregroundColor(.blue)
-                                }.padding()
-                            }
+                    VStack (alignment: .center) {
+                        HStack {
                             Spacer()
+                            Button {
+                                self.showEnlarged = false
+                            } label: {
+                                Image("xmark.circle")
+                                    .resizable()
+                                    .frame(width: 35, height: 35)
+                                    .foregroundColor(.blue)
+                            }.padding()
                         }
 
                         Image(uiImage: imageLoader.image!)
