@@ -12,9 +12,11 @@ import SwiftUI
 class ImageLoader: ObservableObject {
     
     @Published var image:UIImage? = nil
+    var url:URL? = nil
     
     init(urlString:String, _ completion: @escaping (_ success:Bool)->()) {
         guard let url = URL(string: urlString) else { return }
+        self.url = url
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             DispatchQueue.main.async {
                 guard let data = data else {

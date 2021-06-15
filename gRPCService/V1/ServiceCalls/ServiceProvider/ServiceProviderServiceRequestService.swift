@@ -56,7 +56,9 @@ class ServiceProviderServiceRequestService : ServiceProviderServiceRequestServic
         let serviceRequestClient = Nd_V1_ServiceProviderServiceRequestWorkerV1Client(channel: channel)
         
         let request = serviceRequestMapper.localServiceRequestToGrpc(serviceRequest: serviceRequest)
-
+        
+        print("REQUEST TO DB: \(request)")
+        
         let getServiceRequestObj = serviceRequestClient.setServiceRequest(request, callOptions: callOptions)
 
         DispatchQueue.global().async {

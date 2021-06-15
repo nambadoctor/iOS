@@ -33,6 +33,7 @@ struct InvestigationsEditableView: View {
                                 .font(.callout)
                                 .foregroundColor(Color.blue)
                                 .padding()
+                                .fixedSize(horizontal: false, vertical: true)
                             Spacer()
                             
                             Button {

@@ -24,6 +24,7 @@ struct AdviceView : View {
             }
             
             Text(serviceRequestVM.advice)
+                .fixedSize(horizontal: false, vertical: true)
 
             Spacer().frame(height: 5)
         }
@@ -49,6 +50,7 @@ struct ServiceRequestView: View {
                 }
                 
                 Text(serviceRequestVM.examination)
+                    .fixedSize(horizontal: false, vertical: true)
                 
                 Spacer().frame(height: 5)
                 
@@ -64,6 +66,7 @@ struct ServiceRequestView: View {
                 }
                 
                 Text(serviceRequestVM.diagnosisName)
+                    .fixedSize(horizontal: false, vertical: true)
                 
                 Spacer().frame(height: 5)
             }

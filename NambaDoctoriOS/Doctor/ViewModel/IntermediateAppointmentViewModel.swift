@@ -179,8 +179,9 @@ extension IntermediateAppointmentViewModel {
         
         func onCompletion(success:Bool) {
             allSendsDone.append(success)
-            
+            print("COMPLETION: \(allSendsDone.count)")
             if allSendsDone.count == 2 && !allSendsDone.contains(false) {
+                print("COMPLETION RETURNING TRUE")
                 completion(true)
             }
         }
@@ -188,11 +189,13 @@ extension IntermediateAppointmentViewModel {
         self.appointment.serviceFee = modifyFeeViewModel.convertFeeToDouble()
         
         serviceRequestVM.sendToPatient { (success, serviceRequestId) in
+            print("SAVEWFWEFEF SERVICE REQUEST SUCCESS \(success) \(serviceRequestId)")
             onCompletion(success: success)
         }
         
         self.medicineVM.prescription.serviceRequestID = self.serviceRequestVM.serviceRequest.serviceRequestID
         self.medicineVM.sendToPatient { (success) in
+            print("SAVEWFWEFEF MEDICINE SUCCESS \(success)")
             onCompletion(success: success)
         }
     }
@@ -206,7 +209,7 @@ extension IntermediateAppointmentViewModel {
                 if self.appointment.serviceFee == 0 {
                     self.appointment.isPaid = true
                 }
-                
+
                 self.updateAppointmentStatus.updateToFinished(appointment: &self.appointment) { (success) in
                     CommonDefaultModifiers.hideLoader()
                     self.docNotifHelper.fireAppointmentOverNotif()
@@ -236,6 +239,7 @@ extension IntermediateAppointmentViewModel {
     }
     
     func previewPrescription () {
+        self.medicineVM.prescriptionPDF = nil
         CommonDefaultModifiers.showLoader(incomingLoadingText: "Generating PDF")
         self.saveForLater { saved in
             CommonDefaultModifiers.hideLoader()

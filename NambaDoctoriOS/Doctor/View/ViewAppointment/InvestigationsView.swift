@@ -28,6 +28,7 @@ struct InvestigationsView: View {
                     if !investigationsVM.investigations[i].isEmpty {
                         HStack {
                             Text("\(self.investigationsVM.investigations[i])")
+                                .fixedSize(horizontal: false, vertical: true)
                         }
                         Divider()
                     }

@@ -12,7 +12,7 @@ import SDWebImageSwiftUI
 struct ImageView: View {
     @ObservedObject var imageLoader:ImageLoader
     @State var showEnlarged:Bool = false
-    
+
     var height:CGFloat = 160
     var width:CGFloat = 120
     
@@ -47,6 +47,7 @@ struct ImageView: View {
                         Image(uiImage: imageLoader.image!)
                             .resizable()
                             .aspectRatio(contentMode: .fit)
+                            .draggable()
                             .pinchToZoom()
                             .onDisappear() {showEnlarged = false}
                     }

@@ -26,18 +26,15 @@ class ServiceRequestViewModel: ObservableObject {
     
     var gotServiceRequestDelegate:LoadedServiceRequestDelegate? = nil
     
-    private var retrieveServiceRequesthelper:ServiceProviderServiceRequestServiceProtocol
     private var docSheetHelper:DoctorSheetHelpers = DoctorSheetHelpers()
     private var docAlertHelper:DoctorAlertHelpers = DoctorAlertHelpers()
     
     var serviceRequestServiceCalls:ServiceProviderServiceRequestServiceProtocol
 
     init(appointment:ServiceProviderAppointment,
-         retrieveServiceRequesthelper:ServiceProviderServiceRequestServiceProtocol = ServiceProviderServiceRequestService(),
          serviceRequestServiceCalls:ServiceProviderServiceRequestServiceProtocol = ServiceProviderServiceRequestService()) {
         
         self.appointment = appointment
-        self.retrieveServiceRequesthelper = retrieveServiceRequesthelper
         self.serviceRequest = MakeEmptyServiceRequest(appointment: appointment)
         self.serviceRequestServiceCalls = serviceRequestServiceCalls
         
@@ -61,7 +58,7 @@ class ServiceRequestViewModel: ObservableObject {
     }
     
     func retrieveServiceRequest() {
-        retrieveServiceRequesthelper.getServiceRequest(appointmentId: self.appointment.appointmentID, serviceRequestId: appointment.serviceRequestID, customerId: self.appointment.customerID) { (serviceRequest) in
+        serviceRequestServiceCalls.getServiceRequest(appointmentId: self.appointment.appointmentID, serviceRequestId: appointment.serviceRequestID, customerId: self.appointment.customerID) { (serviceRequest) in
             if serviceRequest != nil {
                 self.gotServiceRequestDelegate?.gotServiceRequestId(serviceRequestId: serviceRequest!.serviceRequestID)
                 self.mapPrescriptionValues(serviceRequest: serviceRequest!)
@@ -89,6 +86,7 @@ class ServiceRequestViewModel: ObservableObject {
     func sendToPatient (completion: @escaping (_ success:Bool,_ serviceRequestId:String?)->()) {
         investigationsViewModel.addTempIntoArrayWhenFinished()
         serviceRequest.investigations = investigationsViewModel.investigations
+        print("SERVICE REQUEST TO PRINT: \(serviceRequest)")
         serviceRequestServiceCalls.setServiceRequest(serviceRequest: serviceRequest) { (response) in
             if response != nil {
                 completion(true, response)
