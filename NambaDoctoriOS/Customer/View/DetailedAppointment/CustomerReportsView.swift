@@ -33,13 +33,12 @@ struct CustomerReportsView: View {
                 }
             } else {
                 HStack {
-                    Text("You have uploaded 0 reports")
+                    Text("You have uploaded 0 Reports")
                     Spacer()
                 }.padding(.top, 5)
             }
             
-            LargeButton(title: self.reportsVM.reports.count > 0 ? "Upload Another Report" : "Upload Report",
-                        backgroundColor: Color.blue) {
+            LargeButton(title: self.reportsVM.reports.count > 0 ? "Upload Another" : "Upload Image", backgroundColor: Color.blue) {
                 reportsVM.imagePickerVM.showActionSheet()
             }
             .modifier(ImagePickerModifier(imagePickerVM: self.reportsVM.imagePickerVM))

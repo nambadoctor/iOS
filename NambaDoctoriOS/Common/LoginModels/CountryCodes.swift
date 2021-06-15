@@ -14,6 +14,8 @@ let CountryCodes:[String:[String]] = ["US": ["United States","1"],
                                       "PK": ["Pakistan","92"],
                                       "SG": ["Singapore","65"],
                                       "CH": ["Switzerland","41"],
+                                      "MY": ["Malaysia","60"],
+                                      "LK": ["Sri Lanka","94"],
                                       "AE": ["United Arab Emirates","971"],
                                       "GB": ["United Kingdom","44"]
 ]

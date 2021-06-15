@@ -325,18 +325,21 @@ extension CustomerDetailedAppointmentViewModel : TwilioDelegate {
     }
 
     func startConsultation() {
+        LoggerService().log(eventName: "Patient trying to start consultation")
         if appointmentStarted {
             CommonDefaultModifiers.showLoader(incomingLoadingText: "Starting Consultation")
             customerTwilioViewModel.startRoom() { success in
                 if success {
+                    LoggerService().log(eventName: "Patient entering")
                     self.showTwilioRoom = true
                     CommonDefaultModifiers.hideLoader()
                 } else {
-                    
+                    LoggerService().log(eventName: "PATIENT SIDE - error in starting consultation room")
                 }
             }
         } else {
-            CustomerAlertHelpers().WaitForDoctorToCallFirstAlert { _ in}
+            LoggerService().log(eventName: "Trying to call doctor before consultation started")
+            CustomerSnackbarHelpers().waitForDoctorToCall(doctorName: self.appointment.serviceProviderName)
         }
     }
 }

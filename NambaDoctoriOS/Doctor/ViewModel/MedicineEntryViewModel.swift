@@ -122,22 +122,22 @@ class MedicineEntryViewModel : ObservableObject {
         invalidDosageAttempt = 0
         invalidMedNameAttempt = 0
     }
-    
+
     func makeMedObjAndAdd() {
 
-        guard !dosage.Name.isEmpty, !medicineName.isEmpty else {
-            if dosage.Name.isEmpty {
-                withAnimation(.default) {
-                    invalidDosageAttempt += 1
-                }
-            }
-            
+        guard /*!dosage.Name.isEmpty,*/ !medicineName.isEmpty else {
+//            if dosage.Name.isEmpty {
+//                withAnimation(.default) {
+//                    invalidDosageAttempt += 1
+//                }
+//            }
+
             if medicineName.isEmpty {
                 withAnimation(.default) {
                     invalidMedNameAttempt += 1
                 }
             }
-            
+
             LoggerService().log(eventName: "Trying to add medicine without entering all fields")
 
             return

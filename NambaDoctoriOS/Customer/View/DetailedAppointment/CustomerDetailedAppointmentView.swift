@@ -102,7 +102,7 @@ struct CustomerDetailedAppointmentView: View {
             }
         }
     }
-    
+
     var allergyEntryView : some View {
         VStack (alignment: .leading, spacing: 10) {
             if customerDetailedAppointmentVM.serviceRequest != nil {
@@ -250,9 +250,11 @@ struct CustomerDetailedAppointmentView: View {
             if !customerDetailedAppointmentVM.isPaid {
                 LargeButton(title: "Pay Now") {
                     if customerDetailedAppointmentVM.appointmentFinished {
+                        LoggerService().log(eventName: "Consultation done and patient trying to pay")
                         customerDetailedAppointmentVM.makePayment()
                     } else {
-                        CustomerAlertHelpers().payOnlyAfterAppointmentFinished()
+                        LoggerService().log(eventName: "Patient trying to pay during consutlation state: \(self.customerDetailedAppointmentVM.appointment.status)")
+                        CustomerSnackbarHelpers().waitForConsultationToFinishBeforePaying(doctorName: self.customerDetailedAppointmentVM.appointment.serviceProviderName)
                     }
                 }
             } else {

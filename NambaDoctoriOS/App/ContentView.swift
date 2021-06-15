@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
-
+    
     @State private var loginStatus:UserLoginStatus = UserLoginStatus.NotSignedIn
     @State private var showLoader:Bool = false
     @State private var loaderCompleted:Bool = false
+    @State private var showSnackBar:Bool = false
 
     var body: some View {
         ZStack {
@@ -29,9 +30,11 @@ struct ContentView: View {
             }
         }
         .overlay(LoadingScreen(showLoader: self.$showLoader, completed: self.$loaderCompleted))
+        .modifier(Popup(isPresented: self.$showSnackBar, alignment: .bottom, direction: .bottom))
         .onAppear() {
             loginStateListener()
             showLoaderListener()
+            showSnackBarListener()
         }
     }
 }
@@ -51,7 +54,7 @@ extension ContentView {
                 print("STATUS SETTING: \(loginStatus)")
             }
     }
-
+    
     func showLoaderListener () {
         NotificationCenter.default
             .addObserver(forName: NSNotification.Name("\(SimpleStateK.showLoaderChange)"),
@@ -67,6 +70,19 @@ extension ContentView {
                         self.loaderCompleted = false
                         self.showLoader = false
                     }
+                }
+            }
+    }
+    
+    func showSnackBarListener () {
+        NotificationCenter.default
+            .addObserver(forName: NSNotification.Name("\(SimpleStateK.showSnackbarChange)"),
+                         object: nil,
+                         queue: .main) { (_) in
+                self.showSnackBar = true
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                    self.showSnackBar = false
                 }
             }
     }

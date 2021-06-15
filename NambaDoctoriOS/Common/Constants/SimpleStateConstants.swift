@@ -27,4 +27,7 @@ enum SimpleStateK : String {
     
     case refreshNewChatCount
     case refreshNewChatCountChange
+    
+    case showSnackbar
+    case showSnackbarChange
 }

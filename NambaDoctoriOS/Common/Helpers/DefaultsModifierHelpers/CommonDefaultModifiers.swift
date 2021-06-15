@@ -50,8 +50,12 @@ class CommonDefaultModifiers {
     }
     
     static func refreshChatCount () {
-        print("FIRING THIS")
         UserDefaults.standard.set(true, forKey: "\(SimpleStateK.refreshNewChatCount)")
         NotificationCenter.default.post(name: NSNotification.Name("\(SimpleStateK.refreshNewChatCountChange)"), object: nil)
+    }
+    
+    static func showSnackBar () {
+        UserDefaults.standard.set(true, forKey: "\(SimpleStateK.showSnackbar)")
+        NotificationCenter.default.post(name: NSNotification.Name("\(SimpleStateK.showSnackbarChange)"), object: nil)
     }
 }
