@@ -31,11 +31,13 @@ struct DetailedBookDoctorView: View {
                                 Text("Me")
                             }
                             
-                            ForEach(self.detailedBookingVM.customerProfile.children, id: \.ChildProfileId) {child in
-                                Button {
-                                    self.detailedBookingVM.bookForChild(child: child)
-                                } label: {
-                                    Text(child.Name)
+                            if self.detailedBookingVM.customerProfile.children != nil {
+                                ForEach(self.detailedBookingVM.customerProfile.children!, id: \.ChildProfileId) {child in
+                                    Button {
+                                        self.detailedBookingVM.bookForChild(child: child)
+                                    } label: {
+                                        Text(child.Name)
+                                    }
                                 }
                             }
 

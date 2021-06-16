@@ -45,25 +45,29 @@ class CustomerProfileMapper {
     func localCustomerToGrpc (customer:CustomerProfile) -> Nd_V1_CustomerCustomerProfileMessage {
         return Nd_V1_CustomerCustomerProfileMessage.with {
             $0.customerID = customer.customerID.toProto
-            $0.firstName = customer.firstName.toProto
-            $0.lastName = customer.lastName.toProto
-            $0.gender = customer.gender.toProto
-            $0.age = customer.age.toProto
-            $0.phoneNumbers = CustomerPhoneNumberMapper.localPhoneNumberToGrpc(phoneNumbers: customer.phoneNumbers)
-            $0.addresses = CustomerAddressMapper.localAddressToGrpc(addresses: customer.addresses)
-            $0.appInfo = CustomerAppInfoMapper.localAppInfoToGrpc(appInfo: customer.appInfo)
-            $0.languages = customer.languages.convert()
-            $0.emailAddress = customer.emailAddress.toProto
-            $0.activeAppointmentIds = customer.activeAppointmentIds.convert()
-            $0.completedAppointmentIds = customer.completedAppointmentIds.convert()
-            $0.profilePicURL = customer.profilePicURL.toProto
-            $0.primaryServiceProviderID = customer.primaryServiceProviderID.toProto
-            $0.allergies = CustomerAllergyMapper.localAvailabilityToGrpc(allergies: customer.Allergies)
-            $0.medicalHistories = CustomerMedicalHistoryMapper.localMedicalHistoryToGrpc(medicalHistories: customer.MedicalHistories)
-            $0.lastModifedDate = customer.lastModifiedDate.toProto
-            $0.createdDate = customer.createdDate.toProto
-            $0.children = CustomerChildProfileMapper.LocalToGrpc(children: customer.children)
-            $0.customerDeviceInfo = DeviceInformationMapper.LocalToGrpc(deviceInfo: customer.customerProviderDeviceInfo)
+            
+            if customer.firstName != nil { $0.firstName = customer.firstName!.toProto }
+            if customer.lastName != nil { $0.lastName = customer.lastName!.toProto }
+            if customer.gender != nil { $0.gender = customer.gender!.toProto }
+            if customer.age != nil { $0.age = customer.age!.toProto }
+            
+            if customer.phoneNumbers != nil { $0.phoneNumbers = CustomerPhoneNumberMapper.localPhoneNumberToGrpc(phoneNumbers: customer.phoneNumbers!) }
+            if customer.addresses != nil { $0.addresses = CustomerAddressMapper.localAddressToGrpc(addresses: customer.addresses!) }
+            if customer.appInfo != nil { $0.appInfo = CustomerAppInfoMapper.localAppInfoToGrpc(appInfo: customer.appInfo!) }
+            if customer.languages != nil { $0.languages = customer.languages!.convert() }
+            if customer.emailAddress != nil { $0.emailAddress = customer.emailAddress!.toProto }
+            if customer.activeAppointmentIds != nil { $0.activeAppointmentIds = customer.activeAppointmentIds!.convert() }
+            if customer.completedAppointmentIds != nil { $0.completedAppointmentIds = customer.completedAppointmentIds!.convert() }
+            if customer.profilePicURL != nil { $0.profilePicURL = customer.profilePicURL!.toProto }
+            if customer.primaryServiceProviderID != nil { $0.primaryServiceProviderID = customer.primaryServiceProviderID!.toProto }
+            if customer.Allergies != nil { $0.allergies = CustomerAllergyMapper.localAvailabilityToGrpc(allergies: customer.Allergies!) }
+            if customer.MedicalHistories != nil { $0.medicalHistories = CustomerMedicalHistoryMapper.localMedicalHistoryToGrpc(medicalHistories: customer.MedicalHistories!) }
+            
+            if customer.lastModifiedDate != nil { $0.lastModifedDate = customer.lastModifiedDate!.toProto }
+            if customer.createdDate != nil { $0.createdDate = customer.createdDate!.toProto }
+            if customer.children != nil { $0.children = CustomerChildProfileMapper.LocalToGrpc(children: customer.children!) }
+            if customer.customerProviderDeviceInfo != nil { $0.customerDeviceInfo = DeviceInformationMapper.LocalToGrpc(deviceInfo: customer.customerProviderDeviceInfo!) }
         }
     }
 }
+

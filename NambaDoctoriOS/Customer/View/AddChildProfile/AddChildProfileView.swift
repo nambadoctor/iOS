@@ -55,7 +55,7 @@ struct AddChildProfileView: View {
             Group {
                 Toggle("Same as my number", isOn: $addChilVM.child.IsPrimaryContact)
                     .onChange(of: addChilVM.child.IsPrimaryContact) { value in
-                        addChilVM.togglePrimaryNumber(careTakerNumbers: caretakerProfile.phoneNumbers)
+                        addChilVM.togglePrimaryNumber(careTakerNumbers: caretakerProfile.phoneNumbers ?? [PhoneNumber]())
                     }
                 
                 if addChilVM.child.IsPrimaryContact {

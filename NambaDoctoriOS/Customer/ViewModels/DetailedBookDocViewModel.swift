@@ -68,7 +68,7 @@ class DetailedBookDocViewModel : ObservableObject {
     }
     
     func checkForLatestChild () {
-        let child = addChildVM.findMostRecentChild(children: customerProfile.children)
+        let child = addChildVM.findMostRecentChild(children: customerProfile.children ?? [CustomerChildProfile]())
         if child != nil {
             bookForChild(child: child!)
         }

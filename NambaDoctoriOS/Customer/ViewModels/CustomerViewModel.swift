@@ -62,8 +62,8 @@ class CustomerViewModel : ObservableObject {
             self.retrieveServiceProviders()
             self.updateFCMToken()
 
-            if !self.customerProfile!.profilePicURL.isEmpty {
-                self.imageLoader = ImageLoader(urlString: self.customerProfile!.profilePicURL, { _ in })
+            if self.customerProfile!.profilePicURL != nil && self.customerProfile!.profilePicURL!.isEmpty {
+                self.imageLoader = ImageLoader(urlString: self.customerProfile!.profilePicURL!, { _ in })
             } else {
                 self.imageLoader = ImageLoader(urlString: "https://wgsi.utoronto.ca/wp-content/uploads/2020/12/blank-profile-picture-png.png") {_ in}
             }
@@ -120,9 +120,15 @@ class CustomerViewModel : ObservableObject {
         guard self.customerProfile != nil else { return
         }
         if !DeviceTokenId.isEmpty {
-            self.customerProfile!.appInfo.deviceTokenType = "apn"
-            self.customerProfile!.appInfo.deviceToken = DeviceTokenId
-            self.updateCustomer()
+            CustomerUpdateHelpers().UpdateFCMToken(customerId: self.customerProfile!.customerID) { response in
+                if response != nil {
+                    print("CUSTOMER DEVICE TOKEN UPDATED SUCCESSFULLY")
+                    LoggerService().log(eventName: "CUSTOMER DEVICE TOKEN UPDATED SUCCESSFULLY")
+                } else {
+                    print("CUSTOMER DEVICE TOKEN UPDATED FAILED")
+                    LoggerService().log(eventName: "CUSTOMER DEVICE TOKEN UPDATED FAILED")
+                }
+            }
         }
     }
 
@@ -273,7 +279,7 @@ class CustomerViewModel : ObservableObject {
     }
 
     func showEditChildSheet (child:CustomerChildProfile) {
-        self.addChildProfileVM.mapExistingCHild(child: child, careTakerNumbers: self.customerProfile!.phoneNumbers)
+        self.addChildProfileVM.mapExistingCHild(child: child, careTakerNumbers: self.customerProfile!.phoneNumbers ?? [PhoneNumber]())
         self.addChildProfileVM.showSheet = true
     }
     
