@@ -68,6 +68,7 @@ class DoctorViewModel: ObservableObject {
         //update FCM Token
         guard self.doctor != nil else { return
         }
+        print("UPDATING TOKEN: \(DeviceTokenId)")
         if !DeviceTokenId.isEmpty {
             self.doctor.applicationInfo.deviceToken = DeviceTokenId
             self.doctor.applicationInfo.deviceTokenType = "apn"

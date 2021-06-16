@@ -38,7 +38,7 @@ class CustomerProfileService : CustomerProfileServiceProtocol {
                     completion(response.id.toString)
                 }
             } catch {
-                print("Set Customer Failed")
+                print("Set Customer Failed \(error)")
                 DispatchQueue.main.async {
                     completion(nil)
                 }

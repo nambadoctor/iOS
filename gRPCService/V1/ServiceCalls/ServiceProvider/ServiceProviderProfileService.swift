@@ -50,7 +50,7 @@ class ServiceProviderProfileService : ServiceProviderProfileServiceProtocol {
                 let response = try getServiceProvider.response.wait()
                 print("Set Service Provider Success \(response.id)")
                 DispatchQueue.main.async {
-                    LoggerService().log(eventName: "Client Received Service Provider")
+                    LoggerService().log(eventName: "Client Set Service Provider")
                     completion(response.id.toString)
                 }
             } catch {

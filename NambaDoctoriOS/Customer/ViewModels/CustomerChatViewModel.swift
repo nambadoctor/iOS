@@ -17,7 +17,7 @@ class CustomerChatViewModel: ObservableObject {
     @Published var messageList:[LocalChatMessage] = [LocalChatMessage]()
     @Published var currentTextEntry:String = ""
 
-    @Published var takeToBottomListener:Bool = false
+    @Published var scrollToBottomListener:Bool = false
 
     init(appointment:CustomerAppointment) {
         self.appointment = appointment
@@ -58,7 +58,7 @@ class CustomerChatViewModel: ObservableObject {
             if chatObj != nil && chatObj?.appointmentId == self.appointment.appointmentID {
                 let localChatObj = makeChatObj(chatObj: chatObj!)
                 self.messageList.append(localChatObj)
-                self.takeToBottomListener.toggle()
+                self.scrollToBottomListener.toggle()
             }
 
             self.messageList.sort {

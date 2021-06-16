@@ -411,7 +411,7 @@ extension CustomerDetailedAppointmentViewModel {
 extension CustomerDetailedAppointmentViewModel {
     func getNewChatCount () {
         self.newChats = LocalNotifStorer().getNumberOfNewChatsForAppointment(appointmentId: self.appointment.appointmentID)
-    }
+    }   
 
     func newChatListener () {
         NotificationCenter.default.addObserver(forName: NSNotification.Name("\(SimpleStateK.refreshNewChatCountChange)"), object: nil, queue: .main) { (_) in

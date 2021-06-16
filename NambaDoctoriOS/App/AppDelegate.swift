@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         print("APNs token retrieved: \(deviceToken)")
         let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
-        print(token)
+        print("DEVICE TOKEN: \(token)")
         DeviceTokenId = token
         DoctorDefaultModifiers.updateFCMToken()
         // With swizzling disabled you must set the APNs token here.

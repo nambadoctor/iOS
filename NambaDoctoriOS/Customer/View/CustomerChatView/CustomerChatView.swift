@@ -38,11 +38,11 @@ struct CustomerChatRoomView: View {
                         MessageView(currentMessage: message)
                             .id(message.chatMessage.messageId)
                     }
-                    .onChange(of: chatVM.takeToBottomListener) { _ in
+                    .onChange(of: chatVM.scrollToBottomListener) { _ in
                         value.scrollTo(chatVM.messageList.last?.chatMessage.messageId)
                     }
                     .onAppear() {
-                        chatVM.takeToBottomListener.toggle()
+                        chatVM.scrollToBottomListener.toggle()
                     }
                 }
             }
@@ -96,7 +96,7 @@ struct CustomerChatRoomView: View {
             EndEditingHelper.endEditing()
         }
         .onReceive(NotificationCenter.default.publisher(for: UIResponder.keyboardDidShowNotification)) { _ in
-            chatVM.takeToBottomListener.toggle()
+            chatVM.scrollToBottomListener.toggle()
         }
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: backButton)

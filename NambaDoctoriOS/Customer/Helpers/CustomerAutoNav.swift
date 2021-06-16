@@ -71,7 +71,7 @@ class CustomerAutoNavigateHelper {
     }
     
     func leaveChatRoom () {
-        self.takeToChat = true
+        self.takeToChat = false
         self.currentyInChat = false
     }
     

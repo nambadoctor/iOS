@@ -75,6 +75,8 @@ extension CustomerAllReportsViewModel : ImagePickedDelegate {
     }
 
     func checkIfFirstTimeOpeningAppointment () {
-        self.showUploadReportSheet = !UserDefaults.standard.bool(forKey: self.appointment.appointmentID)
+        if self.appointment.status == ConsultStateK.Confirmed.rawValue {
+            self.showUploadReportSheet = !UserDefaults.standard.bool(forKey: self.appointment.appointmentID)
+        }
     }
 }
