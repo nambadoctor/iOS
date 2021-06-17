@@ -39,6 +39,7 @@ struct CustomerReportsView: View {
             }
             
             LargeButton(title: self.reportsVM.reports.count > 0 ? "Upload Another" : "Upload Image", backgroundColor: Color.blue) {
+                LoggerService().log(eventName: "Click upload report button in normal report view")
                 reportsVM.imagePickerVM.showActionSheet()
             }
             .modifier(ImagePickerModifier(imagePickerVM: self.reportsVM.imagePickerVM))

@@ -54,6 +54,7 @@ struct UploadReportSheet: View {
             HStack {
                 LargeButton(title: self.reportsVM.reports.count > 0 ? "Upload Another" : "Upload Image",
                             backgroundColor: Color.blue) {
+                    LoggerService().log(eventName: "Clicking upload image button in upload sheet")
                     reportsVM.imagePickerVM.showActionSheet()
                 }
                 .modifier(ImagePickerModifier(imagePickerVM: self.reportsVM.imagePickerVM))
@@ -61,12 +62,13 @@ struct UploadReportSheet: View {
                 if !reportsVM.reports.isEmpty {
                     LargeButton(title: "Done",
                                 backgroundColor: Color.green) {
+                        LoggerService().log(eventName: "Finished uploading reports in sheet and pressed done")
                         self.reportsVM.dontShowUploadReportSheetAnymore()
                         presentationMode.wrappedValue.dismiss()
                     }
                 }
             }
-            
+
             if reportsVM.reports.isEmpty {
                 HStack {
                     Spacer()
@@ -76,6 +78,7 @@ struct UploadReportSheet: View {
                         .bold()
                 }
                 .onTapGesture {
+                    LoggerService().log(eventName: "Skip Upload Report Sheet")
                     self.reportsVM.dontShowUploadReportSheetAnymore()
                     presentationMode.wrappedValue.dismiss()
                 }
@@ -84,5 +87,6 @@ struct UploadReportSheet: View {
         }
         .padding()
         .overlay(LoadingScreen(showLoader: self.$reportsVM.showUploadingIndicator, completed: $dummyBinder))
+        .onAppear() {LoggerService().log(eventName: "Report Upload Sheet Displayed")}
     }
 }

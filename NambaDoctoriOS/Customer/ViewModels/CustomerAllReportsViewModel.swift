@@ -60,6 +60,7 @@ class CustomerAllReportsViewModel : ObservableObject {
 
 extension CustomerAllReportsViewModel : ImagePickedDelegate {
     func imageSelected() {
+        LoggerService().log(eventName: "Image Selected To Upload")
         let image:UIImage = imagePickerVM.image!
         
         let encodedImage = image.jpegData(compressionQuality: 0.5)?.base64EncodedString()
@@ -75,8 +76,13 @@ extension CustomerAllReportsViewModel : ImagePickedDelegate {
     }
 
     func checkIfFirstTimeOpeningAppointment () {
+        let showSheet = !UserDefaults.standard.bool(forKey: self.appointment.appointmentID)
         if self.appointment.status == ConsultStateK.Confirmed.rawValue {
-            self.showUploadReportSheet = !UserDefaults.standard.bool(forKey: self.appointment.appointmentID)
+            self.showUploadReportSheet = showSheet
+        }
+        
+        if !showSheet {
+            LoggerService().log(eventName: "Upload sheet already viewed once. Did not show this time")
         }
     }
 }
