@@ -51,17 +51,19 @@ struct EditableDoctorProfile: View {
             Divider()
         }.onAppear() {
             //map values
-            editDoctorVM.AppointmentDuration = String(doctor.appointmentDuration)
-            editDoctorVM.FollowUpServiceFee = String(doctor.followUpServiceFee.clean)
-            editDoctorVM.TimeIntervalBetweenAppointments = String(doctor.intervalBetweenAppointment)
-            editDoctorVM.ServiceFee = String(doctor.serviceFee.clean)
+            editDoctorVM.AppointmentDuration = String(doctor.appointmentDuration ?? 0)
+            editDoctorVM.FollowUpServiceFee = String((doctor.followUpServiceFee ?? 0).clean)
+            editDoctorVM.TimeIntervalBetweenAppointments = String(doctor.intervalBetweenAppointment ?? 0)
+            editDoctorVM.ServiceFee = String((doctor.serviceFee ?? 0).clean)
         }
     }
 
     var editableDoctorInfoHeader : some View {
         HStack {
             
-            EditableDoctorProfilePic(doctorProfileURL: doctor.profilePictureURL, imagePickerViewModel: editDoctorVM.imagePickerViewModel)
+            if doctor.profilePictureURL != nil {
+                EditableDoctorProfilePic(doctorProfileURL: doctor.profilePictureURL!, imagePickerViewModel: editDoctorVM.imagePickerViewModel)
+            }
 
             VStack (alignment: .leading, spacing: 10) {
                 VStack (alignment: .leading, spacing: 3) {
@@ -69,7 +71,7 @@ struct EditableDoctorProfile: View {
                         .font(.footnote)
                         .bold()
                         .foregroundColor(.gray)
-                    Text("\(doctor.firstName) \(doctor.lastName)")
+                    Text("\(doctor.firstName != nil ? doctor.firstName! : "") \(doctor.lastName != nil ? doctor.lastName! : "")")
                 }
                 
                 VStack (alignment: .leading, spacing: 3) {
@@ -77,7 +79,9 @@ struct EditableDoctorProfile: View {
                         .font(.footnote)
                         .bold()
                         .foregroundColor(.gray)
-                    Text("\(doctor.registrationNumber)")
+                    if doctor.registrationNumber != nil {
+                        Text(doctor.registrationNumber ?? "")
+                    }
                 }
                 
                 VStack (alignment: .leading, spacing: 3) {
@@ -85,7 +89,9 @@ struct EditableDoctorProfile: View {
                         .font(.footnote)
                         .bold()
                         .foregroundColor(.gray)
-                    ExpandingTextView(text: $doctor.emailAddress)
+                    if doctor.emailAddress != nil {
+                        Text(doctor.emailAddress!)
+                    }
                 }
             }.padding()
         }

@@ -19,7 +19,7 @@ struct DoctorProfile: View {
                 
                 Button(action: {
                     CommonDefaultModifiers.showLoader(incomingLoadingText: "Generating Link")
-                    CreateDynamicLink().makeLink(doctorId: self.doctorViewModel.doctor.serviceProviderID, doctorName: self.doctorViewModel.serviceProviderName, profilePicURL: self.doctorViewModel.doctor.profilePictureURL) { url in
+                    CreateDynamicLink().makeLink(doctorId: self.doctorViewModel.doctor.serviceProviderID, doctorName: self.doctorViewModel.serviceProviderName, profilePicURL: self.doctorViewModel.doctor.profilePictureURL ?? "") { url in
                         CommonDefaultModifiers.hideLoader()
                         shareSheet(url: url)
                     }
@@ -96,18 +96,26 @@ struct DoctorProfile: View {
                 .font(.footnote)
                 .bold()
                 .foregroundColor(.gray)
-            ForEach(doctorViewModel.doctor.educations, id: \.educationID) { education in
+            if doctorViewModel.doctor.educations != nil {
+                ForEach(doctorViewModel.doctor.educations!, id: \.educationID) { education in
+                    HStack {
+                        VStack (alignment: .leading, spacing: 5) {
+                            Text("\(education.course)")
+                                .font(.callout)
+                                .bold()
+                                .foregroundColor(Color.blue)
+                        }.padding()
+                        Spacer()
+                    }
+                    .background(Color.blue.opacity(0.3))
+                    .cornerRadius(7)
+                }
+            } else {
                 HStack {
-                    VStack (alignment: .leading, spacing: 5) {
-                        Text("\(education.course)")
-                            .font(.callout)
-                            .bold()
-                            .foregroundColor(Color.blue)
-                    }.padding()
+                    Spacer()
+                    Text("No Educations On Record")
                     Spacer()
                 }
-                .background(Color.blue.opacity(0.3))
-                .cornerRadius(7)
             }
         }.padding()
     }
@@ -118,22 +126,30 @@ struct DoctorProfile: View {
                 .font(.footnote)
                 .bold()
                 .foregroundColor(.gray)
-            ForEach(doctorViewModel.doctor.experiences, id: \.workExperienceID) { experience in
+            if doctorViewModel.doctor.experiences != nil {
+                ForEach(doctorViewModel.doctor.experiences!, id: \.workExperienceID) { experience in
+                    HStack {
+                        VStack (alignment: .leading, spacing: 5) {
+                            Text("\(experience.organization)")
+                                .font(.callout)
+                                .bold()
+                                .foregroundColor(Color.blue)
+                            
+                            Text("\(String(experience.startDate)) - \(String(experience.endDate))")
+                                .font(.callout)
+                                .foregroundColor(Color.blue)
+                        }.padding()
+                        Spacer()
+                    }
+                    .background(Color.blue.opacity(0.3))
+                    .cornerRadius(7)
+                }
+            } else {
                 HStack {
-                    VStack (alignment: .leading, spacing: 5) {
-                        Text("\(experience.organization)")
-                            .font(.callout)
-                            .bold()
-                            .foregroundColor(Color.blue)
-                        
-                        Text("\(String(experience.startDate)) - \(String(experience.endDate))")
-                            .font(.callout)
-                            .foregroundColor(Color.blue)
-                    }.padding()
+                    Spacer()
+                    Text("No Work Experiences On Record")
                     Spacer()
                 }
-                .background(Color.blue.opacity(0.3))
-                .cornerRadius(7)
             }
         }.padding()
     }
@@ -144,22 +160,31 @@ struct DoctorProfile: View {
                 .font(.footnote)
                 .bold()
                 .foregroundColor(.gray)
-            ForEach(doctorViewModel.doctor.addresses, id: \.addressID) { address in
+            
+            if doctorViewModel.doctor.addresses != nil {
+                ForEach(doctorViewModel.doctor.addresses!, id: \.addressID) { address in
+                    HStack {
+                        VStack (alignment: .leading, spacing: 5) {
+                            Text("\(address.streetAddress), \(address.state), \(address.country)")
+                                .font(.callout)
+                                .bold()
+                                .foregroundColor(Color.blue)
+                            
+                            Text("\(address.type)")
+                                .font(.callout)
+                                .foregroundColor(Color.blue)
+                        }.padding()
+                        Spacer()
+                    }
+                    .background(Color.blue.opacity(0.3))
+                    .cornerRadius(7)
+                }
+            } else {
                 HStack {
-                    VStack (alignment: .leading, spacing: 5) {
-                        Text("\(address.streetAddress), \(address.state), \(address.country)")
-                            .font(.callout)
-                            .bold()
-                            .foregroundColor(Color.blue)
-                        
-                        Text("\(address.type)")
-                            .font(.callout)
-                            .foregroundColor(Color.blue)
-                    }.padding()
+                    Spacer()
+                    Text("No Work Experiences On Record")
                     Spacer()
                 }
-                .background(Color.blue.opacity(0.3))
-                .cornerRadius(7)
             }
         }.padding()
     }
@@ -170,22 +195,30 @@ struct DoctorProfile: View {
                 .font(.footnote)
                 .bold()
                 .foregroundColor(.gray)
-            ForEach(doctorViewModel.doctor.phoneNumbers, id: \.phoneNumberID) { phoneNumber in
+            if doctorViewModel.doctor.phoneNumbers != nil {
+                ForEach(doctorViewModel.doctor.phoneNumbers!, id: \.phoneNumberID) { phoneNumber in
+                    HStack {
+                        VStack (alignment: .leading, spacing: 5) {
+                            Text("\(phoneNumber.countryCode)\(phoneNumber.number)")
+                                .font(.callout)
+                                .bold()
+                                .foregroundColor(Color.blue)
+                            
+                            Text("\(phoneNumber.type)")
+                                .font(.callout)
+                                .foregroundColor(Color.blue)
+                        }.padding()
+                        Spacer()
+                    }
+                    .background(Color.blue.opacity(0.3))
+                    .cornerRadius(7)
+                }
+            } else {
                 HStack {
-                    VStack (alignment: .leading, spacing: 5) {
-                        Text("\(phoneNumber.countryCode)\(phoneNumber.number)")
-                            .font(.callout)
-                            .bold()
-                            .foregroundColor(Color.blue)
-                        
-                        Text("\(phoneNumber.type)")
-                            .font(.callout)
-                            .foregroundColor(Color.blue)
-                    }.padding()
+                    Spacer()
+                    Text("No Phone Numbers On Record")
                     Spacer()
                 }
-                .background(Color.blue.opacity(0.3))
-                .cornerRadius(7)
             }
         }.padding()
     }
@@ -199,7 +232,7 @@ struct DoctorProfile: View {
                     .font(.footnote)
                     .bold()
                     .foregroundColor(.gray)
-                Text("₹\(doctorViewModel.doctor.serviceFee.clean)")
+                Text("₹\((doctorViewModel.doctor.serviceFee ?? 0).clean)")
             }
             
             VStack (alignment: .leading, spacing: 3) {
@@ -207,7 +240,7 @@ struct DoctorProfile: View {
                     .font(.footnote)
                     .bold()
                     .foregroundColor(.gray)
-                Text("₹\(doctorViewModel.doctor.followUpServiceFee.clean)")
+                Text("₹\((doctorViewModel.doctor.followUpServiceFee ?? 0).clean)")
             }
 
             VStack (alignment: .leading, spacing: 3) {
@@ -215,7 +248,7 @@ struct DoctorProfile: View {
                     .font(.footnote)
                     .bold()
                     .foregroundColor(.gray)
-                Text("\(doctorViewModel.doctor.appointmentDuration) minutes")
+                Text("\(doctorViewModel.doctor.appointmentDuration ?? 0) minutes")
             }
             
             VStack (alignment: .leading, spacing: 3) {
@@ -223,7 +256,7 @@ struct DoctorProfile: View {
                     .font(.footnote)
                     .bold()
                     .foregroundColor(.gray)
-                Text("\(doctorViewModel.doctor.intervalBetweenAppointment) minutes")
+                Text("\(doctorViewModel.doctor.intervalBetweenAppointment ?? 0) minutes")
             }
         }.padding(.horizontal)
     }
@@ -238,7 +271,7 @@ struct DoctorProfile: View {
                         .font(.footnote)
                         .bold()
                         .foregroundColor(.gray)
-                    Text("\(doctorViewModel.doctor.firstName) \(doctorViewModel.doctor.lastName)")
+                    Text("\(doctorViewModel.doctor.firstName ?? "") \(doctorViewModel.doctor.lastName ?? "")")
                 }
                 
                 VStack (alignment: .leading, spacing: 3) {
@@ -246,7 +279,7 @@ struct DoctorProfile: View {
                         .font(.footnote)
                         .bold()
                         .foregroundColor(.gray)
-                    Text("\(doctorViewModel.doctor.registrationNumber)")
+                    Text("\(doctorViewModel.doctor.registrationNumber ?? "")")
                 }
                 
                 VStack (alignment: .leading, spacing: 3) {
@@ -254,7 +287,7 @@ struct DoctorProfile: View {
                         .font(.footnote)
                         .bold()
                         .foregroundColor(.gray)
-                    Text("\(doctorViewModel.doctor.emailAddress)")
+                    Text("\(doctorViewModel.doctor.emailAddress ?? "")")
                 }
             }.padding()
         }

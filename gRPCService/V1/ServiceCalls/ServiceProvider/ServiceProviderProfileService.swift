@@ -54,7 +54,7 @@ class ServiceProviderProfileService : ServiceProviderProfileServiceProtocol {
                     completion(response.id.toString)
                 }
             } catch {
-                print("Set Service Provider Failed")
+                print("Set Service Provider Failed \(error)")
                 DispatchQueue.main.async {
                     completion(nil)
                 }

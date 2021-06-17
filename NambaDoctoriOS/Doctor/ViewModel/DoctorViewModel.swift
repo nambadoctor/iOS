@@ -58,7 +58,9 @@ class DoctorViewModel: ObservableObject {
                 self.retrieveAppointments()
                 self.getMyPatients()
                 self.updateFCMToken()
-                self.imageLoader = ImageLoader(urlString: self.doctor.profilePictureURL) { success in }
+                if self.doctor.profilePictureURL != nil {
+                    self.imageLoader = ImageLoader(urlString: self.doctor.profilePictureURL!) { success in }
+                }
                 self.availabilityVM.getAvailabilities(serviceProviderId: self.doctor.serviceProviderID)
             }
         }
@@ -70,9 +72,12 @@ class DoctorViewModel: ObservableObject {
         }
         print("UPDATING TOKEN: \(DeviceTokenId)")
         if !DeviceTokenId.isEmpty {
-            self.doctor.applicationInfo.deviceToken = DeviceTokenId
-            self.doctor.applicationInfo.deviceTokenType = "apn"
-            self.updateDoctor()
+            let appInfoID:String = self.doctor.applicationInfo?.appInfoID ?? ""
+            ServiceProviderUpdateHelper().UpdateFCMToken(appInfoId: appInfoID, serviceProviderId: self.doctor.serviceProviderID) { response in
+                if response != nil {
+                    LoggerService().log(eventName: "SUCCESSFULLY UPDATED SERVICE PROVIDER FCM TOKEN")
+                }
+            }
         }
     }
 
@@ -86,14 +91,6 @@ class DoctorViewModel: ObservableObject {
         }
     }
 
-    var authTokenId:String? {
-        return doctor.applicationInfo.authID
-    }
-    
-    var fcmTokenId:String? {
-        return doctor.applicationInfo.deviceToken
-    }
-    
     func retrieveAppointments () {
         CommonDefaultModifiers.showLoader(incomingLoadingText: "Getting your appointments")
         doctorAppointmentViewModel.getDocAppointments(serviceProviderId: doctor.serviceProviderID) { (appointments) in

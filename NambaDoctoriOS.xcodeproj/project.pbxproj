@@ -333,6 +333,7 @@
 		17A020782630201200BD828F /* LocalNotifStoreHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A020772630201200BD828F /* LocalNotifStoreHelper.swift */; };
 		17A020812630214400BD828F /* DocNotificationDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A020802630214400BD828F /* DocNotificationDisplayView.swift */; };
 		17A020A326307AD000BD828F /* DoctorAvailabilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A020A226307AD000BD828F /* DoctorAvailabilityView.swift */; };
+		17A37549267BAFC300571049 /* ServiceProviderUpdateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A37548267BAFC300571049 /* ServiceProviderUpdateHelper.swift */; };
 		17AE6D1825E24B2200B18292 /* DoctorsPatientsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE6D1725E24B2100B18292 /* DoctorsPatientsView.swift */; };
 		17AE6D2025E24B2A00B18292 /* DoctorsPatientsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE6D1F25E24B2A00B18292 /* DoctorsPatientsCardView.swift */; };
 		17AE6D3325E24DA400B18292 /* RetrieveDoctorsPatientsServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17AE6D3225E24DA400B18292 /* RetrieveDoctorsPatientsServiceProtocol.swift */; };
@@ -760,6 +761,7 @@
 		17A020772630201200BD828F /* LocalNotifStoreHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotifStoreHelper.swift; sourceTree = "<group>"; };
 		17A020802630214400BD828F /* DocNotificationDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocNotificationDisplayView.swift; sourceTree = "<group>"; };
 		17A020A226307AD000BD828F /* DoctorAvailabilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorAvailabilityView.swift; sourceTree = "<group>"; };
+		17A37548267BAFC300571049 /* ServiceProviderUpdateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderUpdateHelper.swift; sourceTree = "<group>"; };
 		17AE6D1725E24B2100B18292 /* DoctorsPatientsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorsPatientsView.swift; sourceTree = "<group>"; };
 		17AE6D1F25E24B2A00B18292 /* DoctorsPatientsCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorsPatientsCardView.swift; sourceTree = "<group>"; };
 		17AE6D3225E24DA400B18292 /* RetrieveDoctorsPatientsServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrieveDoctorsPatientsServiceProtocol.swift; sourceTree = "<group>"; };
@@ -1549,6 +1551,7 @@
 		17626EAF25DB3FCE00C36A99 /* ServiceProvider */ = {
 			isa = PBXGroup;
 			children = (
+				17A37547267BAFB300571049 /* ServiceProviderServiceCallHelpers */,
 				1742523D25BD98F400523B94 /* ServiceProviderCustomerService.swift */,
 				171647722603473000BB5B5A /* ServiceProviderServiceRequestService.swift */,
 				171647B22604468500BB5B5A /* ServiceProviderPrescriptionService.swift */,
@@ -1809,6 +1812,14 @@
 				1745406F264A3A2900215DB6 /* DoctorNotificationCard.swift */,
 			);
 			path = Notifications;
+			sourceTree = "<group>";
+		};
+		17A37547267BAFB300571049 /* ServiceProviderServiceCallHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				17A37548267BAFC300571049 /* ServiceProviderUpdateHelper.swift */,
+			);
+			path = ServiceProviderServiceCallHelpers;
 			sourceTree = "<group>";
 		};
 		17AE6D1525E24B0B00B18292 /* DoctorsPatients */ = {
@@ -2405,6 +2416,7 @@
 				17BFEF1E264FAEC9000443C9 /* CustomerAllReportsViewModel.swift in Sources */,
 				175B1F3B2678AF9B009D6008 /* UploadReportSheet.swift in Sources */,
 				176AA2032637F76D00F02346 /* CustomerReportService.swift in Sources */,
+				17A37549267BAFC300571049 /* ServiceProviderUpdateHelper.swift in Sources */,
 				1728B77525B381D1001D554E /* PreRegisteredUser.swift in Sources */,
 				171B8AE126109792007E722C /* ImagePicker.swift in Sources */,
 				17EC75E5260C62190002BA75 /* PatientInfoEditableView.swift in Sources */,
