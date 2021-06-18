@@ -21,6 +21,7 @@ extension DoctorHome {
     func refreshAppointmentsListener () {
         NotificationCenter.default.addObserver(forName: NSNotification.Name("\(DocViewStatesK.refreshAppointmentsChange)"), object: nil, queue: .main) { (_) in
             doctorViewModel.refreshAppointments()
+            doctorViewModel.getMyPatients()
         }
     }
     

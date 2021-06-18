@@ -99,6 +99,7 @@ class MedicineViewModel: ObservableObject {
         }
 
         self.medicineEntryVM.clearValues()
+        self.medicineBeingEdited = nil
     }
     
     

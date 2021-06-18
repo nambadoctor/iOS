@@ -10,7 +10,7 @@ import Foundation
 class DoctorChatViewModel: ObservableObject {
     var appointment:ServiceProviderAppointment
     
-    private var dbRef:DBReferences
+    private var dbRef:ChatDatabaseReference
     private var realtimeDBRef:RealtimeDBListener
 
     @Published var messageList:[LocalChatMessage] = [LocalChatMessage]()
@@ -20,7 +20,7 @@ class DoctorChatViewModel: ObservableObject {
     
     init(appointment:ServiceProviderAppointment) {
         self.appointment = appointment
-        self.dbRef = DBReferences(serviceProviderId: appointment.serviceProviderID, customerId: appointment.customerID)
+        self.dbRef = ChatDatabaseReference(serviceProviderId: appointment.serviceProviderID, customerId: appointment.customerID)
         self.realtimeDBRef = RealtimeDBListener(dbQuery: dbRef.getChatToReadRefForServiceProvider(serviceProviderId: appointment.serviceProviderID, customerId: appointment.customerID))
         
         startMessageAddedListener()

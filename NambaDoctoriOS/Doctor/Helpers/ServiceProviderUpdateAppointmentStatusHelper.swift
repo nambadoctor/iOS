@@ -7,6 +7,11 @@
 
 import Foundation
 
+class ServiceProviderFirebaseUpdateAppointmentStatus {
+    private var dbRef:ChatDatabaseReference
+    private var realtimeDBRef:RealtimeDBListener
+}
+
 class ServiceProviderUpdateAppointmentStatusHelper:ServiceProviderUpdateAppointmentStatusProtocol {
     
     let AppointmentServiceCalls:ServiceProviderAppointmentServiceProtocol

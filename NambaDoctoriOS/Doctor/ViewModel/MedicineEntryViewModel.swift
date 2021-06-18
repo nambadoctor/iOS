@@ -121,6 +121,7 @@ class MedicineEntryViewModel : ObservableObject {
         wheneverNecessary = false
         invalidDosageAttempt = 0
         invalidMedNameAttempt = 0
+        
     }
 
     func makeMedObjAndAdd() {

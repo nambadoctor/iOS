@@ -10,7 +10,7 @@ import Foundation
 class CustomerChatViewModel: ObservableObject {
     var appointment:CustomerAppointment
     
-    private var dbRef:DBReferences
+    private var dbRef:ChatDatabaseReference
     private var realtimeDBRef:RealtimeDBListener
     private var customerNotifHelpers:CustomerNotificationHelper
 
@@ -21,7 +21,7 @@ class CustomerChatViewModel: ObservableObject {
 
     init(appointment:CustomerAppointment) {
         self.appointment = appointment
-        self.dbRef = DBReferences(serviceProviderId: appointment.serviceProviderID, customerId: appointment.customerID)
+        self.dbRef = ChatDatabaseReference(serviceProviderId: appointment.serviceProviderID, customerId: appointment.customerID)
         self.realtimeDBRef = RealtimeDBListener(dbQuery: dbRef.getChatToReadRefForServiceProvider(serviceProviderId: appointment.serviceProviderID, customerId: appointment.customerID))
         self.customerNotifHelpers = CustomerNotificationHelper(appointment: appointment)
 
@@ -52,7 +52,7 @@ class CustomerChatViewModel: ObservableObject {
             }
             return localChatObj
         }
-        
+         
         realtimeDBRef.observeForAdded { (datasnapshot) in
             let chatObj = SnapshotDecoder.decodeSnapshot(modelType: ChatMessage.self, snapshot: datasnapshot)
             if chatObj != nil && chatObj?.appointmentId == self.appointment.appointmentID {

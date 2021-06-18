@@ -36,10 +36,10 @@ struct DoctorHome: View {
                             Text("My Patients")
                         }.tag(3)
 
-                        DocNotificationDisplayView().tabItem {
-                            Image("bell")
-                            Text("Notifications")
-                        }.tag(4)
+//                        DocNotificationDisplayView().tabItem {
+//                            Image("bell")
+//                            Text("Notifications")
+//                        }.tag(4)
                     }
                 }
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
@@ -66,6 +66,7 @@ struct DoctorHome: View {
     var navBarRefreshButton : some View {
         Button(action: {
             doctorViewModel.refreshAppointments()
+            doctorViewModel.getMyPatients()
         }, label: {
             Image("arrow.clockwise")
         })

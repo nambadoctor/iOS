@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseDatabase
 
-class DBReferences {
+class ChatDatabaseReference {
     var ref:DatabaseReference
     
     init(serviceProviderId:String, customerId:String) {
@@ -23,5 +23,22 @@ class DBReferences {
         let keyId = ref.childByAutoId().key!
         let dbRef = ref.child(keyId)
         completion(dbRef, keyId)
+    }
+}
+
+class AppointmentStatusDatabaseReference {
+    var ref:DatabaseReference
+    
+    init(appointmentId:String) {
+        ref = Database.database().reference().child("AppointmentStatus").child(appointmentId)
+    }
+    
+    func getChatToReadRefForServiceProvider (serviceProviderId:String, customerId:String) -> DatabaseQuery {
+        return ref
+    }
+
+    func getSpecificChatRefToWrite (completion: (_ dbRef:DatabaseReference, _ keyId:String)->()) {
+        let keyId = ref.childByAutoId().key!
+        completion(ref, keyId)
     }
 }
