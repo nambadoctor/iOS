@@ -111,6 +111,7 @@ class CustomerViewModel : ObservableObject {
         }
 
         if upcomingAppointments.count > 0 {
+            startFirebaseCallStateListener()
             tabSelection = 1
         }
     }
@@ -316,5 +317,11 @@ extension CustomerViewModel {
         cusAutoNav.enterDetailedView(appointmentId: self.selectedAppointment!.appointmentID)
         self.customerAppointmentVM = CustomerDetailedAppointmentViewModel(appointment: appointment)
         self.takeToDetailedAppointmentView = true
+    }
+}
+
+extension CustomerViewModel {
+    func startFirebaseCallStateListener () {
+        CustomerFirebaseUpdateAppointmentStatus(appointmentId: self.upcomingAppointments.first!.appointmentID).startListener()
     }
 }

@@ -14,7 +14,7 @@ class CustomerNotificationHandlerHelper {
         }
     }
     
-    func callNotic (appointmentId:String, userInfo:[AnyHashable:Any]) {
+    func callNotif (appointmentId:String, userInfo:[AnyHashable: Any]) {
         if cusAutoNav.currenltyInIntermediateView && cusAutoNav.appointmentId == appointmentId {
             cusAutoNav.navigateToCall(appointmentId: appointmentId)
         } else if !cusAutoNav.currentlyInTwilioRoom && !cusAutoNav.currenltyInIntermediateView && cusAutoNav.appointmentId.isEmpty {

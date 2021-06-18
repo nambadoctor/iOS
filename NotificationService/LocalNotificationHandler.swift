@@ -67,7 +67,7 @@ class LocalNotificationHandler {
             completion(true)
             break
         case .CallInRoom:
-            CustomerNotificationHandlerHelper().callNotic(appointmentId: values[APNPayloadKeys.id.rawValue]!, userInfo: userInfo)
+            CustomerNotificationHandlerHelper().callNotif(appointmentId: values[APNPayloadKeys.id.rawValue]!, userInfo: userInfo)
             completion(true)
         case .NewChatMessage:
             CommonDefaultModifiers.refreshChatCount()

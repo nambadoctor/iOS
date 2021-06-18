@@ -69,6 +69,7 @@ class DoctorTwilioViewModel: ObservableObject {
         LoggerService().log(eventName: "Updating appointment status to StartedConsultation")
         self.updateAppointmentStatus.updateToStartedConsultation(appointment: &self.appointment) { (success) in
             if success {
+                ServiceProviderFirebaseUpdateAppointmentStatus(appointmentId: self.appointment.appointmentID).writeStartedCallState()
                 //TODO: LOG - room started, consultation not updated
                 LoggerService().log(eventName: "Successfully updated appointment status to StartedConsultation")
                 completion(success)

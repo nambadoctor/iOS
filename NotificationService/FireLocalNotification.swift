@@ -34,7 +34,6 @@ class FireLocalNotif {
     
     func fireRepeatingNotification (userInfo:[AnyHashable: Any]) {
         let timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true) { timer in
-            print("HEHEHAHA: \(showRepeatingCallNotif)")
             if showRepeatingCallNotif {
                 self.fire(userInfo: userInfo)
             } else {

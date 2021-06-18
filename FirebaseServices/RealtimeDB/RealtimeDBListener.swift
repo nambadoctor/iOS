@@ -14,6 +14,12 @@ class RealtimeDBListener {
     init(dbQuery:DatabaseQuery) {
         query = dbQuery
     }
+    
+    func valueListener (completion: @escaping (_ snapshot:DataSnapshot)->()) {
+        query.observe(DataEventType.value, with: { (snapshot) in
+            completion(snapshot)
+        })
+    }
 
     func observeForAdded (completion: @escaping (_ snapshot:DataSnapshot)->()) {
         query.observe(.childAdded, with: { (snapshot) -> Void in
@@ -21,6 +27,12 @@ class RealtimeDBListener {
         })
     }
 
+    func observeForChanged (completion: @escaping (_ snapshot:DataSnapshot)->()) {
+        query.observe(.childChanged, with: { (snapshot) -> Void in
+            completion(snapshot)
+        })
+    }
+    
     func observeForRemoved (completion: @escaping (_ snapshot:DataSnapshot)->()) {
         query.observe(.childRemoved, with: { (snapshot) -> Void in
             completion(snapshot)

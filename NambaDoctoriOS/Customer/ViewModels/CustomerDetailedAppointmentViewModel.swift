@@ -330,6 +330,7 @@ extension CustomerDetailedAppointmentViewModel : TwilioDelegate {
             CommonDefaultModifiers.showLoader(incomingLoadingText: "Starting Consultation")
             customerTwilioViewModel.startRoom() { success in
                 if success {
+                    CustomerFirebaseUpdateAppointmentStatus(appointmentId: self.appointment.appointmentID).writePatientJoinedState()
                     LoggerService().log(eventName: "Patient entering")
                     self.showTwilioRoom = true
                     CommonDefaultModifiers.hideLoader()
