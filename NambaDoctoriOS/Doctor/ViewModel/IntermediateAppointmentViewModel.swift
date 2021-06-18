@@ -264,17 +264,16 @@ extension IntermediateAppointmentViewModel : TwilioDelegate {
     }
     
     func startConsultation() {
-        
         if self.childProfile == nil || (self.childProfile?.IsPrimaryContact ?? false) {
             EndEditingHelper.endEditing()
             CommonDefaultModifiers.showLoader(incomingLoadingText: "Starting Consultation Room")
             doctorTwilioManagerViewModel.startRoom() { success in
                 if success {
+                    ServiceProviderFirebaseUpdateAppointmentStatus(appointmentId: self.appointment.appointmentID).writeStartedCallState()
                     self.doctorTwilioManagerViewModel.fireStartedNotif() { success in
                         self.appointment.status = ConsultStateK.StartedConsultation.rawValue //need to refresh from db after. using local update for now.
                         self.checkIfAppointmentStarted()
                     }
-                    
                     self.showTwilioRoom = true
                     CommonDefaultModifiers.hideLoader()
                 } else { }

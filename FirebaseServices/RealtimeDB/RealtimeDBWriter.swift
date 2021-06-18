@@ -18,4 +18,8 @@ class RealtimeDBWriter {
     func writeData<T:Codable>(object: T) {
         ref.setValue(Helpers.ObjectAsDictionary(object: object))
     }
+    
+    func writeString (value:String) {
+        ref.setValue(value)
+    }
 }

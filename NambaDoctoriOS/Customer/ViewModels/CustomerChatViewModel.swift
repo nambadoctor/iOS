@@ -52,7 +52,7 @@ class CustomerChatViewModel: ObservableObject {
             }
             return localChatObj
         }
-         
+        
         realtimeDBRef.observeForAdded { (datasnapshot) in
             let chatObj = SnapshotDecoder.decodeSnapshot(modelType: ChatMessage.self, snapshot: datasnapshot)
             if chatObj != nil && chatObj?.appointmentId == self.appointment.appointmentID {

@@ -149,6 +149,7 @@ struct DoctorTwilioManager: View {
     var leaveRoom : some View {
         LargeButton(title: "Leave Room") {
             LoggerService().log(eventName: "Leave Room Button Pressed")
+            ServiceProviderFirebaseUpdateAppointmentStatus(appointmentId: self.DoctorTwilioVM.appointment.appointmentID).writeEndedCallState()
             DoctorTwilioVM.leaveRoom()
         }
     }
