@@ -350,18 +350,22 @@ extension IntermediateAppointmentViewModel {
     }
     
     func cancelAppointment(completion: @escaping (_ successfullyCancelled:Bool) -> ()) {
-        CommonDefaultModifiers.showLoader(incomingLoadingText: "Cancelling Appointment")
-        self.updateAppointmentStatus.toCancelled(appointment: &self.appointment) { (success) in
-            if success {
-                self.docNotifHelper.fireCancelNotif(appointmentTime: self.appointment.scheduledAppointmentStartTime, cancellationReason: self.appointment.cancellation.ReasonName)
-                DoctorDefaultModifiers.refreshAppointments()
-                CommonDefaultModifiers.hideLoader()
-                docAutoNav.leaveIntermediateView()
-                completion(success)
-            } else {
-                GlobalPopupHelpers.setErrorAlert()
-                CommonDefaultModifiers.hideLoader()
-                completion(success)
+        doctorAlertHelper.cancelAppointmentAlert { cancel in
+            if cancel {
+                CommonDefaultModifiers.showLoader(incomingLoadingText: "Cancelling Appointment")
+                self.updateAppointmentStatus.toCancelled(appointment: &self.appointment) { (success) in
+                    if success {
+                        self.docNotifHelper.fireCancelNotif(appointmentTime: self.appointment.scheduledAppointmentStartTime, cancellationReason: self.appointment.cancellation.ReasonName)
+                        DoctorDefaultModifiers.refreshAppointments()
+                        CommonDefaultModifiers.hideLoader()
+                        docAutoNav.leaveIntermediateView()
+                        completion(success)
+                    } else {
+                        GlobalPopupHelpers.setErrorAlert()
+                        CommonDefaultModifiers.hideLoader()
+                        completion(success)
+                    }
+                }
             }
         }
     }
