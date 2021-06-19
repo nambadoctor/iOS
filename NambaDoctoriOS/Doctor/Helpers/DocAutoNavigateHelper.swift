@@ -24,6 +24,7 @@ class DocAutoNavigateHelper {
             DoctorAlertHelpers().presentingStackedNavViewError(navType: "appointment")
         } else {
             self.appointmentId = appointmentId
+            self.takeToIntermediateView = true
             DoctorDefaultModifiers.navigateToClickedNotif()
         }
     }
@@ -63,10 +64,12 @@ class DocAutoNavigateHelper {
     }
     
     func leaveChatRoom () {
+        LocalNotifStorer().clearNewChatsCountForAppointment(appointmentId: self.appointmentId)
+        CommonDefaultModifiers.refreshChatCount()
         LoggerService().log(eventName: "Left Chat Room")
         self.currentyInChat = false
     }
-    
+
     func leaveTwilioRoom () {
         self.currentlyInTwilioRoom = false
     }
@@ -77,12 +80,11 @@ class DocAutoNavigateHelper {
     }
 
     func leaveIntermediateView() {
-        AppointmentID = ""
+        appointmentId = ""
         self.clearAllValues()
     }
 
     func clearAllValues () {
-        appointmentId = ""
         takeToChat = false
         takeToTwilioRoom = false
         takeToIntermediateView = false

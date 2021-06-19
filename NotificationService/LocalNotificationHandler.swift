@@ -91,8 +91,10 @@ class LocalNotificationHandler {
             DoctorDefaultModifiers.refreshAppointments()
         case .AppointmentCancelled:
             DoctorDefaultModifiers.refreshAppointments()
-        case .Paid, .ReportUploaded :
+        case .Paid :
             break
+        case .ReportUploaded:
+            docAutoNav.navigateToAppointment(appointmentId: id)
         case .CallInRoom:
             docAutoNav.navigateToCall(appointmentId: id)
             cusAutoNav.navigateToCall(appointmentId: id)
@@ -114,8 +116,10 @@ class LocalNotificationHandler {
             DoctorDefaultModifiers.refreshAppointments()
         case .AppointmentCancelled:
             DoctorDefaultModifiers.refreshAppointments()
-        case .Paid, .ReportUploaded :
+        case .Paid:
             break
+        case .ReportUploaded:
+            docAutoNav.navigateToAppointment(appointmentId: notifObj.AppointmentId)
         case .CallInRoom:
             docAutoNav.navigateToCall(appointmentId: notifObj.AppointmentId)
             cusAutoNav.navigateToCall(appointmentId: notifObj.AppointmentId)

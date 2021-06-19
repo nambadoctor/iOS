@@ -71,10 +71,12 @@ class CustomerAutoNavigateHelper {
     }
     
     func leaveChatRoom () {
+        LocalNotifStorer().clearNewChatsCountForAppointment(appointmentId: self.appointmentId)
+        CommonDefaultModifiers.refreshChatCount()
         self.takeToChat = false
         self.currentyInChat = false
     }
-    
+
     func leaveTwilioRoom () {
         self.currentlyInTwilioRoom = false
         self.takeToTwilioRoom = false
@@ -92,7 +94,6 @@ class CustomerAutoNavigateHelper {
     }
 
     func clearAllValues () {
-        appointmentId = ""
         takeToChat = false
         takeToTwilioRoom = false
         takeToDetailedView = false
