@@ -11,7 +11,7 @@ import SwiftUI
 
 class ImageLoader: ObservableObject {
     
-    @Published var image:UIImage? = nil
+    var image:UIImage? = nil
     var url:URL? = nil
     
     init(urlString:String, _ completion: @escaping (_ success:Bool)->()) {
@@ -22,7 +22,7 @@ class ImageLoader: ObservableObject {
     }
     
     func getImage () {
-        let task = URLSession.shared.dataTask(with: self.url!) { data, response, error in
+        URLSession.shared.dataTask(with: self.url!) { data, response, error in
             DispatchQueue.main.async {
                 guard let data = data else {
                     return
@@ -33,6 +33,5 @@ class ImageLoader: ObservableObject {
                 }
             }
         }
-        task.resume()
     }
 }
