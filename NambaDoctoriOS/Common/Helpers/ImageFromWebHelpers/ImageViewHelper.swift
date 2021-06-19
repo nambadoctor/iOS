@@ -17,13 +17,12 @@ struct ImageView: View {
     var width:CGFloat = 120
     
     var body: some View {
-        if imageLoader.image != nil {
-            Image(uiImage: imageLoader.image!)
+        if imageLoader.url != nil {
+            WebImage(url: imageLoader.url!)
                 .resizable()
-                .cornerRadius(10)
-                .shadow(radius: 10)
+                .indicator(.activity) // Activity Indicator
                 .aspectRatio(contentMode: .fit)
-                .frame(width:self.width, height:self.height)
+                .frame(width: self.width, height: self.height, alignment: .center)
                 .onTapGesture {
                     showEnlarged = true
                 }
@@ -41,14 +40,16 @@ struct ImageView: View {
                             }.padding()
                         }
 
-                        Image(uiImage: imageLoader.image!)
+                        WebImage(url: imageLoader.url!)
                             .resizable()
+                            .indicator(.activity) // Activity Indicator
                             .aspectRatio(contentMode: .fit)
                             .draggable()
                             .pinchToZoom()
                             .onDisappear() {showEnlarged = false}
                     }
                 })
+
         }
     }
 }

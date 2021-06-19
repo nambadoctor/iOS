@@ -17,17 +17,19 @@ class ImageLoader: ObservableObject {
     init(urlString:String, _ completion: @escaping (_ success:Bool)->()) {
         guard let url = URL(string: urlString) else { return }
         self.url = url
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+        completion(true)
+        getImage()
+    }
+    
+    func getImage () {
+        let task = URLSession.shared.dataTask(with: self.url!) { data, response, error in
             DispatchQueue.main.async {
                 guard let data = data else {
-                    completion(false)
                     return
                 }
                 if let image = UIImage(data: data) {
                     self.image = image
-                    completion(true)
                 } else {
-                    completion(false)
                 }
             }
         }
