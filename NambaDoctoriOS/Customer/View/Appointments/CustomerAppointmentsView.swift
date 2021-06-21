@@ -50,7 +50,7 @@ struct CustomerAppointmentsView: View {
                                     .edgesIgnoringSafeArea(.horizontal)
                             }
                             
-                            Text("FINISHED APPOINTMENTS")
+                            Text("Finished Appointments")
                                 .foregroundColor(Color.gray)
                                 .multilineTextAlignment(.center)
                             VStack {

@@ -23,6 +23,10 @@ struct UploadReportSheet: View {
             Text("Please upload any pictures you would like to share with \(appointment.serviceProviderName)")
                 .bold()
                 .font(.title2)
+            
+            Text("Ex: Reports, Tests, Images, etc...")
+                .font(.footnote)
+                .padding(.top, 2)
                 .padding(.bottom)
             
             if reportsVM.reports.isEmpty {
