@@ -11,7 +11,8 @@ class CustomerServiceProviderSearchableIndexMapper {
     static func grpcToLocal (searchableIndex:Nd_V1_CustomerServiceProviderSearchableIndexMessage) -> CustomerServiceProviderSearchableIndexes {
         return CustomerServiceProviderSearchableIndexes(Symptoms: searchableIndex.symptoms.convert(),
                                                         Designation: searchableIndex.designations.convert(),
-                                                        Specialties: searchableIndex.specialties.convert())
+                                                        Specialties: searchableIndex.specialties.convert(),
+                                                        Categories: searchableIndex.categories.convert())
     }
     
     static func localToGrpc (searchableIndex:CustomerServiceProviderSearchableIndexes) -> Nd_V1_CustomerServiceProviderSearchableIndexMessage {
@@ -19,6 +20,7 @@ class CustomerServiceProviderSearchableIndexMapper {
             $0.symptoms = searchableIndex.Symptoms.convert()
             $0.designations = searchableIndex.Designation.convert()
             $0.specialties = searchableIndex.Specialties.convert()
+            $0.categories = searchableIndex.Categories.convert()
         }
     }
 }

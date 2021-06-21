@@ -11,4 +11,5 @@ struct ServiceProviderSearchableIndexes {
     var Symptoms:[String]
     var Designation:[String]
     var Specialties:[String]
+    var Categories:[String]
 }

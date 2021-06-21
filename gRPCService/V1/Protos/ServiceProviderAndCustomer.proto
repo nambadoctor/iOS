@@ -609,6 +609,7 @@ message ServiceProviderSearchableIndexMessage {
 	repeated google.protobuf.StringValue Symptoms = 1;
 	repeated google.protobuf.StringValue Designations = 2;
 	repeated google.protobuf.StringValue Specialties = 3;
+	repeated google.protobuf.StringValue Categories = 4;
 }
 
 message ServiceProviderServiceRequestMessage{
@@ -932,6 +933,7 @@ message CustomerServiceProviderSearchableIndexMessage {
 	repeated google.protobuf.StringValue Symptoms = 1;
 	repeated google.protobuf.StringValue Designations = 2;
 	repeated google.protobuf.StringValue Specialties = 3;
+	repeated google.protobuf.StringValue Categories = 4;
 }
 
 message CustomersServiceProviderProfileMessage{

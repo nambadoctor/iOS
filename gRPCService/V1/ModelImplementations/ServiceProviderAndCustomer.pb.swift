@@ -2794,6 +2794,8 @@ struct Nd_V1_ServiceProviderSearchableIndexMessage {
 
   var specialties: [SwiftProtobuf.Google_Protobuf_StringValue] = []
 
+  var categories: [SwiftProtobuf.Google_Protobuf_StringValue] = []
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -3836,6 +3838,8 @@ struct Nd_V1_CustomerServiceProviderSearchableIndexMessage {
   var designations: [SwiftProtobuf.Google_Protobuf_StringValue] = []
 
   var specialties: [SwiftProtobuf.Google_Protobuf_StringValue] = []
+
+  var categories: [SwiftProtobuf.Google_Protobuf_StringValue] = []
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -8437,6 +8441,7 @@ extension Nd_V1_ServiceProviderSearchableIndexMessage: SwiftProtobuf.Message, Sw
     1: .same(proto: "Symptoms"),
     2: .same(proto: "Designations"),
     3: .same(proto: "Specialties"),
+    4: .same(proto: "Categories"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -8448,6 +8453,7 @@ extension Nd_V1_ServiceProviderSearchableIndexMessage: SwiftProtobuf.Message, Sw
       case 1: try { try decoder.decodeRepeatedMessageField(value: &self.symptoms) }()
       case 2: try { try decoder.decodeRepeatedMessageField(value: &self.designations) }()
       case 3: try { try decoder.decodeRepeatedMessageField(value: &self.specialties) }()
+      case 4: try { try decoder.decodeRepeatedMessageField(value: &self.categories) }()
       default: break
       }
     }
@@ -8463,6 +8469,9 @@ extension Nd_V1_ServiceProviderSearchableIndexMessage: SwiftProtobuf.Message, Sw
     if !self.specialties.isEmpty {
       try visitor.visitRepeatedMessageField(value: self.specialties, fieldNumber: 3)
     }
+    if !self.categories.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.categories, fieldNumber: 4)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -8470,6 +8479,7 @@ extension Nd_V1_ServiceProviderSearchableIndexMessage: SwiftProtobuf.Message, Sw
     if lhs.symptoms != rhs.symptoms {return false}
     if lhs.designations != rhs.designations {return false}
     if lhs.specialties != rhs.specialties {return false}
+    if lhs.categories != rhs.categories {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -9647,6 +9657,7 @@ extension Nd_V1_CustomerServiceProviderSearchableIndexMessage: SwiftProtobuf.Mes
     1: .same(proto: "Symptoms"),
     2: .same(proto: "Designations"),
     3: .same(proto: "Specialties"),
+    4: .same(proto: "Categories"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -9658,6 +9669,7 @@ extension Nd_V1_CustomerServiceProviderSearchableIndexMessage: SwiftProtobuf.Mes
       case 1: try { try decoder.decodeRepeatedMessageField(value: &self.symptoms) }()
       case 2: try { try decoder.decodeRepeatedMessageField(value: &self.designations) }()
       case 3: try { try decoder.decodeRepeatedMessageField(value: &self.specialties) }()
+      case 4: try { try decoder.decodeRepeatedMessageField(value: &self.categories) }()
       default: break
       }
     }
@@ -9673,6 +9685,9 @@ extension Nd_V1_CustomerServiceProviderSearchableIndexMessage: SwiftProtobuf.Mes
     if !self.specialties.isEmpty {
       try visitor.visitRepeatedMessageField(value: self.specialties, fieldNumber: 3)
     }
+    if !self.categories.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.categories, fieldNumber: 4)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -9680,6 +9695,7 @@ extension Nd_V1_CustomerServiceProviderSearchableIndexMessage: SwiftProtobuf.Mes
     if lhs.symptoms != rhs.symptoms {return false}
     if lhs.designations != rhs.designations {return false}
     if lhs.specialties != rhs.specialties {return false}
+    if lhs.categories != rhs.categories {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
