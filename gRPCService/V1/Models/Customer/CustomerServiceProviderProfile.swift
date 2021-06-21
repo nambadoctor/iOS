@@ -32,4 +32,5 @@ struct CustomerServiceProviderProfile {
     var createdDate:Int64
     var LatestSlotStartTime:Int64
     var lastModifiedDate:Int64
+    var searchableIndex:CustomerServiceProviderSearchableIndexes
 }

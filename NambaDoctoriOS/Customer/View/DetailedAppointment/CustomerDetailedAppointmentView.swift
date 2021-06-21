@@ -248,7 +248,9 @@ struct CustomerDetailedAppointmentView: View {
             }
             
             if !customerDetailedAppointmentVM.isPaid {
-                LargeButton(title: "Pay Now") {
+                LargeButton(title: customerDetailedAppointmentVM.appointmentFinished ? "Pay Now" : "Pay",
+                            backgroundColor: customerDetailedAppointmentVM.appointmentFinished ? .green : .gray,
+                            foregroundColor: .white) {
                     if customerDetailedAppointmentVM.appointmentFinished {
                         LoggerService().log(eventName: "Consultation done and patient trying to pay")
                         customerDetailedAppointmentVM.makePayment()

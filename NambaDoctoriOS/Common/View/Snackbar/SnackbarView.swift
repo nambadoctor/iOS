@@ -55,7 +55,5 @@ struct Snackbar: View {
         self.message = snackBarValues.message
         self.backgroundColor = snackBarValues.backgroundColor
         self.foregroundColor = snackBarValues.foregroundColor
-        
-        print("VALUEAKKAJENFW \(self.imageName) \(self.title) \(self.message)")
     }
 }

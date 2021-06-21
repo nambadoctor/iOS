@@ -1,0 +1,14 @@
+//
+//  ServiceProviderSearchableIndexes.swift
+//  NambaDoctoriOS
+//
+//  Created by Surya Manivannan on 6/20/21.
+//
+
+import Foundation
+
+struct ServiceProviderSearchableIndexes {
+    var Symptoms:[String]
+    var Designation:[String]
+    var Specialties:[String]
+}

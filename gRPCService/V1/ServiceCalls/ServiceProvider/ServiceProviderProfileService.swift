@@ -82,7 +82,7 @@ class ServiceProviderProfileService : ServiceProviderProfileServiceProtocol {
                 let response = try getServiceProvider.response.wait()
                 LoggerService().log(eventName: "RECEIVED SERVICE PROVIDER PROFILE")
                 let doctor = self.serviceProviderMapper.grpcProfileToLocal(profile: response)
-                print("Get Doctor Client Success \(doctor.serviceProviderID)")
+                print("Get Doctor Client Success \(doctor)")
                 DispatchQueue.main.async {
                     completion(doctor)
                 }

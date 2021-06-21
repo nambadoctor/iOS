@@ -21,10 +21,10 @@ struct CustomDate : Identifiable {
 
 class DatePickerViewModel : ObservableObject {
     let calendar = Calendar.current
-    var startDate:Date = Calendar.current.date(byAdding: DateComponents(day: -30), to: Date())!
-    var endDate:Date = Calendar.current.date(byAdding: .month, value: 1, to: Date())!
+    var startDate:Date = Calendar.current.date(byAdding: DateComponents(year: -1), to: Date())!
+    var endDate:Date = Calendar.current.date(byAdding: .year, value: 1, to: Date())!
     var todayDate:Date = Date()
-        
+
     @Published var Dates:[CustomDate] = [CustomDate]()
     @Published var selectedDate:Date = Date()
     @Published var index = 20
@@ -41,7 +41,7 @@ class DatePickerViewModel : ObservableObject {
     var datesCount:Int {
         return Dates.count
     }
-    
+
     func ifHasAppointment (index:Int) -> Bool {
         return Dates[index].hasAppointment
     }
@@ -70,6 +70,7 @@ class DatePickerViewModel : ObservableObject {
     
     func selectTodayDate () {
         selectedDate = Date()
+        setTodaysDateIndex()
         datePickerDelegate?.dateChanged(selectedDate: selectedDate)
     }
     
@@ -121,6 +122,14 @@ class DatePickerViewModel : ObservableObject {
             Dates.append(dateObject)
         }
 
+        setTodaysDateIndex()
+
+        self.showScrollView = true
+        datePickerDelegate?.dateChanged(selectedDate: selectedDate)
+        self.setTitle(date: selectedDate)
+    }
+    
+    func setTodaysDateIndex () {
         for localIndex in Dates.indices {
             var dateObj = Dates[localIndex]
             let order = Calendar.current.compare(dateObj.date, to: todayDate, toGranularity: .day)
@@ -129,10 +138,6 @@ class DatePickerViewModel : ObservableObject {
                 index = localIndex
             }
         }
-
-        self.showScrollView = true
-        datePickerDelegate?.dateChanged(selectedDate: selectedDate)
-        self.setTitle(date: selectedDate)
     }
     
     func setTitle (date:Date) {

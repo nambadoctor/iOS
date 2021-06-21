@@ -239,6 +239,7 @@ extension IntermediateAppointmentViewModel {
     }
     
     func previewPrescription () {
+        EndEditingHelper.endEditing()
         self.medicineVM.prescriptionPDF = nil
         CommonDefaultModifiers.showLoader(incomingLoadingText: "Generating PDF")
         self.saveForLater { saved in

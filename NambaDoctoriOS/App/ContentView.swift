@@ -81,7 +81,7 @@ extension ContentView {
                          queue: .main) { (_) in
                 self.showSnackBar = true
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 6) {
                     self.showSnackBar = false
                 }
             }

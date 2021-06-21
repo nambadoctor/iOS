@@ -83,7 +83,7 @@ struct CustomerDoctorProfileView: View {
                         .bold()
                         .foregroundColor(.gray)
                     HStack{Spacer()}
-                    TagCloudViewForDisplayOnly(tags: self.doctorProfileVM.educations)
+                    TagCloudViewForDisplayOnly(tags: self.doctorProfileVM.workExperience)
                     
                 }
                 .modifier(CardModifier())

@@ -116,6 +116,8 @@ struct DetailedBookDoctorView: View {
                                 CustomerDefaultModifiers.navigateToDetailedView()
                                 self.presentationMode.wrappedValue.dismiss()
                             }
+                        } else {
+                            presentationMode.wrappedValue.dismiss()
                         }
                     }
                 }

@@ -33,6 +33,7 @@ struct TagCloudViewForDisplayOnly : View {
             ForEach(self.tags, id: \.self) { tag in
                 self.item(for: tag)
                     .padding([.horizontal], 4)
+                    .padding(.bottom)
                     .alignmentGuide(.leading, computeValue: { d in
                         if (abs(width - d.width) > g.size.width)
                         {

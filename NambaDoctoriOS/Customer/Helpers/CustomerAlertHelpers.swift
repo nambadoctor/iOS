@@ -100,12 +100,17 @@ class CustomerAlertHelpers {
     }
     
     func payForExistingAppointment (doctorName:String, completion: @escaping (Bool) -> ()) {
-        alertTempItem = AlertItem(title: Text("Cannot book appointment"), message: Text("Please pay for your appointment with \(doctorName) to be able to book another appointment"), dismissButton: .default(Text("OK")))
+        alertTempItem = AlertItem(title: Text("Cannot book appointment"), message: Text("Please pay for your appointment with \(doctorName) to be able to book another appointment"), primaryButton: .default(Text("Ok")), secondaryButton: Alert.Button.default(Text("Pay Now"), action: {
+            completion(true)
+        }))
+        
         CommonDefaultModifiers.showAlert()
     }
     
     func finishExistingAppointment (doctorName:String, completion: @escaping (Bool) -> ()) {
-        alertTempItem = AlertItem(title: Text("Cannot book appointment"), message: Text("You already have an appointment with \(doctorName). Finish or cancel that appointment to book another one."), dismissButton: .default(Text("OK")))
+        alertTempItem = AlertItem(title: Text("Cannot book appointment"), message: Text("You already have an appointment with \(doctorName). Finish or cancel that appointment to book another one."), primaryButton: .default(Text("Ok")), secondaryButton: Alert.Button.default(Text("Go To Appointment"), action: {
+            completion(true)
+        }))
         CommonDefaultModifiers.showAlert()
     }
 

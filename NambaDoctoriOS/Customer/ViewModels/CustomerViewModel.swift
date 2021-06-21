@@ -235,16 +235,13 @@ class CustomerViewModel : ObservableObject {
         }
         
         for serviceProvider in self.allServiceProviders {
-            var appended:Bool = false
-            for specialty in serviceProvider.specialties {
-                
-                let trimmedCategory = self.selectedCategory.SpecialityName.lowercased().trimmingCharacters(in: .whitespacesAndNewlines).dropLast()
-                let trimmedSpecialty = specialty.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
-                
-                if trimmedCategory.contains(trimmedSpecialty) || trimmedSpecialty.contains(trimmedCategory) && !appended {
-                    self.serviceProvidersToDisplay.append(serviceProvider)
-                    appended = true
-                }
+            var appendedForCategory:Bool = false
+            if serviceProvider.searchableIndex.Symptoms.contains(where: {$0.caseInsensitiveCompare(self.selectedCategory.SpecialityName) == .orderedSame}) ||
+                serviceProvider.searchableIndex.Designation.contains(where: {$0.caseInsensitiveCompare(self.selectedCategory.SpecialityName) == .orderedSame}) ||
+                serviceProvider.searchableIndex.Specialties.contains(where: {$0.caseInsensitiveCompare(self.selectedCategory.SpecialityName) == .orderedSame}) &&
+                !appendedForCategory {
+                self.serviceProvidersToDisplay.append(serviceProvider)
+                appendedForCategory = true
             }
         }
 
@@ -300,11 +297,19 @@ extension CustomerViewModel {
         CommonDefaultModifiers.hideLoader()
         if !upcomingAppointments.isEmpty {
             let appointment = upcomingAppointments.first!
-            CustomerAlertHelpers().finishExistingAppointment(doctorName: appointment.serviceProviderName) { _ in }
+            CustomerAlertHelpers().finishExistingAppointment(doctorName: appointment.serviceProviderName) { goToAppointment in
+                if goToAppointment {
+                    self.takeToAppointment(appointment: appointment)
+                }
+            }
         } else if !finishedAppointments.isEmpty {
             for appointment in finishedAppointments {
                 if appointment.status == ConsultStateK.Finished.rawValue && !appointment.isPaid {
-                    CustomerAlertHelpers().payForExistingAppointment(doctorName: appointment.serviceProviderName) { _ in }
+                    CustomerAlertHelpers().payForExistingAppointment(doctorName: appointment.serviceProviderName) { payNow in
+                        if payNow {
+                            self.takeToAppointment(appointment: appointment)
+                        }
+                    }
                 }
             }
         }
@@ -313,6 +318,7 @@ extension CustomerViewModel {
 
 extension CustomerViewModel {
     func takeToAppointment (appointment:CustomerAppointment) {
+        self.tabSelection = 1
         self.selectedAppointment = appointment
         cusAutoNav.enterDetailedView(appointmentId: self.selectedAppointment!.appointmentID)
         self.customerAppointmentVM = CustomerDetailedAppointmentViewModel(appointment: appointment)

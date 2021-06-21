@@ -280,3 +280,7 @@ extension String {
         return String(self.dropFirst(prefix.count))
     }
 }
+
+extension String {
+    var toPlain:String {return self.lowercased().trimmingCharacters(in: .whitespaces)}
+}

@@ -61,11 +61,6 @@ struct AppointmentSummaryCardView: View {
                             }
                         }
                     }
-                } else {
-                    HStack {
-                        Text("There are no reports")
-                        Spacer()
-                    }.padding(.top, 5)
                 }
             }
         }

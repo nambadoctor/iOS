@@ -2767,11 +2767,36 @@ struct Nd_V1_ServiceProviderProfileMessage {
   /// Clears the value of `serviceProviderDeviceInfo`. Subsequent reads from it will return its default value.
   mutating func clearServiceProviderDeviceInfo() {_uniqueStorage()._serviceProviderDeviceInfo = nil}
 
+  var searchableIndexes: Nd_V1_ServiceProviderSearchableIndexMessage {
+    get {return _storage._searchableIndexes ?? Nd_V1_ServiceProviderSearchableIndexMessage()}
+    set {_uniqueStorage()._searchableIndexes = newValue}
+  }
+  /// Returns true if `searchableIndexes` has been explicitly set.
+  var hasSearchableIndexes: Bool {return _storage._searchableIndexes != nil}
+  /// Clears the value of `searchableIndexes`. Subsequent reads from it will return its default value.
+  mutating func clearSearchableIndexes() {_uniqueStorage()._searchableIndexes = nil}
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
 
   fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+struct Nd_V1_ServiceProviderSearchableIndexMessage {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var symptoms: [SwiftProtobuf.Google_Protobuf_StringValue] = []
+
+  var designations: [SwiftProtobuf.Google_Protobuf_StringValue] = []
+
+  var specialties: [SwiftProtobuf.Google_Protobuf_StringValue] = []
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
 }
 
 struct Nd_V1_ServiceProviderServiceRequestMessage {
@@ -3801,6 +3826,22 @@ struct Nd_V1_CustomerChildProfileListMessage {
   init() {}
 }
 
+struct Nd_V1_CustomerServiceProviderSearchableIndexMessage {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var symptoms: [SwiftProtobuf.Google_Protobuf_StringValue] = []
+
+  var designations: [SwiftProtobuf.Google_Protobuf_StringValue] = []
+
+  var specialties: [SwiftProtobuf.Google_Protobuf_StringValue] = []
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
 struct Nd_V1_CustomersServiceProviderProfileMessage {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -4010,6 +4051,15 @@ struct Nd_V1_CustomersServiceProviderProfileMessage {
   var hasLatestSlotEndTime: Bool {return _storage._latestSlotEndTime != nil}
   /// Clears the value of `latestSlotEndTime`. Subsequent reads from it will return its default value.
   mutating func clearLatestSlotEndTime() {_uniqueStorage()._latestSlotEndTime = nil}
+
+  var searchableIndexes: Nd_V1_CustomerServiceProviderSearchableIndexMessage {
+    get {return _storage._searchableIndexes ?? Nd_V1_CustomerServiceProviderSearchableIndexMessage()}
+    set {_uniqueStorage()._searchableIndexes = newValue}
+  }
+  /// Returns true if `searchableIndexes` has been explicitly set.
+  var hasSearchableIndexes: Bool {return _storage._searchableIndexes != nil}
+  /// Clears the value of `searchableIndexes`. Subsequent reads from it will return its default value.
+  mutating func clearSearchableIndexes() {_uniqueStorage()._searchableIndexes = nil}
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -8145,6 +8195,7 @@ extension Nd_V1_ServiceProviderProfileMessage: SwiftProtobuf.Message, SwiftProto
     23: .same(proto: "CreatedDate"),
     24: .same(proto: "LastModifedDate"),
     25: .same(proto: "ServiceProviderDeviceInfo"),
+    26: .same(proto: "SearchableIndexes"),
   ]
 
   fileprivate class _StorageClass {
@@ -8173,6 +8224,7 @@ extension Nd_V1_ServiceProviderProfileMessage: SwiftProtobuf.Message, SwiftProto
     var _createdDate: SwiftProtobuf.Google_Protobuf_Int64Value? = nil
     var _lastModifedDate: SwiftProtobuf.Google_Protobuf_Int64Value? = nil
     var _serviceProviderDeviceInfo: Nd_V1_DeviceInfoMessage? = nil
+    var _searchableIndexes: Nd_V1_ServiceProviderSearchableIndexMessage? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -8204,6 +8256,7 @@ extension Nd_V1_ServiceProviderProfileMessage: SwiftProtobuf.Message, SwiftProto
       _createdDate = source._createdDate
       _lastModifedDate = source._lastModifedDate
       _serviceProviderDeviceInfo = source._serviceProviderDeviceInfo
+      _searchableIndexes = source._searchableIndexes
     }
   }
 
@@ -8247,6 +8300,7 @@ extension Nd_V1_ServiceProviderProfileMessage: SwiftProtobuf.Message, SwiftProto
         case 23: try { try decoder.decodeSingularMessageField(value: &_storage._createdDate) }()
         case 24: try { try decoder.decodeSingularMessageField(value: &_storage._lastModifedDate) }()
         case 25: try { try decoder.decodeSingularMessageField(value: &_storage._serviceProviderDeviceInfo) }()
+        case 26: try { try decoder.decodeSingularMessageField(value: &_storage._searchableIndexes) }()
         default: break
         }
       }
@@ -8330,6 +8384,9 @@ extension Nd_V1_ServiceProviderProfileMessage: SwiftProtobuf.Message, SwiftProto
       if let v = _storage._serviceProviderDeviceInfo {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 25)
       }
+      if let v = _storage._searchableIndexes {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 26)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -8364,10 +8421,55 @@ extension Nd_V1_ServiceProviderProfileMessage: SwiftProtobuf.Message, SwiftProto
         if _storage._createdDate != rhs_storage._createdDate {return false}
         if _storage._lastModifedDate != rhs_storage._lastModifedDate {return false}
         if _storage._serviceProviderDeviceInfo != rhs_storage._serviceProviderDeviceInfo {return false}
+        if _storage._searchableIndexes != rhs_storage._searchableIndexes {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Nd_V1_ServiceProviderSearchableIndexMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".ServiceProviderSearchableIndexMessage"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "Symptoms"),
+    2: .same(proto: "Designations"),
+    3: .same(proto: "Specialties"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeRepeatedMessageField(value: &self.symptoms) }()
+      case 2: try { try decoder.decodeRepeatedMessageField(value: &self.designations) }()
+      case 3: try { try decoder.decodeRepeatedMessageField(value: &self.specialties) }()
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.symptoms.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.symptoms, fieldNumber: 1)
+    }
+    if !self.designations.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.designations, fieldNumber: 2)
+    }
+    if !self.specialties.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.specialties, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Nd_V1_ServiceProviderSearchableIndexMessage, rhs: Nd_V1_ServiceProviderSearchableIndexMessage) -> Bool {
+    if lhs.symptoms != rhs.symptoms {return false}
+    if lhs.designations != rhs.designations {return false}
+    if lhs.specialties != rhs.specialties {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -9539,6 +9641,50 @@ extension Nd_V1_CustomerChildProfileListMessage: SwiftProtobuf.Message, SwiftPro
   }
 }
 
+extension Nd_V1_CustomerServiceProviderSearchableIndexMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".CustomerServiceProviderSearchableIndexMessage"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "Symptoms"),
+    2: .same(proto: "Designations"),
+    3: .same(proto: "Specialties"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeRepeatedMessageField(value: &self.symptoms) }()
+      case 2: try { try decoder.decodeRepeatedMessageField(value: &self.designations) }()
+      case 3: try { try decoder.decodeRepeatedMessageField(value: &self.specialties) }()
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.symptoms.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.symptoms, fieldNumber: 1)
+    }
+    if !self.designations.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.designations, fieldNumber: 2)
+    }
+    if !self.specialties.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.specialties, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Nd_V1_CustomerServiceProviderSearchableIndexMessage, rhs: Nd_V1_CustomerServiceProviderSearchableIndexMessage) -> Bool {
+    if lhs.symptoms != rhs.symptoms {return false}
+    if lhs.designations != rhs.designations {return false}
+    if lhs.specialties != rhs.specialties {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
 extension Nd_V1_CustomersServiceProviderProfileMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".CustomersServiceProviderProfileMessage"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
@@ -9567,6 +9713,7 @@ extension Nd_V1_CustomersServiceProviderProfileMessage: SwiftProtobuf.Message, S
     23: .same(proto: "CreatedDate"),
     24: .same(proto: "LatestSlotStartTime"),
     25: .same(proto: "LatestSlotEndTime"),
+    26: .same(proto: "SearchableIndexes"),
   ]
 
   fileprivate class _StorageClass {
@@ -9595,6 +9742,7 @@ extension Nd_V1_CustomersServiceProviderProfileMessage: SwiftProtobuf.Message, S
     var _createdDate: SwiftProtobuf.Google_Protobuf_Int64Value? = nil
     var _latestSlotStartTime: SwiftProtobuf.Google_Protobuf_Int64Value? = nil
     var _latestSlotEndTime: SwiftProtobuf.Google_Protobuf_Int64Value? = nil
+    var _searchableIndexes: Nd_V1_CustomerServiceProviderSearchableIndexMessage? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -9626,6 +9774,7 @@ extension Nd_V1_CustomersServiceProviderProfileMessage: SwiftProtobuf.Message, S
       _createdDate = source._createdDate
       _latestSlotStartTime = source._latestSlotStartTime
       _latestSlotEndTime = source._latestSlotEndTime
+      _searchableIndexes = source._searchableIndexes
     }
   }
 
@@ -9669,6 +9818,7 @@ extension Nd_V1_CustomersServiceProviderProfileMessage: SwiftProtobuf.Message, S
         case 23: try { try decoder.decodeSingularMessageField(value: &_storage._createdDate) }()
         case 24: try { try decoder.decodeSingularMessageField(value: &_storage._latestSlotStartTime) }()
         case 25: try { try decoder.decodeSingularMessageField(value: &_storage._latestSlotEndTime) }()
+        case 26: try { try decoder.decodeSingularMessageField(value: &_storage._searchableIndexes) }()
         default: break
         }
       }
@@ -9752,6 +9902,9 @@ extension Nd_V1_CustomersServiceProviderProfileMessage: SwiftProtobuf.Message, S
       if let v = _storage._latestSlotEndTime {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 25)
       }
+      if let v = _storage._searchableIndexes {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 26)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -9786,6 +9939,7 @@ extension Nd_V1_CustomersServiceProviderProfileMessage: SwiftProtobuf.Message, S
         if _storage._createdDate != rhs_storage._createdDate {return false}
         if _storage._latestSlotStartTime != rhs_storage._latestSlotStartTime {return false}
         if _storage._latestSlotEndTime != rhs_storage._latestSlotEndTime {return false}
+        if _storage._searchableIndexes != rhs_storage._searchableIndexes {return false}
         return true
       }
       if !storagesAreEqual {return false}

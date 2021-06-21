@@ -14,17 +14,17 @@ struct HorizontalDatePicker: View {
     var body: some View {
         VStack {
             if datePickerVM.showScrollView {
-                
-                HStack {
-                    Text(self.datePickerVM.datePickerTitle)
-                        .foregroundColor(.black.opacity(0.7))
-                        .font(.title)
-                        .bold()
-                    Spacer()
-                }
-                .padding(.horizontal)
-
                 ScrollViewReader { scrollview in
+                    
+                    HStack {
+                        Text(self.datePickerVM.datePickerTitle)
+                            .foregroundColor(.black.opacity(0.7))
+                            .font(.title)
+                            .bold()
+                        Spacer()
+                    }
+                    .padding(.horizontal)
+
                     ScrollView (.horizontal, showsIndicators: false) {
                         LazyHStack {
                             ForEach (0..<datePickerVM.datesCount) { index in

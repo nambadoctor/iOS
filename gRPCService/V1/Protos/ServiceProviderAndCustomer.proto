@@ -601,6 +601,14 @@ message ServiceProviderProfileMessage{
 
 	DeviceInfoMessage ServiceProviderDeviceInfo = 25;
 
+	ServiceProviderSearchableIndexMessage SearchableIndexes = 26;
+
+}
+
+message ServiceProviderSearchableIndexMessage {
+	repeated google.protobuf.StringValue Symptoms = 1;
+	repeated google.protobuf.StringValue Designations = 2;
+	repeated google.protobuf.StringValue Specialties = 3;
 }
 
 message ServiceProviderServiceRequestMessage{
@@ -920,6 +928,12 @@ message CustomerChildProfileListMessage {
     repeated CustomerChildProfileMessage children = 1;
 }
 
+message CustomerServiceProviderSearchableIndexMessage {
+	repeated google.protobuf.StringValue Symptoms = 1;
+	repeated google.protobuf.StringValue Designations = 2;
+	repeated google.protobuf.StringValue Specialties = 3;
+}
+
 message CustomersServiceProviderProfileMessage{
 
 	google.protobuf.StringValue ServiceProviderId = 1;
@@ -971,6 +985,8 @@ message CustomersServiceProviderProfileMessage{
 	google.protobuf.Int64Value LatestSlotStartTime = 24;
 
 	google.protobuf.Int64Value LatestSlotEndTime = 25;
+	
+	CustomerServiceProviderSearchableIndexMessage SearchableIndexes = 26;
 
 }
 

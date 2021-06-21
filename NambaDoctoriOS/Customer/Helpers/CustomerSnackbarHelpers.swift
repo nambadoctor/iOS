@@ -21,11 +21,10 @@ class CustomerSnackbarHelpers {
     func waitForConsultationToFinishBeforePaying (doctorName:String) {
         snackBarValues.imageName = "indianrupeesign.circle"
         snackBarValues.title = "Cannot Pay Yet"
-        snackBarValues.message = "Please pay after your consultation with \(doctorName) is finished."
+        snackBarValues.message = "You can only pay once you are recieved the prescription"
         snackBarValues.backgroundColor = .red
         snackBarValues.foregroundColor = .white
 
         CommonDefaultModifiers.showSnackBar()
     }
-
 }
