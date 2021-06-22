@@ -35,7 +35,6 @@ class ServiceProviderPrescriptionService : ServiceProviderPrescriptionServicePro
             do {
                 let response = try getPrescriptionObj.response.wait()
                 let prescription = self.prescriptionObjectMapper.grpcPrescriptionToLocal(prescription: response)
-                print("RETRIEVED PRESCRIPTION: \(prescription.fileInfo)")
                 print("PrescriptionClient received: \(response)")
                 DispatchQueue.main.async {
                     completion(prescription)
@@ -54,6 +53,8 @@ class ServiceProviderPrescriptionService : ServiceProviderPrescriptionServicePro
         let prescriptionClient = Nd_V1_ServiceProviderPrescriptionWorkerV1Client(channel: channel)
 
         let request = prescriptionObjectMapper.localPrescriptionToGrpc(prescription: prescription)
+        
+        print("EWKFJNWKFJN \(request)")
         
         let makePrescription = prescriptionClient.setPrescription(request, callOptions: callOptions)
 

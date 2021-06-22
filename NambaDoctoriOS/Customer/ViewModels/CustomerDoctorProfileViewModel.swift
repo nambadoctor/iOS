@@ -11,10 +11,12 @@ import Foundation
 class CustomerDoctorProfileViewModel : ObservableObject {
     var serviceProviderProfile:CustomerServiceProviderProfile
     var imageLoaderVM:ImageLoader
+    var generateLinkCallBack:()->()
     
-    init(serviceProviderProfile:CustomerServiceProviderProfile) {
+    init(serviceProviderProfile:CustomerServiceProviderProfile, generateLinkCallBack:@escaping ()->()) {
         self.serviceProviderProfile = serviceProviderProfile
         self.imageLoaderVM = ImageLoader(urlString: serviceProviderProfile.profilePictureURL, { _ in })
+        self.generateLinkCallBack = generateLinkCallBack
     }
     
     var name : String {

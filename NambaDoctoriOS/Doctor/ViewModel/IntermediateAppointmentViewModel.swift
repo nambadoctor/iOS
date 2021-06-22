@@ -263,7 +263,7 @@ extension IntermediateAppointmentViewModel : TwilioDelegate {
         self.showTwilioRoom = false
         docAutoNav.leaveTwilioRoom()
     }
-    
+
     func startConsultation() {
         if self.childProfile == nil || (self.childProfile?.IsPrimaryContact ?? false) {
             EndEditingHelper.endEditing()

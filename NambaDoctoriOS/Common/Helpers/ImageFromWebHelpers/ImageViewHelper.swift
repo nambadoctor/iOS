@@ -49,7 +49,6 @@ struct ImageView: View {
                             .onDisappear() {showEnlarged = false}
                     }
                 })
-
         }
     }
 }

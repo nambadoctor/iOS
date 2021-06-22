@@ -204,7 +204,9 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
                 CommonDefaultModifiers.showLoader(incomingLoadingText: "Geting Prescription")
                 self.getPrescriptionPDF()
                 
-                self.getPrescriptionImage()
+                if self.prescription?.fileInfo.FileType.toPlain == "png" {
+                    self.getPrescriptionImage()
+                }
             }
         }
     }

@@ -66,6 +66,15 @@ class CustomerServiceProviderViewModel : ObservableObject {
     }
     
     func getDetailedServiceProviderVM() -> CustomerDoctorProfileViewModel {
-        CustomerDoctorProfileViewModel(serviceProviderProfile: self.serviceProvider)
+        CustomerDoctorProfileViewModel(serviceProviderProfile: self.serviceProvider, generateLinkCallBack: makeLink)
+    }
+    
+    func makeLink () {
+        self.showDetailedProfileSheet = false
+        CommonDefaultModifiers.showLoader(incomingLoadingText: "Generating Link")
+        CreateDynamicLink().makeLink(doctorId: self.serviceProvider.serviceProviderID, doctorName: serviceProviderName, profilePicURL: serviceProvider.profilePictureURL) { url in
+            CommonDefaultModifiers.hideLoader()
+            shareSheet(url: url)
+        }
     }
 }

@@ -32,6 +32,6 @@ class ImageLoader: ObservableObject {
                 } else {
                 }
             }
-        }
+        }.resume()
     }
 }

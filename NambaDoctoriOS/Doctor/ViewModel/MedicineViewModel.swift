@@ -132,19 +132,26 @@ class MedicineViewModel: ObservableObject {
             }
         }
         
-        retrievePrescriptionHelper.downloadPrescription(prescriptionID: prescription.prescriptionID) { (imageDataURL) in
-            if imageDataURL != nil {
-                self.imageLoader = ImageLoader(urlString: imageDataURL!) { success in
-                    if !success {
-                        self.imageLoader = nil
-                        ifmedListAlsoEmptyCheck()
-                    } else {
-                        self.showRemoveButton = true
+        if self.prescription.fileInfo.FileType.toPlain == "png" {
+            retrievePrescriptionHelper.downloadPrescription(prescriptionID: prescription.prescriptionID) { (imageDataURL) in
+                if imageDataURL != nil {
+                    self.imageLoader = ImageLoader(urlString: imageDataURL!) { success in
+                        if !success {
+                            self.imageLoader = nil
+                            ifmedListAlsoEmptyCheck()
+                            self.showRemoveButton = false
+                        } else {
+                            self.showRemoveButton = true
+                        }
                     }
+                } else {
+                    ifmedListAlsoEmptyCheck()
                 }
-            } else {
-                ifmedListAlsoEmptyCheck()
             }
+        } else {
+            self.imageLoader = nil
+            ifmedListAlsoEmptyCheck()
+            self.showRemoveButton = false
         }
     }
     
@@ -159,7 +166,7 @@ class MedicineViewModel: ObservableObject {
             }
         }
     }
-    
+
     func storeImageValues () {
         if imagePickerVM.image != nil {
             self.prescription.fileInfo.FileName = ""
@@ -167,9 +174,15 @@ class MedicineViewModel: ObservableObject {
             self.prescription.fileInfo.MediaImage = imagePickerVM.image!.jpegData(compressionQuality: 0.3)!.base64EncodedString()
         }
 
-        if imageLoader != nil {
+        if imageLoader?.image != nil {
             self.prescription.fileInfo.MediaImage = imageLoader?.image?.jpegData(compressionQuality: 0.3)!.base64EncodedString() ?? ""
             self.prescription.fileInfo.FileType = "png"
+        }
+        
+        if imageLoader?.image == nil && imagePickerVM.image == nil {
+            self.prescription.fileInfo.FileName = ""
+            self.prescription.fileInfo.FileType = ""
+            self.prescription.fileInfo.MediaImage = ""
         }
     }
 
@@ -177,7 +190,7 @@ class MedicineViewModel: ObservableObject {
         prescription.prescriptionID = "" //service will make new prescription ID to update not overwrite
         
         storeImageValues()
-                
+        
         self.prescription.createdDateTime = Date().millisecondsSince1970
         prescriptionServiceCalls.setPrescription(prescription: self.prescription) { (response) in
             self.imageLoader = nil

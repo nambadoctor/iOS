@@ -23,13 +23,9 @@ struct CustomerDoctorProfileView: View {
                     Spacer()
                     
                     ImageView(imageLoader: doctorProfileVM.imageLoaderVM)
-                    
+
                     Button(action: {
-                        CommonDefaultModifiers.showLoader(incomingLoadingText: "Generating Link")
-                        CreateDynamicLink().makeLink(doctorId: self.doctorProfileVM.serviceProviderProfile.serviceProviderID, doctorName: doctorProfileVM.name, profilePicURL: doctorProfileVM.serviceProviderProfile.profilePictureURL) { url in
-                            CommonDefaultModifiers.hideLoader()
-                            shareSheet(url: url)
-                        }
+                        self.doctorProfileVM.generateLinkCallBack()
                     }, label: {
                         Image("square.and.arrow.up.on.square")
                             .scaleEffect(1.5)
