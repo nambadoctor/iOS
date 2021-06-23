@@ -19,6 +19,7 @@ struct CustomerDoctorProfileView: View {
                     VStack (alignment: .center) {
                         ImageView(imageLoader: doctorProfileVM.imageLoaderVM)
                             .clipShape(Circle())
+                            .padding(.top, 5)
 
                         Text(doctorProfileVM.name)
                             .font(.title2)
@@ -44,11 +45,11 @@ struct CustomerDoctorProfileView: View {
                     Spacer()
                 }
                 
-                HStack {
+                HStack (alignment: .center) {
                     VStack (alignment: .center) {
                         Image("checkmark.seal.fill")
                             .scaleEffect(2)
-                            .padding(5)
+                            .padding(.bottom, 10)
                             .foregroundColor(Color.blue)
                         Text("\(self.doctorProfileVM.getAllWorkExperience) Years")
                             .font(.system(size: 18))
@@ -62,7 +63,7 @@ struct CustomerDoctorProfileView: View {
                     VStack (alignment: .center) {
                         Image("rosette")
                             .scaleEffect(2)
-                            .padding(5)
+                            .padding(.bottom, 10)
                             .foregroundColor(Color.blue)
                         Text("\(self.doctorProfileVM.serviceProviderProfile.additionalInfo.Certifications.count) Awards")
                             .font(.system(size: 18))
@@ -76,7 +77,7 @@ struct CustomerDoctorProfileView: View {
                     VStack (alignment: .center) {
                         Image("globe")
                             .scaleEffect(2)
-                            .padding(5)
+                            .padding(.bottom, 10)
                             .foregroundColor(Color.blue)
                         Text("\(self.doctorProfileVM.serviceProviderProfile.languages.count) Languages")
                             .font(.system(size: 18))
@@ -84,11 +85,15 @@ struct CustomerDoctorProfileView: View {
                             .font(.system(size: 15))
                     }
                     .modifier(SmallCardModifier())
-                }.padding(.horizontal, 1)
+                }
+                .padding(.horizontal, 1)
+                .padding(.bottom, 8)
                 
-                ExpandableTextView(self.doctorProfileVM.serviceProviderProfile.additionalInfo.Description, lineLimit: 3)
-                    .padding([.top, .bottom], 8)
-                
+                if !self.doctorProfileVM.serviceProviderProfile.additionalInfo.Description.isEmpty {
+                    ExpandableTextView(self.doctorProfileVM.serviceProviderProfile.additionalInfo.Description, lineLimit: 3)
+                        .padding(.top, 8)
+                }
+
                 VStack (alignment: .leading, spacing: 15) {
                     
                     if !self.doctorProfileVM.educations.isEmpty {
@@ -96,7 +101,8 @@ struct CustomerDoctorProfileView: View {
                             HStack {
                                 Image("graduationcap")
                                     .modifier(DetailedAppointmentViewIconModifier())
-                                Text("Degrees")
+                                Text("DEGREES")
+                                    .modifier(FootnoteTitleModifier())
                                 Spacer()
                             }
                             .padding(.bottom, 5)
@@ -112,7 +118,8 @@ struct CustomerDoctorProfileView: View {
                             HStack {
                                 Image("stethoscope")
                                     .modifier(DetailedAppointmentViewIconModifier())
-                                Text("Specialties")
+                                Text("SPECIALTIES")
+                                    .modifier(FootnoteTitleModifier())
                                 Spacer()
                             }
                             .padding(.bottom, 5)
@@ -130,7 +137,8 @@ struct CustomerDoctorProfileView: View {
                             HStack {
                                 Image("text.magnifyingglass")
                                     .modifier(DetailedAppointmentViewIconModifier())
-                                Text("Procedures")
+                                Text("PROCEDURES")
+                                    .modifier(FootnoteTitleModifier())
                                 Spacer()
                             }
                             .padding(.bottom, 5)
@@ -148,7 +156,8 @@ struct CustomerDoctorProfileView: View {
                             HStack {
                                 Image("briefcase.fill")
                                     .modifier(DetailedAppointmentViewIconModifier())
-                                Text("Currently Working")
+                                Text("CURRENTLY WORKING")
+                                    .modifier(FootnoteTitleModifier())
                                 Spacer()
                             }
                             .padding(.bottom, 5)
@@ -162,7 +171,8 @@ struct CustomerDoctorProfileView: View {
                             HStack {
                                 Image("person.3.fill")
                                     .modifier(DetailedAppointmentViewIconModifier())
-                                Text("Societies")
+                                Text("SOCIETIES")
+                                    .modifier(FootnoteTitleModifier())
                                 Spacer()
                             }
                             .padding(.bottom, 5)
@@ -178,7 +188,8 @@ struct CustomerDoctorProfileView: View {
                             HStack {
                                 Image("checkmark.seal.fill")
                                     .modifier(DetailedAppointmentViewIconModifier())
-                                Text("Certificates and Awards")
+                                Text("CERTIFICATES AND AWARDS")
+                                    .modifier(FootnoteTitleModifier())
                                 Spacer()
                             }
                             .padding(.bottom, 5)
@@ -194,7 +205,8 @@ struct CustomerDoctorProfileView: View {
                             HStack {
                                 Image("newspaper")
                                     .modifier(DetailedAppointmentViewIconModifier())
-                                Text("Journals Published")
+                                Text("JOURNALS PUBLISHED")
+                                    .modifier(FootnoteTitleModifier())
                                 Spacer()
                             }
                             .padding(.bottom, 5)
@@ -210,7 +222,8 @@ struct CustomerDoctorProfileView: View {
                             HStack {
                                 Image(systemName: "link.icloud")
                                     .modifier(DetailedAppointmentViewIconModifier())
-                                Text("Websites")
+                                Text("WEBSITES")
+                                    .modifier(FootnoteTitleModifier())
                                 Spacer()
                             }
                             .padding(.bottom, 5)
@@ -226,7 +239,8 @@ struct CustomerDoctorProfileView: View {
                             HStack {
                                 Image("globe")
                                     .modifier(DetailedAppointmentViewIconModifier())
-                                Text("Languages")
+                                Text("LANGUAGES")
+                                    .modifier(FootnoteTitleModifier())
                                 Spacer()
                             }
                             .padding(.bottom, 5)

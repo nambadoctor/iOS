@@ -35,7 +35,7 @@ struct SmallCardModifier : ViewModifier {
         content
             .padding(.vertical)
             .padding(.horizontal, 10)
-            .frame(height: 110)
+            .frame(height: 120)
             .background(Color.white)
             .cornerRadius(10)
             .shadow(radius: 1)

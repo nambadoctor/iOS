@@ -19,6 +19,14 @@ struct DetailedAppointmentViewIconModifier : ViewModifier {
     }
 }
 
+struct FootnoteTitleModifier : ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .font(.footnote.bold())
+            .foregroundColor(Color.black.opacity(0.4))
+    }
+}
+
 struct DetailedAppointmentViewCardModifier : ViewModifier {
     func body(content: Content) -> some View {
         content
