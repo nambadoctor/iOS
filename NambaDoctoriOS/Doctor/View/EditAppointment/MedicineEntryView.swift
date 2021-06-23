@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MedicineEntryView: View {
-    @EnvironmentObject var medicineVM:MedicineViewModel
+    @ObservedObject var medicineVM:MedicineViewModel
     
     var body: some View {
         ScrollView {
@@ -86,7 +86,7 @@ struct MedicineValuesEntry : View {
                         .bold()
                         .modifier(Shake(animatableData: CGFloat(self.medicineEntryVM.invalidDosageAttempt)))
                     
-                    ExpandingTextView(text: self.$medicineEntryVM.dosage.Name)
+                    ExpandingTextEntryView(text: self.$medicineEntryVM.dosage.Name)
                 }
                 
                 VStack (alignment: .leading) {
@@ -109,7 +109,7 @@ struct MedicineValuesEntry : View {
                         .bold()
                     
                     HStack {
-                        ExpandingTextView(text: self.$medicineEntryVM.duration.Days, keyboardType: .numberPad)
+                        ExpandingTextEntryView(text: self.$medicineEntryVM.duration.Days, keyboardType: .numberPad)
 
                         Menu {
                             
@@ -146,7 +146,7 @@ struct MedicineValuesEntry : View {
                         .foregroundColor(Color.black.opacity(0.4))
                         .bold()
                     
-                    ExpandingTextView(text: self.$medicineEntryVM.notes)
+                    ExpandingTextEntryView(text: self.$medicineEntryVM.notes)
                 }
                 
                 MedEntryAddButton(medicineEntryVM: medicineEntryVM)

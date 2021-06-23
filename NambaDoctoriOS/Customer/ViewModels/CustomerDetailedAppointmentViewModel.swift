@@ -403,6 +403,7 @@ extension CustomerDetailedAppointmentViewModel {
         if cusAutoNav.takeToTwilioRoom {
             CustomerAlertHelpers().twilioConnectToRoomAlert { (connect) in
                 if connect {
+                    self.takeToChat = false
                     self.startConsultation()
                 }
                 cusAutoNav.leaveTwilioRoom()

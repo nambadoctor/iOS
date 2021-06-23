@@ -64,7 +64,7 @@ How was your consultation with
             
             Text("Feel free to let us know your feedback")
                 .multilineTextAlignment(.center)
-            ExpandingTextView(text: self.$customerRatingVM.review)
+            ExpandingTextEntryView(text: self.$customerRatingVM.review)
                 .introspectTextField { textField in
                     textField.becomeFirstResponder()
                 }

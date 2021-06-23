@@ -35,7 +35,7 @@ class ServiceProviderProfileMapper {
             createdDate: profile.createdDate.toInt64,
             lastModifiedDate: profile.lastModifedDate.toInt64,
             serviceProviderDeviceInfo: DeviceInformationMapper.GrpcToLocal(deviceInfo: profile.serviceProviderDeviceInfo),
-            searchableIndexes: ServiceProviderSearchableIndexMapper.grpcToLocal(searchableIndex: profile.searchableIndexes))
+            additionalInfo: ServiceProviderAdditionalInfoMapper.grpcToLocal(additionalInfo: profile.additionalInfo))
     }
     
     func localProfileToGrpc (profile: ServiceProviderProfile) -> Nd_V1_ServiceProviderProfileMessage {
@@ -65,7 +65,7 @@ class ServiceProviderProfileMapper {
             if profile.createdDate != nil { $0.createdDate = profile.createdDate!.toProto }
             if profile.lastModifiedDate != nil { $0.lastModifedDate = profile.lastModifiedDate!.toProto }
             if profile.serviceProviderDeviceInfo != nil { $0.serviceProviderDeviceInfo = DeviceInformationMapper.LocalToGrpc(deviceInfo: profile.serviceProviderDeviceInfo!) }
-            if profile.searchableIndexes != nil {$0.searchableIndexes = ServiceProviderSearchableIndexMapper.localToGrpc(searchableIndex: profile.searchableIndexes!)}
+            if profile.additionalInfo != nil {$0.additionalInfo = ServiceProviderAdditionalInfoMapper.localToGrpc(additionalInfo: profile.additionalInfo!)}
         }
     }
 }

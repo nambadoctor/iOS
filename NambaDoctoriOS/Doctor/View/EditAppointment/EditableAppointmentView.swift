@@ -139,7 +139,7 @@ struct EditableAppointmentView: View {
             }
         }
         .sheet(isPresented: self.$intermediateVM.showPDFPreview, content: {
-            PrescriptionPreviewView()
+            PrescriptionPreviewView(intermediateVM: self.intermediateVM)
         })
     }
     

@@ -22,33 +22,35 @@ class CustomerDoctorProfileViewModel : ObservableObject {
     var name : String {
         return "\(serviceProviderProfile.firstName) \(serviceProviderProfile.lastName)"
     }
-    
+
     var educations : [String] {
         var educationString:[String] = [String]()
         
-        if serviceProviderProfile.educations.isEmpty {
-            educationString.append("Currently Not Available")
-        } else {
-            for education in serviceProviderProfile.educations {
-                educationString.append(education.course)
-            }
+        for education in serviceProviderProfile.educations {
+            educationString.append(education.course)
         }
-
+        
         return educationString
     }
     
     var workExperience : [String] {
         var workExpString:[String] = [String]()
         
-        if serviceProviderProfile.educations.isEmpty {
-            workExpString.append("Currently Not Available")
-        } else {
-            for work in serviceProviderProfile.experiences {
-                workExpString.append(work.organization)
-            }
+        for work in serviceProviderProfile.experiences {
+            workExpString.append(work.organization)
         }
         
         return workExpString
+    }
+    
+    var getAllWorkExperience:Int {
+        var totalExperience : Int = 0
+        
+        for work in serviceProviderProfile.experiences {
+            totalExperience += Helpers.getDateDifferenceInYears(timeStamp1: work.startDate, timeStamp2: work.endDate)
+        }
+        
+        return totalExperience
     }
     
     var specialties : [String] {

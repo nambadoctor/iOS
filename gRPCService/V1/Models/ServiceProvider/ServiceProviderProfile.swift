@@ -33,5 +33,5 @@ struct ServiceProviderProfile {
     var createdDate:Int64?
     var lastModifiedDate:Int64?
     var serviceProviderDeviceInfo:DeviceInformation?
-    var searchableIndexes:ServiceProviderSearchableIndexes?
+    var additionalInfo:ServiceProviderAdditionalInfo?
 }

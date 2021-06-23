@@ -597,19 +597,25 @@ message ServiceProviderProfileMessage{
 
 	google.protobuf.Int64Value CreatedDate = 23;
 
-    google.protobuf.Int64Value LastModifedDate = 24;
+    	google.protobuf.Int64Value LastModifedDate = 24;
 
 	DeviceInfoMessage ServiceProviderDeviceInfo = 25;
 
-	ServiceProviderSearchableIndexMessage SearchableIndexes = 26;
+	ServiceProviderAdditionalInfoMessage AdditionalInfo = 26;
 
 }
 
-message ServiceProviderSearchableIndexMessage {
+message ServiceProviderAdditionalInfoMessage {
 	repeated google.protobuf.StringValue Symptoms = 1;
 	repeated google.protobuf.StringValue Designations = 2;
 	repeated google.protobuf.StringValue Specialties = 3;
 	repeated google.protobuf.StringValue Categories = 4;
+	repeated google.protobuf.StringValue Certifications = 5;
+	repeated google.protobuf.StringValue ClubMemberships = 6;
+	repeated google.protobuf.StringValue Procedures = 7;
+	repeated google.protobuf.StringValue Published = 8;
+	repeated google.protobuf.StringValue Links = 9;
+	google.protobuf.StringValue Description = 10;
 }
 
 message ServiceProviderServiceRequestMessage{
@@ -929,11 +935,17 @@ message CustomerChildProfileListMessage {
     repeated CustomerChildProfileMessage children = 1;
 }
 
-message CustomerServiceProviderSearchableIndexMessage {
+message CustomerServiceProviderAdditionalInfoMessage {
 	repeated google.protobuf.StringValue Symptoms = 1;
 	repeated google.protobuf.StringValue Designations = 2;
 	repeated google.protobuf.StringValue Specialties = 3;
 	repeated google.protobuf.StringValue Categories = 4;
+	repeated google.protobuf.StringValue Certifications = 5;
+	repeated google.protobuf.StringValue ClubMemberships = 6;
+	repeated google.protobuf.StringValue Procedures = 7;
+	repeated google.protobuf.StringValue Published = 8;
+	repeated google.protobuf.StringValue Links = 9;
+	google.protobuf.StringValue Description = 10;
 }
 
 message CustomersServiceProviderProfileMessage{
@@ -972,9 +984,9 @@ message CustomersServiceProviderProfileMessage{
     
 	google.protobuf.DoubleValue FollowUpServiceFee = 17;
 
-    google.protobuf.Int32Value AppointmentDuration = 18;
+    	google.protobuf.Int32Value AppointmentDuration = 18;
 
-    google.protobuf.Int32Value IntervalBetweenAppointment = 19;
+   	google.protobuf.Int32Value IntervalBetweenAppointment = 19;
 
 	google.protobuf.StringValue Status = 20;
     
@@ -988,7 +1000,7 @@ message CustomersServiceProviderProfileMessage{
 
 	google.protobuf.Int64Value LatestSlotEndTime = 25;
 	
-	CustomerServiceProviderSearchableIndexMessage SearchableIndexes = 26;
+	CustomerServiceProviderAdditionalInfoMessage AdditionalInfo = 26;
 
 }
 

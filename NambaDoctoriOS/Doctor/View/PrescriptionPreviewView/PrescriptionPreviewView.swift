@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PrescriptionPreviewView: View {
     
-    @EnvironmentObject var intermediateVM:IntermediateAppointmentViewModel
+    @ObservedObject var intermediateVM:IntermediateAppointmentViewModel
 
     var body: some View {
         VStack {
@@ -29,7 +29,7 @@ struct PrescriptionPreviewView: View {
             }
             .padding()
 
-            DoctorPrescriptionPreviewHelper()
+            DoctorPrescriptionPreviewHelper(medicineVM: self.intermediateVM.medicineVM)
         }
         .onAppear() {
             intermediateVM.medicineVM.getPrescriptionPDF()
@@ -39,7 +39,7 @@ struct PrescriptionPreviewView: View {
 
 struct DoctorPrescriptionPreviewHelper : View {
     
-    @EnvironmentObject var medicineVM:MedicineViewModel
+    @ObservedObject var medicineVM:MedicineViewModel
     
     var body: some View {
         if medicineVM.prescriptionPDF != nil {

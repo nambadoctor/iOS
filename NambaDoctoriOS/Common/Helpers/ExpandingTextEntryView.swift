@@ -60,7 +60,7 @@ struct WrappedTextView: UIViewRepresentable {
     }
 }
 
-struct ExpandingTextView: View {
+struct ExpandingTextEntryView: View {
     @Binding var text: String
     let minHeight: CGFloat = 25
     var keyboardType:UIKeyboardType = .default

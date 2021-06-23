@@ -121,6 +121,10 @@ class Helpers {
         
         return [String(day.prefix(3)), dateString]
     }
+    
+    static func getDateDifferenceInYears (timeStamp1:Int64, timeStamp2:Int64) -> Int {
+        return Calendar.current.dateComponents([.year], from: Date(milliseconds: timeStamp1), to: Date(milliseconds: timeStamp2)).year ?? 0
+    }
 
     static func load3LetterDayName(timeStamp:Int64) -> String{
         let date = Date(milliseconds: timeStamp)

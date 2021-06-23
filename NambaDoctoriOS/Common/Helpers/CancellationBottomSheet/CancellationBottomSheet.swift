@@ -49,7 +49,7 @@ struct CancellationBottomSheet : View {
                     )
                     
                     if self.checkedOption == "Other" && reason == "Other" {
-                        ExpandingTextView(text: self.$customReason)
+                        ExpandingTextEntryView(text: self.$customReason)
                             .keyboardAdaptive(specificOffSet: 0)
                     }
                 }

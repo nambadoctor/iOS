@@ -33,7 +33,7 @@ class DocNotifHelpers : DocNotifHelpersProtocol {
         let readableTime = Helpers.getTimeFromTimeStamp(timeStamp: appointmentTime)
 
         var bodyString = "\(appointment.serviceProviderName) has cancelled the appointment at \(readableTime)"
-        
+
         if !cancellationReason.isEmpty {
             bodyString.append(" because \(cancellationReason)")
         }

@@ -112,7 +112,7 @@ struct CustomerDetailedAppointmentView: View {
                     .padding(.top, 10)
 
                 HStack {
-                    ExpandingTextView(text: self.$customerDetailedAppointmentVM.allergy, changeDelegate: self.customerDetailedAppointmentVM.allergyChangedTrigger)
+                    ExpandingTextEntryView(text: self.$customerDetailedAppointmentVM.allergy, changeDelegate: self.customerDetailedAppointmentVM.allergyChangedTrigger)
 
                     if self.customerDetailedAppointmentVM.allergyChanged {
                         Button {
@@ -130,7 +130,7 @@ struct CustomerDetailedAppointmentView: View {
                     .foregroundColor(.gray)
                 
                 HStack {
-                    ExpandingTextView(text: self.$customerDetailedAppointmentVM.reasonPickerVM.reason, changeDelegate: self.customerDetailedAppointmentVM.reasonChangedTrigger)
+                    ExpandingTextEntryView(text: self.$customerDetailedAppointmentVM.reasonPickerVM.reason, changeDelegate: self.customerDetailedAppointmentVM.reasonChangedTrigger)
 
                     if self.customerDetailedAppointmentVM.reasonChanged {
                         Button {

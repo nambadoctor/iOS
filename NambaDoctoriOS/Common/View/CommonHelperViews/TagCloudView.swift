@@ -7,6 +7,21 @@
 
 import SwiftUI
 
+struct DisplayChip : View {
+    var text:String
+    
+    var body: some View {
+        Text(text)
+            .font(.system(size: 15))
+            .foregroundColor(.white)
+            .padding(8)
+            .background(RoundedRectangle(cornerRadius: 4)
+                            .border(Color.blue)
+                            .foregroundColor(Color.blue))
+            .cornerRadius(5)
+    }
+}
+
 struct TagCloudViewForDisplayOnly : View {
     var tags: [String]
     

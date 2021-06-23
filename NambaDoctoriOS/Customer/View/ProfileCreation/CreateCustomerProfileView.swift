@@ -30,14 +30,14 @@ struct CreateCustomerProfileView: View {
                         .bold()
                         .foregroundColor(.gray)
                     
-                    ExpandingTextView(text: self.$createProfileVM.firstName)
+                    ExpandingTextEntryView(text: self.$createProfileVM.firstName)
                     
                     Text("LAST NAME")
                         .font(.footnote)
                         .bold()
                         .foregroundColor(.gray)
                     
-                    ExpandingTextView(text: self.$createProfileVM.lastName)
+                    ExpandingTextEntryView(text: self.$createProfileVM.lastName)
                 }
                 
                 Group {
@@ -59,7 +59,7 @@ struct CreateCustomerProfileView: View {
                         .bold()
                         .foregroundColor(.gray)
                     
-                    ExpandingTextView(text: self.$createProfileVM.age, keyboardType: .numberPad)
+                    ExpandingTextEntryView(text: self.$createProfileVM.age, keyboardType: .numberPad)
                 }
                 
                 LargeButton(title: "Create Profile") {

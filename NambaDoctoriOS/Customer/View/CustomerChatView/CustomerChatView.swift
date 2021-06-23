@@ -77,7 +77,7 @@ struct CustomerChatRoomView: View {
             }
 
             HStack {
-                ExpandingTextView(text: self.$chatVM.currentTextEntry)
+                ExpandingTextEntryView(text: self.$chatVM.currentTextEntry)
                 Button {
                     chatVM.writeMessage()
                 } label: {

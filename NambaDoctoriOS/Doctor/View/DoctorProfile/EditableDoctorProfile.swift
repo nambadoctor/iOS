@@ -106,7 +106,7 @@ struct EditableDoctorProfile: View {
                     .font(.footnote)
                     .bold()
                     .foregroundColor(.gray)
-                ExpandingTextView(text: $editDoctorVM.ServiceFee)
+                ExpandingTextEntryView(text: $editDoctorVM.ServiceFee)
             }
             
             VStack (alignment: .leading, spacing: 3) {
@@ -114,7 +114,7 @@ struct EditableDoctorProfile: View {
                     .font(.footnote)
                     .bold()
                     .foregroundColor(.gray)
-                ExpandingTextView(text: $editDoctorVM.FollowUpServiceFee)
+                ExpandingTextEntryView(text: $editDoctorVM.FollowUpServiceFee)
             }
              
             VStack (alignment: .leading, spacing: 3) {
@@ -122,7 +122,7 @@ struct EditableDoctorProfile: View {
                     .font(.footnote)
                     .bold()
                     .foregroundColor(.gray)
-                ExpandingTextView(text: $editDoctorVM.AppointmentDuration)
+                ExpandingTextEntryView(text: $editDoctorVM.AppointmentDuration)
             }
             
             VStack (alignment: .leading, spacing: 3) {
@@ -130,7 +130,7 @@ struct EditableDoctorProfile: View {
                     .font(.footnote)
                     .bold()
                     .foregroundColor(.gray)
-                ExpandingTextView(text: $editDoctorVM.TimeIntervalBetweenAppointments)
+                ExpandingTextEntryView(text: $editDoctorVM.TimeIntervalBetweenAppointments)
             }
         }.padding(.horizontal)
     }

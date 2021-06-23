@@ -25,7 +25,7 @@ struct ServiceRequestEditableView: View {
                         .bold()
                 }
 
-                ExpandingTextView(text: self.$serviceRequestVM.serviceRequest.allergy.AllergyName)
+                ExpandingTextEntryView(text: self.$serviceRequestVM.serviceRequest.allergy.AllergyName)
                 
                 Group {
                     HStack (spacing: 3) {
@@ -38,7 +38,7 @@ struct ServiceRequestEditableView: View {
                             .bold()
                     }
 
-                    ExpandingTextView(text: self.$serviceRequestVM.serviceRequest.medicalHistory.MedicalHistoryName)
+                    ExpandingTextEntryView(text: self.$serviceRequestVM.serviceRequest.medicalHistory.MedicalHistoryName)
                 }
 
                 Group {
@@ -52,7 +52,7 @@ struct ServiceRequestEditableView: View {
                             .bold()
                     }
 
-                    ExpandingTextView(text: self.$serviceRequestVM.serviceRequest.medicalHistory.PastMedicalHistory)
+                    ExpandingTextEntryView(text: self.$serviceRequestVM.serviceRequest.medicalHistory.PastMedicalHistory)
                 }
                 
                 Group {
@@ -66,7 +66,7 @@ struct ServiceRequestEditableView: View {
                             .bold()
                     }
 
-                    ExpandingTextView(text: self.$serviceRequestVM.serviceRequest.medicalHistory.MedicationHistory)
+                    ExpandingTextEntryView(text: self.$serviceRequestVM.serviceRequest.medicalHistory.MedicationHistory)
                 }
             }
             .padding()
@@ -87,7 +87,7 @@ struct ServiceRequestEditableView: View {
                 }
                 
 
-                ExpandingTextView(text: self.$serviceRequestVM.serviceRequest.examination)
+                ExpandingTextEntryView(text: self.$serviceRequestVM.serviceRequest.examination)
                 
                 
                 HStack (spacing: 3) {
@@ -100,7 +100,7 @@ struct ServiceRequestEditableView: View {
                         .bold()
                 }
                 
-                ExpandingTextView(text: $serviceRequestVM.serviceRequest.diagnosis.name)
+                ExpandingTextEntryView(text: $serviceRequestVM.serviceRequest.diagnosis.name)
 
                 SideBySideCheckBox(isChecked: $serviceRequestVM.serviceRequest.diagnosis.type, title1: "Provisional", title2: "Definitive", delegate: nil)
                     .padding(.bottom)

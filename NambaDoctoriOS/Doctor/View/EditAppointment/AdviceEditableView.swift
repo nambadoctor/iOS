@@ -23,7 +23,7 @@ struct AdviceEditableView: View {
                     .bold()
             }
             
-            ExpandingTextView(text: $serviceRequestVM.serviceRequest.advice)
+            ExpandingTextEntryView(text: $serviceRequestVM.serviceRequest.advice)
         }
     }
 }

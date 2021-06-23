@@ -236,10 +236,10 @@ class CustomerViewModel : ObservableObject {
         
         for serviceProvider in self.allServiceProviders {
             var appendedForCategory:Bool = false
-            if serviceProvider.searchableIndex.Symptoms.contains(where: {$0.caseInsensitiveCompare(self.selectedCategory.SpecialityName) == .orderedSame}) ||
-                serviceProvider.searchableIndex.Designation.contains(where: {$0.caseInsensitiveCompare(self.selectedCategory.SpecialityName) == .orderedSame}) ||
-                serviceProvider.searchableIndex.Specialties.contains(where: {$0.caseInsensitiveCompare(self.selectedCategory.SpecialityName) == .orderedSame}) ||
-                serviceProvider.searchableIndex.Categories.contains(where: {$0.caseInsensitiveCompare(self.selectedCategory.SpecialityName) == .orderedSame}) &&
+            if serviceProvider.additionalInfo.Symptoms.contains(where: {$0.caseInsensitiveCompare(self.selectedCategory.SpecialityName) == .orderedSame}) ||
+                serviceProvider.additionalInfo.Designation.contains(where: {$0.caseInsensitiveCompare(self.selectedCategory.SpecialityName) == .orderedSame}) ||
+                serviceProvider.additionalInfo.Specialties.contains(where: {$0.caseInsensitiveCompare(self.selectedCategory.SpecialityName) == .orderedSame}) ||
+                serviceProvider.additionalInfo.Categories.contains(where: {$0.caseInsensitiveCompare(self.selectedCategory.SpecialityName) == .orderedSame}) &&
                 !appendedForCategory {
                 self.serviceProvidersToDisplay.append(serviceProvider)
                 appendedForCategory = true

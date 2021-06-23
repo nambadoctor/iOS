@@ -87,7 +87,7 @@ class MedicineViewModel: ObservableObject {
             timingsString = ""
         }
 
-        let medicine = ServiceProviderMedicine(medicineName: medicineEntryVM.medicineName, intakeDosage: medicineEntryVM.dosage, routeOfAdministration: medicineEntryVM.routeOfAdmin, intake: medicineEntryVM.intake, _duration: medicineEntryVM.duration, timings: timingsString, specialInstructions: medicineEntryVM.frequency, medicineID: "", notes: medicineEntryVM.notes)
+        let medicine = ServiceProviderMedicine(medicineName: medicineEntryVM.medicineName, intakeDosage: medicineEntryVM.dosage, routeOfAdministration: medicineEntryVM.routeOfAdmin, intake: medicineEntryVM.intake, _duration: medicineEntryVM.duration, timings: timingsString, specialInstructions: medicineEntryVM.frequency, medicineID: UUID().uuidString, notes: medicineEntryVM.notes)
 
         if medicineBeingEdited != nil && !prescription.medicineList.isEmpty {
             prescription.medicineList.remove(at: medicineBeingEdited!)
@@ -188,12 +188,17 @@ class MedicineViewModel: ObservableObject {
 
     func sendToPatient (completion: @escaping (_ success:Bool)->()) {
         prescription.prescriptionID = "" //service will make new prescription ID to update not overwrite
-        
+
         storeImageValues()
+
+        for index in 0..<prescription.medicineList.count {
+            prescription.medicineList[index].medicineID = ""
+        }
         
         self.prescription.createdDateTime = Date().millisecondsSince1970
         prescriptionServiceCalls.setPrescription(prescription: self.prescription) { (response) in
             self.imageLoader = nil
+            self.retrievePrescriptions() //to make sure each medicine has ID if being edited again...
             completion(response)
         }
     }

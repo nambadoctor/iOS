@@ -25,7 +25,7 @@ struct InvestigationsEditableView: View {
 
             HStack (alignment: .top) {
                 VStack {
-                    ExpandingTextView(text: $investigationsVM.investigationTemp)
+                    ExpandingTextEntryView(text: $investigationsVM.investigationTemp)
                     
                     ForEach(self.investigationsVM.investigations, id: \.self) { inv in
                         HStack {

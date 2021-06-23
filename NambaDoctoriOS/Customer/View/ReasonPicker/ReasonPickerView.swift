@@ -65,7 +65,7 @@ struct ReasonPickerView: View {
                     .font(.headline)
                     .bold()
                 
-                ExpandingTextView(text: self.$reasonPickerVM.reason)
+                ExpandingTextEntryView(text: self.$reasonPickerVM.reason)
             }
             
             ScrollView(.vertical, showsIndicators: false) {
