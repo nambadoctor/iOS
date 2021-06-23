@@ -32,11 +32,13 @@ struct BookDoctorCard: View {
                         .font(.system(size: 17))
                         .bold()
                     
-                    Text(customerServiceProviderVM.specialties)
-                        .font(.system(size: 15))
-                        .foregroundColor(Color.gray)
+                    if !customerServiceProviderVM.serviceProvider.additionalInfo.Designation.isEmpty {
+                        Text(customerServiceProviderVM.serviceProvider.additionalInfo.Designation[0])
+                            .font(.system(size: 15))
+                            .foregroundColor(Color.gray)
+                    }
 
-                    HStack {
+                    HStack (alignment: .bottom) {
                         VStack (alignment: .leading) {
                             Text(customerServiceProviderVM.experience)
                                 .font(.system(size: 15))
@@ -45,6 +47,10 @@ struct BookDoctorCard: View {
                             Text(customerServiceProviderVM.fees)
                                 .font(.system(size: 15))
                                 .foregroundColor(Color.gray)
+                            
+                            Text("Consult in \(customerServiceProviderVM.serviceProvider.languages.joined(separator: ","))")
+                                .font(.system(size: 15))
+                                .foregroundColor(Color.blue)
                         }
 
                         VStack {
