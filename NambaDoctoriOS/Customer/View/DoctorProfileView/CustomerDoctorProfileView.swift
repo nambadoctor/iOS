@@ -22,7 +22,8 @@ struct CustomerDoctorProfileView: View {
 
                         Text(doctorProfileVM.name)
                             .font(.title2)
-                            .padding(.bottom, 5)
+                            .bold()
+                            .padding(.bottom, 2)
                         
                         if !doctorProfileVM.serviceProviderProfile.additionalInfo.Designation.isEmpty {
                             Text(doctorProfileVM.serviceProviderProfile.additionalInfo.Designation[0])
@@ -89,53 +90,154 @@ struct CustomerDoctorProfileView: View {
                     .padding([.top, .bottom], 8)
                 
                 VStack (alignment: .leading, spacing: 15) {
-                    VStack (alignment: .leading) {
-                        HStack {
-                            Image("graduationcap")
-                                .modifier(DetailedAppointmentViewIconModifier())
-                            Text("Degrees")
-                            Spacer()
-                        }
-                        .padding(.bottom, 5)
-                        
-                        ForEach(self.doctorProfileVM.educations, id: \.self) { text in
-                            Text("•\t\(text)")
-                        }
-                    }.modifier(CardModifierControlledPadding(horizontalPadding: 1))
                     
-                    VStack (alignment: .leading) {
-                        HStack {
-                            Image("stethoscope")
-                                .modifier(DetailedAppointmentViewIconModifier())
-                            Text("Specialties")
-                            Spacer()
-                        }
-                        .padding(.bottom, 5)
-                        
-                        FlowLayout(mode: .scrollable,
-                                                   binding: .constant(5),
-                                                   items: doctorProfileVM.serviceProviderProfile.additionalInfo.Specialties) {
-                            DisplayChip(text: $0)
-                        }
-                    }.modifier(CardModifierControlledPadding(horizontalPadding: 1))
+                    if !self.doctorProfileVM.educations.isEmpty {
+                        VStack (alignment: .leading) {
+                            HStack {
+                                Image("graduationcap")
+                                    .modifier(DetailedAppointmentViewIconModifier())
+                                Text("Degrees")
+                                Spacer()
+                            }
+                            .padding(.bottom, 5)
+                            
+                            ForEach(self.doctorProfileVM.educations, id: \.self) { text in
+                                Text("•\t\(text)")
+                            }
+                        }.modifier(CardModifierControlledPadding(horizontalPadding: 1))
+                    }
                     
-                    VStack (alignment: .leading) {
-                        HStack {
-                            Image("text.magnifyingglass")
-                                .modifier(DetailedAppointmentViewIconModifier())
-                            Text("Procedures")
-                            Spacer()
-                        }
-                        .padding(.bottom, 5)
-                        
-                        FlowLayout(mode: .scrollable,
-                                                   binding: .constant(5),
-                                                   items: doctorProfileVM.serviceProviderProfile.additionalInfo.Procedures) {
-                            DisplayChip(text: $0)
-                        }
-                    }.modifier(CardModifierControlledPadding(horizontalPadding: 1))
+                    if !doctorProfileVM.serviceProviderProfile.additionalInfo.Specialties.isEmpty {
+                        VStack (alignment: .leading) {
+                            HStack {
+                                Image("stethoscope")
+                                    .modifier(DetailedAppointmentViewIconModifier())
+                                Text("Specialties")
+                                Spacer()
+                            }
+                            .padding(.bottom, 5)
+                            
+                            FlowLayout(mode: .scrollable,
+                                                       binding: .constant(5),
+                                                       items: doctorProfileVM.serviceProviderProfile.additionalInfo.Specialties) {
+                                DisplayChip(text: $0)
+                            }
+                        }.modifier(CardModifierControlledPadding(horizontalPadding: 1))
+                    }
                     
-                    
+                    if !doctorProfileVM.serviceProviderProfile.additionalInfo.Procedures.isEmpty {
+                        VStack (alignment: .leading) {
+                            HStack {
+                                Image("text.magnifyingglass")
+                                    .modifier(DetailedAppointmentViewIconModifier())
+                                Text("Procedures")
+                                Spacer()
+                            }
+                            .padding(.bottom, 5)
+                            
+                            FlowLayout(mode: .scrollable,
+                                                       binding: .constant(5),
+                                                       items: doctorProfileVM.serviceProviderProfile.additionalInfo.Procedures) {
+                                DisplayChip(text: $0)
+                            }
+                        }.modifier(CardModifierControlledPadding(horizontalPadding: 1))
+                    }
+
+                    if !doctorProfileVM.serviceProviderProfile.experiences.isEmpty {
+                        VStack (alignment: .leading) {
+                            HStack {
+                                Image("briefcase.fill")
+                                    .modifier(DetailedAppointmentViewIconModifier())
+                                Text("Currently Working")
+                                Spacer()
+                            }
+                            .padding(.bottom, 5)
+                            
+                            Text(doctorProfileVM.serviceProviderProfile.experiences[0].organization)
+                        }.modifier(CardModifierControlledPadding(horizontalPadding: 1))
+                    }
+
+                    if !self.doctorProfileVM.serviceProviderProfile.additionalInfo.ClubMemberships.isEmpty {
+                        VStack (alignment: .leading) {
+                            HStack {
+                                Image("person.3.fill")
+                                    .modifier(DetailedAppointmentViewIconModifier())
+                                Text("Societies")
+                                Spacer()
+                            }
+                            .padding(.bottom, 5)
+                            
+                            ForEach(self.doctorProfileVM.serviceProviderProfile.additionalInfo.ClubMemberships, id: \.self) { text in
+                                Text("•\t\(text)")
+                            }
+                        }.modifier(CardModifierControlledPadding(horizontalPadding: 1))
+                    }
+
+                    if !self.doctorProfileVM.serviceProviderProfile.additionalInfo.Certifications.isEmpty {
+                        VStack (alignment: .leading) {
+                            HStack {
+                                Image("checkmark.seal.fill")
+                                    .modifier(DetailedAppointmentViewIconModifier())
+                                Text("Certificates and Awards")
+                                Spacer()
+                            }
+                            .padding(.bottom, 5)
+                            
+                            ForEach(self.doctorProfileVM.serviceProviderProfile.additionalInfo.Certifications, id: \.self) { text in
+                                Text("•\t\(text)")
+                            }
+                        }.modifier(CardModifierControlledPadding(horizontalPadding: 1))
+                    }
+
+                    if !self.doctorProfileVM.serviceProviderProfile.additionalInfo.Published.isEmpty {
+                        VStack (alignment: .leading) {
+                            HStack {
+                                Image("newspaper")
+                                    .modifier(DetailedAppointmentViewIconModifier())
+                                Text("Journals Published")
+                                Spacer()
+                            }
+                            .padding(.bottom, 5)
+                            
+                            ForEach(self.doctorProfileVM.serviceProviderProfile.additionalInfo.Published, id: \.self) { text in
+                                Text("•\t\(text)")
+                            }
+                        }.modifier(CardModifierControlledPadding(horizontalPadding: 1))
+                    }
+
+                    if !self.doctorProfileVM.serviceProviderProfile.additionalInfo.Links.isEmpty {
+                        VStack (alignment: .leading) {
+                            HStack {
+                                Image(systemName: "link.icloud")
+                                    .modifier(DetailedAppointmentViewIconModifier())
+                                Text("Websites")
+                                Spacer()
+                            }
+                            .padding(.bottom, 5)
+                            
+                            ForEach(self.doctorProfileVM.serviceProviderProfile.additionalInfo.Links, id: \.self) { text in
+                                Text("•\t\(text)")
+                            }
+                        }.modifier(CardModifierControlledPadding(horizontalPadding: 1))
+                    }
+
+                    if !self.doctorProfileVM.serviceProviderProfile.languages.isEmpty {
+                        VStack (alignment: .leading) {
+                            HStack {
+                                Image("globe")
+                                    .modifier(DetailedAppointmentViewIconModifier())
+                                Text("Languages")
+                                Spacer()
+                            }
+                            .padding(.bottom, 5)
+
+                            FlowLayout(mode: .scrollable,
+                                                       binding: .constant(5),
+                                                       items: self.doctorProfileVM.serviceProviderProfile.languages) {
+                                DisplayChip(text: $0)
+                            }
+                        }.modifier(CardModifierControlledPadding(horizontalPadding: 1))
+                    }
                 }
             }
         }

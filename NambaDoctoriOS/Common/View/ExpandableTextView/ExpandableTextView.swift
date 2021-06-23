@@ -23,7 +23,7 @@ struct ExpandableTextView: View {
         if !truncated {
             return ""
         } else {
-            return self.expanded ? "read less" : " read more"
+            return self.expanded ? "see less" : " see more"
         }
     }
     

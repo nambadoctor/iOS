@@ -12,13 +12,13 @@ struct DisplayChip : View {
     
     var body: some View {
         Text(text)
-            .font(.system(size: 15))
-            .foregroundColor(.white)
-            .padding(8)
+            .font(.system(size: 17))
+            .foregroundColor(.blue)
+            .padding(10)
             .background(RoundedRectangle(cornerRadius: 4)
-                            .border(Color.blue)
-                            .foregroundColor(Color.blue))
-            .cornerRadius(5)
+                            .border(Color.blue.opacity(0.1))
+                            .foregroundColor(Color.blue).opacity(0.1))
+            .cornerRadius(10)
     }
 }
 
