@@ -34,7 +34,8 @@ class CustomerServiceProviderProfileMapper {
             createdDate: profile.createdDate.toInt64,
             LatestSlotStartTime: profile.latestSlotEndTime.toInt64,
             lastModifiedDate: profile.lastModifedDate.toInt64,
-            additionalInfo: CustomerServiceProviderAdditionalInfoMapper.grpcToLocal(additionalInfo: profile.additionalInfo))
+            additionalInfo: CustomerServiceProviderAdditionalInfoMapper.grpcToLocal(additionalInfo: profile.additionalInfo),
+            paymentType: profile.paymentType.toString)
     }
     
     func grpcPhoneNumberToLocal (profiles:[Nd_V1_CustomersServiceProviderProfileMessage]) -> [CustomerServiceProviderProfile] {
@@ -73,6 +74,7 @@ class CustomerServiceProviderProfileMapper {
             $0.createdDate = profile.createdDate.toProto
             $0.lastModifedDate = profile.lastModifiedDate.toProto
             $0.additionalInfo = CustomerServiceProviderAdditionalInfoMapper.localToGrpc(additionalInfo: profile.additionalInfo)
+            $0.paymentType = profile.paymentType.toProto
         }
     }
 }

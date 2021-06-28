@@ -45,7 +45,7 @@ class DoctorViewModel: ObservableObject {
     }
     
     var serviceProviderName:String {
-        return "\(doctor.firstName) \(doctor.lastName)"
+        return "\(doctor.firstName ?? "") \(doctor.lastName ?? "")"
     }
     
 

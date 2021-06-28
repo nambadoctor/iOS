@@ -35,7 +35,6 @@ struct EditableDoctorProfilePic : View{
                 Text("edit")
             })
         }.modifier(ImagePickerModifier(imagePickerVM: imagePickerViewModel))
-
     }
 }
 
@@ -108,15 +107,15 @@ struct EditableDoctorProfile: View {
                     .foregroundColor(.gray)
                 ExpandingTextEntryView(text: $editDoctorVM.ServiceFee)
             }
-            
-            VStack (alignment: .leading, spacing: 3) {
-                Text("Followup Service Fee:")
-                    .font(.footnote)
-                    .bold()
-                    .foregroundColor(.gray)
-                ExpandingTextEntryView(text: $editDoctorVM.FollowUpServiceFee)
-            }
-             
+
+//            VStack (alignment: .leading, spacing: 3) {
+//                Text("Followup Service Fee:")
+//                    .font(.footnote)
+//                    .bold()
+//                    .foregroundColor(.gray)
+//                ExpandingTextEntryView(text: $editDoctorVM.FollowUpServiceFee)
+//            }
+
             VStack (alignment: .leading, spacing: 3) {
                 Text("Appointment Duration:")
                     .font(.footnote)
@@ -125,13 +124,13 @@ struct EditableDoctorProfile: View {
                 ExpandingTextEntryView(text: $editDoctorVM.AppointmentDuration)
             }
             
-            VStack (alignment: .leading, spacing: 3) {
-                Text("Time Between Appointments:")
-                    .font(.footnote)
-                    .bold()
-                    .foregroundColor(.gray)
-                ExpandingTextEntryView(text: $editDoctorVM.TimeIntervalBetweenAppointments)
-            }
+//            VStack (alignment: .leading, spacing: 3) {
+//                Text("Time Between Appointments:")
+//                    .font(.footnote)
+//                    .bold()
+//                    .foregroundColor(.gray)
+//                ExpandingTextEntryView(text: $editDoctorVM.TimeIntervalBetweenAppointments)
+//            }
         }.padding(.horizontal)
     }
 }

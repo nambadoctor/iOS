@@ -603,6 +603,8 @@ message ServiceProviderProfileMessage{
 
 	ServiceProviderAdditionalInfoMessage AdditionalInfo = 26;
 
+	google.protobuf.StringValue PaymentType = 27;
+
 }
 
 message ServiceProviderAdditionalInfoMessage {
@@ -1001,6 +1003,8 @@ message CustomersServiceProviderProfileMessage{
 	google.protobuf.Int64Value LatestSlotEndTime = 25;
 	
 	CustomerServiceProviderAdditionalInfoMessage AdditionalInfo = 26;
+
+	google.protobuf.StringValue PaymentType = 27;
 
 }
 
