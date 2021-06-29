@@ -30,4 +30,5 @@ struct ServiceProviderAppointment : Codable {
     var noOfReports:Int32
     var cancellation:ServiceProviderCancellation
     var childId:String
+    var paymentType:String
 }

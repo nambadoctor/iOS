@@ -172,6 +172,8 @@ message ServiceProviderAppointmentMessage{
 	ServiceProviderCancellationMessage Cancellation = 21;
 
 	google.protobuf.StringValue ChildId = 22;
+
+	google.protobuf.StringValue PaymentType = 23;
 }
 
 
@@ -250,6 +252,8 @@ message ServiceProviderAvailability{
     google.protobuf.Int64Value EndTime = 3;
 
     google.protobuf.StringValue AvailabilityConfigId = 4;
+
+    google.protobuf.StringValue PaymentType = 5;
 }
 
 
@@ -603,8 +607,6 @@ message ServiceProviderProfileMessage{
 
 	ServiceProviderAdditionalInfoMessage AdditionalInfo = 26;
 
-	google.protobuf.StringValue PaymentType = 27;
-
 }
 
 message ServiceProviderAdditionalInfoMessage {
@@ -848,6 +850,8 @@ message CustomerAppointmentMessage{
 	CustomerCancellationMessage Cancellation = 21;
 
 	google.protobuf.StringValue ChildId = 22;
+	
+	google.protobuf.StringValue PaymentType = 23;
 }
 
 
@@ -885,6 +889,8 @@ message CustomerServiceProviderAvailability{
     google.protobuf.Int64Value EndTime = 3;
 
     google.protobuf.StringValue AvailabilityConfigId = 4;
+
+    google.protobuf.StringValue PaymentType = 5;
 }
 
 
@@ -1003,8 +1009,6 @@ message CustomersServiceProviderProfileMessage{
 	google.protobuf.Int64Value LatestSlotEndTime = 25;
 	
 	CustomerServiceProviderAdditionalInfoMessage AdditionalInfo = 26;
-
-	google.protobuf.StringValue PaymentType = 27;
 
 }
 
@@ -1135,6 +1139,8 @@ message CustomerGeneratedSlotMessage{
 	google.protobuf.Int64Value EndStartDateTime = 2;
 
 	google.protobuf.Int32Value Duration = 3;
+
+	google.protobuf.StringValue PaymentType = 4;
 }
 
 

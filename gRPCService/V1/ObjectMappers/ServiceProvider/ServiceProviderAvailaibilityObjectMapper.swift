@@ -13,7 +13,8 @@ class ServiceProviderAvailaibilityObjectMapper {
             dayOfWeek: availability.dayOfWeek.toInt32,
             startTime: availability.startTime.toInt64,
             endTime: availability.endTime.toInt64,
-            availabilityConfigID: availability.availabilityConfigID.toString)
+            availabilityConfigID: availability.availabilityConfigID.toString,
+            paymentType: availability.paymentType.toString)
     }
     
     static func grpcAvailabilityToLocal (availability:[Nd_V1_ServiceProviderAvailability]) -> [ServiceProviderAvailability] {
@@ -25,7 +26,7 @@ class ServiceProviderAvailaibilityObjectMapper {
         
         return availabilityList
     }
-    
+
     static func localAvailabilityToGrpc (availability:ServiceProviderAvailability) -> Nd_V1_ServiceProviderAvailability {
         
         return Nd_V1_ServiceProviderAvailability.with {
@@ -33,6 +34,7 @@ class ServiceProviderAvailaibilityObjectMapper {
             $0.startTime = availability.startTime.toProto
             $0.endTime = availability.endTime.toProto
             $0.availabilityConfigID = availability.availabilityConfigID.toProto
+            $0.paymentType = availability.paymentType.toProto
         }
     }
     

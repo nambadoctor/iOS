@@ -13,7 +13,7 @@ class DetailedBookDocViewModel : ObservableObject {
     var slots:[CustomerGeneratedSlot]? = nil
     
     var notAbleToBookCallBack:()->()
-    
+
     @Published var customerProfile:CustomerProfile
 
     @Published var dateDisplay:[Int64] = [Int64]()
@@ -106,7 +106,7 @@ class DetailedBookDocViewModel : ObservableObject {
                 return slot
             }
         }
-        
+
         return nil
     }
     
@@ -136,13 +136,13 @@ class DetailedBookDocViewModel : ObservableObject {
         } else {
             CommonDefaultModifiers.showLoader(incomingLoadingText: "Booking Appointment")
             let slot = getCorrespondingSlot(timestamp: selectedTime)
-
+            
             let customerAppointment:CustomerAppointment = makeAppointment(slot: slot)
 
             CustomerAppointmentService().setAppointment(appointment: customerAppointment) { (response) in
                 if response != nil {
                     cusAutoNav.enterDetailedView(appointmentId: response!)
-                    self.fireBookedNotif(appointmentId: response!)
+                    self.fireBookedNotif(appointmentId: response!, paymentType: slot?.paymentType ?? "PostPaid")
                     CustomerServiceRequestService().setServiceRequest(serviceRequest: self.makeServiceRequest(appointmentId: response!)) { (response) in
                         if response != nil {
                             CommonDefaultModifiers.hideLoader()
@@ -159,7 +159,8 @@ class DetailedBookDocViewModel : ObservableObject {
         }
     }
 
-    func fireBookedNotif (appointmentId:String) {
+    func fireBookedNotif (appointmentId:String, paymentType:String) {
+        guard paymentType == PaymentTypeEnum.PrePay.rawValue else { return }
         var slot = getCorrespondingSlot(timestamp: selectedTime)
         CustomerNotificationHelper.bookedAppointment(customerName: "", dateDisplay: slot!.startDateTime, appointmentId: appointmentId, serviceProviderId: self.serviceProvider.serviceProviderID)
     }
@@ -188,7 +189,8 @@ class DetailedBookDocViewModel : ObservableObject {
                                                       lastModifiedDate: Date().millisecondsSince1970,
                                                       noOfReports: 0,
                                                       cancellation: cancellation,
-                                                      childId: "")
+                                                      childId: "",
+                                                      paymentType: slot?.paymentType ?? "PostPaid")
         
         if self.bookingForProfile != nil {
             customerAppointment.childId = bookingForProfile!.ChildProfileId

@@ -184,7 +184,7 @@ class CustomerViewModel : ObservableObject {
     
     func retrieveServiceProviders () {
         customerServiceProviderService.getAllServiceProvider(customerId: customerProfile!.customerID) { (serviceProviders) in
-            if serviceProviders != nil || !serviceProviders!.isEmpty {
+            if serviceProviders != nil && !serviceProviders!.isEmpty {
                 self.allServiceProviders = serviceProviders!
                 self.doctorsExistForCategory()
                 self.setMyDoctors()

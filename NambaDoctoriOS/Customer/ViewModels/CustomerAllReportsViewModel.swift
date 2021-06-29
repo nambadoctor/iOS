@@ -28,7 +28,6 @@ class CustomerAllReportsViewModel : ObservableObject {
         imagePickerVM.imagePickerDelegate = self
 
         getReports()
-        checkIfFirstTimeOpeningAppointment()
     }
 
     func getReports() {

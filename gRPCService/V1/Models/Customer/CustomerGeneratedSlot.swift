@@ -11,4 +11,5 @@ struct CustomerGeneratedSlot {
     var startDateTime:Int64
     var endDateTime:Int64
     var duration:Int32
+    var paymentType:String
 }

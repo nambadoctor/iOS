@@ -45,6 +45,7 @@ struct CustomerDetailedAppointmentView: View {
                     Spacer()
                 }
                 .padding(.horizontal)
+                .overlay(needToPayFirstView)
                 
                 if customerDetailedAppointmentVM.showTwilioRoom {
                     CustomerTwilioManager(customerTwilioViewModel: customerDetailedAppointmentVM.customerTwilioViewModel)
@@ -78,6 +79,34 @@ struct CustomerDetailedAppointmentView: View {
         .environmentObject(self.customerDetailedAppointmentVM.reasonPickerVM)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: backButton, trailing: navBarChatButton)
+    }
+    
+    var needToPayFirstView : some View {
+        VStack {
+            if self.customerDetailedAppointmentVM.needToPayFirst {
+                HStack {Spacer()}
+                Spacer()
+                
+                Image("exclamationmark.circle.fill")
+                    .scaleEffect(3)
+                    .foregroundColor(.green)
+                    .padding()
+                
+                Text("Please Pay Before Continuing With Appointment")
+                
+                HStack {
+                    LargeButton(title: "Cancel", disabled: false, backgroundColor: .white, foregroundColor: .red) {
+                        self.customerDetailedAppointmentVM.showCancellationSheet()
+                    }
+                    LargeButton(title: "Pay") {
+                        customerDetailedAppointmentVM.makePayment()
+                    }
+                }
+                Spacer()
+            }
+        }
+        .padding()
+        .background(Color.white)
     }
 
     var backButton : some View {

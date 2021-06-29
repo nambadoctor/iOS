@@ -34,5 +34,4 @@ struct ServiceProviderProfile {
     var lastModifiedDate:Int64?
     var serviceProviderDeviceInfo:DeviceInformation?
     var additionalInfo:ServiceProviderAdditionalInfo?
-    var paymentType:String?
 }

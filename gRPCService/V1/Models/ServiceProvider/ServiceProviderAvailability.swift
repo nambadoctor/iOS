@@ -12,4 +12,5 @@ struct ServiceProviderAvailability {
     var startTime:Int64
     var endTime:Int64
     var availabilityConfigID:String
+    var paymentType:String
 }

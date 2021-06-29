@@ -12,7 +12,8 @@ class CustomerGeneratedSlotMapper {
         return CustomerGeneratedSlot(
             startDateTime: slot.startDateTime.toInt64,
             endDateTime: slot.endStartDateTime.toInt64,
-            duration: slot.duration.toInt32)
+            duration: slot.duration.toInt32,
+            paymentType: slot.paymentType.toString)
     }
     
     func grpcSlotToLocal (slots:[Nd_V1_CustomerGeneratedSlotMessage]) -> [CustomerGeneratedSlot] {
@@ -32,6 +33,7 @@ class CustomerGeneratedSlotMapper {
             $0.startDateTime = slot.startDateTime.toProto
             $0.endStartDateTime = slot.endDateTime.toProto
             $0.duration = slot.duration.toProto
+            $0.paymentType = slot.paymentType.toProto
         }
     }
 }

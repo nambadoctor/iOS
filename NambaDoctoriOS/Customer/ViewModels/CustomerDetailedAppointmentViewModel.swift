@@ -46,6 +46,8 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     
     @Published var refreshViewTrigger:Bool = true
     
+    @Published var needToPayFirst:Bool = false
+    
     @Published var cancellationSheetOffset:CGFloat = UIScreen.main.bounds.height
     var CustomerCancellationReasons:[String] = ["I booked by mistake", "Doctor said he is not available", "Doctor did not call me", "Technical Issues", "Other"]
 
@@ -97,6 +99,17 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
 
         self.newChatListener()
         self.getNewChatCount()
+        
+        self.prePayCheck()
+    }
+    
+    func prePayCheck () {
+        self.needToPayFirst = false
+        if self.appointment.paymentType == PaymentTypeEnum.PrePay.rawValue && !self.appointment.isPaid {
+            self.needToPayFirst = true
+        } else {
+            self.reportsVM.checkIfFirstTimeOpeningAppointment()
+        }
     }
 
     func checkAppointmentStatus () {
@@ -152,6 +165,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
         self.resetAllValues()
         self.checkAppointmentStatus()
         self.checkForDirectNavigation()
+        self.prePayCheck()
     }
 
     func getAppointment (_ completion: @escaping (_ retrieved:Bool)->()) {

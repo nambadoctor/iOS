@@ -33,5 +33,4 @@ struct CustomerServiceProviderProfile {
     var LatestSlotStartTime:Int64
     var lastModifiedDate:Int64
     var additionalInfo:CustomerServiceProviderAdditionalInfo
-    var paymentType:String
 }

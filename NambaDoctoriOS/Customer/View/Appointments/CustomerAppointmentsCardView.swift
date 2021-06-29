@@ -34,9 +34,14 @@ struct CustomerAppointmentsCardView: View {
                     Text(customerAppointmentVM.appointment.serviceProviderName)
                         .bold()
 
-                    Text(customerAppointmentVM.appointmentStatus)
-                    
-                    Text(Helpers.getSimpleTimeForAppointment(timeStamp1: customerAppointmentVM.appointment.scheduledAppointmentStartTime))
+                    if self.customerAppointmentVM.appointment.paymentType == PaymentTypeEnum.PrePay.rawValue && !self.customerAppointmentVM.appointment.isPaid {
+                        Text("PAY TO CONFIRM!")
+                            .foregroundColor(.red)
+                    } else {
+                        Text(customerAppointmentVM.appointmentStatus)
+                        
+                        Text(Helpers.getSimpleTimeForAppointment(timeStamp1: customerAppointmentVM.appointment.scheduledAppointmentStartTime))
+                    }
 
                 }.padding(.leading, 3)
                 

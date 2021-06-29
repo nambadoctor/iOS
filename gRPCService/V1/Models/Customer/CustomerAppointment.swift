@@ -30,4 +30,5 @@ struct CustomerAppointment {
     var noOfReports:Int32
     var cancellation:CustomerCancellation
     var childId:String
+    var paymentType:String
 }
