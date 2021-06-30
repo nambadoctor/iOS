@@ -17,6 +17,17 @@ class CustomerAlertHelpers {
         CommonDefaultModifiers.showAlert()
     }
     
+    func payFirstToBook (doctorName:String, completion: @escaping (_ pay:Bool, _ stopBooking:Bool) -> ()) {
+        alertTempItem = AlertItem(title: Text("Please pay to book an appointment with Dr. Rajesh"), primaryButton: Alert.Button.default(Text("Pay"), action: {
+            completion(true, false)
+        }), secondaryButton: Alert.Button.default(Text("Cancel"), action: {
+            completion(false, true)
+        }))
+
+        CommonDefaultModifiers.showAlert()
+    }
+    
+    
     func ErrorBookingAppointment (completion: @escaping (Bool) -> ()) {
         alertTempItem = AlertItem(title: Text("Oops, there was an error in booking your appointment"), message: Text("Please Try Again"), primaryButton: Alert.Button.cancel({
             completion(true)

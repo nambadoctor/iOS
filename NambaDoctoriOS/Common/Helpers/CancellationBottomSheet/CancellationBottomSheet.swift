@@ -18,10 +18,12 @@ struct CancellationBottomSheet : View {
     var cancellationReasons:[String]
     var delegate:CancellationDelegate
     
+    var disclaimerText:String
+    
     @State private var checkedOption:String = ""
     @State private var customReason:String = ""
     
-    var body : some View{
+    var body : some View {
         
         VStack(alignment: .leading, spacing: 15){
             
@@ -32,6 +34,12 @@ struct CancellationBottomSheet : View {
                     .foregroundColor(Color.black)
                 
                 Spacer()
+            }
+            
+            if !disclaimerText.isEmpty {
+                Text("*\(disclaimerText)*")
+                    .foregroundColor(.red)
+                    .textCase(.uppercase)
             }
             
             Text("Please select one of the below before cancelling")

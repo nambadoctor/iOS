@@ -130,30 +130,36 @@ class DetailedBookDocViewModel : ObservableObject {
         self.selectedTime = time
     }
 
-    func book (completion: @escaping (_ success:Bool)->()) {
+    func book (completion: @escaping (_ success:Bool, _ paymentType:String)->()) {
         if selectedDate == 0 || selectedTime == 0 {
             CustomerAlertHelpers().pleaseChooseTimeandDateAlert { _ in }
         } else {
-            CommonDefaultModifiers.showLoader(incomingLoadingText: "Booking Appointment")
             let slot = getCorrespondingSlot(timestamp: selectedTime)
+            let paymentTypeString = slot?.paymentType ?? "PostPaid"
             
+            if paymentTypeString == PaymentTypeEnum.PostPay.rawValue {
+                CommonDefaultModifiers.showLoader(incomingLoadingText: "Booking Appointment")
+            } else {
+                CommonDefaultModifiers.showLoader(incomingLoadingText: "Please Wait")
+            }
+
             let customerAppointment:CustomerAppointment = makeAppointment(slot: slot)
 
             CustomerAppointmentService().setAppointment(appointment: customerAppointment) { (response) in
                 if response != nil {
                     cusAutoNav.enterDetailedView(appointmentId: response!)
-                    self.fireBookedNotif(appointmentId: response!, paymentType: slot?.paymentType ?? "PostPaid")
+                    self.fireBookedNotif(appointmentId: response!, paymentType: paymentTypeString)
                     CustomerServiceRequestService().setServiceRequest(serviceRequest: self.makeServiceRequest(appointmentId: response!)) { (response) in
                         if response != nil {
                             CommonDefaultModifiers.hideLoader()
-                            completion(true)
+                            completion(true, paymentTypeString)
                         } else {
-                            completion(false)
+                            completion(false, paymentTypeString)
                         }
                     }
                 } else {
                     self.notAbleToBookCallBack()
-                    completion(false)
+                    completion(false, paymentTypeString)
                 }
             }
         }

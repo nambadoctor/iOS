@@ -18,7 +18,7 @@ struct CustomerDetailedAppointmentView: View {
             if customerDetailedAppointmentVM.refreshViewTrigger {
                 VStack {
                     header
-
+                    
                     VStack {
                         if customerDetailedAppointmentVM.imageLoader != nil {
                             ImageView(imageLoader: customerDetailedAppointmentVM.imageLoader!)
@@ -30,7 +30,7 @@ struct CustomerDetailedAppointmentView: View {
                                 .padding(.top, 10)
                         }
                     }
-
+                    
                     if customerDetailedAppointmentVM.appointmentStarted || customerDetailedAppointmentVM.appointmnentUpComing {
                         ScrollView {
                             allergyEntryView
@@ -41,7 +41,7 @@ struct CustomerDetailedAppointmentView: View {
                             CustomerReportsView(reportsVM: self.customerDetailedAppointmentVM.reportsVM)
                         }
                     }
-
+                    
                     Spacer()
                 }
                 .padding(.horizontal)
@@ -66,7 +66,7 @@ struct CustomerDetailedAppointmentView: View {
                     Text("").onAppear(){self.killView()}
                 }
                 
-                CancellationBottomsheetCaller(offset: self.$customerDetailedAppointmentVM.cancellationSheetOffset, cancellationReasons: self.customerDetailedAppointmentVM.CustomerCancellationReasons, delegate: self.customerDetailedAppointmentVM)
+                CancellationBottomsheetCaller(offset: self.$customerDetailedAppointmentVM.cancellationSheetOffset, cancellationReasons: self.customerDetailedAppointmentVM.CustomerCancellationReasons, delegate: self.customerDetailedAppointmentVM, disclaimerText: self.customerDetailedAppointmentVM.cancellationDisclaimerText)
             }
         }
         .onTapGesture {
@@ -82,21 +82,44 @@ struct CustomerDetailedAppointmentView: View {
     }
     
     var needToPayFirstView : some View {
-        VStack {
+        VStack (alignment: .leading, spacing: 10) {
             if self.customerDetailedAppointmentVM.needToPayFirst {
                 HStack {Spacer()}
                 Spacer()
                 
-                Image("exclamationmark.circle.fill")
-                    .scaleEffect(3)
-                    .foregroundColor(.green)
-                    .padding()
+                HStack {
+                    Spacer()
+                    
+                    Text("Please Pay To Confirm Your Appointment!")
+                        .font(.title)
+                        .bold()
+                        .underline()
+                        .fixedSize(horizontal: false, vertical: true)
+                        .multilineTextAlignment(.center)
+                    
+                    Spacer()
+                }
+                .padding(.bottom, 30)
                 
-                Text("Please Pay Before Continuing With Appointment")
+                Text("REFUND POLICY")
+                    .bold()
+                    .font(.headline)
+                
+                Text("1) If you cancel before 3 hours of the scheduled time, you will get full refund")
+                    .font(.footnote)
+                    .fixedSize(horizontal: false, vertical: true)
+                Text("1) If you cancel within 3 hours of the scheduled time, you will get a 30% refund")
+                    .font(.footnote)
+                    .fixedSize(horizontal: false, vertical: true)
                 
                 HStack {
-                    LargeButton(title: "Cancel", disabled: false, backgroundColor: .white, foregroundColor: .red) {
-                        self.customerDetailedAppointmentVM.showCancellationSheet()
+                    LargeButton(title: "Stop Booking", disabled: false, backgroundColor: .white, foregroundColor: .red) {
+                        self.customerDetailedAppointmentVM.cancelAppointmentBeforePayment { success in
+                            if success {
+                                CustomerDefaultModifiers.refreshAppointments()
+                                self.presentationMode.wrappedValue.dismiss()
+                            }
+                        }
                     }
                     LargeButton(title: "Pay") {
                         customerDetailedAppointmentVM.makePayment()
@@ -106,9 +129,9 @@ struct CustomerDetailedAppointmentView: View {
             }
         }
         .padding()
-        .background(Color.white)
+        .background(self.customerDetailedAppointmentVM.needToPayFirst ? Color.white : Color.clear)
     }
-
+    
     var backButton : some View {
         Button(action : {
             cusAutoNav.leaveDetailedView()
@@ -119,7 +142,7 @@ struct CustomerDetailedAppointmentView: View {
                 .padding([.top, .bottom, .trailing])
         }
     }
-
+    
     var navBarChatButton : some View {
         VStack {
             if self.customerDetailedAppointmentVM.appointmentFinished {
@@ -131,7 +154,7 @@ struct CustomerDetailedAppointmentView: View {
             }
         }
     }
-
+    
     var allergyEntryView : some View {
         VStack (alignment: .leading, spacing: 10) {
             if customerDetailedAppointmentVM.serviceRequest != nil {
@@ -139,10 +162,10 @@ struct CustomerDetailedAppointmentView: View {
                     .font(.footnote)
                     .foregroundColor(.gray)
                     .padding(.top, 10)
-
+                
                 HStack {
                     ExpandingTextEntryView(text: self.$customerDetailedAppointmentVM.allergy, changeDelegate: self.customerDetailedAppointmentVM.allergyChangedTrigger)
-
+                    
                     if self.customerDetailedAppointmentVM.allergyChanged {
                         Button {
                             self.customerDetailedAppointmentVM.commitAllergy()
@@ -151,7 +174,7 @@ struct CustomerDetailedAppointmentView: View {
                         }
                     }
                 }
-
+                
                 Spacer().frame(height: 17)
                 
                 Text("SELECT YOUR REASON")
@@ -160,7 +183,7 @@ struct CustomerDetailedAppointmentView: View {
                 
                 HStack {
                     ExpandingTextEntryView(text: self.$customerDetailedAppointmentVM.reasonPickerVM.reason, changeDelegate: self.customerDetailedAppointmentVM.reasonChangedTrigger)
-
+                    
                     if self.customerDetailedAppointmentVM.reasonChanged {
                         Button {
                             self.customerDetailedAppointmentVM.commitReason()
@@ -169,7 +192,7 @@ struct CustomerDetailedAppointmentView: View {
                         }
                     }
                 }
-
+                
                 Spacer().frame(height: 17)
             }
         }
@@ -190,7 +213,7 @@ struct CustomerDetailedAppointmentView: View {
                         Text(customerDetailedAppointmentVM.serviceProviderName)
                             .font(.system(size: 16))
                     }
-
+                    
                     HStack {
                         Image("indianrupeesign.circle")
                         Text(customerDetailedAppointmentVM.serviceProviderFee)
@@ -297,6 +320,8 @@ struct CustomerDetailedAppointmentView: View {
                         .padding(.trailing)
                     
                     Text("Paid Successfully")
+                    
+                    Spacer()
                 }
             }
         }

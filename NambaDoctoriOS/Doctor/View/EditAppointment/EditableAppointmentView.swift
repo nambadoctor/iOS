@@ -21,7 +21,7 @@ struct EditableAppointmentView: View {
                 Text("You are done").onAppear() { killView() }
             }
 
-            CancellationBottomsheetCaller(offset: self.$intermediateVM.cancellationSheetOffset, cancellationReasons: self.intermediateVM.DoctorCancellationReason, delegate: self.intermediateVM)
+            CancellationBottomsheetCaller(offset: self.$intermediateVM.cancellationSheetOffset, cancellationReasons: self.intermediateVM.DoctorCancellationReason, delegate: self.intermediateVM, disclaimerText: "")
         }
         .background(Color.gray.opacity(0.08))
         .navigationBarItems(trailing: Text(""))

@@ -24,11 +24,6 @@ struct UploadReportSheet: View {
                 .bold()
                 .font(.title2)
             
-            Text("Ex: Reports, Tests, Images, etc...")
-                .font(.footnote)
-                .padding(.top, 2)
-                .padding(.bottom)
-            
             if reportsVM.reports.isEmpty {
                 Spacer()
                 HStack {
@@ -54,6 +49,12 @@ struct UploadReportSheet: View {
             }
             
             Spacer()
+            
+            Text("Ex: Reports, Tests, Images, etc...")
+                .font(.footnote)
+                .bold()
+                .padding(.top, 5)
+                .padding(.bottom, 1)
             
             HStack {
                 LargeButton(title: self.reportsVM.reports.count > 0 ? "Upload Another" : "Upload Image",

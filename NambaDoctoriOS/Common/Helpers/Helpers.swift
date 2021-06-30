@@ -157,6 +157,13 @@ class Helpers {
         }
     }
     
+    static func getHourDifference (timestamp:Int64) -> Int{
+        let diffComponents = Calendar.current.dateComponents([.hour, .minute], from: Date(milliseconds: timestamp), to: Date())
+        let hours = diffComponents.hour
+        
+        return abs(hours ?? 0)
+    }
+    
     static func compareDate (timestamp:Int64, date2:Date) -> Bool {
         let date1 = Date(milliseconds: timestamp)
         

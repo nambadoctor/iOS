@@ -13,7 +13,8 @@ struct CancellationBottomsheetCaller: View {
     @Binding var offset:CGFloat
     var cancellationReasons:[String]
     var delegate:CancellationDelegate
-
+    var disclaimerText:String
+    
     var body: some View {
         
         ZStack{
@@ -21,7 +22,7 @@ struct CancellationBottomsheetCaller: View {
                 
                 Spacer()
 
-                CancellationBottomSheet(bottomSheetOffset: $offset, cancellationReasons: self.cancellationReasons, delegate: delegate)
+                CancellationBottomSheet(bottomSheetOffset: $offset, cancellationReasons: self.cancellationReasons, delegate: delegate, disclaimerText: disclaimerText)
                 .offset(y: self.offset)
                 .gesture(DragGesture()
                 

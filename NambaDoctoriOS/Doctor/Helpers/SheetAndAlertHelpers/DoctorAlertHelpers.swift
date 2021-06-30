@@ -17,6 +17,14 @@ class DoctorAlertHelpers: DoctorAlertHelpersProtocol {
         
         CommonDefaultModifiers.showAlert()
     }
+    
+    func cancelAppointmentBeforePaymentAlert (cancel: @escaping (Bool) -> ()) {
+        alertTempItem = AlertItem(title: Text("Are you sure?"), message: Text("Do you want to cancel now?"), primaryButton: Alert.Button.default(Text("Yes"), action: {
+            cancel(true)
+        }), secondaryButton: Alert.Button.cancel(Text("No")))
+        
+        CommonDefaultModifiers.showAlert()
+    }
 
     func sendPrescriptionAlert (sendPrescription: @escaping (Bool) -> ()) {
         alertTempItem = AlertItem(title: Text("Are you ready to send this prescription to the patient?"), primaryButton: Alert.Button.default(Text("Cancel"), action: {

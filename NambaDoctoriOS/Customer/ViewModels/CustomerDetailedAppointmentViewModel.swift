@@ -30,7 +30,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
 
     @Published var reportsVM:CustomerAllReportsViewModel
     @Published var ratingVM:CustomerRatingViewModel
-    
+        
     @Published var prescriptionPDF:Data? = nil
 
     @Published var imageLoader:ImageLoader? = nil
@@ -49,6 +49,8 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     @Published var needToPayFirst:Bool = false
     
     @Published var cancellationSheetOffset:CGFloat = UIScreen.main.bounds.height
+    @Published var cancellationDisclaimerText:String = ""
+    
     var CustomerCancellationReasons:[String] = ["I booked by mistake", "Doctor said he is not available", "Doctor did not call me", "Technical Issues", "Other"]
 
     var customerServiceRequestService:CustomerServiceRequestServiceProtocol
@@ -113,13 +115,14 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     }
 
     func checkAppointmentStatus () {
+        self.checkIfPaid()
+        
         if appointment.status == ConsultStateK.StartedConsultation.rawValue {
             appointmentStarted = true
         } else if appointment.status == ConsultStateK.Finished.rawValue ||
                     appointment.status == ConsultStateK.FinishedAppointment.rawValue {
             appointmentFinished = true
             self.getPrescription()
-            self.checkIfPaid()
         } else if appointment.status == ConsultStateK.Confirmed.rawValue {
             appointmnentUpComing = true
         }
@@ -268,7 +271,36 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
         }
     }
     
+    func cancelAppointmentBeforePayment (completion: @escaping (_ successfullyCancelled:Bool)->()) {
+        DoctorAlertHelpers().cancelAppointmentBeforePaymentAlert { (cancel) in
+            CommonDefaultModifiers.showLoader(incomingLoadingText: "Cancelling")
+            CustomerUpdateAppointmentStatusHelper().toCancelled(appointment: &self.appointment) { (success) in
+                if success {
+                    //TODO: Fire cancelled notification
+                    CommonDefaultModifiers.hideLoader()
+                    completion(success)
+                    self.customerNotifHelpers.cancelledAppointment()
+                } else {
+                    GlobalPopupHelpers.setErrorAlert()
+                    CommonDefaultModifiers.hideLoader()
+                    completion(success)
+                }
+            }
+        }
+    }
+    
     func showCancellationSheet () {
+        
+        let hourDiff = Helpers.getHourDifference(timestamp: self.appointment.scheduledAppointmentStartTime)
+        
+        if self.appointment.isPaid {
+            if hourDiff >= 3 {
+                self.cancellationDisclaimerText = "YOU WILL GET FULL REFUND WITHIN 3 - 5 BUSINESS DAYS"
+            } else if hourDiff < 3 {
+                self.cancellationDisclaimerText = "YOU WILL GET \((self.appointment.serviceFee * 0.3).clean)rs REFUNDED IN 3 - 5 BUSINESS DAYS"
+            }
+        }
+        
         self.cancellationSheetOffset = 0
     }
     

@@ -109,13 +109,20 @@ struct DetailedBookDoctorView: View {
 
                 LargeButton(title: "Book Appointment",
                             backgroundColor: Color.blue) {
-                    self.detailedBookingVM.book() { success in
+                    self.detailedBookingVM.book() { success, paymentType in
                         if success {
-                            CustomerAlertHelpers().AppointmentBookedAlert(timeStamp: self.detailedBookingVM.selectedTime) { (done) in
-                                CommonDefaultModifiers.showLoader(incomingLoadingText: "Loading Appointment")
+                            if paymentType == PaymentTypeEnum.PostPay.rawValue {
+                                CustomerAlertHelpers().AppointmentBookedAlert(timeStamp: self.detailedBookingVM.selectedTime) { (done) in
+                                    CommonDefaultModifiers.showLoader(incomingLoadingText: "Loading Appointment")
+                                    CustomerDefaultModifiers.navigateToDetailedView()
+                                    self.presentationMode.wrappedValue.dismiss()
+                                }
+                            } else {
+                                CommonDefaultModifiers.showLoader(incomingLoadingText: "Please Wait")
                                 CustomerDefaultModifiers.navigateToDetailedView()
                                 self.presentationMode.wrappedValue.dismiss()
                             }
+                            
                         } else {
                             presentationMode.wrappedValue.dismiss()
                         }
