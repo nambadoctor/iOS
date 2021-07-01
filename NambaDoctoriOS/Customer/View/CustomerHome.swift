@@ -23,7 +23,7 @@ struct CustomerHome: View {
                             Image("list.triangle")
                             Text("Appointments")
                         }.tag(1)
-                        
+                         
                         MyDoctorsView().tabItem {
                             Image("heart.fill")
                             Text("My Doctors")

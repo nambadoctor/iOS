@@ -10,10 +10,10 @@ import SwiftUI
 struct NewInstallDoctorsPreviewView: View {
     
     @ObservedObject var newInstallDoctorsPreviewVM:NewInstallDoctorsPreviewViewModel = NewInstallDoctorsPreviewViewModel()
+    @State var alertItem : AlertItem?
     
     var body: some View {
         ZStack {
-
             ScrollView {
                 VStack (alignment: .center, spacing: 10) {
                     Text("Welcome to NambaDoctor")
@@ -32,10 +32,14 @@ struct NewInstallDoctorsPreviewView: View {
                         .fixedSize(horizontal: false, vertical: true)
                         .font(.subheadline)
                     
-                    ForEach(newInstallDoctorsPreviewVM.allServiceProviders, id: \.serviceProviderID) { serviceProvider in
-                        NewInstallDoctorPreviewCard(customerServiceProviderVM: NonActionableCustomerServiceProviderViewModel(serviceProvider: serviceProvider))
+                    if !newInstallDoctorsPreviewVM.allServiceProviders.isEmpty {
+                        ForEach(newInstallDoctorsPreviewVM.allServiceProviders, id: \.serviceProviderID) { serviceProvider in
+                            NewInstallDoctorPreviewCard(customerServiceProviderVM: NonActionableCustomerServiceProviderViewModel(serviceProvider: serviceProvider))
+                        }
+                        .padding(.bottom)
+                    } else {
+                        Indicator()
                     }
-                    .padding(.bottom)
                 }
                 .padding()
             }
@@ -60,6 +64,29 @@ struct NewInstallDoctorsPreviewView: View {
             }
             .padding(.bottom, 10)
         }
+        .alert(item: $alertItem) { alertItem in
+            alertToShow(alertItem: alertItem)
+        }
+        .onAppear() {
+            showAlertListener()
+        }
 
+    }
+    
+    func showAlertListener () {
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("\(SimpleStateK.showPopupChange)"), object: nil, queue: .main) { (_) in
+            if alertTempItem != nil {
+                self.alertItem = alertTempItem
+            } else {
+                self.alertItem = nil
+            }
+        }
+    }
+    
+    func alertToShow (alertItem: AlertItem) -> Alert {
+        guard let primaryButton = alertItem.primaryButton, let secondaryButton = alertItem.secondaryButton else{
+            return Alert(title: alertItem.title, message: alertItem.message, dismissButton: alertItem.dismissButton)
+        }
+        return Alert(title: alertItem.title, message: alertItem.message, primaryButton: primaryButton, secondaryButton: secondaryButton)
     }
 }

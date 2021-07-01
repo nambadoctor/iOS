@@ -9,10 +9,14 @@ import Foundation
 import SwiftUI
 
 class NewInstallAlertHelper {
-    static func ErrorBookingAppointment (doctorName:String, completion: @escaping (Bool) -> ()) {
-        alertTempItem = AlertItem(title: Text("To book an appointment with \(doctorName)"), message: Text("Please Try Again"), primaryButton: Alert.Button.default(Text("Register"), action: {
-            completion(true)
+    func RegisterBeforeBookingAlert (doctorName:String, completion: @escaping (_ register:Bool, _ cancel:Bool) -> ()) {
+        alertTempItem = AlertItem(title: Text("To book an appointment with \(doctorName), please register with us first"), primaryButton: Alert.Button.default(Text("Go Back"), action: {
+            completion(false, true)
+        }), secondaryButton: Alert.Button.default(Text("Register"), action: {
+            completion(true, false)
         }))
+
         CommonDefaultModifiers.showAlert()
     }
+    
 }

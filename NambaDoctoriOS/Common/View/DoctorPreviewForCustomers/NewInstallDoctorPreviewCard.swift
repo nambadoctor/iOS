@@ -58,7 +58,17 @@ struct NewInstallDoctorPreviewCard : View {
                             HStack {
                                 Spacer()
                                 Button {
-                                    
+                                    NewInstallAlertHelper().RegisterBeforeBookingAlert(doctorName: self.customerServiceProviderVM.serviceProviderName) { register, cancel in
+                                        if register {
+                                            docIdFromLink = self.customerServiceProviderVM.serviceProvider.serviceProviderID
+                                            CustomerMyDoctorsLocalList().addDoctorId(id: self.customerServiceProviderVM.serviceProvider.serviceProviderID)
+                                            if UserTypeHelper.checkIfCustomer(userType: UserTypeHelper.getUserType()) {
+                                                CustomerDefaultModifiers.takeToBookDoctor()
+                                            }
+                                            
+                                            LoginDefaultModifiers.takeToSignin()
+                                        }
+                                    }
                                 } label: {
                                     Text("Book")
                                         .padding(.horizontal)
