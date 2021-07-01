@@ -38,6 +38,18 @@ class AuthenticateService : AuthenticateServiceProtocol {
             }
         }
     }
+    
+    func anonymousSignIn (completion: @escaping (_ signedIn:Bool) -> ()) {
+        Auth.auth().signInAnonymously() { (authResult, error) in
+            guard let user = authResult?.user else {
+                completion(false)
+                return
+            }
+            let isAnonymous = user.isAnonymous  // true
+            let uid = user.uid
+            completion(true)
+        }
+    }
 }
 
 //MARK: HELPERS FOR AUTH SERVICE

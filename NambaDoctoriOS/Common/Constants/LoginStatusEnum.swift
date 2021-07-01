@@ -11,5 +11,6 @@ enum UserLoginStatus: String {
     case Customer
     case ServiceProvider
     case NotSignedIn
+    case TakeToSignin
     case NotRegistered
 }

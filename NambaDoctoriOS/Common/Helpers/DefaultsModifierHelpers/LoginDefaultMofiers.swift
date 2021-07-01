@@ -23,4 +23,9 @@ class LoginDefaultModifiers {
         UserDefaults.standard.set(UserLoginStatus.NotRegistered.rawValue, forKey: "\(SimpleStateK.loginStatus)")
         NotificationCenter.default.post(name: NSNotification.Name("\(SimpleStateK.loginStatusChange)"), object: nil)
     }
+    
+    static func takeToSignin () {
+        UserDefaults.standard.set(UserLoginStatus.TakeToSignin.rawValue, forKey: "\(SimpleStateK.loginStatus)")
+        NotificationCenter.default.post(name: NSNotification.Name("\(SimpleStateK.loginStatusChange)"), object: nil)
+    }
 }

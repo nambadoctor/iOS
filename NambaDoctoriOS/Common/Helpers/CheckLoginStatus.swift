@@ -16,6 +16,8 @@ class CheckLoginStatus {
             return .Customer
         case UserLoginStatus.NotRegistered.rawValue:
             return .NotRegistered
+        case UserLoginStatus.TakeToSignin.rawValue:
+            return .TakeToSignin
         default:
             return .NotSignedIn
         }

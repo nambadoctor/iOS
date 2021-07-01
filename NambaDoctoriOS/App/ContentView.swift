@@ -23,6 +23,8 @@ struct ContentView: View {
                 case .Customer:
                     CustomerHome(customerVM: .init())
                 case .NotSignedIn:
+                    NewInstallDoctorsPreviewView()
+                case .TakeToSignin:
                     PhoneVerificationview(preRegUser: .init())
                 case .NotRegistered:
                     CreateCustomerProfileView()
@@ -44,7 +46,16 @@ extension ContentView {
     func loginStateListener () {
         //Opening value check
         let status = UserTypeHelper.getUserType()
-        loginStatus = CheckLoginStatus.checkStatus(loggedInStatus: status)
+        if CheckLoginStatus.checkStatus(loggedInStatus: status) == .NotSignedIn {
+            AuthenticateService().anonymousSignIn { success in
+                if success {
+                    loginStatus = CheckLoginStatus.checkStatus(loggedInStatus: status)
+                }
+            }
+        } else {
+            loginStatus = CheckLoginStatus.checkStatus(loggedInStatus: status)
+        }
+
         NotificationCenter.default
             .addObserver(forName: NSNotification.Name("\(SimpleStateK.loginStatusChange)"),
                          object: nil,
