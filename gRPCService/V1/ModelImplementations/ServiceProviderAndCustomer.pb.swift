@@ -183,6 +183,27 @@ struct Nd_V1_IdMessage {
   fileprivate var _id: SwiftProtobuf.Google_Protobuf_StringValue? = nil
 }
 
+struct Nd_V1_IntMessage {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var num: SwiftProtobuf.Google_Protobuf_Int32Value {
+    get {return _num ?? SwiftProtobuf.Google_Protobuf_Int32Value()}
+    set {_num = newValue}
+  }
+  /// Returns true if `num` has been explicitly set.
+  var hasNum: Bool {return self._num != nil}
+  /// Clears the value of `num`. Subsequent reads from it will return its default value.
+  mutating func clearNum() {self._num = nil}
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _num: SwiftProtobuf.Google_Protobuf_Int32Value? = nil
+}
+
 struct Nd_V1_RatingAndReviewMessage {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -917,11 +938,81 @@ struct Nd_V1_ServiceProviderAppointmentMessage {
   /// Clears the value of `paymentType`. Subsequent reads from it will return its default value.
   mutating func clearPaymentType() {_uniqueStorage()._paymentType = nil}
 
+  var appointmentVerification: Nd_V1_ServiceProviderAppointmentVerificationMessage {
+    get {return _storage._appointmentVerification ?? Nd_V1_ServiceProviderAppointmentVerificationMessage()}
+    set {_uniqueStorage()._appointmentVerification = newValue}
+  }
+  /// Returns true if `appointmentVerification` has been explicitly set.
+  var hasAppointmentVerification: Bool {return _storage._appointmentVerification != nil}
+  /// Clears the value of `appointmentVerification`. Subsequent reads from it will return its default value.
+  mutating func clearAppointmentVerification() {_uniqueStorage()._appointmentVerification = nil}
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
 
   fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+struct Nd_V1_ServiceProviderAppointmentVerificationMessage {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var appointmentVerificationID: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _appointmentVerificationID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_appointmentVerificationID = newValue}
+  }
+  /// Returns true if `appointmentVerificationID` has been explicitly set.
+  var hasAppointmentVerificationID: Bool {return self._appointmentVerificationID != nil}
+  /// Clears the value of `appointmentVerificationID`. Subsequent reads from it will return its default value.
+  mutating func clearAppointmentVerificationID() {self._appointmentVerificationID = nil}
+
+  var verificationStatus: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _verificationStatus ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_verificationStatus = newValue}
+  }
+  /// Returns true if `verificationStatus` has been explicitly set.
+  var hasVerificationStatus: Bool {return self._verificationStatus != nil}
+  /// Clears the value of `verificationStatus`. Subsequent reads from it will return its default value.
+  mutating func clearVerificationStatus() {self._verificationStatus = nil}
+
+  var verifiedBy: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _verifiedBy ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_verifiedBy = newValue}
+  }
+  /// Returns true if `verifiedBy` has been explicitly set.
+  var hasVerifiedBy: Bool {return self._verifiedBy != nil}
+  /// Clears the value of `verifiedBy`. Subsequent reads from it will return its default value.
+  mutating func clearVerifiedBy() {self._verifiedBy = nil}
+
+  var verifiedTime: SwiftProtobuf.Google_Protobuf_Int64Value {
+    get {return _verifiedTime ?? SwiftProtobuf.Google_Protobuf_Int64Value()}
+    set {_verifiedTime = newValue}
+  }
+  /// Returns true if `verifiedTime` has been explicitly set.
+  var hasVerifiedTime: Bool {return self._verifiedTime != nil}
+  /// Clears the value of `verifiedTime`. Subsequent reads from it will return its default value.
+  mutating func clearVerifiedTime() {self._verifiedTime = nil}
+
+  var customerResponseForReason: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _customerResponseForReason ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_customerResponseForReason = newValue}
+  }
+  /// Returns true if `customerResponseForReason` has been explicitly set.
+  var hasCustomerResponseForReason: Bool {return self._customerResponseForReason != nil}
+  /// Clears the value of `customerResponseForReason`. Subsequent reads from it will return its default value.
+  mutating func clearCustomerResponseForReason() {self._customerResponseForReason = nil}
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _appointmentVerificationID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _verificationStatus: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _verifiedBy: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _verifiedTime: SwiftProtobuf.Google_Protobuf_Int64Value? = nil
+  fileprivate var _customerResponseForReason: SwiftProtobuf.Google_Protobuf_StringValue? = nil
 }
 
 struct Nd_V1_ServiceProviderAppointmentList {
@@ -3505,11 +3596,81 @@ struct Nd_V1_CustomerAppointmentMessage {
   /// Clears the value of `paymentType`. Subsequent reads from it will return its default value.
   mutating func clearPaymentType() {_uniqueStorage()._paymentType = nil}
 
+  var appointmentVerification: Nd_V1_CustomerAppointmentVerificationMessage {
+    get {return _storage._appointmentVerification ?? Nd_V1_CustomerAppointmentVerificationMessage()}
+    set {_uniqueStorage()._appointmentVerification = newValue}
+  }
+  /// Returns true if `appointmentVerification` has been explicitly set.
+  var hasAppointmentVerification: Bool {return _storage._appointmentVerification != nil}
+  /// Clears the value of `appointmentVerification`. Subsequent reads from it will return its default value.
+  mutating func clearAppointmentVerification() {_uniqueStorage()._appointmentVerification = nil}
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
 
   fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+struct Nd_V1_CustomerAppointmentVerificationMessage {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var appointmentVerificationID: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _appointmentVerificationID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_appointmentVerificationID = newValue}
+  }
+  /// Returns true if `appointmentVerificationID` has been explicitly set.
+  var hasAppointmentVerificationID: Bool {return self._appointmentVerificationID != nil}
+  /// Clears the value of `appointmentVerificationID`. Subsequent reads from it will return its default value.
+  mutating func clearAppointmentVerificationID() {self._appointmentVerificationID = nil}
+
+  var verificationStatus: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _verificationStatus ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_verificationStatus = newValue}
+  }
+  /// Returns true if `verificationStatus` has been explicitly set.
+  var hasVerificationStatus: Bool {return self._verificationStatus != nil}
+  /// Clears the value of `verificationStatus`. Subsequent reads from it will return its default value.
+  mutating func clearVerificationStatus() {self._verificationStatus = nil}
+
+  var verifiedBy: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _verifiedBy ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_verifiedBy = newValue}
+  }
+  /// Returns true if `verifiedBy` has been explicitly set.
+  var hasVerifiedBy: Bool {return self._verifiedBy != nil}
+  /// Clears the value of `verifiedBy`. Subsequent reads from it will return its default value.
+  mutating func clearVerifiedBy() {self._verifiedBy = nil}
+
+  var verifiedTime: SwiftProtobuf.Google_Protobuf_Int64Value {
+    get {return _verifiedTime ?? SwiftProtobuf.Google_Protobuf_Int64Value()}
+    set {_verifiedTime = newValue}
+  }
+  /// Returns true if `verifiedTime` has been explicitly set.
+  var hasVerifiedTime: Bool {return self._verifiedTime != nil}
+  /// Clears the value of `verifiedTime`. Subsequent reads from it will return its default value.
+  mutating func clearVerifiedTime() {self._verifiedTime = nil}
+
+  var customerResponseForReason: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _customerResponseForReason ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_customerResponseForReason = newValue}
+  }
+  /// Returns true if `customerResponseForReason` has been explicitly set.
+  var hasCustomerResponseForReason: Bool {return self._customerResponseForReason != nil}
+  /// Clears the value of `customerResponseForReason`. Subsequent reads from it will return its default value.
+  mutating func clearCustomerResponseForReason() {self._customerResponseForReason = nil}
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _appointmentVerificationID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _verificationStatus: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _verifiedBy: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _verifiedTime: SwiftProtobuf.Google_Protobuf_Int64Value? = nil
+  fileprivate var _customerResponseForReason: SwiftProtobuf.Google_Protobuf_StringValue? = nil
 }
 
 struct Nd_V1_CustomerAppointmentList {
@@ -5485,6 +5646,37 @@ struct Nd_V1_CustomerServiceRequestRequestMessage {
   fileprivate var _serviceRequestID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
 }
 
+struct Nd_V1_CustomerTrustScoreRequestMessage {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var customerID: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _customerID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_customerID = newValue}
+  }
+  /// Returns true if `customerID` has been explicitly set.
+  var hasCustomerID: Bool {return self._customerID != nil}
+  /// Clears the value of `customerID`. Subsequent reads from it will return its default value.
+  mutating func clearCustomerID() {self._customerID = nil}
+
+  var serviceProviderID: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _serviceProviderID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_serviceProviderID = newValue}
+  }
+  /// Returns true if `serviceProviderID` has been explicitly set.
+  var hasServiceProviderID: Bool {return self._serviceProviderID != nil}
+  /// Clears the value of `serviceProviderID`. Subsequent reads from it will return its default value.
+  mutating func clearServiceProviderID() {self._serviceProviderID = nil}
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _customerID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _serviceProviderID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+}
+
 struct Nd_V1_CustomerIntakeDosageMessage {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -5683,6 +5875,38 @@ extension Nd_V1_IdMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplemen
 
   static func ==(lhs: Nd_V1_IdMessage, rhs: Nd_V1_IdMessage) -> Bool {
     if lhs._id != rhs._id {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Nd_V1_IntMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".IntMessage"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "num"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularMessageField(value: &self._num) }()
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if let v = self._num {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Nd_V1_IntMessage, rhs: Nd_V1_IntMessage) -> Bool {
+    if lhs._num != rhs._num {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -6259,6 +6483,7 @@ extension Nd_V1_ServiceProviderAppointmentMessage: SwiftProtobuf.Message, SwiftP
     21: .same(proto: "Cancellation"),
     22: .same(proto: "ChildId"),
     23: .same(proto: "PaymentType"),
+    24: .same(proto: "AppointmentVerification"),
   ]
 
   fileprivate class _StorageClass {
@@ -6285,6 +6510,7 @@ extension Nd_V1_ServiceProviderAppointmentMessage: SwiftProtobuf.Message, SwiftP
     var _cancellation: Nd_V1_ServiceProviderCancellationMessage? = nil
     var _childID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
     var _paymentType: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _appointmentVerification: Nd_V1_ServiceProviderAppointmentVerificationMessage? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -6314,6 +6540,7 @@ extension Nd_V1_ServiceProviderAppointmentMessage: SwiftProtobuf.Message, SwiftP
       _cancellation = source._cancellation
       _childID = source._childID
       _paymentType = source._paymentType
+      _appointmentVerification = source._appointmentVerification
     }
   }
 
@@ -6355,6 +6582,7 @@ extension Nd_V1_ServiceProviderAppointmentMessage: SwiftProtobuf.Message, SwiftP
         case 21: try { try decoder.decodeSingularMessageField(value: &_storage._cancellation) }()
         case 22: try { try decoder.decodeSingularMessageField(value: &_storage._childID) }()
         case 23: try { try decoder.decodeSingularMessageField(value: &_storage._paymentType) }()
+        case 24: try { try decoder.decodeSingularMessageField(value: &_storage._appointmentVerification) }()
         default: break
         }
       }
@@ -6432,6 +6660,9 @@ extension Nd_V1_ServiceProviderAppointmentMessage: SwiftProtobuf.Message, SwiftP
       if let v = _storage._paymentType {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 23)
       }
+      if let v = _storage._appointmentVerification {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 24)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -6464,10 +6695,67 @@ extension Nd_V1_ServiceProviderAppointmentMessage: SwiftProtobuf.Message, SwiftP
         if _storage._cancellation != rhs_storage._cancellation {return false}
         if _storage._childID != rhs_storage._childID {return false}
         if _storage._paymentType != rhs_storage._paymentType {return false}
+        if _storage._appointmentVerification != rhs_storage._appointmentVerification {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Nd_V1_ServiceProviderAppointmentVerificationMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".ServiceProviderAppointmentVerificationMessage"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "AppointmentVerificationId"),
+    2: .same(proto: "VerificationStatus"),
+    3: .same(proto: "VerifiedBy"),
+    4: .same(proto: "VerifiedTime"),
+    5: .same(proto: "CustomerResponseForReason"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularMessageField(value: &self._appointmentVerificationID) }()
+      case 2: try { try decoder.decodeSingularMessageField(value: &self._verificationStatus) }()
+      case 3: try { try decoder.decodeSingularMessageField(value: &self._verifiedBy) }()
+      case 4: try { try decoder.decodeSingularMessageField(value: &self._verifiedTime) }()
+      case 5: try { try decoder.decodeSingularMessageField(value: &self._customerResponseForReason) }()
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if let v = self._appointmentVerificationID {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+    }
+    if let v = self._verificationStatus {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+    }
+    if let v = self._verifiedBy {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+    }
+    if let v = self._verifiedTime {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+    }
+    if let v = self._customerResponseForReason {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Nd_V1_ServiceProviderAppointmentVerificationMessage, rhs: Nd_V1_ServiceProviderAppointmentVerificationMessage) -> Bool {
+    if lhs._appointmentVerificationID != rhs._appointmentVerificationID {return false}
+    if lhs._verificationStatus != rhs._verificationStatus {return false}
+    if lhs._verifiedBy != rhs._verifiedBy {return false}
+    if lhs._verifiedTime != rhs._verifiedTime {return false}
+    if lhs._customerResponseForReason != rhs._customerResponseForReason {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -9151,6 +9439,7 @@ extension Nd_V1_CustomerAppointmentMessage: SwiftProtobuf.Message, SwiftProtobuf
     21: .same(proto: "Cancellation"),
     22: .same(proto: "ChildId"),
     23: .same(proto: "PaymentType"),
+    24: .same(proto: "AppointmentVerification"),
   ]
 
   fileprivate class _StorageClass {
@@ -9177,6 +9466,7 @@ extension Nd_V1_CustomerAppointmentMessage: SwiftProtobuf.Message, SwiftProtobuf
     var _cancellation: Nd_V1_CustomerCancellationMessage? = nil
     var _childID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
     var _paymentType: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _appointmentVerification: Nd_V1_CustomerAppointmentVerificationMessage? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -9206,6 +9496,7 @@ extension Nd_V1_CustomerAppointmentMessage: SwiftProtobuf.Message, SwiftProtobuf
       _cancellation = source._cancellation
       _childID = source._childID
       _paymentType = source._paymentType
+      _appointmentVerification = source._appointmentVerification
     }
   }
 
@@ -9247,6 +9538,7 @@ extension Nd_V1_CustomerAppointmentMessage: SwiftProtobuf.Message, SwiftProtobuf
         case 21: try { try decoder.decodeSingularMessageField(value: &_storage._cancellation) }()
         case 22: try { try decoder.decodeSingularMessageField(value: &_storage._childID) }()
         case 23: try { try decoder.decodeSingularMessageField(value: &_storage._paymentType) }()
+        case 24: try { try decoder.decodeSingularMessageField(value: &_storage._appointmentVerification) }()
         default: break
         }
       }
@@ -9324,6 +9616,9 @@ extension Nd_V1_CustomerAppointmentMessage: SwiftProtobuf.Message, SwiftProtobuf
       if let v = _storage._paymentType {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 23)
       }
+      if let v = _storage._appointmentVerification {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 24)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -9356,10 +9651,67 @@ extension Nd_V1_CustomerAppointmentMessage: SwiftProtobuf.Message, SwiftProtobuf
         if _storage._cancellation != rhs_storage._cancellation {return false}
         if _storage._childID != rhs_storage._childID {return false}
         if _storage._paymentType != rhs_storage._paymentType {return false}
+        if _storage._appointmentVerification != rhs_storage._appointmentVerification {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Nd_V1_CustomerAppointmentVerificationMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".CustomerAppointmentVerificationMessage"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "AppointmentVerificationId"),
+    2: .same(proto: "VerificationStatus"),
+    3: .same(proto: "VerifiedBy"),
+    4: .same(proto: "VerifiedTime"),
+    5: .same(proto: "CustomerResponseForReason"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularMessageField(value: &self._appointmentVerificationID) }()
+      case 2: try { try decoder.decodeSingularMessageField(value: &self._verificationStatus) }()
+      case 3: try { try decoder.decodeSingularMessageField(value: &self._verifiedBy) }()
+      case 4: try { try decoder.decodeSingularMessageField(value: &self._verifiedTime) }()
+      case 5: try { try decoder.decodeSingularMessageField(value: &self._customerResponseForReason) }()
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if let v = self._appointmentVerificationID {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+    }
+    if let v = self._verificationStatus {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+    }
+    if let v = self._verifiedBy {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+    }
+    if let v = self._verifiedTime {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+    }
+    if let v = self._customerResponseForReason {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Nd_V1_CustomerAppointmentVerificationMessage, rhs: Nd_V1_CustomerAppointmentVerificationMessage) -> Bool {
+    if lhs._appointmentVerificationID != rhs._appointmentVerificationID {return false}
+    if lhs._verificationStatus != rhs._verificationStatus {return false}
+    if lhs._verifiedBy != rhs._verifiedBy {return false}
+    if lhs._verifiedTime != rhs._verifiedTime {return false}
+    if lhs._customerResponseForReason != rhs._customerResponseForReason {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -11616,6 +11968,44 @@ extension Nd_V1_CustomerServiceRequestRequestMessage: SwiftProtobuf.Message, Swi
     if lhs._customerID != rhs._customerID {return false}
     if lhs._appointmentID != rhs._appointmentID {return false}
     if lhs._serviceRequestID != rhs._serviceRequestID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Nd_V1_CustomerTrustScoreRequestMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".CustomerTrustScoreRequestMessage"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "CustomerId"),
+    2: .same(proto: "ServiceProviderId"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularMessageField(value: &self._customerID) }()
+      case 2: try { try decoder.decodeSingularMessageField(value: &self._serviceProviderID) }()
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if let v = self._customerID {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+    }
+    if let v = self._serviceProviderID {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Nd_V1_CustomerTrustScoreRequestMessage, rhs: Nd_V1_CustomerTrustScoreRequestMessage) -> Bool {
+    if lhs._customerID != rhs._customerID {return false}
+    if lhs._serviceProviderID != rhs._serviceProviderID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

@@ -31,4 +31,5 @@ struct CustomerAppointment {
     var cancellation:CustomerCancellation
     var childId:String
     var paymentType:String
+    var appointmentVerification:CustomerAppointmentVerification?
 }

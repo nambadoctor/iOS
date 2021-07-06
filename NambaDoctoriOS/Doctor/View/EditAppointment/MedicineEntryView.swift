@@ -80,7 +80,7 @@ struct MedicineValuesEntry : View {
             if medicineEntryVM.medicineNameConfirmed {
                 
                 VStack (alignment: .leading) {
-                    Text("DOSAGE")
+                    Text("DOSAGE E.g tab, ml, etc")
                         .font(.footnote)
                         .foregroundColor(self.medicineEntryVM.invalidDosageAttempt == 0 ? Color.black.opacity(0.4) : Color.red)
                         .bold()

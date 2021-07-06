@@ -27,6 +27,10 @@ message IdMessage {
 	google.protobuf.StringValue id = 1;
 }
 
+message IntMessage {
+	google.protobuf.Int32Value num = 1;
+} 
+
 
 message RatingAndReviewMessage {
     google.protobuf.StringValue RatingAndReviewId = 1;
@@ -174,7 +178,23 @@ message ServiceProviderAppointmentMessage{
 	google.protobuf.StringValue ChildId = 22;
 
 	google.protobuf.StringValue PaymentType = 23;
+
+	ServiceProviderAppointmentVerificationMessage AppointmentVerification = 24;
 }
+
+message ServiceProviderAppointmentVerificationMessage{
+
+	google.protobuf.StringValue AppointmentVerificationId = 1;
+
+    google.protobuf.StringValue VerificationStatus = 2;
+
+    google.protobuf.StringValue VerifiedBy = 3;
+
+    google.protobuf.Int64Value VerifiedTime = 4;
+
+    google.protobuf.StringValue CustomerResponseForReason = 5;
+
+} 
 
 
 message ServiceProviderAppointmentList{
@@ -852,7 +872,23 @@ message CustomerAppointmentMessage{
 	google.protobuf.StringValue ChildId = 22;
 	
 	google.protobuf.StringValue PaymentType = 23;
+
+	CustomerAppointmentVerificationMessage AppointmentVerification = 24;
 }
+
+message CustomerAppointmentVerificationMessage{
+
+	google.protobuf.StringValue AppointmentVerificationId = 1;
+
+    google.protobuf.StringValue VerificationStatus = 2;
+
+    google.protobuf.StringValue VerifiedBy = 3;
+
+    google.protobuf.Int64Value VerifiedTime = 4;
+
+    google.protobuf.StringValue CustomerResponseForReason = 5;
+
+} 
 
 
 message CustomerAppointmentList{
@@ -1388,9 +1424,17 @@ service CustomerWorkerV1 {
 	rpc GetLatestFollowUpWithServiceProvider (CustomerFollowUpRequestMessage) returns (CustomerFollowUpMessage);
 
 	rpc SetChildProfile (CustomerChildProfileUploadMessage) returns (IdMessage);
+
+	rpc GetTrustScore (CustomerTrustScoreRequestMessage) returns (IntMessage);
 }
 
 
+message CustomerTrustScoreRequestMessage{
+
+	google.protobuf.StringValue CustomerId = 1;
+
+	google.protobuf.StringValue ServiceProviderId = 2;
+} 
 
 
 

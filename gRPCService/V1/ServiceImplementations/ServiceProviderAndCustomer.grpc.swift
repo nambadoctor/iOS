@@ -1481,6 +1481,11 @@ internal protocol Nd_V1_CustomerWorkerV1ClientProtocol: GRPCClient {
     _ request: Nd_V1_CustomerChildProfileUploadMessage,
     callOptions: CallOptions?
   ) -> UnaryCall<Nd_V1_CustomerChildProfileUploadMessage, Nd_V1_IdMessage>
+
+  func getTrustScore(
+    _ request: Nd_V1_CustomerTrustScoreRequestMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_CustomerTrustScoreRequestMessage, Nd_V1_IntMessage>
 }
 
 extension Nd_V1_CustomerWorkerV1ClientProtocol {
@@ -1559,6 +1564,24 @@ extension Nd_V1_CustomerWorkerV1ClientProtocol {
       interceptors: self.interceptors?.makeSetChildProfileInterceptors() ?? []
     )
   }
+
+  /// Unary call to GetTrustScore
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetTrustScore.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getTrustScore(
+    _ request: Nd_V1_CustomerTrustScoreRequestMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_CustomerTrustScoreRequestMessage, Nd_V1_IntMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.CustomerWorkerV1/GetTrustScore",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetTrustScoreInterceptors() ?? []
+    )
+  }
 }
 
 internal protocol Nd_V1_CustomerWorkerV1ClientInterceptorFactoryProtocol {
@@ -1574,6 +1597,9 @@ internal protocol Nd_V1_CustomerWorkerV1ClientInterceptorFactoryProtocol {
 
   /// - Returns: Interceptors to use when invoking 'setChildProfile'.
   func makeSetChildProfileInterceptors() -> [ClientInterceptor<Nd_V1_CustomerChildProfileUploadMessage, Nd_V1_IdMessage>]
+
+  /// - Returns: Interceptors to use when invoking 'getTrustScore'.
+  func makeGetTrustScoreInterceptors() -> [ClientInterceptor<Nd_V1_CustomerTrustScoreRequestMessage, Nd_V1_IntMessage>]
 }
 
 internal final class Nd_V1_CustomerWorkerV1Client: Nd_V1_CustomerWorkerV1ClientProtocol {
@@ -2993,6 +3019,8 @@ internal protocol Nd_V1_CustomerWorkerV1Provider: CallHandlerProvider {
   func getLatestFollowUpWithServiceProvider(request: Nd_V1_CustomerFollowUpRequestMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_CustomerFollowUpMessage>
 
   func setChildProfile(request: Nd_V1_CustomerChildProfileUploadMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_IdMessage>
+
+  func getTrustScore(request: Nd_V1_CustomerTrustScoreRequestMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_IntMessage>
 }
 
 extension Nd_V1_CustomerWorkerV1Provider {
@@ -3041,6 +3069,15 @@ extension Nd_V1_CustomerWorkerV1Provider {
         userFunction: self.setChildProfile(request:context:)
       )
 
+    case "GetTrustScore":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_CustomerTrustScoreRequestMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_IntMessage>(),
+        interceptors: self.interceptors?.makeGetTrustScoreInterceptors() ?? [],
+        userFunction: self.getTrustScore(request:context:)
+      )
+
     default:
       return nil
     }
@@ -3064,6 +3101,10 @@ internal protocol Nd_V1_CustomerWorkerV1ServerInterceptorFactoryProtocol {
   /// - Returns: Interceptors to use when handling 'setChildProfile'.
   ///   Defaults to calling `self.makeInterceptors()`.
   func makeSetChildProfileInterceptors() -> [ServerInterceptor<Nd_V1_CustomerChildProfileUploadMessage, Nd_V1_IdMessage>]
+
+  /// - Returns: Interceptors to use when handling 'getTrustScore'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetTrustScoreInterceptors() -> [ServerInterceptor<Nd_V1_CustomerTrustScoreRequestMessage, Nd_V1_IntMessage>]
 }
 /// To build a server, implement a class that conforms to this protocol.
 internal protocol Nd_V1_CustomerPrescriptionWorkerV1Provider: CallHandlerProvider {

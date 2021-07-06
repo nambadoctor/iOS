@@ -11,6 +11,7 @@ protocol CustomerProfileServiceProtocol {
     func setCustomerProfile (customerProfile:CustomerProfile, _ completion : @escaping (_ id:String?)->())
     func getCustomerProfile (customerId:String, _ completion : @escaping (_ customerObj:CustomerProfile?)->())
     func setChildProfile (child:CustomerChildProfile, _ completion : @escaping (_ id:String?)->())
+    func getTrustScore (serviceProviderId:String, _ completion : @escaping (_ trustScore:Int32?)->())
 }
 
 class CustomerProfileService : CustomerProfileServiceProtocol {
@@ -108,4 +109,35 @@ class CustomerProfileService : CustomerProfileServiceProtocol {
             }
         }
     }
+    
+    func getTrustScore (serviceProviderId:String, _ completion : @escaping (_ trustScore:Int32?)->()) {
+        let channel = ChannelManager.sharedChannelManager.getChannel()
+        let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
+
+        let customerCLient = Nd_V1_CustomerWorkerV1Client(channel: channel)
+        
+        let request = Nd_V1_CustomerTrustScoreRequestMessage.with {
+            $0.customerID = UserIdHelper().retrieveUserId().toProto
+            $0.serviceProviderID = serviceProviderId.toProto
+        }
+        
+        let getTrustScoreCall = customerCLient.getTrustScore(request, callOptions: callOptions)
+        
+        DispatchQueue.global().async {
+            do {
+                let response = try getTrustScoreCall.response.wait()
+                print("GET CUSTOMER TRUST SCORE Success \(response)")
+                DispatchQueue.main.async {
+                    completion(response.num.toInt32)
+                }
+            } catch {
+                print("GET CUSTOMER TRUST SCORE Failed \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            }
+        }
+    }
 }
+
+var CustomerTrustScore:Int32 = 0 //Global Variable

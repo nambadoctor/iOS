@@ -87,6 +87,12 @@ class CustomerViewModel : ObservableObject {
                 //TODO: handle customer profile null
             }
         }
+        
+        customerProfileService.getTrustScore(serviceProviderId: "") { trustScore in
+            if trustScore != nil {
+                CustomerTrustScore = trustScore!
+            }
+        }
     }
     
     //only for edit child profile callback. need to find a way to optimize this

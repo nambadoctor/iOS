@@ -35,6 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             application.registerUserNotificationSettings(settings)
         }
         
+        UIApplication.shared.applicationIconBadgeNumber = 0
+        
         application.registerForRemoteNotifications()
         // [END register_for_notifications]
         return true

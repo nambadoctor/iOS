@@ -362,6 +362,12 @@
 		17E869A325CE121C000B0952 /* DocNotifHelpersProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E869A225CE121C000B0952 /* DocNotifHelpersProtocol.swift */; };
 		17E869D925CE75E1000B0952 /* PatientReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E869D825CE75E0000B0952 /* PatientReportView.swift */; };
 		17E869E625CE771E000B0952 /* PatientReportViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E869E525CE771E000B0952 /* PatientReportViewModel.swift */; };
+		17E87EE626943995002E62EA /* CustomerAppointmentVerification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E87EE526943995002E62EA /* CustomerAppointmentVerification.swift */; };
+		17E87EE826943A47002E62EA /* CustomerAppointmentVerificationMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E87EE726943A47002E62EA /* CustomerAppointmentVerificationMapper.swift */; };
+		17E87EEA2694F7D0002E62EA /* ServiceProviderAndCustomer.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E87EE92694F7D0002E62EA /* ServiceProviderAndCustomer.grpc.swift */; };
+		17E87EEC2694F7D4002E62EA /* ServiceProviderAndCustomer.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E87EEB2694F7D4002E62EA /* ServiceProviderAndCustomer.pb.swift */; };
+		17E87EEF2694FBD7002E62EA /* BookingReasonBottomSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E87EEE2694FBD7002E62EA /* BookingReasonBottomSheet.swift */; };
+		17E87EF12694FD41002E62EA /* BookingReasonBottomSheetCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E87EF02694FD41002E62EA /* BookingReasonBottomSheetCaller.swift */; };
 		17EC75DF260C52B70002BA75 /* ExpandingTextEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EC75DE260C52B70002BA75 /* ExpandingTextEntryView.swift */; };
 		17EC75E5260C62190002BA75 /* PatientInfoEditableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EC75E4260C62190002BA75 /* PatientInfoEditableView.swift */; };
 		17EC75F7260CEFAB0002BA75 /* InvestigationsEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EC75F6260CEFAB0002BA75 /* InvestigationsEntryView.swift */; };
@@ -373,8 +379,6 @@
 		17EC767B260F05140002BA75 /* TagCloudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EC767A260F05140002BA75 /* TagCloudView.swift */; };
 		17F42E962648B65C00129D17 /* CustomerProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F42E952648B65C00129D17 /* CustomerProfileView.swift */; };
 		17F81EEB268A5674006DCD57 /* PaymentTypeEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F81EEA268A5674006DCD57 /* PaymentTypeEnum.swift */; };
-		17F81EF5268BA9AE006DCD57 /* ServiceProviderAndCustomer.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F81EF4268BA9AE006DCD57 /* ServiceProviderAndCustomer.grpc.swift */; };
-		17F81EF7268BA9B2006DCD57 /* ServiceProviderAndCustomer.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F81EF6268BA9B2006DCD57 /* ServiceProviderAndCustomer.pb.swift */; };
 		17FBA810267A9C1F009800A5 /* CustomerUpdateHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FBA80F267A9C1F009800A5 /* CustomerUpdateHelpers.swift */; };
 		434CDF5DFA0DF425DF44E2A2 /* Pods_NambaDoctoriOSTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 435C297907080A241A267BB0 /* Pods_NambaDoctoriOSTests.framework */; };
 		B6746684516D05CE4C3163B4 /* Pods_NambaDoctoriOS_NambaDoctoriOSUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276EFB6904AFFC883BD04BA9 /* Pods_NambaDoctoriOS_NambaDoctoriOSUITests.framework */; };
@@ -771,6 +775,12 @@
 		17E869A225CE121C000B0952 /* DocNotifHelpersProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocNotifHelpersProtocol.swift; sourceTree = "<group>"; };
 		17E869D825CE75E0000B0952 /* PatientReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientReportView.swift; sourceTree = "<group>"; };
 		17E869E525CE771E000B0952 /* PatientReportViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientReportViewModel.swift; sourceTree = "<group>"; };
+		17E87EE526943995002E62EA /* CustomerAppointmentVerification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerAppointmentVerification.swift; sourceTree = "<group>"; };
+		17E87EE726943A47002E62EA /* CustomerAppointmentVerificationMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerAppointmentVerificationMapper.swift; sourceTree = "<group>"; };
+		17E87EE92694F7D0002E62EA /* ServiceProviderAndCustomer.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderAndCustomer.grpc.swift; sourceTree = "<group>"; };
+		17E87EEB2694F7D4002E62EA /* ServiceProviderAndCustomer.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderAndCustomer.pb.swift; sourceTree = "<group>"; };
+		17E87EEE2694FBD7002E62EA /* BookingReasonBottomSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingReasonBottomSheet.swift; sourceTree = "<group>"; };
+		17E87EF02694FD41002E62EA /* BookingReasonBottomSheetCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingReasonBottomSheetCaller.swift; sourceTree = "<group>"; };
 		17EC75DE260C52B70002BA75 /* ExpandingTextEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandingTextEntryView.swift; sourceTree = "<group>"; };
 		17EC75E4260C62190002BA75 /* PatientInfoEditableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientInfoEditableView.swift; sourceTree = "<group>"; };
 		17EC75F6260CEFAB0002BA75 /* InvestigationsEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvestigationsEntryView.swift; sourceTree = "<group>"; };
@@ -782,8 +792,6 @@
 		17EC767A260F05140002BA75 /* TagCloudView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCloudView.swift; sourceTree = "<group>"; };
 		17F42E952648B65C00129D17 /* CustomerProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerProfileView.swift; sourceTree = "<group>"; };
 		17F81EEA268A5674006DCD57 /* PaymentTypeEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentTypeEnum.swift; sourceTree = "<group>"; };
-		17F81EF4268BA9AE006DCD57 /* ServiceProviderAndCustomer.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderAndCustomer.grpc.swift; sourceTree = "<group>"; };
-		17F81EF6268BA9B2006DCD57 /* ServiceProviderAndCustomer.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderAndCustomer.pb.swift; sourceTree = "<group>"; };
 		17FBA80F267A9C1F009800A5 /* CustomerUpdateHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerUpdateHelpers.swift; sourceTree = "<group>"; };
 		276EFB6904AFFC883BD04BA9 /* Pods_NambaDoctoriOS_NambaDoctoriOSUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NambaDoctoriOS_NambaDoctoriOSUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C1F9336480062135B79A499 /* Pods-NambaDoctoriOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NambaDoctoriOS.release.xcconfig"; path = "Target Support Files/Pods-NambaDoctoriOS/Pods-NambaDoctoriOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -1194,6 +1202,7 @@
 		1739EAD82638082F00556044 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				17E87EED2694FBC6002E62EA /* BookingReasonBottomSheet */,
 				1747F898266D88C700AEA532 /* CustomerRatingAndReview */,
 				1726BB7726677BB700C9B764 /* CustomerSupport */,
 				1715EA2C266043E20004E01F /* DoctorProfileView */,
@@ -1268,7 +1277,7 @@
 		173A22BB25CAF8BC0086342A /* ServiceImplementations */ = {
 			isa = PBXGroup;
 			children = (
-				17F81EF4268BA9AE006DCD57 /* ServiceProviderAndCustomer.grpc.swift */,
+				17E87EE92694F7D0002E62EA /* ServiceProviderAndCustomer.grpc.swift */,
 			);
 			path = ServiceImplementations;
 			sourceTree = "<group>";
@@ -1276,7 +1285,7 @@
 		173A22BC25CAF8C60086342A /* ModelImplementations */ = {
 			isa = PBXGroup;
 			children = (
-				17F81EF6268BA9B2006DCD57 /* ServiceProviderAndCustomer.pb.swift */,
+				17E87EEB2694F7D4002E62EA /* ServiceProviderAndCustomer.pb.swift */,
 			);
 			path = ModelImplementations;
 			sourceTree = "<group>";
@@ -1527,6 +1536,7 @@
 				1758E1FE265B2EEA0012E571 /* CustomerCancellation.swift */,
 				173028A02664AB4100E9F5F3 /* CustomerIntakeDosage.swift */,
 				1776B4BD267F209500D823C1 /* CustomerServiceProviderSearchableIndexes.swift */,
+				17E87EE526943995002E62EA /* CustomerAppointmentVerification.swift */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
@@ -1560,6 +1570,7 @@
 				1758E1E126590E1D0012E571 /* CustomerChildProfileObjectMapper.swift */,
 				1758E200265B2F120012E571 /* CustomerCancellationMapper.swift */,
 				173028A42664AFF700E9F5F3 /* CustomerIntakeDosageMapper.swift */,
+				17E87EE726943A47002E62EA /* CustomerAppointmentVerificationMapper.swift */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
@@ -1959,6 +1970,15 @@
 			path = NambaDoctoriOSUITests;
 			sourceTree = "<group>";
 		};
+		17E87EED2694FBC6002E62EA /* BookingReasonBottomSheet */ = {
+			isa = PBXGroup;
+			children = (
+				17E87EEE2694FBD7002E62EA /* BookingReasonBottomSheet.swift */,
+				17E87EF02694FD41002E62EA /* BookingReasonBottomSheetCaller.swift */,
+			);
+			path = BookingReasonBottomSheet;
+			sourceTree = "<group>";
+		};
 		17EC7647260DB57A0002BA75 /* HorizontalDatePicker */ = {
 			isa = PBXGroup;
 			children = (
@@ -2281,6 +2301,7 @@
 				176AA0FE2637B9DD00F02346 /* CustomerAllergy.swift in Sources */,
 				171646C22602B6B700BB5B5A /* ServiceProviderPaymentInfo.swift in Sources */,
 				1742506D25BAE69200523B94 /* PrescriptionFormPickerConstants.swift in Sources */,
+				17E87EF12694FD41002E62EA /* BookingReasonBottomSheetCaller.swift in Sources */,
 				17424FAA25BACEF600523B94 /* ServiceRequestViewModel.swift in Sources */,
 				17EC7656260DE8940002BA75 /* DatePickerViewModel.swift in Sources */,
 				1741BFC22669F38A00BAB18B /* AuthTokenTimeOutHelper.swift in Sources */,
@@ -2351,6 +2372,7 @@
 				17EC767B260F05140002BA75 /* TagCloudView.swift in Sources */,
 				1716484026092D5800BB5B5A /* ServiceProviderFileInfo.swift in Sources */,
 				17D1EDD32670C4AB00D6060E /* ServiceProviderMyPatientProfile.swift in Sources */,
+				17E87EEC2694F7D4002E62EA /* ServiceProviderAndCustomer.pb.swift in Sources */,
 				171647B32604468500BB5B5A /* ServiceProviderPrescriptionService.swift in Sources */,
 				1748010B25B8DFC100C8E3CC /* DoctorDefaultModifiers.swift in Sources */,
 				17A020A326307AD000BD828F /* DoctorAvailabilityView.swift in Sources */,
@@ -2387,7 +2409,6 @@
 				171646FC26030C6300BB5B5A /* ServiceProviderAppointmentObjectMapper.swift in Sources */,
 				17BD2E88263A39F100BB0BDD /* CustomerReportCardView.swift in Sources */,
 				1785A570261A353F009667D1 /* DoctorIntermediateView.swift in Sources */,
-				17F81EF7268BA9B2006DCD57 /* ServiceProviderAndCustomer.pb.swift in Sources */,
 				1765BD072639185C0087664D /* LoggerService.swift in Sources */,
 				1728B76D25B38156001D554E /* Logon.swift in Sources */,
 				179C44E42628C86D0073F4E0 /* DoctorChatRoomView.swift in Sources */,
@@ -2449,6 +2470,7 @@
 				1716471626031FC600BB5B5A /* ServiceProviderDiagnosisObjectMapper.swift in Sources */,
 				1748006425B8C00300C8E3CC /* ServiceProviderUpdateAppointmentStatusHelper.swift in Sources */,
 				1748003425B8BCA800C8E3CC /* AppointmentCard.swift in Sources */,
+				17E87EE826943A47002E62EA /* CustomerAppointmentVerificationMapper.swift in Sources */,
 				17A3754D267D0B2E00571049 /* CustomerFirebaseUpdateAppointmentStatus.swift in Sources */,
 				171647832603F47C00BB5B5A /* MakeEmptyObjects.swift in Sources */,
 				176AA17E2637BFAC00F02346 /* CustomerAppointmentMapper.swift in Sources */,
@@ -2460,6 +2482,7 @@
 				176AA1082637BA5600F02346 /* CustomerAppointment.swift in Sources */,
 				17626CAD25D5BAC200C36A99 /* LoadingScreen.swift in Sources */,
 				173A231B25CBB8F20086342A /* FindUserTypeViewModelProtocol.swift in Sources */,
+				17E87EEF2694FBD7002E62EA /* BookingReasonBottomSheet.swift in Sources */,
 				17B5D12D25B75789009D6A42 /* LocalEncodingK.swift in Sources */,
 				172B851C25AEE50C00C6B035 /* EndEditing.swift in Sources */,
 				1715EA2B266038D80004E01F /* DoctorViewModifiers.swift in Sources */,
@@ -2523,6 +2546,7 @@
 				176AA1F42637F73200F02346 /* CustomerAppointmentService.swift in Sources */,
 				17164720260320FF00BB5B5A /* ServiceProviderWorkExperienceMapper.swift in Sources */,
 				1715EA3326608CD70004E01F /* CardModifier.swift in Sources */,
+				17E87EE626943995002E62EA /* CustomerAppointmentVerification.swift in Sources */,
 				176AA2082637F77C00F02346 /* CustomerServiceRequestService.swift in Sources */,
 				1763D31C262A39CA00E0E423 /* DefaultPreferencesTracker.swift in Sources */,
 				1776B4C2267F247A00D823C1 /* ServiceProviderAdditionalInfoMapper.swift in Sources */,
@@ -2533,6 +2557,7 @@
 				17E3707D25BF12AF0004C965 /* DoctorTwilioViewModel.swift in Sources */,
 				171647F026046C0200BB5B5A /* RetrieveAuthId.swift in Sources */,
 				17EC75F7260CEFAB0002BA75 /* InvestigationsEntryView.swift in Sources */,
+				17E87EEA2694F7D0002E62EA /* ServiceProviderAndCustomer.grpc.swift in Sources */,
 				171648682609C0CE00BB5B5A /* RoundedCornerHelper.swift in Sources */,
 				17437EAA263D2B4200AFEF5B /* CustomerTwilioViewHelper.swift in Sources */,
 				17626E0525DA23E000C36A99 /* PinchToZoom.swift in Sources */,
@@ -2578,7 +2603,6 @@
 				1796321125AEE865002E466C /* KeyboardAdaptive.swift in Sources */,
 				1716E2AD261AF8C900568837 /* InvestigationsView.swift in Sources */,
 				176AA0F92637B9AF00F02346 /* CustomerAddress.swift in Sources */,
-				17F81EF5268BA9AE006DCD57 /* ServiceProviderAndCustomer.grpc.swift in Sources */,
 				176AA20D2637F78A00F02346 /* CustomerServiceProviderService.swift in Sources */,
 				17E3706E25BF123F0004C965 /* Utils.swift in Sources */,
 				1742524325BD990800523B94 /* RetrievePatientInfoProtocol.swift in Sources */,
@@ -2803,7 +2827,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NambaDoctoriOS/NambaDoctoriOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 36;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"NambaDoctoriOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 4H9M6DGZQ3;
@@ -2814,7 +2838,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.34;
+				MARKETING_VERSION = 1.36;
 				PRODUCT_BUNDLE_IDENTIFIER = nambadoctor.iOS.NambaDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -2830,7 +2854,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NambaDoctoriOS/NambaDoctoriOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 34;
+				CURRENT_PROJECT_VERSION = 36;
 				DEVELOPMENT_ASSET_PATHS = "\"NambaDoctoriOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 4H9M6DGZQ3;
 				ENABLE_PREVIEWS = YES;
@@ -2840,7 +2864,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.34;
+				MARKETING_VERSION = 1.36;
 				PRODUCT_BUNDLE_IDENTIFIER = nambadoctor.iOS.NambaDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
