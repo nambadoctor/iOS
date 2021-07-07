@@ -17,6 +17,14 @@ class CustomerAlertHelpers {
         CommonDefaultModifiers.showAlert()
     }
     
+    func AppointmentNeedsVerificationAlert (doctorName:String, timeStamp:Int64, completion: @escaping (Bool) -> ()) {
+        alertTempItem = AlertItem(title: Text("Please wait until your appointment is confirmed"), message: Text("We will let you know once your appointment with \(doctorName) at \(Helpers.getTimeFromTimeStamp(timeStamp: timeStamp)) is confirmed"), dismissButton: Alert.Button.destructive(Text("Ok").foregroundColor(Color.black), action: {
+            completion(true)
+        }))
+        
+        CommonDefaultModifiers.showAlert()
+    }
+    
     func payFirstToBook (doctorName:String, completion: @escaping (_ pay:Bool, _ stopBooking:Bool) -> ()) {
         alertTempItem = AlertItem(title: Text("Please pay to book an appointment with Dr. Rajesh"), primaryButton: Alert.Button.default(Text("Pay"), action: {
             completion(true, false)

@@ -47,6 +47,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     @Published var refreshViewTrigger:Bool = true
     
     @Published var needToPayFirst:Bool = false
+    @Published var appointmentIsBeingConfirmed = false
     
     @Published var cancellationSheetOffset:CGFloat = UIScreen.main.bounds.height
     @Published var cancellationDisclaimerText:String = ""
@@ -109,7 +110,10 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
         self.needToPayFirst = false
         if self.appointment.paymentType == PaymentTypeEnum.PrePay.rawValue && !self.appointment.isPaid {
             self.needToPayFirst = true
-        } else {
+        } else if self.appointment.appointmentVerification != nil && appointment.appointmentVerification?.VerificationStatus == "PendingVerification"{
+            self.appointmentIsBeingConfirmed = true
+        }
+        else {
             self.reportsVM.checkIfFirstTimeOpeningAppointment()
         }
     }

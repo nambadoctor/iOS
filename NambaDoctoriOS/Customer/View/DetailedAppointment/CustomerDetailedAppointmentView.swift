@@ -45,7 +45,7 @@ struct CustomerDetailedAppointmentView: View {
                     Spacer()
                 }
                 .padding(.horizontal)
-                .overlay(needToPayFirstView)
+                .overlay(appointmentViewBlockers)
                 
                 if customerDetailedAppointmentVM.showTwilioRoom {
                     CustomerTwilioManager(customerTwilioViewModel: customerDetailedAppointmentVM.customerTwilioViewModel)
@@ -81,55 +81,103 @@ struct CustomerDetailedAppointmentView: View {
         .navigationBarItems(leading: backButton, trailing: navBarChatButton)
     }
     
-    var needToPayFirstView : some View {
+    var appointmentViewBlockers : some View {
         VStack (alignment: .leading, spacing: 10) {
             if self.customerDetailedAppointmentVM.needToPayFirst {
-                HStack {Spacer()}
-                Spacer()
-                
-                HStack {
-                    Spacer()
-                    
-                    Text("Please Pay To Confirm Your Appointment!")
-                        .font(.title)
-                        .bold()
-                        .underline()
-                        .fixedSize(horizontal: false, vertical: true)
-                        .multilineTextAlignment(.center)
-                    
-                    Spacer()
-                }
-                .padding(.bottom, 30)
-                
-                Text("REFUND POLICY")
-                    .bold()
-                    .font(.headline)
-                
-                Text("1) If you cancel before 3 hours of the scheduled time, you will get full refund")
-                    .font(.footnote)
-                    .fixedSize(horizontal: false, vertical: true)
-                Text("1) If you cancel within 3 hours of the scheduled time, you will get a 30% refund")
-                    .font(.footnote)
-                    .fixedSize(horizontal: false, vertical: true)
-                
-                HStack {
-                    LargeButton(title: "Stop Booking", disabled: false, backgroundColor: .white, foregroundColor: .red) {
-                        self.customerDetailedAppointmentVM.cancelAppointmentBeforePayment { success in
-                            if success {
-                                CustomerDefaultModifiers.refreshAppointments()
-                                self.presentationMode.wrappedValue.dismiss()
-                            }
-                        }
-                    }
-                    LargeButton(title: "Pay") {
-                        customerDetailedAppointmentVM.makePayment()
-                    }
-                }
-                Spacer()
+                needToPayFirstView
+            } else if self.customerDetailedAppointmentVM.appointmentIsBeingConfirmed {
+                pendingVerification
             }
         }
         .padding()
-        .background(self.customerDetailedAppointmentVM.needToPayFirst ? Color.white : Color.clear)
+        .background(self.customerDetailedAppointmentVM.needToPayFirst || self.customerDetailedAppointmentVM.appointmentIsBeingConfirmed ? Color.white : Color.clear)
+    }
+    
+    var pendingVerification : some View {
+        VStack (alignment: .leading, spacing: 10) {
+            HStack {Spacer()}
+            Spacer()
+            
+            HStack {
+                Spacer()
+                
+                Text("Please wait until your appointment is confirmed!")
+                    .font(.title)
+                    .bold()
+                    .underline()
+                    .fixedSize(horizontal: false, vertical: true)
+                    .multilineTextAlignment(.center)
+                
+                Spacer()
+            }
+            .padding(.bottom, 30)
+            
+            Text("This can take anywhere between 5 minutes - 1 hour")
+                .font(.footnote)
+                .fixedSize(horizontal: false, vertical: true)
+            
+            HStack {
+                LargeButton(title: "Stop Booking", disabled: false, backgroundColor: .white, foregroundColor: .red) {
+                    self.customerDetailedAppointmentVM.cancelAppointmentBeforePayment { success in
+                        if success {
+                            CustomerDefaultModifiers.refreshAppointments()
+                            self.presentationMode.wrappedValue.dismiss()
+                        }
+                    }
+                }
+                LargeButton(title: "Contact Support") {
+                    openWhatsapp(phoneNumber: "+917530043008")
+                }
+            }
+            Spacer()
+        }
+    }
+    
+    var needToPayFirstView : some View {
+        VStack (alignment: .leading, spacing: 10) {
+            HStack {Spacer()}
+            Spacer()
+            
+            HStack {
+                Spacer()
+                
+                Text("Please Pay To Confirm Your Appointment!")
+                    .font(.title)
+                    .bold()
+                    .underline()
+                    .fixedSize(horizontal: false, vertical: true)
+                    .multilineTextAlignment(.center)
+                
+                Spacer()
+            }
+            .padding(.bottom, 30)
+            
+            Text("REFUND POLICY")
+                .bold()
+                .font(.headline)
+            
+            Text("1) If you cancel before 3 hours of the scheduled time, you will get full refund")
+                .font(.footnote)
+                .fixedSize(horizontal: false, vertical: true)
+            Text("1) If you cancel within 3 hours of the scheduled time, you will get a 30% refund")
+                .font(.footnote)
+                .fixedSize(horizontal: false, vertical: true)
+            
+            HStack {
+                LargeButton(title: "Stop Booking", disabled: false, backgroundColor: .white, foregroundColor: .red) {
+                    self.customerDetailedAppointmentVM.cancelAppointmentBeforePayment { success in
+                        if success {
+                            CustomerDefaultModifiers.refreshAppointments()
+                            self.presentationMode.wrappedValue.dismiss()
+                        }
+                    }
+                }
+                LargeButton(title: "Pay") {
+                    customerDetailedAppointmentVM.makePayment()
+                }
+            }
+            Spacer()
+        }
     }
     
     var backButton : some View {

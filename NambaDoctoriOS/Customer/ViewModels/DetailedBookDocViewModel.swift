@@ -151,7 +151,13 @@ class DetailedBookDocViewModel : ObservableObject {
             return
         }
         self.selectedSlot = getCorrespondingSlot(timestamp: selectedTime)
-        CustomerTrustScore = 0
+        CustomerTrustScore = 50
+        
+        guard self.selectedSlot?.paymentType != PaymentTypeEnum.PrePay.rawValue else {
+            bookHelper()
+            return
+        }
+        
         if CustomerTrustScore == 0 {
             self.showPreBookingOptionsSheet()
         } else if CustomerTrustScore < 0 {
@@ -159,6 +165,7 @@ class DetailedBookDocViewModel : ObservableObject {
             bookHelper()
         } else if 0 < CustomerTrustScore && CustomerTrustScore < 100 {
             self.selectedSlot?.paymentType = PaymentTypeEnum.PostPay.rawValue
+            bookHelper()
         } else if CustomerTrustScore == 100 {
             self.selectedSlot?.paymentType = PaymentTypeEnum.PostPay.rawValue
             bookHelper()
@@ -169,9 +176,15 @@ class DetailedBookDocViewModel : ObservableObject {
     }
 
     func bookHelper () {
-        self.book() { success, paymentType in
+        self.book() { success, paymentType, needsVerification in
             if success {
-                if paymentType == PaymentTypeEnum.PostPay.rawValue {
+                if needsVerification {
+                    CustomerAlertHelpers().AppointmentNeedsVerificationAlert(doctorName: self.serviceProviderName,timeStamp: self.selectedTime) { (done) in
+                        CommonDefaultModifiers.showLoader(incomingLoadingText: "Please Wait")
+                        CustomerDefaultModifiers.navigateToDetailedView()
+                        self.killView = true
+                    }
+                } else if paymentType == PaymentTypeEnum.PostPay.rawValue {
                     CustomerAlertHelpers().AppointmentBookedAlert(timeStamp: self.selectedTime) { (done) in
                         CommonDefaultModifiers.showLoader(incomingLoadingText: "Loading Appointment")
                         CustomerDefaultModifiers.navigateToDetailedView()
@@ -188,15 +201,17 @@ class DetailedBookDocViewModel : ObservableObject {
         }
     }
 
-    func book (completion: @escaping (_ success:Bool, _ paymentType:String)->()) {
+    func book (completion: @escaping (_ success:Bool, _ paymentType:String, _ needsVerification:Bool)->()) {
         
         let customerAppointment:CustomerAppointment = makeAppointment()
 
-        if customerAppointment.paymentType == PaymentTypeEnum.PostPay.rawValue {
+        if customerAppointment.paymentType == PaymentTypeEnum.PostPay.rawValue && customerAppointment.appointmentVerification == nil {
             CommonDefaultModifiers.showLoader(incomingLoadingText: "Booking Appointment")
         } else {
             CommonDefaultModifiers.showLoader(incomingLoadingText: "Please Wait")
         }
+        
+        let needsVerif = customerAppointment.appointmentVerification != nil ? true : false
 
         CustomerAppointmentService().setAppointment(appointment: customerAppointment) { (response) in
             if response != nil {
@@ -205,14 +220,14 @@ class DetailedBookDocViewModel : ObservableObject {
                 CustomerServiceRequestService().setServiceRequest(serviceRequest: self.makeServiceRequest(appointmentId: response!)) { (response) in
                     if response != nil {
                         CommonDefaultModifiers.hideLoader()
-                        completion(true, customerAppointment.paymentType)
+                        completion(true, customerAppointment.paymentType, needsVerif)
                     } else {
-                        completion(false, customerAppointment.paymentType)
+                        completion(false, customerAppointment.paymentType, needsVerif)
                     }
                 }
             } else {
                 self.notAbleToBookCallBack()
-                completion(false, customerAppointment.paymentType)
+                completion(false, customerAppointment.paymentType, needsVerif)
             }
         }
     }
