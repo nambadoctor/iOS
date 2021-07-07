@@ -22,6 +22,7 @@ class DetailedBookDocViewModel : ObservableObject {
     
     @Published var selectedDate:Int64 = 0
     @Published var selectedTime:Int64 = 0
+    @Published var selectedSlot:CustomerGeneratedSlot? = nil
 
     @Published var docProfPicImageLoader:ImageLoader? = nil
     
@@ -34,7 +35,8 @@ class DetailedBookDocViewModel : ObservableObject {
     @Published var killView:Bool = false
     
     @Published var preBookingOptionsOffSet:CGFloat = UIScreen.main.bounds.height
-    var preBookingOptions:[String] = ["I dont know this doctor", "This doctor referred me", "A friend referred me"]
+    var preBookingOptions:[String] = ["I dont know this doctor", "This doctor referred me", "A friend referred me", "Other"]
+    var selectedPrebookingOption:String = ""
 
     var bookingForProfile:CustomerChildProfile? = nil
     
@@ -144,9 +146,24 @@ class DetailedBookDocViewModel : ObservableObject {
     }
     
     func checkTrustScores () {
-        if selectedDate == 0 || selectedTime == 0 {
+        guard selectedDate != 0, selectedTime != 0 else {
             CustomerAlertHelpers().pleaseChooseTimeandDateAlert { _ in }
-        } else {
+            return
+        }
+        self.selectedSlot = getCorrespondingSlot(timestamp: selectedTime)
+        CustomerTrustScore = 0
+        if CustomerTrustScore == 0 {
+            self.showPreBookingOptionsSheet()
+        } else if CustomerTrustScore < 0 {
+            self.selectedSlot?.paymentType = PaymentTypeEnum.PrePay.rawValue
+            bookHelper()
+        } else if 0 < CustomerTrustScore && CustomerTrustScore < 100 {
+            self.selectedSlot?.paymentType = PaymentTypeEnum.PostPay.rawValue
+        } else if CustomerTrustScore == 100 {
+            self.selectedSlot?.paymentType = PaymentTypeEnum.PostPay.rawValue
+            bookHelper()
+        }
+        else {
             bookHelper()
         }
     }
@@ -173,32 +190,29 @@ class DetailedBookDocViewModel : ObservableObject {
 
     func book (completion: @escaping (_ success:Bool, _ paymentType:String)->()) {
         
-        let slot = getCorrespondingSlot(timestamp: selectedTime)
-        let paymentTypeString = slot?.paymentType ?? ""
-        
-        if paymentTypeString == PaymentTypeEnum.PostPay.rawValue {
+        let customerAppointment:CustomerAppointment = makeAppointment()
+
+        if customerAppointment.paymentType == PaymentTypeEnum.PostPay.rawValue {
             CommonDefaultModifiers.showLoader(incomingLoadingText: "Booking Appointment")
         } else {
             CommonDefaultModifiers.showLoader(incomingLoadingText: "Please Wait")
         }
 
-        let customerAppointment:CustomerAppointment = makeAppointment(slot: slot)
-
         CustomerAppointmentService().setAppointment(appointment: customerAppointment) { (response) in
             if response != nil {
                 cusAutoNav.enterDetailedView(appointmentId: response!)
-                self.fireBookedNotif(appointmentId: response!, paymentType: paymentTypeString)
+                self.fireBookedNotif(appointmentId: response!, paymentType: customerAppointment.paymentType)
                 CustomerServiceRequestService().setServiceRequest(serviceRequest: self.makeServiceRequest(appointmentId: response!)) { (response) in
                     if response != nil {
                         CommonDefaultModifiers.hideLoader()
-                        completion(true, paymentTypeString)
+                        completion(true, customerAppointment.paymentType)
                     } else {
-                        completion(false, paymentTypeString)
+                        completion(false, customerAppointment.paymentType)
                     }
                 }
             } else {
                 self.notAbleToBookCallBack()
-                completion(false, paymentTypeString)
+                completion(false, customerAppointment.paymentType)
             }
         }
     }
@@ -209,7 +223,7 @@ class DetailedBookDocViewModel : ObservableObject {
         CustomerNotificationHelper.bookedAppointment(customerName: "", dateDisplay: slot!.startDateTime, appointmentId: appointmentId, serviceProviderId: self.serviceProvider.serviceProviderID)
     }
 
-    func makeAppointment(slot:CustomerGeneratedSlot?) -> CustomerAppointment {
+    func makeAppointment() -> CustomerAppointment {
         let cancellation = CustomerCancellation(ReasonName: "", CancelledTime: Date().millisecondsSince1970, CancelledBy: "", CancelledByType: "", Notes: "")
         
         var customerAppointment = CustomerAppointment(appointmentID: "",
@@ -225,8 +239,8 @@ class DetailedBookDocViewModel : ObservableObject {
                                                       serviceFee: self.serviceProvider.serviceFee,
                                                       followUpDays: 0,
                                                       isPaid: false,
-                                                      scheduledAppointmentStartTime: slot?.startDateTime ?? 0,
-                                                      scheduledAppointmentEndTime: slot?.endDateTime ?? 0,
+                                                      scheduledAppointmentStartTime: self.selectedSlot?.startDateTime ?? 0,
+                                                      scheduledAppointmentEndTime: self.selectedSlot?.endDateTime ?? 0,
                                                       actualAppointmentStartTime: 0,
                                                       actualAppointmentEndTime: 0,
                                                       createdDateTime: Date().millisecondsSince1970,
@@ -234,7 +248,17 @@ class DetailedBookDocViewModel : ObservableObject {
                                                       noOfReports: 0,
                                                       cancellation: cancellation,
                                                       childId: "",
-                                                      paymentType: slot?.paymentType ?? "")
+                                                      paymentType: self.selectedSlot?.paymentType ?? "")
+        
+        if !selectedPrebookingOption.isEmpty {
+            if !preBookingOptions.contains(selectedPrebookingOption) || preBookingOptions[0] == selectedPrebookingOption || preBookingOptions[2] == selectedPrebookingOption {
+                customerAppointment.paymentType = PaymentTypeEnum.PrePay.rawValue
+            } else {
+                customerAppointment.appointmentVerification = CustomerAppointmentVerification(AppointmentVerificationId: "", VerificationStatus: "PendingVerification", VerifiedBy: "", VerifiedTime: nil, CustomerResponseForReason: self.selectedPrebookingOption)
+            }
+        } else if 0 < CustomerTrustScore && CustomerTrustScore < 100 {
+            customerAppointment.appointmentVerification = CustomerAppointmentVerification(AppointmentVerificationId: "", VerificationStatus: "PendingVerification", VerifiedBy: "", VerifiedTime: nil, CustomerResponseForReason: "Override By Admin - Existing User But Doubtful score")
+        }
         
         if self.bookingForProfile != nil {
             customerAppointment.childId = bookingForProfile!.ChildProfileId
@@ -287,10 +311,11 @@ extension DetailedBookDocViewModel {
 
 extension DetailedBookDocViewModel {
     func preBookingOptionsCallback (reason:String) {
-        
+        self.selectedPrebookingOption = reason
+        bookHelper()
     }
 
-    func preBookingOptionsSheet () {
+    func showPreBookingOptionsSheet () {
         self.preBookingOptionsOffSet = 0
     }
 }

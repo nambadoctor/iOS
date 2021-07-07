@@ -21,7 +21,7 @@ struct BookingReasonBottomSheet : View {
         VStack(alignment: .leading, spacing: 15){
             
             HStack {
-                Image("person.2.fill").foregroundColor(Color(UIColor.Red))
+                Image("person.2.fill").foregroundColor(Color(UIColor.green))
                 
                 Text("How do you know this doctor?") .font(Font.system(size:15).weight(.bold))
                     .foregroundColor(Color.black)
@@ -62,7 +62,7 @@ struct BookingReasonBottomSheet : View {
                         self.preBookingOptionsCallback(self.checkedOption)
                     }
                 }.frame(width: 90, height: 33)
-                .background(Color(UIColor.red))
+                .background(Color(UIColor.green))
                 .font(Font.system(size:13))
                 .foregroundColor(.white)
                 .font(Font.system(size:13))

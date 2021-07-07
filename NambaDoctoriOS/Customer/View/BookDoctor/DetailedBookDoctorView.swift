@@ -114,7 +114,8 @@ struct DetailedBookDoctorView: View {
                     }
                 }
             }
-            
+            .padding()
+
             BookingReasonBottomsheetCaller(offset: self.$detailedBookingVM.preBookingOptionsOffSet, preBookingOptions: self.detailedBookingVM.preBookingOptions, preBookingOptionsCallback: self.detailedBookingVM.preBookingOptionsCallback)
             
             if self.detailedBookingVM.killView {
@@ -122,7 +123,6 @@ struct DetailedBookDoctorView: View {
             }
             
         }
-        .padding()
         .environmentObject(self.detailedBookingVM.reasonVM)
     }
 
