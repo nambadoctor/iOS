@@ -11,7 +11,7 @@ var SessionId:String = ""
 var CorrelationId:String = ""
 var AppointmentID:String = ""
 var EventMessage:String = ""
-var VersionNumber:String = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.36"
+var VersionNumber:String = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.37"
 
 class LoggerService {
     func log(eventName:String) {
