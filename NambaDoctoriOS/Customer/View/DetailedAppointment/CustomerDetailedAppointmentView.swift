@@ -117,7 +117,7 @@ struct CustomerDetailedAppointmentView: View {
                 .fixedSize(horizontal: false, vertical: true)
             
             HStack {
-                LargeButton(title: "Stop Booking", disabled: false, backgroundColor: .white, foregroundColor: .red) {
+                LargeButton(title: "Cancel Request", disabled: false, backgroundColor: .white, foregroundColor: .red) {
                     self.customerDetailedAppointmentVM.cancelAppointmentBeforePayment { success in
                         if success {
                             CustomerDefaultModifiers.refreshAppointments()

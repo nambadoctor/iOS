@@ -16,17 +16,27 @@ struct BookingReasonBottomSheet : View {
     @State private var checkedOption:String = ""
     @State private var customReason:String = ""
     
+    @State private var shake:CGFloat = 0
+    @State private var showSelectSomethingAlert:Bool = false
+    
     var body : some View {
         
         VStack(alignment: .leading, spacing: 15){
             
             HStack {
-                Image("person.2.fill").foregroundColor(Color(UIColor.green))
+                Image("person.2.fill").foregroundColor(Color.green)
                 
                 Text("How do you know this doctor?") .font(Font.system(size:15).weight(.bold))
                     .foregroundColor(Color.black)
                 
                 Spacer()
+            }
+            
+            if showSelectSomethingAlert {
+                Text("PLEASE SELECT AN OPTION!")
+                    .foregroundColor(.red)
+                    .bold()
+                    .modifier(Shake(animatableData: CGFloat(self.shake)))
             }
             
             VStack {
@@ -54,15 +64,23 @@ struct BookingReasonBottomSheet : View {
                 } .font(Font.system(size:13)).foregroundColor(Color(UIColor.gray)).padding(.trailing, 10)
                 
                 Button ("Confirm") {
-                    if self.checkedOption == "Other" {
-                        LoggerService().log(eventName: "Custom Booking Reason Selected \(self.customReason)")
-                        self.preBookingOptionsCallback(self.customReason)
+                    
+                    if !self.checkedOption.isEmpty || !self.customReason.isEmpty {
+                        if self.checkedOption == "Other" {
+                            LoggerService().log(eventName: "Custom Booking Reason Selected \(self.customReason)")
+                            self.preBookingOptionsCallback(self.customReason)
+                        } else {
+                            LoggerService().log(eventName: "Preset Booking Reason Selected \(self.checkedOption)")
+                            self.preBookingOptionsCallback(self.checkedOption)
+                        }
                     } else {
-                        LoggerService().log(eventName: "Preset Booking Reason Selected \(self.checkedOption)")
-                        self.preBookingOptionsCallback(self.checkedOption)
+                        self.showSelectSomethingAlert = true
+                        withAnimation(.default) {
+                            self.shake += 1
+                        }
                     }
                 }.frame(width: 90, height: 33)
-                .background(Color(UIColor.green))
+                .background(Color.green)
                 .font(Font.system(size:13))
                 .foregroundColor(.white)
                 .font(Font.system(size:13))

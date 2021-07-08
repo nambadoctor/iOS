@@ -35,7 +35,7 @@ class DetailedBookDocViewModel : ObservableObject {
     @Published var killView:Bool = false
     
     @Published var preBookingOptionsOffSet:CGFloat = UIScreen.main.bounds.height
-    var preBookingOptions:[String] = ["I dont know this doctor", "This doctor referred me", "A friend referred me", "Other"]
+    var preBookingOptions:[String] = ["I dont know this doctor", "This doctor referred me", "Other"]
     var selectedPrebookingOption:String = ""
 
     var bookingForProfile:CustomerChildProfile? = nil
@@ -151,13 +151,13 @@ class DetailedBookDocViewModel : ObservableObject {
             return
         }
         self.selectedSlot = getCorrespondingSlot(timestamp: selectedTime)
-        CustomerTrustScore = 50
+        CustomerTrustScore = 100
         
         guard self.selectedSlot?.paymentType != PaymentTypeEnum.PrePay.rawValue else {
             bookHelper()
             return
         }
-        
+
         if CustomerTrustScore == 0 {
             self.showPreBookingOptionsSheet()
         } else if CustomerTrustScore < 0 {
@@ -266,7 +266,7 @@ class DetailedBookDocViewModel : ObservableObject {
                                                       paymentType: self.selectedSlot?.paymentType ?? "")
         
         if !selectedPrebookingOption.isEmpty {
-            if !preBookingOptions.contains(selectedPrebookingOption) || preBookingOptions[0] == selectedPrebookingOption || preBookingOptions[2] == selectedPrebookingOption {
+            if !preBookingOptions.contains(selectedPrebookingOption) || preBookingOptions[0] == selectedPrebookingOption {
                 customerAppointment.paymentType = PaymentTypeEnum.PrePay.rawValue
             } else {
                 customerAppointment.appointmentVerification = CustomerAppointmentVerification(AppointmentVerificationId: "", VerificationStatus: "PendingVerification", VerifiedBy: "", VerifiedTime: nil, CustomerResponseForReason: self.selectedPrebookingOption)

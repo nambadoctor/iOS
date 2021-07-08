@@ -37,6 +37,9 @@ struct CustomerAppointmentsCardView: View {
                     if self.customerAppointmentVM.appointment.paymentType == PaymentTypeEnum.PrePay.rawValue && !self.customerAppointmentVM.appointment.isPaid {
                         Text("PAY TO CONFIRM!")
                             .foregroundColor(.red)
+                    } else if self.customerAppointmentVM.appointment.appointmentVerification != nil && self.customerAppointmentVM.appointment.appointmentVerification?.VerificationStatus == "PendingVerification" {
+                        Text("PLEASE WAIT UNTIL YOUR APPOINTMENT IS CONFIRMED")
+                            .foregroundColor(.red)
                     } else {
                         Text(customerAppointmentVM.appointmentStatus)
                         
