@@ -64,8 +64,9 @@ class ServiceProviderAppointmentService : ServiceProviderAppointmentServiceProto
         // Provide the connection to the generated client.
         let appointmentsClient = Nd_V1_ServiceProviderAppointmentWorkerV1Client(channel: channel)
         
-        let request = Nd_V1_IdMessage.with {
-            $0.id = patientId.toProto
+        let request = Nd_V1_ServiceProviderCustomerAppointmentsRequestMessage.with {
+            $0.customerID = patientId.toProto
+            $0.serviceProviderID = UserIdHelper().retrieveUserId().toProto
         }
         
         let getPatientAppointments = appointmentsClient.getCustomerAppointments(request, callOptions: callOptions)

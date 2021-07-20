@@ -504,12 +504,12 @@ extension CustomerDetailedAppointmentViewModel {
 
 extension CustomerDetailedAppointmentViewModel {
     func checkIfAlreadyReviewed () {
-        RatingAndReviewService().getRatingAndReview(appointmentId: self.appointment.appointmentID) { rating in
-            if rating == nil && self.appointmentFinished {
-                DispatchQueue.main.async {
-                    self.ratingVM.presentRatingSheet = true
-                }
-            }
-        }
+//        RatingAndReviewService().getRatingAndReview(appointmentId: self.appointment.appointmentID) { rating in
+//            if rating == nil && self.appointmentFinished {
+//                DispatchQueue.main.async {
+//                    self.ratingVM.presentRatingSheet = true
+//                }
+//            }
+//        }
     }
 }

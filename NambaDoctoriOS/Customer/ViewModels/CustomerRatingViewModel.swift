@@ -50,7 +50,7 @@ class CustomerRatingViewModel: ObservableObject {
             self.showSuccessAlert = true
             self.presentRatingSheet = false
         }
-        RatingAndReviewService().setRatingAndReview(rating: makeRatingObj()) { success in }
+        //RatingAndReviewService().setRatingAndReview(rating: makeRatingObj()) { success in }
     }
 
     func skipRating () {
