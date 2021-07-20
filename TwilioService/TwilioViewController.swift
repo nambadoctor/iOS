@@ -380,8 +380,9 @@ extension ViewController : RoomDelegate {
         participant.delegate = self
         twilioEventDelegate?.participantConnected()
         if UserTypeHelper.checkIfDoctor(userType: self.currentUserType) {
-            LoggerService().log(eventName: "Doctor side - patient connected to room")
-            logMessage(messageText: "Patient connected")
+            LoggerService().log(eventName: "Doctor side - patient connected to room \(AppointmentID)")
+            logMessage(messageText: "Patient connected \(AppointmentID)")
+            CustomerFirebaseUpdateAppointmentStatus(appointmentId: AppointmentID).writePatientJoinedState()
         } else {
             logMessage(messageText: "Doctor connected")
         }

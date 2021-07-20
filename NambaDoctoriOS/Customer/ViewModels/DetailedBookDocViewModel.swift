@@ -23,6 +23,7 @@ class DetailedBookDocViewModel : ObservableObject {
     @Published var selectedDate:Int64 = 0
     @Published var selectedTime:Int64 = 0
     @Published var selectedSlot:CustomerGeneratedSlot? = nil
+    @Published var isPrePaySlot:Bool = false
 
     @Published var docProfPicImageLoader:ImageLoader? = nil
     
@@ -129,7 +130,7 @@ class DetailedBookDocViewModel : ObservableObject {
         self.selectedDate = selectedDate
         self.selectedTime = 0
         timeDisplay.removeAll()
-        
+        self.isPrePaySlot = false
         let date = Date(milliseconds: selectedDate)
         
         for slot in slots! {
@@ -143,6 +144,12 @@ class DetailedBookDocViewModel : ObservableObject {
     
     func selectTime (time:Int64) {
         self.selectedTime = time
+        
+        if getCorrespondingSlot(timestamp: time)!.paymentType == PaymentTypeEnum.PrePay.rawValue {
+            self.isPrePaySlot = true
+        } else {
+            self.isPrePaySlot = false
+        }
     }
     
     func checkTrustScores () {
@@ -151,13 +158,12 @@ class DetailedBookDocViewModel : ObservableObject {
             return
         }
         self.selectedSlot = getCorrespondingSlot(timestamp: selectedTime)
-        CustomerTrustScore = 100
-        
+
         guard self.selectedSlot?.paymentType != PaymentTypeEnum.PrePay.rawValue else {
             bookHelper()
             return
         }
-
+        
         if CustomerTrustScore == 0 {
             self.showPreBookingOptionsSheet()
         } else if CustomerTrustScore < 0 {
@@ -171,7 +177,7 @@ class DetailedBookDocViewModel : ObservableObject {
             bookHelper()
         }
         else {
-            bookHelper()
+            CustomerAlertHelpers().IssueDuringBooking(doctorName: self.serviceProviderName)
         }
     }
 
@@ -216,7 +222,7 @@ class DetailedBookDocViewModel : ObservableObject {
         CustomerAppointmentService().setAppointment(appointment: customerAppointment) { (response) in
             if response != nil {
                 cusAutoNav.enterDetailedView(appointmentId: response!)
-                self.fireBookedNotif(appointmentId: response!, paymentType: customerAppointment.paymentType)
+                self.fireBookedNotif(appointment: customerAppointment)
                 CustomerServiceRequestService().setServiceRequest(serviceRequest: self.makeServiceRequest(appointmentId: response!)) { (response) in
                     if response != nil {
                         CommonDefaultModifiers.hideLoader()
@@ -232,10 +238,9 @@ class DetailedBookDocViewModel : ObservableObject {
         }
     }
 
-    func fireBookedNotif (appointmentId:String, paymentType:String) {
-        guard paymentType != PaymentTypeEnum.PrePay.rawValue else { return }
-        var slot = getCorrespondingSlot(timestamp: selectedTime)
-        CustomerNotificationHelper.bookedAppointment(customerName: "", dateDisplay: slot!.startDateTime, appointmentId: appointmentId, serviceProviderId: self.serviceProvider.serviceProviderID)
+    func fireBookedNotif (appointment:CustomerAppointment) {
+        guard appointment.paymentType != PaymentTypeEnum.PrePay.rawValue, appointment.appointmentVerification == nil else { return }
+        CustomerNotificationHelper.bookedAppointment(customerName: "", dateDisplay: selectedSlot!.startDateTime, appointmentId: appointment.childId, serviceProviderId: self.serviceProvider.serviceProviderID)
     }
 
     func makeAppointment() -> CustomerAppointment {

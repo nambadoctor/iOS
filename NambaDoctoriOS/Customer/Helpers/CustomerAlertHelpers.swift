@@ -144,4 +144,9 @@ class CustomerAlertHelpers {
         alertTempItem = AlertItem(title: Text("Thank you!"), message: Text("Your feedback is very valuable to us"), dismissButton: .default(Text("Ok")))
         CommonDefaultModifiers.showAlert()
     }
+    
+    func IssueDuringBooking (doctorName:String) {
+        alertTempItem = AlertItem(title: Text("Sorry something went wrong"), message: Text("Sorry something went wrong in booking your appointment with \(doctorName). Please Try Again"), dismissButton: .default(Text("Ok")))
+        CommonDefaultModifiers.showAlert()
+    }
 }

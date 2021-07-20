@@ -32,7 +32,7 @@ func MakeEmptyMedicalHistory () -> ServiceProviderCustomerMedicalHistory {
 }
 
 func MakeEmptyDiagnosis () -> ServiceProviderDiagnosis {
-    return ServiceProviderDiagnosis(name: "", type: "")
+    return ServiceProviderDiagnosis(name: "", type: "Provisional")
 }
 
 func MakeEmptyPrescription(appointment:ServiceProviderAppointment) -> ServiceProviderPrescription {

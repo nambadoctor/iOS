@@ -108,7 +108,7 @@ struct DetailedBookDoctorView: View {
                         }
                     }
 
-                    LargeButton(title: "Book Appointment",
+                    LargeButton(title: self.detailedBookingVM.isPrePaySlot ? "Pay and Book Appointment" : "Book Appointment",
                                 backgroundColor: Color.blue) {
                         self.detailedBookingVM.checkTrustScores()
                     }

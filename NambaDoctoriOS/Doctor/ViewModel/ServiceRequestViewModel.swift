@@ -79,6 +79,10 @@ class ServiceRequestViewModel: ObservableObject {
         self.serviceRequest.appointmentID = appointment.appointmentID
         self.serviceRequest.serviceProviderID = appointment.serviceProviderID
         //end
+        
+        if serviceRequest.diagnosis.type.isEmpty {
+            self.serviceRequest.diagnosis.type = "Provisional"
+        }
 
         self.investigationsViewModel.investigations = serviceRequest.investigations
     }

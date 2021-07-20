@@ -28,7 +28,7 @@ struct NewInstallDoctorPreviewCard : View {
                     HStack {
                         Spacer()
                     }
-                    Text(customerServiceProviderVM.serviceProviderName)
+                    Text(customerServiceProviderVM.serviceProviderName) 
                         .font(.system(size: 17))
                         .bold()
                     
@@ -36,6 +36,16 @@ struct NewInstallDoctorPreviewCard : View {
                         Text(customerServiceProviderVM.serviceProvider.additionalInfo.Designation[0])
                             .font(.system(size: 15))
                             .foregroundColor(Color.gray)
+                    } else {
+                        if !customerServiceProviderVM.serviceProvider.additionalInfo.Specialties.isEmpty {
+                            Text(customerServiceProviderVM.serviceProvider.additionalInfo.Specialties[0])
+                                .font(.system(size: 15))
+                                .foregroundColor(Color.gray)
+                        } else {
+                            Text("")
+                                .font(.system(size: 15))
+                                .foregroundColor(Color.gray)
+                        }
                     }
 
                     HStack (alignment: .bottom) {

@@ -46,6 +46,8 @@ struct CustomerDoctorProfileView: View {
                 }
                 
                 HStack (alignment: .center) {
+                    Spacer()
+                    
                     VStack (alignment: .center) {
                         Image("checkmark.seal.fill")
                             .scaleEffect(2)
@@ -60,19 +62,21 @@ struct CustomerDoctorProfileView: View {
                     
                     Spacer()
                     
-                    VStack (alignment: .center) {
-                        Image("rosette")
-                            .scaleEffect(2)
-                            .padding(.bottom, 10)
-                            .foregroundColor(Color.blue)
-                        Text("\(self.doctorProfileVM.serviceProviderProfile.additionalInfo.Certifications.count) Awards")
-                            .font(.system(size: 18))
-                        Text("Recieved")
-                            .font(.system(size: 15))
+                    if self.doctorProfileVM.serviceProviderProfile.additionalInfo.Certifications.count > 0 {
+                        VStack (alignment: .center) {
+                            Image("rosette")
+                                .scaleEffect(2)
+                                .padding(.bottom, 10)
+                                .foregroundColor(Color.blue)
+                            Text("\(self.doctorProfileVM.serviceProviderProfile.additionalInfo.Certifications.count) Awards")
+                                .font(.system(size: 18))
+                            Text("Recieved")
+                                .font(.system(size: 15))
+                        }
+                        .modifier(SmallCardModifier())
+                        
+                        Spacer()
                     }
-                    .modifier(SmallCardModifier())
-                    
-                    Spacer()
                     
                     VStack (alignment: .center) {
                         Image("globe")
@@ -85,6 +89,8 @@ struct CustomerDoctorProfileView: View {
                             .font(.system(size: 15))
                     }
                     .modifier(SmallCardModifier())
+                    
+                    Spacer()
                 }
                 .padding(.horizontal, 1)
                 .padding(.bottom, 8)
@@ -118,7 +124,7 @@ struct CustomerDoctorProfileView: View {
                             HStack {
                                 Image("stethoscope")
                                     .modifier(DetailedAppointmentViewIconModifier())
-                                Text("SPECIALTIES")
+                                Text("Areas of Interest")
                                     .modifier(FootnoteTitleModifier())
                                 Spacer()
                             }

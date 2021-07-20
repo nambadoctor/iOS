@@ -12,10 +12,14 @@ struct DetailedDoctorMyPatientView: View {
     @ObservedObject var MyPatientVM:MyPatientViewModel
     
     var body: some View {
-        ScrollView {
-            ForEach(self.MyPatientVM.appointmentSummaries, id: \.AppointmentId) { summary in
-                AppointmentSummaryCardView(appointmentSummary: summary)
-                Divider()
+        if self.MyPatientVM.appointmentSummaries.isEmpty {
+            Indicator()
+        } else {
+            ScrollView {
+                ForEach(self.MyPatientVM.appointmentSummaries, id: \.AppointmentId) { summary in
+                    AppointmentSummaryCardView(appointmentSummary: summary)
+                    Divider()
+                }
             }
         }
     }

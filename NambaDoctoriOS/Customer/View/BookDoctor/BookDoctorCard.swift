@@ -36,6 +36,16 @@ struct BookDoctorCard: View {
                         Text(customerServiceProviderVM.serviceProvider.additionalInfo.Designation[0])
                             .font(.system(size: 15))
                             .foregroundColor(Color.gray)
+                    } else {
+                        if !customerServiceProviderVM.serviceProvider.specialties.isEmpty {
+                            Text(customerServiceProviderVM.serviceProvider.specialties[0])
+                                .font(.system(size: 15))
+                                .foregroundColor(Color.gray)
+                        } else {
+                            Text("")
+                                .font(.system(size: 15))
+                                .foregroundColor(Color.gray)
+                        }
                     }
 
                     HStack (alignment: .bottom) {

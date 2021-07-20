@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-var DoctorChatHelperMessages:[String] = ["Hello, I am waiting in the consultation room",
+var DoctorChatHelperMessages:[String] = ["Hello, Are you ready for the call?",
                                "Hi, can we have our consultation earlier?",
                                "Sorry, I will be a late for our consultation",
                                "Please upload reports if any"]

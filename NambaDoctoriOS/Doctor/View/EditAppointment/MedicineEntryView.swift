@@ -80,11 +80,17 @@ struct MedicineValuesEntry : View {
             if medicineEntryVM.medicineNameConfirmed {
                 
                 VStack (alignment: .leading) {
-                    Text("DOSAGE E.g tab, ml, etc")
-                        .font(.footnote)
-                        .foregroundColor(self.medicineEntryVM.invalidDosageAttempt == 0 ? Color.black.opacity(0.4) : Color.red)
-                        .bold()
-                        .modifier(Shake(animatableData: CGFloat(self.medicineEntryVM.invalidDosageAttempt)))
+                    HStack {
+                        Text("DOSAGE")
+                            .font(.footnote)
+                            .foregroundColor(self.medicineEntryVM.invalidDosageAttempt == 0 ? Color.black.opacity(0.4) : Color.red)
+                            .bold()
+                        Text("(E.g 1 tab, 5 ml, etc...)")
+                            .font(.subheadline)
+                            .foregroundColor(self.medicineEntryVM.invalidDosageAttempt == 0 ? Color.black : Color.red)
+                            .bold()
+                    }
+                    .modifier(Shake(animatableData: CGFloat(self.medicineEntryVM.invalidDosageAttempt)))
                     
                     ExpandingTextEntryView(text: self.$medicineEntryVM.dosage.Name)
                 }
