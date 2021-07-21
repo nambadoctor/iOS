@@ -29,7 +29,8 @@ class CustomerProfileMapper {
             lastModifiedDate: customer.lastModifedDate.toInt64,
             createdDate: customer.createdDate.toInt64,
             children: CustomerChildProfileMapper.GrpcToLocal(children: customer.children),
-            customerProviderDeviceInfo: DeviceInformationMapper.GrpcToLocal(deviceInfo: customer.customerDeviceInfo))
+            customerProviderDeviceInfo: DeviceInformationMapper.GrpcToLocal(deviceInfo: customer.customerDeviceInfo),
+            primaryOrganisationId: customer.primaryOrganisationID.toString)
     }
     
     func grpcCustomerToLocal (customer:[Nd_V1_CustomerCustomerProfileMessage]) -> [CustomerProfile] {
@@ -67,6 +68,7 @@ class CustomerProfileMapper {
             if customer.createdDate != nil { $0.createdDate = customer.createdDate!.toProto }
             if customer.children != nil { $0.children = CustomerChildProfileMapper.LocalToGrpc(children: customer.children!) }
             if customer.customerProviderDeviceInfo != nil { $0.customerDeviceInfo = DeviceInformationMapper.LocalToGrpc(deviceInfo: customer.customerProviderDeviceInfo!) }
+            if customer.primaryOrganisationId != nil { $0.primaryOrganisationID = customer.primaryOrganisationId!.toProto }
         }
     }
 }

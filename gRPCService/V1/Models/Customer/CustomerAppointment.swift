@@ -32,4 +32,6 @@ struct CustomerAppointment {
     var childId:String
     var paymentType:String
     var appointmentVerification:CustomerAppointmentVerification?
+    var organisationId:String
+    var organisationName:String
 }

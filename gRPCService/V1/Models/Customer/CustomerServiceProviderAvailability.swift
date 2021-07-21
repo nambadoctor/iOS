@@ -13,4 +13,8 @@ struct CustomerServiceProviderAvailability {
     var endTime:Int64
     var availabilityConfigID:String
     var paymentType:String
+    var organisationId:String
+    var addressId:String
+    var serviceFees:Double
+    var isOrganisationSlot:Bool
 }

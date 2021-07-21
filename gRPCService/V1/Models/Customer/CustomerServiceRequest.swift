@@ -22,4 +22,6 @@ struct CustomerServiceRequest {
     var allergy:CustomerAllergy
     var medicalHistory:CustomerMedicalHistory
     var childId:String
+    var customerVitals:CustomerVitals
+    var organisationId:String
 }

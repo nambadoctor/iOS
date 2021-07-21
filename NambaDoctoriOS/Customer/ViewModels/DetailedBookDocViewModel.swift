@@ -10,12 +10,15 @@ import SwiftUI
 
 class DetailedBookDocViewModel : ObservableObject {
     var serviceProvider:CustomerServiceProviderProfile
+    var organization:CustomerOrganization?
     
     var slots:[CustomerGeneratedSlot]? = nil
     
     var notAbleToBookCallBack:()->()
 
     @Published var customerProfile:CustomerProfile
+    
+    @Published var customerVitals:CustomerVitals = CustomerVitals(BloodPressure: "", BloodSugar: "", Height: "", Weight: "", MenstrualHistory: "", ObstetricHistory: "", IsSmoker: false, IsAlcoholConsumer: false)
 
     @Published var dateDisplay:[Int64] = [Int64]()
     @Published var timeDisplay:[Int64] = [Int64]()
@@ -268,7 +271,9 @@ class DetailedBookDocViewModel : ObservableObject {
                                                       noOfReports: 0,
                                                       cancellation: cancellation,
                                                       childId: "",
-                                                      paymentType: self.selectedSlot?.paymentType ?? "")
+                                                      paymentType: self.selectedSlot?.paymentType ?? "",
+                                                      organisationId: organization?.organisationId ?? "",
+                                                      organisationName: organization?.name ?? "")
         
         if !selectedPrebookingOption.isEmpty {
             if !preBookingOptions.contains(selectedPrebookingOption) || preBookingOptions[0] == selectedPrebookingOption {
@@ -306,7 +311,9 @@ class DetailedBookDocViewModel : ObservableObject {
                                                     customerID: UserIdHelper().retrieveUserId(),
                                                     allergy: emptyAllergy,
                                                     medicalHistory: emptyMedicalHistory,
-                                                    childId: "")
+                                                    childId: "",
+                                                    customerVitals: customerVitals,
+                                                    organisationId: organization?.organisationId ?? "")
         
         if self.bookingForProfile != nil {
             serviceRequest.childId = bookingForProfile!.ChildProfileId

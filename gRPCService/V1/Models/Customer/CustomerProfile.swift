@@ -28,5 +28,6 @@ struct CustomerProfile {
     var createdDate:Int64?
     var children:[CustomerChildProfile]?
     var customerProviderDeviceInfo:DeviceInformation?
+    var primaryOrganisationId:String?
 }
     
