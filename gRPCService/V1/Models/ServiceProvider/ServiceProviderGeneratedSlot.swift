@@ -12,4 +12,8 @@ struct ServiceProviderGeneratedSlot {
     var endStartDateTime:Int64
     var duration:Int32
     var paymentType:String
+    var organisationId:String
+    var addressId:String
+    var serviceFees:Double
+    var isOrganisationSlot:Bool
 }

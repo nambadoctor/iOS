@@ -1344,6 +1344,33 @@ struct Nd_V1_ServiceProviderAvailability {
   /// Clears the value of `organisationID`. Subsequent reads from it will return its default value.
   mutating func clearOrganisationID() {self._organisationID = nil}
 
+  var addressID: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _addressID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_addressID = newValue}
+  }
+  /// Returns true if `addressID` has been explicitly set.
+  var hasAddressID: Bool {return self._addressID != nil}
+  /// Clears the value of `addressID`. Subsequent reads from it will return its default value.
+  mutating func clearAddressID() {self._addressID = nil}
+
+  var serviceFees: SwiftProtobuf.Google_Protobuf_DoubleValue {
+    get {return _serviceFees ?? SwiftProtobuf.Google_Protobuf_DoubleValue()}
+    set {_serviceFees = newValue}
+  }
+  /// Returns true if `serviceFees` has been explicitly set.
+  var hasServiceFees: Bool {return self._serviceFees != nil}
+  /// Clears the value of `serviceFees`. Subsequent reads from it will return its default value.
+  mutating func clearServiceFees() {self._serviceFees = nil}
+
+  var isOrganisationSlot: SwiftProtobuf.Google_Protobuf_BoolValue {
+    get {return _isOrganisationSlot ?? SwiftProtobuf.Google_Protobuf_BoolValue()}
+    set {_isOrganisationSlot = newValue}
+  }
+  /// Returns true if `isOrganisationSlot` has been explicitly set.
+  var hasIsOrganisationSlot: Bool {return self._isOrganisationSlot != nil}
+  /// Clears the value of `isOrganisationSlot`. Subsequent reads from it will return its default value.
+  mutating func clearIsOrganisationSlot() {self._isOrganisationSlot = nil}
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -1354,6 +1381,9 @@ struct Nd_V1_ServiceProviderAvailability {
   fileprivate var _availabilityConfigID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _paymentType: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _organisationID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _addressID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _serviceFees: SwiftProtobuf.Google_Protobuf_DoubleValue? = nil
+  fileprivate var _isOrganisationSlot: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
 }
 
 struct Nd_V1_ServiceProviderAvailabilityConfigList {
@@ -1665,6 +1695,15 @@ struct Nd_V1_ServiceProviderCustomerProfileMessage {
     get {return _storage._children}
     set {_uniqueStorage()._children = newValue}
   }
+
+  var primaryOrganisationID: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _storage._primaryOrganisationID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._primaryOrganisationID = newValue}
+  }
+  /// Returns true if `primaryOrganisationID` has been explicitly set.
+  var hasPrimaryOrganisationID: Bool {return _storage._primaryOrganisationID != nil}
+  /// Clears the value of `primaryOrganisationID`. Subsequent reads from it will return its default value.
+  mutating func clearPrimaryOrganisationID() {_uniqueStorage()._primaryOrganisationID = nil}
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -2145,6 +2184,42 @@ struct Nd_V1_ServiceProviderGeneratedSlotMessage {
   /// Clears the value of `paymentType`. Subsequent reads from it will return its default value.
   mutating func clearPaymentType() {self._paymentType = nil}
 
+  var organisationID: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _organisationID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_organisationID = newValue}
+  }
+  /// Returns true if `organisationID` has been explicitly set.
+  var hasOrganisationID: Bool {return self._organisationID != nil}
+  /// Clears the value of `organisationID`. Subsequent reads from it will return its default value.
+  mutating func clearOrganisationID() {self._organisationID = nil}
+
+  var addressID: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _addressID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_addressID = newValue}
+  }
+  /// Returns true if `addressID` has been explicitly set.
+  var hasAddressID: Bool {return self._addressID != nil}
+  /// Clears the value of `addressID`. Subsequent reads from it will return its default value.
+  mutating func clearAddressID() {self._addressID = nil}
+
+  var serviceFees: SwiftProtobuf.Google_Protobuf_DoubleValue {
+    get {return _serviceFees ?? SwiftProtobuf.Google_Protobuf_DoubleValue()}
+    set {_serviceFees = newValue}
+  }
+  /// Returns true if `serviceFees` has been explicitly set.
+  var hasServiceFees: Bool {return self._serviceFees != nil}
+  /// Clears the value of `serviceFees`. Subsequent reads from it will return its default value.
+  mutating func clearServiceFees() {self._serviceFees = nil}
+
+  var isOrganisationSlot: SwiftProtobuf.Google_Protobuf_BoolValue {
+    get {return _isOrganisationSlot ?? SwiftProtobuf.Google_Protobuf_BoolValue()}
+    set {_isOrganisationSlot = newValue}
+  }
+  /// Returns true if `isOrganisationSlot` has been explicitly set.
+  var hasIsOrganisationSlot: Bool {return self._isOrganisationSlot != nil}
+  /// Clears the value of `isOrganisationSlot`. Subsequent reads from it will return its default value.
+  mutating func clearIsOrganisationSlot() {self._isOrganisationSlot = nil}
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -2153,6 +2228,10 @@ struct Nd_V1_ServiceProviderGeneratedSlotMessage {
   fileprivate var _endStartDateTime: SwiftProtobuf.Google_Protobuf_Int64Value? = nil
   fileprivate var _duration: SwiftProtobuf.Google_Protobuf_Int32Value? = nil
   fileprivate var _paymentType: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _organisationID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _addressID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _serviceFees: SwiftProtobuf.Google_Protobuf_DoubleValue? = nil
+  fileprivate var _isOrganisationSlot: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
 }
 
 struct Nd_V1_ServiceProviderGeneratedSlotListMessage {
@@ -4158,6 +4237,33 @@ struct Nd_V1_CustomerServiceProviderAvailability {
   /// Clears the value of `organisationID`. Subsequent reads from it will return its default value.
   mutating func clearOrganisationID() {self._organisationID = nil}
 
+  var addressID: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _addressID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_addressID = newValue}
+  }
+  /// Returns true if `addressID` has been explicitly set.
+  var hasAddressID: Bool {return self._addressID != nil}
+  /// Clears the value of `addressID`. Subsequent reads from it will return its default value.
+  mutating func clearAddressID() {self._addressID = nil}
+
+  var serviceFees: SwiftProtobuf.Google_Protobuf_DoubleValue {
+    get {return _serviceFees ?? SwiftProtobuf.Google_Protobuf_DoubleValue()}
+    set {_serviceFees = newValue}
+  }
+  /// Returns true if `serviceFees` has been explicitly set.
+  var hasServiceFees: Bool {return self._serviceFees != nil}
+  /// Clears the value of `serviceFees`. Subsequent reads from it will return its default value.
+  mutating func clearServiceFees() {self._serviceFees = nil}
+
+  var isOrganisationSlot: SwiftProtobuf.Google_Protobuf_BoolValue {
+    get {return _isOrganisationSlot ?? SwiftProtobuf.Google_Protobuf_BoolValue()}
+    set {_isOrganisationSlot = newValue}
+  }
+  /// Returns true if `isOrganisationSlot` has been explicitly set.
+  var hasIsOrganisationSlot: Bool {return self._isOrganisationSlot != nil}
+  /// Clears the value of `isOrganisationSlot`. Subsequent reads from it will return its default value.
+  mutating func clearIsOrganisationSlot() {self._isOrganisationSlot = nil}
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -4168,6 +4274,9 @@ struct Nd_V1_CustomerServiceProviderAvailability {
   fileprivate var _availabilityConfigID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _paymentType: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _organisationID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _addressID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _serviceFees: SwiftProtobuf.Google_Protobuf_DoubleValue? = nil
+  fileprivate var _isOrganisationSlot: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
 }
 
 struct Nd_V1_CustomerAvailabilityConfigList {
@@ -4776,6 +4885,15 @@ struct Nd_V1_CustomerCustomerProfileMessage {
     set {_uniqueStorage()._children = newValue}
   }
 
+  var primaryOrganisationID: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _storage._primaryOrganisationID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._primaryOrganisationID = newValue}
+  }
+  /// Returns true if `primaryOrganisationID` has been explicitly set.
+  var hasPrimaryOrganisationID: Bool {return _storage._primaryOrganisationID != nil}
+  /// Clears the value of `primaryOrganisationID`. Subsequent reads from it will return its default value.
+  mutating func clearPrimaryOrganisationID() {_uniqueStorage()._primaryOrganisationID = nil}
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -5294,6 +5412,42 @@ struct Nd_V1_CustomerGeneratedSlotMessage {
   /// Clears the value of `paymentType`. Subsequent reads from it will return its default value.
   mutating func clearPaymentType() {self._paymentType = nil}
 
+  var organisationID: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _organisationID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_organisationID = newValue}
+  }
+  /// Returns true if `organisationID` has been explicitly set.
+  var hasOrganisationID: Bool {return self._organisationID != nil}
+  /// Clears the value of `organisationID`. Subsequent reads from it will return its default value.
+  mutating func clearOrganisationID() {self._organisationID = nil}
+
+  var addressID: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _addressID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_addressID = newValue}
+  }
+  /// Returns true if `addressID` has been explicitly set.
+  var hasAddressID: Bool {return self._addressID != nil}
+  /// Clears the value of `addressID`. Subsequent reads from it will return its default value.
+  mutating func clearAddressID() {self._addressID = nil}
+
+  var serviceFees: SwiftProtobuf.Google_Protobuf_DoubleValue {
+    get {return _serviceFees ?? SwiftProtobuf.Google_Protobuf_DoubleValue()}
+    set {_serviceFees = newValue}
+  }
+  /// Returns true if `serviceFees` has been explicitly set.
+  var hasServiceFees: Bool {return self._serviceFees != nil}
+  /// Clears the value of `serviceFees`. Subsequent reads from it will return its default value.
+  mutating func clearServiceFees() {self._serviceFees = nil}
+
+  var isOrganisationSlot: SwiftProtobuf.Google_Protobuf_BoolValue {
+    get {return _isOrganisationSlot ?? SwiftProtobuf.Google_Protobuf_BoolValue()}
+    set {_isOrganisationSlot = newValue}
+  }
+  /// Returns true if `isOrganisationSlot` has been explicitly set.
+  var hasIsOrganisationSlot: Bool {return self._isOrganisationSlot != nil}
+  /// Clears the value of `isOrganisationSlot`. Subsequent reads from it will return its default value.
+  mutating func clearIsOrganisationSlot() {self._isOrganisationSlot = nil}
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -5302,6 +5456,10 @@ struct Nd_V1_CustomerGeneratedSlotMessage {
   fileprivate var _endStartDateTime: SwiftProtobuf.Google_Protobuf_Int64Value? = nil
   fileprivate var _duration: SwiftProtobuf.Google_Protobuf_Int32Value? = nil
   fileprivate var _paymentType: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _organisationID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _addressID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _serviceFees: SwiftProtobuf.Google_Protobuf_DoubleValue? = nil
+  fileprivate var _isOrganisationSlot: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
 }
 
 struct Nd_V1_CustomerGeneratedSlotListMessage {
@@ -7731,6 +7889,9 @@ extension Nd_V1_ServiceProviderAvailability: SwiftProtobuf.Message, SwiftProtobu
     4: .same(proto: "AvailabilityConfigId"),
     5: .same(proto: "PaymentType"),
     6: .same(proto: "OrganisationId"),
+    7: .same(proto: "AddressId"),
+    8: .same(proto: "ServiceFees"),
+    9: .same(proto: "IsOrganisationSlot"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -7745,6 +7906,9 @@ extension Nd_V1_ServiceProviderAvailability: SwiftProtobuf.Message, SwiftProtobu
       case 4: try { try decoder.decodeSingularMessageField(value: &self._availabilityConfigID) }()
       case 5: try { try decoder.decodeSingularMessageField(value: &self._paymentType) }()
       case 6: try { try decoder.decodeSingularMessageField(value: &self._organisationID) }()
+      case 7: try { try decoder.decodeSingularMessageField(value: &self._addressID) }()
+      case 8: try { try decoder.decodeSingularMessageField(value: &self._serviceFees) }()
+      case 9: try { try decoder.decodeSingularMessageField(value: &self._isOrganisationSlot) }()
       default: break
       }
     }
@@ -7769,6 +7933,15 @@ extension Nd_V1_ServiceProviderAvailability: SwiftProtobuf.Message, SwiftProtobu
     if let v = self._organisationID {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
     }
+    if let v = self._addressID {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+    }
+    if let v = self._serviceFees {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
+    }
+    if let v = self._isOrganisationSlot {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -7779,6 +7952,9 @@ extension Nd_V1_ServiceProviderAvailability: SwiftProtobuf.Message, SwiftProtobu
     if lhs._availabilityConfigID != rhs._availabilityConfigID {return false}
     if lhs._paymentType != rhs._paymentType {return false}
     if lhs._organisationID != rhs._organisationID {return false}
+    if lhs._addressID != rhs._addressID {return false}
+    if lhs._serviceFees != rhs._serviceFees {return false}
+    if lhs._isOrganisationSlot != rhs._isOrganisationSlot {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -7993,6 +8169,7 @@ extension Nd_V1_ServiceProviderCustomerProfileMessage: SwiftProtobuf.Message, Sw
     16: .same(proto: "CreatedDate"),
     17: .same(proto: "CustomerDeviceInfo"),
     18: .same(proto: "Children"),
+    19: .same(proto: "PrimaryOrganisationId"),
   ]
 
   fileprivate class _StorageClass {
@@ -8014,6 +8191,7 @@ extension Nd_V1_ServiceProviderCustomerProfileMessage: SwiftProtobuf.Message, Sw
     var _createdDate: SwiftProtobuf.Google_Protobuf_Int64Value? = nil
     var _customerDeviceInfo: Nd_V1_DeviceInfoMessage? = nil
     var _children: [Nd_V1_ServiceProviderCustomerChildProfileMessage] = []
+    var _primaryOrganisationID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -8038,6 +8216,7 @@ extension Nd_V1_ServiceProviderCustomerProfileMessage: SwiftProtobuf.Message, Sw
       _createdDate = source._createdDate
       _customerDeviceInfo = source._customerDeviceInfo
       _children = source._children
+      _primaryOrganisationID = source._primaryOrganisationID
     }
   }
 
@@ -8074,6 +8253,7 @@ extension Nd_V1_ServiceProviderCustomerProfileMessage: SwiftProtobuf.Message, Sw
         case 16: try { try decoder.decodeSingularMessageField(value: &_storage._createdDate) }()
         case 17: try { try decoder.decodeSingularMessageField(value: &_storage._customerDeviceInfo) }()
         case 18: try { try decoder.decodeRepeatedMessageField(value: &_storage._children) }()
+        case 19: try { try decoder.decodeSingularMessageField(value: &_storage._primaryOrganisationID) }()
         default: break
         }
       }
@@ -8136,6 +8316,9 @@ extension Nd_V1_ServiceProviderCustomerProfileMessage: SwiftProtobuf.Message, Sw
       if !_storage._children.isEmpty {
         try visitor.visitRepeatedMessageField(value: _storage._children, fieldNumber: 18)
       }
+      if let v = _storage._primaryOrganisationID {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 19)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -8163,6 +8346,7 @@ extension Nd_V1_ServiceProviderCustomerProfileMessage: SwiftProtobuf.Message, Sw
         if _storage._createdDate != rhs_storage._createdDate {return false}
         if _storage._customerDeviceInfo != rhs_storage._customerDeviceInfo {return false}
         if _storage._children != rhs_storage._children {return false}
+        if _storage._primaryOrganisationID != rhs_storage._primaryOrganisationID {return false}
         return true
       }
       if !storagesAreEqual {return false}
@@ -8637,6 +8821,10 @@ extension Nd_V1_ServiceProviderGeneratedSlotMessage: SwiftProtobuf.Message, Swif
     2: .same(proto: "EndStartDateTime"),
     3: .same(proto: "Duration"),
     4: .same(proto: "PaymentType"),
+    5: .same(proto: "OrganisationId"),
+    6: .same(proto: "AddressId"),
+    7: .same(proto: "ServiceFees"),
+    8: .same(proto: "IsOrganisationSlot"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -8649,6 +8837,10 @@ extension Nd_V1_ServiceProviderGeneratedSlotMessage: SwiftProtobuf.Message, Swif
       case 2: try { try decoder.decodeSingularMessageField(value: &self._endStartDateTime) }()
       case 3: try { try decoder.decodeSingularMessageField(value: &self._duration) }()
       case 4: try { try decoder.decodeSingularMessageField(value: &self._paymentType) }()
+      case 5: try { try decoder.decodeSingularMessageField(value: &self._organisationID) }()
+      case 6: try { try decoder.decodeSingularMessageField(value: &self._addressID) }()
+      case 7: try { try decoder.decodeSingularMessageField(value: &self._serviceFees) }()
+      case 8: try { try decoder.decodeSingularMessageField(value: &self._isOrganisationSlot) }()
       default: break
       }
     }
@@ -8667,6 +8859,18 @@ extension Nd_V1_ServiceProviderGeneratedSlotMessage: SwiftProtobuf.Message, Swif
     if let v = self._paymentType {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
     }
+    if let v = self._organisationID {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+    }
+    if let v = self._addressID {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+    }
+    if let v = self._serviceFees {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+    }
+    if let v = self._isOrganisationSlot {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -8675,6 +8879,10 @@ extension Nd_V1_ServiceProviderGeneratedSlotMessage: SwiftProtobuf.Message, Swif
     if lhs._endStartDateTime != rhs._endStartDateTime {return false}
     if lhs._duration != rhs._duration {return false}
     if lhs._paymentType != rhs._paymentType {return false}
+    if lhs._organisationID != rhs._organisationID {return false}
+    if lhs._addressID != rhs._addressID {return false}
+    if lhs._serviceFees != rhs._serviceFees {return false}
+    if lhs._isOrganisationSlot != rhs._isOrganisationSlot {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -10883,6 +11091,9 @@ extension Nd_V1_CustomerServiceProviderAvailability: SwiftProtobuf.Message, Swif
     4: .same(proto: "AvailabilityConfigId"),
     5: .same(proto: "PaymentType"),
     6: .same(proto: "OrganisationId"),
+    7: .same(proto: "AddressId"),
+    8: .same(proto: "ServiceFees"),
+    9: .same(proto: "IsOrganisationSlot"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -10897,6 +11108,9 @@ extension Nd_V1_CustomerServiceProviderAvailability: SwiftProtobuf.Message, Swif
       case 4: try { try decoder.decodeSingularMessageField(value: &self._availabilityConfigID) }()
       case 5: try { try decoder.decodeSingularMessageField(value: &self._paymentType) }()
       case 6: try { try decoder.decodeSingularMessageField(value: &self._organisationID) }()
+      case 7: try { try decoder.decodeSingularMessageField(value: &self._addressID) }()
+      case 8: try { try decoder.decodeSingularMessageField(value: &self._serviceFees) }()
+      case 9: try { try decoder.decodeSingularMessageField(value: &self._isOrganisationSlot) }()
       default: break
       }
     }
@@ -10921,6 +11135,15 @@ extension Nd_V1_CustomerServiceProviderAvailability: SwiftProtobuf.Message, Swif
     if let v = self._organisationID {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
     }
+    if let v = self._addressID {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+    }
+    if let v = self._serviceFees {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
+    }
+    if let v = self._isOrganisationSlot {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -10931,6 +11154,9 @@ extension Nd_V1_CustomerServiceProviderAvailability: SwiftProtobuf.Message, Swif
     if lhs._availabilityConfigID != rhs._availabilityConfigID {return false}
     if lhs._paymentType != rhs._paymentType {return false}
     if lhs._organisationID != rhs._organisationID {return false}
+    if lhs._addressID != rhs._addressID {return false}
+    if lhs._serviceFees != rhs._serviceFees {return false}
+    if lhs._isOrganisationSlot != rhs._isOrganisationSlot {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -11521,6 +11747,7 @@ extension Nd_V1_CustomerCustomerProfileMessage: SwiftProtobuf.Message, SwiftProt
     18: .same(proto: "CreatedDate"),
     19: .same(proto: "CustomerDeviceInfo"),
     20: .same(proto: "Children"),
+    21: .same(proto: "PrimaryOrganisationId"),
   ]
 
   fileprivate class _StorageClass {
@@ -11544,6 +11771,7 @@ extension Nd_V1_CustomerCustomerProfileMessage: SwiftProtobuf.Message, SwiftProt
     var _createdDate: SwiftProtobuf.Google_Protobuf_Int64Value? = nil
     var _customerDeviceInfo: Nd_V1_DeviceInfoMessage? = nil
     var _children: [Nd_V1_CustomerChildProfileMessage] = []
+    var _primaryOrganisationID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -11570,6 +11798,7 @@ extension Nd_V1_CustomerCustomerProfileMessage: SwiftProtobuf.Message, SwiftProt
       _createdDate = source._createdDate
       _customerDeviceInfo = source._customerDeviceInfo
       _children = source._children
+      _primaryOrganisationID = source._primaryOrganisationID
     }
   }
 
@@ -11608,6 +11837,7 @@ extension Nd_V1_CustomerCustomerProfileMessage: SwiftProtobuf.Message, SwiftProt
         case 18: try { try decoder.decodeSingularMessageField(value: &_storage._createdDate) }()
         case 19: try { try decoder.decodeSingularMessageField(value: &_storage._customerDeviceInfo) }()
         case 20: try { try decoder.decodeRepeatedMessageField(value: &_storage._children) }()
+        case 21: try { try decoder.decodeSingularMessageField(value: &_storage._primaryOrganisationID) }()
         default: break
         }
       }
@@ -11676,6 +11906,9 @@ extension Nd_V1_CustomerCustomerProfileMessage: SwiftProtobuf.Message, SwiftProt
       if !_storage._children.isEmpty {
         try visitor.visitRepeatedMessageField(value: _storage._children, fieldNumber: 20)
       }
+      if let v = _storage._primaryOrganisationID {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 21)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -11705,6 +11938,7 @@ extension Nd_V1_CustomerCustomerProfileMessage: SwiftProtobuf.Message, SwiftProt
         if _storage._createdDate != rhs_storage._createdDate {return false}
         if _storage._customerDeviceInfo != rhs_storage._customerDeviceInfo {return false}
         if _storage._children != rhs_storage._children {return false}
+        if _storage._primaryOrganisationID != rhs_storage._primaryOrganisationID {return false}
         return true
       }
       if !storagesAreEqual {return false}
@@ -12265,6 +12499,10 @@ extension Nd_V1_CustomerGeneratedSlotMessage: SwiftProtobuf.Message, SwiftProtob
     2: .same(proto: "EndStartDateTime"),
     3: .same(proto: "Duration"),
     4: .same(proto: "PaymentType"),
+    5: .same(proto: "OrganisationId"),
+    6: .same(proto: "AddressId"),
+    7: .same(proto: "ServiceFees"),
+    8: .same(proto: "IsOrganisationSlot"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -12277,6 +12515,10 @@ extension Nd_V1_CustomerGeneratedSlotMessage: SwiftProtobuf.Message, SwiftProtob
       case 2: try { try decoder.decodeSingularMessageField(value: &self._endStartDateTime) }()
       case 3: try { try decoder.decodeSingularMessageField(value: &self._duration) }()
       case 4: try { try decoder.decodeSingularMessageField(value: &self._paymentType) }()
+      case 5: try { try decoder.decodeSingularMessageField(value: &self._organisationID) }()
+      case 6: try { try decoder.decodeSingularMessageField(value: &self._addressID) }()
+      case 7: try { try decoder.decodeSingularMessageField(value: &self._serviceFees) }()
+      case 8: try { try decoder.decodeSingularMessageField(value: &self._isOrganisationSlot) }()
       default: break
       }
     }
@@ -12295,6 +12537,18 @@ extension Nd_V1_CustomerGeneratedSlotMessage: SwiftProtobuf.Message, SwiftProtob
     if let v = self._paymentType {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
     }
+    if let v = self._organisationID {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+    }
+    if let v = self._addressID {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+    }
+    if let v = self._serviceFees {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+    }
+    if let v = self._isOrganisationSlot {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -12303,6 +12557,10 @@ extension Nd_V1_CustomerGeneratedSlotMessage: SwiftProtobuf.Message, SwiftProtob
     if lhs._endStartDateTime != rhs._endStartDateTime {return false}
     if lhs._duration != rhs._duration {return false}
     if lhs._paymentType != rhs._paymentType {return false}
+    if lhs._organisationID != rhs._organisationID {return false}
+    if lhs._addressID != rhs._addressID {return false}
+    if lhs._serviceFees != rhs._serviceFees {return false}
+    if lhs._isOrganisationSlot != rhs._isOrganisationSlot {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

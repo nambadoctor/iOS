@@ -26,4 +26,5 @@ struct ServiceProviderCustomerProfile {
     var createdDate:Int64
     var children:[ServiceProviderCustomerChildProfile]
     var customerProviderDeviceInfo:DeviceInformation
+    var primaryOrganisationId:String
 }

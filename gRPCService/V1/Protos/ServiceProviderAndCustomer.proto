@@ -285,6 +285,12 @@ message ServiceProviderAvailability{
     google.protobuf.StringValue PaymentType = 5;
 
     google.protobuf.StringValue OrganisationId = 6;
+
+    google.protobuf.StringValue AddressId = 7;
+
+	google.protobuf.DoubleValue ServiceFees = 8;
+
+	google.protobuf.BoolValue IsOrganisationSlot = 9;
 }
 
 
@@ -363,6 +369,8 @@ message ServiceProviderCustomerProfileMessage {
 	DeviceInfoMessage CustomerDeviceInfo = 17;
 
 	repeated ServiceProviderCustomerChildProfileMessage Children = 18;
+
+	google.protobuf.StringValue PrimaryOrganisationId = 19;
 }
 
 
@@ -465,6 +473,14 @@ message ServiceProviderGeneratedSlotMessage{
 	google.protobuf.Int32Value Duration = 3;
 
 	google.protobuf.StringValue PaymentType = 4;
+
+	google.protobuf.StringValue OrganisationId = 5;
+
+	google.protobuf.StringValue AddressId = 6;
+
+	google.protobuf.DoubleValue ServiceFees = 7;
+
+	google.protobuf.BoolValue IsOrganisationSlot = 8;
 }
 
 
@@ -1076,6 +1092,13 @@ message CustomerServiceProviderAvailability{
     google.protobuf.StringValue PaymentType = 5;
 
     google.protobuf.StringValue OrganisationId = 6;
+
+    google.protobuf.StringValue AddressId = 7;
+
+	google.protobuf.DoubleValue ServiceFees = 8;
+
+	google.protobuf.BoolValue IsOrganisationSlot = 9;
+
 }
 
 
@@ -1232,6 +1255,8 @@ message CustomerCustomerProfileMessage {
 	DeviceInfoMessage CustomerDeviceInfo = 19;
 
 	repeated CustomerChildProfileMessage Children = 20;
+
+	google.protobuf.StringValue PrimaryOrganisationId = 21;
 }
 
 
@@ -1347,6 +1372,14 @@ message CustomerGeneratedSlotMessage{
 	google.protobuf.Int32Value Duration = 3;
 
 	google.protobuf.StringValue PaymentType = 4;
+
+	google.protobuf.StringValue OrganisationId = 5;
+
+	google.protobuf.StringValue AddressId = 6;
+
+	google.protobuf.DoubleValue ServiceFees = 7;
+
+	google.protobuf.BoolValue IsOrganisationSlot = 8;
 }
 
 

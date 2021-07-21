@@ -263,8 +263,6 @@
 		176EFAAC264E5D6000A6310B /* LocalStorageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176EFAAB264E5D6000A6310B /* LocalStorageHelper.swift */; };
 		1771B9FC26A774640085389E /* ServiceProviderAppointmentVerification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771B9FB26A774640085389E /* ServiceProviderAppointmentVerification.swift */; };
 		1771B9FE26A774950085389E /* ServiceProviderAppointmentVerificationMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771B9FD26A774950085389E /* ServiceProviderAppointmentVerificationMapper.swift */; };
-		1771BA0026A779120085389E /* ServiceProviderAndCustomer.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771B9FF26A779120085389E /* ServiceProviderAndCustomer.pb.swift */; };
-		1771BA0226A7791B0085389E /* ServiceProviderAndCustomer.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771BA0126A7791B0085389E /* ServiceProviderAndCustomer.grpc.swift */; };
 		1771BA0426A786A50085389E /* ServiceProviderAlternateNotificationInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771BA0326A786A50085389E /* ServiceProviderAlternateNotificationInfo.swift */; };
 		1771BA0626A786D20085389E /* ServiceProviderAlternateNotificationInfoMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771BA0526A786D20085389E /* ServiceProviderAlternateNotificationInfoMapper.swift */; };
 		1771BA0826A794880085389E /* ServiceProviderOrganization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771BA0726A794880085389E /* ServiceProviderOrganization.swift */; };
@@ -274,6 +272,8 @@
 		1771BA1026A79D480085389E /* ServiceProviderCustomerVitals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771BA0F26A79D480085389E /* ServiceProviderCustomerVitals.swift */; };
 		1771BA1226A79E940085389E /* ServiceProviderCustomerVitalsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771BA1126A79E940085389E /* ServiceProviderCustomerVitalsMapper.swift */; };
 		1771BA1426A7A4360085389E /* ServiceProviderOrganizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771BA1326A7A4360085389E /* ServiceProviderOrganizationService.swift */; };
+		1771BA1626A7BE790085389E /* ServiceProviderAndCustomer.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771BA1526A7BE790085389E /* ServiceProviderAndCustomer.grpc.swift */; };
+		1771BA1826A7BE7D0085389E /* ServiceProviderAndCustomer.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771BA1726A7BE7D0085389E /* ServiceProviderAndCustomer.pb.swift */; };
 		1772336E25B70F99002B814A /* SimpleStateConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1772336D25B70F99002B814A /* SimpleStateConstants.swift */; };
 		1772339825B72FF2002B814A /* CheckLoginStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1772339725B72FF2002B814A /* CheckLoginStatus.swift */; };
 		177233BE25B745C2002B814A /* EncoderDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177233BD25B745C2002B814A /* EncoderDecoder.swift */; };
@@ -681,8 +681,6 @@
 		176EFAAB264E5D6000A6310B /* LocalStorageHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalStorageHelper.swift; sourceTree = "<group>"; };
 		1771B9FB26A774640085389E /* ServiceProviderAppointmentVerification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderAppointmentVerification.swift; sourceTree = "<group>"; };
 		1771B9FD26A774950085389E /* ServiceProviderAppointmentVerificationMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderAppointmentVerificationMapper.swift; sourceTree = "<group>"; };
-		1771B9FF26A779120085389E /* ServiceProviderAndCustomer.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderAndCustomer.pb.swift; sourceTree = "<group>"; };
-		1771BA0126A7791B0085389E /* ServiceProviderAndCustomer.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderAndCustomer.grpc.swift; sourceTree = "<group>"; };
 		1771BA0326A786A50085389E /* ServiceProviderAlternateNotificationInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderAlternateNotificationInfo.swift; sourceTree = "<group>"; };
 		1771BA0526A786D20085389E /* ServiceProviderAlternateNotificationInfoMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ServiceProviderAlternateNotificationInfoMapper.swift; path = ../../../../../../../Downloads/ServiceProviderAlternateNotificationInfoMapper.swift; sourceTree = "<group>"; };
 		1771BA0726A794880085389E /* ServiceProviderOrganization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderOrganization.swift; sourceTree = "<group>"; };
@@ -692,6 +690,8 @@
 		1771BA0F26A79D480085389E /* ServiceProviderCustomerVitals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderCustomerVitals.swift; sourceTree = "<group>"; };
 		1771BA1126A79E940085389E /* ServiceProviderCustomerVitalsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderCustomerVitalsMapper.swift; sourceTree = "<group>"; };
 		1771BA1326A7A4360085389E /* ServiceProviderOrganizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderOrganizationService.swift; sourceTree = "<group>"; };
+		1771BA1526A7BE790085389E /* ServiceProviderAndCustomer.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderAndCustomer.grpc.swift; sourceTree = "<group>"; };
+		1771BA1726A7BE7D0085389E /* ServiceProviderAndCustomer.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderAndCustomer.pb.swift; sourceTree = "<group>"; };
 		1772336D25B70F99002B814A /* SimpleStateConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleStateConstants.swift; sourceTree = "<group>"; };
 		1772339725B72FF2002B814A /* CheckLoginStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckLoginStatus.swift; sourceTree = "<group>"; };
 		177233BD25B745C2002B814A /* EncoderDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncoderDecoder.swift; sourceTree = "<group>"; };
@@ -1309,7 +1309,7 @@
 		173A22BB25CAF8BC0086342A /* ServiceImplementations */ = {
 			isa = PBXGroup;
 			children = (
-				1771BA0126A7791B0085389E /* ServiceProviderAndCustomer.grpc.swift */,
+				1771BA1526A7BE790085389E /* ServiceProviderAndCustomer.grpc.swift */,
 			);
 			path = ServiceImplementations;
 			sourceTree = "<group>";
@@ -1317,7 +1317,7 @@
 		173A22BC25CAF8C60086342A /* ModelImplementations */ = {
 			isa = PBXGroup;
 			children = (
-				1771B9FF26A779120085389E /* ServiceProviderAndCustomer.pb.swift */,
+				1771BA1726A7BE7D0085389E /* ServiceProviderAndCustomer.pb.swift */,
 			);
 			path = ModelImplementations;
 			sourceTree = "<group>";
@@ -2335,7 +2335,6 @@
 				171646C22602B6B700BB5B5A /* ServiceProviderPaymentInfo.swift in Sources */,
 				1742506D25BAE69200523B94 /* PrescriptionFormPickerConstants.swift in Sources */,
 				17E87EF12694FD41002E62EA /* BookingReasonBottomSheetCaller.swift in Sources */,
-				1771BA0026A779120085389E /* ServiceProviderAndCustomer.pb.swift in Sources */,
 				17424FAA25BACEF600523B94 /* ServiceRequestViewModel.swift in Sources */,
 				17EC7656260DE8940002BA75 /* DatePickerViewModel.swift in Sources */,
 				1771BA0E26A798980085389E /* ServiceProviderOrganisationMapper.swift in Sources */,
@@ -2448,6 +2447,7 @@
 				17BD2E88263A39F100BB0BDD /* CustomerReportCardView.swift in Sources */,
 				1785A570261A353F009667D1 /* DoctorIntermediateView.swift in Sources */,
 				1765BD072639185C0087664D /* LoggerService.swift in Sources */,
+				1771BA1626A7BE790085389E /* ServiceProviderAndCustomer.grpc.swift in Sources */,
 				1728B76D25B38156001D554E /* Logon.swift in Sources */,
 				179C44E42628C86D0073F4E0 /* DoctorChatRoomView.swift in Sources */,
 				1730289126621A4E00E9F5F3 /* SpecialtyCategory.swift in Sources */,
@@ -2627,6 +2627,7 @@
 				1739EAEB26380EFA00556044 /* BookDoctorView.swift in Sources */,
 				1715EA302660442B0004E01F /* CustomerDoctorProfileView.swift in Sources */,
 				1771BA0C26A796EB0085389E /* ServiceProviderOrganisationTimingMapper.swift in Sources */,
+				1771BA1826A7BE7D0085389E /* ServiceProviderAndCustomer.pb.swift in Sources */,
 				173028A32664AB6200E9F5F3 /* ServiceProviderIntakeDosage.swift in Sources */,
 				1796320F25AEE865002E466C /* KeyboardHeightPublisher.swift in Sources */,
 				172FA702261F107E00D14545 /* ServiceProviderCustomerAllergy.swift in Sources */,
@@ -2649,7 +2650,6 @@
 				1742524325BD990800523B94 /* RetrievePatientInfoProtocol.swift in Sources */,
 				1716469C2602B59F00BB5B5A /* ServiceProviderDiagnosis.swift in Sources */,
 				1796322F25AEE9D6002E466C /* AlertItem.swift in Sources */,
-				1771BA0226A7791B0085389E /* ServiceProviderAndCustomer.grpc.swift in Sources */,
 				171647342603231200BB5B5A /* ServiceProviderPaymentInfoMapper.swift in Sources */,
 				17424FDD25BAD14C00523B94 /* DiagnosisTypeK.swift in Sources */,
 				1758E1ED2659373F0012E571 /* ServiceProviderCustomerChildProfileMapper.swift in Sources */,

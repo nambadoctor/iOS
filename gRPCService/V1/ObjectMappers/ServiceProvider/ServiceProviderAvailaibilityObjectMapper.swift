@@ -15,7 +15,10 @@ class ServiceProviderAvailaibilityObjectMapper {
             endTime: availability.endTime.toInt64,
             availabilityConfigID: availability.availabilityConfigID.toString,
             paymentType: availability.paymentType.toString,
-            organisationId: availability.organisationID.toString)
+            organisationId: availability.organisationID.toString,
+            addressId: availability.addressID.toString,
+            serviceFees: availability.serviceFees.toDouble,
+            isOrganisationSlot: availability.isOrganisationSlot.toBool)
     }
     
     static func grpcAvailabilityToLocal (availability:[Nd_V1_ServiceProviderAvailability]) -> [ServiceProviderAvailability] {
@@ -37,6 +40,9 @@ class ServiceProviderAvailaibilityObjectMapper {
             $0.availabilityConfigID = availability.availabilityConfigID.toProto
             $0.paymentType = availability.paymentType.toProto
             $0.organisationID = availability.organisationId.toProto
+            $0.addressID = availability.addressId.toProto
+            $0.serviceFees = availability.serviceFees.toProto
+            $0.isOrganisationSlot = availability.isOrganisationSlot.toProto
         }
     }
     
