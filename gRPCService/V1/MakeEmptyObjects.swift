@@ -20,7 +20,7 @@ func MakeEmptyDuration() -> ServiceProviderDuration {
 }
 
 func MakeEmptyServiceRequest(appointment:ServiceProviderAppointment) -> ServiceProviderServiceRequest {
-    return ServiceProviderServiceRequest(serviceRequestID: appointment.serviceRequestID, reason: "", serviceProviderID: appointment.serviceProviderID, appointmentID: appointment.appointmentID, examination: "", diagnosis: MakeEmptyDiagnosis(), investigations: [String](), advice: "", createdDateTime: Date().millisecondsSince1970, lastModifiedDate: Date().millisecondsSince1970, customerID: appointment.customerID, allergy: MakeEmptyAllergy(), medicalHistory: MakeEmptyMedicalHistory(), childId: "")
+    return ServiceProviderServiceRequest(serviceRequestID: appointment.serviceRequestID, reason: "", serviceProviderID: appointment.serviceProviderID, appointmentID: appointment.appointmentID, examination: "", diagnosis: MakeEmptyDiagnosis(), investigations: [String](), advice: "", createdDateTime: Date().millisecondsSince1970, lastModifiedDate: Date().millisecondsSince1970, customerID: appointment.customerID, allergy: MakeEmptyAllergy(), medicalHistory: MakeEmptyMedicalHistory(), childId: "", customerVitals: ServiceProviderCustomerVitals(BloodPressure: "", BloodSugar: "", Height: "", Weight: "", MenstrualHistory: "", ObstetricHistory: "", IsSmoker: false, IsAlcoholConsumer: false), organisationId: "")
 }
 
 func MakeEmptyAllergy() -> ServiceProviderCustomerAllergy {

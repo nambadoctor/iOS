@@ -92,7 +92,7 @@ class DoctorAvailabilityViewModel : ObservableObject {
     }
     
     func confirmNewSlot (day:Int) {
-        let newSlot = ServiceProviderAvailability(dayOfWeek: Int32(day), startTime: editStartTime.millisecondsSince1970, endTime: editEndTime.millisecondsSince1970, availabilityConfigID: "", paymentType: "")
+        let newSlot = ServiceProviderAvailability(dayOfWeek: Int32(day), startTime: editStartTime.millisecondsSince1970, endTime: editEndTime.millisecondsSince1970, availabilityConfigID: "", paymentType: "", organisationId: "")
         
         availabilities.append(newSlot)
         self.makeNewSlotToggle = 1000

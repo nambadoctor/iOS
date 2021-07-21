@@ -33,7 +33,9 @@ class ServiceProviderAppointmentObjectMapper {
             cancellation: ServiceProviderCancellationMapper.grpcCancellationToLocal(cancellation: appointment.cancellation),
             childId: appointment.childID.toString,
             paymentType: appointment.paymentType.toString,
-            appointmentVerification: ServiceProviderAppointmentVerificationMapper().GrpcToLocal(appointmentVerification: appointment.appointmentVerification))
+            appointmentVerification: ServiceProviderAppointmentVerificationMapper().GrpcToLocal(appointmentVerification: appointment.appointmentVerification),
+            organisationId: appointment.organisationID.toString,
+            organisationName:  appointment.organisationName.toString)
     }
     
     func grpcAppointmentToLocal (appointment:[Nd_V1_ServiceProviderAppointmentMessage]) -> [ServiceProviderAppointment] {
@@ -72,6 +74,8 @@ class ServiceProviderAppointmentObjectMapper {
             $0.childID = appointment.childId.toProto
             $0.paymentType = appointment.paymentType.toProto
             if appointment.appointmentVerification != nil {$0.appointmentVerification = ServiceProviderAppointmentVerificationMapper().LocalToGrpc(appointmentVerification: appointment.appointmentVerification!)}
+            $0.organisationID = appointment.organisationId.toProto
+            $0.organisationName = appointment.organisationName.toProto
         }
     }
 }

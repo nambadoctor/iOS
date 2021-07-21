@@ -35,7 +35,18 @@ class ServiceProviderProfileMapper {
             createdDate: profile.createdDate.toInt64,
             lastModifiedDate: profile.lastModifedDate.toInt64,
             serviceProviderDeviceInfo: DeviceInformationMapper.GrpcToLocal(deviceInfo: profile.serviceProviderDeviceInfo),
-            additionalInfo: ServiceProviderAdditionalInfoMapper.grpcToLocal(additionalInfo: profile.additionalInfo))
+            additionalInfo: ServiceProviderAdditionalInfoMapper.grpcToLocal(additionalInfo: profile.additionalInfo),
+            alternateNotificationInfos: ServiceProviderAlternateNotificationInfoMapper.GrpcToLocal(alternateNotif: profile.alternateNotificationInfos))
+    }
+    
+    func grpcProfileToLocal (profile:[Nd_V1_ServiceProviderProfileMessage]) -> [ServiceProviderProfile] {
+        var toReturn = [ServiceProviderProfile]()
+        
+        for prof in profile {
+            toReturn.append(grpcProfileToLocal(profile: prof))
+        }
+        
+        return toReturn
     }
     
     func localProfileToGrpc (profile: ServiceProviderProfile) -> Nd_V1_ServiceProviderProfileMessage {
@@ -66,6 +77,7 @@ class ServiceProviderProfileMapper {
             if profile.lastModifiedDate != nil { $0.lastModifedDate = profile.lastModifiedDate!.toProto }
             if profile.serviceProviderDeviceInfo != nil { $0.serviceProviderDeviceInfo = DeviceInformationMapper.LocalToGrpc(deviceInfo: profile.serviceProviderDeviceInfo!) }
             if profile.additionalInfo != nil {$0.additionalInfo = ServiceProviderAdditionalInfoMapper.localToGrpc(additionalInfo: profile.additionalInfo!)}
+            if profile.alternateNotificationInfos != nil {$0.alternateNotificationInfos = ServiceProviderAlternateNotificationInfoMapper.LocalToGrpc(alternateNotif: profile.alternateNotificationInfos!)}
         }
     }
 }

@@ -19,6 +19,10 @@ protocol ServiceProviderProfileServiceProtocol {
     func getAutofillMedicineList (_ completion: @escaping (([ServiceProviderAutofillMedicine]?) -> ()))
     
     func setNewMedicineList (medicines:[ServiceProviderMedicine] ,_ completion: @escaping (Bool) -> ())
+    
+    func getServiceProviders (serviceProviderId:String, _ completion : @escaping (_ serviceProviders:[ServiceProviderProfile]?)->())
+    
+    func getServiceProvidersOfOrganization (organizationId:String, _ completion : @escaping (_ serviceProviders:[ServiceProviderProfile]?)->())
 }
 
 class ServiceProviderProfileService : ServiceProviderProfileServiceProtocol {
@@ -201,6 +205,72 @@ class ServiceProviderProfileService : ServiceProviderProfileServiceProtocol {
             } catch {
                 print("Doctors NEW AUTOFILL MEDICINES SET: failed \(error)")
                 completion(false)
+            }
+        }
+    }
+    
+    func getServiceProviders (serviceProviderId:String, _ completion : @escaping (_ serviceProviders:[ServiceProviderProfile]?)->()) {
+        CorrelationId = UUID().uuidString
+        
+        let channel = ChannelManager.sharedChannelManager.getChannel()
+        let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
+        
+        let doctorClient = Nd_V1_ServiceProviderWorkerV1Client(channel: channel)
+        
+        let request = Nd_V1_IdMessage.with {
+            $0.id = serviceProviderId.toProto
+        }
+
+        let getServiceProvider = doctorClient.getServiceProviders(request, callOptions: callOptions)
+
+        DispatchQueue.global().async {
+            do {
+                LoggerService().log(eventName: "REQUESTING SERVICE PROVIDERs")
+                let response = try getServiceProvider.response.wait()
+                LoggerService().log(eventName: "RECEIVED SERVICE PROVIDERs")
+                let serviceProviders = self.serviceProviderMapper.grpcProfileToLocal(profile: response.serviceProviders)
+                print("Get Service Providers Client Success \(serviceProviders)")
+                DispatchQueue.main.async {
+                    completion(serviceProviders)
+                }
+            } catch {
+                print("Get Service Providers Client Failed \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            }
+        }
+    }
+    
+    func getServiceProvidersOfOrganization (organizationId:String, _ completion : @escaping (_ serviceProviders:[ServiceProviderProfile]?)->()) {
+        CorrelationId = UUID().uuidString
+        
+        let channel = ChannelManager.sharedChannelManager.getChannel()
+        let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
+        
+        let doctorClient = Nd_V1_ServiceProviderWorkerV1Client(channel: channel)
+        
+        let request = Nd_V1_IdMessage.with {
+            $0.id = organizationId.toProto
+        }
+
+        let getServiceProvider = doctorClient.getServiceProviders(request, callOptions: callOptions)
+
+        DispatchQueue.global().async {
+            do {
+                LoggerService().log(eventName: "REQUESTING SERVICE PROVIDERS of Organization")
+                let response = try getServiceProvider.response.wait()
+                LoggerService().log(eventName: "RECEIVED SERVICE PROVIDERs of Organization")
+                let serviceProviders = self.serviceProviderMapper.grpcProfileToLocal(profile: response.serviceProviders)
+                print("Get Service Providers of Organization Client Success \(serviceProviders)")
+                DispatchQueue.main.async {
+                    completion(serviceProviders)
+                }
+            } catch {
+                print("Get Service Providers of Organization Client Failed \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
             }
         }
     }

@@ -153,4 +153,71 @@ class ServiceProviderCustomerService: ServiceProviderCustomerServiceProtocol {
         }
     }
     
+    func getCustomersOfOrganisation(organisation:String, serviceProviderId:String, _ completion: @escaping ([ServiceProviderMyPatientProfile]?) -> ()) {
+                
+        let channel = ChannelManager.sharedChannelManager.getChannel()
+        let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
+        
+        // Provide the connection to the generated client.
+        let patientClient = Nd_V1_ServiceProviderCustomerWorkerV1Client(channel: channel)
+
+        let request = Nd_V1_ServiceProviderInOrganisationRequestMessage.with {
+            $0.organisationID = organisation.toProto
+            $0.serviceProviderID = serviceProviderId.toProto
+        }
+
+        let getDoctorsPatients = patientClient.getCustomersOfOrganisation(request, callOptions: callOptions)
+
+        DispatchQueue.global().async {
+            do {
+                LoggerService().log(eventName: "REQUESTING Doctors Get Customer of org")
+                let response = try getDoctorsPatients.response.wait()
+                LoggerService().log(eventName: "RECIEVED Doctors Get Customer of org")
+                let patientList = ServiceProviderMyPatientProfileMapper.GrpcToLocal(profileMessages: response.myPatients)
+                print("Doctors Get Customer of org received: success")
+                DispatchQueue.main.async {
+                    completion(patientList)
+                }
+            } catch {
+                print("Doctors Get Customer of org failed: \(error)")
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            }
+        }
+    }
+    
+    func GetCustomersOfServiceProviderInOrganisation(organisation:String, serviceProviderId:String, _ completion: @escaping ([ServiceProviderMyPatientProfile]?) -> ()) {
+                
+        let channel = ChannelManager.sharedChannelManager.getChannel()
+        let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
+        
+        // Provide the connection to the generated client.
+        let patientClient = Nd_V1_ServiceProviderCustomerWorkerV1Client(channel: channel)
+
+        let request = Nd_V1_ServiceProviderInOrganisationRequestMessage.with {
+            $0.organisationID = organisation.toProto
+            $0.serviceProviderID = serviceProviderId.toProto
+        }
+
+        let getDoctorsPatients = patientClient.getCustomersOfServiceProviderInOrganisation(request, callOptions: callOptions)
+
+        DispatchQueue.global().async {
+            do {
+                LoggerService().log(eventName: "REQUESTING Get Customer of Doctor in org")
+                let response = try getDoctorsPatients.response.wait()
+                LoggerService().log(eventName: "RECIEVED Doctors Get Customer of Doctor in org")
+                let patientList = ServiceProviderMyPatientProfileMapper.GrpcToLocal(profileMessages: response.myPatients)
+                print("Doctors Get Customer of org received: success")
+                DispatchQueue.main.async {
+                    completion(patientList)
+                }
+            } catch {
+                print("Get Customer of Doctor in org failed: \(error)")
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            }
+        }
+    }
 }

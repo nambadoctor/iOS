@@ -23,7 +23,9 @@ class ServiceProviderServiceRequestMapper {
             customerID: serviceRequest.customerID.toString,
             allergy: ServiceProviderCustomerAllergyMapper.grpcAllergyToLocal(allergyMessage: serviceRequest.allergy),
             medicalHistory: ServiceProviderCustomerMedicalHistoryMapper.grpcMedicalHistoryToLocal(medicalHistoryMessage: serviceRequest.medicalHistory),
-            childId: serviceRequest.childID.toString)
+            childId: serviceRequest.childID.toString,
+            customerVitals: ServiceProviderCustomerVitalsMapper.GrpcToLocal(vital: serviceRequest.customerVitals),
+            organisationId: serviceRequest.organisationID.toString)
     }
 
     func localServiceRequestToGrpc(serviceRequest:ServiceProviderServiceRequest) -> Nd_V1_ServiceProviderServiceRequestMessage {
@@ -42,6 +44,8 @@ class ServiceProviderServiceRequestMapper {
             $0.allergy = ServiceProviderCustomerAllergyMapper.localAllergyToGrpc(allergy: serviceRequest.allergy)
             $0.medicalHistory = ServiceProviderCustomerMedicalHistoryMapper.localMedicalHistoryToGrpc(medicalHistory: serviceRequest.medicalHistory)
             $0.childID = serviceRequest.childId.toProto
+            $0.customerVitals = ServiceProviderCustomerVitalsMapper.LocalToGrpc(vital: serviceRequest.customerVitals)
+            $0.organisationID = serviceRequest.organisationId.toProto
         }
     }
 }

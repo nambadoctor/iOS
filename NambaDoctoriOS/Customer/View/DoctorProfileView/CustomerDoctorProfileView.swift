@@ -168,7 +168,7 @@ struct CustomerDoctorProfileView: View {
                             }
                             .padding(.bottom, 5)
                             
-                            Text(doctorProfileVM.serviceProviderProfile.experiences[0].organization)
+                            Text(doctorProfileVM.serviceProviderProfile.experiences[0].organisation)
                         }.modifier(CardModifierControlledPadding(horizontalPadding: 1))
                     }
 

@@ -10,7 +10,7 @@ import Foundation
 class CustomerWorkExperienceMapper {
     static func grpcWorkToLocal(work:Nd_V1_CustomerWorkExperience) -> CustomerWorkExperience {
         return CustomerWorkExperience(
-            organization: work.organization.toString,
+            organisation: work.organization.toString,
             startDate: work.startDate.toInt64,
             endDate: work.endDate.toInt64,
             workExperienceID: work.workExperienceID.toString)
@@ -29,7 +29,7 @@ class CustomerWorkExperienceMapper {
 
     static func localWorkToGrpc(work:CustomerWorkExperience) -> Nd_V1_CustomerWorkExperience{
         return Nd_V1_CustomerWorkExperience.with {
-            $0.organization = work.organization.toProto
+            $0.organization = work.organisation.toProto
             $0.startDate = work.startDate.toProto
             $0.endDate = work.endDate.toProto
             $0.workExperienceID = work.workExperienceID.toProto

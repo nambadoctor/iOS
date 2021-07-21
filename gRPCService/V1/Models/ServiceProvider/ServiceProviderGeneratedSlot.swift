@@ -11,4 +11,5 @@ struct ServiceProviderGeneratedSlot {
     var startDateTime:Int64
     var endStartDateTime:Int64
     var duration:Int32
+    var paymentType:String
 }

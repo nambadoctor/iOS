@@ -37,7 +37,7 @@ class CustomerDoctorProfileViewModel : ObservableObject {
         var workExpString:[String] = [String]()
         
         for work in serviceProviderProfile.experiences {
-            workExpString.append(work.organization)
+            workExpString.append(work.organisation)
         }
         
         return workExpString

@@ -34,4 +34,6 @@ struct ServiceProviderProfile {
     var lastModifiedDate:Int64?
     var serviceProviderDeviceInfo:DeviceInformation?
     var additionalInfo:ServiceProviderAdditionalInfo?
+    var organisationIds:[String]?
+    var alternateNotificationInfos:[ServiceProviderAlternateNotificationInfo]?
 }

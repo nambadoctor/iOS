@@ -22,4 +22,6 @@ struct ServiceProviderServiceRequest : Codable {
     var allergy:ServiceProviderCustomerAllergy
     var medicalHistory:ServiceProviderCustomerMedicalHistory
     var childId:String
+    var customerVitals:ServiceProviderCustomerVitals
+    var organisationId:String
 }

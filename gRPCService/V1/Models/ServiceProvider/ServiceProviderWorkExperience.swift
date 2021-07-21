@@ -8,7 +8,7 @@
 import Foundation
 
 struct ServiceProviderWorkExperience {
-    var organization:String
+    var organisation:String
     var startDate:Int64
     var endDate:Int64
     var workExperienceID:String

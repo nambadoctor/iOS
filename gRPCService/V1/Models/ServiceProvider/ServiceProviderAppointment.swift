@@ -32,4 +32,6 @@ struct ServiceProviderAppointment : Codable {
     var childId:String
     var paymentType:String
     var appointmentVerification:ServiceProviderAppointmentVerification?
+    var organisationId:String
+    var organisationName:String
 }
