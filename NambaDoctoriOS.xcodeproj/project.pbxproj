@@ -280,6 +280,7 @@
 		1771BA2026A7C5FE0085389E /* CustomerOrganizationTimingMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771BA1F26A7C5FE0085389E /* CustomerOrganizationTimingMapper.swift */; };
 		1771BA2226A7C6490085389E /* CustomerOrganizationMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771BA2126A7C6490085389E /* CustomerOrganizationMapper.swift */; };
 		1771BA2426A7C7050085389E /* CustomerVitalsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771BA2326A7C7050085389E /* CustomerVitalsMapper.swift */; };
+		1771BA2626A7CAF50085389E /* CustomerOrganizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771BA2526A7CAF50085389E /* CustomerOrganizationService.swift */; };
 		1772336E25B70F99002B814A /* SimpleStateConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1772336D25B70F99002B814A /* SimpleStateConstants.swift */; };
 		1772339825B72FF2002B814A /* CheckLoginStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1772339725B72FF2002B814A /* CheckLoginStatus.swift */; };
 		177233BE25B745C2002B814A /* EncoderDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 177233BD25B745C2002B814A /* EncoderDecoder.swift */; };
@@ -704,6 +705,7 @@
 		1771BA1F26A7C5FE0085389E /* CustomerOrganizationTimingMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerOrganizationTimingMapper.swift; sourceTree = "<group>"; };
 		1771BA2126A7C6490085389E /* CustomerOrganizationMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerOrganizationMapper.swift; sourceTree = "<group>"; };
 		1771BA2326A7C7050085389E /* CustomerVitalsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerVitalsMapper.swift; sourceTree = "<group>"; };
+		1771BA2526A7CAF50085389E /* CustomerOrganizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerOrganizationService.swift; sourceTree = "<group>"; };
 		1772336D25B70F99002B814A /* SimpleStateConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleStateConstants.swift; sourceTree = "<group>"; };
 		1772339725B72FF2002B814A /* CheckLoginStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckLoginStatus.swift; sourceTree = "<group>"; };
 		177233BD25B745C2002B814A /* EncoderDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncoderDecoder.swift; sourceTree = "<group>"; };
@@ -1636,6 +1638,7 @@
 				176AA2022637F76D00F02346 /* CustomerReportService.swift */,
 				176AA2072637F77C00F02346 /* CustomerServiceRequestService.swift */,
 				176AA20C2637F78A00F02346 /* CustomerServiceProviderService.swift */,
+				1771BA2526A7CAF50085389E /* CustomerOrganizationService.swift */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
@@ -2463,6 +2466,7 @@
 				176AA1C92637CD2100F02346 /* CustomerReportUploadMapper.swift in Sources */,
 				17B5D13725B75A04009D6A42 /* AppointmentsView.swift in Sources */,
 				176AA1B02637C96700F02346 /* CustomerMedicineMapper.swift in Sources */,
+				1771BA2626A7CAF50085389E /* CustomerOrganizationService.swift in Sources */,
 				171646FC26030C6300BB5B5A /* ServiceProviderAppointmentObjectMapper.swift in Sources */,
 				17BD2E88263A39F100BB0BDD /* CustomerReportCardView.swift in Sources */,
 				1785A570261A353F009667D1 /* DoctorIntermediateView.swift in Sources */,

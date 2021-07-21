@@ -12,6 +12,8 @@ protocol CustomerServiceProviderServiceProtocol {
     func getAllServiceProvider (customerId:String, _ completion : @escaping (_ DoctorObj:[CustomerServiceProviderProfile]?)->())
     func getServiceProviderAvailabilities (serviceProviderId:String, _ completion : @escaping (_ DoctorObj:[CustomerGeneratedSlot]?)->())
     func getAllServiceProviderCategories (_ completion : @escaping (_ categories:[SpecialtyCategory]?)->())
+    func getServiceProvidersOfOrganization (organizationId:String, _ completion : @escaping (_ serviceProviders:[CustomerServiceProviderProfile]?)->())
+    func getServiceProviderAvailableSlotsForOrganisation (serviceProviderId:String, organizationId:String, _ completion : @escaping (_ DoctorObj:[CustomerGeneratedSlot]?)->())
 }
 
 class CustomerServiceProviderService : CustomerServiceProviderServiceProtocol {
@@ -69,7 +71,7 @@ class CustomerServiceProviderService : CustomerServiceProviderServiceProtocol {
         DispatchQueue.global().async {
             do {
                 let response = try getServiceProvider.response.wait()
-                let serviceProviders = self.serviceProviderMapper.grpcPhoneNumberToLocal(profiles: response.serviceProviders)
+                let serviceProviders = self.serviceProviderMapper.grpcProfileToLocal(profiles: response.serviceProviders)
                 print("Get ServiceProviders Client Success \(serviceProviders.count)")
                 DispatchQueue.main.async {
                     completion(serviceProviders)
@@ -146,6 +148,69 @@ class CustomerServiceProviderService : CustomerServiceProviderServiceProtocol {
                 print("Get CATEGORIES Client Failed \(error.localizedDescription)")
                 DispatchQueue.main.async {
                     completion([SpecialtyCategory(SpecialityId: "", SpecialityName: "All Doctors", SpecialityThumbnail: "")])
+                }
+            }
+        }
+    }
+
+    func getServiceProvidersOfOrganization (organizationId:String, _ completion : @escaping (_ serviceProviders:[CustomerServiceProviderProfile]?)->()) {
+        CorrelationId = UUID().uuidString
+        
+        let channel = ChannelManager.sharedChannelManager.getChannel()
+        let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
+        
+        let doctorClient = Nd_V1_CustomerServiceProviderWorkerV1Client(channel: channel)
+        
+        let request = Nd_V1_IdMessage.with {
+            $0.id = organizationId.toProto
+        }
+
+        let getServiceProvider = doctorClient.getServiceProviders(request, callOptions: callOptions)
+
+        DispatchQueue.global().async {
+            do {
+                LoggerService().log(eventName: "REQUESTING SERVICE PROVIDERS of Organization")
+                let response = try getServiceProvider.response.wait()
+                LoggerService().log(eventName: "RECEIVED SERVICE PROVIDERs of Organization")
+                let serviceProviders = CustomerServiceProviderProfileMapper().grpcProfileToLocal(profiles: response.serviceProviders)
+                print("Get Service Providers of Organization Client Success \(serviceProviders)")
+                DispatchQueue.main.async {
+                    completion(serviceProviders)
+                }
+            } catch {
+                print("Get Service Providers of Organization Client Failed \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            }
+        }
+    }
+    
+    func getServiceProviderAvailableSlotsForOrganisation (serviceProviderId:String, organizationId:String, _ completion : @escaping (_ DoctorObj:[CustomerGeneratedSlot]?)->()) {
+        let channel = ChannelManager.sharedChannelManager.getChannel()
+        let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
+        
+        let serviceProviderClient = Nd_V1_CustomerServiceProviderWorkerV1Client(channel: channel)
+        
+        let request = Nd_V1_CustomerServiceProviderInOrganisationRequestMessage.with {
+            $0.organisationID = organizationId.toProto
+            $0.serviceProviderID = serviceProviderId.toProto
+        }
+
+        let getServiceProviderSlots = serviceProviderClient.getServiceProviderAvailableSlotsForOrganisation(request, callOptions: callOptions)
+
+        DispatchQueue.global().async {
+            do {
+                let response = try getServiceProviderSlots.response.wait()
+                let slots = self.serviceProviderSlotMapper.grpcSlotToLocal(slots: response.slots)
+                print("Get ServiceProviderSlots Client Success \(slots.count)")
+                DispatchQueue.main.async {
+                    completion(slots)
+                }
+            } catch {
+                print("Get ServiceProviderSlots Client Failed \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    completion(nil)
                 }
             }
         }

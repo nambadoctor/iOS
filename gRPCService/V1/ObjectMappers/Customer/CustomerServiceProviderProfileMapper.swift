@@ -38,7 +38,7 @@ class CustomerServiceProviderProfileMapper {
             organisationIds: profile.organisationIds.convert())
     }
     
-    func grpcPhoneNumberToLocal (profiles:[Nd_V1_CustomersServiceProviderProfileMessage]) -> [CustomerServiceProviderProfile] {
+    func grpcProfileToLocal (profiles:[Nd_V1_CustomersServiceProviderProfileMessage]) -> [CustomerServiceProviderProfile] {
         var profileList:[CustomerServiceProviderProfile] = [CustomerServiceProviderProfile]()
 
         for profile in profiles {
