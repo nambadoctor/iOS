@@ -36,13 +36,13 @@ func MakeEmptyDiagnosis () -> ServiceProviderDiagnosis {
 }
 
 func MakeEmptyPrescription(appointment:ServiceProviderAppointment) -> ServiceProviderPrescription {
-    return ServiceProviderPrescription(prescriptionID: "", serviceRequestID: appointment.serviceRequestID, customerID: appointment.customerID, createdDateTime: 0, medicineList: [ServiceProviderMedicine](), fileInfo: MakeEmptyServiceProviderFileInfoObj())
+    return ServiceProviderPrescription(prescriptionID: "", serviceRequestID: appointment.serviceRequestID, customerID: appointment.customerID, createdDateTime: 0, medicineList: [ServiceProviderMedicine](), fileInfo: MakeEmptyServiceProviderFileInfoObj(), uploadedPrescriptionDocuments: [ServiceProviderFileInfo]())
 }
 
 func MakeEmptyServiceProviderFileInfoObj() -> ServiceProviderFileInfo {
-    return ServiceProviderFileInfo(FileName: "", FileType: "", MediaImage: "")
+    return ServiceProviderFileInfo(FileName: "", FileType: "", MediaImage: "", FileInfoId: "")
 }
 
 func MakeEmptyCustomeFileInfoObj() -> CustomerFileInfo {
-    return CustomerFileInfo(FileName: "", FileType: "", MediaImage: "")
+    return CustomerFileInfo(FileName: "", FileType: "", MediaImage: "", FileInfoId: "")
 }

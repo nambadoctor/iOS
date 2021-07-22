@@ -35,6 +35,13 @@ struct DoctorHome: View {
                             Image("folder.fill.badge.person.crop")
                             Text("My Patients")
                         }.tag(3)
+                        
+                        if self.doctorViewModel.selectedOrganization != nil {
+                            Text("All Patients").tabItem {
+                                Image("folder.fill.badge.person.crop")
+                                Text("All Patients")
+                            }.tag(3)
+                        }
 
 //                        DocNotificationDisplayView().tabItem {
 //                            Image("bell")
@@ -50,8 +57,8 @@ struct DoctorHome: View {
                     }
                 }
                 .environmentObject(doctorViewModel)
-                .navigationBarTitle("NambaDoctor", displayMode: .inline)
-                .navigationBarItems(trailing: navBarRefreshButton)
+                .navigationBarTitle("", displayMode: .inline)
+                .navigationBarItems(leading: navBarOrganizationPicker, trailing: navBarRefreshButton)
             }
         }.onAppear() {
             showAlertListener()
@@ -60,6 +67,36 @@ struct DoctorHome: View {
         }
         .alert(item: $alertItem) { alertItem in
             alertToShow(alertItem: alertItem)
+        }
+    }
+    
+    var navBarOrganizationPicker : some View {
+        Menu {
+            ForEach(self.doctorViewModel.organisations, id: \.organisationId) { org in
+                Button {
+                    self.doctorViewModel.newOrganisationSelected(organisation: org)
+                } label: {
+                    Text(org.name)
+                }
+            }
+            
+            Button {
+                self.doctorViewModel.newOrganisationSelected(organisation: nil)
+            } label: {
+                Text("All Organizations")
+            }
+        } label: {
+            HStack {
+                if self.doctorViewModel.selectedOrganization != nil {
+                    Text(self.doctorViewModel.selectedOrganization!.name)
+                        .frame(width: Helpers.textWidth(text: self.doctorViewModel.selectedOrganization!.name) + 50)
+                } else {
+                    Text("All Organizations")
+                        .frame(width: Helpers.textWidth(text: "All Organizations") + 50)
+                }
+                Image("chevron.down.circle")
+                Spacer()
+            }
         }
     }
 

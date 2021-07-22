@@ -15,4 +15,5 @@ struct ServiceProviderPrescription : Codable {
     var createdDateTime:Int64
     var medicineList:[ServiceProviderMedicine]
     var fileInfo:ServiceProviderFileInfo
+    var uploadedPrescriptionDocuments:[ServiceProviderFileInfo]
 }

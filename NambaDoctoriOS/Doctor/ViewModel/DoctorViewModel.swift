@@ -13,9 +13,16 @@ class DoctorViewModel: ObservableObject {
     @Published var appointments:[ServiceProviderAppointment] = [ServiceProviderAppointment]()
     @Published var availabilities:[ServiceProviderAvailability] = [ServiceProviderAvailability]()
     @Published var myPatients:[ServiceProviderMyPatientProfile] = [ServiceProviderMyPatientProfile]()
+    
+    @Published var organisations:[ServiceProviderOrganisation] = [ServiceProviderOrganisation]()
+    @Published var organisationsPatients:[ServiceProviderMyPatientProfile] = [ServiceProviderMyPatientProfile]()
 
+    @Published var selectedOrganization:ServiceProviderOrganisation? = nil
+    
+    
     @Published var hasAppointments:Bool = false
-    @Published var noPatients:Bool = false
+    @Published var noMyPatients:Bool = false
+    @Published var noOrganisationsPatients:Bool = false
     @Published var doctorLoggedIn:Bool = false
     
     @Published var takeToDetailedAppointment:Bool = false
@@ -55,6 +62,7 @@ class DoctorViewModel: ObservableObject {
             if serviceProviderObj != nil {
                 self.doctor = serviceProviderObj!
                 self.doctorLoggedIn = true
+                self.getServiceProvidersOrganizations()
                 self.retrieveAppointments()
                 self.getMyPatients()
                 self.updateFCMToken()
@@ -90,10 +98,37 @@ class DoctorViewModel: ObservableObject {
             CommonDefaultModifiers.hideLoader()
         }
     }
+    
+    func getServiceProvidersOrganizations () {
+        if self.doctor.organisationIds != nil {
+            ServiceProviderOrganizationService().getServiceProviderSpecificOrganizations(orgIds: self.doctor.organisationIds!) { organisations in
+                if organisations != nil && !organisations!.isEmpty {
+                    self.organisations = organisations!
+                } else {
+                    
+                }
+            }
+        }
+    }
 
     func retrieveAppointments () {
         CommonDefaultModifiers.showLoader(incomingLoadingText: "Getting your appointments")
         doctorAppointmentViewModel.getDocAppointments(serviceProviderId: doctor.serviceProviderID) { (appointments) in
+            if appointments != nil {
+                self.appointments.removeAll()
+                self.appointments = appointments!
+                self.datePickerVM.setDatesWithAppointments(appointments: appointments!)
+                self.dateChanged(selectedDate: self.datePickerVM.selectedDate)
+                CommonDefaultModifiers.hideLoader()
+            }
+            self.checkForEmptyList()
+            self.getNotificationSelectedAppointment()
+        }
+    }
+    
+    func retrieveAppointmentsForOrganization () {
+        CommonDefaultModifiers.showLoader(incomingLoadingText: "Getting your appointments")
+        doctorAppointmentViewModel.getOrganisationAppointments(serviceProviderId: doctor.serviceProviderID) { (appointments) in
             if appointments != nil {
                 self.appointments.removeAll()
                 self.appointments = appointments!
@@ -128,13 +163,41 @@ class DoctorViewModel: ObservableObject {
     
     func getMyPatients () {
         ServiceProviderCustomerService().getListOfPatients(serviceProviderId: self.doctor.serviceProviderID) { (listOfPatients) in
-
             if listOfPatients != nil && !(listOfPatients?.isEmpty ?? true){
                 self.myPatients = listOfPatients!
             } else {
-                print("HITTING THIS BRUH")
-                self.noPatients = true
+                self.noMyPatients = true
             }
+        }
+    }
+
+    func getPatientsOfOrganizations () {
+        ServiceProviderCustomerService().getCustomersOfOrganisation(organisation: self.selectedOrganization!.organisationId, serviceProviderId: self.doctor.serviceProviderID) { listOfOrganisationsPatients in
+            if listOfOrganisationsPatients != nil && !(listOfOrganisationsPatients?.isEmpty ?? true){
+                self.organisationsPatients = listOfOrganisationsPatients!
+            } else {
+                self.noMyPatients = true
+            }
+        }
+    }
+    
+    func getPatientOfServiceProviderInOrganisation () {
+        ServiceProviderCustomerService().GetCustomersOfServiceProviderInOrganisation(organisation: self.selectedOrganization!.organisationId, serviceProviderId: self.doctor.serviceProviderID)  { listOfPatients in
+            if listOfPatients != nil && !(listOfPatients?.isEmpty ?? true) {
+                self.myPatients = listOfPatients!
+            } else {
+                self.noOrganisationsPatients = true
+            }
+        }
+    }
+    
+    func newOrganisationSelected (organisation:ServiceProviderOrganisation?) {
+        self.selectedOrganization = organisation
+        
+        if organisation != nil {
+            CommonDefaultModifiers.showLoader(incomingLoadingText: "Loading \(organisation?.name)")
+        } else {
+            
         }
     }
 

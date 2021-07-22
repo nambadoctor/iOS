@@ -12,4 +12,5 @@ struct ServiceProviderFileInfo : Codable {
     var FileName:String
     var FileType:String
     var MediaImage:String //base encoded 64 string...
+    var FileInfoId:String
 }

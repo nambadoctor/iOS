@@ -15,7 +15,8 @@ class CustomerPrescriptionMapper {
             customerID: prescription.customerID.toString,
             createdDateTime: prescription.createdDateTime.toInt64,
             medicineList: CustomerMedicineMapper.grpcMedicineToLocal(medicines: prescription.medicineList),
-            fileInfo: CustomerFileInfoMapper.grpcFileInfoToLocal(fileInfo: prescription.fileInfo))
+            fileInfo: CustomerFileInfoMapper.grpcFileInfoToLocal(fileInfo: prescription.fileInfo),
+            uploadedPrescriptionDocuments: CustomerFileInfoMapper.grpcFileInfoToLocal(fileInfos: prescription.uploadedPrescriptionDocuments.fileInfos))
     }
     
     func localPrescriptionToGrpc (prescription: CustomerPrescription) -> Nd_V1_CustomerPrescriptionMessage {
@@ -26,6 +27,7 @@ class CustomerPrescriptionMapper {
             $0.createdDateTime = prescription.createdDateTime.toProto
             $0.medicineList = CustomerMedicineMapper.localMedicineToGrpc(medicines: prescription.medicineList)
             $0.fileInfo = CustomerFileInfoMapper.localFileInfoToGrpc(fileInfo: prescription.fileInfo)
+            $0.uploadedPrescriptionDocuments = CustomerFileInfoMapper.localFileInfoToGrpc(fileInfos: prescription.uploadedPrescriptionDocuments)
         }
     }
 }

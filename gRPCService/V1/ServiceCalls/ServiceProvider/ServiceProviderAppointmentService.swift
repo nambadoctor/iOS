@@ -16,6 +16,9 @@ protocol ServiceProviderAppointmentServiceProtocol {
                                 completion: @escaping (_ updated:Bool)->())
     
     func getSingleAppointment (appointmentId:String, serviceProviderId:String, _ completion: @escaping ((ServiceProviderAppointment?) -> ()))
+    
+    func getOrganisationAppointments (serviceProviderId:String,
+                             completion: @escaping ((_ appointmentList:[ServiceProviderAppointment]?)->()))
 }
 
 class ServiceProviderAppointmentService : ServiceProviderAppointmentServiceProtocol {
@@ -147,5 +150,36 @@ class ServiceProviderAppointmentService : ServiceProviderAppointmentServiceProto
         }
 
     }
+    
+    func getOrganisationAppointments (serviceProviderId:String,
+                             completion: @escaping ((_ appointmentList:[ServiceProviderAppointment]?)->())) {
+        let channel = ChannelManager.sharedChannelManager.getChannel()
+        let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
+        
+        let appointmentClient = Nd_V1_ServiceProviderAppointmentWorkerV1Client(channel: channel)
+        
+        let request = Nd_V1_IdMessage.with {
+            $0.id = serviceProviderId.toProto
+        }
+
+        let getDoctorsAppointment = appointmentClient.getOrganisationAppointments(request, callOptions: callOptions)
+        
+        DispatchQueue.global().async {
+            do {
+                let response = try getDoctorsAppointment.response.wait()
+                var appointmentList = self.appointmentObjectMapper.grpcAppointmentToLocal(appointment: response.appointments)
+                print("Doctor Organization Appointment Client Success \(appointmentList.count)")
+                DispatchQueue.main.async {
+                    completion(appointmentList)
+                }
+            } catch {
+                print("Doctor Organization Appointment Client Failed")
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            }
+        }
+    }
+    
     
 }

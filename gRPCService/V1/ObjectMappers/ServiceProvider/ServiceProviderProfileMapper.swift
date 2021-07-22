@@ -36,6 +36,7 @@ class ServiceProviderProfileMapper {
             lastModifiedDate: profile.lastModifedDate.toInt64,
             serviceProviderDeviceInfo: DeviceInformationMapper.GrpcToLocal(deviceInfo: profile.serviceProviderDeviceInfo),
             additionalInfo: ServiceProviderAdditionalInfoMapper.grpcToLocal(additionalInfo: profile.additionalInfo),
+            organisationIds: profile.organisationIds.convert(),
             alternateNotificationInfos: ServiceProviderAlternateNotificationInfoMapper.GrpcToLocal(alternateNotif: profile.alternateNotificationInfos))
     }
     
@@ -77,7 +78,9 @@ class ServiceProviderProfileMapper {
             if profile.lastModifiedDate != nil { $0.lastModifedDate = profile.lastModifiedDate!.toProto }
             if profile.serviceProviderDeviceInfo != nil { $0.serviceProviderDeviceInfo = DeviceInformationMapper.LocalToGrpc(deviceInfo: profile.serviceProviderDeviceInfo!) }
             if profile.additionalInfo != nil {$0.additionalInfo = ServiceProviderAdditionalInfoMapper.localToGrpc(additionalInfo: profile.additionalInfo!)}
+            if profile.organisationIds != nil { $0.organisationIds = profile.organisationIds!.convert() }
             if profile.alternateNotificationInfos != nil {$0.alternateNotificationInfos = ServiceProviderAlternateNotificationInfoMapper.LocalToGrpc(alternateNotif: profile.alternateNotificationInfos!)}
+            
         }
     }
 }

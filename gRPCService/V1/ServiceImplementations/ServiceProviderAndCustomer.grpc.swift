@@ -25,1227 +25,6 @@ import NIO
 import SwiftProtobuf
 
 
-/// Usage: instantiate `Nd_V1_ServiceProviderAppointmentWorkerV1Client`, then call methods of this protocol to make API calls.
-internal protocol Nd_V1_ServiceProviderAppointmentWorkerV1ClientProtocol: GRPCClient {
-  var serviceName: String { get }
-  var interceptors: Nd_V1_ServiceProviderAppointmentWorkerV1ClientInterceptorFactoryProtocol? { get }
-
-  func setAppointment(
-    _ request: Nd_V1_ServiceProviderAppointmentMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_ServiceProviderAppointmentMessage, Nd_V1_IdMessage>
-
-  func getAppointment(
-    _ request: Nd_V1_ServiceProviderAppointmentRequestMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_ServiceProviderAppointmentRequestMessage, Nd_V1_ServiceProviderAppointmentMessage>
-
-  func getAppointments(
-    _ request: Nd_V1_IdMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderAppointmentList>
-
-  func getCustomerAppointments(
-    _ request: Nd_V1_ServiceProviderCustomerAppointmentsRequestMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_ServiceProviderCustomerAppointmentsRequestMessage, Nd_V1_ServiceProviderAppointmentList>
-
-  func getAppointmentPayments(
-    _ request: Nd_V1_ServiceProviderAppointmentRequestMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_ServiceProviderAppointmentRequestMessage, Nd_V1_ServiceProviderPaymentListMessage>
-
-  func getPayments(
-    _ request: Nd_V1_IdMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderPaymentListMessage>
-}
-
-extension Nd_V1_ServiceProviderAppointmentWorkerV1ClientProtocol {
-  internal var serviceName: String {
-    return "nd.v1.ServiceProviderAppointmentWorkerV1"
-  }
-
-  /// Unary call to SetAppointment
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to SetAppointment.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func setAppointment(
-    _ request: Nd_V1_ServiceProviderAppointmentMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_ServiceProviderAppointmentMessage, Nd_V1_IdMessage> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderAppointmentWorkerV1/SetAppointment",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeSetAppointmentInterceptors() ?? []
-    )
-  }
-
-  /// Unary call to GetAppointment
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetAppointment.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func getAppointment(
-    _ request: Nd_V1_ServiceProviderAppointmentRequestMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_ServiceProviderAppointmentRequestMessage, Nd_V1_ServiceProviderAppointmentMessage> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderAppointmentWorkerV1/GetAppointment",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetAppointmentInterceptors() ?? []
-    )
-  }
-
-  /// Unary call to GetAppointments
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetAppointments.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func getAppointments(
-    _ request: Nd_V1_IdMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderAppointmentList> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderAppointmentWorkerV1/GetAppointments",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetAppointmentsInterceptors() ?? []
-    )
-  }
-
-  /// Unary call to GetCustomerAppointments
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetCustomerAppointments.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func getCustomerAppointments(
-    _ request: Nd_V1_ServiceProviderCustomerAppointmentsRequestMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_ServiceProviderCustomerAppointmentsRequestMessage, Nd_V1_ServiceProviderAppointmentList> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderAppointmentWorkerV1/GetCustomerAppointments",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetCustomerAppointmentsInterceptors() ?? []
-    )
-  }
-
-  /// Unary call to GetAppointmentPayments
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetAppointmentPayments.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func getAppointmentPayments(
-    _ request: Nd_V1_ServiceProviderAppointmentRequestMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_ServiceProviderAppointmentRequestMessage, Nd_V1_ServiceProviderPaymentListMessage> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderAppointmentWorkerV1/GetAppointmentPayments",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetAppointmentPaymentsInterceptors() ?? []
-    )
-  }
-
-  /// Unary call to GetPayments
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetPayments.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func getPayments(
-    _ request: Nd_V1_IdMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderPaymentListMessage> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderAppointmentWorkerV1/GetPayments",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetPaymentsInterceptors() ?? []
-    )
-  }
-}
-
-internal protocol Nd_V1_ServiceProviderAppointmentWorkerV1ClientInterceptorFactoryProtocol {
-
-  /// - Returns: Interceptors to use when invoking 'setAppointment'.
-  func makeSetAppointmentInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderAppointmentMessage, Nd_V1_IdMessage>]
-
-  /// - Returns: Interceptors to use when invoking 'getAppointment'.
-  func makeGetAppointmentInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderAppointmentRequestMessage, Nd_V1_ServiceProviderAppointmentMessage>]
-
-  /// - Returns: Interceptors to use when invoking 'getAppointments'.
-  func makeGetAppointmentsInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderAppointmentList>]
-
-  /// - Returns: Interceptors to use when invoking 'getCustomerAppointments'.
-  func makeGetCustomerAppointmentsInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderCustomerAppointmentsRequestMessage, Nd_V1_ServiceProviderAppointmentList>]
-
-  /// - Returns: Interceptors to use when invoking 'getAppointmentPayments'.
-  func makeGetAppointmentPaymentsInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderAppointmentRequestMessage, Nd_V1_ServiceProviderPaymentListMessage>]
-
-  /// - Returns: Interceptors to use when invoking 'getPayments'.
-  func makeGetPaymentsInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderPaymentListMessage>]
-}
-
-internal final class Nd_V1_ServiceProviderAppointmentWorkerV1Client: Nd_V1_ServiceProviderAppointmentWorkerV1ClientProtocol {
-  internal let channel: GRPCChannel
-  internal var defaultCallOptions: CallOptions
-  internal var interceptors: Nd_V1_ServiceProviderAppointmentWorkerV1ClientInterceptorFactoryProtocol?
-
-  /// Creates a client for the nd.v1.ServiceProviderAppointmentWorkerV1 service.
-  ///
-  /// - Parameters:
-  ///   - channel: `GRPCChannel` to the service host.
-  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
-  ///   - interceptors: A factory providing interceptors for each RPC.
-  internal init(
-    channel: GRPCChannel,
-    defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Nd_V1_ServiceProviderAppointmentWorkerV1ClientInterceptorFactoryProtocol? = nil
-  ) {
-    self.channel = channel
-    self.defaultCallOptions = defaultCallOptions
-    self.interceptors = interceptors
-  }
-}
-
-/// Usage: instantiate `Nd_V1_ServiceProviderCustomerWorkerV1Client`, then call methods of this protocol to make API calls.
-internal protocol Nd_V1_ServiceProviderCustomerWorkerV1ClientProtocol: GRPCClient {
-  var serviceName: String { get }
-  var interceptors: Nd_V1_ServiceProviderCustomerWorkerV1ClientInterceptorFactoryProtocol? { get }
-
-  func setCustomerProfile(
-    _ request: Nd_V1_ServiceProviderCustomerProfileMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_ServiceProviderCustomerProfileMessage, Nd_V1_IdMessage>
-
-  func getCustomerProfile(
-    _ request: Nd_V1_IdMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderCustomerProfileMessage>
-
-  func getCustomers(
-    _ request: Nd_V1_IdMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderMyPatientsProfileMessageList>
-
-  func getCustomerAppointmentSummary(
-    _ request: Nd_V1_ServiceProviderAppointmentSummaryRequestMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_ServiceProviderAppointmentSummaryRequestMessage, Nd_V1_ServiceProviderAppointmentSummaryListMessage>
-
-  func getCustomersOfOrganisation(
-    _ request: Nd_V1_ServiceProviderInOrganisationRequestMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_ServiceProviderInOrganisationRequestMessage, Nd_V1_ServiceProviderMyPatientsProfileMessageList>
-
-  func getCustomersOfServiceProviderInOrganisation(
-    _ request: Nd_V1_ServiceProviderInOrganisationRequestMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_ServiceProviderInOrganisationRequestMessage, Nd_V1_ServiceProviderMyPatientsProfileMessageList>
-}
-
-extension Nd_V1_ServiceProviderCustomerWorkerV1ClientProtocol {
-  internal var serviceName: String {
-    return "nd.v1.ServiceProviderCustomerWorkerV1"
-  }
-
-  /// Unary call to SetCustomerProfile
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to SetCustomerProfile.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func setCustomerProfile(
-    _ request: Nd_V1_ServiceProviderCustomerProfileMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_ServiceProviderCustomerProfileMessage, Nd_V1_IdMessage> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderCustomerWorkerV1/SetCustomerProfile",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeSetCustomerProfileInterceptors() ?? []
-    )
-  }
-
-  /// Unary call to GetCustomerProfile
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetCustomerProfile.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func getCustomerProfile(
-    _ request: Nd_V1_IdMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderCustomerProfileMessage> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderCustomerWorkerV1/GetCustomerProfile",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetCustomerProfileInterceptors() ?? []
-    )
-  }
-
-  /// Unary call to GetCustomers
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetCustomers.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func getCustomers(
-    _ request: Nd_V1_IdMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderMyPatientsProfileMessageList> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderCustomerWorkerV1/GetCustomers",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetCustomersInterceptors() ?? []
-    )
-  }
-
-  /// Unary call to GetCustomerAppointmentSummary
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetCustomerAppointmentSummary.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func getCustomerAppointmentSummary(
-    _ request: Nd_V1_ServiceProviderAppointmentSummaryRequestMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_ServiceProviderAppointmentSummaryRequestMessage, Nd_V1_ServiceProviderAppointmentSummaryListMessage> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderCustomerWorkerV1/GetCustomerAppointmentSummary",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetCustomerAppointmentSummaryInterceptors() ?? []
-    )
-  }
-
-  /// Unary call to GetCustomersOfOrganisation
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetCustomersOfOrganisation.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func getCustomersOfOrganisation(
-    _ request: Nd_V1_ServiceProviderInOrganisationRequestMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_ServiceProviderInOrganisationRequestMessage, Nd_V1_ServiceProviderMyPatientsProfileMessageList> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderCustomerWorkerV1/GetCustomersOfOrganisation",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetCustomersOfOrganisationInterceptors() ?? []
-    )
-  }
-
-  /// Unary call to GetCustomersOfServiceProviderInOrganisation
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetCustomersOfServiceProviderInOrganisation.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func getCustomersOfServiceProviderInOrganisation(
-    _ request: Nd_V1_ServiceProviderInOrganisationRequestMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_ServiceProviderInOrganisationRequestMessage, Nd_V1_ServiceProviderMyPatientsProfileMessageList> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderCustomerWorkerV1/GetCustomersOfServiceProviderInOrganisation",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetCustomersOfServiceProviderInOrganisationInterceptors() ?? []
-    )
-  }
-}
-
-internal protocol Nd_V1_ServiceProviderCustomerWorkerV1ClientInterceptorFactoryProtocol {
-
-  /// - Returns: Interceptors to use when invoking 'setCustomerProfile'.
-  func makeSetCustomerProfileInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderCustomerProfileMessage, Nd_V1_IdMessage>]
-
-  /// - Returns: Interceptors to use when invoking 'getCustomerProfile'.
-  func makeGetCustomerProfileInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderCustomerProfileMessage>]
-
-  /// - Returns: Interceptors to use when invoking 'getCustomers'.
-  func makeGetCustomersInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderMyPatientsProfileMessageList>]
-
-  /// - Returns: Interceptors to use when invoking 'getCustomerAppointmentSummary'.
-  func makeGetCustomerAppointmentSummaryInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderAppointmentSummaryRequestMessage, Nd_V1_ServiceProviderAppointmentSummaryListMessage>]
-
-  /// - Returns: Interceptors to use when invoking 'getCustomersOfOrganisation'.
-  func makeGetCustomersOfOrganisationInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderInOrganisationRequestMessage, Nd_V1_ServiceProviderMyPatientsProfileMessageList>]
-
-  /// - Returns: Interceptors to use when invoking 'getCustomersOfServiceProviderInOrganisation'.
-  func makeGetCustomersOfServiceProviderInOrganisationInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderInOrganisationRequestMessage, Nd_V1_ServiceProviderMyPatientsProfileMessageList>]
-}
-
-internal final class Nd_V1_ServiceProviderCustomerWorkerV1Client: Nd_V1_ServiceProviderCustomerWorkerV1ClientProtocol {
-  internal let channel: GRPCChannel
-  internal var defaultCallOptions: CallOptions
-  internal var interceptors: Nd_V1_ServiceProviderCustomerWorkerV1ClientInterceptorFactoryProtocol?
-
-  /// Creates a client for the nd.v1.ServiceProviderCustomerWorkerV1 service.
-  ///
-  /// - Parameters:
-  ///   - channel: `GRPCChannel` to the service host.
-  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
-  ///   - interceptors: A factory providing interceptors for each RPC.
-  internal init(
-    channel: GRPCChannel,
-    defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Nd_V1_ServiceProviderCustomerWorkerV1ClientInterceptorFactoryProtocol? = nil
-  ) {
-    self.channel = channel
-    self.defaultCallOptions = defaultCallOptions
-    self.interceptors = interceptors
-  }
-}
-
-/// Usage: instantiate `Nd_V1_ServiceProviderOrganisationWorkerV1Client`, then call methods of this protocol to make API calls.
-internal protocol Nd_V1_ServiceProviderOrganisationWorkerV1ClientProtocol: GRPCClient {
-  var serviceName: String { get }
-  var interceptors: Nd_V1_ServiceProviderOrganisationWorkerV1ClientInterceptorFactoryProtocol? { get }
-
-  func setOrganisation(
-    _ request: Nd_V1_ServiceProviderOrganisationMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_ServiceProviderOrganisationMessage, Nd_V1_IdMessage>
-
-  func getOrganisation(
-    _ request: Nd_V1_IdMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderOrganisationMessage>
-
-  func getOrganisations(
-    _ request: Nd_V1_IdMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderOrganisationListMessage>
-
-  func getSpecificOrganisations(
-    _ request: Nd_V1_StringArrayMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_StringArrayMessage, Nd_V1_ServiceProviderOrganisationListMessage>
-}
-
-extension Nd_V1_ServiceProviderOrganisationWorkerV1ClientProtocol {
-  internal var serviceName: String {
-    return "nd.v1.ServiceProviderOrganisationWorkerV1"
-  }
-
-  /// Unary call to SetOrganisation
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to SetOrganisation.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func setOrganisation(
-    _ request: Nd_V1_ServiceProviderOrganisationMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_ServiceProviderOrganisationMessage, Nd_V1_IdMessage> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderOrganisationWorkerV1/SetOrganisation",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeSetOrganisationInterceptors() ?? []
-    )
-  }
-
-  /// Unary call to GetOrganisation
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetOrganisation.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func getOrganisation(
-    _ request: Nd_V1_IdMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderOrganisationMessage> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderOrganisationWorkerV1/GetOrganisation",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetOrganisationInterceptors() ?? []
-    )
-  }
-
-  /// Unary call to GetOrganisations
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetOrganisations.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func getOrganisations(
-    _ request: Nd_V1_IdMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderOrganisationListMessage> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderOrganisationWorkerV1/GetOrganisations",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetOrganisationsInterceptors() ?? []
-    )
-  }
-
-  /// Unary call to GetSpecificOrganisations
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetSpecificOrganisations.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func getSpecificOrganisations(
-    _ request: Nd_V1_StringArrayMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_StringArrayMessage, Nd_V1_ServiceProviderOrganisationListMessage> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderOrganisationWorkerV1/GetSpecificOrganisations",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetSpecificOrganisationsInterceptors() ?? []
-    )
-  }
-}
-
-internal protocol Nd_V1_ServiceProviderOrganisationWorkerV1ClientInterceptorFactoryProtocol {
-
-  /// - Returns: Interceptors to use when invoking 'setOrganisation'.
-  func makeSetOrganisationInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderOrganisationMessage, Nd_V1_IdMessage>]
-
-  /// - Returns: Interceptors to use when invoking 'getOrganisation'.
-  func makeGetOrganisationInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderOrganisationMessage>]
-
-  /// - Returns: Interceptors to use when invoking 'getOrganisations'.
-  func makeGetOrganisationsInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderOrganisationListMessage>]
-
-  /// - Returns: Interceptors to use when invoking 'getSpecificOrganisations'.
-  func makeGetSpecificOrganisationsInterceptors() -> [ClientInterceptor<Nd_V1_StringArrayMessage, Nd_V1_ServiceProviderOrganisationListMessage>]
-}
-
-internal final class Nd_V1_ServiceProviderOrganisationWorkerV1Client: Nd_V1_ServiceProviderOrganisationWorkerV1ClientProtocol {
-  internal let channel: GRPCChannel
-  internal var defaultCallOptions: CallOptions
-  internal var interceptors: Nd_V1_ServiceProviderOrganisationWorkerV1ClientInterceptorFactoryProtocol?
-
-  /// Creates a client for the nd.v1.ServiceProviderOrganisationWorkerV1 service.
-  ///
-  /// - Parameters:
-  ///   - channel: `GRPCChannel` to the service host.
-  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
-  ///   - interceptors: A factory providing interceptors for each RPC.
-  internal init(
-    channel: GRPCChannel,
-    defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Nd_V1_ServiceProviderOrganisationWorkerV1ClientInterceptorFactoryProtocol? = nil
-  ) {
-    self.channel = channel
-    self.defaultCallOptions = defaultCallOptions
-    self.interceptors = interceptors
-  }
-}
-
-/// Usage: instantiate `Nd_V1_ServiceProviderPrescriptionWorkerV1Client`, then call methods of this protocol to make API calls.
-internal protocol Nd_V1_ServiceProviderPrescriptionWorkerV1ClientProtocol: GRPCClient {
-  var serviceName: String { get }
-  var interceptors: Nd_V1_ServiceProviderPrescriptionWorkerV1ClientInterceptorFactoryProtocol? { get }
-
-  func getPrescription(
-    _ request: Nd_V1_ServiceProviderServiceRequestRequestMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_ServiceProviderServiceRequestRequestMessage, Nd_V1_ServiceProviderPrescriptionMessage>
-
-  func setPrescription(
-    _ request: Nd_V1_ServiceProviderPrescriptionMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_ServiceProviderPrescriptionMessage, Nd_V1_IdMessage>
-
-  func downloadPrescriptionMedia(
-    _ request: Nd_V1_IdMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_StringMessage>
-
-  func getPrescriptionPdf(
-    _ request: Nd_V1_RequestPdf,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_RequestPdf, Nd_V1_ResponsePdf>
-}
-
-extension Nd_V1_ServiceProviderPrescriptionWorkerV1ClientProtocol {
-  internal var serviceName: String {
-    return "nd.v1.ServiceProviderPrescriptionWorkerV1"
-  }
-
-  /// Unary call to GetPrescription
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetPrescription.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func getPrescription(
-    _ request: Nd_V1_ServiceProviderServiceRequestRequestMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_ServiceProviderServiceRequestRequestMessage, Nd_V1_ServiceProviderPrescriptionMessage> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderPrescriptionWorkerV1/GetPrescription",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetPrescriptionInterceptors() ?? []
-    )
-  }
-
-  /// Unary call to SetPrescription
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to SetPrescription.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func setPrescription(
-    _ request: Nd_V1_ServiceProviderPrescriptionMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_ServiceProviderPrescriptionMessage, Nd_V1_IdMessage> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderPrescriptionWorkerV1/SetPrescription",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeSetPrescriptionInterceptors() ?? []
-    )
-  }
-
-  /// Unary call to DownloadPrescriptionMedia
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to DownloadPrescriptionMedia.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func downloadPrescriptionMedia(
-    _ request: Nd_V1_IdMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_StringMessage> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderPrescriptionWorkerV1/DownloadPrescriptionMedia",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeDownloadPrescriptionMediaInterceptors() ?? []
-    )
-  }
-
-  /// Unary call to GetPrescriptionPdf
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetPrescriptionPdf.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func getPrescriptionPdf(
-    _ request: Nd_V1_RequestPdf,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_RequestPdf, Nd_V1_ResponsePdf> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderPrescriptionWorkerV1/GetPrescriptionPdf",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetPrescriptionPdfInterceptors() ?? []
-    )
-  }
-}
-
-internal protocol Nd_V1_ServiceProviderPrescriptionWorkerV1ClientInterceptorFactoryProtocol {
-
-  /// - Returns: Interceptors to use when invoking 'getPrescription'.
-  func makeGetPrescriptionInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderServiceRequestRequestMessage, Nd_V1_ServiceProviderPrescriptionMessage>]
-
-  /// - Returns: Interceptors to use when invoking 'setPrescription'.
-  func makeSetPrescriptionInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderPrescriptionMessage, Nd_V1_IdMessage>]
-
-  /// - Returns: Interceptors to use when invoking 'downloadPrescriptionMedia'.
-  func makeDownloadPrescriptionMediaInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_StringMessage>]
-
-  /// - Returns: Interceptors to use when invoking 'getPrescriptionPdf'.
-  func makeGetPrescriptionPdfInterceptors() -> [ClientInterceptor<Nd_V1_RequestPdf, Nd_V1_ResponsePdf>]
-}
-
-internal final class Nd_V1_ServiceProviderPrescriptionWorkerV1Client: Nd_V1_ServiceProviderPrescriptionWorkerV1ClientProtocol {
-  internal let channel: GRPCChannel
-  internal var defaultCallOptions: CallOptions
-  internal var interceptors: Nd_V1_ServiceProviderPrescriptionWorkerV1ClientInterceptorFactoryProtocol?
-
-  /// Creates a client for the nd.v1.ServiceProviderPrescriptionWorkerV1 service.
-  ///
-  /// - Parameters:
-  ///   - channel: `GRPCChannel` to the service host.
-  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
-  ///   - interceptors: A factory providing interceptors for each RPC.
-  internal init(
-    channel: GRPCChannel,
-    defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Nd_V1_ServiceProviderPrescriptionWorkerV1ClientInterceptorFactoryProtocol? = nil
-  ) {
-    self.channel = channel
-    self.defaultCallOptions = defaultCallOptions
-    self.interceptors = interceptors
-  }
-}
-
-/// Usage: instantiate `Nd_V1_ServiceProviderReportWorkerV1Client`, then call methods of this protocol to make API calls.
-internal protocol Nd_V1_ServiceProviderReportWorkerV1ClientProtocol: GRPCClient {
-  var serviceName: String { get }
-  var interceptors: Nd_V1_ServiceProviderReportWorkerV1ClientInterceptorFactoryProtocol? { get }
-
-  func getCustomerReports(
-    _ request: Nd_V1_IdMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderReportListMessage>
-
-  func getAppointmentReports(
-    _ request: Nd_V1_ServiceProviderServiceRequestRequestMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_ServiceProviderServiceRequestRequestMessage, Nd_V1_ServiceProviderReportListMessage>
-
-  func setReport(
-    _ request: Nd_V1_ServiceProviderReportUploadMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_ServiceProviderReportUploadMessage, Nd_V1_IdMessage>
-
-  func downloadReportMedia(
-    _ request: Nd_V1_IdMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_StringMessage>
-}
-
-extension Nd_V1_ServiceProviderReportWorkerV1ClientProtocol {
-  internal var serviceName: String {
-    return "nd.v1.ServiceProviderReportWorkerV1"
-  }
-
-  /// Unary call to GetCustomerReports
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetCustomerReports.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func getCustomerReports(
-    _ request: Nd_V1_IdMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderReportListMessage> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderReportWorkerV1/GetCustomerReports",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetCustomerReportsInterceptors() ?? []
-    )
-  }
-
-  /// Unary call to GetAppointmentReports
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetAppointmentReports.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func getAppointmentReports(
-    _ request: Nd_V1_ServiceProviderServiceRequestRequestMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_ServiceProviderServiceRequestRequestMessage, Nd_V1_ServiceProviderReportListMessage> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderReportWorkerV1/GetAppointmentReports",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetAppointmentReportsInterceptors() ?? []
-    )
-  }
-
-  /// Unary call to SetReport
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to SetReport.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func setReport(
-    _ request: Nd_V1_ServiceProviderReportUploadMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_ServiceProviderReportUploadMessage, Nd_V1_IdMessage> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderReportWorkerV1/SetReport",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeSetReportInterceptors() ?? []
-    )
-  }
-
-  /// Unary call to DownloadReportMedia
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to DownloadReportMedia.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func downloadReportMedia(
-    _ request: Nd_V1_IdMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_StringMessage> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderReportWorkerV1/DownloadReportMedia",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeDownloadReportMediaInterceptors() ?? []
-    )
-  }
-}
-
-internal protocol Nd_V1_ServiceProviderReportWorkerV1ClientInterceptorFactoryProtocol {
-
-  /// - Returns: Interceptors to use when invoking 'getCustomerReports'.
-  func makeGetCustomerReportsInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderReportListMessage>]
-
-  /// - Returns: Interceptors to use when invoking 'getAppointmentReports'.
-  func makeGetAppointmentReportsInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderServiceRequestRequestMessage, Nd_V1_ServiceProviderReportListMessage>]
-
-  /// - Returns: Interceptors to use when invoking 'setReport'.
-  func makeSetReportInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderReportUploadMessage, Nd_V1_IdMessage>]
-
-  /// - Returns: Interceptors to use when invoking 'downloadReportMedia'.
-  func makeDownloadReportMediaInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_StringMessage>]
-}
-
-internal final class Nd_V1_ServiceProviderReportWorkerV1Client: Nd_V1_ServiceProviderReportWorkerV1ClientProtocol {
-  internal let channel: GRPCChannel
-  internal var defaultCallOptions: CallOptions
-  internal var interceptors: Nd_V1_ServiceProviderReportWorkerV1ClientInterceptorFactoryProtocol?
-
-  /// Creates a client for the nd.v1.ServiceProviderReportWorkerV1 service.
-  ///
-  /// - Parameters:
-  ///   - channel: `GRPCChannel` to the service host.
-  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
-  ///   - interceptors: A factory providing interceptors for each RPC.
-  internal init(
-    channel: GRPCChannel,
-    defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Nd_V1_ServiceProviderReportWorkerV1ClientInterceptorFactoryProtocol? = nil
-  ) {
-    self.channel = channel
-    self.defaultCallOptions = defaultCallOptions
-    self.interceptors = interceptors
-  }
-}
-
-/// Usage: instantiate `Nd_V1_ServiceProviderWorkerV1Client`, then call methods of this protocol to make API calls.
-internal protocol Nd_V1_ServiceProviderWorkerV1ClientProtocol: GRPCClient {
-  var serviceName: String { get }
-  var interceptors: Nd_V1_ServiceProviderWorkerV1ClientInterceptorFactoryProtocol? { get }
-
-  func setServiceProviderProfile(
-    _ request: Nd_V1_ServiceProviderProfileMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_ServiceProviderProfileMessage, Nd_V1_IdMessage>
-
-  func getServiceProviderProfile(
-    _ request: Nd_V1_IdMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderProfileMessage>
-
-  func setServiceProviderAvailability(
-    _ request: Nd_V1_ServiceProviderAvailabilityRequest,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_ServiceProviderAvailabilityRequest, Nd_V1_IdMessage>
-
-  func getServiceProviderAvailablity(
-    _ request: Nd_V1_IdMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderAvailabilityConfigList>
-
-  func getServiceProviderAvailableSlots(
-    _ request: Nd_V1_IdMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderGeneratedSlotListMessage>
-
-  func getServiceProviderAvailablityForOrganisation(
-    _ request: Nd_V1_ServiceProviderInOrganisationRequestMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_ServiceProviderInOrganisationRequestMessage, Nd_V1_ServiceProviderAvailabilityConfigList>
-
-  func getServiceProviderAvailableSlotsForOrganisation(
-    _ request: Nd_V1_ServiceProviderInOrganisationRequestMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_ServiceProviderInOrganisationRequestMessage, Nd_V1_ServiceProviderGeneratedSlotListMessage>
-
-  func getAutoFillMedicines(
-    _ request: Nd_V1_IdMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderAutofillMedicineListMessage>
-
-  func setAutoFillMedicines(
-    _ request: Nd_V1_ServiceProviderMedicineMessageList,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_ServiceProviderMedicineMessageList, Nd_V1_IdMessage>
-
-  func getServiceProviders(
-    _ request: Nd_V1_IdMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderProfileListMessage>
-
-  func getServiceProvidersOfOrganisation(
-    _ request: Nd_V1_IdMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderProfileListMessage>
-}
-
-extension Nd_V1_ServiceProviderWorkerV1ClientProtocol {
-  internal var serviceName: String {
-    return "nd.v1.ServiceProviderWorkerV1"
-  }
-
-  /// Unary call to SetServiceProviderProfile
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to SetServiceProviderProfile.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func setServiceProviderProfile(
-    _ request: Nd_V1_ServiceProviderProfileMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_ServiceProviderProfileMessage, Nd_V1_IdMessage> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderWorkerV1/SetServiceProviderProfile",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeSetServiceProviderProfileInterceptors() ?? []
-    )
-  }
-
-  /// Unary call to GetServiceProviderProfile
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetServiceProviderProfile.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func getServiceProviderProfile(
-    _ request: Nd_V1_IdMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderProfileMessage> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderWorkerV1/GetServiceProviderProfile",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetServiceProviderProfileInterceptors() ?? []
-    )
-  }
-
-  /// Unary call to SetServiceProviderAvailability
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to SetServiceProviderAvailability.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func setServiceProviderAvailability(
-    _ request: Nd_V1_ServiceProviderAvailabilityRequest,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_ServiceProviderAvailabilityRequest, Nd_V1_IdMessage> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderWorkerV1/SetServiceProviderAvailability",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeSetServiceProviderAvailabilityInterceptors() ?? []
-    )
-  }
-
-  /// Unary call to GetServiceProviderAvailablity
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetServiceProviderAvailablity.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func getServiceProviderAvailablity(
-    _ request: Nd_V1_IdMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderAvailabilityConfigList> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderWorkerV1/GetServiceProviderAvailablity",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetServiceProviderAvailablityInterceptors() ?? []
-    )
-  }
-
-  /// Unary call to GetServiceProviderAvailableSlots
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetServiceProviderAvailableSlots.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func getServiceProviderAvailableSlots(
-    _ request: Nd_V1_IdMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderGeneratedSlotListMessage> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderWorkerV1/GetServiceProviderAvailableSlots",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetServiceProviderAvailableSlotsInterceptors() ?? []
-    )
-  }
-
-  /// Unary call to GetServiceProviderAvailablityForOrganisation
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetServiceProviderAvailablityForOrganisation.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func getServiceProviderAvailablityForOrganisation(
-    _ request: Nd_V1_ServiceProviderInOrganisationRequestMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_ServiceProviderInOrganisationRequestMessage, Nd_V1_ServiceProviderAvailabilityConfigList> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderWorkerV1/GetServiceProviderAvailablityForOrganisation",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetServiceProviderAvailablityForOrganisationInterceptors() ?? []
-    )
-  }
-
-  /// Unary call to GetServiceProviderAvailableSlotsForOrganisation
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetServiceProviderAvailableSlotsForOrganisation.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func getServiceProviderAvailableSlotsForOrganisation(
-    _ request: Nd_V1_ServiceProviderInOrganisationRequestMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_ServiceProviderInOrganisationRequestMessage, Nd_V1_ServiceProviderGeneratedSlotListMessage> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderWorkerV1/GetServiceProviderAvailableSlotsForOrganisation",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetServiceProviderAvailableSlotsForOrganisationInterceptors() ?? []
-    )
-  }
-
-  /// Unary call to GetAutoFillMedicines
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetAutoFillMedicines.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func getAutoFillMedicines(
-    _ request: Nd_V1_IdMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderAutofillMedicineListMessage> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderWorkerV1/GetAutoFillMedicines",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetAutoFillMedicinesInterceptors() ?? []
-    )
-  }
-
-  /// Unary call to SetAutoFillMedicines
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to SetAutoFillMedicines.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func setAutoFillMedicines(
-    _ request: Nd_V1_ServiceProviderMedicineMessageList,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_ServiceProviderMedicineMessageList, Nd_V1_IdMessage> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderWorkerV1/SetAutoFillMedicines",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeSetAutoFillMedicinesInterceptors() ?? []
-    )
-  }
-
-  /// Unary call to GetServiceProviders
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetServiceProviders.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func getServiceProviders(
-    _ request: Nd_V1_IdMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderProfileListMessage> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderWorkerV1/GetServiceProviders",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetServiceProvidersInterceptors() ?? []
-    )
-  }
-
-  /// Unary call to GetServiceProvidersOfOrganisation
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetServiceProvidersOfOrganisation.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func getServiceProvidersOfOrganisation(
-    _ request: Nd_V1_IdMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderProfileListMessage> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderWorkerV1/GetServiceProvidersOfOrganisation",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetServiceProvidersOfOrganisationInterceptors() ?? []
-    )
-  }
-}
-
-internal protocol Nd_V1_ServiceProviderWorkerV1ClientInterceptorFactoryProtocol {
-
-  /// - Returns: Interceptors to use when invoking 'setServiceProviderProfile'.
-  func makeSetServiceProviderProfileInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderProfileMessage, Nd_V1_IdMessage>]
-
-  /// - Returns: Interceptors to use when invoking 'getServiceProviderProfile'.
-  func makeGetServiceProviderProfileInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderProfileMessage>]
-
-  /// - Returns: Interceptors to use when invoking 'setServiceProviderAvailability'.
-  func makeSetServiceProviderAvailabilityInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderAvailabilityRequest, Nd_V1_IdMessage>]
-
-  /// - Returns: Interceptors to use when invoking 'getServiceProviderAvailablity'.
-  func makeGetServiceProviderAvailablityInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderAvailabilityConfigList>]
-
-  /// - Returns: Interceptors to use when invoking 'getServiceProviderAvailableSlots'.
-  func makeGetServiceProviderAvailableSlotsInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderGeneratedSlotListMessage>]
-
-  /// - Returns: Interceptors to use when invoking 'getServiceProviderAvailablityForOrganisation'.
-  func makeGetServiceProviderAvailablityForOrganisationInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderInOrganisationRequestMessage, Nd_V1_ServiceProviderAvailabilityConfigList>]
-
-  /// - Returns: Interceptors to use when invoking 'getServiceProviderAvailableSlotsForOrganisation'.
-  func makeGetServiceProviderAvailableSlotsForOrganisationInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderInOrganisationRequestMessage, Nd_V1_ServiceProviderGeneratedSlotListMessage>]
-
-  /// - Returns: Interceptors to use when invoking 'getAutoFillMedicines'.
-  func makeGetAutoFillMedicinesInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderAutofillMedicineListMessage>]
-
-  /// - Returns: Interceptors to use when invoking 'setAutoFillMedicines'.
-  func makeSetAutoFillMedicinesInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderMedicineMessageList, Nd_V1_IdMessage>]
-
-  /// - Returns: Interceptors to use when invoking 'getServiceProviders'.
-  func makeGetServiceProvidersInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderProfileListMessage>]
-
-  /// - Returns: Interceptors to use when invoking 'getServiceProvidersOfOrganisation'.
-  func makeGetServiceProvidersOfOrganisationInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderProfileListMessage>]
-}
-
-internal final class Nd_V1_ServiceProviderWorkerV1Client: Nd_V1_ServiceProviderWorkerV1ClientProtocol {
-  internal let channel: GRPCChannel
-  internal var defaultCallOptions: CallOptions
-  internal var interceptors: Nd_V1_ServiceProviderWorkerV1ClientInterceptorFactoryProtocol?
-
-  /// Creates a client for the nd.v1.ServiceProviderWorkerV1 service.
-  ///
-  /// - Parameters:
-  ///   - channel: `GRPCChannel` to the service host.
-  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
-  ///   - interceptors: A factory providing interceptors for each RPC.
-  internal init(
-    channel: GRPCChannel,
-    defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Nd_V1_ServiceProviderWorkerV1ClientInterceptorFactoryProtocol? = nil
-  ) {
-    self.channel = channel
-    self.defaultCallOptions = defaultCallOptions
-    self.interceptors = interceptors
-  }
-}
-
-/// Usage: instantiate `Nd_V1_ServiceProviderServiceRequestWorkerV1Client`, then call methods of this protocol to make API calls.
-internal protocol Nd_V1_ServiceProviderServiceRequestWorkerV1ClientProtocol: GRPCClient {
-  var serviceName: String { get }
-  var interceptors: Nd_V1_ServiceProviderServiceRequestWorkerV1ClientInterceptorFactoryProtocol? { get }
-
-  func setServiceRequest(
-    _ request: Nd_V1_ServiceProviderServiceRequestMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_ServiceProviderServiceRequestMessage, Nd_V1_IdMessage>
-
-  func getServiceRequest(
-    _ request: Nd_V1_ServiceProviderServiceRequestRequestMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_ServiceProviderServiceRequestRequestMessage, Nd_V1_ServiceProviderServiceRequestMessage>
-}
-
-extension Nd_V1_ServiceProviderServiceRequestWorkerV1ClientProtocol {
-  internal var serviceName: String {
-    return "nd.v1.ServiceProviderServiceRequestWorkerV1"
-  }
-
-  /// Unary call to SetServiceRequest
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to SetServiceRequest.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func setServiceRequest(
-    _ request: Nd_V1_ServiceProviderServiceRequestMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_ServiceProviderServiceRequestMessage, Nd_V1_IdMessage> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderServiceRequestWorkerV1/SetServiceRequest",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeSetServiceRequestInterceptors() ?? []
-    )
-  }
-
-  /// Unary call to GetServiceRequest
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to GetServiceRequest.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func getServiceRequest(
-    _ request: Nd_V1_ServiceProviderServiceRequestRequestMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_ServiceProviderServiceRequestRequestMessage, Nd_V1_ServiceProviderServiceRequestMessage> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.ServiceProviderServiceRequestWorkerV1/GetServiceRequest",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeGetServiceRequestInterceptors() ?? []
-    )
-  }
-}
-
-internal protocol Nd_V1_ServiceProviderServiceRequestWorkerV1ClientInterceptorFactoryProtocol {
-
-  /// - Returns: Interceptors to use when invoking 'setServiceRequest'.
-  func makeSetServiceRequestInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderServiceRequestMessage, Nd_V1_IdMessage>]
-
-  /// - Returns: Interceptors to use when invoking 'getServiceRequest'.
-  func makeGetServiceRequestInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderServiceRequestRequestMessage, Nd_V1_ServiceProviderServiceRequestMessage>]
-}
-
-internal final class Nd_V1_ServiceProviderServiceRequestWorkerV1Client: Nd_V1_ServiceProviderServiceRequestWorkerV1ClientProtocol {
-  internal let channel: GRPCChannel
-  internal var defaultCallOptions: CallOptions
-  internal var interceptors: Nd_V1_ServiceProviderServiceRequestWorkerV1ClientInterceptorFactoryProtocol?
-
-  /// Creates a client for the nd.v1.ServiceProviderServiceRequestWorkerV1 service.
-  ///
-  /// - Parameters:
-  ///   - channel: `GRPCChannel` to the service host.
-  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
-  ///   - interceptors: A factory providing interceptors for each RPC.
-  internal init(
-    channel: GRPCChannel,
-    defaultCallOptions: CallOptions = CallOptions(),
-    interceptors: Nd_V1_ServiceProviderServiceRequestWorkerV1ClientInterceptorFactoryProtocol? = nil
-  ) {
-    self.channel = channel
-    self.defaultCallOptions = defaultCallOptions
-    self.interceptors = interceptors
-  }
-}
-
 /// Usage: instantiate `Nd_V1_LoggingWorkerV1Client`, then call methods of this protocol to make API calls.
 internal protocol Nd_V1_LoggingWorkerV1ClientProtocol: GRPCClient {
   var serviceName: String { get }
@@ -2009,11 +788,6 @@ internal protocol Nd_V1_CustomerPrescriptionWorkerV1ClientProtocol: GRPCClient {
     callOptions: CallOptions?
   ) -> UnaryCall<Nd_V1_CustomerServiceRequestRequestMessage, Nd_V1_CustomerPrescriptionMessage>
 
-  func setPrescription(
-    _ request: Nd_V1_CustomerPrescriptionMessage,
-    callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_CustomerPrescriptionMessage, Nd_V1_IdMessage>
-
   func downloadPrescriptionMedia(
     _ request: Nd_V1_IdMessage,
     callOptions: CallOptions?
@@ -2045,24 +819,6 @@ extension Nd_V1_CustomerPrescriptionWorkerV1ClientProtocol {
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeGetPrescriptionInterceptors() ?? []
-    )
-  }
-
-  /// Unary call to SetPrescription
-  ///
-  /// - Parameters:
-  ///   - request: Request to send to SetPrescription.
-  ///   - callOptions: Call options.
-  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
-  internal func setPrescription(
-    _ request: Nd_V1_CustomerPrescriptionMessage,
-    callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_CustomerPrescriptionMessage, Nd_V1_IdMessage> {
-    return self.makeUnaryCall(
-      path: "/nd.v1.CustomerPrescriptionWorkerV1/SetPrescription",
-      request: request,
-      callOptions: callOptions ?? self.defaultCallOptions,
-      interceptors: self.interceptors?.makeSetPrescriptionInterceptors() ?? []
     )
   }
 
@@ -2107,9 +863,6 @@ internal protocol Nd_V1_CustomerPrescriptionWorkerV1ClientInterceptorFactoryProt
 
   /// - Returns: Interceptors to use when invoking 'getPrescription'.
   func makeGetPrescriptionInterceptors() -> [ClientInterceptor<Nd_V1_CustomerServiceRequestRequestMessage, Nd_V1_CustomerPrescriptionMessage>]
-
-  /// - Returns: Interceptors to use when invoking 'setPrescription'.
-  func makeSetPrescriptionInterceptors() -> [ClientInterceptor<Nd_V1_CustomerPrescriptionMessage, Nd_V1_IdMessage>]
 
   /// - Returns: Interceptors to use when invoking 'downloadPrescriptionMedia'.
   func makeDownloadPrescriptionMediaInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_StringMessage>]
@@ -2615,722 +1368,1305 @@ internal final class Nd_V1_CustomerServiceRequestWorkerV1Client: Nd_V1_CustomerS
   }
 }
 
-/// To build a server, implement a class that conforms to this protocol.
-internal protocol Nd_V1_ServiceProviderAppointmentWorkerV1Provider: CallHandlerProvider {
-  var interceptors: Nd_V1_ServiceProviderAppointmentWorkerV1ServerInterceptorFactoryProtocol? { get }
+/// Usage: instantiate `Nd_V1_ServiceProviderAppointmentWorkerV1Client`, then call methods of this protocol to make API calls.
+internal protocol Nd_V1_ServiceProviderAppointmentWorkerV1ClientProtocol: GRPCClient {
+  var serviceName: String { get }
+  var interceptors: Nd_V1_ServiceProviderAppointmentWorkerV1ClientInterceptorFactoryProtocol? { get }
 
-  func setAppointment(request: Nd_V1_ServiceProviderAppointmentMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_IdMessage>
+  func setAppointment(
+    _ request: Nd_V1_ServiceProviderAppointmentMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_ServiceProviderAppointmentMessage, Nd_V1_IdMessage>
 
-  func getAppointment(request: Nd_V1_ServiceProviderAppointmentRequestMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderAppointmentMessage>
+  func getAppointment(
+    _ request: Nd_V1_ServiceProviderAppointmentRequestMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_ServiceProviderAppointmentRequestMessage, Nd_V1_ServiceProviderAppointmentMessage>
 
-  func getAppointments(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderAppointmentList>
+  func getAppointments(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderAppointmentList>
 
-  func getCustomerAppointments(request: Nd_V1_ServiceProviderCustomerAppointmentsRequestMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderAppointmentList>
+  func getOrganisationAppointments(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderAppointmentList>
 
-  func getAppointmentPayments(request: Nd_V1_ServiceProviderAppointmentRequestMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderPaymentListMessage>
+  func getCustomerAppointments(
+    _ request: Nd_V1_ServiceProviderCustomerAppointmentsRequestMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_ServiceProviderCustomerAppointmentsRequestMessage, Nd_V1_ServiceProviderAppointmentList>
 
-  func getPayments(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderPaymentListMessage>
+  func getAppointmentPayments(
+    _ request: Nd_V1_ServiceProviderAppointmentRequestMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_ServiceProviderAppointmentRequestMessage, Nd_V1_ServiceProviderPaymentListMessage>
+
+  func getPayments(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderPaymentListMessage>
 }
 
-extension Nd_V1_ServiceProviderAppointmentWorkerV1Provider {
-  internal var serviceName: Substring { return "nd.v1.ServiceProviderAppointmentWorkerV1" }
+extension Nd_V1_ServiceProviderAppointmentWorkerV1ClientProtocol {
+  internal var serviceName: String {
+    return "nd.v1.ServiceProviderAppointmentWorkerV1"
+  }
 
-  /// Determines, calls and returns the appropriate request handler, depending on the request's method.
-  /// Returns nil for methods not handled by this service.
-  internal func handle(
-    method name: Substring,
-    context: CallHandlerContext
-  ) -> GRPCServerHandlerProtocol? {
-    switch name {
-    case "SetAppointment":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderAppointmentMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_IdMessage>(),
-        interceptors: self.interceptors?.makeSetAppointmentInterceptors() ?? [],
-        userFunction: self.setAppointment(request:context:)
-      )
+  /// Unary call to SetAppointment
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to SetAppointment.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func setAppointment(
+    _ request: Nd_V1_ServiceProviderAppointmentMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_ServiceProviderAppointmentMessage, Nd_V1_IdMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderAppointmentWorkerV1/SetAppointment",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeSetAppointmentInterceptors() ?? []
+    )
+  }
 
-    case "GetAppointment":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderAppointmentRequestMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderAppointmentMessage>(),
-        interceptors: self.interceptors?.makeGetAppointmentInterceptors() ?? [],
-        userFunction: self.getAppointment(request:context:)
-      )
+  /// Unary call to GetAppointment
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetAppointment.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getAppointment(
+    _ request: Nd_V1_ServiceProviderAppointmentRequestMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_ServiceProviderAppointmentRequestMessage, Nd_V1_ServiceProviderAppointmentMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderAppointmentWorkerV1/GetAppointment",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetAppointmentInterceptors() ?? []
+    )
+  }
 
-    case "GetAppointments":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderAppointmentList>(),
-        interceptors: self.interceptors?.makeGetAppointmentsInterceptors() ?? [],
-        userFunction: self.getAppointments(request:context:)
-      )
+  /// Unary call to GetAppointments
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetAppointments.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getAppointments(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderAppointmentList> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderAppointmentWorkerV1/GetAppointments",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetAppointmentsInterceptors() ?? []
+    )
+  }
 
-    case "GetCustomerAppointments":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderCustomerAppointmentsRequestMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderAppointmentList>(),
-        interceptors: self.interceptors?.makeGetCustomerAppointmentsInterceptors() ?? [],
-        userFunction: self.getCustomerAppointments(request:context:)
-      )
+  /// Unary call to GetOrganisationAppointments
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetOrganisationAppointments.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getOrganisationAppointments(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderAppointmentList> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderAppointmentWorkerV1/GetOrganisationAppointments",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetOrganisationAppointmentsInterceptors() ?? []
+    )
+  }
 
-    case "GetAppointmentPayments":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderAppointmentRequestMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderPaymentListMessage>(),
-        interceptors: self.interceptors?.makeGetAppointmentPaymentsInterceptors() ?? [],
-        userFunction: self.getAppointmentPayments(request:context:)
-      )
+  /// Unary call to GetCustomerAppointments
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetCustomerAppointments.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getCustomerAppointments(
+    _ request: Nd_V1_ServiceProviderCustomerAppointmentsRequestMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_ServiceProviderCustomerAppointmentsRequestMessage, Nd_V1_ServiceProviderAppointmentList> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderAppointmentWorkerV1/GetCustomerAppointments",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetCustomerAppointmentsInterceptors() ?? []
+    )
+  }
 
-    case "GetPayments":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderPaymentListMessage>(),
-        interceptors: self.interceptors?.makeGetPaymentsInterceptors() ?? [],
-        userFunction: self.getPayments(request:context:)
-      )
+  /// Unary call to GetAppointmentPayments
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetAppointmentPayments.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getAppointmentPayments(
+    _ request: Nd_V1_ServiceProviderAppointmentRequestMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_ServiceProviderAppointmentRequestMessage, Nd_V1_ServiceProviderPaymentListMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderAppointmentWorkerV1/GetAppointmentPayments",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetAppointmentPaymentsInterceptors() ?? []
+    )
+  }
 
-    default:
-      return nil
-    }
+  /// Unary call to GetPayments
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetPayments.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getPayments(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderPaymentListMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderAppointmentWorkerV1/GetPayments",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetPaymentsInterceptors() ?? []
+    )
   }
 }
 
-internal protocol Nd_V1_ServiceProviderAppointmentWorkerV1ServerInterceptorFactoryProtocol {
+internal protocol Nd_V1_ServiceProviderAppointmentWorkerV1ClientInterceptorFactoryProtocol {
 
-  /// - Returns: Interceptors to use when handling 'setAppointment'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeSetAppointmentInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderAppointmentMessage, Nd_V1_IdMessage>]
+  /// - Returns: Interceptors to use when invoking 'setAppointment'.
+  func makeSetAppointmentInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderAppointmentMessage, Nd_V1_IdMessage>]
 
-  /// - Returns: Interceptors to use when handling 'getAppointment'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetAppointmentInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderAppointmentRequestMessage, Nd_V1_ServiceProviderAppointmentMessage>]
+  /// - Returns: Interceptors to use when invoking 'getAppointment'.
+  func makeGetAppointmentInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderAppointmentRequestMessage, Nd_V1_ServiceProviderAppointmentMessage>]
 
-  /// - Returns: Interceptors to use when handling 'getAppointments'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetAppointmentsInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderAppointmentList>]
+  /// - Returns: Interceptors to use when invoking 'getAppointments'.
+  func makeGetAppointmentsInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderAppointmentList>]
 
-  /// - Returns: Interceptors to use when handling 'getCustomerAppointments'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetCustomerAppointmentsInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderCustomerAppointmentsRequestMessage, Nd_V1_ServiceProviderAppointmentList>]
+  /// - Returns: Interceptors to use when invoking 'getOrganisationAppointments'.
+  func makeGetOrganisationAppointmentsInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderAppointmentList>]
 
-  /// - Returns: Interceptors to use when handling 'getAppointmentPayments'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetAppointmentPaymentsInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderAppointmentRequestMessage, Nd_V1_ServiceProviderPaymentListMessage>]
+  /// - Returns: Interceptors to use when invoking 'getCustomerAppointments'.
+  func makeGetCustomerAppointmentsInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderCustomerAppointmentsRequestMessage, Nd_V1_ServiceProviderAppointmentList>]
 
-  /// - Returns: Interceptors to use when handling 'getPayments'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetPaymentsInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderPaymentListMessage>]
-}
-/// To build a server, implement a class that conforms to this protocol.
-internal protocol Nd_V1_ServiceProviderCustomerWorkerV1Provider: CallHandlerProvider {
-  var interceptors: Nd_V1_ServiceProviderCustomerWorkerV1ServerInterceptorFactoryProtocol? { get }
+  /// - Returns: Interceptors to use when invoking 'getAppointmentPayments'.
+  func makeGetAppointmentPaymentsInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderAppointmentRequestMessage, Nd_V1_ServiceProviderPaymentListMessage>]
 
-  func setCustomerProfile(request: Nd_V1_ServiceProviderCustomerProfileMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_IdMessage>
-
-  func getCustomerProfile(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderCustomerProfileMessage>
-
-  func getCustomers(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderMyPatientsProfileMessageList>
-
-  func getCustomerAppointmentSummary(request: Nd_V1_ServiceProviderAppointmentSummaryRequestMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderAppointmentSummaryListMessage>
-
-  func getCustomersOfOrganisation(request: Nd_V1_ServiceProviderInOrganisationRequestMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderMyPatientsProfileMessageList>
-
-  func getCustomersOfServiceProviderInOrganisation(request: Nd_V1_ServiceProviderInOrganisationRequestMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderMyPatientsProfileMessageList>
+  /// - Returns: Interceptors to use when invoking 'getPayments'.
+  func makeGetPaymentsInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderPaymentListMessage>]
 }
 
-extension Nd_V1_ServiceProviderCustomerWorkerV1Provider {
-  internal var serviceName: Substring { return "nd.v1.ServiceProviderCustomerWorkerV1" }
+internal final class Nd_V1_ServiceProviderAppointmentWorkerV1Client: Nd_V1_ServiceProviderAppointmentWorkerV1ClientProtocol {
+  internal let channel: GRPCChannel
+  internal var defaultCallOptions: CallOptions
+  internal var interceptors: Nd_V1_ServiceProviderAppointmentWorkerV1ClientInterceptorFactoryProtocol?
 
-  /// Determines, calls and returns the appropriate request handler, depending on the request's method.
-  /// Returns nil for methods not handled by this service.
-  internal func handle(
-    method name: Substring,
-    context: CallHandlerContext
-  ) -> GRPCServerHandlerProtocol? {
-    switch name {
-    case "SetCustomerProfile":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderCustomerProfileMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_IdMessage>(),
-        interceptors: self.interceptors?.makeSetCustomerProfileInterceptors() ?? [],
-        userFunction: self.setCustomerProfile(request:context:)
-      )
-
-    case "GetCustomerProfile":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderCustomerProfileMessage>(),
-        interceptors: self.interceptors?.makeGetCustomerProfileInterceptors() ?? [],
-        userFunction: self.getCustomerProfile(request:context:)
-      )
-
-    case "GetCustomers":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderMyPatientsProfileMessageList>(),
-        interceptors: self.interceptors?.makeGetCustomersInterceptors() ?? [],
-        userFunction: self.getCustomers(request:context:)
-      )
-
-    case "GetCustomerAppointmentSummary":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderAppointmentSummaryRequestMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderAppointmentSummaryListMessage>(),
-        interceptors: self.interceptors?.makeGetCustomerAppointmentSummaryInterceptors() ?? [],
-        userFunction: self.getCustomerAppointmentSummary(request:context:)
-      )
-
-    case "GetCustomersOfOrganisation":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderInOrganisationRequestMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderMyPatientsProfileMessageList>(),
-        interceptors: self.interceptors?.makeGetCustomersOfOrganisationInterceptors() ?? [],
-        userFunction: self.getCustomersOfOrganisation(request:context:)
-      )
-
-    case "GetCustomersOfServiceProviderInOrganisation":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderInOrganisationRequestMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderMyPatientsProfileMessageList>(),
-        interceptors: self.interceptors?.makeGetCustomersOfServiceProviderInOrganisationInterceptors() ?? [],
-        userFunction: self.getCustomersOfServiceProviderInOrganisation(request:context:)
-      )
-
-    default:
-      return nil
-    }
+  /// Creates a client for the nd.v1.ServiceProviderAppointmentWorkerV1 service.
+  ///
+  /// - Parameters:
+  ///   - channel: `GRPCChannel` to the service host.
+  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
+  ///   - interceptors: A factory providing interceptors for each RPC.
+  internal init(
+    channel: GRPCChannel,
+    defaultCallOptions: CallOptions = CallOptions(),
+    interceptors: Nd_V1_ServiceProviderAppointmentWorkerV1ClientInterceptorFactoryProtocol? = nil
+  ) {
+    self.channel = channel
+    self.defaultCallOptions = defaultCallOptions
+    self.interceptors = interceptors
   }
 }
 
-internal protocol Nd_V1_ServiceProviderCustomerWorkerV1ServerInterceptorFactoryProtocol {
+/// Usage: instantiate `Nd_V1_ServiceProviderCustomerWorkerV1Client`, then call methods of this protocol to make API calls.
+internal protocol Nd_V1_ServiceProviderCustomerWorkerV1ClientProtocol: GRPCClient {
+  var serviceName: String { get }
+  var interceptors: Nd_V1_ServiceProviderCustomerWorkerV1ClientInterceptorFactoryProtocol? { get }
 
-  /// - Returns: Interceptors to use when handling 'setCustomerProfile'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeSetCustomerProfileInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderCustomerProfileMessage, Nd_V1_IdMessage>]
+  func setCustomerProfile(
+    _ request: Nd_V1_ServiceProviderCustomerProfileMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_ServiceProviderCustomerProfileMessage, Nd_V1_IdMessage>
 
-  /// - Returns: Interceptors to use when handling 'getCustomerProfile'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetCustomerProfileInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderCustomerProfileMessage>]
+  func getCustomerProfile(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderCustomerProfileMessage>
 
-  /// - Returns: Interceptors to use when handling 'getCustomers'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetCustomersInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderMyPatientsProfileMessageList>]
+  func getCustomers(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderMyPatientsProfileMessageList>
 
-  /// - Returns: Interceptors to use when handling 'getCustomerAppointmentSummary'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetCustomerAppointmentSummaryInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderAppointmentSummaryRequestMessage, Nd_V1_ServiceProviderAppointmentSummaryListMessage>]
+  func getCustomersFromFreelance(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderMyPatientsProfileMessageList>
 
-  /// - Returns: Interceptors to use when handling 'getCustomersOfOrganisation'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetCustomersOfOrganisationInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderInOrganisationRequestMessage, Nd_V1_ServiceProviderMyPatientsProfileMessageList>]
+  func getCustomerAppointmentSummary(
+    _ request: Nd_V1_ServiceProviderAppointmentSummaryRequestMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_ServiceProviderAppointmentSummaryRequestMessage, Nd_V1_ServiceProviderAppointmentSummaryListMessage>
 
-  /// - Returns: Interceptors to use when handling 'getCustomersOfServiceProviderInOrganisation'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetCustomersOfServiceProviderInOrganisationInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderInOrganisationRequestMessage, Nd_V1_ServiceProviderMyPatientsProfileMessageList>]
+  func getCustomersOfOrganisation(
+    _ request: Nd_V1_ServiceProviderInOrganisationRequestMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_ServiceProviderInOrganisationRequestMessage, Nd_V1_ServiceProviderMyPatientsProfileMessageList>
+
+  func getCustomersOfServiceProviderInOrganisation(
+    _ request: Nd_V1_ServiceProviderInOrganisationRequestMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_ServiceProviderInOrganisationRequestMessage, Nd_V1_ServiceProviderMyPatientsProfileMessageList>
 }
-/// To build a server, implement a class that conforms to this protocol.
-internal protocol Nd_V1_ServiceProviderOrganisationWorkerV1Provider: CallHandlerProvider {
-  var interceptors: Nd_V1_ServiceProviderOrganisationWorkerV1ServerInterceptorFactoryProtocol? { get }
 
-  func setOrganisation(request: Nd_V1_ServiceProviderOrganisationMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_IdMessage>
+extension Nd_V1_ServiceProviderCustomerWorkerV1ClientProtocol {
+  internal var serviceName: String {
+    return "nd.v1.ServiceProviderCustomerWorkerV1"
+  }
 
-  func getOrganisation(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderOrganisationMessage>
+  /// Unary call to SetCustomerProfile
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to SetCustomerProfile.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func setCustomerProfile(
+    _ request: Nd_V1_ServiceProviderCustomerProfileMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_ServiceProviderCustomerProfileMessage, Nd_V1_IdMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderCustomerWorkerV1/SetCustomerProfile",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeSetCustomerProfileInterceptors() ?? []
+    )
+  }
 
-  func getOrganisations(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderOrganisationListMessage>
+  /// Unary call to GetCustomerProfile
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetCustomerProfile.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getCustomerProfile(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderCustomerProfileMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderCustomerWorkerV1/GetCustomerProfile",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetCustomerProfileInterceptors() ?? []
+    )
+  }
 
-  func getSpecificOrganisations(request: Nd_V1_StringArrayMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderOrganisationListMessage>
-}
+  /// Unary call to GetCustomers
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetCustomers.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getCustomers(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderMyPatientsProfileMessageList> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderCustomerWorkerV1/GetCustomers",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetCustomersInterceptors() ?? []
+    )
+  }
 
-extension Nd_V1_ServiceProviderOrganisationWorkerV1Provider {
-  internal var serviceName: Substring { return "nd.v1.ServiceProviderOrganisationWorkerV1" }
+  /// Unary call to GetCustomersFromFreelance
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetCustomersFromFreelance.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getCustomersFromFreelance(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderMyPatientsProfileMessageList> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderCustomerWorkerV1/GetCustomersFromFreelance",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetCustomersFromFreelanceInterceptors() ?? []
+    )
+  }
 
-  /// Determines, calls and returns the appropriate request handler, depending on the request's method.
-  /// Returns nil for methods not handled by this service.
-  internal func handle(
-    method name: Substring,
-    context: CallHandlerContext
-  ) -> GRPCServerHandlerProtocol? {
-    switch name {
-    case "SetOrganisation":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderOrganisationMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_IdMessage>(),
-        interceptors: self.interceptors?.makeSetOrganisationInterceptors() ?? [],
-        userFunction: self.setOrganisation(request:context:)
-      )
+  /// Unary call to GetCustomerAppointmentSummary
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetCustomerAppointmentSummary.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getCustomerAppointmentSummary(
+    _ request: Nd_V1_ServiceProviderAppointmentSummaryRequestMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_ServiceProviderAppointmentSummaryRequestMessage, Nd_V1_ServiceProviderAppointmentSummaryListMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderCustomerWorkerV1/GetCustomerAppointmentSummary",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetCustomerAppointmentSummaryInterceptors() ?? []
+    )
+  }
 
-    case "GetOrganisation":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderOrganisationMessage>(),
-        interceptors: self.interceptors?.makeGetOrganisationInterceptors() ?? [],
-        userFunction: self.getOrganisation(request:context:)
-      )
+  /// Unary call to GetCustomersOfOrganisation
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetCustomersOfOrganisation.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getCustomersOfOrganisation(
+    _ request: Nd_V1_ServiceProviderInOrganisationRequestMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_ServiceProviderInOrganisationRequestMessage, Nd_V1_ServiceProviderMyPatientsProfileMessageList> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderCustomerWorkerV1/GetCustomersOfOrganisation",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetCustomersOfOrganisationInterceptors() ?? []
+    )
+  }
 
-    case "GetOrganisations":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderOrganisationListMessage>(),
-        interceptors: self.interceptors?.makeGetOrganisationsInterceptors() ?? [],
-        userFunction: self.getOrganisations(request:context:)
-      )
-
-    case "GetSpecificOrganisations":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_StringArrayMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderOrganisationListMessage>(),
-        interceptors: self.interceptors?.makeGetSpecificOrganisationsInterceptors() ?? [],
-        userFunction: self.getSpecificOrganisations(request:context:)
-      )
-
-    default:
-      return nil
-    }
+  /// Unary call to GetCustomersOfServiceProviderInOrganisation
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetCustomersOfServiceProviderInOrganisation.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getCustomersOfServiceProviderInOrganisation(
+    _ request: Nd_V1_ServiceProviderInOrganisationRequestMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_ServiceProviderInOrganisationRequestMessage, Nd_V1_ServiceProviderMyPatientsProfileMessageList> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderCustomerWorkerV1/GetCustomersOfServiceProviderInOrganisation",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetCustomersOfServiceProviderInOrganisationInterceptors() ?? []
+    )
   }
 }
 
-internal protocol Nd_V1_ServiceProviderOrganisationWorkerV1ServerInterceptorFactoryProtocol {
+internal protocol Nd_V1_ServiceProviderCustomerWorkerV1ClientInterceptorFactoryProtocol {
 
-  /// - Returns: Interceptors to use when handling 'setOrganisation'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeSetOrganisationInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderOrganisationMessage, Nd_V1_IdMessage>]
+  /// - Returns: Interceptors to use when invoking 'setCustomerProfile'.
+  func makeSetCustomerProfileInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderCustomerProfileMessage, Nd_V1_IdMessage>]
 
-  /// - Returns: Interceptors to use when handling 'getOrganisation'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetOrganisationInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderOrganisationMessage>]
+  /// - Returns: Interceptors to use when invoking 'getCustomerProfile'.
+  func makeGetCustomerProfileInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderCustomerProfileMessage>]
 
-  /// - Returns: Interceptors to use when handling 'getOrganisations'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetOrganisationsInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderOrganisationListMessage>]
+  /// - Returns: Interceptors to use when invoking 'getCustomers'.
+  func makeGetCustomersInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderMyPatientsProfileMessageList>]
 
-  /// - Returns: Interceptors to use when handling 'getSpecificOrganisations'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetSpecificOrganisationsInterceptors() -> [ServerInterceptor<Nd_V1_StringArrayMessage, Nd_V1_ServiceProviderOrganisationListMessage>]
-}
-/// To build a server, implement a class that conforms to this protocol.
-internal protocol Nd_V1_ServiceProviderPrescriptionWorkerV1Provider: CallHandlerProvider {
-  var interceptors: Nd_V1_ServiceProviderPrescriptionWorkerV1ServerInterceptorFactoryProtocol? { get }
+  /// - Returns: Interceptors to use when invoking 'getCustomersFromFreelance'.
+  func makeGetCustomersFromFreelanceInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderMyPatientsProfileMessageList>]
 
-  func getPrescription(request: Nd_V1_ServiceProviderServiceRequestRequestMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderPrescriptionMessage>
+  /// - Returns: Interceptors to use when invoking 'getCustomerAppointmentSummary'.
+  func makeGetCustomerAppointmentSummaryInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderAppointmentSummaryRequestMessage, Nd_V1_ServiceProviderAppointmentSummaryListMessage>]
 
-  func setPrescription(request: Nd_V1_ServiceProviderPrescriptionMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_IdMessage>
+  /// - Returns: Interceptors to use when invoking 'getCustomersOfOrganisation'.
+  func makeGetCustomersOfOrganisationInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderInOrganisationRequestMessage, Nd_V1_ServiceProviderMyPatientsProfileMessageList>]
 
-  func downloadPrescriptionMedia(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_StringMessage>
-
-  func getPrescriptionPdf(request: Nd_V1_RequestPdf, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ResponsePdf>
+  /// - Returns: Interceptors to use when invoking 'getCustomersOfServiceProviderInOrganisation'.
+  func makeGetCustomersOfServiceProviderInOrganisationInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderInOrganisationRequestMessage, Nd_V1_ServiceProviderMyPatientsProfileMessageList>]
 }
 
-extension Nd_V1_ServiceProviderPrescriptionWorkerV1Provider {
-  internal var serviceName: Substring { return "nd.v1.ServiceProviderPrescriptionWorkerV1" }
+internal final class Nd_V1_ServiceProviderCustomerWorkerV1Client: Nd_V1_ServiceProviderCustomerWorkerV1ClientProtocol {
+  internal let channel: GRPCChannel
+  internal var defaultCallOptions: CallOptions
+  internal var interceptors: Nd_V1_ServiceProviderCustomerWorkerV1ClientInterceptorFactoryProtocol?
 
-  /// Determines, calls and returns the appropriate request handler, depending on the request's method.
-  /// Returns nil for methods not handled by this service.
-  internal func handle(
-    method name: Substring,
-    context: CallHandlerContext
-  ) -> GRPCServerHandlerProtocol? {
-    switch name {
-    case "GetPrescription":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderServiceRequestRequestMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderPrescriptionMessage>(),
-        interceptors: self.interceptors?.makeGetPrescriptionInterceptors() ?? [],
-        userFunction: self.getPrescription(request:context:)
-      )
-
-    case "SetPrescription":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderPrescriptionMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_IdMessage>(),
-        interceptors: self.interceptors?.makeSetPrescriptionInterceptors() ?? [],
-        userFunction: self.setPrescription(request:context:)
-      )
-
-    case "DownloadPrescriptionMedia":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_StringMessage>(),
-        interceptors: self.interceptors?.makeDownloadPrescriptionMediaInterceptors() ?? [],
-        userFunction: self.downloadPrescriptionMedia(request:context:)
-      )
-
-    case "GetPrescriptionPdf":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_RequestPdf>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_ResponsePdf>(),
-        interceptors: self.interceptors?.makeGetPrescriptionPdfInterceptors() ?? [],
-        userFunction: self.getPrescriptionPdf(request:context:)
-      )
-
-    default:
-      return nil
-    }
+  /// Creates a client for the nd.v1.ServiceProviderCustomerWorkerV1 service.
+  ///
+  /// - Parameters:
+  ///   - channel: `GRPCChannel` to the service host.
+  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
+  ///   - interceptors: A factory providing interceptors for each RPC.
+  internal init(
+    channel: GRPCChannel,
+    defaultCallOptions: CallOptions = CallOptions(),
+    interceptors: Nd_V1_ServiceProviderCustomerWorkerV1ClientInterceptorFactoryProtocol? = nil
+  ) {
+    self.channel = channel
+    self.defaultCallOptions = defaultCallOptions
+    self.interceptors = interceptors
   }
 }
 
-internal protocol Nd_V1_ServiceProviderPrescriptionWorkerV1ServerInterceptorFactoryProtocol {
+/// Usage: instantiate `Nd_V1_ServiceProviderOrganisationWorkerV1Client`, then call methods of this protocol to make API calls.
+internal protocol Nd_V1_ServiceProviderOrganisationWorkerV1ClientProtocol: GRPCClient {
+  var serviceName: String { get }
+  var interceptors: Nd_V1_ServiceProviderOrganisationWorkerV1ClientInterceptorFactoryProtocol? { get }
 
-  /// - Returns: Interceptors to use when handling 'getPrescription'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetPrescriptionInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderServiceRequestRequestMessage, Nd_V1_ServiceProviderPrescriptionMessage>]
+  func setOrganisation(
+    _ request: Nd_V1_ServiceProviderOrganisationMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_ServiceProviderOrganisationMessage, Nd_V1_IdMessage>
 
-  /// - Returns: Interceptors to use when handling 'setPrescription'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeSetPrescriptionInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderPrescriptionMessage, Nd_V1_IdMessage>]
+  func getOrganisation(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderOrganisationMessage>
 
-  /// - Returns: Interceptors to use when handling 'downloadPrescriptionMedia'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeDownloadPrescriptionMediaInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_StringMessage>]
+  func getOrganisations(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderOrganisationListMessage>
 
-  /// - Returns: Interceptors to use when handling 'getPrescriptionPdf'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetPrescriptionPdfInterceptors() -> [ServerInterceptor<Nd_V1_RequestPdf, Nd_V1_ResponsePdf>]
-}
-/// To build a server, implement a class that conforms to this protocol.
-internal protocol Nd_V1_ServiceProviderReportWorkerV1Provider: CallHandlerProvider {
-  var interceptors: Nd_V1_ServiceProviderReportWorkerV1ServerInterceptorFactoryProtocol? { get }
-
-  func getCustomerReports(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderReportListMessage>
-
-  func getAppointmentReports(request: Nd_V1_ServiceProviderServiceRequestRequestMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderReportListMessage>
-
-  func setReport(request: Nd_V1_ServiceProviderReportUploadMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_IdMessage>
-
-  func downloadReportMedia(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_StringMessage>
+  func getSpecificOrganisations(
+    _ request: Nd_V1_StringArrayMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_StringArrayMessage, Nd_V1_ServiceProviderOrganisationListMessage>
 }
 
-extension Nd_V1_ServiceProviderReportWorkerV1Provider {
-  internal var serviceName: Substring { return "nd.v1.ServiceProviderReportWorkerV1" }
+extension Nd_V1_ServiceProviderOrganisationWorkerV1ClientProtocol {
+  internal var serviceName: String {
+    return "nd.v1.ServiceProviderOrganisationWorkerV1"
+  }
 
-  /// Determines, calls and returns the appropriate request handler, depending on the request's method.
-  /// Returns nil for methods not handled by this service.
-  internal func handle(
-    method name: Substring,
-    context: CallHandlerContext
-  ) -> GRPCServerHandlerProtocol? {
-    switch name {
-    case "GetCustomerReports":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderReportListMessage>(),
-        interceptors: self.interceptors?.makeGetCustomerReportsInterceptors() ?? [],
-        userFunction: self.getCustomerReports(request:context:)
-      )
+  /// Unary call to SetOrganisation
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to SetOrganisation.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func setOrganisation(
+    _ request: Nd_V1_ServiceProviderOrganisationMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_ServiceProviderOrganisationMessage, Nd_V1_IdMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderOrganisationWorkerV1/SetOrganisation",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeSetOrganisationInterceptors() ?? []
+    )
+  }
 
-    case "GetAppointmentReports":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderServiceRequestRequestMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderReportListMessage>(),
-        interceptors: self.interceptors?.makeGetAppointmentReportsInterceptors() ?? [],
-        userFunction: self.getAppointmentReports(request:context:)
-      )
+  /// Unary call to GetOrganisation
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetOrganisation.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getOrganisation(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderOrganisationMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderOrganisationWorkerV1/GetOrganisation",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetOrganisationInterceptors() ?? []
+    )
+  }
 
-    case "SetReport":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderReportUploadMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_IdMessage>(),
-        interceptors: self.interceptors?.makeSetReportInterceptors() ?? [],
-        userFunction: self.setReport(request:context:)
-      )
+  /// Unary call to GetOrganisations
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetOrganisations.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getOrganisations(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderOrganisationListMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderOrganisationWorkerV1/GetOrganisations",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetOrganisationsInterceptors() ?? []
+    )
+  }
 
-    case "DownloadReportMedia":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_StringMessage>(),
-        interceptors: self.interceptors?.makeDownloadReportMediaInterceptors() ?? [],
-        userFunction: self.downloadReportMedia(request:context:)
-      )
-
-    default:
-      return nil
-    }
+  /// Unary call to GetSpecificOrganisations
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetSpecificOrganisations.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getSpecificOrganisations(
+    _ request: Nd_V1_StringArrayMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_StringArrayMessage, Nd_V1_ServiceProviderOrganisationListMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderOrganisationWorkerV1/GetSpecificOrganisations",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetSpecificOrganisationsInterceptors() ?? []
+    )
   }
 }
 
-internal protocol Nd_V1_ServiceProviderReportWorkerV1ServerInterceptorFactoryProtocol {
+internal protocol Nd_V1_ServiceProviderOrganisationWorkerV1ClientInterceptorFactoryProtocol {
 
-  /// - Returns: Interceptors to use when handling 'getCustomerReports'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetCustomerReportsInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderReportListMessage>]
+  /// - Returns: Interceptors to use when invoking 'setOrganisation'.
+  func makeSetOrganisationInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderOrganisationMessage, Nd_V1_IdMessage>]
 
-  /// - Returns: Interceptors to use when handling 'getAppointmentReports'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetAppointmentReportsInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderServiceRequestRequestMessage, Nd_V1_ServiceProviderReportListMessage>]
+  /// - Returns: Interceptors to use when invoking 'getOrganisation'.
+  func makeGetOrganisationInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderOrganisationMessage>]
 
-  /// - Returns: Interceptors to use when handling 'setReport'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeSetReportInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderReportUploadMessage, Nd_V1_IdMessage>]
+  /// - Returns: Interceptors to use when invoking 'getOrganisations'.
+  func makeGetOrganisationsInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderOrganisationListMessage>]
 
-  /// - Returns: Interceptors to use when handling 'downloadReportMedia'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeDownloadReportMediaInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_StringMessage>]
-}
-/// To build a server, implement a class that conforms to this protocol.
-internal protocol Nd_V1_ServiceProviderWorkerV1Provider: CallHandlerProvider {
-  var interceptors: Nd_V1_ServiceProviderWorkerV1ServerInterceptorFactoryProtocol? { get }
-
-  func setServiceProviderProfile(request: Nd_V1_ServiceProviderProfileMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_IdMessage>
-
-  func getServiceProviderProfile(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderProfileMessage>
-
-  func setServiceProviderAvailability(request: Nd_V1_ServiceProviderAvailabilityRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_IdMessage>
-
-  func getServiceProviderAvailablity(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderAvailabilityConfigList>
-
-  func getServiceProviderAvailableSlots(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderGeneratedSlotListMessage>
-
-  func getServiceProviderAvailablityForOrganisation(request: Nd_V1_ServiceProviderInOrganisationRequestMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderAvailabilityConfigList>
-
-  func getServiceProviderAvailableSlotsForOrganisation(request: Nd_V1_ServiceProviderInOrganisationRequestMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderGeneratedSlotListMessage>
-
-  func getAutoFillMedicines(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderAutofillMedicineListMessage>
-
-  func setAutoFillMedicines(request: Nd_V1_ServiceProviderMedicineMessageList, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_IdMessage>
-
-  func getServiceProviders(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderProfileListMessage>
-
-  func getServiceProvidersOfOrganisation(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderProfileListMessage>
+  /// - Returns: Interceptors to use when invoking 'getSpecificOrganisations'.
+  func makeGetSpecificOrganisationsInterceptors() -> [ClientInterceptor<Nd_V1_StringArrayMessage, Nd_V1_ServiceProviderOrganisationListMessage>]
 }
 
-extension Nd_V1_ServiceProviderWorkerV1Provider {
-  internal var serviceName: Substring { return "nd.v1.ServiceProviderWorkerV1" }
+internal final class Nd_V1_ServiceProviderOrganisationWorkerV1Client: Nd_V1_ServiceProviderOrganisationWorkerV1ClientProtocol {
+  internal let channel: GRPCChannel
+  internal var defaultCallOptions: CallOptions
+  internal var interceptors: Nd_V1_ServiceProviderOrganisationWorkerV1ClientInterceptorFactoryProtocol?
 
-  /// Determines, calls and returns the appropriate request handler, depending on the request's method.
-  /// Returns nil for methods not handled by this service.
-  internal func handle(
-    method name: Substring,
-    context: CallHandlerContext
-  ) -> GRPCServerHandlerProtocol? {
-    switch name {
-    case "SetServiceProviderProfile":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderProfileMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_IdMessage>(),
-        interceptors: self.interceptors?.makeSetServiceProviderProfileInterceptors() ?? [],
-        userFunction: self.setServiceProviderProfile(request:context:)
-      )
-
-    case "GetServiceProviderProfile":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderProfileMessage>(),
-        interceptors: self.interceptors?.makeGetServiceProviderProfileInterceptors() ?? [],
-        userFunction: self.getServiceProviderProfile(request:context:)
-      )
-
-    case "SetServiceProviderAvailability":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderAvailabilityRequest>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_IdMessage>(),
-        interceptors: self.interceptors?.makeSetServiceProviderAvailabilityInterceptors() ?? [],
-        userFunction: self.setServiceProviderAvailability(request:context:)
-      )
-
-    case "GetServiceProviderAvailablity":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderAvailabilityConfigList>(),
-        interceptors: self.interceptors?.makeGetServiceProviderAvailablityInterceptors() ?? [],
-        userFunction: self.getServiceProviderAvailablity(request:context:)
-      )
-
-    case "GetServiceProviderAvailableSlots":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderGeneratedSlotListMessage>(),
-        interceptors: self.interceptors?.makeGetServiceProviderAvailableSlotsInterceptors() ?? [],
-        userFunction: self.getServiceProviderAvailableSlots(request:context:)
-      )
-
-    case "GetServiceProviderAvailablityForOrganisation":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderInOrganisationRequestMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderAvailabilityConfigList>(),
-        interceptors: self.interceptors?.makeGetServiceProviderAvailablityForOrganisationInterceptors() ?? [],
-        userFunction: self.getServiceProviderAvailablityForOrganisation(request:context:)
-      )
-
-    case "GetServiceProviderAvailableSlotsForOrganisation":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderInOrganisationRequestMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderGeneratedSlotListMessage>(),
-        interceptors: self.interceptors?.makeGetServiceProviderAvailableSlotsForOrganisationInterceptors() ?? [],
-        userFunction: self.getServiceProviderAvailableSlotsForOrganisation(request:context:)
-      )
-
-    case "GetAutoFillMedicines":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderAutofillMedicineListMessage>(),
-        interceptors: self.interceptors?.makeGetAutoFillMedicinesInterceptors() ?? [],
-        userFunction: self.getAutoFillMedicines(request:context:)
-      )
-
-    case "SetAutoFillMedicines":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderMedicineMessageList>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_IdMessage>(),
-        interceptors: self.interceptors?.makeSetAutoFillMedicinesInterceptors() ?? [],
-        userFunction: self.setAutoFillMedicines(request:context:)
-      )
-
-    case "GetServiceProviders":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderProfileListMessage>(),
-        interceptors: self.interceptors?.makeGetServiceProvidersInterceptors() ?? [],
-        userFunction: self.getServiceProviders(request:context:)
-      )
-
-    case "GetServiceProvidersOfOrganisation":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderProfileListMessage>(),
-        interceptors: self.interceptors?.makeGetServiceProvidersOfOrganisationInterceptors() ?? [],
-        userFunction: self.getServiceProvidersOfOrganisation(request:context:)
-      )
-
-    default:
-      return nil
-    }
+  /// Creates a client for the nd.v1.ServiceProviderOrganisationWorkerV1 service.
+  ///
+  /// - Parameters:
+  ///   - channel: `GRPCChannel` to the service host.
+  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
+  ///   - interceptors: A factory providing interceptors for each RPC.
+  internal init(
+    channel: GRPCChannel,
+    defaultCallOptions: CallOptions = CallOptions(),
+    interceptors: Nd_V1_ServiceProviderOrganisationWorkerV1ClientInterceptorFactoryProtocol? = nil
+  ) {
+    self.channel = channel
+    self.defaultCallOptions = defaultCallOptions
+    self.interceptors = interceptors
   }
 }
 
-internal protocol Nd_V1_ServiceProviderWorkerV1ServerInterceptorFactoryProtocol {
+/// Usage: instantiate `Nd_V1_ServiceProviderPrescriptionWorkerV1Client`, then call methods of this protocol to make API calls.
+internal protocol Nd_V1_ServiceProviderPrescriptionWorkerV1ClientProtocol: GRPCClient {
+  var serviceName: String { get }
+  var interceptors: Nd_V1_ServiceProviderPrescriptionWorkerV1ClientInterceptorFactoryProtocol? { get }
 
-  /// - Returns: Interceptors to use when handling 'setServiceProviderProfile'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeSetServiceProviderProfileInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderProfileMessage, Nd_V1_IdMessage>]
+  func getPrescription(
+    _ request: Nd_V1_ServiceProviderServiceRequestRequestMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_ServiceProviderServiceRequestRequestMessage, Nd_V1_ServiceProviderPrescriptionMessage>
 
-  /// - Returns: Interceptors to use when handling 'getServiceProviderProfile'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetServiceProviderProfileInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderProfileMessage>]
+  func setPrescription(
+    _ request: Nd_V1_ServiceProviderPrescriptionMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_ServiceProviderPrescriptionMessage, Nd_V1_IdMessage>
 
-  /// - Returns: Interceptors to use when handling 'setServiceProviderAvailability'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeSetServiceProviderAvailabilityInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderAvailabilityRequest, Nd_V1_IdMessage>]
+  func downloadPrescriptionMedia(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_StringMessage>
 
-  /// - Returns: Interceptors to use when handling 'getServiceProviderAvailablity'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetServiceProviderAvailablityInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderAvailabilityConfigList>]
-
-  /// - Returns: Interceptors to use when handling 'getServiceProviderAvailableSlots'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetServiceProviderAvailableSlotsInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderGeneratedSlotListMessage>]
-
-  /// - Returns: Interceptors to use when handling 'getServiceProviderAvailablityForOrganisation'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetServiceProviderAvailablityForOrganisationInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderInOrganisationRequestMessage, Nd_V1_ServiceProviderAvailabilityConfigList>]
-
-  /// - Returns: Interceptors to use when handling 'getServiceProviderAvailableSlotsForOrganisation'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetServiceProviderAvailableSlotsForOrganisationInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderInOrganisationRequestMessage, Nd_V1_ServiceProviderGeneratedSlotListMessage>]
-
-  /// - Returns: Interceptors to use when handling 'getAutoFillMedicines'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetAutoFillMedicinesInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderAutofillMedicineListMessage>]
-
-  /// - Returns: Interceptors to use when handling 'setAutoFillMedicines'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeSetAutoFillMedicinesInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderMedicineMessageList, Nd_V1_IdMessage>]
-
-  /// - Returns: Interceptors to use when handling 'getServiceProviders'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetServiceProvidersInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderProfileListMessage>]
-
-  /// - Returns: Interceptors to use when handling 'getServiceProvidersOfOrganisation'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetServiceProvidersOfOrganisationInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderProfileListMessage>]
-}
-/// To build a server, implement a class that conforms to this protocol.
-internal protocol Nd_V1_ServiceProviderServiceRequestWorkerV1Provider: CallHandlerProvider {
-  var interceptors: Nd_V1_ServiceProviderServiceRequestWorkerV1ServerInterceptorFactoryProtocol? { get }
-
-  func setServiceRequest(request: Nd_V1_ServiceProviderServiceRequestMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_IdMessage>
-
-  func getServiceRequest(request: Nd_V1_ServiceProviderServiceRequestRequestMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderServiceRequestMessage>
+  func getPrescriptionPdf(
+    _ request: Nd_V1_RequestPdf,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_RequestPdf, Nd_V1_ResponsePdf>
 }
 
-extension Nd_V1_ServiceProviderServiceRequestWorkerV1Provider {
-  internal var serviceName: Substring { return "nd.v1.ServiceProviderServiceRequestWorkerV1" }
+extension Nd_V1_ServiceProviderPrescriptionWorkerV1ClientProtocol {
+  internal var serviceName: String {
+    return "nd.v1.ServiceProviderPrescriptionWorkerV1"
+  }
 
-  /// Determines, calls and returns the appropriate request handler, depending on the request's method.
-  /// Returns nil for methods not handled by this service.
-  internal func handle(
-    method name: Substring,
-    context: CallHandlerContext
-  ) -> GRPCServerHandlerProtocol? {
-    switch name {
-    case "SetServiceRequest":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderServiceRequestMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_IdMessage>(),
-        interceptors: self.interceptors?.makeSetServiceRequestInterceptors() ?? [],
-        userFunction: self.setServiceRequest(request:context:)
-      )
+  /// Unary call to GetPrescription
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetPrescription.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getPrescription(
+    _ request: Nd_V1_ServiceProviderServiceRequestRequestMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_ServiceProviderServiceRequestRequestMessage, Nd_V1_ServiceProviderPrescriptionMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderPrescriptionWorkerV1/GetPrescription",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetPrescriptionInterceptors() ?? []
+    )
+  }
 
-    case "GetServiceRequest":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderServiceRequestRequestMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderServiceRequestMessage>(),
-        interceptors: self.interceptors?.makeGetServiceRequestInterceptors() ?? [],
-        userFunction: self.getServiceRequest(request:context:)
-      )
+  /// Unary call to SetPrescription
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to SetPrescription.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func setPrescription(
+    _ request: Nd_V1_ServiceProviderPrescriptionMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_ServiceProviderPrescriptionMessage, Nd_V1_IdMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderPrescriptionWorkerV1/SetPrescription",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeSetPrescriptionInterceptors() ?? []
+    )
+  }
 
-    default:
-      return nil
-    }
+  /// Unary call to DownloadPrescriptionMedia
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to DownloadPrescriptionMedia.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func downloadPrescriptionMedia(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_StringMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderPrescriptionWorkerV1/DownloadPrescriptionMedia",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeDownloadPrescriptionMediaInterceptors() ?? []
+    )
+  }
+
+  /// Unary call to GetPrescriptionPdf
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetPrescriptionPdf.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getPrescriptionPdf(
+    _ request: Nd_V1_RequestPdf,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_RequestPdf, Nd_V1_ResponsePdf> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderPrescriptionWorkerV1/GetPrescriptionPdf",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetPrescriptionPdfInterceptors() ?? []
+    )
   }
 }
 
-internal protocol Nd_V1_ServiceProviderServiceRequestWorkerV1ServerInterceptorFactoryProtocol {
+internal protocol Nd_V1_ServiceProviderPrescriptionWorkerV1ClientInterceptorFactoryProtocol {
 
-  /// - Returns: Interceptors to use when handling 'setServiceRequest'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeSetServiceRequestInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderServiceRequestMessage, Nd_V1_IdMessage>]
+  /// - Returns: Interceptors to use when invoking 'getPrescription'.
+  func makeGetPrescriptionInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderServiceRequestRequestMessage, Nd_V1_ServiceProviderPrescriptionMessage>]
 
-  /// - Returns: Interceptors to use when handling 'getServiceRequest'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetServiceRequestInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderServiceRequestRequestMessage, Nd_V1_ServiceProviderServiceRequestMessage>]
+  /// - Returns: Interceptors to use when invoking 'setPrescription'.
+  func makeSetPrescriptionInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderPrescriptionMessage, Nd_V1_IdMessage>]
+
+  /// - Returns: Interceptors to use when invoking 'downloadPrescriptionMedia'.
+  func makeDownloadPrescriptionMediaInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_StringMessage>]
+
+  /// - Returns: Interceptors to use when invoking 'getPrescriptionPdf'.
+  func makeGetPrescriptionPdfInterceptors() -> [ClientInterceptor<Nd_V1_RequestPdf, Nd_V1_ResponsePdf>]
 }
+
+internal final class Nd_V1_ServiceProviderPrescriptionWorkerV1Client: Nd_V1_ServiceProviderPrescriptionWorkerV1ClientProtocol {
+  internal let channel: GRPCChannel
+  internal var defaultCallOptions: CallOptions
+  internal var interceptors: Nd_V1_ServiceProviderPrescriptionWorkerV1ClientInterceptorFactoryProtocol?
+
+  /// Creates a client for the nd.v1.ServiceProviderPrescriptionWorkerV1 service.
+  ///
+  /// - Parameters:
+  ///   - channel: `GRPCChannel` to the service host.
+  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
+  ///   - interceptors: A factory providing interceptors for each RPC.
+  internal init(
+    channel: GRPCChannel,
+    defaultCallOptions: CallOptions = CallOptions(),
+    interceptors: Nd_V1_ServiceProviderPrescriptionWorkerV1ClientInterceptorFactoryProtocol? = nil
+  ) {
+    self.channel = channel
+    self.defaultCallOptions = defaultCallOptions
+    self.interceptors = interceptors
+  }
+}
+
+/// Usage: instantiate `Nd_V1_ServiceProviderReportWorkerV1Client`, then call methods of this protocol to make API calls.
+internal protocol Nd_V1_ServiceProviderReportWorkerV1ClientProtocol: GRPCClient {
+  var serviceName: String { get }
+  var interceptors: Nd_V1_ServiceProviderReportWorkerV1ClientInterceptorFactoryProtocol? { get }
+
+  func getCustomerReports(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderReportListMessage>
+
+  func getAppointmentReports(
+    _ request: Nd_V1_ServiceProviderServiceRequestRequestMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_ServiceProviderServiceRequestRequestMessage, Nd_V1_ServiceProviderReportListMessage>
+
+  func setReport(
+    _ request: Nd_V1_ServiceProviderReportUploadMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_ServiceProviderReportUploadMessage, Nd_V1_IdMessage>
+
+  func downloadReportMedia(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_StringMessage>
+}
+
+extension Nd_V1_ServiceProviderReportWorkerV1ClientProtocol {
+  internal var serviceName: String {
+    return "nd.v1.ServiceProviderReportWorkerV1"
+  }
+
+  /// Unary call to GetCustomerReports
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetCustomerReports.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getCustomerReports(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderReportListMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderReportWorkerV1/GetCustomerReports",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetCustomerReportsInterceptors() ?? []
+    )
+  }
+
+  /// Unary call to GetAppointmentReports
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetAppointmentReports.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getAppointmentReports(
+    _ request: Nd_V1_ServiceProviderServiceRequestRequestMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_ServiceProviderServiceRequestRequestMessage, Nd_V1_ServiceProviderReportListMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderReportWorkerV1/GetAppointmentReports",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetAppointmentReportsInterceptors() ?? []
+    )
+  }
+
+  /// Unary call to SetReport
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to SetReport.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func setReport(
+    _ request: Nd_V1_ServiceProviderReportUploadMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_ServiceProviderReportUploadMessage, Nd_V1_IdMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderReportWorkerV1/SetReport",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeSetReportInterceptors() ?? []
+    )
+  }
+
+  /// Unary call to DownloadReportMedia
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to DownloadReportMedia.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func downloadReportMedia(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_StringMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderReportWorkerV1/DownloadReportMedia",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeDownloadReportMediaInterceptors() ?? []
+    )
+  }
+}
+
+internal protocol Nd_V1_ServiceProviderReportWorkerV1ClientInterceptorFactoryProtocol {
+
+  /// - Returns: Interceptors to use when invoking 'getCustomerReports'.
+  func makeGetCustomerReportsInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderReportListMessage>]
+
+  /// - Returns: Interceptors to use when invoking 'getAppointmentReports'.
+  func makeGetAppointmentReportsInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderServiceRequestRequestMessage, Nd_V1_ServiceProviderReportListMessage>]
+
+  /// - Returns: Interceptors to use when invoking 'setReport'.
+  func makeSetReportInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderReportUploadMessage, Nd_V1_IdMessage>]
+
+  /// - Returns: Interceptors to use when invoking 'downloadReportMedia'.
+  func makeDownloadReportMediaInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_StringMessage>]
+}
+
+internal final class Nd_V1_ServiceProviderReportWorkerV1Client: Nd_V1_ServiceProviderReportWorkerV1ClientProtocol {
+  internal let channel: GRPCChannel
+  internal var defaultCallOptions: CallOptions
+  internal var interceptors: Nd_V1_ServiceProviderReportWorkerV1ClientInterceptorFactoryProtocol?
+
+  /// Creates a client for the nd.v1.ServiceProviderReportWorkerV1 service.
+  ///
+  /// - Parameters:
+  ///   - channel: `GRPCChannel` to the service host.
+  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
+  ///   - interceptors: A factory providing interceptors for each RPC.
+  internal init(
+    channel: GRPCChannel,
+    defaultCallOptions: CallOptions = CallOptions(),
+    interceptors: Nd_V1_ServiceProviderReportWorkerV1ClientInterceptorFactoryProtocol? = nil
+  ) {
+    self.channel = channel
+    self.defaultCallOptions = defaultCallOptions
+    self.interceptors = interceptors
+  }
+}
+
+/// Usage: instantiate `Nd_V1_ServiceProviderWorkerV1Client`, then call methods of this protocol to make API calls.
+internal protocol Nd_V1_ServiceProviderWorkerV1ClientProtocol: GRPCClient {
+  var serviceName: String { get }
+  var interceptors: Nd_V1_ServiceProviderWorkerV1ClientInterceptorFactoryProtocol? { get }
+
+  func setServiceProviderProfile(
+    _ request: Nd_V1_ServiceProviderProfileMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_ServiceProviderProfileMessage, Nd_V1_IdMessage>
+
+  func getServiceProviderProfile(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderProfileMessage>
+
+  func setServiceProviderAvailability(
+    _ request: Nd_V1_ServiceProviderAvailabilityRequest,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_ServiceProviderAvailabilityRequest, Nd_V1_IdMessage>
+
+  func getServiceProviderAvailablity(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderAvailabilityConfigList>
+
+  func getServiceProviderAvailableSlots(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderGeneratedSlotListMessage>
+
+  func getServiceProviderAvailablityForOrganisation(
+    _ request: Nd_V1_ServiceProviderInOrganisationRequestMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_ServiceProviderInOrganisationRequestMessage, Nd_V1_ServiceProviderAvailabilityConfigList>
+
+  func getServiceProviderAvailableSlotsForOrganisation(
+    _ request: Nd_V1_ServiceProviderInOrganisationRequestMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_ServiceProviderInOrganisationRequestMessage, Nd_V1_ServiceProviderGeneratedSlotListMessage>
+
+  func getAutoFillMedicines(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderAutofillMedicineListMessage>
+
+  func setAutoFillMedicines(
+    _ request: Nd_V1_ServiceProviderMedicineMessageList,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_ServiceProviderMedicineMessageList, Nd_V1_IdMessage>
+
+  func getServiceProviders(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderProfileListMessage>
+
+  func getServiceProvidersOfOrganisation(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderProfileListMessage>
+
+  func getAllSpecialties(
+    _ request: Nd_V1_VoidMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_VoidMessage, Nd_V1_CategoryListMessage>
+}
+
+extension Nd_V1_ServiceProviderWorkerV1ClientProtocol {
+  internal var serviceName: String {
+    return "nd.v1.ServiceProviderWorkerV1"
+  }
+
+  /// Unary call to SetServiceProviderProfile
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to SetServiceProviderProfile.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func setServiceProviderProfile(
+    _ request: Nd_V1_ServiceProviderProfileMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_ServiceProviderProfileMessage, Nd_V1_IdMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderWorkerV1/SetServiceProviderProfile",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeSetServiceProviderProfileInterceptors() ?? []
+    )
+  }
+
+  /// Unary call to GetServiceProviderProfile
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetServiceProviderProfile.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getServiceProviderProfile(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderProfileMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderWorkerV1/GetServiceProviderProfile",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetServiceProviderProfileInterceptors() ?? []
+    )
+  }
+
+  /// Unary call to SetServiceProviderAvailability
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to SetServiceProviderAvailability.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func setServiceProviderAvailability(
+    _ request: Nd_V1_ServiceProviderAvailabilityRequest,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_ServiceProviderAvailabilityRequest, Nd_V1_IdMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderWorkerV1/SetServiceProviderAvailability",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeSetServiceProviderAvailabilityInterceptors() ?? []
+    )
+  }
+
+  /// Unary call to GetServiceProviderAvailablity
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetServiceProviderAvailablity.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getServiceProviderAvailablity(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderAvailabilityConfigList> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderWorkerV1/GetServiceProviderAvailablity",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetServiceProviderAvailablityInterceptors() ?? []
+    )
+  }
+
+  /// Unary call to GetServiceProviderAvailableSlots
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetServiceProviderAvailableSlots.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getServiceProviderAvailableSlots(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderGeneratedSlotListMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderWorkerV1/GetServiceProviderAvailableSlots",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetServiceProviderAvailableSlotsInterceptors() ?? []
+    )
+  }
+
+  /// Unary call to GetServiceProviderAvailablityForOrganisation
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetServiceProviderAvailablityForOrganisation.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getServiceProviderAvailablityForOrganisation(
+    _ request: Nd_V1_ServiceProviderInOrganisationRequestMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_ServiceProviderInOrganisationRequestMessage, Nd_V1_ServiceProviderAvailabilityConfigList> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderWorkerV1/GetServiceProviderAvailablityForOrganisation",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetServiceProviderAvailablityForOrganisationInterceptors() ?? []
+    )
+  }
+
+  /// Unary call to GetServiceProviderAvailableSlotsForOrganisation
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetServiceProviderAvailableSlotsForOrganisation.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getServiceProviderAvailableSlotsForOrganisation(
+    _ request: Nd_V1_ServiceProviderInOrganisationRequestMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_ServiceProviderInOrganisationRequestMessage, Nd_V1_ServiceProviderGeneratedSlotListMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderWorkerV1/GetServiceProviderAvailableSlotsForOrganisation",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetServiceProviderAvailableSlotsForOrganisationInterceptors() ?? []
+    )
+  }
+
+  /// Unary call to GetAutoFillMedicines
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetAutoFillMedicines.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getAutoFillMedicines(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderAutofillMedicineListMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderWorkerV1/GetAutoFillMedicines",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetAutoFillMedicinesInterceptors() ?? []
+    )
+  }
+
+  /// Unary call to SetAutoFillMedicines
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to SetAutoFillMedicines.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func setAutoFillMedicines(
+    _ request: Nd_V1_ServiceProviderMedicineMessageList,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_ServiceProviderMedicineMessageList, Nd_V1_IdMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderWorkerV1/SetAutoFillMedicines",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeSetAutoFillMedicinesInterceptors() ?? []
+    )
+  }
+
+  /// Unary call to GetServiceProviders
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetServiceProviders.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getServiceProviders(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderProfileListMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderWorkerV1/GetServiceProviders",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetServiceProvidersInterceptors() ?? []
+    )
+  }
+
+  /// Unary call to GetServiceProvidersOfOrganisation
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetServiceProvidersOfOrganisation.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getServiceProvidersOfOrganisation(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderProfileListMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderWorkerV1/GetServiceProvidersOfOrganisation",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetServiceProvidersOfOrganisationInterceptors() ?? []
+    )
+  }
+
+  /// Unary call to GetAllSpecialties
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetAllSpecialties.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getAllSpecialties(
+    _ request: Nd_V1_VoidMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_VoidMessage, Nd_V1_CategoryListMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderWorkerV1/GetAllSpecialties",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetAllSpecialtiesInterceptors() ?? []
+    )
+  }
+}
+
+internal protocol Nd_V1_ServiceProviderWorkerV1ClientInterceptorFactoryProtocol {
+
+  /// - Returns: Interceptors to use when invoking 'setServiceProviderProfile'.
+  func makeSetServiceProviderProfileInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderProfileMessage, Nd_V1_IdMessage>]
+
+  /// - Returns: Interceptors to use when invoking 'getServiceProviderProfile'.
+  func makeGetServiceProviderProfileInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderProfileMessage>]
+
+  /// - Returns: Interceptors to use when invoking 'setServiceProviderAvailability'.
+  func makeSetServiceProviderAvailabilityInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderAvailabilityRequest, Nd_V1_IdMessage>]
+
+  /// - Returns: Interceptors to use when invoking 'getServiceProviderAvailablity'.
+  func makeGetServiceProviderAvailablityInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderAvailabilityConfigList>]
+
+  /// - Returns: Interceptors to use when invoking 'getServiceProviderAvailableSlots'.
+  func makeGetServiceProviderAvailableSlotsInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderGeneratedSlotListMessage>]
+
+  /// - Returns: Interceptors to use when invoking 'getServiceProviderAvailablityForOrganisation'.
+  func makeGetServiceProviderAvailablityForOrganisationInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderInOrganisationRequestMessage, Nd_V1_ServiceProviderAvailabilityConfigList>]
+
+  /// - Returns: Interceptors to use when invoking 'getServiceProviderAvailableSlotsForOrganisation'.
+  func makeGetServiceProviderAvailableSlotsForOrganisationInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderInOrganisationRequestMessage, Nd_V1_ServiceProviderGeneratedSlotListMessage>]
+
+  /// - Returns: Interceptors to use when invoking 'getAutoFillMedicines'.
+  func makeGetAutoFillMedicinesInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderAutofillMedicineListMessage>]
+
+  /// - Returns: Interceptors to use when invoking 'setAutoFillMedicines'.
+  func makeSetAutoFillMedicinesInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderMedicineMessageList, Nd_V1_IdMessage>]
+
+  /// - Returns: Interceptors to use when invoking 'getServiceProviders'.
+  func makeGetServiceProvidersInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderProfileListMessage>]
+
+  /// - Returns: Interceptors to use when invoking 'getServiceProvidersOfOrganisation'.
+  func makeGetServiceProvidersOfOrganisationInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderProfileListMessage>]
+
+  /// - Returns: Interceptors to use when invoking 'getAllSpecialties'.
+  func makeGetAllSpecialtiesInterceptors() -> [ClientInterceptor<Nd_V1_VoidMessage, Nd_V1_CategoryListMessage>]
+}
+
+internal final class Nd_V1_ServiceProviderWorkerV1Client: Nd_V1_ServiceProviderWorkerV1ClientProtocol {
+  internal let channel: GRPCChannel
+  internal var defaultCallOptions: CallOptions
+  internal var interceptors: Nd_V1_ServiceProviderWorkerV1ClientInterceptorFactoryProtocol?
+
+  /// Creates a client for the nd.v1.ServiceProviderWorkerV1 service.
+  ///
+  /// - Parameters:
+  ///   - channel: `GRPCChannel` to the service host.
+  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
+  ///   - interceptors: A factory providing interceptors for each RPC.
+  internal init(
+    channel: GRPCChannel,
+    defaultCallOptions: CallOptions = CallOptions(),
+    interceptors: Nd_V1_ServiceProviderWorkerV1ClientInterceptorFactoryProtocol? = nil
+  ) {
+    self.channel = channel
+    self.defaultCallOptions = defaultCallOptions
+    self.interceptors = interceptors
+  }
+}
+
+/// Usage: instantiate `Nd_V1_ServiceProviderServiceRequestWorkerV1Client`, then call methods of this protocol to make API calls.
+internal protocol Nd_V1_ServiceProviderServiceRequestWorkerV1ClientProtocol: GRPCClient {
+  var serviceName: String { get }
+  var interceptors: Nd_V1_ServiceProviderServiceRequestWorkerV1ClientInterceptorFactoryProtocol? { get }
+
+  func setServiceRequest(
+    _ request: Nd_V1_ServiceProviderServiceRequestMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_ServiceProviderServiceRequestMessage, Nd_V1_IdMessage>
+
+  func getServiceRequest(
+    _ request: Nd_V1_ServiceProviderServiceRequestRequestMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_ServiceProviderServiceRequestRequestMessage, Nd_V1_ServiceProviderServiceRequestMessage>
+}
+
+extension Nd_V1_ServiceProviderServiceRequestWorkerV1ClientProtocol {
+  internal var serviceName: String {
+    return "nd.v1.ServiceProviderServiceRequestWorkerV1"
+  }
+
+  /// Unary call to SetServiceRequest
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to SetServiceRequest.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func setServiceRequest(
+    _ request: Nd_V1_ServiceProviderServiceRequestMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_ServiceProviderServiceRequestMessage, Nd_V1_IdMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderServiceRequestWorkerV1/SetServiceRequest",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeSetServiceRequestInterceptors() ?? []
+    )
+  }
+
+  /// Unary call to GetServiceRequest
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetServiceRequest.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getServiceRequest(
+    _ request: Nd_V1_ServiceProviderServiceRequestRequestMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_ServiceProviderServiceRequestRequestMessage, Nd_V1_ServiceProviderServiceRequestMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderServiceRequestWorkerV1/GetServiceRequest",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetServiceRequestInterceptors() ?? []
+    )
+  }
+}
+
+internal protocol Nd_V1_ServiceProviderServiceRequestWorkerV1ClientInterceptorFactoryProtocol {
+
+  /// - Returns: Interceptors to use when invoking 'setServiceRequest'.
+  func makeSetServiceRequestInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderServiceRequestMessage, Nd_V1_IdMessage>]
+
+  /// - Returns: Interceptors to use when invoking 'getServiceRequest'.
+  func makeGetServiceRequestInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderServiceRequestRequestMessage, Nd_V1_ServiceProviderServiceRequestMessage>]
+}
+
+internal final class Nd_V1_ServiceProviderServiceRequestWorkerV1Client: Nd_V1_ServiceProviderServiceRequestWorkerV1ClientProtocol {
+  internal let channel: GRPCChannel
+  internal var defaultCallOptions: CallOptions
+  internal var interceptors: Nd_V1_ServiceProviderServiceRequestWorkerV1ClientInterceptorFactoryProtocol?
+
+  /// Creates a client for the nd.v1.ServiceProviderServiceRequestWorkerV1 service.
+  ///
+  /// - Parameters:
+  ///   - channel: `GRPCChannel` to the service host.
+  ///   - defaultCallOptions: Options to use for each service call if the user doesn't provide them.
+  ///   - interceptors: A factory providing interceptors for each RPC.
+  internal init(
+    channel: GRPCChannel,
+    defaultCallOptions: CallOptions = CallOptions(),
+    interceptors: Nd_V1_ServiceProviderServiceRequestWorkerV1ClientInterceptorFactoryProtocol? = nil
+  ) {
+    self.channel = channel
+    self.defaultCallOptions = defaultCallOptions
+    self.interceptors = interceptors
+  }
+}
+
 /// To build a server, implement a class that conforms to this protocol.
 internal protocol Nd_V1_LoggingWorkerV1Provider: CallHandlerProvider {
   var interceptors: Nd_V1_LoggingWorkerV1ServerInterceptorFactoryProtocol? { get }
@@ -3783,8 +3119,6 @@ internal protocol Nd_V1_CustomerPrescriptionWorkerV1Provider: CallHandlerProvide
 
   func getPrescription(request: Nd_V1_CustomerServiceRequestRequestMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_CustomerPrescriptionMessage>
 
-  func setPrescription(request: Nd_V1_CustomerPrescriptionMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_IdMessage>
-
   func downloadPrescriptionMedia(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_StringMessage>
 
   func getPrescriptionPdf(request: Nd_V1_RequestPdf, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ResponsePdf>
@@ -3807,15 +3141,6 @@ extension Nd_V1_CustomerPrescriptionWorkerV1Provider {
         responseSerializer: ProtobufSerializer<Nd_V1_CustomerPrescriptionMessage>(),
         interceptors: self.interceptors?.makeGetPrescriptionInterceptors() ?? [],
         userFunction: self.getPrescription(request:context:)
-      )
-
-    case "SetPrescription":
-      return UnaryServerHandler(
-        context: context,
-        requestDeserializer: ProtobufDeserializer<Nd_V1_CustomerPrescriptionMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_IdMessage>(),
-        interceptors: self.interceptors?.makeSetPrescriptionInterceptors() ?? [],
-        userFunction: self.setPrescription(request:context:)
       )
 
     case "DownloadPrescriptionMedia":
@@ -3847,10 +3172,6 @@ internal protocol Nd_V1_CustomerPrescriptionWorkerV1ServerInterceptorFactoryProt
   /// - Returns: Interceptors to use when handling 'getPrescription'.
   ///   Defaults to calling `self.makeInterceptors()`.
   func makeGetPrescriptionInterceptors() -> [ServerInterceptor<Nd_V1_CustomerServiceRequestRequestMessage, Nd_V1_CustomerPrescriptionMessage>]
-
-  /// - Returns: Interceptors to use when handling 'setPrescription'.
-  ///   Defaults to calling `self.makeInterceptors()`.
-  func makeSetPrescriptionInterceptors() -> [ServerInterceptor<Nd_V1_CustomerPrescriptionMessage, Nd_V1_IdMessage>]
 
   /// - Returns: Interceptors to use when handling 'downloadPrescriptionMedia'.
   ///   Defaults to calling `self.makeInterceptors()`.
@@ -4138,4 +3459,765 @@ internal protocol Nd_V1_CustomerServiceRequestWorkerV1ServerInterceptorFactoryPr
   /// - Returns: Interceptors to use when handling 'getServiceRequest'.
   ///   Defaults to calling `self.makeInterceptors()`.
   func makeGetServiceRequestInterceptors() -> [ServerInterceptor<Nd_V1_CustomerServiceRequestRequestMessage, Nd_V1_CustomerServiceRequestMessage>]
+}
+/// To build a server, implement a class that conforms to this protocol.
+internal protocol Nd_V1_ServiceProviderAppointmentWorkerV1Provider: CallHandlerProvider {
+  var interceptors: Nd_V1_ServiceProviderAppointmentWorkerV1ServerInterceptorFactoryProtocol? { get }
+
+  func setAppointment(request: Nd_V1_ServiceProviderAppointmentMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_IdMessage>
+
+  func getAppointment(request: Nd_V1_ServiceProviderAppointmentRequestMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderAppointmentMessage>
+
+  func getAppointments(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderAppointmentList>
+
+  func getOrganisationAppointments(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderAppointmentList>
+
+  func getCustomerAppointments(request: Nd_V1_ServiceProviderCustomerAppointmentsRequestMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderAppointmentList>
+
+  func getAppointmentPayments(request: Nd_V1_ServiceProviderAppointmentRequestMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderPaymentListMessage>
+
+  func getPayments(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderPaymentListMessage>
+}
+
+extension Nd_V1_ServiceProviderAppointmentWorkerV1Provider {
+  internal var serviceName: Substring { return "nd.v1.ServiceProviderAppointmentWorkerV1" }
+
+  /// Determines, calls and returns the appropriate request handler, depending on the request's method.
+  /// Returns nil for methods not handled by this service.
+  internal func handle(
+    method name: Substring,
+    context: CallHandlerContext
+  ) -> GRPCServerHandlerProtocol? {
+    switch name {
+    case "SetAppointment":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderAppointmentMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_IdMessage>(),
+        interceptors: self.interceptors?.makeSetAppointmentInterceptors() ?? [],
+        userFunction: self.setAppointment(request:context:)
+      )
+
+    case "GetAppointment":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderAppointmentRequestMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderAppointmentMessage>(),
+        interceptors: self.interceptors?.makeGetAppointmentInterceptors() ?? [],
+        userFunction: self.getAppointment(request:context:)
+      )
+
+    case "GetAppointments":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderAppointmentList>(),
+        interceptors: self.interceptors?.makeGetAppointmentsInterceptors() ?? [],
+        userFunction: self.getAppointments(request:context:)
+      )
+
+    case "GetOrganisationAppointments":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderAppointmentList>(),
+        interceptors: self.interceptors?.makeGetOrganisationAppointmentsInterceptors() ?? [],
+        userFunction: self.getOrganisationAppointments(request:context:)
+      )
+
+    case "GetCustomerAppointments":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderCustomerAppointmentsRequestMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderAppointmentList>(),
+        interceptors: self.interceptors?.makeGetCustomerAppointmentsInterceptors() ?? [],
+        userFunction: self.getCustomerAppointments(request:context:)
+      )
+
+    case "GetAppointmentPayments":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderAppointmentRequestMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderPaymentListMessage>(),
+        interceptors: self.interceptors?.makeGetAppointmentPaymentsInterceptors() ?? [],
+        userFunction: self.getAppointmentPayments(request:context:)
+      )
+
+    case "GetPayments":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderPaymentListMessage>(),
+        interceptors: self.interceptors?.makeGetPaymentsInterceptors() ?? [],
+        userFunction: self.getPayments(request:context:)
+      )
+
+    default:
+      return nil
+    }
+  }
+}
+
+internal protocol Nd_V1_ServiceProviderAppointmentWorkerV1ServerInterceptorFactoryProtocol {
+
+  /// - Returns: Interceptors to use when handling 'setAppointment'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeSetAppointmentInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderAppointmentMessage, Nd_V1_IdMessage>]
+
+  /// - Returns: Interceptors to use when handling 'getAppointment'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetAppointmentInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderAppointmentRequestMessage, Nd_V1_ServiceProviderAppointmentMessage>]
+
+  /// - Returns: Interceptors to use when handling 'getAppointments'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetAppointmentsInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderAppointmentList>]
+
+  /// - Returns: Interceptors to use when handling 'getOrganisationAppointments'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetOrganisationAppointmentsInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderAppointmentList>]
+
+  /// - Returns: Interceptors to use when handling 'getCustomerAppointments'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetCustomerAppointmentsInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderCustomerAppointmentsRequestMessage, Nd_V1_ServiceProviderAppointmentList>]
+
+  /// - Returns: Interceptors to use when handling 'getAppointmentPayments'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetAppointmentPaymentsInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderAppointmentRequestMessage, Nd_V1_ServiceProviderPaymentListMessage>]
+
+  /// - Returns: Interceptors to use when handling 'getPayments'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetPaymentsInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderPaymentListMessage>]
+}
+/// To build a server, implement a class that conforms to this protocol.
+internal protocol Nd_V1_ServiceProviderCustomerWorkerV1Provider: CallHandlerProvider {
+  var interceptors: Nd_V1_ServiceProviderCustomerWorkerV1ServerInterceptorFactoryProtocol? { get }
+
+  func setCustomerProfile(request: Nd_V1_ServiceProviderCustomerProfileMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_IdMessage>
+
+  func getCustomerProfile(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderCustomerProfileMessage>
+
+  func getCustomers(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderMyPatientsProfileMessageList>
+
+  func getCustomersFromFreelance(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderMyPatientsProfileMessageList>
+
+  func getCustomerAppointmentSummary(request: Nd_V1_ServiceProviderAppointmentSummaryRequestMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderAppointmentSummaryListMessage>
+
+  func getCustomersOfOrganisation(request: Nd_V1_ServiceProviderInOrganisationRequestMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderMyPatientsProfileMessageList>
+
+  func getCustomersOfServiceProviderInOrganisation(request: Nd_V1_ServiceProviderInOrganisationRequestMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderMyPatientsProfileMessageList>
+}
+
+extension Nd_V1_ServiceProviderCustomerWorkerV1Provider {
+  internal var serviceName: Substring { return "nd.v1.ServiceProviderCustomerWorkerV1" }
+
+  /// Determines, calls and returns the appropriate request handler, depending on the request's method.
+  /// Returns nil for methods not handled by this service.
+  internal func handle(
+    method name: Substring,
+    context: CallHandlerContext
+  ) -> GRPCServerHandlerProtocol? {
+    switch name {
+    case "SetCustomerProfile":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderCustomerProfileMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_IdMessage>(),
+        interceptors: self.interceptors?.makeSetCustomerProfileInterceptors() ?? [],
+        userFunction: self.setCustomerProfile(request:context:)
+      )
+
+    case "GetCustomerProfile":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderCustomerProfileMessage>(),
+        interceptors: self.interceptors?.makeGetCustomerProfileInterceptors() ?? [],
+        userFunction: self.getCustomerProfile(request:context:)
+      )
+
+    case "GetCustomers":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderMyPatientsProfileMessageList>(),
+        interceptors: self.interceptors?.makeGetCustomersInterceptors() ?? [],
+        userFunction: self.getCustomers(request:context:)
+      )
+
+    case "GetCustomersFromFreelance":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderMyPatientsProfileMessageList>(),
+        interceptors: self.interceptors?.makeGetCustomersFromFreelanceInterceptors() ?? [],
+        userFunction: self.getCustomersFromFreelance(request:context:)
+      )
+
+    case "GetCustomerAppointmentSummary":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderAppointmentSummaryRequestMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderAppointmentSummaryListMessage>(),
+        interceptors: self.interceptors?.makeGetCustomerAppointmentSummaryInterceptors() ?? [],
+        userFunction: self.getCustomerAppointmentSummary(request:context:)
+      )
+
+    case "GetCustomersOfOrganisation":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderInOrganisationRequestMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderMyPatientsProfileMessageList>(),
+        interceptors: self.interceptors?.makeGetCustomersOfOrganisationInterceptors() ?? [],
+        userFunction: self.getCustomersOfOrganisation(request:context:)
+      )
+
+    case "GetCustomersOfServiceProviderInOrganisation":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderInOrganisationRequestMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderMyPatientsProfileMessageList>(),
+        interceptors: self.interceptors?.makeGetCustomersOfServiceProviderInOrganisationInterceptors() ?? [],
+        userFunction: self.getCustomersOfServiceProviderInOrganisation(request:context:)
+      )
+
+    default:
+      return nil
+    }
+  }
+}
+
+internal protocol Nd_V1_ServiceProviderCustomerWorkerV1ServerInterceptorFactoryProtocol {
+
+  /// - Returns: Interceptors to use when handling 'setCustomerProfile'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeSetCustomerProfileInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderCustomerProfileMessage, Nd_V1_IdMessage>]
+
+  /// - Returns: Interceptors to use when handling 'getCustomerProfile'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetCustomerProfileInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderCustomerProfileMessage>]
+
+  /// - Returns: Interceptors to use when handling 'getCustomers'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetCustomersInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderMyPatientsProfileMessageList>]
+
+  /// - Returns: Interceptors to use when handling 'getCustomersFromFreelance'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetCustomersFromFreelanceInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderMyPatientsProfileMessageList>]
+
+  /// - Returns: Interceptors to use when handling 'getCustomerAppointmentSummary'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetCustomerAppointmentSummaryInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderAppointmentSummaryRequestMessage, Nd_V1_ServiceProviderAppointmentSummaryListMessage>]
+
+  /// - Returns: Interceptors to use when handling 'getCustomersOfOrganisation'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetCustomersOfOrganisationInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderInOrganisationRequestMessage, Nd_V1_ServiceProviderMyPatientsProfileMessageList>]
+
+  /// - Returns: Interceptors to use when handling 'getCustomersOfServiceProviderInOrganisation'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetCustomersOfServiceProviderInOrganisationInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderInOrganisationRequestMessage, Nd_V1_ServiceProviderMyPatientsProfileMessageList>]
+}
+/// To build a server, implement a class that conforms to this protocol.
+internal protocol Nd_V1_ServiceProviderOrganisationWorkerV1Provider: CallHandlerProvider {
+  var interceptors: Nd_V1_ServiceProviderOrganisationWorkerV1ServerInterceptorFactoryProtocol? { get }
+
+  func setOrganisation(request: Nd_V1_ServiceProviderOrganisationMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_IdMessage>
+
+  func getOrganisation(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderOrganisationMessage>
+
+  func getOrganisations(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderOrganisationListMessage>
+
+  func getSpecificOrganisations(request: Nd_V1_StringArrayMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderOrganisationListMessage>
+}
+
+extension Nd_V1_ServiceProviderOrganisationWorkerV1Provider {
+  internal var serviceName: Substring { return "nd.v1.ServiceProviderOrganisationWorkerV1" }
+
+  /// Determines, calls and returns the appropriate request handler, depending on the request's method.
+  /// Returns nil for methods not handled by this service.
+  internal func handle(
+    method name: Substring,
+    context: CallHandlerContext
+  ) -> GRPCServerHandlerProtocol? {
+    switch name {
+    case "SetOrganisation":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderOrganisationMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_IdMessage>(),
+        interceptors: self.interceptors?.makeSetOrganisationInterceptors() ?? [],
+        userFunction: self.setOrganisation(request:context:)
+      )
+
+    case "GetOrganisation":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderOrganisationMessage>(),
+        interceptors: self.interceptors?.makeGetOrganisationInterceptors() ?? [],
+        userFunction: self.getOrganisation(request:context:)
+      )
+
+    case "GetOrganisations":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderOrganisationListMessage>(),
+        interceptors: self.interceptors?.makeGetOrganisationsInterceptors() ?? [],
+        userFunction: self.getOrganisations(request:context:)
+      )
+
+    case "GetSpecificOrganisations":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_StringArrayMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderOrganisationListMessage>(),
+        interceptors: self.interceptors?.makeGetSpecificOrganisationsInterceptors() ?? [],
+        userFunction: self.getSpecificOrganisations(request:context:)
+      )
+
+    default:
+      return nil
+    }
+  }
+}
+
+internal protocol Nd_V1_ServiceProviderOrganisationWorkerV1ServerInterceptorFactoryProtocol {
+
+  /// - Returns: Interceptors to use when handling 'setOrganisation'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeSetOrganisationInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderOrganisationMessage, Nd_V1_IdMessage>]
+
+  /// - Returns: Interceptors to use when handling 'getOrganisation'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetOrganisationInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderOrganisationMessage>]
+
+  /// - Returns: Interceptors to use when handling 'getOrganisations'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetOrganisationsInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderOrganisationListMessage>]
+
+  /// - Returns: Interceptors to use when handling 'getSpecificOrganisations'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetSpecificOrganisationsInterceptors() -> [ServerInterceptor<Nd_V1_StringArrayMessage, Nd_V1_ServiceProviderOrganisationListMessage>]
+}
+/// To build a server, implement a class that conforms to this protocol.
+internal protocol Nd_V1_ServiceProviderPrescriptionWorkerV1Provider: CallHandlerProvider {
+  var interceptors: Nd_V1_ServiceProviderPrescriptionWorkerV1ServerInterceptorFactoryProtocol? { get }
+
+  func getPrescription(request: Nd_V1_ServiceProviderServiceRequestRequestMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderPrescriptionMessage>
+
+  func setPrescription(request: Nd_V1_ServiceProviderPrescriptionMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_IdMessage>
+
+  func downloadPrescriptionMedia(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_StringMessage>
+
+  func getPrescriptionPdf(request: Nd_V1_RequestPdf, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ResponsePdf>
+}
+
+extension Nd_V1_ServiceProviderPrescriptionWorkerV1Provider {
+  internal var serviceName: Substring { return "nd.v1.ServiceProviderPrescriptionWorkerV1" }
+
+  /// Determines, calls and returns the appropriate request handler, depending on the request's method.
+  /// Returns nil for methods not handled by this service.
+  internal func handle(
+    method name: Substring,
+    context: CallHandlerContext
+  ) -> GRPCServerHandlerProtocol? {
+    switch name {
+    case "GetPrescription":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderServiceRequestRequestMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderPrescriptionMessage>(),
+        interceptors: self.interceptors?.makeGetPrescriptionInterceptors() ?? [],
+        userFunction: self.getPrescription(request:context:)
+      )
+
+    case "SetPrescription":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderPrescriptionMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_IdMessage>(),
+        interceptors: self.interceptors?.makeSetPrescriptionInterceptors() ?? [],
+        userFunction: self.setPrescription(request:context:)
+      )
+
+    case "DownloadPrescriptionMedia":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_StringMessage>(),
+        interceptors: self.interceptors?.makeDownloadPrescriptionMediaInterceptors() ?? [],
+        userFunction: self.downloadPrescriptionMedia(request:context:)
+      )
+
+    case "GetPrescriptionPdf":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_RequestPdf>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_ResponsePdf>(),
+        interceptors: self.interceptors?.makeGetPrescriptionPdfInterceptors() ?? [],
+        userFunction: self.getPrescriptionPdf(request:context:)
+      )
+
+    default:
+      return nil
+    }
+  }
+}
+
+internal protocol Nd_V1_ServiceProviderPrescriptionWorkerV1ServerInterceptorFactoryProtocol {
+
+  /// - Returns: Interceptors to use when handling 'getPrescription'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetPrescriptionInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderServiceRequestRequestMessage, Nd_V1_ServiceProviderPrescriptionMessage>]
+
+  /// - Returns: Interceptors to use when handling 'setPrescription'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeSetPrescriptionInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderPrescriptionMessage, Nd_V1_IdMessage>]
+
+  /// - Returns: Interceptors to use when handling 'downloadPrescriptionMedia'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeDownloadPrescriptionMediaInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_StringMessage>]
+
+  /// - Returns: Interceptors to use when handling 'getPrescriptionPdf'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetPrescriptionPdfInterceptors() -> [ServerInterceptor<Nd_V1_RequestPdf, Nd_V1_ResponsePdf>]
+}
+/// To build a server, implement a class that conforms to this protocol.
+internal protocol Nd_V1_ServiceProviderReportWorkerV1Provider: CallHandlerProvider {
+  var interceptors: Nd_V1_ServiceProviderReportWorkerV1ServerInterceptorFactoryProtocol? { get }
+
+  func getCustomerReports(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderReportListMessage>
+
+  func getAppointmentReports(request: Nd_V1_ServiceProviderServiceRequestRequestMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderReportListMessage>
+
+  func setReport(request: Nd_V1_ServiceProviderReportUploadMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_IdMessage>
+
+  func downloadReportMedia(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_StringMessage>
+}
+
+extension Nd_V1_ServiceProviderReportWorkerV1Provider {
+  internal var serviceName: Substring { return "nd.v1.ServiceProviderReportWorkerV1" }
+
+  /// Determines, calls and returns the appropriate request handler, depending on the request's method.
+  /// Returns nil for methods not handled by this service.
+  internal func handle(
+    method name: Substring,
+    context: CallHandlerContext
+  ) -> GRPCServerHandlerProtocol? {
+    switch name {
+    case "GetCustomerReports":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderReportListMessage>(),
+        interceptors: self.interceptors?.makeGetCustomerReportsInterceptors() ?? [],
+        userFunction: self.getCustomerReports(request:context:)
+      )
+
+    case "GetAppointmentReports":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderServiceRequestRequestMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderReportListMessage>(),
+        interceptors: self.interceptors?.makeGetAppointmentReportsInterceptors() ?? [],
+        userFunction: self.getAppointmentReports(request:context:)
+      )
+
+    case "SetReport":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderReportUploadMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_IdMessage>(),
+        interceptors: self.interceptors?.makeSetReportInterceptors() ?? [],
+        userFunction: self.setReport(request:context:)
+      )
+
+    case "DownloadReportMedia":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_StringMessage>(),
+        interceptors: self.interceptors?.makeDownloadReportMediaInterceptors() ?? [],
+        userFunction: self.downloadReportMedia(request:context:)
+      )
+
+    default:
+      return nil
+    }
+  }
+}
+
+internal protocol Nd_V1_ServiceProviderReportWorkerV1ServerInterceptorFactoryProtocol {
+
+  /// - Returns: Interceptors to use when handling 'getCustomerReports'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetCustomerReportsInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderReportListMessage>]
+
+  /// - Returns: Interceptors to use when handling 'getAppointmentReports'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetAppointmentReportsInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderServiceRequestRequestMessage, Nd_V1_ServiceProviderReportListMessage>]
+
+  /// - Returns: Interceptors to use when handling 'setReport'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeSetReportInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderReportUploadMessage, Nd_V1_IdMessage>]
+
+  /// - Returns: Interceptors to use when handling 'downloadReportMedia'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeDownloadReportMediaInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_StringMessage>]
+}
+/// To build a server, implement a class that conforms to this protocol.
+internal protocol Nd_V1_ServiceProviderWorkerV1Provider: CallHandlerProvider {
+  var interceptors: Nd_V1_ServiceProviderWorkerV1ServerInterceptorFactoryProtocol? { get }
+
+  func setServiceProviderProfile(request: Nd_V1_ServiceProviderProfileMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_IdMessage>
+
+  func getServiceProviderProfile(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderProfileMessage>
+
+  func setServiceProviderAvailability(request: Nd_V1_ServiceProviderAvailabilityRequest, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_IdMessage>
+
+  func getServiceProviderAvailablity(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderAvailabilityConfigList>
+
+  func getServiceProviderAvailableSlots(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderGeneratedSlotListMessage>
+
+  func getServiceProviderAvailablityForOrganisation(request: Nd_V1_ServiceProviderInOrganisationRequestMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderAvailabilityConfigList>
+
+  func getServiceProviderAvailableSlotsForOrganisation(request: Nd_V1_ServiceProviderInOrganisationRequestMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderGeneratedSlotListMessage>
+
+  func getAutoFillMedicines(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderAutofillMedicineListMessage>
+
+  func setAutoFillMedicines(request: Nd_V1_ServiceProviderMedicineMessageList, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_IdMessage>
+
+  func getServiceProviders(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderProfileListMessage>
+
+  func getServiceProvidersOfOrganisation(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderProfileListMessage>
+
+  func getAllSpecialties(request: Nd_V1_VoidMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_CategoryListMessage>
+}
+
+extension Nd_V1_ServiceProviderWorkerV1Provider {
+  internal var serviceName: Substring { return "nd.v1.ServiceProviderWorkerV1" }
+
+  /// Determines, calls and returns the appropriate request handler, depending on the request's method.
+  /// Returns nil for methods not handled by this service.
+  internal func handle(
+    method name: Substring,
+    context: CallHandlerContext
+  ) -> GRPCServerHandlerProtocol? {
+    switch name {
+    case "SetServiceProviderProfile":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderProfileMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_IdMessage>(),
+        interceptors: self.interceptors?.makeSetServiceProviderProfileInterceptors() ?? [],
+        userFunction: self.setServiceProviderProfile(request:context:)
+      )
+
+    case "GetServiceProviderProfile":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderProfileMessage>(),
+        interceptors: self.interceptors?.makeGetServiceProviderProfileInterceptors() ?? [],
+        userFunction: self.getServiceProviderProfile(request:context:)
+      )
+
+    case "SetServiceProviderAvailability":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderAvailabilityRequest>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_IdMessage>(),
+        interceptors: self.interceptors?.makeSetServiceProviderAvailabilityInterceptors() ?? [],
+        userFunction: self.setServiceProviderAvailability(request:context:)
+      )
+
+    case "GetServiceProviderAvailablity":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderAvailabilityConfigList>(),
+        interceptors: self.interceptors?.makeGetServiceProviderAvailablityInterceptors() ?? [],
+        userFunction: self.getServiceProviderAvailablity(request:context:)
+      )
+
+    case "GetServiceProviderAvailableSlots":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderGeneratedSlotListMessage>(),
+        interceptors: self.interceptors?.makeGetServiceProviderAvailableSlotsInterceptors() ?? [],
+        userFunction: self.getServiceProviderAvailableSlots(request:context:)
+      )
+
+    case "GetServiceProviderAvailablityForOrganisation":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderInOrganisationRequestMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderAvailabilityConfigList>(),
+        interceptors: self.interceptors?.makeGetServiceProviderAvailablityForOrganisationInterceptors() ?? [],
+        userFunction: self.getServiceProviderAvailablityForOrganisation(request:context:)
+      )
+
+    case "GetServiceProviderAvailableSlotsForOrganisation":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderInOrganisationRequestMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderGeneratedSlotListMessage>(),
+        interceptors: self.interceptors?.makeGetServiceProviderAvailableSlotsForOrganisationInterceptors() ?? [],
+        userFunction: self.getServiceProviderAvailableSlotsForOrganisation(request:context:)
+      )
+
+    case "GetAutoFillMedicines":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderAutofillMedicineListMessage>(),
+        interceptors: self.interceptors?.makeGetAutoFillMedicinesInterceptors() ?? [],
+        userFunction: self.getAutoFillMedicines(request:context:)
+      )
+
+    case "SetAutoFillMedicines":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderMedicineMessageList>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_IdMessage>(),
+        interceptors: self.interceptors?.makeSetAutoFillMedicinesInterceptors() ?? [],
+        userFunction: self.setAutoFillMedicines(request:context:)
+      )
+
+    case "GetServiceProviders":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderProfileListMessage>(),
+        interceptors: self.interceptors?.makeGetServiceProvidersInterceptors() ?? [],
+        userFunction: self.getServiceProviders(request:context:)
+      )
+
+    case "GetServiceProvidersOfOrganisation":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderProfileListMessage>(),
+        interceptors: self.interceptors?.makeGetServiceProvidersOfOrganisationInterceptors() ?? [],
+        userFunction: self.getServiceProvidersOfOrganisation(request:context:)
+      )
+
+    case "GetAllSpecialties":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_VoidMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_CategoryListMessage>(),
+        interceptors: self.interceptors?.makeGetAllSpecialtiesInterceptors() ?? [],
+        userFunction: self.getAllSpecialties(request:context:)
+      )
+
+    default:
+      return nil
+    }
+  }
+}
+
+internal protocol Nd_V1_ServiceProviderWorkerV1ServerInterceptorFactoryProtocol {
+
+  /// - Returns: Interceptors to use when handling 'setServiceProviderProfile'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeSetServiceProviderProfileInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderProfileMessage, Nd_V1_IdMessage>]
+
+  /// - Returns: Interceptors to use when handling 'getServiceProviderProfile'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetServiceProviderProfileInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderProfileMessage>]
+
+  /// - Returns: Interceptors to use when handling 'setServiceProviderAvailability'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeSetServiceProviderAvailabilityInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderAvailabilityRequest, Nd_V1_IdMessage>]
+
+  /// - Returns: Interceptors to use when handling 'getServiceProviderAvailablity'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetServiceProviderAvailablityInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderAvailabilityConfigList>]
+
+  /// - Returns: Interceptors to use when handling 'getServiceProviderAvailableSlots'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetServiceProviderAvailableSlotsInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderGeneratedSlotListMessage>]
+
+  /// - Returns: Interceptors to use when handling 'getServiceProviderAvailablityForOrganisation'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetServiceProviderAvailablityForOrganisationInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderInOrganisationRequestMessage, Nd_V1_ServiceProviderAvailabilityConfigList>]
+
+  /// - Returns: Interceptors to use when handling 'getServiceProviderAvailableSlotsForOrganisation'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetServiceProviderAvailableSlotsForOrganisationInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderInOrganisationRequestMessage, Nd_V1_ServiceProviderGeneratedSlotListMessage>]
+
+  /// - Returns: Interceptors to use when handling 'getAutoFillMedicines'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetAutoFillMedicinesInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderAutofillMedicineListMessage>]
+
+  /// - Returns: Interceptors to use when handling 'setAutoFillMedicines'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeSetAutoFillMedicinesInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderMedicineMessageList, Nd_V1_IdMessage>]
+
+  /// - Returns: Interceptors to use when handling 'getServiceProviders'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetServiceProvidersInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderProfileListMessage>]
+
+  /// - Returns: Interceptors to use when handling 'getServiceProvidersOfOrganisation'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetServiceProvidersOfOrganisationInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderProfileListMessage>]
+
+  /// - Returns: Interceptors to use when handling 'getAllSpecialties'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetAllSpecialtiesInterceptors() -> [ServerInterceptor<Nd_V1_VoidMessage, Nd_V1_CategoryListMessage>]
+}
+/// To build a server, implement a class that conforms to this protocol.
+internal protocol Nd_V1_ServiceProviderServiceRequestWorkerV1Provider: CallHandlerProvider {
+  var interceptors: Nd_V1_ServiceProviderServiceRequestWorkerV1ServerInterceptorFactoryProtocol? { get }
+
+  func setServiceRequest(request: Nd_V1_ServiceProviderServiceRequestMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_IdMessage>
+
+  func getServiceRequest(request: Nd_V1_ServiceProviderServiceRequestRequestMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderServiceRequestMessage>
+}
+
+extension Nd_V1_ServiceProviderServiceRequestWorkerV1Provider {
+  internal var serviceName: Substring { return "nd.v1.ServiceProviderServiceRequestWorkerV1" }
+
+  /// Determines, calls and returns the appropriate request handler, depending on the request's method.
+  /// Returns nil for methods not handled by this service.
+  internal func handle(
+    method name: Substring,
+    context: CallHandlerContext
+  ) -> GRPCServerHandlerProtocol? {
+    switch name {
+    case "SetServiceRequest":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderServiceRequestMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_IdMessage>(),
+        interceptors: self.interceptors?.makeSetServiceRequestInterceptors() ?? [],
+        userFunction: self.setServiceRequest(request:context:)
+      )
+
+    case "GetServiceRequest":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderServiceRequestRequestMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderServiceRequestMessage>(),
+        interceptors: self.interceptors?.makeGetServiceRequestInterceptors() ?? [],
+        userFunction: self.getServiceRequest(request:context:)
+      )
+
+    default:
+      return nil
+    }
+  }
+}
+
+internal protocol Nd_V1_ServiceProviderServiceRequestWorkerV1ServerInterceptorFactoryProtocol {
+
+  /// - Returns: Interceptors to use when handling 'setServiceRequest'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeSetServiceRequestInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderServiceRequestMessage, Nd_V1_IdMessage>]
+
+  /// - Returns: Interceptors to use when handling 'getServiceRequest'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetServiceRequestInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderServiceRequestRequestMessage, Nd_V1_ServiceProviderServiceRequestMessage>]
 }

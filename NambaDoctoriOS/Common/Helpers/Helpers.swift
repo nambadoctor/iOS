@@ -272,7 +272,11 @@ class Helpers {
             return ""
         }
     }
-
+    
+    static func textWidth(text: String) -> CGFloat {
+        let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]
+        return text.size(withAttributes: attributes).width
+    }
 }
 
 extension String {

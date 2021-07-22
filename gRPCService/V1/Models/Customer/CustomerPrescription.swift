@@ -14,4 +14,5 @@ struct CustomerPrescription {
     var createdDateTime:Int64
     var medicineList:[CustomerMedicine]
     var fileInfo:CustomerFileInfo
+    var uploadedPrescriptionDocuments:[CustomerFileInfo]
 }

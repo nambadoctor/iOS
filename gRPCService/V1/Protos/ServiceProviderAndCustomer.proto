@@ -88,6 +88,840 @@ message TwilioAuthRequest{
 message VoidMessage {
 }
 
+message CustomerAddress{
+
+	google.protobuf.StringValue StreetAddress = 1;
+
+    google.protobuf.StringValue State = 2;
+
+    google.protobuf.StringValue Country = 3;
+
+    google.protobuf.StringValue PinCode = 4;
+
+    google.protobuf.StringValue Type = 5;
+
+    google.protobuf.StringValue AddressId = 6;
+}
+
+message CustomerAllergyMessage {
+	google.protobuf.StringValue AllergyId = 1;
+
+    google.protobuf.StringValue AllergyName = 2;
+
+    google.protobuf.StringValue AppointmentId = 3;
+
+    google.protobuf.StringValue ServiceRequestId = 4;
+}
+
+message CustomerAppointmentMessage{
+
+	google.protobuf.StringValue AppointmentId = 1;
+
+	google.protobuf.StringValue ServiceRequestId = 2;
+
+	google.protobuf.StringValue ParentAppointmentId = 3;
+
+	google.protobuf.StringValue CustomerId = 4;
+
+	google.protobuf.StringValue ServiceProviderId = 5;
+
+	google.protobuf.StringValue RequestedBy = 6;
+
+	google.protobuf.StringValue ServiceProviderName = 7;
+
+	google.protobuf.StringValue CustomerName = 8;
+
+	google.protobuf.BoolValue IsBlockedByServiceProvider = 9;
+
+	google.protobuf.StringValue Status = 10;
+
+	google.protobuf.DoubleValue ServiceFee = 11;
+
+	google.protobuf.Int32Value FollowUpDays = 12;
+
+	google.protobuf.BoolValue IsPaid = 13;
+
+	google.protobuf.Int64Value ScheduledAppointmentStartTime = 14;
+
+    google.protobuf.Int64Value ScheduledAppointmentEndTime = 15;
+
+    google.protobuf.Int64Value ActualAppointmentStartTime = 16;
+
+    google.protobuf.Int64Value ActualAppointmentEndTime = 17;
+
+	google.protobuf.Int64Value CreatedDateTime = 18;
+
+	google.protobuf.Int64Value LastModifedDate = 19;
+
+	google.protobuf.Int32Value NoOfReports = 20;
+
+	CustomerCancellationMessage Cancellation = 21;
+
+	google.protobuf.StringValue ChildId = 22;
+
+	google.protobuf.StringValue PaymentType = 23;
+
+	CustomerAppointmentVerificationMessage AppointmentVerification = 24;
+
+	google.protobuf.StringValue OrganisationId = 25;
+
+    google.protobuf.StringValue OrganisationName = 26;
+}
+
+
+message CustomerAppointmentList{
+	repeated CustomerAppointmentMessage Appointments = 1;
+}
+
+message CustomerAppointmentRequestMessage{
+
+	google.protobuf.StringValue ServiceProviderId = 1;
+
+	google.protobuf.StringValue AppointmentId = 2;
+}
+
+message CustomerAppointmentVerificationMessage{
+
+	google.protobuf.StringValue AppointmentVerificationId = 1;
+
+    google.protobuf.StringValue VerificationStatus = 2;
+
+    google.protobuf.StringValue VerifiedBy = 3;
+
+    google.protobuf.Int64Value VerifiedTime = 4;
+
+    google.protobuf.StringValue CustomerResponseForReason = 5;
+
+}
+
+message CustomerAppInfo{
+
+	google.protobuf.StringValue AuthId = 1;
+
+    google.protobuf.StringValue AuthType = 2;
+
+    google.protobuf.StringValue DeviceToken = 3;
+
+    google.protobuf.StringValue AppInfoId = 4;
+
+    google.protobuf.StringValue DeviceTokenType = 5;
+
+}
+
+message CustomerServiceProviderAvailability{
+
+	google.protobuf.Int32Value DayOfWeek = 1;
+
+    google.protobuf.Int64Value StartTime = 2;
+
+    google.protobuf.Int64Value EndTime = 3;
+
+    google.protobuf.StringValue AvailabilityConfigId = 4;
+
+    google.protobuf.StringValue PaymentType = 5;
+
+    google.protobuf.StringValue OrganisationId = 6;
+
+	google.protobuf.StringValue AddressId = 7;
+
+	google.protobuf.DoubleValue ServiceFees = 8;
+
+	google.protobuf.BoolValue IsOrganisationSlot = 9;
+}
+
+
+message CustomerAvailabilityConfigList{
+    repeated CustomerServiceProviderAvailability AvailabilityList= 1;
+}
+
+
+message CustomerAvailabilityRequest{
+    repeated CustomerServiceProviderAvailability AvailabilityList = 1;
+    google.protobuf.StringValue ServiceProviderId = 2;
+}
+
+message CustomerCancellationMessage {
+
+    google.protobuf.StringValue ReasonName = 1;
+
+    google.protobuf.Int64Value CancelledTime = 2;
+
+    google.protobuf.StringValue CancelledBy = 3;
+
+    google.protobuf.StringValue CancelledByType = 4;
+
+    google.protobuf.StringValue Notes = 5;
+
+}
+
+message CustomerChildProfileMessage {
+	google.protobuf.StringValue ChildProfileId = 1;
+
+    google.protobuf.StringValue Name = 2;
+
+    google.protobuf.StringValue Gender = 3;
+
+    google.protobuf.StringValue Age = 4;
+
+    CustomerPhoneNumber PreferredPhoneNumber = 5;
+
+    google.protobuf.BoolValue IsPrimaryContact = 6;
+}
+
+
+message CustomerChildProfileListMessage {
+    repeated CustomerChildProfileMessage children = 1;
+}
+
+message CustomerChildProfileUploadMessage {
+	CustomerChildProfileMessage ChildProfile = 1;
+	
+	google.protobuf.StringValue CaretakerId = 2;
+}
+
+message CustomersServiceProviderProfileMessage{
+
+	google.protobuf.StringValue ServiceProviderId = 1;
+
+	google.protobuf.StringValue ServiceProviderType = 2;
+
+	google.protobuf.StringValue FirstName = 3;
+
+	google.protobuf.StringValue LastName = 4;
+
+	repeated google.protobuf.StringValue Specialities = 5;
+
+	google.protobuf.StringValue Gender = 6;
+
+	google.protobuf.Int64Value LastModifedDate = 7;
+
+	repeated CustomerAddress Addresses = 8;
+
+	CustomerAppInfo ApplicationInfo = 9;
+
+	google.protobuf.StringValue EmailAddress = 10;
+
+    google.protobuf.StringValue ProfilePictureUrl = 11;
+
+	repeated google.protobuf.StringValue Languages = 12;
+
+	repeated CustomerEducation Educations = 13;
+
+	repeated CustomerWorkExperience Experiences = 14;
+
+	google.protobuf.DoubleValue ServiceFee = 15;
+     
+	google.protobuf.StringValue ServiceFeeCurrency = 16;
+    
+	google.protobuf.DoubleValue FollowUpServiceFee = 17;
+
+    google.protobuf.Int32Value AppointmentDuration = 18;
+
+    google.protobuf.Int32Value IntervalBetweenAppointment = 19;
+
+	google.protobuf.StringValue Status = 20;
+    
+	google.protobuf.StringValue RegistrationNumber = 21;
+    
+	google.protobuf.BoolValue IsActive = 22;
+
+	google.protobuf.Int64Value CreatedDate = 23;
+
+	google.protobuf.Int64Value LatestSlotStartTime = 24;
+
+	google.protobuf.Int64Value LatestSlotEndTime = 25;
+
+	CustomerServiceProviderAdditionalInfoMessage AdditionalInfo = 26;
+
+	repeated google.protobuf.StringValue OrganisationIds = 27;
+
+}
+
+
+message CustomersServiceProviderProfileListMessage{
+	repeated CustomersServiceProviderProfileMessage ServiceProviders = 1;
+}
+
+message CustomerCustomerProfileMessage {
+
+	google.protobuf.StringValue CustomerId = 1;
+
+	google.protobuf.StringValue FirstName = 2;
+
+	google.protobuf.StringValue LastName = 3;
+
+	google.protobuf.StringValue Gender = 4;
+
+	google.protobuf.StringValue Age = 5;
+
+	repeated CustomerPhoneNumber PhoneNumbers = 6;
+
+	repeated CustomerAddress Addresses = 7;
+
+	CustomerAppInfo AppInfo = 8;
+
+	repeated google.protobuf.StringValue Languages = 9;
+
+	google.protobuf.StringValue EmailAddress = 10;
+
+	repeated google.protobuf.StringValue ActiveAppointmentIds = 11;
+
+	repeated google.protobuf.StringValue CompletedAppointmentIds = 12;
+
+	google.protobuf.StringValue ProfilePicURL = 13;
+
+	google.protobuf.StringValue PrimaryServiceProviderId = 14;
+
+	repeated CustomerAllergyMessage Allergies = 15;
+
+	repeated CustomerMedicalHistoryMessage MedicalHistories = 16;
+
+	google.protobuf.Int64Value LastModifedDate = 17;
+
+	google.protobuf.Int64Value CreatedDate = 18;
+
+	DeviceInfoMessage CustomerDeviceInfo = 19;
+
+	repeated CustomerChildProfileMessage Children = 20;
+
+	google.protobuf.StringValue PrimaryOrganisationId = 21;
+}
+
+
+message CustomerCustomerProfileListMessage{
+	repeated CustomerCustomerProfileMessage Customers = 1;
+}
+
+message CustomerServiceProviderAdditionalInfoMessage {
+	repeated google.protobuf.StringValue Symptoms = 1;
+	repeated google.protobuf.StringValue Designations = 2;
+	repeated google.protobuf.StringValue Specialties = 3;
+	repeated google.protobuf.StringValue Categories = 4;
+	repeated google.protobuf.StringValue Certifications = 5;
+	repeated google.protobuf.StringValue ClubMemberships = 6;
+	repeated google.protobuf.StringValue Procedures = 7;
+	repeated google.protobuf.StringValue Published = 8;
+	repeated google.protobuf.StringValue Links = 9;
+	google.protobuf.StringValue Description = 10;
+}
+
+message CustomerVitalsMessage{
+
+	google.protobuf.StringValue BloodPressure = 1;
+
+    google.protobuf.StringValue BloodSugar = 2;
+
+    google.protobuf.StringValue Height = 3;
+
+    google.protobuf.StringValue Weight = 4;
+
+    google.protobuf.StringValue MenstrualHistory = 5;
+
+    google.protobuf.StringValue ObstetricHistory = 6;
+
+    google.protobuf.BoolValue IsSmoker = 7;
+
+    google.protobuf.BoolValue IsAlcoholConsumer = 8;
+}
+
+message CustomerDiagnosisMessage{
+
+	google.protobuf.StringValue Name = 1;
+
+	google.protobuf.StringValue Type = 2;
+}
+
+message CustomerDosageMessage{
+	google.protobuf.StringValue Name = 1;
+
+    google.protobuf.StringValue Unit = 2;
+}
+
+message CustomerDurationMessage{
+	google.protobuf.StringValue Days = 1;
+
+    google.protobuf.StringValue Unit = 2;
+}
+
+message CustomerEducation{
+
+	google.protobuf.StringValue Course = 1;
+
+    google.protobuf.Int32Value Year = 2;
+
+    google.protobuf.StringValue Country = 3;
+
+    google.protobuf.StringValue College = 4;
+
+    google.protobuf.StringValue University  = 5;
+
+    google.protobuf.StringValue EducationId = 6;
+    }
+
+message CustomerWorkExperience{
+
+	google.protobuf.StringValue Organization = 1;
+
+    google.protobuf.Int64Value StartDate = 2;
+
+    google.protobuf.Int64Value EndDate = 3;
+
+    google.protobuf.StringValue WorkExperienceId = 4;
+}
+
+message CustomerFileInfoMessage{
+	google.protobuf.StringValue FileName = 1;
+	google.protobuf.StringValue FileType = 2;
+	google.protobuf.BytesValue MediaImage = 3;
+	google.protobuf.StringValue FileInfoId = 4;
+}
+
+
+message CustomerFileInfoMessageList{
+	repeated CustomerFileInfoMessage FileInfos = 1;
+}
+
+message CustomerFollowUpMessage{
+
+	google.protobuf.Int64Value CreatedDateTime = 1;
+
+	google.protobuf.Int32Value NoOfDays = 2;
+
+	google.protobuf.DoubleValue FollowUpFee = 3;
+}
+
+message CustomerFollowUpRequestMessage{
+
+	google.protobuf.StringValue CustomerId = 1;
+
+	google.protobuf.StringValue ServiceProviderId = 2;
+}
+
+message CustomerGeneratedSlotMessage{
+
+	google.protobuf.Int64Value StartDateTime = 1;
+
+	google.protobuf.Int64Value EndStartDateTime = 2;
+
+	google.protobuf.Int32Value Duration = 3;
+
+	google.protobuf.StringValue PaymentType = 4;
+
+	google.protobuf.StringValue OrganisationId = 5;
+
+	google.protobuf.StringValue AddressId = 6;
+
+	google.protobuf.DoubleValue ServiceFees = 7;
+
+	google.protobuf.BoolValue IsOrganisationSlot = 8;
+
+}
+
+
+message CustomerGeneratedSlotListMessage{
+	repeated CustomerGeneratedSlotMessage Slots = 1;
+}
+
+message CustomerIntakeDosageMessage{
+	google.protobuf.StringValue Name = 1;
+
+    google.protobuf.StringValue Unit = 2;
+}
+
+message CustomerMedicalHistoryMessage {
+	google.protobuf.StringValue MedicalHistoryId = 1;
+
+    google.protobuf.StringValue MedicalHistoryName = 2;
+
+    google.protobuf.StringValue AppointmentId = 3;
+
+    google.protobuf.StringValue ServiceRequestId = 4;
+
+    google.protobuf.StringValue PastMedicalHistory = 5;
+
+    google.protobuf.StringValue MedicationHistory = 6;
+}
+
+message CustomerMedicineMessage{
+
+	google.protobuf.StringValue MedicineName = 1;
+
+    google.protobuf.StringValue Dosage = 2;
+
+    google.protobuf.StringValue RouteOfAdministration = 3;
+
+    google.protobuf.StringValue Intake = 4;
+
+    google.protobuf.Int32Value Duration = 5;
+
+    google.protobuf.StringValue Timings = 6;
+
+    google.protobuf.StringValue SpecialInstructions = 7;
+
+    google.protobuf.StringValue MedicineId = 8;
+
+    google.protobuf.StringValue Notes = 9;
+
+    CustomerDurationMessage DurationObj = 10;
+
+    CustomerDosageMessage DosageObj = 11;
+
+    CustomerIntakeDosageMessage IntakeDosageObj = 12;
+}
+
+message CustomerOrganisationMessage {
+
+	google.protobuf.StringValue OrganisationId = 1;
+
+	repeated CustomerPhoneNumber PhoneNumbers = 2;
+
+	repeated CustomerAddress Addresses = 3;
+
+	repeated CustomerOrganisationTimingMessage OrganisationTimings = 4;
+
+	repeated google.protobuf.StringValue EmailAddresses = 5;
+
+	repeated google.protobuf.StringValue AdImages = 6;
+
+	repeated google.protobuf.StringValue Specialities = 7;
+
+	repeated google.protobuf.StringValue Links = 8;
+
+	repeated google.protobuf.StringValue DoctorIds = 9;
+
+	repeated google.protobuf.StringValue SecretaryIds = 10;
+
+	google.protobuf.StringValue Name = 11;
+
+	google.protobuf.StringValue Description = 12;
+
+	google.protobuf.StringValue Type = 13;
+
+	google.protobuf.Int64Value CreatedDate = 14;
+
+	google.protobuf.Int64Value LastModifedDate = 15;
+
+	google.protobuf.StringValue Logo = 16;
+	
+}
+
+
+message CustomerOrganisationListMessage{
+	repeated CustomerOrganisationMessage Organisations = 1;
+}
+
+message CustomerOrganisationTimingMessage {
+
+	google.protobuf.StringValue OrganisationTimingId = 1;
+
+	google.protobuf.StringValue TimingDescription = 2;
+
+	google.protobuf.StringValue Type = 3;
+
+}
+
+message CustomerPaymentInfoMessage{
+
+    google.protobuf.StringValue ServiceProviderId = 1;
+
+    google.protobuf.StringValue AppointmentId = 2;
+
+	google.protobuf.DoubleValue PaidAmount = 3;
+
+    google.protobuf.Int64Value PaidDate = 4;
+
+    google.protobuf.StringValue PaymentGateway = 5;
+
+    google.protobuf.StringValue PaymentTransactionId = 6;
+
+    google.protobuf.StringValue PaymentTransactionNotes = 7;
+
+    google.protobuf.StringValue CustomerId = 8;
+
+    google.protobuf.StringValue ServiceProviderName = 9;
+
+    google.protobuf.StringValue CustomerName = 10;
+}
+
+
+message CustomerPaymentListMessage{
+    repeated CustomerPaymentInfoMessage Payments = 1;
+}
+
+message CustomerPhoneNumber{
+
+	google.protobuf.StringValue CountryCode = 1;
+
+	google.protobuf.StringValue Number = 2;
+
+	google.protobuf.StringValue Type = 3;
+
+	google.protobuf.StringValue PhoneNumberId = 4;
+
+}
+
+message CustomerPrescriptionMessage{
+
+	google.protobuf.StringValue PrescriptionId = 1;
+
+	google.protobuf.StringValue ServiceRequestId = 2;
+
+	google.protobuf.StringValue CustomerId = 3;
+
+	google.protobuf.Int64Value CreatedDateTime = 4;
+
+    repeated CustomerMedicineMessage MedicineList = 5;
+
+	CustomerFileInfoMessage FileInfo = 6;
+
+	CustomerFileInfoMessageList UploadedPrescriptionDocuments = 7;
+}
+
+message CustomerReportMessage{
+
+	google.protobuf.StringValue ReportId = 1;
+
+    google.protobuf.StringValue FileName = 2;
+
+    google.protobuf.StringValue Name = 3;
+
+    google.protobuf.StringValue FileType = 4;
+}
+
+
+message CustomerReportListMessage{
+    repeated CustomerReportMessage Reports = 1;
+}
+
+message CustomerReportUploadMessage{
+
+	google.protobuf.StringValue ReportId = 1;
+
+    google.protobuf.StringValue ServiceRequestId = 2;
+
+	google.protobuf.StringValue CustomerId = 3;
+
+    google.protobuf.StringValue FileName = 4;
+
+    google.protobuf.StringValue Name = 5;
+
+    google.protobuf.StringValue FileType = 6;
+
+    google.protobuf.BytesValue MediaFile = 7;
+}
+
+message CustomerServiceProviderInOrganisationRequestMessage{
+
+	google.protobuf.StringValue ServiceProviderId = 1;
+
+	google.protobuf.StringValue OrganisationId = 2;
+}
+
+message CustomerServiceRequestMessage{
+
+	google.protobuf.StringValue ServiceRequestId = 1;
+
+    google.protobuf.StringValue Reason = 2;
+
+    google.protobuf.StringValue ServiceProviderId = 3;
+
+    google.protobuf.StringValue AppointmentId = 4; 
+
+    google.protobuf.StringValue Examination = 5;
+
+    CustomerDiagnosisMessage Diagnosis = 6;
+
+    repeated google.protobuf.StringValue Investigations = 7;
+
+    google.protobuf.StringValue Advice = 8;
+
+    google.protobuf.Int64Value CreatedDateTime = 9;
+
+    google.protobuf.Int64Value LastModifedDate = 10;
+
+    google.protobuf.StringValue CustomerId = 11;
+
+    CustomerAllergyMessage Allergy = 12;
+
+	CustomerMedicalHistoryMessage MedicalHistory = 13;
+
+    google.protobuf.StringValue ChildId = 14;
+
+    CustomerVitalsMessage CustomerVitals = 15;
+
+    google.protobuf.StringValue OrganisationId = 16;
+}
+
+message CustomerServiceRequestRequestMessage{
+
+	google.protobuf.StringValue CustomerId = 1;
+
+	google.protobuf.StringValue AppointmentId = 2;
+
+	google.protobuf.StringValue ServiceRequestId = 3;
+}
+
+message CustomerTrustScoreRequestMessage{
+
+	google.protobuf.StringValue CustomerId = 1;
+
+	google.protobuf.StringValue ServiceProviderId = 2;
+}
+
+
+
+
+
+service LoggingWorkerV1{
+
+	rpc SetLog(VoidMessage) returns (BoolMessage);
+
+}
+
+
+
+
+
+service NotificationWorkerV1{
+
+	rpc SendNotification(NotificationRequestMessage) returns (BoolMessage);
+
+}
+
+
+
+
+
+service TwilioWorkerV1{
+
+	rpc GetTwilioVideoAuthToken (TwilioAuthRequest) returns (StringMessage);
+
+	rpc GetTwilioChatAuthToken (IdMessage) returns (StringMessage);
+}
+
+
+
+
+
+service UserTypeWorkerV1{
+
+	rpc GetUserType (VoidMessage) returns (StringMessage);
+
+}
+
+
+
+
+
+service CustomerAppointmentWorkerV1{
+	
+	rpc SetAppointment(CustomerAppointmentMessage) returns (IdMessage);
+
+	rpc GetAppointment(CustomerAppointmentRequestMessage) returns (CustomerAppointmentMessage);
+
+	rpc GetAppointments(IdMessage) returns (CustomerAppointmentList);
+
+	rpc GetAppointmentPayments(CustomerAppointmentRequestMessage) returns (CustomerPaymentListMessage);
+
+	rpc SetNewPayment(CustomerPaymentInfoMessage) returns (IdMessage);
+}
+
+
+
+
+
+service CustomerWorkerV1 {
+
+	rpc SetCustomerProfile (CustomerCustomerProfileMessage) returns (IdMessage);
+
+	rpc GetCustomerProfile (IdMessage) returns (CustomerCustomerProfileMessage);
+
+	rpc GetLatestFollowUpWithServiceProvider (CustomerFollowUpRequestMessage) returns (CustomerFollowUpMessage);
+
+	rpc SetChildProfile (CustomerChildProfileUploadMessage) returns (IdMessage);
+
+	rpc GetTrustScore (CustomerTrustScoreRequestMessage) returns (IntMessage);
+}
+
+
+
+
+
+service CustomerOrganisationWorkerV1 {
+
+	rpc SetOrganisation (CustomerOrganisationMessage) returns (IdMessage);
+
+	rpc GetOrganisation (IdMessage) returns (CustomerOrganisationMessage);
+
+	rpc GetOrganisations (IdMessage) returns (CustomerOrganisationListMessage);
+
+	rpc GetSpecificOrganisations (StringArrayMessage) returns (CustomerOrganisationListMessage);
+}
+
+
+
+
+
+service CustomerPrescriptionWorkerV1{
+
+	rpc GetPrescription(CustomerServiceRequestRequestMessage) returns (CustomerPrescriptionMessage);
+
+	rpc DownloadPrescriptionMedia (IdMessage) returns (StringMessage);
+	
+	rpc GetPrescriptionPdf(RequestPdf) returns(ResponsePdf);
+}
+
+
+
+
+
+service CustomerReportWorkerV1{
+
+	rpc GetReports(IdMessage) returns (CustomerReportListMessage);	
+
+	rpc GetAppointmentReports(CustomerServiceRequestRequestMessage) returns (CustomerReportListMessage);
+
+	rpc SetReport(CustomerReportUploadMessage) returns (IdMessage);
+
+	rpc DownloadReportMedia(IdMessage) returns (StringMessage);
+}
+
+
+
+
+
+service CustomerServiceProviderWorkerV1 {
+
+	rpc GetServiceProviderProfile (IdMessage) returns (CustomersServiceProviderProfileMessage);
+
+	rpc GetServiceProviders (IdMessage) returns (CustomersServiceProviderProfileListMessage);
+
+	rpc GetServiceProvidersOfOrganisation (IdMessage) returns (CustomersServiceProviderProfileListMessage);
+
+	rpc GetServiceProviderAvailablity(IdMessage) returns (CustomerAvailabilityConfigList);
+
+	rpc GetServiceProviderAvailableSlots (IdMessage) returns (CustomerGeneratedSlotListMessage);
+
+	rpc GetServiceProviderAvailablityForOrganisation(CustomerServiceProviderInOrganisationRequestMessage) returns (CustomerAvailabilityConfigList);
+
+	rpc GetServiceProviderAvailableSlotsForOrganisation (CustomerServiceProviderInOrganisationRequestMessage) returns (CustomerGeneratedSlotListMessage);
+
+	rpc GetAllSpecialties(VoidMessage) returns (CategoryListMessage);
+}
+
+
+
+
+
+service CustomerServiceRequestWorkerV1{
+
+	rpc SetServiceRequest (CustomerServiceRequestMessage) returns (IdMessage);
+
+	rpc GetServiceRequest(CustomerServiceRequestRequestMessage) returns (CustomerServiceRequestMessage);
+
+}
+
+
 message ServiceProviderAddress{
 
 	google.protobuf.StringValue StreetAddress = 1;
@@ -446,6 +1280,12 @@ message ServiceProviderFileInfoMessage{
 	google.protobuf.StringValue FileName = 1;
 	google.protobuf.StringValue FileType = 2;
 	google.protobuf.BytesValue MediaImage = 3;
+	google.protobuf.StringValue FileInfoId = 4;
+}
+
+
+message ServiceProviderFileInfoMessageList{
+	repeated ServiceProviderFileInfoMessage FileInfos = 1;
 }
 
 message ServiceProviderFollowUpMessage{
@@ -663,6 +1503,8 @@ message ServiceProviderPrescriptionMessage{
     repeated ServiceProviderMedicineMessage MedicineList = 5;
 
 	ServiceProviderFileInfoMessage FileInfo = 6;
+
+	ServiceProviderFileInfoMessageList UploadedPrescriptionDocuments = 7;
 }
 
 message ServiceProviderReportMessage{
@@ -835,8 +1677,6 @@ message ServiceProviderServiceRequestRequestMessage{
 	google.protobuf.StringValue ServiceRequestId = 3;
 }
 
-
-
 service ServiceProviderAppointmentWorkerV1{
 
 	rpc SetAppointment(ServiceProviderAppointmentMessage) returns (IdMessage);
@@ -844,6 +1684,8 @@ service ServiceProviderAppointmentWorkerV1{
 	rpc GetAppointment(ServiceProviderAppointmentRequestMessage) returns (ServiceProviderAppointmentMessage);
 
 	rpc GetAppointments(IdMessage) returns (ServiceProviderAppointmentList);
+
+	rpc GetOrganisationAppointments(IdMessage) returns (ServiceProviderAppointmentList);
 
 	rpc GetCustomerAppointments(ServiceProviderCustomerAppointmentsRequestMessage) returns (ServiceProviderAppointmentList);
 
@@ -944,6 +1786,8 @@ service ServiceProviderWorkerV1 {
 	rpc GetServiceProviders (IdMessage) returns (ServiceProviderProfileListMessage);
 
 	rpc GetServiceProvidersOfOrganisation (IdMessage) returns (ServiceProviderProfileListMessage);
+
+	rpc GetAllSpecialties(VoidMessage) returns (CategoryListMessage);
 }
 
 
@@ -955,834 +1799,6 @@ service ServiceProviderServiceRequestWorkerV1{
 	rpc SetServiceRequest (ServiceProviderServiceRequestMessage) returns (IdMessage);
 
 	rpc GetServiceRequest(ServiceProviderServiceRequestRequestMessage) returns (ServiceProviderServiceRequestMessage);
-
-}
-
-
-message CustomerAddress{
-
-	google.protobuf.StringValue StreetAddress = 1;
-
-    google.protobuf.StringValue State = 2;
-
-    google.protobuf.StringValue Country = 3;
-
-    google.protobuf.StringValue PinCode = 4;
-
-    google.protobuf.StringValue Type = 5;
-
-    google.protobuf.StringValue AddressId = 6;
-}
-
-message CustomerAllergyMessage {
-	google.protobuf.StringValue AllergyId = 1;
-
-    google.protobuf.StringValue AllergyName = 2;
-
-    google.protobuf.StringValue AppointmentId = 3;
-
-    google.protobuf.StringValue ServiceRequestId = 4;
-}
-
-message CustomerAppointmentMessage{
-
-	google.protobuf.StringValue AppointmentId = 1;
-
-	google.protobuf.StringValue ServiceRequestId = 2;
-
-	google.protobuf.StringValue ParentAppointmentId = 3;
-
-	google.protobuf.StringValue CustomerId = 4;
-
-	google.protobuf.StringValue ServiceProviderId = 5;
-
-	google.protobuf.StringValue RequestedBy = 6;
-
-	google.protobuf.StringValue ServiceProviderName = 7;
-
-	google.protobuf.StringValue CustomerName = 8;
-
-	google.protobuf.BoolValue IsBlockedByServiceProvider = 9;
-
-	google.protobuf.StringValue Status = 10;
-
-	google.protobuf.DoubleValue ServiceFee = 11;
-
-	google.protobuf.Int32Value FollowUpDays = 12;
-
-	google.protobuf.BoolValue IsPaid = 13;
-
-	google.protobuf.Int64Value ScheduledAppointmentStartTime = 14;
-
-    google.protobuf.Int64Value ScheduledAppointmentEndTime = 15;
-
-    google.protobuf.Int64Value ActualAppointmentStartTime = 16;
-
-    google.protobuf.Int64Value ActualAppointmentEndTime = 17;
-
-	google.protobuf.Int64Value CreatedDateTime = 18;
-
-	google.protobuf.Int64Value LastModifedDate = 19;
-
-	google.protobuf.Int32Value NoOfReports = 20;
-
-	CustomerCancellationMessage Cancellation = 21;
-
-	google.protobuf.StringValue ChildId = 22;
-
-	google.protobuf.StringValue PaymentType = 23;
-
-	CustomerAppointmentVerificationMessage AppointmentVerification = 24;
-
-	google.protobuf.StringValue OrganisationId = 25;
-
-    google.protobuf.StringValue OrganisationName = 26;
-}
-
-
-message CustomerAppointmentList{
-	repeated CustomerAppointmentMessage Appointments = 1;
-}
-
-message CustomerAppointmentRequestMessage{
-
-	google.protobuf.StringValue ServiceProviderId = 1;
-
-	google.protobuf.StringValue AppointmentId = 2;
-}
-
-message CustomerAppointmentVerificationMessage{
-
-	google.protobuf.StringValue AppointmentVerificationId = 1;
-
-    google.protobuf.StringValue VerificationStatus = 2;
-
-    google.protobuf.StringValue VerifiedBy = 3;
-
-    google.protobuf.Int64Value VerifiedTime = 4;
-
-    google.protobuf.StringValue CustomerResponseForReason = 5;
-
-}
-
-message CustomerAppInfo{
-
-	google.protobuf.StringValue AuthId = 1;
-
-    google.protobuf.StringValue AuthType = 2;
-
-    google.protobuf.StringValue DeviceToken = 3;
-
-    google.protobuf.StringValue AppInfoId = 4;
-
-    google.protobuf.StringValue DeviceTokenType = 5;
-
-}
-
-message CustomerServiceProviderAvailability{
-
-	google.protobuf.Int32Value DayOfWeek = 1;
-
-    google.protobuf.Int64Value StartTime = 2;
-
-    google.protobuf.Int64Value EndTime = 3;
-
-    google.protobuf.StringValue AvailabilityConfigId = 4;
-
-    google.protobuf.StringValue PaymentType = 5;
-
-    google.protobuf.StringValue OrganisationId = 6;
-
-    google.protobuf.StringValue AddressId = 7;
-
-	google.protobuf.DoubleValue ServiceFees = 8;
-
-	google.protobuf.BoolValue IsOrganisationSlot = 9;
-
-}
-
-
-message CustomerAvailabilityConfigList{
-    repeated CustomerServiceProviderAvailability AvailabilityList= 1;
-}
-
-
-message CustomerAvailabilityRequest{
-    repeated CustomerServiceProviderAvailability AvailabilityList = 1;
-    google.protobuf.StringValue ServiceProviderId = 2;
-}
-
-message CustomerCancellationMessage {
-
-    google.protobuf.StringValue ReasonName = 1;
-
-    google.protobuf.Int64Value CancelledTime = 2;
-
-    google.protobuf.StringValue CancelledBy = 3;
-
-    google.protobuf.StringValue CancelledByType = 4;
-
-    google.protobuf.StringValue Notes = 5;
-
-}
-
-message CustomerChildProfileMessage {
-	google.protobuf.StringValue ChildProfileId = 1;
-
-    google.protobuf.StringValue Name = 2;
-
-    google.protobuf.StringValue Gender = 3;
-
-    google.protobuf.StringValue Age = 4;
-
-    CustomerPhoneNumber PreferredPhoneNumber = 5;
-
-    google.protobuf.BoolValue IsPrimaryContact = 6;
-}
-
-
-message CustomerChildProfileListMessage {
-    repeated CustomerChildProfileMessage children = 1;
-}
-
-message CustomerChildProfileUploadMessage {
-	CustomerChildProfileMessage ChildProfile = 1;
-	
-	google.protobuf.StringValue CaretakerId = 2;
-}
-
-message CustomersServiceProviderProfileMessage{
-
-	google.protobuf.StringValue ServiceProviderId = 1;
-
-	google.protobuf.StringValue ServiceProviderType = 2;
-
-	google.protobuf.StringValue FirstName = 3;
-
-	google.protobuf.StringValue LastName = 4;
-
-	repeated google.protobuf.StringValue Specialities = 5;
-
-	google.protobuf.StringValue Gender = 6;
-
-	google.protobuf.Int64Value LastModifedDate = 7;
-
-	repeated CustomerAddress Addresses = 8;
-
-	CustomerAppInfo ApplicationInfo = 9;
-
-	google.protobuf.StringValue EmailAddress = 10;
-
-    google.protobuf.StringValue ProfilePictureUrl = 11;
-
-	repeated google.protobuf.StringValue Languages = 12;
-
-	repeated CustomerEducation Educations = 13;
-
-	repeated CustomerWorkExperience Experiences = 14;
-
-	google.protobuf.DoubleValue ServiceFee = 15;
-     
-	google.protobuf.StringValue ServiceFeeCurrency = 16;
-    
-	google.protobuf.DoubleValue FollowUpServiceFee = 17;
-
-    google.protobuf.Int32Value AppointmentDuration = 18;
-
-    google.protobuf.Int32Value IntervalBetweenAppointment = 19;
-
-	google.protobuf.StringValue Status = 20;
-    
-	google.protobuf.StringValue RegistrationNumber = 21;
-    
-	google.protobuf.BoolValue IsActive = 22;
-
-	google.protobuf.Int64Value CreatedDate = 23;
-
-	google.protobuf.Int64Value LatestSlotStartTime = 24;
-
-	google.protobuf.Int64Value LatestSlotEndTime = 25;
-
-	CustomerServiceProviderAdditionalInfoMessage AdditionalInfo = 26;
-
-	repeated google.protobuf.StringValue OrganisationIds = 27;
-
-}
-
-
-message CustomersServiceProviderProfileListMessage{
-	repeated CustomersServiceProviderProfileMessage ServiceProviders = 1;
-}
-
-message CustomerCustomerProfileMessage {
-
-	google.protobuf.StringValue CustomerId = 1;
-
-	google.protobuf.StringValue FirstName = 2;
-
-	google.protobuf.StringValue LastName = 3;
-
-	google.protobuf.StringValue Gender = 4;
-
-	google.protobuf.StringValue Age = 5;
-
-	repeated CustomerPhoneNumber PhoneNumbers = 6;
-
-	repeated CustomerAddress Addresses = 7;
-
-	CustomerAppInfo AppInfo = 8;
-
-	repeated google.protobuf.StringValue Languages = 9;
-
-	google.protobuf.StringValue EmailAddress = 10;
-
-	repeated google.protobuf.StringValue ActiveAppointmentIds = 11;
-
-	repeated google.protobuf.StringValue CompletedAppointmentIds = 12;
-
-	google.protobuf.StringValue ProfilePicURL = 13;
-
-	google.protobuf.StringValue PrimaryServiceProviderId = 14;
-
-	repeated CustomerAllergyMessage Allergies = 15;
-
-	repeated CustomerMedicalHistoryMessage MedicalHistories = 16;
-
-	google.protobuf.Int64Value LastModifedDate = 17;
-
-	google.protobuf.Int64Value CreatedDate = 18;
-
-	DeviceInfoMessage CustomerDeviceInfo = 19;
-
-	repeated CustomerChildProfileMessage Children = 20;
-
-	google.protobuf.StringValue PrimaryOrganisationId = 21;
-}
-
-
-message CustomerCustomerProfileListMessage{
-	repeated CustomerCustomerProfileMessage Customers = 1;
-}
-
-message CustomerServiceProviderAdditionalInfoMessage {
-	repeated google.protobuf.StringValue Symptoms = 1;
-	repeated google.protobuf.StringValue Designations = 2;
-	repeated google.protobuf.StringValue Specialties = 3;
-	repeated google.protobuf.StringValue Categories = 4;
-	repeated google.protobuf.StringValue Certifications = 5;
-	repeated google.protobuf.StringValue ClubMemberships = 6;
-	repeated google.protobuf.StringValue Procedures = 7;
-	repeated google.protobuf.StringValue Published = 8;
-	repeated google.protobuf.StringValue Links = 9;
-	google.protobuf.StringValue Description = 10;
-}
-
-message CustomerVitalsMessage{
-
-	google.protobuf.StringValue BloodPressure = 1;
-
-    google.protobuf.StringValue BloodSugar = 2;
-
-    google.protobuf.StringValue Height = 3;
-
-    google.protobuf.StringValue Weight = 4;
-
-    google.protobuf.StringValue MenstrualHistory = 5;
-
-    google.protobuf.StringValue ObstetricHistory = 6;
-
-    google.protobuf.BoolValue IsSmoker = 7;
-
-    google.protobuf.BoolValue IsAlcoholConsumer = 8;
-}
-
-message CustomerDiagnosisMessage{
-
-	google.protobuf.StringValue Name = 1;
-
-	google.protobuf.StringValue Type = 2;
-}
-
-message CustomerDosageMessage{
-	google.protobuf.StringValue Name = 1;
-
-    google.protobuf.StringValue Unit = 2;
-}
-
-message CustomerDurationMessage{
-	google.protobuf.StringValue Days = 1;
-
-    google.protobuf.StringValue Unit = 2;
-}
-
-message CustomerEducation{
-
-	google.protobuf.StringValue Course = 1;
-
-    google.protobuf.Int32Value Year = 2;
-
-    google.protobuf.StringValue Country = 3;
-
-    google.protobuf.StringValue College = 4;
-
-    google.protobuf.StringValue University  = 5;
-
-    google.protobuf.StringValue EducationId = 6;
-    }
-
-message CustomerWorkExperience{
-
-	google.protobuf.StringValue Organization = 1;
-
-    google.protobuf.Int64Value StartDate = 2;
-
-    google.protobuf.Int64Value EndDate = 3;
-
-    google.protobuf.StringValue WorkExperienceId = 4;
-}
-
-message CustomerFileInfoMessage{
-	google.protobuf.StringValue FileName = 1;
-	google.protobuf.StringValue FileType = 2;
-	google.protobuf.BytesValue MediaImage = 3;
-}
-
-message CustomerFollowUpMessage{
-
-	google.protobuf.Int64Value CreatedDateTime = 1;
-
-	google.protobuf.Int32Value NoOfDays = 2;
-
-	google.protobuf.DoubleValue FollowUpFee = 3;
-}
-
-message CustomerFollowUpRequestMessage{
-
-	google.protobuf.StringValue CustomerId = 1;
-
-	google.protobuf.StringValue ServiceProviderId = 2;
-}
-
-message CustomerGeneratedSlotMessage{
-
-	google.protobuf.Int64Value StartDateTime = 1;
-
-	google.protobuf.Int64Value EndStartDateTime = 2;
-
-	google.protobuf.Int32Value Duration = 3;
-
-	google.protobuf.StringValue PaymentType = 4;
-
-	google.protobuf.StringValue OrganisationId = 5;
-
-	google.protobuf.StringValue AddressId = 6;
-
-	google.protobuf.DoubleValue ServiceFees = 7;
-
-	google.protobuf.BoolValue IsOrganisationSlot = 8;
-}
-
-
-message CustomerGeneratedSlotListMessage{
-	repeated CustomerGeneratedSlotMessage Slots = 1;
-}
-
-message CustomerIntakeDosageMessage{
-	google.protobuf.StringValue Name = 1;
-
-    google.protobuf.StringValue Unit = 2;
-}
-
-message CustomerMedicalHistoryMessage {
-	google.protobuf.StringValue MedicalHistoryId = 1;
-
-    google.protobuf.StringValue MedicalHistoryName = 2;
-
-    google.protobuf.StringValue AppointmentId = 3;
-
-    google.protobuf.StringValue ServiceRequestId = 4;
-
-    google.protobuf.StringValue PastMedicalHistory = 5;
-
-    google.protobuf.StringValue MedicationHistory = 6;
-}
-
-message CustomerMedicineMessage{
-
-	google.protobuf.StringValue MedicineName = 1;
-
-    google.protobuf.StringValue Dosage = 2;
-
-    google.protobuf.StringValue RouteOfAdministration = 3;
-
-    google.protobuf.StringValue Intake = 4;
-
-    google.protobuf.Int32Value Duration = 5;
-
-    google.protobuf.StringValue Timings = 6;
-
-    google.protobuf.StringValue SpecialInstructions = 7;
-
-    google.protobuf.StringValue MedicineId = 8;
-
-    google.protobuf.StringValue Notes = 9;
-
-    CustomerDurationMessage DurationObj = 10;
-
-    CustomerDosageMessage DosageObj = 11;
-
-    CustomerIntakeDosageMessage IntakeDosageObj = 12;
-}
-
-message CustomerOrganisationMessage {
-
-	google.protobuf.StringValue OrganisationId = 1;
-
-	repeated CustomerPhoneNumber PhoneNumbers = 2;
-
-	repeated CustomerAddress Addresses = 3;
-
-	repeated CustomerOrganisationTimingMessage OrganisationTimings = 4;
-
-	repeated google.protobuf.StringValue EmailAddresses = 5;
-
-	repeated google.protobuf.StringValue AdImages = 6;
-
-	repeated google.protobuf.StringValue Specialities = 7;
-
-	repeated google.protobuf.StringValue Links = 8;
-
-	repeated google.protobuf.StringValue DoctorIds = 9;
-
-	repeated google.protobuf.StringValue SecretaryIds = 10;
-
-	google.protobuf.StringValue Name = 11;
-
-	google.protobuf.StringValue Description = 12;
-
-	google.protobuf.StringValue Type = 13;
-
-	google.protobuf.Int64Value CreatedDate = 14;
-
-	google.protobuf.Int64Value LastModifedDate = 15;
-
-	google.protobuf.StringValue Logo = 16;
-	
-}
-
-
-message CustomerOrganisationListMessage{
-	repeated CustomerOrganisationMessage Organisations = 1;
-}
-
-message CustomerOrganisationTimingMessage {
-
-	google.protobuf.StringValue OrganisationTimingId = 1;
-
-	google.protobuf.StringValue TimingDescription = 2;
-
-	google.protobuf.StringValue Type = 3;
-
-}
-
-message CustomerPaymentInfoMessage{
-
-    google.protobuf.StringValue ServiceProviderId = 1;
-
-    google.protobuf.StringValue AppointmentId = 2;
-
-	google.protobuf.DoubleValue PaidAmount = 3;
-
-    google.protobuf.Int64Value PaidDate = 4;
-
-    google.protobuf.StringValue PaymentGateway = 5;
-
-    google.protobuf.StringValue PaymentTransactionId = 6;
-
-    google.protobuf.StringValue PaymentTransactionNotes = 7;
-
-    google.protobuf.StringValue CustomerId = 8;
-
-    google.protobuf.StringValue ServiceProviderName = 9;
-
-    google.protobuf.StringValue CustomerName = 10;
-}
-
-
-message CustomerPaymentListMessage{
-    repeated CustomerPaymentInfoMessage Payments = 1;
-}
-
-message CustomerPhoneNumber{
-
-	google.protobuf.StringValue CountryCode = 1;
-
-	google.protobuf.StringValue Number = 2;
-
-	google.protobuf.StringValue Type = 3;
-
-	google.protobuf.StringValue PhoneNumberId = 4;
-
-}
-
-message CustomerPrescriptionMessage{
-
-	google.protobuf.StringValue PrescriptionId = 1;
-
-	google.protobuf.StringValue ServiceRequestId = 2;
-
-	google.protobuf.StringValue CustomerId = 3;
-
-	google.protobuf.Int64Value CreatedDateTime = 4;
-
-    repeated CustomerMedicineMessage MedicineList = 5;
-
-	CustomerFileInfoMessage FileInfo = 6;
-}
-
-message CustomerReportMessage{
-
-	google.protobuf.StringValue ReportId = 1;
-
-    google.protobuf.StringValue FileName = 2;
-
-    google.protobuf.StringValue Name = 3;
-
-    google.protobuf.StringValue FileType = 4;
-}
-
-
-message CustomerReportListMessage{
-    repeated CustomerReportMessage Reports = 1;
-}
-
-message CustomerReportUploadMessage{
-
-	google.protobuf.StringValue ReportId = 1;
-
-    google.protobuf.StringValue ServiceRequestId = 2;
-
-	google.protobuf.StringValue CustomerId = 3;
-
-    google.protobuf.StringValue FileName = 4;
-
-    google.protobuf.StringValue Name = 5;
-
-    google.protobuf.StringValue FileType = 6;
-
-    google.protobuf.BytesValue MediaFile = 7;
-}
-
-message CustomerServiceProviderInOrganisationRequestMessage{
-
-	google.protobuf.StringValue ServiceProviderId = 1;
-
-	google.protobuf.StringValue OrganisationId = 2;
-}
-
-message CustomerServiceRequestMessage{
-
-	google.protobuf.StringValue ServiceRequestId = 1;
-
-    google.protobuf.StringValue Reason = 2;
-
-    google.protobuf.StringValue ServiceProviderId = 3;
-
-    google.protobuf.StringValue AppointmentId = 4; 
-
-    google.protobuf.StringValue Examination = 5;
-
-    CustomerDiagnosisMessage Diagnosis = 6;
-
-    repeated google.protobuf.StringValue Investigations = 7;
-
-    google.protobuf.StringValue Advice = 8;
-
-    google.protobuf.Int64Value CreatedDateTime = 9;
-
-    google.protobuf.Int64Value LastModifedDate = 10;
-
-    google.protobuf.StringValue CustomerId = 11;
-
-    CustomerAllergyMessage Allergy = 12;
-
-	CustomerMedicalHistoryMessage MedicalHistory = 13;
-
-    google.protobuf.StringValue ChildId = 14;
-
-    CustomerVitalsMessage CustomerVitals = 15;
-
-    google.protobuf.StringValue OrganisationId = 16;
-}
-
-message CustomerServiceRequestRequestMessage{
-
-	google.protobuf.StringValue CustomerId = 1;
-
-	google.protobuf.StringValue AppointmentId = 2;
-
-	google.protobuf.StringValue ServiceRequestId = 3;
-}
-
-message CustomerTrustScoreRequestMessage{
-
-	google.protobuf.StringValue CustomerId = 1;
-
-	google.protobuf.StringValue ServiceProviderId = 2;
-}
-
-
-
-
-
-service LoggingWorkerV1{
-
-	rpc SetLog(VoidMessage) returns (BoolMessage);
-
-}
-
-
-
-
-
-service NotificationWorkerV1{
-
-	rpc SendNotification(NotificationRequestMessage) returns (BoolMessage);
-
-}
-
-
-
-
-
-service TwilioWorkerV1{
-
-	rpc GetTwilioVideoAuthToken (TwilioAuthRequest) returns (StringMessage);
-
-	rpc GetTwilioChatAuthToken (IdMessage) returns (StringMessage);
-}
-
-
-
-
-
-service UserTypeWorkerV1{
-
-	rpc GetUserType (VoidMessage) returns (StringMessage);
-
-}
-
-
-
-
-
-service CustomerAppointmentWorkerV1{
-	
-	rpc SetAppointment(CustomerAppointmentMessage) returns (IdMessage);
-
-	rpc GetAppointment(CustomerAppointmentRequestMessage) returns (CustomerAppointmentMessage);
-
-	rpc GetAppointments(IdMessage) returns (CustomerAppointmentList);
-
-	rpc GetAppointmentPayments(CustomerAppointmentRequestMessage) returns (CustomerPaymentListMessage);
-
-	rpc SetNewPayment(CustomerPaymentInfoMessage) returns (IdMessage);
-}
-
-
-
-
-
-service CustomerWorkerV1 {
-
-	rpc SetCustomerProfile (CustomerCustomerProfileMessage) returns (IdMessage);
-
-	rpc GetCustomerProfile (IdMessage) returns (CustomerCustomerProfileMessage);
-
-	rpc GetLatestFollowUpWithServiceProvider (CustomerFollowUpRequestMessage) returns (CustomerFollowUpMessage);
-
-	rpc SetChildProfile (CustomerChildProfileUploadMessage) returns (IdMessage);
-
-	rpc GetTrustScore (CustomerTrustScoreRequestMessage) returns (IntMessage);
-}
-
-
-
-
-
-service CustomerOrganisationWorkerV1 {
-
-	rpc SetOrganisation (CustomerOrganisationMessage) returns (IdMessage);
-
-	rpc GetOrganisation (IdMessage) returns (CustomerOrganisationMessage);
-
-	rpc GetOrganisations (IdMessage) returns (CustomerOrganisationListMessage);
-
-	rpc GetSpecificOrganisations (StringArrayMessage) returns (CustomerOrganisationListMessage);
-}
-
-
-
-
-
-service CustomerPrescriptionWorkerV1{
-
-	rpc GetPrescription(CustomerServiceRequestRequestMessage) returns (CustomerPrescriptionMessage);
-
-	rpc SetPrescription(CustomerPrescriptionMessage) returns (IdMessage);
-
-	rpc DownloadPrescriptionMedia (IdMessage) returns (StringMessage);
-	
-	rpc GetPrescriptionPdf(RequestPdf) returns(ResponsePdf);
-}
-
-
-
-
-
-service CustomerReportWorkerV1{
-
-	rpc GetReports(IdMessage) returns (CustomerReportListMessage);	
-
-	rpc GetAppointmentReports(CustomerServiceRequestRequestMessage) returns (CustomerReportListMessage);
-
-	rpc SetReport(CustomerReportUploadMessage) returns (IdMessage);
-
-	rpc DownloadReportMedia(IdMessage) returns (StringMessage);
-}
-
-
-
-
-
-service CustomerServiceProviderWorkerV1 {
-
-	rpc GetServiceProviderProfile (IdMessage) returns (CustomersServiceProviderProfileMessage);
-
-	rpc GetServiceProviders (IdMessage) returns (CustomersServiceProviderProfileListMessage);
-
-	rpc GetServiceProvidersOfOrganisation (IdMessage) returns (CustomersServiceProviderProfileListMessage);
-
-	rpc GetServiceProviderAvailablity(IdMessage) returns (CustomerAvailabilityConfigList);
-
-	rpc GetServiceProviderAvailableSlots (IdMessage) returns (CustomerGeneratedSlotListMessage);
-
-	rpc GetServiceProviderAvailablityForOrganisation(CustomerServiceProviderInOrganisationRequestMessage) returns (CustomerAvailabilityConfigList);
-
-	rpc GetServiceProviderAvailableSlotsForOrganisation (CustomerServiceProviderInOrganisationRequestMessage) returns (CustomerGeneratedSlotListMessage);
-
-	rpc GetAllSpecialties(VoidMessage) returns (CategoryListMessage);
-}
-
-
-
-
-
-service CustomerServiceRequestWorkerV1{
-
-	rpc SetServiceRequest (CustomerServiceRequestMessage) returns (IdMessage);
-
-	rpc GetServiceRequest(CustomerServiceRequestRequestMessage) returns (CustomerServiceRequestMessage);
 
 }
 
