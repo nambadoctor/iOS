@@ -11,22 +11,14 @@ import SwiftUI
 class DetailedBookDocViewModel : ObservableObject {
     var serviceProvider:CustomerServiceProviderProfile
     var organization:CustomerOrganization?
-    
-    var slots:[CustomerGeneratedSlot]? = nil
-    
+        
     var notAbleToBookCallBack:()->()
 
     @Published var customerProfile:CustomerProfile
     
     @Published var customerVitals:CustomerVitals = CustomerVitals(BloodPressure: "", BloodSugar: "", Height: "", Weight: "", MenstrualHistory: "", ObstetricHistory: "", IsSmoker: false, IsAlcoholConsumer: false)
-
-    @Published var dateDisplay:[Int64] = [Int64]()
-    @Published var timeDisplay:[Int64] = [Int64]()
     
-    @Published var selectedDate:Int64 = 0
-    @Published var selectedTime:Int64 = 0
-    @Published var selectedSlot:CustomerGeneratedSlot? = nil
-    @Published var isPrePaySlot:Bool = false
+    @Published var availabilityVM:AvailabilitySelectorViewModel
 
     @Published var docProfPicImageLoader:ImageLoader? = nil
     
@@ -62,12 +54,14 @@ class DetailedBookDocViewModel : ObservableObject {
         self.serviceProvider = serviceProvider
         self.customerServiceProviderService = customerServiceProviderService
         self.notAbleToBookCallBack = notAbleToBookCallBack
-        self.retrieveAvailabilities()
         if !serviceProvider.profilePictureURL.isEmpty {
             self.docProfPicImageLoader = ImageLoader(urlString: serviceProvider.profilePictureURL) { _ in }
         } else {
             self.docProfPicImageLoader = ImageLoader(urlString: "https://wgsi.utoronto.ca/wp-content/uploads/2020/12/blank-profile-picture-png.png") { _ in }
         }
+        
+        self.availabilityVM = AvailabilitySelectorViewModel(serviceProviderID: serviceProvider.serviceProviderID)
+        self.availabilityVM.retrieveAvailabilities()
     }
     
     func refreshCustomerProfile () {
@@ -92,77 +86,15 @@ class DetailedBookDocViewModel : ObservableObject {
         }
     }
 
-    func retrieveAvailabilities () {
-        CommonDefaultModifiers.showLoader(incomingLoadingText: "Getting Doctor's Availability")
-        customerServiceProviderService.getServiceProviderAvailabilities(serviceProviderId: serviceProvider.serviceProviderID) { (slots) in
-            if slots != nil && !slots!.isEmpty {
-                self.slots = slots!
-                self.selectedDate = self.slots![0].startDateTime
-                self.selectedTime = self.slots![0].startDateTime
-                self.getTimesForSelectedDates(selectedDate: self.selectedDate)
-                self.parseSlots()
-                CommonDefaultModifiers.hideLoader()
-            } else {
-                CommonDefaultModifiers.hideLoader()
-                //TODO: handle empty slots
-            }
-        }
-    }
-    
-    func parseSlots () {
-        for slot in slots! {
-            if !Helpers.compareDate(dates: dateDisplay, toCompareDate: slot.startDateTime) {
-                if !self.dateDisplay.contains(slot.startDateTime) {
-                    dateDisplay.append(slot.startDateTime)
-                }
-            }
-        }
-    }
-    
-    func getCorrespondingSlot (timestamp:Int64) -> CustomerGeneratedSlot? {
-        for slot in slots! {
-            if slot.startDateTime == timestamp {
-                return slot
-            }
-        }
-
-        return nil
-    }
-    
-    func getTimesForSelectedDates (selectedDate:Int64) {
-        self.selectedDate = selectedDate
-        self.selectedTime = 0
-        timeDisplay.removeAll()
-        self.isPrePaySlot = false
-        let date = Date(milliseconds: selectedDate)
-        
-        for slot in slots! {
-            let order = Calendar.current.compare(date, to: Date(milliseconds: slot.startDateTime), toGranularity: .day)
-            
-            if order == .orderedSame {
-                timeDisplay.append(slot.startDateTime)
-            }
-        }
-    }
-    
-    func selectTime (time:Int64) {
-        self.selectedTime = time
-        
-        if getCorrespondingSlot(timestamp: time)!.paymentType == PaymentTypeEnum.PrePay.rawValue {
-            self.isPrePaySlot = true
-        } else {
-            self.isPrePaySlot = false
-        }
-    }
-    
     func checkTrustScores () {
-        guard selectedDate != 0, selectedTime != 0 else {
+        guard availabilityVM.selectedDate != 0, availabilityVM.selectedTime != 0 else {
             CustomerAlertHelpers().pleaseChooseTimeandDateAlert { _ in }
             return
         }
-        self.selectedSlot = getCorrespondingSlot(timestamp: selectedTime)
+        
+        self.availabilityVM.setSlot()
 
-        guard self.selectedSlot?.paymentType != PaymentTypeEnum.PrePay.rawValue else {
+        guard self.availabilityVM.selectedSlot?.paymentType != PaymentTypeEnum.PrePay.rawValue else {
             bookHelper()
             return
         }
@@ -170,13 +102,13 @@ class DetailedBookDocViewModel : ObservableObject {
         if CustomerTrustScore == 0 {
             self.showPreBookingOptionsSheet()
         } else if CustomerTrustScore < 0 {
-            self.selectedSlot?.paymentType = PaymentTypeEnum.PrePay.rawValue
+            self.availabilityVM.selectedSlot?.paymentType = PaymentTypeEnum.PrePay.rawValue
             bookHelper()
         } else if 0 < CustomerTrustScore && CustomerTrustScore < 100 {
-            self.selectedSlot?.paymentType = PaymentTypeEnum.PostPay.rawValue
+            self.availabilityVM.selectedSlot?.paymentType = PaymentTypeEnum.PostPay.rawValue
             bookHelper()
         } else if CustomerTrustScore == 100 {
-            self.selectedSlot?.paymentType = PaymentTypeEnum.PostPay.rawValue
+            self.availabilityVM.selectedSlot?.paymentType = PaymentTypeEnum.PostPay.rawValue
             bookHelper()
         }
         else {
@@ -188,13 +120,13 @@ class DetailedBookDocViewModel : ObservableObject {
         self.book() { success, paymentType, needsVerification in
             if success {
                 if needsVerification {
-                    CustomerAlertHelpers().AppointmentNeedsVerificationAlert(doctorName: self.serviceProviderName,timeStamp: self.selectedTime) { (done) in
+                    CustomerAlertHelpers().AppointmentNeedsVerificationAlert(doctorName: self.serviceProviderName,timeStamp: self.availabilityVM.selectedTime) { (done) in
                         CommonDefaultModifiers.showLoader(incomingLoadingText: "Please Wait")
                         CustomerDefaultModifiers.navigateToDetailedView()
                         self.killView = true
                     }
                 } else if paymentType == PaymentTypeEnum.PostPay.rawValue {
-                    CustomerAlertHelpers().AppointmentBookedAlert(timeStamp: self.selectedTime) { (done) in
+                    CustomerAlertHelpers().AppointmentBookedAlert(timeStamp: self.availabilityVM.selectedTime) { (done) in
                         CommonDefaultModifiers.showLoader(incomingLoadingText: "Loading Appointment")
                         CustomerDefaultModifiers.navigateToDetailedView()
                         self.killView = true
@@ -243,7 +175,7 @@ class DetailedBookDocViewModel : ObservableObject {
 
     func fireBookedNotif (appointment:CustomerAppointment) {
         guard appointment.paymentType != PaymentTypeEnum.PrePay.rawValue, appointment.appointmentVerification == nil else { return }
-        CustomerNotificationHelper.bookedAppointment(customerName: "", dateDisplay: selectedSlot!.startDateTime, appointmentId: appointment.childId, serviceProviderId: self.serviceProvider.serviceProviderID)
+        CustomerNotificationHelper.bookedAppointment(customerName: "", dateDisplay: availabilityVM.selectedSlot!.startDateTime, appointmentId: appointment.childId, serviceProviderId: self.serviceProvider.serviceProviderID)
     }
 
     func makeAppointment() -> CustomerAppointment {
@@ -262,8 +194,8 @@ class DetailedBookDocViewModel : ObservableObject {
                                                       serviceFee: self.serviceProvider.serviceFee,
                                                       followUpDays: 0,
                                                       isPaid: false,
-                                                      scheduledAppointmentStartTime: self.selectedSlot?.startDateTime ?? 0,
-                                                      scheduledAppointmentEndTime: self.selectedSlot?.endDateTime ?? 0,
+                                                      scheduledAppointmentStartTime: self.availabilityVM.selectedSlot?.startDateTime ?? 0,
+                                                      scheduledAppointmentEndTime: self.availabilityVM.selectedSlot?.endDateTime ?? 0,
                                                       actualAppointmentStartTime: 0,
                                                       actualAppointmentEndTime: 0,
                                                       createdDateTime: Date().millisecondsSince1970,
@@ -271,7 +203,7 @@ class DetailedBookDocViewModel : ObservableObject {
                                                       noOfReports: 0,
                                                       cancellation: cancellation,
                                                       childId: "",
-                                                      paymentType: self.selectedSlot?.paymentType ?? "",
+                                                      paymentType: self.availabilityVM.selectedSlot?.paymentType ?? "",
                                                       organisationId: organization?.organisationId ?? "",
                                                       organisationName: organization?.name ?? "")
         

@@ -13,11 +13,14 @@ protocol ServiceProviderAppointmentServiceProtocol {
     func getCustomerAppointmentList(patientId: String, _ completion: @escaping (([ServiceProviderAppointment]?) -> ()))
     
     func setAppointment (appointment:ServiceProviderAppointment,
-                                completion: @escaping (_ updated:Bool)->())
+                                completion: @escaping (_ appointmentId:String?)->())
     
     func getSingleAppointment (appointmentId:String, serviceProviderId:String, _ completion: @escaping ((ServiceProviderAppointment?) -> ()))
     
-    func getOrganisationAppointments (serviceProviderId:String,
+    func getOrganisationAppointments (organisationId:String,
+                             completion: @escaping ((_ appointmentList:[ServiceProviderAppointment]?)->()))
+    
+    func getOrganisationAppointmentsOfServiceProvider (organisationId:String,
                              completion: @escaping ((_ appointmentList:[ServiceProviderAppointment]?)->()))
 }
 
@@ -93,7 +96,7 @@ class ServiceProviderAppointmentService : ServiceProviderAppointmentServiceProto
 
     
     func setAppointment (appointment:ServiceProviderAppointment,
-                                completion: @escaping (_ updated:Bool)->()) {
+                                completion: @escaping (_ appointmentId:String?)->()) {
                 
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
@@ -109,12 +112,12 @@ class ServiceProviderAppointmentService : ServiceProviderAppointmentServiceProto
                 let response = try setAptStatus.response.wait()
                 print("Set Appointment Success for \(response.id)")
                 DispatchQueue.main.async {
-                    completion(true)
+                    completion(response.id.toString)
                 }
             } catch {
                 print("Set Appointment \(appointment.appointmentID) Failure")
                 DispatchQueue.main.async {
-                    completion(false)
+                    completion(nil)
                 }
             }
         }
@@ -151,7 +154,7 @@ class ServiceProviderAppointmentService : ServiceProviderAppointmentServiceProto
 
     }
     
-    func getOrganisationAppointments (serviceProviderId:String,
+    func getOrganisationAppointments (organisationId:String,
                              completion: @escaping ((_ appointmentList:[ServiceProviderAppointment]?)->())) {
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
@@ -159,7 +162,7 @@ class ServiceProviderAppointmentService : ServiceProviderAppointmentServiceProto
         let appointmentClient = Nd_V1_ServiceProviderAppointmentWorkerV1Client(channel: channel)
         
         let request = Nd_V1_IdMessage.with {
-            $0.id = serviceProviderId.toProto
+            $0.id = organisationId.toProto
         }
 
         let getDoctorsAppointment = appointmentClient.getOrganisationAppointments(request, callOptions: callOptions)
@@ -182,4 +185,34 @@ class ServiceProviderAppointmentService : ServiceProviderAppointmentServiceProto
     }
     
     
+    func getOrganisationAppointmentsOfServiceProvider (organisationId:String,
+                             completion: @escaping ((_ appointmentList:[ServiceProviderAppointment]?)->())) {
+        let channel = ChannelManager.sharedChannelManager.getChannel()
+        let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
+        
+        let appointmentClient = Nd_V1_ServiceProviderAppointmentWorkerV1Client(channel: channel)
+        
+        let request = Nd_V1_ServiceProviderInOrganisationRequestMessage.with {
+            $0.organisationID = organisationId.toProto
+            $0.serviceProviderID = UserIdHelper().retrieveUserId().toProto
+        }
+
+        let getDoctorsAppointment = appointmentClient.getOrganisationAppointmentsofServiceProvider(request, callOptions: callOptions)
+        
+        DispatchQueue.global().async {
+            do {
+                let response = try getDoctorsAppointment.response.wait()
+                var appointmentList = self.appointmentObjectMapper.grpcAppointmentToLocal(appointment: response.appointments)
+                print("Doctor Organization Appointment Client Success \(appointmentList.count)")
+                DispatchQueue.main.async {
+                    completion(appointmentList)
+                }
+            } catch {
+                print("Doctor Organization Appointment Client Failed")
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            }
+        }
+    }
 }

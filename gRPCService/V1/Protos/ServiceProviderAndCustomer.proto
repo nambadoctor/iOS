@@ -1685,6 +1685,8 @@ service ServiceProviderAppointmentWorkerV1{
 
 	rpc GetAppointments(IdMessage) returns (ServiceProviderAppointmentList);
 
+	rpc GetOrganisationAppointmentsofServiceProvider(ServiceProviderInOrganisationRequestMessage) returns (ServiceProviderAppointmentList);
+
 	rpc GetOrganisationAppointments(IdMessage) returns (ServiceProviderAppointmentList);
 
 	rpc GetCustomerAppointments(ServiceProviderCustomerAppointmentsRequestMessage) returns (ServiceProviderAppointmentList);

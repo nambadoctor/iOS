@@ -12,7 +12,7 @@ struct PhoneNumberEntryView: View {
     @Binding var numberObj:PhoneNumberObj
     @State private var showCountryCodePicker:Bool = false
     var isDisabled:Bool = false
-    
+
     var body: some View {
         HStack{
             Text(numberObj.countryCode).frame(width: 45)

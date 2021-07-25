@@ -77,7 +77,7 @@ class ServiceProviderCustomerService: ServiceProviderCustomerServiceProtocol {
             do {
                 let response = try getPatientObject.response.wait()
                 let customer = self.customerObjMapper.grpcCustomerToLocal(customer: response)
-                print("Customer Client received: \(response.customerID)")
+                print("Customer Client received: \(response)")
                 DispatchQueue.main.async {
                     completion(customer)
                 }
@@ -191,7 +191,6 @@ class ServiceProviderCustomerService: ServiceProviderCustomerServiceProtocol {
                 
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
-        
         // Provide the connection to the generated client.
         let patientClient = Nd_V1_ServiceProviderCustomerWorkerV1Client(channel: channel)
 

@@ -43,7 +43,7 @@ class PatientInfoViewModel: ObservableObject {
     }
     
     private func retrievePatientObj () {
-        customerServiceCall.getPatientProfile(patientId: self.appointment.requestedBy) { (customer) in
+        customerServiceCall.getPatientProfile(patientId: self.appointment.customerID) { (customer) in
             if customer != nil {
                 self.patientObj = customer
                 self.patientPhoneNumber = self.patientObj.phoneNumbers[0].countryCode + self.patientObj.phoneNumbers[0].number
@@ -53,7 +53,7 @@ class PatientInfoViewModel: ObservableObject {
     }
     
     private func retrieveAppointmentList () {
-        appointmentServiceCall.getCustomerAppointmentList(patientId: appointment.requestedBy) { (aptList) in
+        appointmentServiceCall.getCustomerAppointmentList(patientId: appointment.customerID) { (aptList) in
             if aptList != nil {
                 self.AppointmentList = aptList
             }

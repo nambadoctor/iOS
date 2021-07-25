@@ -18,8 +18,8 @@ class ServiceProviderUpdateAppointmentStatusHelper:ServiceProviderUpdateAppointm
     func toCancelled (appointment:inout ServiceProviderAppointment, completion: @escaping (_ success:Bool) -> ()) {
         appointment.status = "Cancelled"
                 
-        AppointmentServiceCalls.setAppointment(appointment: appointment) { (updated) in
-            if updated {
+        AppointmentServiceCalls.setAppointment(appointment: appointment) { (appointmentId) in
+            if appointmentId != nil {
                 CommonDefaultModifiers.hideLoader()
                 completion(true)
             } else { }
@@ -31,8 +31,8 @@ class ServiceProviderUpdateAppointmentStatusHelper:ServiceProviderUpdateAppointm
         appointment.status = "StartedConsultation"
         appointment.actualAppointmentStartTime = Date().millisecondsSince1970
         
-        AppointmentServiceCalls.setAppointment(appointment: appointment) { (updated) in
-            if updated { completion(true) } else { }
+        AppointmentServiceCalls.setAppointment(appointment: appointment) { (appointmentId) in
+            if appointmentId != nil { completion(true) } else { }
         }
     }
 
@@ -42,8 +42,8 @@ class ServiceProviderUpdateAppointmentStatusHelper:ServiceProviderUpdateAppointm
         appointment.actualAppointmentStartTime = Date().millisecondsSince1970
         appointment.actualAppointmentEndTime = Date().millisecondsSince1970
         
-        AppointmentServiceCalls.setAppointment(appointment: appointment) { (updated) in
-            if updated { completion(true) } else { }
+        AppointmentServiceCalls.setAppointment(appointment: appointment) { (appointmentId) in
+            if appointmentId != nil { completion(true) } else { }
         }
     }
 
@@ -51,8 +51,8 @@ class ServiceProviderUpdateAppointmentStatusHelper:ServiceProviderUpdateAppointm
 
         appointment.status = "FinishedAppointment"
 
-        AppointmentServiceCalls.setAppointment(appointment: appointment) { (updated) in
-            if updated { completion(true) } else { }
+        AppointmentServiceCalls.setAppointment(appointment: appointment) { (appointmentId) in
+            if appointmentId != nil { completion(true) } else { }
         }
     }
 }

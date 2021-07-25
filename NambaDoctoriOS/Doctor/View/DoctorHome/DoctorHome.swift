@@ -37,10 +37,10 @@ struct DoctorHome: View {
                         }.tag(3)
                         
                         if self.doctorViewModel.selectedOrganization != nil {
-                            Text("All Patients").tabItem {
+                           OrganisationsPatientsView().tabItem {
                                 Image("folder.fill.badge.person.crop")
-                                Text("All Patients")
-                            }.tag(3)
+                            Text("\(self.doctorViewModel.selectedOrganization!.name) Patients")
+                            }.tag(4)
                         }
 
 //                        DocNotificationDisplayView().tabItem {
@@ -83,7 +83,7 @@ struct DoctorHome: View {
             Button {
                 self.doctorViewModel.newOrganisationSelected(organisation: nil)
             } label: {
-                Text("All Organizations")
+                Text("NambaDoctor")
             }
         } label: {
             HStack {
@@ -91,8 +91,8 @@ struct DoctorHome: View {
                     Text(self.doctorViewModel.selectedOrganization!.name)
                         .frame(width: Helpers.textWidth(text: self.doctorViewModel.selectedOrganization!.name) + 50)
                 } else {
-                    Text("All Organizations")
-                        .frame(width: Helpers.textWidth(text: "All Organizations") + 50)
+                    Text("NambaDoctor")
+                        .frame(width: Helpers.textWidth(text: "NambaDoctor") + 50)
                 }
                 Image("chevron.down.circle")
                 Spacer()
@@ -102,8 +102,7 @@ struct DoctorHome: View {
 
     var navBarRefreshButton : some View {
         Button(action: {
-            doctorViewModel.refreshAppointments()
-            doctorViewModel.getMyPatients()
+            doctorViewModel.loadView()
         }, label: {
             Image("arrow.clockwise")
         })
