@@ -835,11 +835,99 @@ struct Nd_V1_CustomerAppointmentMessage {
   /// Clears the value of `organisationName`. Subsequent reads from it will return its default value.
   mutating func clearOrganisationName() {_uniqueStorage()._organisationName = nil}
 
+  var isInPersonAppointment: SwiftProtobuf.Google_Protobuf_BoolValue {
+    get {return _storage._isInPersonAppointment ?? SwiftProtobuf.Google_Protobuf_BoolValue()}
+    set {_uniqueStorage()._isInPersonAppointment = newValue}
+  }
+  /// Returns true if `isInPersonAppointment` has been explicitly set.
+  var hasIsInPersonAppointment: Bool {return _storage._isInPersonAppointment != nil}
+  /// Clears the value of `isInPersonAppointment`. Subsequent reads from it will return its default value.
+  mutating func clearIsInPersonAppointment() {_uniqueStorage()._isInPersonAppointment = nil}
+
+  var addressID: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _storage._addressID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._addressID = newValue}
+  }
+  /// Returns true if `addressID` has been explicitly set.
+  var hasAddressID: Bool {return _storage._addressID != nil}
+  /// Clears the value of `addressID`. Subsequent reads from it will return its default value.
+  mutating func clearAddressID() {_uniqueStorage()._addressID = nil}
+
+  var appointmentTransfer: Nd_V1_CustomerAppointmentTransferMessage {
+    get {return _storage._appointmentTransfer ?? Nd_V1_CustomerAppointmentTransferMessage()}
+    set {_uniqueStorage()._appointmentTransfer = newValue}
+  }
+  /// Returns true if `appointmentTransfer` has been explicitly set.
+  var hasAppointmentTransfer: Bool {return _storage._appointmentTransfer != nil}
+  /// Clears the value of `appointmentTransfer`. Subsequent reads from it will return its default value.
+  mutating func clearAppointmentTransfer() {_uniqueStorage()._appointmentTransfer = nil}
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
 
   fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+struct Nd_V1_CustomerAppointmentTransferMessage {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var appointmentTransferID: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _appointmentTransferID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_appointmentTransferID = newValue}
+  }
+  /// Returns true if `appointmentTransferID` has been explicitly set.
+  var hasAppointmentTransferID: Bool {return self._appointmentTransferID != nil}
+  /// Clears the value of `appointmentTransferID`. Subsequent reads from it will return its default value.
+  mutating func clearAppointmentTransferID() {self._appointmentTransferID = nil}
+
+  var transferredBy: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _transferredBy ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_transferredBy = newValue}
+  }
+  /// Returns true if `transferredBy` has been explicitly set.
+  var hasTransferredBy: Bool {return self._transferredBy != nil}
+  /// Clears the value of `transferredBy`. Subsequent reads from it will return its default value.
+  mutating func clearTransferredBy() {self._transferredBy = nil}
+
+  var transferredTo: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _transferredTo ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_transferredTo = newValue}
+  }
+  /// Returns true if `transferredTo` has been explicitly set.
+  var hasTransferredTo: Bool {return self._transferredTo != nil}
+  /// Clears the value of `transferredTo`. Subsequent reads from it will return its default value.
+  mutating func clearTransferredTo() {self._transferredTo = nil}
+
+  var transferReason: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _transferReason ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_transferReason = newValue}
+  }
+  /// Returns true if `transferReason` has been explicitly set.
+  var hasTransferReason: Bool {return self._transferReason != nil}
+  /// Clears the value of `transferReason`. Subsequent reads from it will return its default value.
+  mutating func clearTransferReason() {self._transferReason = nil}
+
+  var transferredTime: SwiftProtobuf.Google_Protobuf_Int64Value {
+    get {return _transferredTime ?? SwiftProtobuf.Google_Protobuf_Int64Value()}
+    set {_transferredTime = newValue}
+  }
+  /// Returns true if `transferredTime` has been explicitly set.
+  var hasTransferredTime: Bool {return self._transferredTime != nil}
+  /// Clears the value of `transferredTime`. Subsequent reads from it will return its default value.
+  mutating func clearTransferredTime() {self._transferredTime = nil}
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _appointmentTransferID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _transferredBy: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _transferredTo: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _transferReason: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _transferredTime: SwiftProtobuf.Google_Protobuf_Int64Value? = nil
 }
 
 struct Nd_V1_CustomerAppointmentList {
@@ -3529,6 +3617,67 @@ struct Nd_V1_ServiceProviderAlternateNotificationInfoMessage {
   fileprivate var _deviceToken: SwiftProtobuf.Google_Protobuf_StringValue? = nil
 }
 
+struct Nd_V1_ServiceProviderAppointmentTransferMessage {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var appointmentTransferID: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _appointmentTransferID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_appointmentTransferID = newValue}
+  }
+  /// Returns true if `appointmentTransferID` has been explicitly set.
+  var hasAppointmentTransferID: Bool {return self._appointmentTransferID != nil}
+  /// Clears the value of `appointmentTransferID`. Subsequent reads from it will return its default value.
+  mutating func clearAppointmentTransferID() {self._appointmentTransferID = nil}
+
+  var transferredBy: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _transferredBy ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_transferredBy = newValue}
+  }
+  /// Returns true if `transferredBy` has been explicitly set.
+  var hasTransferredBy: Bool {return self._transferredBy != nil}
+  /// Clears the value of `transferredBy`. Subsequent reads from it will return its default value.
+  mutating func clearTransferredBy() {self._transferredBy = nil}
+
+  var transferredTo: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _transferredTo ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_transferredTo = newValue}
+  }
+  /// Returns true if `transferredTo` has been explicitly set.
+  var hasTransferredTo: Bool {return self._transferredTo != nil}
+  /// Clears the value of `transferredTo`. Subsequent reads from it will return its default value.
+  mutating func clearTransferredTo() {self._transferredTo = nil}
+
+  var transferReason: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _transferReason ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_transferReason = newValue}
+  }
+  /// Returns true if `transferReason` has been explicitly set.
+  var hasTransferReason: Bool {return self._transferReason != nil}
+  /// Clears the value of `transferReason`. Subsequent reads from it will return its default value.
+  mutating func clearTransferReason() {self._transferReason = nil}
+
+  var transferredTime: SwiftProtobuf.Google_Protobuf_Int64Value {
+    get {return _transferredTime ?? SwiftProtobuf.Google_Protobuf_Int64Value()}
+    set {_transferredTime = newValue}
+  }
+  /// Returns true if `transferredTime` has been explicitly set.
+  var hasTransferredTime: Bool {return self._transferredTime != nil}
+  /// Clears the value of `transferredTime`. Subsequent reads from it will return its default value.
+  mutating func clearTransferredTime() {self._transferredTime = nil}
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _appointmentTransferID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _transferredBy: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _transferredTo: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _transferReason: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _transferredTime: SwiftProtobuf.Google_Protobuf_Int64Value? = nil
+}
+
 struct Nd_V1_ServiceProviderAppointmentMessage {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -3767,6 +3916,33 @@ struct Nd_V1_ServiceProviderAppointmentMessage {
   var hasOrganisationName: Bool {return _storage._organisationName != nil}
   /// Clears the value of `organisationName`. Subsequent reads from it will return its default value.
   mutating func clearOrganisationName() {_uniqueStorage()._organisationName = nil}
+
+  var isInPersonAppointment: SwiftProtobuf.Google_Protobuf_BoolValue {
+    get {return _storage._isInPersonAppointment ?? SwiftProtobuf.Google_Protobuf_BoolValue()}
+    set {_uniqueStorage()._isInPersonAppointment = newValue}
+  }
+  /// Returns true if `isInPersonAppointment` has been explicitly set.
+  var hasIsInPersonAppointment: Bool {return _storage._isInPersonAppointment != nil}
+  /// Clears the value of `isInPersonAppointment`. Subsequent reads from it will return its default value.
+  mutating func clearIsInPersonAppointment() {_uniqueStorage()._isInPersonAppointment = nil}
+
+  var addressID: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _storage._addressID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._addressID = newValue}
+  }
+  /// Returns true if `addressID` has been explicitly set.
+  var hasAddressID: Bool {return _storage._addressID != nil}
+  /// Clears the value of `addressID`. Subsequent reads from it will return its default value.
+  mutating func clearAddressID() {_uniqueStorage()._addressID = nil}
+
+  var appointmentTransfer: Nd_V1_ServiceProviderAppointmentTransferMessage {
+    get {return _storage._appointmentTransfer ?? Nd_V1_ServiceProviderAppointmentTransferMessage()}
+    set {_uniqueStorage()._appointmentTransfer = newValue}
+  }
+  /// Returns true if `appointmentTransfer` has been explicitly set.
+  var hasAppointmentTransfer: Bool {return _storage._appointmentTransfer != nil}
+  /// Clears the value of `appointmentTransfer`. Subsequent reads from it will return its default value.
+  mutating func clearAppointmentTransfer() {_uniqueStorage()._appointmentTransfer = nil}
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -7233,6 +7409,9 @@ extension Nd_V1_CustomerAppointmentMessage: SwiftProtobuf.Message, SwiftProtobuf
     24: .same(proto: "AppointmentVerification"),
     25: .same(proto: "OrganisationId"),
     26: .same(proto: "OrganisationName"),
+    27: .same(proto: "IsInPersonAppointment"),
+    28: .same(proto: "AddressId"),
+    29: .same(proto: "AppointmentTransfer"),
   ]
 
   fileprivate class _StorageClass {
@@ -7262,6 +7441,9 @@ extension Nd_V1_CustomerAppointmentMessage: SwiftProtobuf.Message, SwiftProtobuf
     var _appointmentVerification: Nd_V1_CustomerAppointmentVerificationMessage? = nil
     var _organisationID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
     var _organisationName: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _isInPersonAppointment: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
+    var _addressID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _appointmentTransfer: Nd_V1_CustomerAppointmentTransferMessage? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -7294,6 +7476,9 @@ extension Nd_V1_CustomerAppointmentMessage: SwiftProtobuf.Message, SwiftProtobuf
       _appointmentVerification = source._appointmentVerification
       _organisationID = source._organisationID
       _organisationName = source._organisationName
+      _isInPersonAppointment = source._isInPersonAppointment
+      _addressID = source._addressID
+      _appointmentTransfer = source._appointmentTransfer
     }
   }
 
@@ -7338,6 +7523,9 @@ extension Nd_V1_CustomerAppointmentMessage: SwiftProtobuf.Message, SwiftProtobuf
         case 24: try { try decoder.decodeSingularMessageField(value: &_storage._appointmentVerification) }()
         case 25: try { try decoder.decodeSingularMessageField(value: &_storage._organisationID) }()
         case 26: try { try decoder.decodeSingularMessageField(value: &_storage._organisationName) }()
+        case 27: try { try decoder.decodeSingularMessageField(value: &_storage._isInPersonAppointment) }()
+        case 28: try { try decoder.decodeSingularMessageField(value: &_storage._addressID) }()
+        case 29: try { try decoder.decodeSingularMessageField(value: &_storage._appointmentTransfer) }()
         default: break
         }
       }
@@ -7424,6 +7612,15 @@ extension Nd_V1_CustomerAppointmentMessage: SwiftProtobuf.Message, SwiftProtobuf
       if let v = _storage._organisationName {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 26)
       }
+      if let v = _storage._isInPersonAppointment {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 27)
+      }
+      if let v = _storage._addressID {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 28)
+      }
+      if let v = _storage._appointmentTransfer {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 29)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -7459,10 +7656,69 @@ extension Nd_V1_CustomerAppointmentMessage: SwiftProtobuf.Message, SwiftProtobuf
         if _storage._appointmentVerification != rhs_storage._appointmentVerification {return false}
         if _storage._organisationID != rhs_storage._organisationID {return false}
         if _storage._organisationName != rhs_storage._organisationName {return false}
+        if _storage._isInPersonAppointment != rhs_storage._isInPersonAppointment {return false}
+        if _storage._addressID != rhs_storage._addressID {return false}
+        if _storage._appointmentTransfer != rhs_storage._appointmentTransfer {return false}
         return true
       }
       if !storagesAreEqual {return false}
     }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Nd_V1_CustomerAppointmentTransferMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".CustomerAppointmentTransferMessage"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "AppointmentTransferId"),
+    2: .same(proto: "TransferredBy"),
+    3: .same(proto: "TransferredTo"),
+    4: .same(proto: "TransferReason"),
+    5: .same(proto: "TransferredTime"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularMessageField(value: &self._appointmentTransferID) }()
+      case 2: try { try decoder.decodeSingularMessageField(value: &self._transferredBy) }()
+      case 3: try { try decoder.decodeSingularMessageField(value: &self._transferredTo) }()
+      case 4: try { try decoder.decodeSingularMessageField(value: &self._transferReason) }()
+      case 5: try { try decoder.decodeSingularMessageField(value: &self._transferredTime) }()
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if let v = self._appointmentTransferID {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+    }
+    if let v = self._transferredBy {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+    }
+    if let v = self._transferredTo {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+    }
+    if let v = self._transferReason {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+    }
+    if let v = self._transferredTime {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Nd_V1_CustomerAppointmentTransferMessage, rhs: Nd_V1_CustomerAppointmentTransferMessage) -> Bool {
+    if lhs._appointmentTransferID != rhs._appointmentTransferID {return false}
+    if lhs._transferredBy != rhs._transferredBy {return false}
+    if lhs._transferredTo != rhs._transferredTo {return false}
+    if lhs._transferReason != rhs._transferReason {return false}
+    if lhs._transferredTime != rhs._transferredTime {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -10452,6 +10708,62 @@ extension Nd_V1_ServiceProviderAlternateNotificationInfoMessage: SwiftProtobuf.M
   }
 }
 
+extension Nd_V1_ServiceProviderAppointmentTransferMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".ServiceProviderAppointmentTransferMessage"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "AppointmentTransferId"),
+    2: .same(proto: "TransferredBy"),
+    3: .same(proto: "TransferredTo"),
+    4: .same(proto: "TransferReason"),
+    5: .same(proto: "TransferredTime"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularMessageField(value: &self._appointmentTransferID) }()
+      case 2: try { try decoder.decodeSingularMessageField(value: &self._transferredBy) }()
+      case 3: try { try decoder.decodeSingularMessageField(value: &self._transferredTo) }()
+      case 4: try { try decoder.decodeSingularMessageField(value: &self._transferReason) }()
+      case 5: try { try decoder.decodeSingularMessageField(value: &self._transferredTime) }()
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if let v = self._appointmentTransferID {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+    }
+    if let v = self._transferredBy {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+    }
+    if let v = self._transferredTo {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+    }
+    if let v = self._transferReason {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+    }
+    if let v = self._transferredTime {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Nd_V1_ServiceProviderAppointmentTransferMessage, rhs: Nd_V1_ServiceProviderAppointmentTransferMessage) -> Bool {
+    if lhs._appointmentTransferID != rhs._appointmentTransferID {return false}
+    if lhs._transferredBy != rhs._transferredBy {return false}
+    if lhs._transferredTo != rhs._transferredTo {return false}
+    if lhs._transferReason != rhs._transferReason {return false}
+    if lhs._transferredTime != rhs._transferredTime {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
 extension Nd_V1_ServiceProviderAppointmentMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".ServiceProviderAppointmentMessage"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
@@ -10481,6 +10793,9 @@ extension Nd_V1_ServiceProviderAppointmentMessage: SwiftProtobuf.Message, SwiftP
     24: .same(proto: "AppointmentVerification"),
     25: .same(proto: "OrganisationId"),
     26: .same(proto: "OrganisationName"),
+    27: .same(proto: "IsInPersonAppointment"),
+    28: .same(proto: "AddressId"),
+    29: .same(proto: "AppointmentTransfer"),
   ]
 
   fileprivate class _StorageClass {
@@ -10510,6 +10825,9 @@ extension Nd_V1_ServiceProviderAppointmentMessage: SwiftProtobuf.Message, SwiftP
     var _appointmentVerification: Nd_V1_ServiceProviderAppointmentVerificationMessage? = nil
     var _organisationID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
     var _organisationName: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _isInPersonAppointment: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
+    var _addressID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _appointmentTransfer: Nd_V1_ServiceProviderAppointmentTransferMessage? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -10542,6 +10860,9 @@ extension Nd_V1_ServiceProviderAppointmentMessage: SwiftProtobuf.Message, SwiftP
       _appointmentVerification = source._appointmentVerification
       _organisationID = source._organisationID
       _organisationName = source._organisationName
+      _isInPersonAppointment = source._isInPersonAppointment
+      _addressID = source._addressID
+      _appointmentTransfer = source._appointmentTransfer
     }
   }
 
@@ -10586,6 +10907,9 @@ extension Nd_V1_ServiceProviderAppointmentMessage: SwiftProtobuf.Message, SwiftP
         case 24: try { try decoder.decodeSingularMessageField(value: &_storage._appointmentVerification) }()
         case 25: try { try decoder.decodeSingularMessageField(value: &_storage._organisationID) }()
         case 26: try { try decoder.decodeSingularMessageField(value: &_storage._organisationName) }()
+        case 27: try { try decoder.decodeSingularMessageField(value: &_storage._isInPersonAppointment) }()
+        case 28: try { try decoder.decodeSingularMessageField(value: &_storage._addressID) }()
+        case 29: try { try decoder.decodeSingularMessageField(value: &_storage._appointmentTransfer) }()
         default: break
         }
       }
@@ -10672,6 +10996,15 @@ extension Nd_V1_ServiceProviderAppointmentMessage: SwiftProtobuf.Message, SwiftP
       if let v = _storage._organisationName {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 26)
       }
+      if let v = _storage._isInPersonAppointment {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 27)
+      }
+      if let v = _storage._addressID {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 28)
+      }
+      if let v = _storage._appointmentTransfer {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 29)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -10707,6 +11040,9 @@ extension Nd_V1_ServiceProviderAppointmentMessage: SwiftProtobuf.Message, SwiftP
         if _storage._appointmentVerification != rhs_storage._appointmentVerification {return false}
         if _storage._organisationID != rhs_storage._organisationID {return false}
         if _storage._organisationName != rhs_storage._organisationName {return false}
+        if _storage._isInPersonAppointment != rhs_storage._isInPersonAppointment {return false}
+        if _storage._addressID != rhs_storage._addressID {return false}
+        if _storage._appointmentTransfer != rhs_storage._appointmentTransfer {return false}
         return true
       }
       if !storagesAreEqual {return false}

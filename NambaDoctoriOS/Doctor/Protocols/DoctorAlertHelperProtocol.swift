@@ -11,9 +11,7 @@ protocol DoctorAlertHelpersProtocol {
     func cancelAppointmentAlert (cancel: @escaping (Bool) -> ())
     
     func sendPrescriptionAlert (sendPrescription: @escaping (_ ended:Bool) -> ())
-    
-    func patientAddedAlert ()
-    
+        
     func prescriptionWriteSuccessAlert ()
     
     func twilioConnectToRoomAlert (connect: @escaping (Bool) -> ())
@@ -25,4 +23,8 @@ protocol DoctorAlertHelpersProtocol {
     func videoCallNotAllowedForChildAlert(call: @escaping (Bool) -> ())
     
     func callWillTerminateAfterSubmitAlert(completion: @escaping (_ goBack:Bool, _ submit:Bool) -> ())
+    
+    func errorRetrievingChild (completion: @escaping (Bool) -> ())
+    
+    func patientAddedAlert (completion: @escaping (_ dismiss:Bool, _ scheduleAppointment:Bool) -> ())
 }

@@ -34,4 +34,7 @@ struct CustomerAppointment {
     var appointmentVerification:CustomerAppointmentVerification?
     var organisationId:String
     var organisationName:String
+    var IsInPersonAppointment:Bool
+    var AddressId:String
+    var AppointmentTransfer:CustomerAppointmentTransfer?
 }

@@ -52,6 +52,14 @@ class AvailabilitySelectorViewModel : ObservableObject {
         }
     }
     
+    func checkIfInPersonSlot () -> Bool {
+        if selectedSlot!.addressId.isEmpty {
+            return false
+        } else {
+            return true
+        }
+    }
+    
     func getCorrespondingSlot (timestamp:Int64) -> CustomerGeneratedSlot? {
         for slot in slots! {
             if slot.startDateTime == timestamp {

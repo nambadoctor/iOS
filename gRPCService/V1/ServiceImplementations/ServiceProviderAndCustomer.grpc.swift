@@ -1378,6 +1378,11 @@ internal protocol Nd_V1_ServiceProviderAppointmentWorkerV1ClientProtocol: GRPCCl
     callOptions: CallOptions?
   ) -> UnaryCall<Nd_V1_ServiceProviderAppointmentMessage, Nd_V1_IdMessage>
 
+  func transferAppointment(
+    _ request: Nd_V1_ServiceProviderAppointmentMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_ServiceProviderAppointmentMessage, Nd_V1_IdMessage>
+
   func getAppointment(
     _ request: Nd_V1_ServiceProviderAppointmentRequestMessage,
     callOptions: CallOptions?
@@ -1434,6 +1439,24 @@ extension Nd_V1_ServiceProviderAppointmentWorkerV1ClientProtocol {
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeSetAppointmentInterceptors() ?? []
+    )
+  }
+
+  /// Unary call to TransferAppointment
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to TransferAppointment.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func transferAppointment(
+    _ request: Nd_V1_ServiceProviderAppointmentMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_ServiceProviderAppointmentMessage, Nd_V1_IdMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderAppointmentWorkerV1/TransferAppointment",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeTransferAppointmentInterceptors() ?? []
     )
   }
 
@@ -1568,6 +1591,9 @@ internal protocol Nd_V1_ServiceProviderAppointmentWorkerV1ClientInterceptorFacto
 
   /// - Returns: Interceptors to use when invoking 'setAppointment'.
   func makeSetAppointmentInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderAppointmentMessage, Nd_V1_IdMessage>]
+
+  /// - Returns: Interceptors to use when invoking 'transferAppointment'.
+  func makeTransferAppointmentInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderAppointmentMessage, Nd_V1_IdMessage>]
 
   /// - Returns: Interceptors to use when invoking 'getAppointment'.
   func makeGetAppointmentInterceptors() -> [ClientInterceptor<Nd_V1_ServiceProviderAppointmentRequestMessage, Nd_V1_ServiceProviderAppointmentMessage>]
@@ -3466,6 +3492,8 @@ internal protocol Nd_V1_ServiceProviderAppointmentWorkerV1Provider: CallHandlerP
 
   func setAppointment(request: Nd_V1_ServiceProviderAppointmentMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_IdMessage>
 
+  func transferAppointment(request: Nd_V1_ServiceProviderAppointmentMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_IdMessage>
+
   func getAppointment(request: Nd_V1_ServiceProviderAppointmentRequestMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderAppointmentMessage>
 
   func getAppointments(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderAppointmentList>
@@ -3498,6 +3526,15 @@ extension Nd_V1_ServiceProviderAppointmentWorkerV1Provider {
         responseSerializer: ProtobufSerializer<Nd_V1_IdMessage>(),
         interceptors: self.interceptors?.makeSetAppointmentInterceptors() ?? [],
         userFunction: self.setAppointment(request:context:)
+      )
+
+    case "TransferAppointment":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_ServiceProviderAppointmentMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_IdMessage>(),
+        interceptors: self.interceptors?.makeTransferAppointmentInterceptors() ?? [],
+        userFunction: self.transferAppointment(request:context:)
       )
 
     case "GetAppointment":
@@ -3574,6 +3611,10 @@ internal protocol Nd_V1_ServiceProviderAppointmentWorkerV1ServerInterceptorFacto
   /// - Returns: Interceptors to use when handling 'setAppointment'.
   ///   Defaults to calling `self.makeInterceptors()`.
   func makeSetAppointmentInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderAppointmentMessage, Nd_V1_IdMessage>]
+
+  /// - Returns: Interceptors to use when handling 'transferAppointment'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeTransferAppointmentInterceptors() -> [ServerInterceptor<Nd_V1_ServiceProviderAppointmentMessage, Nd_V1_IdMessage>]
 
   /// - Returns: Interceptors to use when handling 'getAppointment'.
   ///   Defaults to calling `self.makeInterceptors()`.

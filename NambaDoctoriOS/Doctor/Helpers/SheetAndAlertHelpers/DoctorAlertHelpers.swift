@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 
 class DoctorAlertHelpers: DoctorAlertHelpersProtocol {
-    
+
     func cancelAppointmentAlert (cancel: @escaping (Bool) -> ()) {
         alertTempItem = AlertItem(title: Text("Are you sure?"), message: Text("Do you want to cancel this appointment?"), primaryButton: Alert.Button.default(Text("Yes"), action: {
             cancel(true)
@@ -40,12 +40,7 @@ class DoctorAlertHelpers: DoctorAlertHelpersProtocol {
         alertTempItem = AlertItem(title: Text("Successfully Saved"), dismissButton: .default(Text("OK")))
         CommonDefaultModifiers.showAlert()
     }
-    
-    func patientAddedAlert () {
-        alertTempItem = AlertItem(title: Text("Patint Added"), message: Text("this patient has been successfully added"), dismissButton: .default(Text("OK")))
-        CommonDefaultModifiers.showAlert()
-    }
-    
+
     func prescriptionWriteSuccessAlert () {
         alertTempItem = AlertItem(title: Text("Success"), message: Text("Your prescription has been saved successfully."), dismissButton: .default(Text("OK")))
         CommonDefaultModifiers.showAlert()
@@ -123,4 +118,15 @@ class DoctorAlertHelpers: DoctorAlertHelpersProtocol {
         }))
         CommonDefaultModifiers.showAlert()
     }
+    
+    func patientAddedAlert (completion: @escaping (_ dismiss:Bool, _ scheduleAppointment:Bool) -> ()) {
+        alertTempItem = AlertItem(title: Text("Patient Added Successfully"), message: Text("If you would like to schedule an appointment for this patient, please click Schedule Appointment below"), primaryButton: Alert.Button.default(Text("Schedule Appointment"), action: {
+            completion(false, true)
+        }), secondaryButton: Alert.Button.default(Text("Dismiss"), action: {
+            completion(true, false)
+        }))
+
+        CommonDefaultModifiers.showAlert()
+    }
+    
 }

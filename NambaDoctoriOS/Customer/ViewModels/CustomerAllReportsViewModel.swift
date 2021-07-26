@@ -15,7 +15,7 @@ class CustomerAllReportsViewModel : ObservableObject {
     var customerNotifHelpers:CustomerNotificationHelper
     
     @Published var imagePickerVM:ImagePickerViewModel = ImagePickerViewModel()
-    
+
     @Published var showUploadingIndicator:Bool = false
     
     @Published var showUploadReportSheet:Bool = false

@@ -75,3 +75,18 @@ struct ImageViewWithNoSheet: View {
             .frame(width: width, height: height, alignment: .center)
     }
 }
+
+struct ImageViewWithData: View {
+    var data:Data
+    
+    var height:CGFloat = 160
+    var width:CGFloat = 120
+    
+    var body: some View {
+        Image(uiImage: UIImage(data: data)!)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(width: width, height: height, alignment: .center)
+    }
+}
+

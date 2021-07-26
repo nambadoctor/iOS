@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct AddPatientView: View {
+    @Environment(\.presentationMode) var presentationMode
     @ObservedObject var addPatientVM:AddPatientViewModel
-    @Binding var showView:Bool
     
     var body: some View {
         ScrollView {
@@ -66,26 +66,24 @@ struct AddPatientView: View {
                     PhoneNumberEntryView(numberObj: self.$addPatientVM.phoneNumber)
                 }
                 
-                Toggle(isOn: self.$addPatientVM.scheduleAppointmentToggle) {
-                    Text("Schedule Appointment")
-                }
-                
-                if self.addPatientVM.scheduleAppointmentToggle {
-                    AvailabilitySelector(availabilitySelectorVM: self.addPatientVM.availabilityVM)
-                        .onAppear() {
-                            self.addPatientVM.availabilityVM.retrieveAvailabilities()
-                        }
-                }
-                
+                Text("If you would like to book appointment, you can do so after creating patient profile")
                 LargeButton(title: "Confirm") {
-                    self.addPatientVM.confirm()
+                    self.addPatientVM.confirm { success in
+                        if success {
+                            DoctorAlertHelpers().patientAddedAlert { dismiss, scheduleAppointment in
+                                if scheduleAppointment {
+                                    
+                                } else {
+                                    self.presentationMode.wrappedValue.dismiss()
+                                }
+                            }
+                        } else {
+                            
+                        }
+                    }
                 }
             }
             .padding()
-            
-            if self.addPatientVM.killView {
-                Text("").onAppear(){self.showView = false}
-            }
         }
     }
 }

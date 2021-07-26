@@ -35,7 +35,10 @@ class ServiceProviderAppointmentObjectMapper {
             paymentType: appointment.paymentType.toString,
             appointmentVerification: ServiceProviderAppointmentVerificationMapper().GrpcToLocal(appointmentVerification: appointment.appointmentVerification),
             organisationId: appointment.organisationID.toString,
-            organisationName:  appointment.organisationName.toString)
+            organisationName:  appointment.organisationName.toString,
+            IsInPersonAppointment: appointment.isInPersonAppointment.toBool,
+            AddressId: appointment.addressID.toString,
+            AppointmentTransfer: ServiceProviderAppointmentTransferMapper.grpcToLocal(transfer: appointment.appointmentTransfer))
     }
     
     func grpcAppointmentToLocal (appointment:[Nd_V1_ServiceProviderAppointmentMessage]) -> [ServiceProviderAppointment] {
@@ -76,6 +79,11 @@ class ServiceProviderAppointmentObjectMapper {
             if appointment.appointmentVerification != nil {$0.appointmentVerification = ServiceProviderAppointmentVerificationMapper().LocalToGrpc(appointmentVerification: appointment.appointmentVerification!)}
             $0.organisationID = appointment.organisationId.toProto
             $0.organisationName = appointment.organisationName.toProto
+            $0.isInPersonAppointment = appointment.IsInPersonAppointment.toProto
+            $0.addressID = appointment.AddressId.toProto
+            if appointment.AppointmentTransfer != nil {
+                $0.appointmentTransfer = ServiceProviderAppointmentTransferMapper.localToGrpc(transfer: appointment.AppointmentTransfer!)
+            }
         }
     }
 }

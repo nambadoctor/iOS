@@ -13,8 +13,10 @@ struct AvailabilitySelector : View {
     
     var body: some View {
         VStack (alignment: .leading) {
-            Text("Choose a Date")
             if !availabilitySelectorVM.dateDisplay.isEmpty {
+                
+                Text("Choose a Date")
+                
                 ScrollView (.horizontal) {
                     HStack (spacing: 5) {
                         ForEach (availabilitySelectorVM.dateDisplay, id: \.self) {date in
@@ -58,5 +60,6 @@ struct AvailabilitySelector : View {
                 }
             }
         }
+        .padding()
     }
 }

@@ -34,4 +34,7 @@ struct ServiceProviderAppointment : Codable {
     var appointmentVerification:ServiceProviderAppointmentVerification?
     var organisationId:String
     var organisationName:String
+    var IsInPersonAppointment:Bool
+    var AddressId:String
+    var AppointmentTransfer:ServiceProviderAppointmentTransfer?
 }

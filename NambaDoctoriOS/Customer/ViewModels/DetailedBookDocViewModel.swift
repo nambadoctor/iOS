@@ -11,15 +11,15 @@ import SwiftUI
 class DetailedBookDocViewModel : ObservableObject {
     var serviceProvider:CustomerServiceProviderProfile
     var organization:CustomerOrganization?
-        
+    
     var notAbleToBookCallBack:()->()
-
+    
     @Published var customerProfile:CustomerProfile
     
     @Published var customerVitals:CustomerVitals = CustomerVitals(BloodPressure: "", BloodSugar: "", Height: "", Weight: "", MenstrualHistory: "", ObstetricHistory: "", IsSmoker: false, IsAlcoholConsumer: false)
     
     @Published var availabilityVM:AvailabilitySelectorViewModel
-
+    
     @Published var docProfPicImageLoader:ImageLoader? = nil
     
     @Published var reasonVM:ReasonPickerViewModel = ReasonPickerViewModel()
@@ -33,7 +33,7 @@ class DetailedBookDocViewModel : ObservableObject {
     @Published var preBookingOptionsOffSet:CGFloat = UIScreen.main.bounds.height
     var preBookingOptions:[String] = ["I dont know this doctor", "This doctor referred me", "Other"]
     var selectedPrebookingOption:String = ""
-
+    
     var bookingForProfile:CustomerChildProfile? = nil
     
     var customerServiceProviderService:CustomerServiceProviderServiceProtocol
@@ -85,7 +85,7 @@ class DetailedBookDocViewModel : ObservableObject {
             bookForChild(child: child!)
         }
     }
-
+    
     func checkTrustScores () {
         guard availabilityVM.selectedDate != 0, availabilityVM.selectedTime != 0 else {
             CustomerAlertHelpers().pleaseChooseTimeandDateAlert { _ in }
@@ -93,7 +93,7 @@ class DetailedBookDocViewModel : ObservableObject {
         }
         
         self.availabilityVM.setSlot()
-
+        
         guard self.availabilityVM.selectedSlot?.paymentType != PaymentTypeEnum.PrePay.rawValue else {
             bookHelper()
             return
@@ -115,7 +115,7 @@ class DetailedBookDocViewModel : ObservableObject {
             CustomerAlertHelpers().IssueDuringBooking(doctorName: self.serviceProviderName)
         }
     }
-
+    
     func bookHelper () {
         self.book() { success, paymentType, needsVerification in
             if success {
@@ -141,11 +141,11 @@ class DetailedBookDocViewModel : ObservableObject {
             }
         }
     }
-
+    
     func book (completion: @escaping (_ success:Bool, _ paymentType:String, _ needsVerification:Bool)->()) {
         
         let customerAppointment:CustomerAppointment = makeAppointment()
-
+        
         if customerAppointment.paymentType == PaymentTypeEnum.PostPay.rawValue && customerAppointment.appointmentVerification == nil {
             CommonDefaultModifiers.showLoader(incomingLoadingText: "Booking Appointment")
         } else {
@@ -153,7 +153,7 @@ class DetailedBookDocViewModel : ObservableObject {
         }
         
         let needsVerif = customerAppointment.appointmentVerification != nil ? true : false
-
+        
         CustomerAppointmentService().setAppointment(appointment: customerAppointment) { (response) in
             if response != nil {
                 cusAutoNav.enterDetailedView(appointmentId: response!)
@@ -172,12 +172,12 @@ class DetailedBookDocViewModel : ObservableObject {
             }
         }
     }
-
+    
     func fireBookedNotif (appointment:CustomerAppointment) {
         guard appointment.paymentType != PaymentTypeEnum.PrePay.rawValue, appointment.appointmentVerification == nil else { return }
         CustomerNotificationHelper.bookedAppointment(customerName: "", dateDisplay: availabilityVM.selectedSlot!.startDateTime, appointmentId: appointment.childId, serviceProviderId: self.serviceProvider.serviceProviderID)
     }
-
+    
     func makeAppointment() -> CustomerAppointment {
         let cancellation = CustomerCancellation(ReasonName: "", CancelledTime: Date().millisecondsSince1970, CancelledBy: "", CancelledByType: "", Notes: "")
         
@@ -205,7 +205,10 @@ class DetailedBookDocViewModel : ObservableObject {
                                                       childId: "",
                                                       paymentType: self.availabilityVM.selectedSlot?.paymentType ?? "",
                                                       organisationId: organization?.organisationId ?? "",
-                                                      organisationName: organization?.name ?? "")
+                                                      organisationName: organization?.name ?? "",
+                                                      IsInPersonAppointment: self.availabilityVM.checkIfInPersonSlot(),
+                                                      AddressId: self.availabilityVM.selectedSlot!.addressId,
+                                                      AppointmentTransfer: nil)
         
         if !selectedPrebookingOption.isEmpty {
             if !preBookingOptions.contains(selectedPrebookingOption) || preBookingOptions[0] == selectedPrebookingOption {
@@ -220,12 +223,12 @@ class DetailedBookDocViewModel : ObservableObject {
         if self.bookingForProfile != nil {
             customerAppointment.childId = bookingForProfile!.ChildProfileId
         }
-
+        
         return customerAppointment
     }
     
     func makeServiceRequest (appointmentId:String) -> CustomerServiceRequest {
-
+        
         let emptyDiagnosis = CustomerDiagnosis(name: "", type: "")
         let emptyAllergy = CustomerAllergy(AllergyId: "", AllergyName: "", AppointmentId: "", ServiceRequestId: "")
         let emptyMedicalHistory = CustomerMedicalHistory(MedicalHistoryId: "", MedicalHistoryName: "", PastMedicalHistory: "", MedicationHistory: "", AppointmentId: "", ServiceRequestId: "")
@@ -250,7 +253,7 @@ class DetailedBookDocViewModel : ObservableObject {
         if self.bookingForProfile != nil {
             serviceRequest.childId = bookingForProfile!.ChildProfileId
         }
-
+        
         return serviceRequest
     }
 }
@@ -273,7 +276,7 @@ extension DetailedBookDocViewModel {
         self.selectedPrebookingOption = reason
         bookHelper()
     }
-
+    
     func showPreBookingOptionsSheet () {
         self.preBookingOptionsOffSet = 0
     }

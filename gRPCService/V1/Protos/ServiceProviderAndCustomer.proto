@@ -165,7 +165,27 @@ message CustomerAppointmentMessage{
 
 	google.protobuf.StringValue OrganisationId = 25;
 
-    google.protobuf.StringValue OrganisationName = 26;
+	google.protobuf.StringValue OrganisationName = 26;
+
+	google.protobuf.BoolValue IsInPersonAppointment = 27;
+
+	google.protobuf.StringValue AddressId = 28;
+
+	CustomerAppointmentTransferMessage AppointmentTransfer = 29;
+}
+
+message CustomerAppointmentTransferMessage{
+	
+	google.protobuf.StringValue AppointmentTransferId = 1;
+
+	google.protobuf.StringValue TransferredBy = 2;
+
+	google.protobuf.StringValue TransferredTo = 3;
+
+	google.protobuf.StringValue TransferReason = 4;
+
+	google.protobuf.Int64Value TransferredTime = 5;
+
 }
 
 
@@ -957,6 +977,21 @@ message ServiceProviderAlternateNotificationInfoMessage {
     google.protobuf.StringValue DeviceToken = 4;
 }
 
+
+message ServiceProviderAppointmentTransferMessage{
+	
+	google.protobuf.StringValue AppointmentTransferId = 1;
+
+	google.protobuf.StringValue TransferredBy = 2;
+
+	google.protobuf.StringValue TransferredTo = 3;
+
+	google.protobuf.StringValue TransferReason = 4;
+
+	google.protobuf.Int64Value TransferredTime = 5;
+
+}
+
 message ServiceProviderAppointmentMessage{
 
 	google.protobuf.StringValue AppointmentId = 1;
@@ -1009,7 +1044,13 @@ message ServiceProviderAppointmentMessage{
 
 	google.protobuf.StringValue OrganisationId = 25;
 
-    google.protobuf.StringValue OrganisationName = 26;
+    	google.protobuf.StringValue OrganisationName = 26;
+
+	google.protobuf.BoolValue IsInPersonAppointment = 27;
+
+	google.protobuf.StringValue AddressId = 28;
+
+	ServiceProviderAppointmentTransferMessage AppointmentTransfer = 29;
 }
 
 
@@ -1680,6 +1721,8 @@ message ServiceProviderServiceRequestRequestMessage{
 service ServiceProviderAppointmentWorkerV1{
 
 	rpc SetAppointment(ServiceProviderAppointmentMessage) returns (IdMessage);
+
+	rpc TransferAppointment(ServiceProviderAppointmentMessage) returns (IdMessage);
 
 	rpc GetAppointment(ServiceProviderAppointmentRequestMessage) returns (ServiceProviderAppointmentMessage);
 

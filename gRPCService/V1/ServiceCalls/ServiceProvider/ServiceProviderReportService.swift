@@ -87,4 +87,31 @@ class ServiceProviderReportService : ServiceProviderReportServiceProtocol {
             }
         }
     }
+    
+    func setReport(report:ServiceProviderReportUploadObj, customerId:String, serviceRequestId:String, _ completion : @escaping ((_ successfull:Bool)->())) {
+
+        let channel = ChannelManager.sharedChannelManager.getChannel()
+        let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
+
+        let reportClient = Nd_V1_ServiceProviderReportWorkerV1Client(channel: channel)
+
+        let request = ServiceProviderReportMapper().localReportToGrpcUpload(report: report, customerId: customerId, serviceRequestId: serviceRequestId)
+
+        let setReport = reportClient.setReport(request, callOptions: callOptions)
+
+        DispatchQueue.global().async {
+            do {
+                let response = try setReport.response.wait()
+                print("Report Write Client Successfull: \(response.id)")
+                DispatchQueue.main.async {
+                    completion(true)
+                }
+            } catch {
+                print("Report Write Client Failed: \(error)")
+                DispatchQueue.main.async {
+                    completion(false)
+                }
+            }
+        }
+    }
 }

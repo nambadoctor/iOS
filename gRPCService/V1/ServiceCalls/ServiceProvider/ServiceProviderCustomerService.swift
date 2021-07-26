@@ -207,7 +207,7 @@ class ServiceProviderCustomerService: ServiceProviderCustomerServiceProtocol {
                 let response = try getDoctorsPatients.response.wait()
                 LoggerService().log(eventName: "RECIEVED Doctors Get Customer of Doctor in org")
                 let patientList = ServiceProviderMyPatientProfileMapper.GrpcToLocal(profileMessages: response.myPatients)
-                print("Doctors Get Customer of org received: success")
+                print("Doctors Get Customer of org received: success \(patientList.count)")
                 DispatchQueue.main.async {
                     completion(patientList)
                 }
