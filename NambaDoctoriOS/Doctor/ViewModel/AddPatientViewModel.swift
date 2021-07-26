@@ -13,8 +13,13 @@ class AddPatientViewModel: ObservableObject {
     @Published var gender:String = ""
     @Published var age:String = ""
     
-    @Published var scheduleAppointmentToggle:Bool = false
+    @Published var scheduleAppointmentVM:ScheduleAppointmentForPatientViewModel
 
+    @Published var scheduleAppointmentToggle:Bool = false
+    @Published var myPatientProfile:ServiceProviderMyPatientProfile = ServiceProviderMyPatientProfile(CustomerId: "", IsChild: false, CareTakerId: "", Age: "", Gender: "", Name: "")
+    
+    @Published var finished:Bool = false
+    
     var organisation:ServiceProviderOrganisation?
     var serviceProvider:ServiceProviderProfile
     
@@ -23,10 +28,18 @@ class AddPatientViewModel: ObservableObject {
     init(organisation:ServiceProviderOrganisation?, serviceProvider:ServiceProviderProfile) {
         self.organisation = organisation
         self.serviceProvider = serviceProvider
+        self.scheduleAppointmentVM = ScheduleAppointmentForPatientViewModel(organisation: organisation, serviceProvider: serviceProvider, customer: ServiceProviderMyPatientProfile(CustomerId: "", IsChild: false, CareTakerId: "", Age: "", Gender: "", Name: ""), finishedCallback: nil)
+        
+        self.scheduleAppointmentVM.customer = myPatientProfile
+        self.scheduleAppointmentVM.finishedCallback = finishedCallback
     }
     
     var customerName : String {
         return "\(firstName) \(lastName)"
+    }
+    
+    func finishedCallback() {
+        finished = true
     }
     
     func confirm (completion: @escaping (_ success:Bool)->()) {
@@ -77,6 +90,7 @@ class AddPatientViewModel: ObservableObject {
         CommonDefaultModifiers.showLoader(incomingLoadingText: "Creating Customer Profile")
         CustomerProfileService().setCustomerProfile(customerProfile: customerProfile) { customerId in
             if customerId != nil {
+                self.myPatientProfile = ServiceProviderMyPatientProfile(CustomerId: customerId!, IsChild: false, CareTakerId: "", Age: self.age, Gender: self.gender, Name: self.customerName)
                 CommonDefaultModifiers.hideLoader()
                 completion(customerId!)
             } else {

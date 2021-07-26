@@ -58,5 +58,7 @@ extension ServiceProviderReportsEntryViewModel : ImagePickedDelegate {
         let encodedImage = image.jpegData(compressionQuality: 0.5)! //.base64EncodedString()
         
         self.imagesToUpload.append(encodedImage)
+        
+        print("WKEJFN \(self.imagesToUpload.count)")
     }
 }

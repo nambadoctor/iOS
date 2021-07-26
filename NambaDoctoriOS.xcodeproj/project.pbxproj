@@ -343,6 +343,7 @@
 		17A268C126AE6A6C00709B98 /* ServiceProviderReportsEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A268C026AE6A6C00709B98 /* ServiceProviderReportsEntryView.swift */; };
 		17A268C326AE77C900709B98 /* ServiceProviderReportsEntryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A268C226AE77C900709B98 /* ServiceProviderReportsEntryViewModel.swift */; };
 		17A268C526AE884A00709B98 /* ScheduleAppointmentForPatientViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A268C426AE884A00709B98 /* ScheduleAppointmentForPatientViewModel.swift */; };
+		17A268C726AF3ECE00709B98 /* AddPatientAndSchedulentermediateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A268C626AF3ECE00709B98 /* AddPatientAndSchedulentermediateView.swift */; };
 		17A37549267BAFC300571049 /* ServiceProviderUpdateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A37548267BAFC300571049 /* ServiceProviderUpdateHelper.swift */; };
 		17A3754B267D0B1200571049 /* ServiceProviderFirebaseUpdateAppointmentStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A3754A267D0B1200571049 /* ServiceProviderFirebaseUpdateAppointmentStatus.swift */; };
 		17A3754D267D0B2E00571049 /* CustomerFirebaseUpdateAppointmentStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A3754C267D0B2E00571049 /* CustomerFirebaseUpdateAppointmentStatus.swift */; };
@@ -783,6 +784,7 @@
 		17A268C026AE6A6C00709B98 /* ServiceProviderReportsEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderReportsEntryView.swift; sourceTree = "<group>"; };
 		17A268C226AE77C900709B98 /* ServiceProviderReportsEntryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderReportsEntryViewModel.swift; sourceTree = "<group>"; };
 		17A268C426AE884A00709B98 /* ScheduleAppointmentForPatientViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleAppointmentForPatientViewModel.swift; sourceTree = "<group>"; };
+		17A268C626AF3ECE00709B98 /* AddPatientAndSchedulentermediateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPatientAndSchedulentermediateView.swift; sourceTree = "<group>"; };
 		17A37548267BAFC300571049 /* ServiceProviderUpdateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderUpdateHelper.swift; sourceTree = "<group>"; };
 		17A3754A267D0B1200571049 /* ServiceProviderFirebaseUpdateAppointmentStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderFirebaseUpdateAppointmentStatus.swift; sourceTree = "<group>"; };
 		17A3754C267D0B2E00571049 /* CustomerFirebaseUpdateAppointmentStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerFirebaseUpdateAppointmentStatus.swift; sourceTree = "<group>"; };
@@ -1702,6 +1704,7 @@
 			isa = PBXGroup;
 			children = (
 				1771BA3B26AD29B60085389E /* AddPatientView.swift */,
+				17A268C626AF3ECE00709B98 /* AddPatientAndSchedulentermediateView.swift */,
 			);
 			path = AddPatient;
 			sourceTree = "<group>";
@@ -2744,6 +2747,7 @@
 				176AA1A62637C8E900F02346 /* CustomerFollowUpMapper.swift in Sources */,
 				179C44912627D8AC0073F4E0 /* ChatMessage.swift in Sources */,
 				176AA1212637BC8200F02346 /* CustomerEducation.swift in Sources */,
+				17A268C726AF3ECE00709B98 /* AddPatientAndSchedulentermediateView.swift in Sources */,
 				176AA1292637BCB600F02346 /* CustomerExperienceMessage.swift in Sources */,
 				17424F7A25BAC62A00523B94 /* TwilioAccessTokenProtocol.swift in Sources */,
 				17BD2E8E263BD42000BB0BDD /* CustomerDetailedAppointmentViewModel.swift in Sources */,

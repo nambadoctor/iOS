@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct AddPatientView: View {
-    @Environment(\.presentationMode) var presentationMode
     @ObservedObject var addPatientVM:AddPatientViewModel
     
     var body: some View {
@@ -53,7 +52,7 @@ struct AddPatientView: View {
                         .font(.footnote)
                         .bold()
                         .foregroundColor(.gray)
-                    
+
                     ExpandingTextEntryView(text: self.$addPatientVM.age, keyboardType: .numberPad)
                 }
                 
@@ -72,9 +71,9 @@ struct AddPatientView: View {
                         if success {
                             DoctorAlertHelpers().patientAddedAlert { dismiss, scheduleAppointment in
                                 if scheduleAppointment {
-                                    
+                                    self.addPatientVM.scheduleAppointmentToggle = true
                                 } else {
-                                    self.presentationMode.wrappedValue.dismiss()
+                                    self.addPatientVM.finished = true
                                 }
                             }
                         } else {

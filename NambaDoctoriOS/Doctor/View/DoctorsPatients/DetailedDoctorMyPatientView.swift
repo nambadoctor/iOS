@@ -39,8 +39,9 @@ struct DetailedDoctorMyPatientView: View {
             
             if takeToScheduleAppointment {
                 NavigationLink("",
-                               destination: ScheduleAppointmentForPatientView(scheduleAppointmentViewModel: ScheduleAppointmentForPatientViewModel(organisation: self.MyPatientVM.organisation, serviceProvider: self.MyPatientVM.serviceProvider, customer: MyPatientVM.patientProfile)),
+                               destination: ScheduleAppointmentForPatientView(scheduleAppointmentViewModel: self.MyPatientVM.scheduleAppointmentVM, showView: self.$takeToScheduleAppointment),
                                isActive: self.$takeToScheduleAppointment)
+                    .onAppear() {self.MyPatientVM.scheduleAppointmentVM.availabilityVM.retrieveAvailabilities()}
             }
         }
     }
@@ -51,6 +52,8 @@ class MyPatientViewModel : ObservableObject {
     @Published var appointmentSummaries:[ServiceProviderAppointmentSummary] = [ServiceProviderAppointmentSummary]()
     @Published var noAppointments:Bool = false
     
+    @Published var scheduleAppointmentVM:ScheduleAppointmentForPatientViewModel
+    
     var organisation:ServiceProviderOrganisation?
     var serviceProvider:ServiceProviderProfile
 
@@ -58,6 +61,9 @@ class MyPatientViewModel : ObservableObject {
         self.organisation = organisation
         self.serviceProvider = serviceProvider
         self.patientProfile = patientProfile
+        
+        self.scheduleAppointmentVM = ScheduleAppointmentForPatientViewModel(organisation: organisation, serviceProvider: serviceProvider, customer: patientProfile, finishedCallback: nil)
+        
         getAppointmentSummaries()
     }
     
