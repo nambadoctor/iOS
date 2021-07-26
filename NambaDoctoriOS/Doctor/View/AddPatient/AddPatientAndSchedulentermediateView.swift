@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AddPatientAndSchedulentermediateView: View {
+    @Environment(\.presentationMode) var presentationMode
     @ObservedObject var addPatientVM:AddPatientViewModel
     @Binding var showView:Bool
     
@@ -21,7 +22,10 @@ struct AddPatientAndSchedulentermediateView: View {
             }
             
             if self.addPatientVM.finished {
-                Text("").onAppear() {self.showView = false}
+                Text("").onAppear() {
+                    self.showView = false
+                    presentationMode.wrappedValue.dismiss()
+                }
             }
         }
     }

@@ -44,6 +44,9 @@ struct DetailedDoctorMyPatientView: View {
                     .onAppear() {self.MyPatientVM.scheduleAppointmentVM.availabilityVM.retrieveAvailabilities()}
             }
         }
+        .onAppear() {
+            self.MyPatientVM.getAppointmentSummaries()
+        }
     }
 }
 

@@ -90,7 +90,7 @@ class AddPatientViewModel: ObservableObject {
         CommonDefaultModifiers.showLoader(incomingLoadingText: "Creating Customer Profile")
         CustomerProfileService().setCustomerProfile(customerProfile: customerProfile) { customerId in
             if customerId != nil {
-                self.myPatientProfile = ServiceProviderMyPatientProfile(CustomerId: customerId!, IsChild: false, CareTakerId: "", Age: self.age, Gender: self.gender, Name: self.customerName)
+                self.scheduleAppointmentVM.customer = ServiceProviderMyPatientProfile(CustomerId: customerId!, IsChild: false, CareTakerId: "", Age: self.age, Gender: self.gender, Name: self.customerName)
                 CommonDefaultModifiers.hideLoader()
                 completion(customerId!)
             } else {

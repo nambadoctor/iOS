@@ -73,6 +73,7 @@ struct AddPatientView: View {
                                 if scheduleAppointment {
                                     self.addPatientVM.scheduleAppointmentToggle = true
                                 } else {
+                                    DoctorDefaultModifiers.refreshAppointments()
                                     self.addPatientVM.finished = true
                                 }
                             }

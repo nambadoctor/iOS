@@ -36,6 +36,12 @@ class ScheduleAppointmentForPatientViewModel : ObservableObject {
     }
     
     func bookAppointment (completion: @escaping (_ success:Bool?)->()) {
+        
+        guard availabilityVM.selectedDate != 0, availabilityVM.selectedTime != 0 else {
+            CustomerAlertHelpers().pleaseChooseTimeandDateAlert { _ in }
+            return
+        }
+
         CommonDefaultModifiers.showLoader(incomingLoadingText: "Scheduling Appointment")
         var appointment = makeAppointment(customerId: self.customer.CustomerId)
         ServiceProviderAppointmentService().setAppointment(appointment: appointment) { appointmentId in
@@ -46,13 +52,12 @@ class ScheduleAppointmentForPatientViewModel : ObservableObject {
                         appointment.serviceRequestID = serviceRequestId!
                         CommonDefaultModifiers.hideLoader()
                         if self.reportUploadVM.imagesToUpload.isEmpty {
+                            self.callFinished()
                             completion(true)
                         } else {
                             self.reportUploadVM.setReports(appointment: appointment) { success in
                                 if success {
-                                    if self.finishedCallback != nil {
-                                        self.finishedCallback!()
-                                    }
+                                    self.callFinished()
                                     completion(true)
                                 }
                             }
@@ -64,6 +69,12 @@ class ScheduleAppointmentForPatientViewModel : ObservableObject {
             } else {
                 completion(false)
             }
+        }
+    }
+    
+    func callFinished () {
+        if self.finishedCallback != nil {
+            self.finishedCallback!()
         }
     }
     

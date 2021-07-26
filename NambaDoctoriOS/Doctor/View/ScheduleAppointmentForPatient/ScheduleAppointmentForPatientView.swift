@@ -42,6 +42,7 @@ struct ScheduleAppointmentForPatientView: View {
                     LargeButton(title: "Confirm and Schedule Appointment") {
                         self.scheduleAppointmentViewModel.bookAppointment { success in
                             if success != nil {
+                                DoctorDefaultModifiers.refreshAppointments()
                                 self.showView = false
                             }
                         }
