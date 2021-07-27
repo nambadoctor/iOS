@@ -13,8 +13,10 @@ func callNumber (phoneNumber:String) {
     UIApplication.shared.open(number)
 }
 
-func openWhatsapp(phoneNumber:String){
-    let appURL = URL(string: "https://wa.me/\(phoneNumber)")!
+func openWhatsapp(phoneNumber:String, textToSend:String){
+    var text = textToSend
+    text = text.replacingOccurrences(of: " ", with: "%20", options: .literal, range: nil)
+    let appURL = URL(string: "https://wa.me/\(phoneNumber)?text=\(text)")!
     if UIApplication.shared.canOpenURL(appURL) {
         if #available(iOS 10.0, *) {
             UIApplication.shared.open(appURL, options: [:], completionHandler: nil)

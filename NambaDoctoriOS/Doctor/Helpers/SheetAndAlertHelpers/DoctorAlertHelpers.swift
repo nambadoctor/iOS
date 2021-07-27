@@ -129,4 +129,13 @@ class DoctorAlertHelpers: DoctorAlertHelpersProtocol {
         CommonDefaultModifiers.showAlert()
     }
     
+    func cannotAddPhoneNumberAlert (completion: @escaping (_ dismiss:Bool, _ contactSupport:Bool) -> ()) {
+        alertTempItem = AlertItem(title: Text("Oops! Cannot add this phone number"), message: Text("Please double check the number or contact support"), primaryButton: Alert.Button.default(Text("Contact Support"), action: {
+            completion(false, true)
+        }), secondaryButton: Alert.Button.default(Text("Cancel"), action: {
+            completion(true, false)
+        }))
+
+        CommonDefaultModifiers.showAlert()
+    }
 }

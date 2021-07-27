@@ -126,7 +126,7 @@ struct CustomerDetailedAppointmentView: View {
                     }
                 }
                 LargeButton(title: "Contact Support") {
-                    openWhatsapp(phoneNumber: "+917530043008")
+                    openWhatsapp(phoneNumber: "+917530043008", textToSend: "Hello I am having an issue with this appointment")
                 }
             }
             Spacer()

@@ -1654,6 +1654,11 @@ internal protocol Nd_V1_ServiceProviderCustomerWorkerV1ClientProtocol: GRPCClien
     callOptions: CallOptions?
   ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderCustomerProfileMessage>
 
+  func getCustomerProfileFromPhoneNumber(
+    _ request: Nd_V1_StringMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_StringMessage, Nd_V1_ServiceProviderMyPatientsProfileMessage>
+
   func getCustomers(
     _ request: Nd_V1_IdMessage,
     callOptions: CallOptions?
@@ -1713,6 +1718,24 @@ extension Nd_V1_ServiceProviderCustomerWorkerV1ClientProtocol {
       request: request,
       callOptions: callOptions ?? self.defaultCallOptions,
       interceptors: self.interceptors?.makeGetCustomerProfileInterceptors() ?? []
+    )
+  }
+
+  /// Unary call to GetCustomerProfileFromPhoneNumber
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetCustomerProfileFromPhoneNumber.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getCustomerProfileFromPhoneNumber(
+    _ request: Nd_V1_StringMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_StringMessage, Nd_V1_ServiceProviderMyPatientsProfileMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderCustomerWorkerV1/GetCustomerProfileFromPhoneNumber",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetCustomerProfileFromPhoneNumberInterceptors() ?? []
     )
   }
 
@@ -1796,6 +1819,9 @@ internal protocol Nd_V1_ServiceProviderCustomerWorkerV1ClientInterceptorFactoryP
 
   /// - Returns: Interceptors to use when invoking 'getCustomerProfile'.
   func makeGetCustomerProfileInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderCustomerProfileMessage>]
+
+  /// - Returns: Interceptors to use when invoking 'getCustomerProfileFromPhoneNumber'.
+  func makeGetCustomerProfileFromPhoneNumberInterceptors() -> [ClientInterceptor<Nd_V1_StringMessage, Nd_V1_ServiceProviderMyPatientsProfileMessage>]
 
   /// - Returns: Interceptors to use when invoking 'getCustomers'.
   func makeGetCustomersInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderMyPatientsProfileMessageList>]
@@ -3652,6 +3678,8 @@ internal protocol Nd_V1_ServiceProviderCustomerWorkerV1Provider: CallHandlerProv
 
   func getCustomerProfile(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderCustomerProfileMessage>
 
+  func getCustomerProfileFromPhoneNumber(request: Nd_V1_StringMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderMyPatientsProfileMessage>
+
   func getCustomers(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderMyPatientsProfileMessageList>
 
   func getCustomerAppointmentSummary(request: Nd_V1_ServiceProviderAppointmentSummaryRequestMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderAppointmentSummaryListMessage>
@@ -3687,6 +3715,15 @@ extension Nd_V1_ServiceProviderCustomerWorkerV1Provider {
         responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderCustomerProfileMessage>(),
         interceptors: self.interceptors?.makeGetCustomerProfileInterceptors() ?? [],
         userFunction: self.getCustomerProfile(request:context:)
+      )
+
+    case "GetCustomerProfileFromPhoneNumber":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_StringMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderMyPatientsProfileMessage>(),
+        interceptors: self.interceptors?.makeGetCustomerProfileFromPhoneNumberInterceptors() ?? [],
+        userFunction: self.getCustomerProfileFromPhoneNumber(request:context:)
       )
 
     case "GetCustomers":
@@ -3740,6 +3777,10 @@ internal protocol Nd_V1_ServiceProviderCustomerWorkerV1ServerInterceptorFactoryP
   /// - Returns: Interceptors to use when handling 'getCustomerProfile'.
   ///   Defaults to calling `self.makeInterceptors()`.
   func makeGetCustomerProfileInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderCustomerProfileMessage>]
+
+  /// - Returns: Interceptors to use when handling 'getCustomerProfileFromPhoneNumber'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetCustomerProfileFromPhoneNumberInterceptors() -> [ServerInterceptor<Nd_V1_StringMessage, Nd_V1_ServiceProviderMyPatientsProfileMessage>]
 
   /// - Returns: Interceptors to use when handling 'getCustomers'.
   ///   Defaults to calling `self.makeInterceptors()`.

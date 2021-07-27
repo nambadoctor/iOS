@@ -1749,6 +1749,8 @@ service ServiceProviderCustomerWorkerV1 {
 
 	rpc GetCustomerProfile (IdMessage) returns (ServiceProviderCustomerProfileMessage);
 
+	rpc GetCustomerProfileFromPhoneNumber (StringMessage) returns (ServiceProviderMyPatientsProfileMessage);
+
 	rpc GetCustomers (IdMessage) returns (ServiceProviderMyPatientsProfileMessageList);
 
 	rpc GetCustomerAppointmentSummary (ServiceProviderAppointmentSummaryRequestMessage) returns (ServiceProviderAppointmentSummaryListMessage);

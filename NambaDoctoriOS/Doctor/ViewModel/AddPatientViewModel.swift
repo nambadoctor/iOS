@@ -14,6 +14,8 @@ class AddPatientViewModel: ObservableObject {
     @Published var age:String = ""
     
     @Published var scheduleAppointmentVM:ScheduleAppointmentForPatientViewModel
+    
+    @Published var phoneNumberConfirmed:Bool = false
 
     @Published var scheduleAppointmentToggle:Bool = false
     @Published var myPatientProfile:ServiceProviderMyPatientProfile = ServiceProviderMyPatientProfile(CustomerId: "", IsChild: false, CareTakerId: "", Age: "", Gender: "", Name: "")
@@ -95,6 +97,23 @@ class AddPatientViewModel: ObservableObject {
                 completion(customerId!)
             } else {
                 completion(nil)
+            }
+        }
+    }
+    
+    func confirmPhoneNumber () {
+        CommonDefaultModifiers.showLoader(incomingLoadingText: "Verifying Phone Number")
+        ServiceProviderCustomerService().getPatientProfileFromPhoneNumber(phoneNumber: "\(self.phoneNumber.countryCode)\(self.phoneNumber.number.text)") { profile in
+            if profile != nil {
+                self.myPatientProfile = profile!
+                self.phoneNumberConfirmed = true
+                CommonDefaultModifiers.hideLoader()
+            } else {
+                DoctorAlertHelpers().cannotAddPhoneNumberAlert { dismiss, contactSupport in
+                    if contactSupport {
+                        openWhatsapp(phoneNumber: "+917530043008", textToSend: "Hello I am not able to add \("\(self.phoneNumber.countryCode)\(self.phoneNumber.number.text)") as a patient")
+                    }
+                }
             }
         }
     }

@@ -90,6 +90,40 @@ class ServiceProviderCustomerService: ServiceProviderCustomerServiceProtocol {
         }
     }
     
+    
+    func getPatientProfileFromPhoneNumber(phoneNumber: String,
+                           completion: @escaping (_ profile:ServiceProviderMyPatientProfile?) -> ()) {
+        
+        let channel = ChannelManager.sharedChannelManager.getChannel()
+        let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
+
+        // Provide the connection to the generated client.
+        let patientClient = Nd_V1_ServiceProviderCustomerWorkerV1Client(channel: channel)
+         
+        let request = Nd_V1_StringMessage.with {
+            $0.message = phoneNumber.toProto
+        }
+        
+        let getPatientObject = patientClient.getCustomerProfileFromPhoneNumber(request, callOptions: callOptions)
+        
+        DispatchQueue.global().async {
+            do {
+                let response = try getPatientObject.response.wait()
+                let customer = ServiceProviderMyPatientProfileMapper.GrpcToLocal(profileMessage: response)
+                print("Customer Client received: \(response)")
+                DispatchQueue.main.async {
+                    completion(customer)
+                }
+            } catch {
+                print("Customer Client failed: \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            }
+        }
+    }
+    
+    
     func getListOfPatients(serviceProviderId:String, _ completion: @escaping ([ServiceProviderMyPatientProfile]?) -> ()) {
                 
         let channel = ChannelManager.sharedChannelManager.getChannel()
