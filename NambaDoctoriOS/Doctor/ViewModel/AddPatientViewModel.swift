@@ -16,9 +16,10 @@ class AddPatientViewModel: ObservableObject {
     @Published var scheduleAppointmentVM:ScheduleAppointmentForPatientViewModel
     
     @Published var phoneNumberConfirmed:Bool = false
-
+    @Published var patientAlreadyExists:Bool = false
+    
     @Published var scheduleAppointmentToggle:Bool = false
-    @Published var myPatientProfile:ServiceProviderMyPatientProfile = ServiceProviderMyPatientProfile(CustomerId: "", IsChild: false, CareTakerId: "", Age: "", Gender: "", Name: "")
+    @Published var myPatientProfile:ServiceProviderMyPatientProfile = ServiceProviderMyPatientProfile(CustomerId: "", IsChild: false, CareTakerId: "", Age: "", Gender: "", Name: "", LastName: "")
     
     @Published var finished:Bool = false
     
@@ -30,7 +31,7 @@ class AddPatientViewModel: ObservableObject {
     init(organisation:ServiceProviderOrganisation?, serviceProvider:ServiceProviderProfile) {
         self.organisation = organisation
         self.serviceProvider = serviceProvider
-        self.scheduleAppointmentVM = ScheduleAppointmentForPatientViewModel(organisation: organisation, serviceProvider: serviceProvider, customer: ServiceProviderMyPatientProfile(CustomerId: "", IsChild: false, CareTakerId: "", Age: "", Gender: "", Name: ""), finishedCallback: nil)
+        self.scheduleAppointmentVM = ScheduleAppointmentForPatientViewModel(organisation: organisation, serviceProvider: serviceProvider, customer: ServiceProviderMyPatientProfile(CustomerId: "", IsChild: false, CareTakerId: "", Age: "", Gender: "", Name: "", LastName: ""), finishedCallback: nil)
         
         self.scheduleAppointmentVM.customer = myPatientProfile
         self.scheduleAppointmentVM.finishedCallback = finishedCallback
@@ -92,7 +93,7 @@ class AddPatientViewModel: ObservableObject {
         CommonDefaultModifiers.showLoader(incomingLoadingText: "Creating Customer Profile")
         CustomerProfileService().setCustomerProfile(customerProfile: customerProfile) { customerId in
             if customerId != nil {
-                self.scheduleAppointmentVM.customer = ServiceProviderMyPatientProfile(CustomerId: customerId!, IsChild: false, CareTakerId: "", Age: self.age, Gender: self.gender, Name: self.customerName)
+                self.scheduleAppointmentVM.customer = ServiceProviderMyPatientProfile(CustomerId: customerId!, IsChild: false, CareTakerId: "", Age: self.age, Gender: self.gender, Name: self.customerName, LastName: "")
                 CommonDefaultModifiers.hideLoader()
                 completion(customerId!)
             } else {
@@ -102,20 +103,40 @@ class AddPatientViewModel: ObservableObject {
     }
     
     func confirmPhoneNumber () {
+        EndEditingHelper.endEditing()
+        self.patientAlreadyExists = false
+        
         CommonDefaultModifiers.showLoader(incomingLoadingText: "Verifying Phone Number")
         ServiceProviderCustomerService().getPatientProfileFromPhoneNumber(phoneNumber: "\(self.phoneNumber.countryCode)\(self.phoneNumber.number.text)") { profile in
             if profile != nil {
-                self.myPatientProfile = profile!
+                self.mapProfileValues(patientProfile: profile!)
                 self.phoneNumberConfirmed = true
+                
+                if !profile!.CustomerId.isEmpty {
+                    self.patientAlreadyExists = true
+                }
+                
                 CommonDefaultModifiers.hideLoader()
             } else {
                 DoctorAlertHelpers().cannotAddPhoneNumberAlert { dismiss, contactSupport in
                     if contactSupport {
+                        CommonDefaultModifiers.hideLoader()
                         openWhatsapp(phoneNumber: "+917530043008", textToSend: "Hello I am not able to add \("\(self.phoneNumber.countryCode)\(self.phoneNumber.number.text)") as a patient")
+                    }
+                    
+                    if dismiss {
+                        CommonDefaultModifiers.hideLoader()
                     }
                 }
             }
         }
+    }
+    
+    func mapProfileValues (patientProfile:ServiceProviderMyPatientProfile) {
+        self.firstName = patientProfile.Name
+        self.age = patientProfile.Age
+        self.gender = patientProfile.Gender
+        self.lastName = patientProfile.LastName
     }
 }
 

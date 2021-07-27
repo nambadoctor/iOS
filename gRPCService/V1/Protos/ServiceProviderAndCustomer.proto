@@ -1433,6 +1433,8 @@ message ServiceProviderMyPatientsProfileMessage{
     google.protobuf.BoolValue IsChild = 5;
 
     google.protobuf.StringValue CareTakerId = 6;
+
+    google.protobuf.StringValue LastName = 7;
 }
 
 

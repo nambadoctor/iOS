@@ -37,7 +37,7 @@ struct AddPatientView: View {
                         .bold()
                     
                     Group {
-                        Text("FIRST NAME")
+                        Text("NAME")
                             .font(.footnote)
                             .bold()
                             .foregroundColor(.gray)
@@ -75,7 +75,8 @@ struct AddPatientView: View {
                     }
                     
                     Text("If you would like to book appointment, you can do so after creating patient profile")
-                    LargeButton(title: "Confirm") {
+                    
+                    LargeButton(title: self.addPatientVM.patientAlreadyExists ? "Confirm and Schedule Appointment" : "Confirm") {
                         self.addPatientVM.confirm { success in
                             if success {
                                 DoctorAlertHelpers().patientAddedAlert { dismiss, scheduleAppointment in

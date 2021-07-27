@@ -14,7 +14,8 @@ class ServiceProviderMyPatientProfileMapper {
                                                CareTakerId: profileMessage.careTakerID.toString,
                                                Age: profileMessage.age.toString,
                                                Gender: profileMessage.gender.toString,
-                                               Name: profileMessage.name.toString)
+                                               Name: profileMessage.name.toString,
+                                               LastName: profileMessage.lastName.toString)
     }
     
     static func GrpcToLocal(profileMessages:[Nd_V1_ServiceProviderMyPatientsProfileMessage]) -> [ServiceProviderMyPatientProfile] {

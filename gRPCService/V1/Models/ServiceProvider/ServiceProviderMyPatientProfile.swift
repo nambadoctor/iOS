@@ -14,4 +14,5 @@ struct ServiceProviderMyPatientProfile {
     var Age:String
     var Gender:String
     var Name:String
+    var LastName:String
 }

@@ -5630,6 +5630,15 @@ struct Nd_V1_ServiceProviderMyPatientsProfileMessage {
   /// Clears the value of `careTakerID`. Subsequent reads from it will return its default value.
   mutating func clearCareTakerID() {self._careTakerID = nil}
 
+  var lastName: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _lastName ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_lastName = newValue}
+  }
+  /// Returns true if `lastName` has been explicitly set.
+  var hasLastName: Bool {return self._lastName != nil}
+  /// Clears the value of `lastName`. Subsequent reads from it will return its default value.
+  mutating func clearLastName() {self._lastName = nil}
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -5640,6 +5649,7 @@ struct Nd_V1_ServiceProviderMyPatientsProfileMessage {
   fileprivate var _age: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _isChild: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
   fileprivate var _careTakerID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _lastName: SwiftProtobuf.Google_Protobuf_StringValue? = nil
 }
 
 struct Nd_V1_ServiceProviderMyPatientsProfileMessageList {
@@ -12795,6 +12805,7 @@ extension Nd_V1_ServiceProviderMyPatientsProfileMessage: SwiftProtobuf.Message, 
     4: .same(proto: "Age"),
     5: .same(proto: "IsChild"),
     6: .same(proto: "CareTakerId"),
+    7: .same(proto: "LastName"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -12809,6 +12820,7 @@ extension Nd_V1_ServiceProviderMyPatientsProfileMessage: SwiftProtobuf.Message, 
       case 4: try { try decoder.decodeSingularMessageField(value: &self._age) }()
       case 5: try { try decoder.decodeSingularMessageField(value: &self._isChild) }()
       case 6: try { try decoder.decodeSingularMessageField(value: &self._careTakerID) }()
+      case 7: try { try decoder.decodeSingularMessageField(value: &self._lastName) }()
       default: break
       }
     }
@@ -12833,6 +12845,9 @@ extension Nd_V1_ServiceProviderMyPatientsProfileMessage: SwiftProtobuf.Message, 
     if let v = self._careTakerID {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
     }
+    if let v = self._lastName {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -12843,6 +12858,7 @@ extension Nd_V1_ServiceProviderMyPatientsProfileMessage: SwiftProtobuf.Message, 
     if lhs._age != rhs._age {return false}
     if lhs._isChild != rhs._isChild {return false}
     if lhs._careTakerID != rhs._careTakerID {return false}
+    if lhs._lastName != rhs._lastName {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

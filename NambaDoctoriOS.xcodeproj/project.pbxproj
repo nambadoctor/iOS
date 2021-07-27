@@ -285,7 +285,6 @@
 		1771BA3E26AD2A370085389E /* AddPatientViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771BA3D26AD2A370085389E /* AddPatientViewModel.swift */; };
 		1771BA4026AD385B0085389E /* AvailabilitySelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771BA3F26AD385B0085389E /* AvailabilitySelector.swift */; };
 		1771BA4226ADECE90085389E /* AvailabilitySelectorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771BA4126ADECE90085389E /* AvailabilitySelectorViewModel.swift */; };
-		1771BA4426AE43A70085389E /* ServiceProviderAndCustomer.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771BA4326AE43A70085389E /* ServiceProviderAndCustomer.pb.swift */; };
 		1771BA4826AE43C80085389E /* ServiceProviderAppointmentTransfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771BA4726AE43C80085389E /* ServiceProviderAppointmentTransfer.swift */; };
 		1771BA4A26AE446A0085389E /* ServiceProviderAppointmentTransferMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771BA4926AE446A0085389E /* ServiceProviderAppointmentTransferMapper.swift */; };
 		1771BA4C26AE465D0085389E /* CustomerAppointmentTransfer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1771BA4B26AE465D0085389E /* CustomerAppointmentTransfer.swift */; };
@@ -346,6 +345,7 @@
 		17A268CA26AFB29C00709B98 /* TransferAppointmentSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A268C926AFB29C00709B98 /* TransferAppointmentSheet.swift */; };
 		17A268CC26AFBBA400709B98 /* TransferAppointmentDoctorCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A268CB26AFBBA400709B98 /* TransferAppointmentDoctorCard.swift */; };
 		17A268CE26B09ACA00709B98 /* ServiceProviderAndCustomer.grpc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A268CD26B09ACA00709B98 /* ServiceProviderAndCustomer.grpc.swift */; };
+		17A268D026B0A73D00709B98 /* ServiceProviderAndCustomer.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A268CF26B0A73D00709B98 /* ServiceProviderAndCustomer.pb.swift */; };
 		17A37549267BAFC300571049 /* ServiceProviderUpdateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A37548267BAFC300571049 /* ServiceProviderUpdateHelper.swift */; };
 		17A3754B267D0B1200571049 /* ServiceProviderFirebaseUpdateAppointmentStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A3754A267D0B1200571049 /* ServiceProviderFirebaseUpdateAppointmentStatus.swift */; };
 		17A3754D267D0B2E00571049 /* CustomerFirebaseUpdateAppointmentStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A3754C267D0B2E00571049 /* CustomerFirebaseUpdateAppointmentStatus.swift */; };
@@ -728,7 +728,6 @@
 		1771BA3D26AD2A370085389E /* AddPatientViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPatientViewModel.swift; sourceTree = "<group>"; };
 		1771BA3F26AD385B0085389E /* AvailabilitySelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilitySelector.swift; sourceTree = "<group>"; };
 		1771BA4126ADECE90085389E /* AvailabilitySelectorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailabilitySelectorViewModel.swift; sourceTree = "<group>"; };
-		1771BA4326AE43A70085389E /* ServiceProviderAndCustomer.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderAndCustomer.pb.swift; sourceTree = "<group>"; };
 		1771BA4726AE43C80085389E /* ServiceProviderAppointmentTransfer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderAppointmentTransfer.swift; sourceTree = "<group>"; };
 		1771BA4926AE446A0085389E /* ServiceProviderAppointmentTransferMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderAppointmentTransferMapper.swift; sourceTree = "<group>"; };
 		1771BA4B26AE465D0085389E /* CustomerAppointmentTransfer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerAppointmentTransfer.swift; sourceTree = "<group>"; };
@@ -789,6 +788,7 @@
 		17A268C926AFB29C00709B98 /* TransferAppointmentSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferAppointmentSheet.swift; sourceTree = "<group>"; };
 		17A268CB26AFBBA400709B98 /* TransferAppointmentDoctorCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransferAppointmentDoctorCard.swift; sourceTree = "<group>"; };
 		17A268CD26B09ACA00709B98 /* ServiceProviderAndCustomer.grpc.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderAndCustomer.grpc.swift; sourceTree = "<group>"; };
+		17A268CF26B0A73D00709B98 /* ServiceProviderAndCustomer.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderAndCustomer.pb.swift; sourceTree = "<group>"; };
 		17A37548267BAFC300571049 /* ServiceProviderUpdateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderUpdateHelper.swift; sourceTree = "<group>"; };
 		17A3754A267D0B1200571049 /* ServiceProviderFirebaseUpdateAppointmentStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderFirebaseUpdateAppointmentStatus.swift; sourceTree = "<group>"; };
 		17A3754C267D0B2E00571049 /* CustomerFirebaseUpdateAppointmentStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerFirebaseUpdateAppointmentStatus.swift; sourceTree = "<group>"; };
@@ -1373,7 +1373,7 @@
 		173A22BC25CAF8C60086342A /* ModelImplementations */ = {
 			isa = PBXGroup;
 			children = (
-				1771BA4326AE43A70085389E /* ServiceProviderAndCustomer.pb.swift */,
+				17A268CF26B0A73D00709B98 /* ServiceProviderAndCustomer.pb.swift */,
 			);
 			path = ModelImplementations;
 			sourceTree = "<group>";
@@ -2435,6 +2435,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17A268D026B0A73D00709B98 /* ServiceProviderAndCustomer.pb.swift in Sources */,
 				17437EB4263FC11100AFEF5B /* CustomerUpdateAppointmentStatusHelper.swift in Sources */,
 				171646B82602B65700BB5B5A /* ServiceProviderGeneratedSlot.swift in Sources */,
 				1771BA4C26AE465D0085389E /* CustomerAppointmentTransfer.swift in Sources */,
@@ -2758,7 +2759,6 @@
 				173028A32664AB6200E9F5F3 /* ServiceProviderIntakeDosage.swift in Sources */,
 				1796320F25AEE865002E466C /* KeyboardHeightPublisher.swift in Sources */,
 				172FA702261F107E00D14545 /* ServiceProviderCustomerAllergy.swift in Sources */,
-				1771BA4426AE43A70085389E /* ServiceProviderAndCustomer.pb.swift in Sources */,
 				1776B4C0267F22FB00D823C1 /* CustomerServiceProviderAdditionalInfoMapper.swift in Sources */,
 				176AA1A62637C8E900F02346 /* CustomerFollowUpMapper.swift in Sources */,
 				179C44912627D8AC0073F4E0 /* ChatMessage.swift in Sources */,
