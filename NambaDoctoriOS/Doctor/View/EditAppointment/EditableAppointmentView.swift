@@ -337,6 +337,27 @@ struct EditableAppointmentView: View {
                     .clipShape(Circle())
                 })
             }
+            
+            if !intermediateVM.appointmentFinished {
+                Button(action: {
+                    LoggerService().log(eventName: "Tranfer Appointment Button Pressed")
+                    self.intermediateVM.showTransferAppointmentSheet = true
+                }, label: {
+                    ZStack {
+                        Image("arrow.left.arrow.right")
+                            .scaleEffect(1.0)
+                            .padding()
+                            .background(Color.white)
+                    }
+                    .frame(width: 45, height: 45)
+                    .overlay(Circle().fill(Color.blue.opacity(0.3)))
+                    .overlay(Circle().stroke(Color.white, lineWidth: 3))
+                    .clipShape(Circle())
+                })
+                .sheet(isPresented: self.$intermediateVM.showTransferAppointmentSheet) {
+                    TransferAppointmentSheet(currentAppointment: self.intermediateVM.appointment, killView: killView)
+                }
+            }
 
             if !intermediateVM.appointmentFinished {
                 Button(action: {

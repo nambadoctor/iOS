@@ -15,6 +15,9 @@ protocol ServiceProviderAppointmentServiceProtocol {
     func setAppointment (appointment:ServiceProviderAppointment,
                                 completion: @escaping (_ appointmentId:String?)->())
     
+    func transferAppointment (appointment:ServiceProviderAppointment,
+                                completion: @escaping (_ appointmentId:String?)->())
+    
     func getSingleAppointment (appointmentId:String, serviceProviderId:String, _ completion: @escaping ((ServiceProviderAppointment?) -> ()))
     
     func getOrganisationAppointments (organisationId:String,
@@ -116,6 +119,34 @@ class ServiceProviderAppointmentService : ServiceProviderAppointmentServiceProto
                 }
             } catch {
                 print("Set Appointment \(appointment.appointmentID) Failure")
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            }
+        }
+    }
+    
+    func transferAppointment (appointment:ServiceProviderAppointment,
+                                completion: @escaping (_ appointmentId:String?)->()) {
+                
+        let channel = ChannelManager.sharedChannelManager.getChannel()
+        let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
+                
+        let appointmentClient = Nd_V1_ServiceProviderAppointmentWorkerV1Client(channel: channel)
+        
+        let request = appointmentObjectMapper.localAppointmentToGrpc(appointment: appointment)
+        
+        let setAptStatus = appointmentClient.transferAppointment(request, callOptions: callOptions)
+
+        DispatchQueue.global().async {
+            do {
+                let response = try setAptStatus.response.wait()
+                print("Set Transfer Appointment Success for \(response.id)")
+                DispatchQueue.main.async {
+                    completion(response.id.toString)
+                }
+            } catch {
+                print("Set Transfer Appointment \(appointment.appointmentID) Failure")
                 DispatchQueue.main.async {
                     completion(nil)
                 }

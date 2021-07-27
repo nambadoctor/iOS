@@ -26,6 +26,8 @@ class IntermediateAppointmentViewModel : ObservableObject {
     
     @Published var cancellationSheetOffset:CGFloat = UIScreen.main.bounds.height
     
+    @Published var showTransferAppointmentSheet:Bool = false
+    
     @Published var takeToDetailedAppointment:Bool = false
     @Published var takeToViewAppointment:Bool = false
     

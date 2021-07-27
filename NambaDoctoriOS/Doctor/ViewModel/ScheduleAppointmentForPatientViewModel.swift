@@ -52,7 +52,9 @@ class ScheduleAppointmentForPatientViewModel : ObservableObject {
                         appointment.serviceRequestID = serviceRequestId!
                         CommonDefaultModifiers.hideLoader()
                         if self.reportUploadVM.imagesToUpload.isEmpty {
-                            self.callFinished()
+                            if self.finishedCallback != nil {
+                                self.finishedCallback!()
+                            }
                             completion(true)
                         } else {
                             self.reportUploadVM.setReports(appointment: appointment) { success in

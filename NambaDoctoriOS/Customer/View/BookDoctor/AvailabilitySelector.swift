@@ -37,7 +37,11 @@ struct AvailabilitySelector : View {
                     }
                 }
             } else {
-                Text("Oops no dates available")
+                if self.availabilitySelectorVM.noAvailabilities {
+                    Text("Oops no dates available")
+                } else {
+                    Indicator()
+                }
             }
             
             if !availabilitySelectorVM.timeDisplay.isEmpty {

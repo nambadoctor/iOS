@@ -18,6 +18,8 @@ class AvailabilitySelectorViewModel : ObservableObject {
     @Published var selectedTime:Int64 = 0
     @Published var selectedSlot:CustomerGeneratedSlot? = nil
     @Published var isPrePaySlot:Bool = false
+    
+    @Published var noAvailabilities:Bool = false
 
     var serviceProviderID:String
     
@@ -37,7 +39,7 @@ class AvailabilitySelectorViewModel : ObservableObject {
                 CommonDefaultModifiers.hideLoader()
             } else {
                 CommonDefaultModifiers.hideLoader()
-                //TODO: handle empty slots
+                self.noAvailabilities = true
             }
         }
     }
