@@ -81,9 +81,6 @@ class ScheduleAppointmentForPatientViewModel : ObservableObject {
     }
     
     func makeAppointment (customerId:String) -> ServiceProviderAppointment {
-        
-        let cancellation = ServiceProviderCancellation(ReasonName: "", CancelledTime: Date().millisecondsSince1970, CancelledBy: "", CancelledByType: "", Notes: "")
-        
         self.availabilityVM.setSlot()
         
         return ServiceProviderAppointment(appointmentID: "",
@@ -106,7 +103,7 @@ class ScheduleAppointmentForPatientViewModel : ObservableObject {
                                           createdDateTime: Date().millisecondsSince1970,
                                           lastModifiedDate: Date().millisecondsSince1970,
                                           noOfReports: 0,
-                                          cancellation: cancellation,
+                                          cancellation: nil,
                                           childId: "",
                                           paymentType: PaymentTypeEnum.PostPay.rawValue,
                                           appointmentVerification: nil,

@@ -42,6 +42,7 @@ class IntermediateAppointmentViewModel : ObservableObject {
     @Published var showOnSuccessAlert:Bool = false
     @Published var showTwilioRoom:Bool = false
     @Published var collapseExtraDetailEntry:Bool = true
+    @Published var collapseCustomerVitals:Bool = true
     
     
     var DoctorCancellationReason:[String] = ["This is not my specialty", "I am not available at this time", "Patient did not pick up", "Technical Issues", "Other"]
@@ -97,6 +98,7 @@ class IntermediateAppointmentViewModel : ObservableObject {
         checkIfAppointmentFinished()
         checkIfAppointmentStarted()
         getClinicalInfoCollapseSetting()
+        getCustomerVitalsCollapseSetting()
         
         getNewChatCount()
         newChatListener()
@@ -172,6 +174,25 @@ extension IntermediateAppointmentViewModel {
         self.collapseExtraDetailEntry = DefaultPreferencesTracker().getClinicalInfoCollapseExpandSetting()
     }
 }
+
+extension IntermediateAppointmentViewModel {
+    func toggleCollapseOfCustomerVitals () {
+        
+        if self.collapseCustomerVitals {
+            LoggerService().log(eventName: "Expanding customer vitals details")
+        } else {
+            LoggerService().log(eventName: "Collapsing customer vitals details")
+        }
+        
+        self.collapseCustomerVitals.toggle()
+        DefaultPreferencesTracker().setCustomerVitalsCollapseExpandSetting(expand: collapseCustomerVitals)
+    }
+    
+    func getCustomerVitalsCollapseSetting () {
+        self.collapseCustomerVitals = DefaultPreferencesTracker().getCustomerVitalsCollapseExpandSetting()
+    }
+}
+
 
 //MARK:- UPDATING INFORMATION CALLS
 extension IntermediateAppointmentViewModel {
@@ -358,7 +379,7 @@ extension IntermediateAppointmentViewModel {
                 CommonDefaultModifiers.showLoader(incomingLoadingText: "Cancelling Appointment")
                 self.updateAppointmentStatus.toCancelled(appointment: &self.appointment) { (success) in
                     if success {
-                        self.docNotifHelper.fireCancelNotif(appointmentTime: self.appointment.scheduledAppointmentStartTime, cancellationReason: self.appointment.cancellation.ReasonName)
+                        self.docNotifHelper.fireCancelNotif(appointmentTime: self.appointment.scheduledAppointmentStartTime, cancellationReason: self.appointment.cancellation?.ReasonName ?? "")
                         DoctorDefaultModifiers.refreshAppointments()
                         CommonDefaultModifiers.hideLoader()
                         docAutoNav.leaveIntermediateView()

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ServiceRequestEditableView: View {
     @EnvironmentObject var serviceRequestVM:ServiceRequestViewModel
-    
+
     var body: some View {
         VStack (alignment: .leading) {
             

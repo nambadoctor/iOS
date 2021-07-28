@@ -179,8 +179,6 @@ class DetailedBookDocViewModel : ObservableObject {
     }
     
     func makeAppointment() -> CustomerAppointment {
-        let cancellation = CustomerCancellation(ReasonName: "", CancelledTime: Date().millisecondsSince1970, CancelledBy: "", CancelledByType: "", Notes: "")
-        
         var customerAppointment = CustomerAppointment(appointmentID: "",
                                                       serviceRequestID: "",
                                                       parentAppointmentID: "",
@@ -201,7 +199,7 @@ class DetailedBookDocViewModel : ObservableObject {
                                                       createdDateTime: Date().millisecondsSince1970,
                                                       lastModifiedDate: Date().millisecondsSince1970,
                                                       noOfReports: 0,
-                                                      cancellation: cancellation,
+                                                      cancellation: nil,
                                                       childId: "",
                                                       paymentType: self.availabilityVM.selectedSlot?.paymentType ?? "",
                                                       organisationId: organization?.organisationId ?? "",

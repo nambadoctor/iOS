@@ -73,7 +73,9 @@ class ServiceProviderAppointmentObjectMapper {
             $0.createdDateTime = appointment.createdDateTime.toProto
             $0.lastModifedDate = appointment.lastModifiedDate.toProto
             $0.noOfReports = appointment.noOfReports.toProto
-            $0.cancellation = ServiceProviderCancellationMapper.localCancellationToGrpc(cancellation: appointment.cancellation)
+            if appointment.cancellation != nil {
+                $0.cancellation = ServiceProviderCancellationMapper.localCancellationToGrpc(cancellation: appointment.cancellation!)
+            }
             $0.childID = appointment.childId.toProto
             $0.paymentType = appointment.paymentType.toProto
             if appointment.appointmentVerification != nil {$0.appointmentVerification = ServiceProviderAppointmentVerificationMapper().LocalToGrpc(appointmentVerification: appointment.appointmentVerification!)}

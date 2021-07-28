@@ -21,6 +21,9 @@ class ServiceRequestViewModel: ObservableObject {
     
     @Published var errorInRetrievingPrescription:Bool = false
     @Published var navigateToReviewPrescription:Bool = false
+    
+    @Published var isSmoker:String = "No"
+    @Published var isAlcoholConsumer:String = "No"
 
     @Published var investigationsViewModel:InvestigationsViewModel = InvestigationsViewModel()
     
@@ -79,6 +82,22 @@ class ServiceRequestViewModel: ObservableObject {
         self.serviceRequest.appointmentID = appointment.appointmentID
         self.serviceRequest.serviceProviderID = appointment.serviceProviderID
         //end
+
+        self.isSmoker = "\(self.serviceRequest.customerVitals.IsSmoker)"
+        self.isAlcoholConsumer = "\(self.serviceRequest.customerVitals.IsAlcoholConsumer)"
+        
+        if serviceRequest.customerVitals.IsSmoker {
+            self.isSmoker = "Yes"
+        } else {
+            self.isSmoker = "No"
+        }
+        
+        if serviceRequest.customerVitals.IsAlcoholConsumer {
+            self.isAlcoholConsumer = "Yes"
+        } else {
+            self.isAlcoholConsumer = "No"
+        }
+
         
         if serviceRequest.diagnosis.type.isEmpty {
             self.serviceRequest.diagnosis.type = "Provisional"
@@ -90,6 +109,19 @@ class ServiceRequestViewModel: ObservableObject {
     func sendToPatient (completion: @escaping (_ success:Bool,_ serviceRequestId:String?)->()) {
         investigationsViewModel.addTempIntoArrayWhenFinished()
         serviceRequest.investigations = investigationsViewModel.investigations
+        
+        if isSmoker == "No" {
+            serviceRequest.customerVitals.IsSmoker = false
+        } else {
+            serviceRequest.customerVitals.IsSmoker = true
+        }
+        
+        if isAlcoholConsumer == "No" {
+            serviceRequest.customerVitals.IsAlcoholConsumer = false
+        } else {
+            serviceRequest.customerVitals.IsAlcoholConsumer = true
+        }
+
         print("SERVICE REQUEST TO PRINT: \(serviceRequest)")
         serviceRequestServiceCalls.setServiceRequest(serviceRequest: serviceRequest) { (response) in
             if response != nil {

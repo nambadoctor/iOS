@@ -18,4 +18,15 @@ class DefaultPreferencesTracker {
         let defaults = UserDefaults.standard
         return defaults.object(forKey: "ClinicalInfoExpand") as? Bool ?? false
     }
+    
+    func setCustomerVitalsCollapseExpandSetting(expand:Bool) {
+        let defaults = UserDefaults.standard
+        defaults.set(expand, forKey: "CustomerVitalsExpand")
+    }
+
+    func getCustomerVitalsCollapseExpandSetting() -> Bool {
+        let defaults = UserDefaults.standard
+        return defaults.object(forKey: "CustomerVitalsExpand") as? Bool ?? false
+    }
+    
 }

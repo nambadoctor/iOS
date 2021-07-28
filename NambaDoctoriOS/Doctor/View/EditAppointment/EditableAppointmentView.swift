@@ -62,6 +62,53 @@ struct EditableAppointmentView: View {
             
             PatientInfoEditableView()
                 .modifier(DetailedAppointmentViewCardModifier())
+            
+            HStack {
+                Button {
+                    self.intermediateVM.toggleCollapseOfCustomerVitals()
+                } label: {
+                    HStack {
+                        VStack (alignment: .leading) {
+                            Text("Customer Vitals")
+                                .bold()
+                            
+                            if self.intermediateVM.collapseCustomerVitals {
+                                Text("click to expand")
+                                    .font(.footnote)
+                                    .foregroundColor(Color.gray.opacity(0.5))
+                            } else {
+                                Text("click to collapse")
+                                    .font(.footnote)
+                                    .foregroundColor(Color.gray.opacity(0.5))
+                            }
+                        }
+                        
+                        Spacer()
+                        
+                        if self.intermediateVM.collapseCustomerVitals {
+                            Image("chevron.left.circle")
+                                .foregroundColor(.blue)
+                        } else {
+                            Image("chevron.down.circle")
+                                .foregroundColor(.blue)
+                        }
+
+                    }
+                }
+                Spacer()
+            }
+            .padding(.vertical, 8)
+            .padding(.horizontal)
+            .background(Color.white)
+            .cornerRadius(10)
+            .padding(.horizontal)
+            
+            if !intermediateVM.collapseCustomerVitals {
+                
+                CustomerVitalsEditableView()
+                
+                Spacer()
+            }
 
             HStack {
                 Button {
