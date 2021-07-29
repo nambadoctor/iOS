@@ -8,15 +8,15 @@
 import SwiftUI
 
 struct DetailedDoctorMyPatientView: View {
-    
+
     @ObservedObject var MyPatientVM:MyPatientViewModel
-    @State var takeToScheduleAppointment:Bool = false
+    
     var body: some View {
         VStack {
             if self.MyPatientVM.appointmentSummaries.isEmpty {
                 if self.MyPatientVM.noAppointments {
                     LargeButton(title: "Schedule Appointment") {
-                        self.takeToScheduleAppointment.toggle()
+                        self.MyPatientVM.takeToScheduleAppointment()
                     }
                     Spacer()
                     Text("No Appointments For This Patient")
@@ -27,7 +27,7 @@ struct DetailedDoctorMyPatientView: View {
             } else {
                 ScrollView {
                     LargeButton(title: "Schedule Appointment") {
-                        self.takeToScheduleAppointment.toggle()
+                        self.MyPatientVM.takeToScheduleAppointment()
                     }
                     .padding(.horizontal)
                     ForEach(self.MyPatientVM.appointmentSummaries, id: \.AppointmentId) { summary in
@@ -37,13 +37,16 @@ struct DetailedDoctorMyPatientView: View {
                 }
             }
             
-            if takeToScheduleAppointment {
+            if MyPatientVM.takeToScheduleAppointmentView {
                 NavigationLink("",
-                               destination: ScheduleAppointmentForPatientView(scheduleAppointmentViewModel: self.MyPatientVM.scheduleAppointmentVM, showView: self.$takeToScheduleAppointment),
-                               isActive: self.$takeToScheduleAppointment)
+                               destination: ScheduleAppointmentForPatientView(scheduleAppointmentViewModel: self.MyPatientVM.scheduleAppointmentVM, showView: self.$MyPatientVM.takeToScheduleAppointmentView),
+                               isActive: self.$MyPatientVM.takeToScheduleAppointmentView)
                     .onAppear() {self.MyPatientVM.scheduleAppointmentVM.availabilityVM.retrieveAvailabilities()}
             }
         }
+        .sheet(isPresented: self.$MyPatientVM.showSelectDoctorView, content: {
+            SelectServiceProvidersView(organisationServiceProvidersVM: self.MyPatientVM.makeOrganisationsServiceProvidersViewModel())
+        })
         .onAppear() {
             self.MyPatientVM.getAppointmentSummaries()
         }
@@ -54,8 +57,12 @@ class MyPatientViewModel : ObservableObject {
     var patientProfile:ServiceProviderMyPatientProfile
     @Published var appointmentSummaries:[ServiceProviderAppointmentSummary] = [ServiceProviderAppointmentSummary]()
     @Published var noAppointments:Bool = false
+    @Published var takeToScheduleAppointmentView:Bool = false
     
     @Published var scheduleAppointmentVM:ScheduleAppointmentForPatientViewModel
+    
+    var doctorToBook:ServiceProviderProfile? = nil
+    @Published var showSelectDoctorView:Bool = false
     
     var organisation:ServiceProviderOrganisation?
     var serviceProvider:ServiceProviderProfile
@@ -80,5 +87,24 @@ class MyPatientViewModel : ObservableObject {
                 self.noAppointments = true
             }
         }
+    }
+    
+    func takeToScheduleAppointment () {
+        if serviceProvider.serviceProviderType == "Secretary" {
+            self.showSelectDoctorView = true
+        } else {
+            self.takeToScheduleAppointmentView.toggle()
+        }
+    }
+    
+    func selectDoctor (doctor:ServiceProviderProfile) {
+        self.showSelectDoctorView = false
+        self.doctorToBook = doctor
+        self.scheduleAppointmentVM = ScheduleAppointmentForPatientViewModel(organisation: self.organisation, serviceProvider: self.doctorToBook!, customer: self.patientProfile, finishedCallback: nil)
+        self.takeToScheduleAppointmentView = true
+    }
+    
+    func makeOrganisationsServiceProvidersViewModel() -> OrganisationsServiceProvidersViewModel {
+        return OrganisationsServiceProvidersViewModel(orgId: self.organisation?.organisationId ?? "", callBack: selectDoctor)
     }
 }

@@ -254,7 +254,7 @@ class ServiceProviderProfileService : ServiceProviderProfileServiceProtocol {
             $0.id = organizationId.toProto
         }
 
-        let getServiceProvider = doctorClient.getServiceProviders(request, callOptions: callOptions)
+        let getServiceProvider = doctorClient.getServiceProvidersOfOrganisation(request, callOptions: callOptions)
 
         DispatchQueue.global().async {
             do {
