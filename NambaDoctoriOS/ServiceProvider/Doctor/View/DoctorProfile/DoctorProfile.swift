@@ -25,7 +25,7 @@ struct DoctorProfile: View {
             VStack (alignment: .leading) {
 
                 if doctorViewModel.showEdit {
-                    EditableDoctorProfile(editDoctorVM: doctorViewModel.editDoctorVM, doctor: $doctorViewModel.doctor)
+                    EditableDoctorProfile(editDoctorVM: doctorViewModel.editServiceProvider, doctor: $doctorViewModel.ServiceProvider)
                 } else {
                     doctorInfoHeader
                     Divider()
@@ -49,7 +49,7 @@ struct DoctorProfile: View {
                     .font(.footnote)
                     .bold()
                     .foregroundColor(.gray)
-                Text("₹\((doctorViewModel.doctor.serviceFee ?? 0).clean)")
+                Text("₹\((doctorViewModel.ServiceProvider.serviceFee ?? 0).clean)")
             }
             
 //            VStack (alignment: .leading, spacing: 3) {
@@ -65,7 +65,7 @@ struct DoctorProfile: View {
                     .font(.footnote)
                     .bold()
                     .foregroundColor(.gray)
-                Text("\(doctorViewModel.doctor.appointmentDuration ?? 0) minutes")
+                Text("\(doctorViewModel.ServiceProvider.appointmentDuration ?? 0) minutes")
             }
             
 //            VStack (alignment: .leading, spacing: 3) {
@@ -90,7 +90,7 @@ struct DoctorProfile: View {
                             .font(.footnote)
                             .bold()
                             .foregroundColor(.gray)
-                        Text("\(doctorViewModel.doctor.firstName ?? "") \(doctorViewModel.doctor.lastName ?? "")")
+                        Text("\(doctorViewModel.ServiceProvider.firstName ?? "") \(doctorViewModel.ServiceProvider.lastName ?? "")")
                     }
                     
                     VStack (alignment: .leading, spacing: 3) {
@@ -98,7 +98,7 @@ struct DoctorProfile: View {
                             .font(.footnote)
                             .bold()
                             .foregroundColor(.gray)
-                        Text("\(doctorViewModel.doctor.registrationNumber ?? "")")
+                        Text("\(doctorViewModel.ServiceProvider.registrationNumber ?? "")")
                     }
                     
                     VStack (alignment: .leading, spacing: 3) {
@@ -106,14 +106,14 @@ struct DoctorProfile: View {
                             .font(.footnote)
                             .bold()
                             .foregroundColor(.gray)
-                        Text("\(doctorViewModel.doctor.emailAddress ?? "")")
+                        Text("\(doctorViewModel.ServiceProvider.emailAddress ?? "")")
                     }
                 }.padding()
             }
             
             Button(action: {
                 CommonDefaultModifiers.showLoader(incomingLoadingText: "Generating Link")
-                CreateDynamicLink().makeLink(doctorId: self.doctorViewModel.doctor.serviceProviderID, doctorName: self.doctorViewModel.serviceProviderName, profilePicURL: self.doctorViewModel.doctor.profilePictureURL ?? "") { url in
+                CreateDynamicLink().makeLink(doctorId: self.doctorViewModel.ServiceProvider.serviceProviderID, doctorName: self.doctorViewModel.serviceProviderName, profilePicURL: self.doctorViewModel.ServiceProvider.profilePictureURL ?? "") { url in
                     CommonDefaultModifiers.hideLoader()
                     shareSheet(url: url)
                 }

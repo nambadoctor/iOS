@@ -44,7 +44,7 @@ struct DoctorsPatientsCardView: View {
             
             if takeToDetailedView {
                 NavigationLink("",
-                               destination: DetailedDoctorMyPatientView(MyPatientVM: MyPatientViewModel(patientProfile: self.patientObj, organisation: doctorViewModel.selectedOrganization, serviceProvider: doctorViewModel.doctor)),
+                               destination: DetailedDoctorMyPatientView(MyPatientVM: MyPatientViewModel(patientProfile: self.patientObj, organisation: doctorViewModel.selectedOrganization, serviceProvider: doctorViewModel.ServiceProvider)),
                                isActive: self.$takeToDetailedView)
             }
         }

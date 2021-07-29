@@ -18,7 +18,7 @@ struct DoctorIntermediateView: View {
     var body: some View {
         ZStack {
             if intermediateVM.takeToViewAppointment {
-                ViewAppointment()
+                ViewAppointmentForDoctors()
             } else if intermediateVM.takeToDetailedAppointment {
                 EditableAppointmentView()
             }

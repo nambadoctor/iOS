@@ -20,13 +20,13 @@ extension DoctorHome {
 
     func refreshAppointmentsListener () {
         NotificationCenter.default.addObserver(forName: NSNotification.Name("\(DocViewStatesK.refreshAppointmentsChange)"), object: nil, queue: .main) { (_) in
-            doctorViewModel.loadView()
+            serviceProviderVM.loadView()
         }
     }
     
     func refreshFCMTokenListener () {
         NotificationCenter.default.addObserver(forName: NSNotification.Name("\(DocViewStatesK.FCMTokenUpdateChange)"), object: nil, queue: .main) { (_) in
-            doctorViewModel.updateFCMToken()
+            serviceProviderVM.updateFCMToken()
         }
     }
 }

@@ -1,35 +1,35 @@
 //
-//  OrganisationsPatientsView.swift
+//  DoctorsPatientsView.swift
 //  NambaDoctoriOS
 //
-//  Created by Surya Manivannan on 7/24/21.
+//  Created by Surya Manivannan on 21/02/21.
 //
 
 import SwiftUI
 
-struct OrganisationsPatientsView: View {
+struct DoctorsPatientsView: View {
     @EnvironmentObject var doctorViewModel:DoctorViewModel
     @State var takeToAddPatientView:Bool = false
     
     var body: some View {
         ZStack {
             VStack {
-                if doctorViewModel.noOrganisationsPatients {
+                if doctorViewModel.noMyPatients {
                     Text("Looks like you dont have any patients yet")
                 } else {
                     ScrollView {
                         VStack {
-                            ForEach(self.doctorViewModel.organisationsPatients, id: \.CustomerId) { patient in
-                                OrganisationPatientCardView(doctorViewModel: self.doctorViewModel, patientObj: patient)
+                            ForEach(self.doctorViewModel.myPatients, id: \.CustomerId) { patient in
+                                DoctorsPatientsCardView(doctorViewModel: self.doctorViewModel, patientObj: patient)
                             }
                         }
                     }
                     .padding()
                 }
-            }
+            } 
             
             NavigationLink("",
-                           destination: AddPatientView(addPatientVM: AddPatientViewModel(organisation: self.doctorViewModel.selectedOrganization, serviceProvider: self.doctorViewModel.doctor)), isActive: self.$takeToAddPatientView)
+                           destination: AddPatientAndSchedulentermediateView(addPatientVM: AddPatientViewModel(organisation: self.doctorViewModel.selectedOrganization, serviceProvider: self.doctorViewModel.ServiceProvider), showView: self.$takeToAddPatientView), isActive: self.$takeToAddPatientView)
             
             VStack {
                 Spacer()
@@ -50,6 +50,13 @@ struct OrganisationsPatientsView: View {
                 }
             }
             .padding(.bottom, 10)
+        }
+        .onAppear() {
+            if self.doctorViewModel.selectedOrganization == nil {
+                self.doctorViewModel.getMyFreelancePatients()
+            } else {
+                self.doctorViewModel.getPatientOfServiceProviderInOrganisation()
+            }
         }
     }
 }

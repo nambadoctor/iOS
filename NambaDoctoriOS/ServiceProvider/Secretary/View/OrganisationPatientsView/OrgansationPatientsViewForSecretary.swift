@@ -1,35 +1,35 @@
 //
-//  DoctorsPatientsView.swift
+//  OrgansationPatientsViewForSecretary.swift
 //  NambaDoctoriOS
 //
-//  Created by Surya Manivannan on 21/02/21.
+//  Created by Surya Manivannan on 7/28/21.
 //
 
 import SwiftUI
 
-struct DoctorsPatientsView: View {
-    @EnvironmentObject var doctorViewModel:DoctorViewModel
+struct OrgansationPatientsViewForSecretary: View {
+    @EnvironmentObject var secretaryVM:SecretaryViewModel
     @State var takeToAddPatientView:Bool = false
     
     var body: some View {
         ZStack {
             VStack {
-                if doctorViewModel.noMyPatients {
+                if secretaryVM.noOrganisationsPatients {
                     Text("Looks like you dont have any patients yet")
                 } else {
                     ScrollView {
                         VStack {
-                            ForEach(self.doctorViewModel.myPatients, id: \.CustomerId) { patient in
-                                DoctorsPatientsCardView(doctorViewModel: self.doctorViewModel, patientObj: patient)
+                            ForEach(self.secretaryVM.organisationsPatients, id: \.CustomerId) { patient in
+                                OrganisationPatientCardViewForSecretary(secretaryVM: self.secretaryVM, patientObj: patient)
                             }
                         }
                     }
                     .padding()
                 }
-            } 
+            }
             
             NavigationLink("",
-                           destination: AddPatientAndSchedulentermediateView(addPatientVM: AddPatientViewModel(organisation: self.doctorViewModel.selectedOrganization, serviceProvider: self.doctorViewModel.doctor), showView: self.$takeToAddPatientView), isActive: self.$takeToAddPatientView)
+                           destination: AddPatientView(addPatientVM: AddPatientViewModel(organisation: self.secretaryVM.selectedOrganization, serviceProvider: self.secretaryVM.ServiceProvider)), isActive: self.$takeToAddPatientView)
             
             VStack {
                 Spacer()
@@ -50,13 +50,6 @@ struct DoctorsPatientsView: View {
                 }
             }
             .padding(.bottom, 10)
-        }
-        .onAppear() {
-            if self.doctorViewModel.selectedOrganization == nil {
-                self.doctorViewModel.getMyFreelancePatients()
-            } else {
-                self.doctorViewModel.getPatientOfServiceProviderInOrganisation()
-            }
         }
     }
 }

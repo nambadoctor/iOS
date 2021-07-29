@@ -7,9 +7,9 @@
 
 import Foundation
 
-class DoctorViewModel: ObservableObject {
+class DoctorViewModel: ObservableObject { 
     @Published var tabSelection:Int = 0
-    @Published var doctor:ServiceProviderProfile!
+    @Published var ServiceProvider:ServiceProviderProfile!
     @Published var appointments:[ServiceProviderAppointment] = [ServiceProviderAppointment]()
     @Published var availabilities:[ServiceProviderAvailability] = [ServiceProviderAvailability]()
     @Published var myPatients:[ServiceProviderMyPatientProfile] = [ServiceProviderMyPatientProfile]()
@@ -22,13 +22,15 @@ class DoctorViewModel: ObservableObject {
     @Published var hasAppointments:Bool = false
     @Published var noMyPatients:Bool = false
     @Published var noOrganisationsPatients:Bool = false
+    
     @Published var doctorLoggedIn:Bool = false
+    @Published var secretaryLoggedIn:Bool = false
     
     @Published var takeToDetailedAppointment:Bool = false
     @Published var selectedAppointment:ServiceProviderAppointment? = nil
 
     @Published var showEdit:Bool = false
-    @Published var editDoctorVM:EditServiceProviderViewModel = EditServiceProviderViewModel()
+    @Published var editServiceProvider:EditServiceProviderViewModel = EditServiceProviderViewModel()
     @Published var availabilityVM:DoctorAvailabilityViewModel = DoctorAvailabilityViewModel()
     @Published var imageLoader:ImageLoader? = nil
     
@@ -38,20 +40,22 @@ class DoctorViewModel: ObservableObject {
     var serviceProviderServiceCall:ServiceProviderProfileServiceProtocol
     var doctorAppointmentViewModel:ServiceProviderAppointmentServiceProtocol
 
-    init(authenticateService:AuthenticateServiceProtocol = AuthenticateService(),
+    init(serviceProvider:ServiceProviderProfile,
+        authenticateService:AuthenticateServiceProtocol = AuthenticateService(),
          serviceProviderServiceCall:ServiceProviderProfileServiceProtocol = ServiceProviderProfileService(),
          doctorAptVM:ServiceProviderAppointmentServiceProtocol = ServiceProviderAppointmentService()) {
+        self.ServiceProvider = serviceProvider
         self.authenticateService = authenticateService
         self.serviceProviderServiceCall = serviceProviderServiceCall
         self.doctorAppointmentViewModel = doctorAptVM
         
         self.datePickerVM.datePickerDelegate = self
         
-        fetchDoctor()
+        doctorInitCalls()
     }
     
     var serviceProviderName:String {
-        return "\(doctor.firstName ?? "") \(doctor.lastName ?? "")"
+        return "\(ServiceProvider.firstName ?? "") \(ServiceProvider.lastName ?? "")"
     }
     
     var selectedOrgId:String {
@@ -59,36 +63,28 @@ class DoctorViewModel: ObservableObject {
     }
     
     var serviceProviderId:String {
-        return self.doctor.serviceProviderID
+        return self.ServiceProvider.serviceProviderID
     }
     
-
-    func fetchDoctor () {
-        let userId = UserIdHelper().retrieveUserId()
-        serviceProviderServiceCall.getServiceProvider(serviceProviderId: userId) { (serviceProviderObj) in
-            if serviceProviderObj != nil {
-                self.doctor = serviceProviderObj!
-                self.doctorLoggedIn = true
-                
-                self.loadView()
-                
-                self.updateFCMToken()
-                if self.doctor.profilePictureURL != nil {
-                    self.imageLoader = ImageLoader(urlString: self.doctor.profilePictureURL!) { success in }
-                }
-                self.availabilityVM.getAvailabilities(serviceProviderId: self.doctor.serviceProviderID)
-            }
+    func doctorInitCalls () {
+        self.doctorLoggedIn = true
+        self.loadView()
+        
+        self.updateFCMToken()
+        if self.ServiceProvider.profilePictureURL != nil {
+            self.imageLoader = ImageLoader(urlString: self.ServiceProvider.profilePictureURL!) { success in }
         }
+        self.availabilityVM.getAvailabilities(serviceProviderId: self.ServiceProvider.serviceProviderID)
     }
 
     func updateFCMToken () {
         //update FCM Token
-        guard self.doctor != nil else { return
+        guard self.ServiceProvider != nil else { return
         }
         print("UPDATING TOKEN: \(DeviceTokenId)")
         if !DeviceTokenId.isEmpty {
-            let appInfoID:String = self.doctor.applicationInfo?.appInfoID ?? ""
-            ServiceProviderUpdateHelper().UpdateFCMToken(appInfoId: appInfoID, serviceProviderId: self.doctor.serviceProviderID) { response in
+            let appInfoID:String = self.ServiceProvider.applicationInfo?.appInfoID ?? ""
+            ServiceProviderUpdateHelper().UpdateFCMToken(appInfoId: appInfoID, serviceProviderId: self.ServiceProvider.serviceProviderID) { response in
                 if response != nil {
                     LoggerService().log(eventName: "SUCCESSFULLY UPDATED SERVICE PROVIDER FCM TOKEN")
                 }
@@ -96,9 +92,9 @@ class DoctorViewModel: ObservableObject {
         }
     }
 
-    func updateDoctor () {
-        self.doctor.serviceProviderDeviceInfo = DeviceHelper.getDeviceInfo()
-        self.serviceProviderServiceCall.setServiceProvider(serviceProvider: self.doctor) { (response) in
+    func updateServiceProvider () {
+        self.ServiceProvider.serviceProviderDeviceInfo = DeviceHelper.getDeviceInfo()
+        self.serviceProviderServiceCall.setServiceProvider(serviceProvider: self.ServiceProvider) { (response) in
             if response != nil {
                 print("SERVICE PROVIDER UPDATE SUCCESS \(response)")
             }
@@ -121,8 +117,8 @@ class DoctorViewModel: ObservableObject {
     
     
     func getServiceProvidersOrganizations () {
-        if self.doctor.organisationIds != nil {
-            ServiceProviderOrganizationService().getServiceProviderSpecificOrganizations(orgIds: self.doctor.organisationIds!) { organisations in
+        if self.ServiceProvider.organisationIds != nil {
+            ServiceProviderOrganizationService().getServiceProviderSpecificOrganizations(orgIds: self.ServiceProvider.organisationIds!) { organisations in
                 if organisations != nil && !organisations!.isEmpty {
                     self.organisations = organisations!
                 } else {
@@ -135,7 +131,7 @@ class DoctorViewModel: ObservableObject {
     func retrieveAppointmentsForNambaDoctor () {
         CommonDefaultModifiers.showLoader(incomingLoadingText: "Getting your appointments")
         
-        doctorAppointmentViewModel.getOrganisationAppointmentsOfServiceProvider(organisationId: self.doctor.serviceProviderID) { (appointments) in
+        doctorAppointmentViewModel.getOrganisationAppointmentsOfServiceProvider(organisationId: self.ServiceProvider.serviceProviderID) { (appointments) in
             if appointments != nil {
                 self.appointments.removeAll()
                 self.appointments = appointments!
@@ -146,17 +142,6 @@ class DoctorViewModel: ObservableObject {
             self.checkForEmptyList()
             self.getNotificationSelectedAppointment()
         }
-//        doctorAppointmentViewModel.getDocAppointments(serviceProviderId: doctor.serviceProviderID) { (appointments) in
-//            if appointments != nil {
-//                self.appointments.removeAll()
-//                self.appointments = appointments!
-//                self.datePickerVM.setDatesWithAppointments(appointments: appointments!)
-//                self.dateChanged(selectedDate: self.datePickerVM.selectedDate)
-//                CommonDefaultModifiers.hideLoader()
-//            }
-//            self.checkForEmptyList()
-//            self.getNotificationSelectedAppointment()
-//        }
     }
     
     func retrieveAppointmentsForOrganization () {
@@ -191,7 +176,7 @@ class DoctorViewModel: ObservableObject {
     }
     
     func getMyFreelancePatients () {
-        ServiceProviderCustomerService().GetCustomersOfServiceProviderInOrganisation(organisation: self.doctor.serviceProviderID, serviceProviderId: self.doctor.serviceProviderID)  { listOfPatients in
+        ServiceProviderCustomerService().GetCustomersOfServiceProviderInOrganisation(organisation: self.ServiceProvider.serviceProviderID, serviceProviderId: self.ServiceProvider.serviceProviderID)  { listOfPatients in
             if listOfPatients != nil && !(listOfPatients?.isEmpty ?? true) {
                 self.noMyPatients = false
                 self.myPatients = listOfPatients!
@@ -200,9 +185,9 @@ class DoctorViewModel: ObservableObject {
             }
         }
     }
-
+ 
     func getPatientsOfOrganizations () {
-        ServiceProviderCustomerService().getCustomersOfOrganisation(organisation: self.selectedOrganization!.organisationId, serviceProviderId: self.doctor.serviceProviderID) { listOfOrganisationsPatients in
+        ServiceProviderCustomerService().getCustomersOfOrganisation(organisation: self.selectedOrganization!.organisationId, serviceProviderId: self.ServiceProvider.serviceProviderID) { listOfOrganisationsPatients in
             if listOfOrganisationsPatients != nil && !(listOfOrganisationsPatients?.isEmpty ?? true){
                 self.noOrganisationsPatients = false
                 self.organisationsPatients = listOfOrganisationsPatients!
@@ -213,7 +198,7 @@ class DoctorViewModel: ObservableObject {
     }
     
     func getPatientOfServiceProviderInOrganisation () {
-        ServiceProviderCustomerService().GetCustomersOfServiceProviderInOrganisation(organisation: self.selectedOrganization!.organisationId, serviceProviderId: self.doctor.serviceProviderID)  { listOfPatients in
+        ServiceProviderCustomerService().GetCustomersOfServiceProviderInOrganisation(organisation: self.selectedOrganization!.organisationId, serviceProviderId: self.ServiceProvider.serviceProviderID)  { listOfPatients in
             if listOfPatients != nil && !(listOfPatients?.isEmpty ?? true) {
                 self.noMyPatients = false
                 self.myPatients = listOfPatients!
@@ -233,27 +218,27 @@ class DoctorViewModel: ObservableObject {
         
         CommonDefaultModifiers.showLoader(incomingLoadingText: "Saving Profile")
         
-        if editDoctorVM.imagePickerViewModel.image != nil {
+        if editServiceProvider.imagePickerViewModel.image != nil {
             //upload to firebase and update url here...
         }
         
-        if !editDoctorVM.AppointmentDuration.isEmpty {
-            doctor.appointmentDuration = Int32(editDoctorVM.AppointmentDuration)!
+        if !editServiceProvider.AppointmentDuration.isEmpty {
+            ServiceProvider.appointmentDuration = Int32(editServiceProvider.AppointmentDuration)!
         }
         
-        if !editDoctorVM.ServiceFee.isEmpty {
-            doctor.serviceFee = Double(editDoctorVM.ServiceFee)!
+        if !editServiceProvider.ServiceFee.isEmpty {
+            ServiceProvider.serviceFee = Double(editServiceProvider.ServiceFee)!
         }
         
-        if !editDoctorVM.TimeIntervalBetweenAppointments.isEmpty {
-            doctor.intervalBetweenAppointment = Int32(editDoctorVM.TimeIntervalBetweenAppointments)!
+        if !editServiceProvider.TimeIntervalBetweenAppointments.isEmpty {
+            ServiceProvider.intervalBetweenAppointment = Int32(editServiceProvider.TimeIntervalBetweenAppointments)!
         }
         
-        if !editDoctorVM.FollowUpServiceFee.isEmpty {
-            doctor.followUpServiceFee = Double(editDoctorVM.FollowUpServiceFee)!
+        if !editServiceProvider.FollowUpServiceFee.isEmpty {
+            ServiceProvider.followUpServiceFee = Double(editServiceProvider.FollowUpServiceFee)!
         }
         
-        updateDoctor()
+        updateServiceProvider()
     }
 
 }

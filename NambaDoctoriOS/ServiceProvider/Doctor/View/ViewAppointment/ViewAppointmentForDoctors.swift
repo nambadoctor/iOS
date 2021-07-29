@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ViewAppointment: View {
+struct ViewAppointmentForDoctors: View {
     
     @EnvironmentObject var intermediateVM:IntermediateAppointmentViewModel
 
@@ -155,6 +155,10 @@ struct ViewAppointment: View {
 
     var details : some View {
         VStack (alignment: .leading, spacing: 10) {
+            
+            CustomerVitalsView()
+                .modifier(DetailedAppointmentViewCardModifier())
+            
             MedicineView()
                 .modifier(DetailedAppointmentViewCardModifier())
             

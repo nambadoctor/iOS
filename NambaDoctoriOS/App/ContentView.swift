@@ -19,7 +19,7 @@ struct ContentView: View {
             VStack {
                 switch loginStatus {
                 case .ServiceProvider:
-                    DoctorHome(doctorViewModel: .init())
+                    ServiceProviderHome(serviceProviderHomeVM: .init())
                 case .Customer:
                     CustomerHome(customerVM: .init())
                 case .NotSignedIn:

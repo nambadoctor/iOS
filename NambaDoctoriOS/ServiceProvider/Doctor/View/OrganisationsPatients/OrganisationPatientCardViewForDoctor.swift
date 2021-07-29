@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct OrganisationPatientCardView: View {
+struct OrganisationPatientCardViewForDoctor: View {
     
     @ObservedObject var doctorViewModel:DoctorViewModel
     var patientObj:ServiceProviderMyPatientProfile
@@ -44,7 +44,7 @@ struct OrganisationPatientCardView: View {
             
             if takeToDetailedView {
                 NavigationLink("",
-                               destination: DetailedDoctorMyPatientView(MyPatientVM: MyPatientViewModel(patientProfile: self.patientObj, organisation: doctorViewModel.selectedOrganization, serviceProvider: doctorViewModel.doctor)),
+                               destination: DetailedDoctorMyPatientView(MyPatientVM: MyPatientViewModel(patientProfile: self.patientObj, organisation: doctorViewModel.selectedOrganization, serviceProvider: doctorViewModel.ServiceProvider)),
                                isActive: self.$takeToDetailedView)
             }
         }
