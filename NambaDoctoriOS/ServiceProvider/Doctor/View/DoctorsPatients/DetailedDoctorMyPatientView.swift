@@ -63,7 +63,7 @@ class MyPatientViewModel : ObservableObject {
     
     var doctorToBook:ServiceProviderProfile? = nil
     @Published var showSelectDoctorView:Bool = false
-    
+     
     var organisation:ServiceProviderOrganisation?
     var serviceProvider:ServiceProviderProfile
 
@@ -103,8 +103,9 @@ class MyPatientViewModel : ObservableObject {
         self.scheduleAppointmentVM = ScheduleAppointmentForPatientViewModel(organisation: self.organisation, serviceProvider: self.doctorToBook!, customer: self.patientProfile, finishedCallback: nil)
         self.takeToScheduleAppointmentView = true
     }
-    
+
     func makeOrganisationsServiceProvidersViewModel() -> OrganisationsServiceProvidersViewModel {
         return OrganisationsServiceProvidersViewModel(orgId: self.organisation?.organisationId ?? "", callBack: selectDoctor)
     }
+
 }

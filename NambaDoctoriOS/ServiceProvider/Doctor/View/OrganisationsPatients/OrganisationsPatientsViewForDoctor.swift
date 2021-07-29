@@ -29,7 +29,7 @@ struct OrganisationsPatientsViewForDoctor: View {
             }
             
             NavigationLink("",
-                           destination: AddPatientView(addPatientVM: AddPatientViewModel(organisation: self.doctorViewModel.selectedOrganization, serviceProvider: self.doctorViewModel.ServiceProvider)), isActive: self.$takeToAddPatientView)
+                           destination: AddPatientAndSchedulentermediateView(addPatientVM: AddPatientViewModel(organisation: self.doctorViewModel.selectedOrganization, serviceProvider: self.doctorViewModel.ServiceProvider), showView: self.$takeToAddPatientView), isActive: self.$takeToAddPatientView)
             
             VStack {
                 Spacer()

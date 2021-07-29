@@ -81,7 +81,7 @@ struct AddPatientView: View {
                             if success {
                                 DoctorAlertHelpers().patientAddedAlert { dismiss, scheduleAppointment in
                                     if scheduleAppointment {
-                                        self.addPatientVM.scheduleAppointmentToggle = true
+                                        self.addPatientVM.takeToScheduleAppointment()
                                     } else {
                                         DoctorDefaultModifiers.refreshAppointments()
                                         self.addPatientVM.finished = true
@@ -92,6 +92,9 @@ struct AddPatientView: View {
                             }
                         }
                     }
+                    .sheet(isPresented: self.$addPatientVM.showSelectDoctorView, content: {
+                        SelectServiceProvidersView(organisationServiceProvidersVM: self.addPatientVM.makeOrganisationsServiceProvidersViewModel())
+                    })
                 }
             }
             .padding()

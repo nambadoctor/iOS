@@ -15,6 +15,9 @@ class AddPatientViewModel: ObservableObject {
     
     @Published var scheduleAppointmentVM:ScheduleAppointmentForPatientViewModel
     
+    var doctorToBook:ServiceProviderProfile? = nil
+    @Published var showSelectDoctorView:Bool = false
+    
     @Published var phoneNumberConfirmed:Bool = false
     @Published var patientAlreadyExists:Bool = false
     
@@ -137,6 +140,25 @@ class AddPatientViewModel: ObservableObject {
         self.age = patientProfile.Age
         self.gender = patientProfile.Gender
         self.lastName = patientProfile.LastName
+    }
+    
+    func takeToScheduleAppointment () {
+        if serviceProvider.serviceProviderType == "Secretary" {
+            self.showSelectDoctorView = true
+        } else {
+            self.scheduleAppointmentToggle = true
+        }
+    }
+    
+    func selectDoctor (doctor:ServiceProviderProfile) {
+        self.showSelectDoctorView = false
+        self.doctorToBook = doctor
+        self.scheduleAppointmentVM.serviceProvider = self.doctorToBook!
+        self.scheduleAppointmentToggle = true
+    }
+
+    func makeOrganisationsServiceProvidersViewModel() -> OrganisationsServiceProvidersViewModel {
+        return OrganisationsServiceProvidersViewModel(orgId: self.organisation?.organisationId ?? "", callBack: selectDoctor)
     }
 }
 
