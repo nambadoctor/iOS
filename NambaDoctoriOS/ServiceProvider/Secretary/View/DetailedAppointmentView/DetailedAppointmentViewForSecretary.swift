@@ -42,8 +42,24 @@ struct DetailedAppointmentViewForSecretary: View {
         .environmentObject(intermediateVM.patientInfoViewModel)
         .background(Color.gray.opacity(0.08))
         .onAppear(){intermediateVM.refreshPrescription()} //MARK:- OPTIMIZE THIS LATER!
+        .navigationBarItems(trailing: saveNavButton)
     }
+    
+    var saveNavButton : some View {
+        Button {
+            CommonDefaultModifiers.showLoader(incomingLoadingText: "Saving Customer Vitals")
+            self.intermediateVM.serviceRequestVM.sendToPatient { success, serviceRequestId in
+                if success {
+                    CommonDefaultModifiers.hideLoader()
+                    DoctorAlertHelpers().customerVitalsSavedAlert()
+                }
+            }
+        } label: {
+            Text("Save")
+        }
 
+    }
+    
     var header : some View {
         VStack (alignment: .leading) {
             

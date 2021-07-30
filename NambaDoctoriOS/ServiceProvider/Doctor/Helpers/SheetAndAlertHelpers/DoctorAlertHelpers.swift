@@ -46,6 +46,12 @@ class DoctorAlertHelpers: DoctorAlertHelpersProtocol {
         CommonDefaultModifiers.showAlert()
     }
     
+    
+    func customerVitalsSavedAlert () {
+        alertTempItem = AlertItem(title: Text("Success"), message: Text("Customer Vitals have been saved"), dismissButton: .default(Text("OK")))
+        CommonDefaultModifiers.showAlert()
+    }
+    
     func twilioConnectToRoomAlert (connect: @escaping (Bool) -> ()) {
         alertTempItem = AlertItem(title: Text("Would you like to connect to the consultation room?"), primaryButton: Alert.Button.cancel({
             docAutoNav.clearAllValues()
