@@ -59,6 +59,7 @@ class SecretaryViewModel: ObservableObject {
     }
     
     func loadView () {
+        CommonDefaultModifiers.showLoader(incomingLoadingText: "Retrieving Appointments")
         self.getPatientsOfOrganizations()
         self.getOrganisationAppointments()
     }
@@ -77,7 +78,6 @@ class SecretaryViewModel: ObservableObject {
     func getOrganisationAppointments () {
         ServiceProviderAppointmentService().getOrganisationAppointments(organisationId: selectedOrganization!.organisationId) { appointments in
             if appointments != nil {
-                print("GOT APPOINTMENTSSSSSSSSSSS: \(appointments)")
                 self.organisationsAppointments.removeAll()
                 self.organisationsAppointments = appointments!
                 self.datePickerVM.setDatesWithAppointments(appointments: appointments!)

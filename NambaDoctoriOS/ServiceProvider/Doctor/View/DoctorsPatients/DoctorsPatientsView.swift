@@ -24,7 +24,6 @@ struct DoctorsPatientsView: View {
                             }
                         }
                     }
-                    .padding()
                 }
             } 
             

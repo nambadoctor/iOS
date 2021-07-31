@@ -38,6 +38,13 @@ struct SecretaryHomeView: View {
             .navigationBarTitle("", displayMode: .inline)
             .navigationBarItems(leading: navBarOrganizationPicker, trailing: navBarRefreshButton)
         }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)) { _ in
+            AuthTokenTimeOutHelper().refresh {
+                if !docAutoNav.currenltyInIntermediateView {
+                    DoctorDefaultModifiers.refreshAppointments()
+                }
+            }
+        }
         .onAppear() {
             showAlertListener()
             refreshAppointmentsListener()

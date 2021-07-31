@@ -92,7 +92,8 @@ struct AppointmentCard: View {
                     }
                 }
 
-            }.padding()
+            }
+            .padding()
             
         }
         .background(Color.white)

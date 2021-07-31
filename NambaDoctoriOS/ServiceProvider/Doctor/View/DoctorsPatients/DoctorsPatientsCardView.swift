@@ -32,12 +32,11 @@ struct DoctorsPatientsCardView: View {
                 Spacer()
             }
             .padding()
-            .background(Color.blue.opacity(0.2))
+            .background(Color.white)
             .cornerRadius(10)
-            .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.blue.opacity(0.5), lineWidth: 1)
-                )
+            .shadow(radius: 5)
+            .padding(.horizontal)
+            .padding(.top, 5)
             .onTapGesture {
                 self.takeToDetailedView.toggle()
             }

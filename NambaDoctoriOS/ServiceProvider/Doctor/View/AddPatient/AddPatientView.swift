@@ -74,7 +74,10 @@ struct AddPatientView: View {
                         ExpandingTextEntryView(text: self.$addPatientVM.age, keyboardType: .numberPad)
                     }
                     
-                    Text("If you would like to book appointment, you can do so after creating patient profile")
+                    
+                    if !self.addPatientVM.patientAlreadyExists {
+                        Text("If you would like to book appointment, you can do so after creating patient profile")
+                    }
                     
                     LargeButton(title: self.addPatientVM.patientAlreadyExists ? "Confirm and Schedule Appointment" : "Confirm") {
                         self.addPatientVM.confirm { success in
