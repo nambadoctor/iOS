@@ -19,10 +19,14 @@ class CustomerViewModel : ObservableObject {
     @Published var allServiceProviders:[CustomerServiceProviderProfile] = [CustomerServiceProviderProfile]()
     @Published var serviceProvidersToDisplay:[CustomerServiceProviderProfile] = [CustomerServiceProviderProfile]()
     
-    @Published var serviceProviderCategories:[SpecialtyCategory] = [SpecialtyCategory]()
+    @Published var organisationsToDisplay:[CustomerOrganization] = [CustomerOrganization]()
+    @Published var organisations:[CustomerOrganization] = [CustomerOrganization]()
     
-    @Published var selectedCategory:SpecialtyCategory = SpecialtyCategory(SpecialityId: "", SpecialityName: "All Doctors", SpecialityThumbnail: "")
+    @Published var specialtyCategories:[Category] = [Category]()
+    
+    @Published var selectedCategory:Category = Category(CategoryId: "", CategoryName: "All Doctors", CategoryThumbnail: "")
     @Published var noDoctorForCategory:Bool = false
+    @Published var noOrganisationForCategory:Bool = false
     
     @Published var takeToBookDoc:Bool = false
     var selectedDoctor:CustomerServiceProviderProfile? = nil
@@ -40,6 +44,9 @@ class CustomerViewModel : ObservableObject {
     @Published var showAddChildInstructions:Bool = false
     
     @Published var addChildProfileVM:AddChildProfileViewModel = AddChildProfileViewModel()
+    
+    @Published var searchForHospitals:Bool = false
+    @Published var searchForDoctors:Bool = true
     
     var customerProfileService:CustomerProfileServiceProtocol
     var customerAppointmentService:CustomerAppointmentServiceProtocol
@@ -60,6 +67,7 @@ class CustomerViewModel : ObservableObject {
             self.customerLoggedIn = true
             self.retrieveCustomerAppointments()
             self.retrieveServiceProviders()
+            self.retrieveOrganisations()
             self.updateFCMToken()
 
             if self.customerProfile!.profilePicURL != nil && self.customerProfile!.profilePicURL!.isEmpty {
@@ -71,7 +79,7 @@ class CustomerViewModel : ObservableObject {
         
         customerServiceProviderService.getAllServiceProviderCategories { categories in
             if categories != nil {
-                self.serviceProviderCategories = categories!
+                self.specialtyCategories = categories!
                 self.selectedCategory = categories![0]
             }
         }
@@ -188,6 +196,14 @@ class CustomerViewModel : ObservableObject {
         }
     }
     
+    func retrieveOrganisations () {
+        CustomerOrganizationService().getCustomerOrganizations(customerId: UserIdHelper().retrieveUserId()) { organisations in
+            if organisations != nil {
+                self.organisations = organisations!
+            }
+        }
+    }
+    
     func retrieveServiceProviders () {
         customerServiceProviderService.getAllServiceProvider(customerId: customerProfile!.customerID) { (serviceProviders) in
             if serviceProviders != nil && !serviceProviders!.isEmpty {
@@ -236,16 +252,16 @@ class CustomerViewModel : ObservableObject {
     func doctorsExistForCategory () {
         self.noDoctorForCategory = false
         self.serviceProvidersToDisplay.removeAll()
-        if self.selectedCategory.SpecialityName == "All Doctors" {
+        if self.selectedCategory.CategoryName == "All Doctors" {
             self.serviceProvidersToDisplay = self.allServiceProviders
         }
-        
+
         for serviceProvider in self.allServiceProviders {
             var appendedForCategory:Bool = false
-            if serviceProvider.additionalInfo.Symptoms.contains(where: {$0.caseInsensitiveCompare(self.selectedCategory.SpecialityName) == .orderedSame}) ||
-                serviceProvider.additionalInfo.Designation.contains(where: {$0.caseInsensitiveCompare(self.selectedCategory.SpecialityName) == .orderedSame}) ||
-                serviceProvider.additionalInfo.Specialties.contains(where: {$0.caseInsensitiveCompare(self.selectedCategory.SpecialityName) == .orderedSame}) ||
-                serviceProvider.additionalInfo.Categories.contains(where: {$0.caseInsensitiveCompare(self.selectedCategory.SpecialityName) == .orderedSame}) &&
+            if serviceProvider.additionalInfo.Symptoms.contains(where: {$0.caseInsensitiveCompare(self.selectedCategory.CategoryName) == .orderedSame}) ||
+                serviceProvider.additionalInfo.Designation.contains(where: {$0.caseInsensitiveCompare(self.selectedCategory.CategoryName) == .orderedSame}) ||
+                serviceProvider.additionalInfo.Specialties.contains(where: {$0.caseInsensitiveCompare(self.selectedCategory.CategoryName) == .orderedSame}) ||
+                serviceProvider.additionalInfo.Categories.contains(where: {$0.caseInsensitiveCompare(self.selectedCategory.CategoryName) == .orderedSame}) &&
                 !appendedForCategory {
                 self.serviceProvidersToDisplay.append(serviceProvider)
                 appendedForCategory = true
@@ -256,13 +272,35 @@ class CustomerViewModel : ObservableObject {
             self.noDoctorForCategory = true
         }
     }
+    
+    func organisationsExistForCategory () {
+        self.noOrganisationForCategory = false
+        self.organisationsToDisplay.removeAll()
+        if self.selectedCategory.CategoryName == "All Hospitals" {
+            self.organisationsToDisplay = self.organisations
+        }
+        for organisation in organisations {
+            if organisation.specialities.contains(where: {$0.caseInsensitiveCompare(self.selectedCategory.CategoryName) == .orderedSame}) {
+                self.organisationsToDisplay.append(organisation)
+            }
+        }
+
+        if self.organisationsToDisplay.count == 0 {
+            self.noOrganisationForCategory = true
+        }
+    }
+
 
     func addChildCallBack() {
         self.fetchCustomerProfile { _ in }
     }
 
     func categoryChangedCallback () {
-        doctorsExistForCategory()
+        if searchForDoctors {
+            doctorsExistForCategory()
+        } else if searchForHospitals {
+            organisationsExistForCategory()
+        }
     }
     
     func expandAddChildHeader () {
@@ -290,6 +328,19 @@ class CustomerViewModel : ObservableObject {
     
     func addNewChild () {
         self.addChildProfileVM.showSheet = true
+    }
+    
+    
+    
+    func setSearchForHospitals() {
+        self.specialtyCategories[0].CategoryName = "All Hospitals"
+        self.searchForHospitals = true
+        self.searchForDoctors = false
+    }
+    
+    func setSearchForDoctors() {
+        self.searchForHospitals = false
+        self.searchForDoctors = true
     }
 }
 

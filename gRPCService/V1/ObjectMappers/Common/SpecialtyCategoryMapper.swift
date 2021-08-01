@@ -8,14 +8,14 @@
 import Foundation
 
 class SpecialtyCategoryMapper {
-    func GrpcToLocalCategory (category:Nd_V1_CategoryMessage) -> SpecialtyCategory {
-        return SpecialtyCategory(SpecialityId: category.id.toString,
-                                 SpecialityName: category.specialityName.toString,
-                                 SpecialityThumbnail: category.specialityThumbnail.toString)
+    func GrpcToLocalCategory (category:Nd_V1_CategoryMessage) -> Category {
+        return Category(CategoryId: category.id.toString,
+                                 CategoryName: category.specialityName.toString,
+                                 CategoryThumbnail: category.specialityThumbnail.toString)
     }
     
-    func GrpcToLocalCategory (categories:[Nd_V1_CategoryMessage]) -> [SpecialtyCategory] {
-        var localCategoriesList:[SpecialtyCategory] = [SpecialtyCategory]()
+    func GrpcToLocalCategory (categories:[Nd_V1_CategoryMessage]) -> [Category] {
+        var localCategoriesList:[Category] = [Category]()
         
         for category in categories {
             localCategoriesList.append(GrpcToLocalCategory(category: category))

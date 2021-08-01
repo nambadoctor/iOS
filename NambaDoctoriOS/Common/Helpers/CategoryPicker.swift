@@ -8,19 +8,19 @@
 import SwiftUI
 
 struct CategoryPicker : View {
-    @Binding var categoriesList:[SpecialtyCategory]
-    @Binding var selectedCategory:SpecialtyCategory
+    @Binding var categoriesList:[Category]
+    @Binding var selectedCategory:Category
     var categoryChanged:()->()
     
     var body: some View {
         HStack {
             ScrollView (.horizontal, showsIndicators: false) {
                 LazyHStack {
-                    ForEach (self.categoriesList, id: \.SpecialityName) {category in
+                    ForEach (self.categoriesList, id: \.CategoryName) {category in
                         HStack {
-                            ImageViewWithNoSheet(url: category.SpecialityThumbnail, height: 30, width: 30)
+                            ImageViewWithNoSheet(url: category.CategoryThumbnail, height: 30, width: 30)
                             
-                            Text(category.SpecialityName)
+                            Text(category.CategoryName)
                                 .foregroundColor(category == self.selectedCategory ? Color.white : .black)
 
                         }

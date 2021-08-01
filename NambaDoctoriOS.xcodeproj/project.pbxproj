@@ -120,7 +120,7 @@
 		172FA70C261F125600D14545 /* ServiceProviderCustomerMedicalHistoryMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172FA70B261F125600D14545 /* ServiceProviderCustomerMedicalHistoryMapper.swift */; };
 		172FA711261F126800D14545 /* ServiceProviderCustomerAllergyMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172FA710261F126800D14545 /* ServiceProviderCustomerAllergyMapper.swift */; };
 		172FA7192620F2BE00D14545 /* LetterOnColoredCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172FA7182620F2BE00D14545 /* LetterOnColoredCircle.swift */; };
-		1730289126621A4E00E9F5F3 /* SpecialtyCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1730289026621A4E00E9F5F3 /* SpecialtyCategory.swift */; };
+		1730289126621A4E00E9F5F3 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1730289026621A4E00E9F5F3 /* Category.swift */; };
 		1730289326621A7900E9F5F3 /* SpecialtyCategoryMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1730289226621A7900E9F5F3 /* SpecialtyCategoryMapper.swift */; };
 		173028A12664AB4100E9F5F3 /* CustomerIntakeDosage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173028A02664AB4100E9F5F3 /* CustomerIntakeDosage.swift */; };
 		173028A32664AB6200E9F5F3 /* ServiceProviderIntakeDosage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173028A22664AB6200E9F5F3 /* ServiceProviderIntakeDosage.swift */; };
@@ -580,7 +580,7 @@
 		172FA70B261F125600D14545 /* ServiceProviderCustomerMedicalHistoryMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderCustomerMedicalHistoryMapper.swift; sourceTree = "<group>"; };
 		172FA710261F126800D14545 /* ServiceProviderCustomerAllergyMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderCustomerAllergyMapper.swift; sourceTree = "<group>"; };
 		172FA7182620F2BE00D14545 /* LetterOnColoredCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LetterOnColoredCircle.swift; sourceTree = "<group>"; };
-		1730289026621A4E00E9F5F3 /* SpecialtyCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialtyCategory.swift; sourceTree = "<group>"; };
+		1730289026621A4E00E9F5F3 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		1730289226621A7900E9F5F3 /* SpecialtyCategoryMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialtyCategoryMapper.swift; sourceTree = "<group>"; };
 		173028A02664AB4100E9F5F3 /* CustomerIntakeDosage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerIntakeDosage.swift; sourceTree = "<group>"; };
 		173028A22664AB6200E9F5F3 /* ServiceProviderIntakeDosage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderIntakeDosage.swift; sourceTree = "<group>"; };
@@ -1507,7 +1507,7 @@
 				171646722602B28F00BB5B5A /* NotificationRequest.swift */,
 				171646962602B4CF00BB5B5A /* PhoneNumber.swift */,
 				1758E1F6265A57C60012E571 /* DeviceInformation.swift */,
-				1730289026621A4E00E9F5F3 /* SpecialtyCategory.swift */,
+				1730289026621A4E00E9F5F3 /* Category.swift */,
 				1747F8A1266D9D0000AEA532 /* RatingAndReview.swift */,
 			);
 			path = Common;
@@ -2692,7 +2692,7 @@
 				1765BD072639185C0087664D /* LoggerService.swift in Sources */,
 				1728B76D25B38156001D554E /* Logon.swift in Sources */,
 				179C44E42628C86D0073F4E0 /* DoctorChatRoomView.swift in Sources */,
-				1730289126621A4E00E9F5F3 /* SpecialtyCategory.swift in Sources */,
+				1730289126621A4E00E9F5F3 /* Category.swift in Sources */,
 				17AE6D3325E24DA400B18292 /* RetrieveDoctorsPatientsServiceProtocol.swift in Sources */,
 				17E3707025BF123F0004C965 /* Settings.swift in Sources */,
 				171646732602B28F00BB5B5A /* NotificationRequest.swift in Sources */,
@@ -3139,7 +3139,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NambaDoctoriOS/NambaDoctoriOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 41;
+				CURRENT_PROJECT_VERSION = 42;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"NambaDoctoriOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 4H9M6DGZQ3;
@@ -3150,7 +3150,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.41;
+				MARKETING_VERSION = 1.42;
 				PRODUCT_BUNDLE_IDENTIFIER = nambadoctor.iOS.NambaDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -3166,7 +3166,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = NambaDoctoriOS/NambaDoctoriOS.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 41;
+				CURRENT_PROJECT_VERSION = 42;
 				DEVELOPMENT_ASSET_PATHS = "\"NambaDoctoriOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 4H9M6DGZQ3;
 				ENABLE_PREVIEWS = YES;
@@ -3176,7 +3176,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.41;
+				MARKETING_VERSION = 1.42;
 				PRODUCT_BUNDLE_IDENTIFIER = nambadoctor.iOS.NambaDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

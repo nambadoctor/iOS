@@ -15,47 +15,12 @@ struct BookDoctorView: View {
         VStack {
             if !customerVM.allServiceProviders.isEmpty {
                 ScrollView {
-                    if !self.customerVM.dontShowChildBookingHeader {
-                        Button {
-                            self.customerVM.expandAddChildHeader()
-                        } label: {
-                            VStack (alignment: .center) {
-                                if customerVM.showAddChildInstructions {
-                                    VStack (alignment: .leading, spacing: 10) {
-                                        Text("You can book an appointment for anybody even if they don't have a smart phone!")
-                                            .fixedSize(horizontal: false, vertical: true).multilineTextAlignment(.leading)
-                                        Text("1) Select any doctor you want to book an appointment for")
-                                            .fixedSize(horizontal: false, vertical: true).multilineTextAlignment(.leading)
-                                        Text("2) Create a profile for whoever you are booking for")
-                                            .fixedSize(horizontal: false, vertical: true).multilineTextAlignment(.leading)
-                                        
-                                        Button(action: {
-                                            self.customerVM.collapseChildHeader()
-                                        }, label: {
-                                            Text("Got It!")
-                                                .underline()
-                                                .bold()
-                                        })
-                                        
-                                    }.padding(.horizontal)
-                                } else {
-                                    HStack {
-                                        Spacer()
-                                        Text("Booking for someone else?")
-                                            .bold()
-                                        Text("Click here")
-                                            .underline()
-                                            .bold()
-                                        Spacer()
-                                    }
-                                }
-                            }
-                        }
-                        .padding(.vertical)
-                        .background(Color.blue.opacity(0.2))
-                    }
                     
-                    CategoryPicker(categoriesList: self.$customerVM.serviceProviderCategories, selectedCategory: self.$customerVM.selectedCategory, categoryChanged: self.customerVM.categoryChangedCallback)
+                    searchForHospitalsOrDoctorsToggle
+                    
+                    bookingForChildHeader
+                    
+                    CategoryPicker(categoriesList: self.$customerVM.specialtyCategories, selectedCategory: self.$customerVM.selectedCategory, categoryChanged: self.customerVM.categoryChangedCallback)
                         .frame(height: 45)
                         .padding(.top)
                     
@@ -65,15 +30,28 @@ struct BookDoctorView: View {
                             Image("figure.walk")
                                 .scaleEffect(3)
                                 .padding()
-                            Text("Coming Soon! There are currently no doctors available for this specialty.")
-                                .fixedSize(horizontal: false, vertical: true)
-                                .multilineTextAlignment(.center)
+                            if self.customerVM.searchForHospitals {
+                                Text("Coming Soon! There are currently no hospitals available for this specialty.")
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .multilineTextAlignment(.center)
+                            }
+                            if self.customerVM.searchForDoctors {
+                                Text("Coming Soon! There are currently no doctors available for this specialty.")
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .multilineTextAlignment(.center)
+                            }
                         }.padding()
                     } else {
-                        ForEach(customerVM.serviceProvidersToDisplay, id: \.serviceProviderID) { serviceProvider in
-                            BookDoctorCard(customerServiceProviderVM: CustomerServiceProviderViewModel(serviceProvider: serviceProvider, customerProfile: self.customerVM.customerProfile!, callBack: self.customerVM.selectDoctorToBook(doctor:)))
+                        if self.customerVM.searchForDoctors {
+                            ForEach(customerVM.serviceProvidersToDisplay, id: \.serviceProviderID) { serviceProvider in
+                                BookDoctorCard(customerServiceProviderVM: CustomerServiceProviderViewModel(serviceProvider: serviceProvider, customerProfile: self.customerVM.customerProfile!, callBack: self.customerVM.selectDoctorToBook(doctor:)))
+                            }
+                            .padding(.bottom)
+                        } else if self.customerVM.searchForHospitals {
+                            ForEach(customerVM.organisationsToDisplay, id: \.organisationId) { org in
+                                Text(org.name)
+                            }
                         }
-                        .padding(.bottom)
                     }
                 }
             } else {
@@ -89,6 +67,64 @@ struct BookDoctorView: View {
         }
         .onAppear() {
             self.customerVM.fetchCustomerProfile { _ in }
+        }
+    }
+    
+    var searchForHospitalsOrDoctorsToggle : some View {
+        VStack {
+            if self.customerVM.searchForDoctors {
+                LargeButton(title: "Search Hospitals") {
+                    self.customerVM.setSearchForHospitals()
+                }
+            } else if self.customerVM.searchForHospitals {
+                LargeButton(title: "Search Doctors") {
+                    self.customerVM.setSearchForDoctors()
+                }
+            }
+        }
+    }
+    
+    var bookingForChildHeader : some View {
+        VStack {
+            if !self.customerVM.dontShowChildBookingHeader {
+                Button {
+                    self.customerVM.expandAddChildHeader()
+                } label: {
+                    VStack (alignment: .center) {
+                        if customerVM.showAddChildInstructions {
+                            VStack (alignment: .leading, spacing: 10) {
+                                Text("You can book an appointment for anybody even if they don't have a smart phone!")
+                                    .fixedSize(horizontal: false, vertical: true).multilineTextAlignment(.leading)
+                                Text("1) Select any doctor you want to book an appointment for")
+                                    .fixedSize(horizontal: false, vertical: true).multilineTextAlignment(.leading)
+                                Text("2) Create a profile for whoever you are booking for")
+                                    .fixedSize(horizontal: false, vertical: true).multilineTextAlignment(.leading)
+                                
+                                Button(action: {
+                                    self.customerVM.collapseChildHeader()
+                                }, label: {
+                                    Text("Got It!")
+                                        .underline()
+                                        .bold()
+                                })
+                                
+                            }.padding(.horizontal)
+                        } else {
+                            HStack {
+                                Spacer()
+                                Text("Booking for someone else?")
+                                    .bold()
+                                Text("Click here")
+                                    .underline()
+                                    .bold()
+                                Spacer()
+                            }
+                        }
+                    }
+                }
+                .padding(.vertical)
+                .background(Color.blue.opacity(0.2))
+            }
         }
     }
 }
