@@ -335,14 +335,19 @@ class CustomerViewModel : ObservableObject {
     
     func setSearchForHospitals() {
         self.specialtyCategories[0].CategoryName = "All Hospitals"
-        self.categoryChangedCallback()
+        self.selectedCategory = self.specialtyCategories[0]
         self.searchForHospitals = true
         self.searchForDoctors = false
+        self.categoryChangedCallback()
     }
     
     func setSearchForDoctors() {
+        self.specialtyCategories[0].CategoryName = "All Doctors"
+        self.selectedCategory = self.specialtyCategories[0]
         self.searchForHospitals = false
         self.searchForDoctors = true
+        self.categoryChangedCallback()
+
     }
     
     func selectOrganisation (organisation:CustomerOrganization) {
