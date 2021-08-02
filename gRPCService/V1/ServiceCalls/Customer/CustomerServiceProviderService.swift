@@ -101,7 +101,7 @@ class CustomerServiceProviderService : CustomerServiceProviderServiceProtocol {
             do {
                 let response = try getServiceProviderSlots.response.wait()
                 let slots = self.serviceProviderSlotMapper.grpcSlotToLocal(slots: response.slots)
-                print("Get ServiceProviderSlots Client Success \(slots.count)")
+                print("Get ServiceProviderSlots Client Success \(slots)")
                 DispatchQueue.main.async {
                     completion(slots)
                 }

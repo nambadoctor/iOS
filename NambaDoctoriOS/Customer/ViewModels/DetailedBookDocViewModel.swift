@@ -191,7 +191,7 @@ class DetailedBookDocViewModel : ObservableObject {
                                                       customerName: "",
                                                       isBlockedByServiceProvider: false,
                                                       status: "Confirmed",
-                                                      serviceFee: self.serviceProvider.serviceFee,
+                                                      serviceFee: self.availabilityVM.selectedSlot?.serviceFees ?? 0,
                                                       followUpDays: 0,
                                                       isPaid: false,
                                                       scheduledAppointmentStartTime: self.availabilityVM.selectedSlot?.startDateTime ?? 0,

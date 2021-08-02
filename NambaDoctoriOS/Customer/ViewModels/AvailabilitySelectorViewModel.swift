@@ -10,6 +10,7 @@ import Foundation
 class AvailabilitySelectorViewModel : ObservableObject {
     
     var slots:[CustomerGeneratedSlot]? = nil
+    var filteredSlots:[CustomerGeneratedSlot] = [CustomerGeneratedSlot]()
     
     @Published var dateDisplay:[Int64] = [Int64]()
     @Published var timeDisplay:[Int64] = [Int64]()
@@ -20,6 +21,9 @@ class AvailabilitySelectorViewModel : ObservableObject {
     @Published var isPrePaySlot:Bool = false
     
     @Published var noAvailabilities:Bool = false
+    
+    @Published var noInPersonSlots:Bool = false
+    @Published var noOnlineSlots:Bool = false
 
     var serviceProviderID:String
     
@@ -32,10 +36,11 @@ class AvailabilitySelectorViewModel : ObservableObject {
         CustomerServiceProviderService().getServiceProviderAvailabilities(serviceProviderId: serviceProviderID) { (slots) in
             if slots != nil && !slots!.isEmpty {
                 self.slots = slots!
+                self.filteredSlots = slots!
                 self.selectedDate = self.slots![0].startDateTime
                 self.selectedTime = self.slots![0].startDateTime
-                self.getTimesForSelectedDates(selectedDate: self.selectedDate)
-                self.parseSlots()
+                self.parseSlots(slots: self.slots!)
+                self.getTimesForSelectedDates(selectedDate: self.selectedDate, slots: self.slots!)
                 CommonDefaultModifiers.hideLoader()
             } else {
                 CommonDefaultModifiers.hideLoader()
@@ -44,8 +49,58 @@ class AvailabilitySelectorViewModel : ObservableObject {
         }
     }
     
-    func parseSlots () {
-        for slot in slots! {
+    func getOnlyOnlineSlots () {
+        clearNoSlotBools()
+        self.filteredSlots.removeAll()
+        for slot in self.slots! {
+            if !slot.isOrganisationSlot {
+                self.filteredSlots.append(slot)
+            }
+        }
+
+        guard !self.filteredSlots.isEmpty else {
+            self.noInPersonSlots = false
+            noOnlineSlots = true
+            return
+        }
+        
+        setFilterSlots()
+    }
+    
+    func getOnlyInPersonSlots () {
+        clearNoSlotBools()
+        self.filteredSlots.removeAll()
+        for slot in self.slots! {
+            if slot.isOrganisationSlot {
+                self.filteredSlots.append(slot)
+            }
+        }
+
+        guard !self.filteredSlots.isEmpty else {
+            self.noOnlineSlots = false
+            noInPersonSlots = true
+            return
+        }
+        
+        setFilterSlots()
+    }
+    
+    func clearNoSlotBools () {
+        self.noOnlineSlots = false
+        self.noInPersonSlots = false
+    }
+    
+    func setFilterSlots () {
+        self.dateDisplay.removeAll()
+        self.timeDisplay.removeAll()
+        self.selectedDate = self.filteredSlots[0].startDateTime
+        self.selectedTime = self.filteredSlots[0].startDateTime
+        self.parseSlots(slots: self.filteredSlots)
+        self.getTimesForSelectedDates(selectedDate: self.selectedDate, slots: self.filteredSlots)
+    }
+    
+    func parseSlots (slots:[CustomerGeneratedSlot]) {
+        for slot in slots {
             if !Helpers.compareDate(dates: dateDisplay, toCompareDate: slot.startDateTime) {
                 if !self.dateDisplay.contains(slot.startDateTime) {
                     dateDisplay.append(slot.startDateTime)
@@ -55,13 +110,9 @@ class AvailabilitySelectorViewModel : ObservableObject {
     }
     
     func checkIfInPersonSlot () -> Bool {
-        if selectedSlot!.addressId.isEmpty {
-            return false
-        } else {
-            return true
-        }
+        return selectedSlot!.isOrganisationSlot
     }
-    
+
     func getCorrespondingSlot (timestamp:Int64) -> CustomerGeneratedSlot? {
         for slot in slots! {
             if slot.startDateTime == timestamp {
@@ -72,20 +123,21 @@ class AvailabilitySelectorViewModel : ObservableObject {
         return nil
     }
     
-    func getTimesForSelectedDates (selectedDate:Int64) {
+    func getTimesForSelectedDates (selectedDate:Int64, slots:[CustomerGeneratedSlot]) {
         self.selectedDate = selectedDate
-        self.selectedTime = 0
         timeDisplay.removeAll()
         self.isPrePaySlot = false
         let date = Date(milliseconds: selectedDate)
         
-        for slot in slots! {
+        for slot in slots {
             let order = Calendar.current.compare(date, to: Date(milliseconds: slot.startDateTime), toGranularity: .day)
             
             if order == .orderedSame {
                 timeDisplay.append(slot.startDateTime)
             }
         }
+        
+        self.selectedTime = timeDisplay[0]
     }
     
     func selectTime (time:Int64) {
