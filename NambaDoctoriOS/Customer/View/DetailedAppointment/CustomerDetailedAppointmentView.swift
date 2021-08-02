@@ -329,18 +329,20 @@ struct CustomerDetailedAppointmentView: View {
                     
                     Spacer()
                     
-                    Button(action: {
-                        customerDetailedAppointmentVM.startConsultation()
-                    }, label: {
-                        ZStack {
-                            Image(systemName: "video")
-                                .scaleEffect(1.2)
-                                .padding()
-                        }
-                        .overlay(Circle()
-                                    .fill(Color.blue.opacity(0.2))
-                                    .frame(width: 60, height: 60))
-                    })
+                    if !self.customerDetailedAppointmentVM.appointment.IsInPersonAppointment {
+                        Button(action: {
+                            customerDetailedAppointmentVM.startConsultation()
+                        }, label: {
+                            ZStack {
+                                Image(systemName: "video")
+                                    .scaleEffect(1.2)
+                                    .padding()
+                            }
+                            .overlay(Circle()
+                                        .fill(Color.blue.opacity(0.2))
+                                        .frame(width: 60, height: 60))
+                        })
+                    }
                 }
                 .padding(.horizontal, 25)
                 .padding(.vertical, 10)

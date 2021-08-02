@@ -406,7 +406,7 @@ struct EditableAppointmentView: View {
                 }
             }
 
-            if !intermediateVM.appointmentFinished {
+            if !intermediateVM.appointmentFinished || !intermediateVM.appointment.IsInPersonAppointment {
                 Button(action: {
                     LoggerService().log(eventName: "Video call button pressed")
                     intermediateVM.startConsultation()
