@@ -49,7 +49,7 @@ struct BookDoctorView: View {
                             .padding(.bottom)
                         } else if self.customerVM.searchForHospitals {
                             ForEach(customerVM.organisationsToDisplay, id: \.organisationId) { org in
-                                Text(org.name)
+                                BookOrganisationCard(organisationVM: CustomerOrganisationViewModel(organisation: org, customerProfile: self.customerVM.customerProfile!, callBack: self.customerVM.selectOrganisation(organisation:)))
                             }
                         }
                     }
@@ -64,6 +64,13 @@ struct BookDoctorView: View {
                                destination: DetailedBookDoctorView(detailedBookingVM: customerVM.detailedViewDoctorVM!),
                                isActive: self.$customerVM.takeToBookDoc)
             }
+            
+            if self.customerVM.takeToSelectDocOfOrg {
+                NavigationLink("",
+                               destination: BookDoctorInOrganisationView(bookDocInOrganisationVM: BookDoctorInOrganisationViewModel(organisation: self.customerVM.selectedOrganisation!, callBack: self.customerVM.selectDoctorOfOrgToBook(doctor:), customerProfile: self.customerVM.customerProfile!)),
+                               isActive: self.$customerVM.takeToSelectDocOfOrg)
+            }
+            
         }
         .onAppear() {
             self.customerVM.fetchCustomerProfile { _ in }

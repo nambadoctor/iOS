@@ -382,6 +382,10 @@
 		17C2AEA826B33F8F0001C1AD /* SelectServiceProvidersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C2AEA726B33F8F0001C1AD /* SelectServiceProvidersView.swift */; };
 		17C2AEAA26B33FEF0001C1AD /* SelectServiceProviderCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C2AEA926B33FEF0001C1AD /* SelectServiceProviderCard.swift */; };
 		17C2AEAC26B3406D0001C1AD /* ServiceProviderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C2AEAB26B3406D0001C1AD /* ServiceProviderViewModel.swift */; };
+		17C2AEAE26B623B10001C1AD /* BookOrganisationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C2AEAD26B623B10001C1AD /* BookOrganisationCard.swift */; };
+		17C2AEB026B625130001C1AD /* CustomerOrganisationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C2AEAF26B625130001C1AD /* CustomerOrganisationViewModel.swift */; };
+		17C2AEB526B626FB0001C1AD /* BookDoctorInOrganisationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C2AEB426B626FB0001C1AD /* BookDoctorInOrganisationView.swift */; };
+		17C2AEB726B789F90001C1AD /* BookDoctorInOrganisationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C2AEB626B789F90001C1AD /* BookDoctorInOrganisationViewModel.swift */; };
 		17CE14A8268D8748000FDE94 /* NewInstallDoctorsPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE14A7268D8748000FDE94 /* NewInstallDoctorsPreviewView.swift */; };
 		17CE14AA268D96BB000FDE94 /* NewInstallDoctorPreviewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE14A9268D96BB000FDE94 /* NewInstallDoctorPreviewCard.swift */; };
 		17CE14AC268D96DA000FDE94 /* NonActionableCustomerServiceProviderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE14AB268D96DA000FDE94 /* NonActionableCustomerServiceProviderViewModel.swift */; };
@@ -839,6 +843,10 @@
 		17C2AEA726B33F8F0001C1AD /* SelectServiceProvidersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectServiceProvidersView.swift; sourceTree = "<group>"; };
 		17C2AEA926B33FEF0001C1AD /* SelectServiceProviderCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectServiceProviderCard.swift; sourceTree = "<group>"; };
 		17C2AEAB26B3406D0001C1AD /* ServiceProviderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderViewModel.swift; sourceTree = "<group>"; };
+		17C2AEAD26B623B10001C1AD /* BookOrganisationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookOrganisationCard.swift; sourceTree = "<group>"; };
+		17C2AEAF26B625130001C1AD /* CustomerOrganisationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerOrganisationViewModel.swift; sourceTree = "<group>"; };
+		17C2AEB426B626FB0001C1AD /* BookDoctorInOrganisationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDoctorInOrganisationView.swift; sourceTree = "<group>"; };
+		17C2AEB626B789F90001C1AD /* BookDoctorInOrganisationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDoctorInOrganisationViewModel.swift; sourceTree = "<group>"; };
 		17CE14A7268D8748000FDE94 /* NewInstallDoctorsPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewInstallDoctorsPreviewView.swift; sourceTree = "<group>"; };
 		17CE14A9268D96BB000FDE94 /* NewInstallDoctorPreviewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewInstallDoctorPreviewCard.swift; sourceTree = "<group>"; };
 		17CE14AB268D96DA000FDE94 /* NonActionableCustomerServiceProviderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonActionableCustomerServiceProviderViewModel.swift; sourceTree = "<group>"; };
@@ -1356,6 +1364,8 @@
 				1715EA3426608D0D0004E01F /* CustomerDoctorProfileViewModel.swift */,
 				1747F8A5266EBEB200AEA532 /* CustomerRatingViewModel.swift */,
 				1771BA4126ADECE90085389E /* AvailabilitySelectorViewModel.swift */,
+				17C2AEAF26B625130001C1AD /* CustomerOrganisationViewModel.swift */,
+				17C2AEB626B789F90001C1AD /* BookDoctorInOrganisationViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1802,10 +1812,12 @@
 		178EB6BE26390CDA009286B1 /* BookDoctor */ = {
 			isa = PBXGroup;
 			children = (
+				17C2AEB126B626D10001C1AD /* BookDoctorInOrganisation */,
 				1739EAF42638168600556044 /* DetailedBookDoctorView.swift */,
 				1739EAEF26380FD500556044 /* BookDoctorCard.swift */,
 				1739EAEA26380EFA00556044 /* BookDoctorView.swift */,
 				1771BA3F26AD385B0085389E /* AvailabilitySelector.swift */,
+				17C2AEAD26B623B10001C1AD /* BookOrganisationCard.swift */,
 			);
 			path = BookDoctor;
 			sourceTree = "<group>";
@@ -2123,6 +2135,14 @@
 				17C2AEA926B33FEF0001C1AD /* SelectServiceProviderCard.swift */,
 			);
 			path = SelectServiceProvidersView;
+			sourceTree = "<group>";
+		};
+		17C2AEB126B626D10001C1AD /* BookDoctorInOrganisation */ = {
+			isa = PBXGroup;
+			children = (
+				17C2AEB426B626FB0001C1AD /* BookDoctorInOrganisationView.swift */,
+			);
+			path = BookDoctorInOrganisation;
 			sourceTree = "<group>";
 		};
 		17CE14A4268D8722000FDE94 /* DoctorPreviewForCustomers */ = {
@@ -2652,6 +2672,7 @@
 				1748010B25B8DFC100C8E3CC /* DoctorDefaultModifiers.swift in Sources */,
 				17A020A326307AD000BD828F /* DoctorAvailabilityView.swift in Sources */,
 				176AA11C2637BC5E00F02346 /* CustomerDiagnosis.swift in Sources */,
+				17C2AEB526B626FB0001C1AD /* BookDoctorInOrganisationView.swift in Sources */,
 				17D1EDEA26711C9100D6060E /* AppointmentSummaryCardView.swift in Sources */,
 				1742504F25BAE3E700523B94 /* CleanDoubleExtension.swift in Sources */,
 				1747F8A2266D9D0000AEA532 /* RatingAndReview.swift in Sources */,
@@ -2731,6 +2752,7 @@
 				1747F8A0266D9CD900AEA532 /* RatingAndReviewService.swift in Sources */,
 				17F81EEB268A5674006DCD57 /* PaymentTypeEnum.swift in Sources */,
 				17A3754B267D0B1200571049 /* ServiceProviderFirebaseUpdateAppointmentStatus.swift in Sources */,
+				17C2AEAE26B623B10001C1AD /* BookOrganisationCard.swift in Sources */,
 				1771BA2026A7C5FE0085389E /* CustomerOrganizationTimingMapper.swift in Sources */,
 				171646B32602B62900BB5B5A /* ServiceProviderFollowUp.swift in Sources */,
 				171646BD2602B68000BB5B5A /* ServiceProviderMedicine.swift in Sources */,
@@ -2765,6 +2787,7 @@
 				1730289326621A7900E9F5F3 /* SpecialtyCategoryMapper.swift in Sources */,
 				1716E2B2261AF92A00568837 /* MedicineView.swift in Sources */,
 				172EF22126585DAF000F2B4E /* CustomerDuration.swift in Sources */,
+				17C2AEB726B789F90001C1AD /* BookDoctorInOrganisationViewModel.swift in Sources */,
 				17A268D426B1107500709B98 /* CustomerVitalsEditableView.swift in Sources */,
 				172EF2012655E2DB000F2B4E /* ServiceProviderCancellation.swift in Sources */,
 				1716E2A8261AF85100568837 /* ServiceRequestView.swift in Sources */,
@@ -2892,6 +2915,7 @@
 				173028A32664AB6200E9F5F3 /* ServiceProviderIntakeDosage.swift in Sources */,
 				1796320F25AEE865002E466C /* KeyboardHeightPublisher.swift in Sources */,
 				172FA702261F107E00D14545 /* ServiceProviderCustomerAllergy.swift in Sources */,
+				17C2AEB026B625130001C1AD /* CustomerOrganisationViewModel.swift in Sources */,
 				1776B4C0267F22FB00D823C1 /* CustomerServiceProviderAdditionalInfoMapper.swift in Sources */,
 				176AA1A62637C8E900F02346 /* CustomerFollowUpMapper.swift in Sources */,
 				179C44912627D8AC0073F4E0 /* ChatMessage.swift in Sources */,

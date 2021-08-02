@@ -31,6 +31,9 @@ class CustomerViewModel : ObservableObject {
     @Published var takeToBookDoc:Bool = false
     var selectedDoctor:CustomerServiceProviderProfile? = nil
     
+    @Published var takeToSelectDocOfOrg:Bool = false
+    var selectedOrganisation:CustomerOrganization? = nil
+    
     @Published var customerLoggedIn:Bool = false
 
     @Published var selectedAppointment:CustomerAppointment? = nil
@@ -169,7 +172,7 @@ class CustomerViewModel : ObservableObject {
 
     func selectDoctorToBook(doctor:CustomerServiceProviderProfile) {
         self.selectedDoctor = doctor
-        self.detailedViewDoctorVM = DetailedBookDocViewModel(serviceProvider: self.selectedDoctor!, customerProfile: self.customerProfile!, notAbleToBookCallBack: cannotBookAppointmentHandler)
+        self.detailedViewDoctorVM = DetailedBookDocViewModel(serviceProvider: self.selectedDoctor!, customerProfile: self.customerProfile!, organization: self.selectedOrganisation, notAbleToBookCallBack: cannotBookAppointmentHandler)
         self.takeToBookDoc = true
     }
 
@@ -330,10 +333,9 @@ class CustomerViewModel : ObservableObject {
         self.addChildProfileVM.showSheet = true
     }
     
-    
-    
     func setSearchForHospitals() {
         self.specialtyCategories[0].CategoryName = "All Hospitals"
+        self.categoryChangedCallback()
         self.searchForHospitals = true
         self.searchForDoctors = false
     }
@@ -341,6 +343,18 @@ class CustomerViewModel : ObservableObject {
     func setSearchForDoctors() {
         self.searchForHospitals = false
         self.searchForDoctors = true
+    }
+    
+    func selectOrganisation (organisation:CustomerOrganization) {
+        self.takeToSelectDocOfOrg = true
+        self.selectedOrganisation = organisation
+    }
+    
+    func selectDoctorOfOrgToBook(doctor:CustomerServiceProviderProfile) {
+        self.takeToSelectDocOfOrg = false
+        self.selectedDoctor = doctor
+        self.detailedViewDoctorVM = DetailedBookDocViewModel(serviceProvider: self.selectedDoctor!, customerProfile: self.customerProfile!, organization: self.selectedOrganisation, notAbleToBookCallBack: cannotBookAppointmentHandler)
+        self.takeToBookDoc = true
     }
 }
 
