@@ -1,4 +1,3 @@
-//
 //  AvailabilitySelector.swift
 //  NambaDoctoriOS
 //
@@ -27,26 +26,6 @@ struct AvailabilitySelector : View {
                     }
                 }
             } else {
-                if self.availabilitySelectorVM.hasOnlineSlots && self.availabilitySelectorVM.hasInPersonSlots {
-                    HStack {
-                        LargeButton(title: "See Online") {
-                            self.availabilitySelectorVM.getOnlyOnlineSlots()
-                        }
-                        
-                        LargeButton(title: "See In Person", disabled: false, backgroundColor: .white, foregroundColor: .green) {
-                            self.availabilitySelectorVM.getOnlyInPersonSlots()
-                        }
-                    }
-                }
-                
-                if self.availabilitySelectorVM.hasOnlineSlots && !self.availabilitySelectorVM.hasInPersonSlots {
-                    Text("This doctor has only online availability")
-                }
-                
-                if !self.availabilitySelectorVM.hasOnlineSlots && self.availabilitySelectorVM.hasInPersonSlots {
-                    Text("This doctor has only in person availability")
-                }
-                
                 slotPickerView
             }
         }
@@ -55,13 +34,17 @@ struct AvailabilitySelector : View {
     
     var slotPickerView : some View {
         VStack (alignment: .leading) {
-            if self.availabilitySelectorVM.noOnlineSlots {
+            
+            SideBySideCheckBox(isChecked: self.$availabilitySelectorVM.showOnlineOrOfflineSlots, title1: "Show Online Availability", title2: "Show In-Person Availability", delegate: self.availabilitySelectorVM)
+            
+            if self.availabilitySelectorVM.noOnlineSlots && self.availabilitySelectorVM.noInPersonSlots {
+                Text("Sorry doctor is not available")
+            } else if self.availabilitySelectorVM.noOnlineSlots {
                 Text("Sorry this doctor has no online slots available")
             } else if self.availabilitySelectorVM.noInPersonSlots {
                 Text("Sorry this doctor has no in person slots available")
             } else {
                 if !availabilitySelectorVM.dateDisplay.isEmpty {
-                    
                     Text("Choose a Date")
                     
                     ScrollView (.horizontal) {

@@ -24,10 +24,10 @@ class AvailabilitySelectorViewModel : ObservableObject {
     
     @Published var noInPersonSlots:Bool = false
     @Published var noOnlineSlots:Bool = false
-    
-    @Published var hasOnlineSlots:Bool = false
-    @Published var hasInPersonSlots:Bool = false
+
     @Published var selectedSlotOption:Bool = false
+    
+    @Published var showOnlineOrOfflineSlots:String = ""
     
     var slotSelected:(()->())?
 
@@ -59,7 +59,6 @@ class AvailabilitySelectorViewModel : ObservableObject {
     }
     
     func getOnlyOnlineSlots () {
-        self.selectedSlotOption = true
         clearNoSlotBools()
         self.filteredSlots.removeAll()
         for slot in self.slots! {
@@ -69,16 +68,16 @@ class AvailabilitySelectorViewModel : ObservableObject {
         }
 
         guard !self.filteredSlots.isEmpty else {
-            self.noInPersonSlots = false
             noOnlineSlots = true
+            CustomerAlertHelpers().noAvailabilityAlert(onlineOrOffLine: "Online")
             return
         }
         
+        self.showOnlineOrOfflineSlots = "Show Online Availability"
         setFilterSlots()
     }
     
     func getOnlyInPersonSlots () {
-        self.selectedSlotOption = true
         clearNoSlotBools()
         self.filteredSlots.removeAll()
         for slot in self.slots! {
@@ -88,11 +87,12 @@ class AvailabilitySelectorViewModel : ObservableObject {
         }
 
         guard !self.filteredSlots.isEmpty else {
-            self.noOnlineSlots = false
             noInPersonSlots = true
+            CustomerAlertHelpers().noAvailabilityAlert(onlineOrOffLine: "In-Person")
             return
         }
         
+        self.showOnlineOrOfflineSlots = "Show In-Person Availability"
         setFilterSlots()
     }
     
@@ -102,6 +102,7 @@ class AvailabilitySelectorViewModel : ObservableObject {
     }
     
     func setFilterSlots () {
+        self.selectedSlotOption = true
         self.setSlotSelectedCallback()
         self.dateDisplay.removeAll()
         self.timeDisplay.removeAll()
@@ -109,6 +110,7 @@ class AvailabilitySelectorViewModel : ObservableObject {
         self.selectedTime = self.filteredSlots[0].startDateTime
         self.parseSlots(slots: self.filteredSlots)
         self.getTimesForSelectedDates(selectedDate: self.selectedDate, slots: self.filteredSlots)
+        
     }
     
     func parseSlots (slots:[CustomerGeneratedSlot]) {
@@ -122,22 +124,26 @@ class AvailabilitySelectorViewModel : ObservableObject {
     }
     
     func seeIfHasSlotOptions () {
+        var hasOnlineSlots:Bool = false
+        var hasInPersonSlots:Bool = false
+        
         for slot in slots! {
             if slot.addressId.isEmpty {
-                self.hasOnlineSlots = true
+                hasOnlineSlots = true
             } else {
-                self.hasInPersonSlots = true
+                hasInPersonSlots = true
             }
         }
-
-        print("HAS ONLINE: \(hasOnlineSlots) HAS IN PERSON: \(hasInPersonSlots)")
-        if !self.hasOnlineSlots && !self.hasInPersonSlots {
-            self.selectedSlotOption = true
-        } else if self.hasOnlineSlots || self.hasInPersonSlots {
-            if !(self.hasOnlineSlots && self.hasInPersonSlots) {
-                self.selectedSlotOption = true
-            }
-        }
+        
+        self.noOnlineSlots = !hasOnlineSlots
+        self.noInPersonSlots = !hasInPersonSlots
+//        if !self.hasOnlineSlots && !self.hasInPersonSlots {
+//            self.selectedSlotOption = true
+//        } else if self.hasOnlineSlots || self.hasInPersonSlots {
+//            if !(self.hasOnlineSlots && self.hasInPersonSlots) {
+//                self.selectedSlotOption = true
+//            }
+//        }
     }
     
     func checkIfInPersonSlot () -> Bool {
@@ -195,5 +201,17 @@ class AvailabilitySelectorViewModel : ObservableObject {
     
     func setSlot () {
         self.selectedSlot = getCorrespondingSlot(timestamp: selectedTime)
+    }
+}
+
+extension AvailabilitySelectorViewModel:SideBySideCheckBoxDelegate {
+    func itemChecked(value: String) {
+        if value.isEmpty || value == "Show Online Availability" {
+            self.getOnlyOnlineSlots()
+            self.showOnlineOrOfflineSlots = "Show Online Availability"
+        } else if value == "Show In-Person Availability" {
+            self.getOnlyInPersonSlots()
+            self.showOnlineOrOfflineSlots = "Show In-Person Availability"
+        }
     }
 }
