@@ -63,7 +63,7 @@ class AvailabilitySelectorViewModel : ObservableObject {
         clearNoSlotBools()
         self.filteredSlots.removeAll()
         for slot in self.slots! {
-            if !slot.isOrganisationSlot {
+            if slot.addressId.isEmpty {
                 self.filteredSlots.append(slot)
             }
         }
@@ -82,7 +82,7 @@ class AvailabilitySelectorViewModel : ObservableObject {
         clearNoSlotBools()
         self.filteredSlots.removeAll()
         for slot in self.slots! {
-            if slot.isOrganisationSlot {
+            if !slot.addressId.isEmpty {
                 self.filteredSlots.append(slot)
             }
         }
@@ -123,10 +123,10 @@ class AvailabilitySelectorViewModel : ObservableObject {
     
     func seeIfHasSlotOptions () {
         for slot in slots! {
-            if slot.isOrganisationSlot {
-                self.hasInPersonSlots = true
-            } else {
+            if slot.addressId.isEmpty {
                 self.hasOnlineSlots = true
+            } else {
+                self.hasInPersonSlots = true
             }
         }
 
@@ -141,7 +141,11 @@ class AvailabilitySelectorViewModel : ObservableObject {
     }
     
     func checkIfInPersonSlot () -> Bool {
-        return selectedSlot!.isOrganisationSlot
+        if selectedSlot!.addressId.isEmpty {
+            return false
+        } else {
+            return true
+        }
     }
 
     func getCorrespondingSlot (timestamp:Int64) -> CustomerGeneratedSlot? {
