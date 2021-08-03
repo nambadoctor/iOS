@@ -18,7 +18,7 @@ struct BookDoctorView: View {
                     
                     searchForHospitalsOrDoctorsToggle
                     
-                    bookingForChildHeader
+                    //bookingForChildHeader
                     
                     CategoryPicker(categoriesList: self.$customerVM.specialtyCategories, selectedCategory: self.$customerVM.selectedCategory, categoryChanged: self.customerVM.categoryChangedCallback)
                         .frame(height: 45)
@@ -80,11 +80,11 @@ struct BookDoctorView: View {
     var searchForHospitalsOrDoctorsToggle : some View {
         VStack {
             if self.customerVM.searchForDoctors {
-                LargeButton(title: "Search Hospitals") {
+                LargeButton(title: "Click here to Search Hospitals") {
                     self.customerVM.setSearchForHospitals()
                 }
             } else if self.customerVM.searchForHospitals {
-                LargeButton(title: "Search Doctors") {
+                LargeButton(title: "Click here to Search Doctors") {
                     self.customerVM.setSearchForDoctors()
                 }
             }

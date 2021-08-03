@@ -24,11 +24,19 @@ class AvailabilitySelectorViewModel : ObservableObject {
     
     @Published var noInPersonSlots:Bool = false
     @Published var noOnlineSlots:Bool = false
+    
+    @Published var hasOnlineSlots:Bool = false
+    @Published var hasInPersonSlots:Bool = false
+    @Published var selectedSlotOption:Bool = false
+    
+    var slotSelected:(()->())?
 
     var serviceProviderID:String
     
-    init(serviceProviderID:String) {
+    init(serviceProviderID:String,
+         slotSelected:(()->())?) {
         self.serviceProviderID = serviceProviderID
+        self.slotSelected = slotSelected
     }
 
     func retrieveAvailabilities () {
@@ -37,6 +45,7 @@ class AvailabilitySelectorViewModel : ObservableObject {
             if slots != nil && !slots!.isEmpty {
                 self.slots = slots!
                 self.filteredSlots = slots!
+                self.seeIfHasSlotOptions()
                 self.selectedDate = self.slots![0].startDateTime
                 self.selectedTime = self.slots![0].startDateTime
                 self.parseSlots(slots: self.slots!)
@@ -50,6 +59,7 @@ class AvailabilitySelectorViewModel : ObservableObject {
     }
     
     func getOnlyOnlineSlots () {
+        self.selectedSlotOption = true
         clearNoSlotBools()
         self.filteredSlots.removeAll()
         for slot in self.slots! {
@@ -68,6 +78,7 @@ class AvailabilitySelectorViewModel : ObservableObject {
     }
     
     func getOnlyInPersonSlots () {
+        self.selectedSlotOption = true
         clearNoSlotBools()
         self.filteredSlots.removeAll()
         for slot in self.slots! {
@@ -91,6 +102,7 @@ class AvailabilitySelectorViewModel : ObservableObject {
     }
     
     func setFilterSlots () {
+        self.setSlotSelectedCallback()
         self.dateDisplay.removeAll()
         self.timeDisplay.removeAll()
         self.selectedDate = self.filteredSlots[0].startDateTime
@@ -105,6 +117,25 @@ class AvailabilitySelectorViewModel : ObservableObject {
                 if !self.dateDisplay.contains(slot.startDateTime) {
                     dateDisplay.append(slot.startDateTime)
                 }
+            }
+        }
+    }
+    
+    func seeIfHasSlotOptions () {
+        for slot in slots! {
+            if slot.isOrganisationSlot {
+                self.hasInPersonSlots = true
+            } else {
+                self.hasOnlineSlots = true
+            }
+        }
+
+        print("HAS ONLINE: \(hasOnlineSlots) HAS IN PERSON: \(hasInPersonSlots)")
+        if !self.hasOnlineSlots && !self.hasInPersonSlots {
+            self.selectedSlotOption = true
+        } else if self.hasOnlineSlots || self.hasInPersonSlots {
+            if !(self.hasOnlineSlots && self.hasInPersonSlots) {
+                self.selectedSlotOption = true
             }
         }
     }
@@ -138,6 +169,14 @@ class AvailabilitySelectorViewModel : ObservableObject {
         }
         
         self.selectedTime = timeDisplay[0]
+        
+        self.setSlotSelectedCallback()
+    }
+    
+    func setSlotSelectedCallback () {
+        if self.selectedSlotOption {
+            self.slotSelected?()
+        }
     }
     
     func selectTime (time:Int64) {

@@ -14,16 +14,47 @@ struct AvailabilitySelector : View {
     var body: some View {
         VStack (alignment: .leading) {
             
-            HStack {
-                LargeButton(title: "See Online") {
-                    self.availabilitySelectorVM.getOnlyOnlineSlots()
+            if !self.availabilitySelectorVM.selectedSlotOption {
+                VStack {
+                    Text("How would you like to see the doctor?")
+                    
+                    LargeButton(title: "Online") {
+                        self.availabilitySelectorVM.getOnlyOnlineSlots()
+                    }
+                    
+                    LargeButton(title: "In Person") {
+                        self.availabilitySelectorVM.getOnlyInPersonSlots()
+                    }
+                }
+            } else {
+                if self.availabilitySelectorVM.hasOnlineSlots && self.availabilitySelectorVM.hasInPersonSlots {
+                    HStack {
+                        LargeButton(title: "See Online") {
+                            self.availabilitySelectorVM.getOnlyOnlineSlots()
+                        }
+                        
+                        LargeButton(title: "See In Person", disabled: false, backgroundColor: .white, foregroundColor: .green) {
+                            self.availabilitySelectorVM.getOnlyInPersonSlots()
+                        }
+                    }
                 }
                 
-                LargeButton(title: "See In Person", disabled: false, backgroundColor: .white, foregroundColor: .green) {
-                    self.availabilitySelectorVM.getOnlyInPersonSlots()
+                if self.availabilitySelectorVM.hasOnlineSlots && !self.availabilitySelectorVM.hasInPersonSlots {
+                    Text("This doctor has only online availability")
                 }
+                
+                if !self.availabilitySelectorVM.hasOnlineSlots && self.availabilitySelectorVM.hasInPersonSlots {
+                    Text("This doctor has only in person availability")
+                }
+                
+                slotPickerView
             }
-            
+        }
+        .padding()
+    }
+    
+    var slotPickerView : some View {
+        VStack (alignment: .leading) {
             if self.availabilitySelectorVM.noOnlineSlots {
                 Text("Sorry this doctor has no online slots available")
             } else if self.availabilitySelectorVM.noInPersonSlots {
@@ -81,6 +112,5 @@ struct AvailabilitySelector : View {
                 }
             }
         }
-        .padding()
     }
 }

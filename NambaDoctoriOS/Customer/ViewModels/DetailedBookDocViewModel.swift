@@ -30,6 +30,8 @@ class DetailedBookDocViewModel : ObservableObject {
     
     @Published var killView:Bool = false
     
+    @Published var slotIsSelected:Bool = false
+    
     @Published var preBookingOptionsOffSet:CGFloat = UIScreen.main.bounds.height
     var preBookingOptions:[String] = ["I dont know this doctor", "This doctor referred me", "Other"]
     var selectedPrebookingOption:String = ""
@@ -62,7 +64,8 @@ class DetailedBookDocViewModel : ObservableObject {
             self.docProfPicImageLoader = ImageLoader(urlString: "https://wgsi.utoronto.ca/wp-content/uploads/2020/12/blank-profile-picture-png.png") { _ in }
         }
         
-        self.availabilityVM = AvailabilitySelectorViewModel(serviceProviderID: serviceProvider.serviceProviderID)
+        self.availabilityVM = AvailabilitySelectorViewModel(serviceProviderID: serviceProvider.serviceProviderID, slotSelected: nil)
+        self.availabilityVM.slotSelected = self.selectSlot
         self.availabilityVM.retrieveAvailabilities()
     }
     
@@ -279,5 +282,11 @@ extension DetailedBookDocViewModel {
     
     func showPreBookingOptionsSheet () {
         self.preBookingOptionsOffSet = 0
+    }
+}
+
+extension DetailedBookDocViewModel {
+    func selectSlot () {
+        self.slotIsSelected = true
     }
 }

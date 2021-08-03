@@ -66,9 +66,11 @@ struct DetailedBookDoctorView: View {
                     
                     AvailabilitySelector(availabilitySelectorVM: self.detailedBookingVM.availabilityVM)
 
-                    LargeButton(title: self.detailedBookingVM.availabilityVM.isPrePaySlot ? "Pay and Book Appointment" : "Book Appointment",
-                                backgroundColor: Color.blue) {
-                        self.detailedBookingVM.checkTrustScores()
+                    if self.detailedBookingVM.slotIsSelected {
+                        LargeButton(title: self.detailedBookingVM.availabilityVM.isPrePaySlot ? "Pay and Book Appointment" : "Book Appointment",
+                                    backgroundColor: Color.blue) {
+                            self.detailedBookingVM.checkTrustScores()
+                        }
                     }
                 }
             }
