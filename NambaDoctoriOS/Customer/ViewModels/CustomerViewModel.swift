@@ -283,9 +283,10 @@ class CustomerViewModel : ObservableObject {
             self.organisationsToDisplay = self.organisations
         }
         for organisation in organisations {
-            if organisation.specialities.contains(where: {$0.caseInsensitiveCompare(self.selectedCategory.CategoryName) == .orderedSame}) {
-                self.organisationsToDisplay.append(organisation)
-            }
+            self.organisationsToDisplay.append(organisation)
+//            if organisation.specialities.contains(where: {$0.caseInsensitiveCompare(self.selectedCategory.CategoryName) == .orderedSame}) {
+//                self.organisationsToDisplay.append(organisation)
+//            }
         }
 
         if self.organisationsToDisplay.count == 0 {
@@ -299,10 +300,15 @@ class CustomerViewModel : ObservableObject {
     }
 
     func categoryChangedCallback () {
-        if searchForDoctors {
-            doctorsExistForCategory()
-        } else if searchForHospitals {
+        self.noDoctorForCategory = false
+        self.noOrganisationForCategory = false
+        
+        if self.selectedCategory.CategoryName == "All Hospitals" {
             organisationsExistForCategory()
+            self.setSearchForHospitals()
+        } else {
+            doctorsExistForCategory()
+            self.setSearchForDoctors()
         }
     }
     
@@ -334,17 +340,11 @@ class CustomerViewModel : ObservableObject {
     }
     
     func setSearchForHospitals() {
-        self.specialtyCategories[0].CategoryName = "All Hospitals"
-        self.selectedCategory = self.specialtyCategories[0]
-        self.categoryChangedCallback()
         self.searchForHospitals = true
         self.searchForDoctors = false
     }
     
     func setSearchForDoctors() {
-        self.specialtyCategories[0].CategoryName = "All Doctors"
-        self.selectedCategory = self.specialtyCategories[0]
-        self.categoryChangedCallback()
         self.searchForHospitals = false
         self.searchForDoctors = true
     }
