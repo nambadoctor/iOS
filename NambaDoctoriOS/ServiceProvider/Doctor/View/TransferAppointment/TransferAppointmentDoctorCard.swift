@@ -128,7 +128,7 @@ class TransferAppointmentDoctorCardViewModel : ObservableObject {
             self.imageLoader = ImageLoader(urlString: "https://wgsi.utoronto.ca/wp-content/uploads/2020/12/blank-profile-picture-png.png") {_ in}
         }
         
-        self.availabilitySelector = AvailabilitySelectorViewModel(serviceProviderID: serviceProvider.serviceProviderID, slotSelected: nil)
+        self.availabilitySelector = AvailabilitySelectorViewModel(serviceProviderID: serviceProvider.serviceProviderID, slotSelected: nil, organisationId: self.appointment.organisationId)
     }
 
     var serviceProviderName:String {

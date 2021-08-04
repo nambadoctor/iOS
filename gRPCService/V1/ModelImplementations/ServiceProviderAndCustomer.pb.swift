@@ -533,6 +533,15 @@ struct Nd_V1_CustomerAddress {
   /// Clears the value of `addressID`. Subsequent reads from it will return its default value.
   mutating func clearAddressID() {self._addressID = nil}
 
+  var googleMapsAddress: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _googleMapsAddress ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_googleMapsAddress = newValue}
+  }
+  /// Returns true if `googleMapsAddress` has been explicitly set.
+  var hasGoogleMapsAddress: Bool {return self._googleMapsAddress != nil}
+  /// Clears the value of `googleMapsAddress`. Subsequent reads from it will return its default value.
+  mutating func clearGoogleMapsAddress() {self._googleMapsAddress = nil}
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -543,6 +552,7 @@ struct Nd_V1_CustomerAddress {
   fileprivate var _pinCode: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _type: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _addressID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _googleMapsAddress: SwiftProtobuf.Google_Protobuf_StringValue? = nil
 }
 
 struct Nd_V1_CustomerAllergyMessage {
@@ -3503,6 +3513,15 @@ struct Nd_V1_ServiceProviderAddress {
   /// Clears the value of `addressID`. Subsequent reads from it will return its default value.
   mutating func clearAddressID() {self._addressID = nil}
 
+  var googleMapsAddress: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _googleMapsAddress ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_googleMapsAddress = newValue}
+  }
+  /// Returns true if `googleMapsAddress` has been explicitly set.
+  var hasGoogleMapsAddress: Bool {return self._googleMapsAddress != nil}
+  /// Clears the value of `googleMapsAddress`. Subsequent reads from it will return its default value.
+  mutating func clearGoogleMapsAddress() {self._googleMapsAddress = nil}
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -3513,6 +3532,7 @@ struct Nd_V1_ServiceProviderAddress {
   fileprivate var _pinCode: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _type: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _addressID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _googleMapsAddress: SwiftProtobuf.Google_Protobuf_StringValue? = nil
 }
 
 struct Nd_V1_ServiceProviderAllergyMessage {
@@ -7287,6 +7307,7 @@ extension Nd_V1_CustomerAddress: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
     4: .same(proto: "PinCode"),
     5: .same(proto: "Type"),
     6: .same(proto: "AddressId"),
+    7: .same(proto: "GoogleMapsAddress"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -7301,6 +7322,7 @@ extension Nd_V1_CustomerAddress: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
       case 4: try { try decoder.decodeSingularMessageField(value: &self._pinCode) }()
       case 5: try { try decoder.decodeSingularMessageField(value: &self._type) }()
       case 6: try { try decoder.decodeSingularMessageField(value: &self._addressID) }()
+      case 7: try { try decoder.decodeSingularMessageField(value: &self._googleMapsAddress) }()
       default: break
       }
     }
@@ -7325,6 +7347,9 @@ extension Nd_V1_CustomerAddress: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
     if let v = self._addressID {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
     }
+    if let v = self._googleMapsAddress {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -7335,6 +7360,7 @@ extension Nd_V1_CustomerAddress: SwiftProtobuf.Message, SwiftProtobuf._MessageIm
     if lhs._pinCode != rhs._pinCode {return false}
     if lhs._type != rhs._type {return false}
     if lhs._addressID != rhs._addressID {return false}
+    if lhs._googleMapsAddress != rhs._googleMapsAddress {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -10565,6 +10591,7 @@ extension Nd_V1_ServiceProviderAddress: SwiftProtobuf.Message, SwiftProtobuf._Me
     4: .same(proto: "PinCode"),
     5: .same(proto: "Type"),
     6: .same(proto: "AddressId"),
+    7: .same(proto: "GoogleMapsAddress"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -10579,6 +10606,7 @@ extension Nd_V1_ServiceProviderAddress: SwiftProtobuf.Message, SwiftProtobuf._Me
       case 4: try { try decoder.decodeSingularMessageField(value: &self._pinCode) }()
       case 5: try { try decoder.decodeSingularMessageField(value: &self._type) }()
       case 6: try { try decoder.decodeSingularMessageField(value: &self._addressID) }()
+      case 7: try { try decoder.decodeSingularMessageField(value: &self._googleMapsAddress) }()
       default: break
       }
     }
@@ -10603,6 +10631,9 @@ extension Nd_V1_ServiceProviderAddress: SwiftProtobuf.Message, SwiftProtobuf._Me
     if let v = self._addressID {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
     }
+    if let v = self._googleMapsAddress {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -10613,6 +10644,7 @@ extension Nd_V1_ServiceProviderAddress: SwiftProtobuf.Message, SwiftProtobuf._Me
     if lhs._pinCode != rhs._pinCode {return false}
     if lhs._type != rhs._type {return false}
     if lhs._addressID != rhs._addressID {return false}
+    if lhs._googleMapsAddress != rhs._googleMapsAddress {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

@@ -29,32 +29,59 @@ class AvailabilitySelectorViewModel : ObservableObject {
     
     @Published var showOnlineOrOfflineSlots:String = ""
     
+    @Published var addresses:[CustomerAddress] = [CustomerAddress]()
+    @Published var selectedAddress:CustomerAddress? = nil
+    @Published var showSelectAddressView:Bool = false
+    
     var slotSelected:(()->())?
 
     var serviceProviderID:String
+    var organisationID:String
+    var organisation:CustomerOrganization? = nil
     
     init(serviceProviderID:String,
-         slotSelected:(()->())?) {
+         slotSelected:(()->())?,
+         organisationId:String) {
         self.serviceProviderID = serviceProviderID
         self.slotSelected = slotSelected
+        self.organisationID = organisationId
     }
 
     func retrieveAvailabilities () {
         CommonDefaultModifiers.showLoader(incomingLoadingText: "Getting Doctor's Availability")
-        CustomerServiceProviderService().getServiceProviderAvailabilities(serviceProviderId: serviceProviderID) { (slots) in
-            if slots != nil && !slots!.isEmpty {
-                self.slots = slots!
-                self.filteredSlots = slots!
-                self.seeIfHasSlotOptions()
-                self.selectedDate = self.slots![0].startDateTime
-                self.selectedTime = self.slots![0].startDateTime
-                self.parseSlots(slots: self.slots!)
-                self.getTimesForSelectedDates(selectedDate: self.selectedDate, slots: self.slots!)
-                CommonDefaultModifiers.hideLoader()
-            } else {
-                CommonDefaultModifiers.hideLoader()
-                self.noAvailabilities = true
+        if self.organisationID.isEmpty {
+            CustomerServiceProviderService().getServiceProviderAvailabilities(serviceProviderId: serviceProviderID) { (slots) in
+                self.slotInitCalls(slots: slots)
             }
+        } else {
+            CustomerServiceProviderService().getServiceProviderAvailableSlotsForOrganisation(serviceProviderId: self.serviceProviderID, organizationId: self.organisationID) { slots in
+                self.slotInitCalls(slots: slots)
+            }
+            retrieveOrganisation()
+        }
+    }
+    
+    func retrieveOrganisation () {
+        CustomerOrganizationService().getcustomerOrganization(organizationId: self.organisationID) { organisation in
+            if organisation != nil {
+                self.organisation = organisation!
+            }
+        }
+    }
+    
+    func slotInitCalls (slots:[CustomerGeneratedSlot]?) {
+        if slots != nil && !slots!.isEmpty {
+            self.slots = slots!
+            self.filteredSlots = slots!
+            self.seeIfHasSlotOptions()
+            self.selectedDate = self.slots![0].startDateTime
+            self.selectedTime = self.slots![0].startDateTime
+            self.parseSlots(slots: self.slots!)
+            self.getTimesForSelectedDates(selectedDate: self.selectedDate, slots: self.slots!)
+            CommonDefaultModifiers.hideLoader()
+        } else {
+            CommonDefaultModifiers.hideLoader()
+            self.noAvailabilities = true
         }
     }
     
@@ -100,7 +127,7 @@ class AvailabilitySelectorViewModel : ObservableObject {
         self.noOnlineSlots = false
         self.noInPersonSlots = false
     }
-    
+
     func setFilterSlots () {
         self.selectedSlotOption = true
         self.setSlotSelectedCallback()
@@ -114,11 +141,22 @@ class AvailabilitySelectorViewModel : ObservableObject {
     }
     
     func parseSlots (slots:[CustomerGeneratedSlot]) {
-        for slot in slots {
+        func makeDateDisplaySLots (slot:CustomerGeneratedSlot) {
             if !Helpers.compareDate(dates: dateDisplay, toCompareDate: slot.startDateTime) {
                 if !self.dateDisplay.contains(slot.startDateTime) {
                     dateDisplay.append(slot.startDateTime)
                 }
+            }
+        }
+        
+        for slot in filteredSlots {
+            if selectedAddress != nil {
+                if slot.addressId == selectedAddress!.addressID {
+                    makeDateDisplaySLots(slot: slot)
+                }
+                
+            } else {
+                makeDateDisplaySLots(slot: slot)
             }
         }
     }
@@ -145,7 +183,7 @@ class AvailabilitySelectorViewModel : ObservableObject {
 //            }
 //        }
     }
-    
+
     func checkIfInPersonSlot () -> Bool {
         if selectedSlot!.addressId.isEmpty {
             return false
@@ -213,5 +251,47 @@ extension AvailabilitySelectorViewModel:SideBySideCheckBoxDelegate {
             self.getOnlyInPersonSlots()
             self.showOnlineOrOfflineSlots = "Show In-Person Availability"
         }
+    }
+}
+
+//address getter logic
+extension AvailabilitySelectorViewModel {
+    func getAllAddresses (_ completion: @escaping (_ success:Bool, _ error:Bool)->()) {
+        var allAddressIds:[String] = [String]()
+        
+        if !organisationID.isEmpty {
+            for slot in slots! {
+                if !allAddressIds.contains(slot.addressId) {
+                    allAddressIds.append(slot.addressId)
+                }
+            }
+        } else {
+            completion(true, false)
+        }
+        
+        if organisation != nil {
+            for address in self.organisation!.addresses {
+                if allAddressIds.contains(address.addressID) {
+                    self.addresses.append(address)
+                }
+            }
+        } else {
+            completion(false, true)
+        }
+        
+        if addresses.count == 1 {
+            self.selectedAddress = self.addresses[0]
+            completion(true, false)
+        } else {
+            self.selectedSlotOption = true
+            self.showSelectAddressView = true
+            completion(false, false)
+        }
+    }
+    
+    func selectAddress (address:CustomerAddress) {
+        self.showSelectAddressView = false
+        self.selectedAddress = address
+        self.getOnlyInPersonSlots()
     }
 }

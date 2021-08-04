@@ -22,12 +22,45 @@ struct AvailabilitySelector : View {
                     }
                     
                     LargeButton(title: "In Person") {
-                        self.availabilitySelectorVM.getOnlyInPersonSlots()
+                        if self.availabilitySelectorVM.organisationID.isEmpty {
+                            self.availabilitySelectorVM.getOnlyInPersonSlots()
+                        } else {
+                            self.availabilitySelectorVM.getAllAddresses { success, error in
+                                if success {
+                                    self.availabilitySelectorVM.getOnlyInPersonSlots()
+                                }
+
+                                if error {
+                                    
+                                }
+                            }
+                        }
+                    }
+                }
+            } else if self.availabilitySelectorVM.showSelectAddressView {
+                Text("Please select where your preferred location")
+                ScrollView {
+                    ForEach(self.availabilitySelectorVM.addresses, id: \.addressID) { address in
+                        Button {
+                            self.availabilitySelectorVM.selectAddress(address: address)
+                        } label: {
+                            HStack {
+                                Text(address.streetAddress)
+                                    .foregroundColor(Color.blue)
+                                Spacer()
+                            }
+                        }
+                        .padding(5)
+                        .background(Color.blue.opacity(0.2))
+                        .cornerRadius(10)
+
                     }
                 }
             } else {
                 slotPickerView
             }
+            
+            
         }
         .padding()
     }

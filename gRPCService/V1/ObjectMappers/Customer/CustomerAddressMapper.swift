@@ -14,7 +14,8 @@ class CustomerAddressMapper {
                                       country: address.country.toString,
                                       pinCode: address.pinCode.toString,
                                       type: address.type.toString,
-                                      addressID: address.addressID.toString)
+                                      addressID: address.addressID.toString,
+                                      googleMapsAddress: address.googleMapsAddress.toString)
     }
     
     static func grpcAddressToLocal (addresses:[Nd_V1_CustomerAddress]) -> [CustomerAddress] {
@@ -35,6 +36,7 @@ class CustomerAddressMapper {
             $0.pinCode = address.pinCode.toProto
             $0.type = address.type.toProto
             $0.addressID = address.addressID.toProto
+            $0.googleMapsAddress = address.googleMapsAddress.toProto
         }
     }
     

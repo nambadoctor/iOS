@@ -64,7 +64,7 @@ class DetailedBookDocViewModel : ObservableObject {
             self.docProfPicImageLoader = ImageLoader(urlString: "https://wgsi.utoronto.ca/wp-content/uploads/2020/12/blank-profile-picture-png.png") { _ in }
         }
         
-        self.availabilityVM = AvailabilitySelectorViewModel(serviceProviderID: serviceProvider.serviceProviderID, slotSelected: nil)
+        self.availabilityVM = AvailabilitySelectorViewModel(serviceProviderID: serviceProvider.serviceProviderID, slotSelected: nil, organisationId: self.organization?.organisationId ?? "")
         self.availabilityVM.slotSelected = self.selectSlot
         self.availabilityVM.retrieveAvailabilities()
     }

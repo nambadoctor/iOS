@@ -14,4 +14,5 @@ struct ServiceProviderAddress {
     var pinCode:String
     var type:String
     var addressID:String
+    var googleMapsAddress:String
 }

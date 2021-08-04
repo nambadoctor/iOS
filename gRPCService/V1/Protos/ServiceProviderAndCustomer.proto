@@ -101,6 +101,9 @@ message CustomerAddress{
     google.protobuf.StringValue Type = 5;
 
     google.protobuf.StringValue AddressId = 6;
+
+    google.protobuf.StringValue GoogleMapsAddress = 7;
+
 }
 
 message CustomerAllergyMessage {
@@ -955,6 +958,9 @@ message ServiceProviderAddress{
     google.protobuf.StringValue Type = 5;
 
     google.protobuf.StringValue AddressId = 6;
+
+    google.protobuf.StringValue GoogleMapsAddress = 7;
+
 }
 
 message ServiceProviderAllergyMessage {
