@@ -126,9 +126,15 @@ class CustomerServiceProviderService : CustomerServiceProviderServiceProtocol {
             
             for index in 0..<categoriesToReturn.count {
                 if categoriesToReturn[index].CategoryName == "All Doctors" {
-                    var tempCategory = categoriesToReturn[index]
+                    let tempCategory = categoriesToReturn[index]
                     categoriesToReturn.remove(at: index)
                     categoriesToReturn.insert(tempCategory, at: 0)
+                }
+                
+                if categoriesToReturn[index].CategoryName == "All Hospitals" {
+                    let tempCategory = categoriesToReturn[index]
+                    categoriesToReturn.remove(at: index)
+                    categoriesToReturn.insert(tempCategory, at: 1)
                 }
             }
 

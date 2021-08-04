@@ -149,7 +149,7 @@ class AvailabilitySelectorViewModel : ObservableObject {
             }
         }
         
-        for slot in filteredSlots {
+        for slot in slots {
             if selectedAddress != nil {
                 if slot.addressId == selectedAddress!.addressID {
                     makeDateDisplaySLots(slot: slot)

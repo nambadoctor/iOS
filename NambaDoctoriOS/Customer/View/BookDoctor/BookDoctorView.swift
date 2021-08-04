@@ -16,7 +16,7 @@ struct BookDoctorView: View {
             if !customerVM.allServiceProviders.isEmpty {
                 ScrollView {
                     
-                    searchForHospitalsOrDoctorsToggle
+                    //searchForHospitalsOrDoctorsToggle
                     
                     //bookingForChildHeader
                     
@@ -48,7 +48,7 @@ struct BookDoctorView: View {
                             }
                             .padding(.bottom)
                         } else if self.customerVM.searchForHospitals {
-                            ForEach(customerVM.organisationsToDisplay, id: \.organisationId) { org in
+                            ForEach(customerVM.organisations, id: \.organisationId) { org in
                                 BookOrganisationCard(organisationVM: CustomerOrganisationViewModel(organisation: org, customerProfile: self.customerVM.customerProfile!, callBack: self.customerVM.selectOrganisation(organisation:)))
                             }
                         }
