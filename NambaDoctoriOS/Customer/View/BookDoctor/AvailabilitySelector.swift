@@ -7,7 +7,7 @@
 import SwiftUI
 
 struct AvailabilitySelector : View {
-    
+    @Environment(\.openURL) var openURL
     @ObservedObject var availabilitySelectorVM:AvailabilitySelectorViewModel
     
     var body: some View {
@@ -71,20 +71,18 @@ struct AvailabilitySelector : View {
             SideBySideCheckBox(isChecked: self.$availabilitySelectorVM.showOnlineOrOfflineSlots, title1: "Show Online Availability", title2: "Show In-Person Availability", delegate: self.availabilitySelectorVM)
             
             if self.availabilitySelectorVM.selectedAddress != nil {
-                Menu {
-                    ForEach(self.availabilitySelectorVM.addresses, id: \.addressID) {address in
-                        Button {
-                            self.availabilitySelectorVM.selectAddress(address: address)
-                        } label: {
-                            Text(address.streetAddress)
-                        }
-
+                HStack {
+                    addressPicker
+                    Spacer()
+                    Button {
+                        openURL(URL(string: self.availabilitySelectorVM.selectedAddress!.googleMapsAddress)!)
+                    } label: {
+                        Text("Open in maps")
                     }
-                } label: {
-                    Text(self.availabilitySelectorVM.selectedAddress!.streetAddress)
-                    Image("chevron.down.circle")
+                    .padding(5)
+                    .background(Color.blue.opacity(0.2))
+                    .cornerRadius(5)
                 }
-
             }
             
             if self.availabilitySelectorVM.noOnlineSlots && self.availabilitySelectorVM.noInPersonSlots {
@@ -145,5 +143,22 @@ struct AvailabilitySelector : View {
                 }
             }
         }
+    }
+    
+    var addressPicker : some View {
+        Menu {
+            ForEach(self.availabilitySelectorVM.addresses, id: \.addressID) {address in
+                Button {
+                    self.availabilitySelectorVM.selectAddress(address: address)
+                } label: {
+                    Text(address.streetAddress)
+                }
+
+            }
+        } label: {
+            Text(self.availabilitySelectorVM.selectedAddress!.streetAddress)
+            Image("chevron.down.circle")
+        }
+
     }
 }
