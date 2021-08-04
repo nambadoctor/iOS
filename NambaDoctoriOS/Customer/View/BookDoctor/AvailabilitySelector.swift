@@ -70,6 +70,23 @@ struct AvailabilitySelector : View {
             
             SideBySideCheckBox(isChecked: self.$availabilitySelectorVM.showOnlineOrOfflineSlots, title1: "Show Online Availability", title2: "Show In-Person Availability", delegate: self.availabilitySelectorVM)
             
+            if self.availabilitySelectorVM.selectedAddress != nil {
+                Menu {
+                    ForEach(self.availabilitySelectorVM.addresses, id: \.addressID) {address in
+                        Button {
+                            self.availabilitySelectorVM.selectAddress(address: address)
+                        } label: {
+                            Text(address.streetAddress)
+                        }
+
+                    }
+                } label: {
+                    Text(self.availabilitySelectorVM.selectedAddress!.streetAddress)
+                    Image("chevron.down.circle")
+                }
+
+            }
+            
             if self.availabilitySelectorVM.noOnlineSlots && self.availabilitySelectorVM.noInPersonSlots {
                 Text("Sorry doctor is not available")
             } else if self.availabilitySelectorVM.noOnlineSlots {

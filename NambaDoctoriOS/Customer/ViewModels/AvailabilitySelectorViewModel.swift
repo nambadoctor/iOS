@@ -109,7 +109,9 @@ class AvailabilitySelectorViewModel : ObservableObject {
         self.filteredSlots.removeAll()
         for slot in self.slots! {
             if !slot.addressId.isEmpty {
-                self.filteredSlots.append(slot)
+                if self.selectedAddress != nil && self.selectedAddress!.addressID == slot.addressId {
+                    self.filteredSlots.append(slot)
+                }
             }
         }
 
@@ -118,7 +120,7 @@ class AvailabilitySelectorViewModel : ObservableObject {
             CustomerAlertHelpers().noAvailabilityAlert(onlineOrOffLine: "In-Person")
             return
         }
-        
+
         self.showOnlineOrOfflineSlots = "Show In-Person Availability"
         setFilterSlots()
     }
@@ -130,7 +132,6 @@ class AvailabilitySelectorViewModel : ObservableObject {
 
     func setFilterSlots () {
         self.selectedSlotOption = true
-        self.setSlotSelectedCallback()
         self.dateDisplay.removeAll()
         self.timeDisplay.removeAll()
         self.selectedDate = self.filteredSlots[0].startDateTime
@@ -215,7 +216,7 @@ class AvailabilitySelectorViewModel : ObservableObject {
                 timeDisplay.append(slot.startDateTime)
             }
         }
-        
+
         self.selectedTime = timeDisplay[0]
         
         self.setSlotSelectedCallback()
