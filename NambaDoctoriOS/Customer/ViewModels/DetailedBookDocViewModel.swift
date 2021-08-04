@@ -184,6 +184,8 @@ class DetailedBookDocViewModel : ObservableObject {
     }
     
     func makeAppointment() -> CustomerAppointment {
+        let addresObj = CustomerAddress(streetAddress: "", state: "", country: "", pinCode: "", type: "", addressID: self.availabilityVM.selectedSlot!.addressId, googleMapsAddress: "")
+        
         var customerAppointment = CustomerAppointment(appointmentID: "",
                                                       serviceRequestID: "",
                                                       parentAppointmentID: "",
@@ -210,7 +212,7 @@ class DetailedBookDocViewModel : ObservableObject {
                                                       organisationId: organization?.organisationId ?? "",
                                                       organisationName: organization?.name ?? "",
                                                       IsInPersonAppointment: self.availabilityVM.checkIfInPersonSlot(),
-                                                      AddressId: self.availabilityVM.selectedSlot!.addressId,
+                                                      Address: addresObj,
                                                       AppointmentTransfer: nil)
         
         if !selectedPrebookingOption.isEmpty {

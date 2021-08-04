@@ -9,7 +9,7 @@ import SwiftUI
 import PDFKit
 
 struct CustomerDetailedAppointmentView: View {
-    
+    @Environment(\.openURL) var openURL
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var customerDetailedAppointmentVM:CustomerDetailedAppointmentViewModel
     
@@ -349,6 +349,13 @@ struct CustomerDetailedAppointmentView: View {
                 Divider().background(Color.blue.opacity(0.4))
             }
             
+            if self.customerDetailedAppointmentVM.appointment.IsInPersonAppointment {
+                LargeButton(title: "Navigate to \(self.customerDetailedAppointmentVM.appointment.organisationName)",
+                            backgroundColor: .blue) {
+                    openURL(URL(string: self.customerDetailedAppointmentVM.appointment.Address.googleMapsAddress)!)
+                }
+            }
+
             if !customerDetailedAppointmentVM.isPaid {
                 LargeButton(title: customerDetailedAppointmentVM.appointmentFinished ? "Pay Now" : "Pay",
                             backgroundColor: customerDetailedAppointmentVM.appointmentFinished ? .green : .gray,

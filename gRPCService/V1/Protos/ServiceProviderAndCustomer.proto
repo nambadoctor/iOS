@@ -172,7 +172,7 @@ message CustomerAppointmentMessage{
 
 	google.protobuf.BoolValue IsInPersonAppointment = 27;
 
-	google.protobuf.StringValue AddressId = 28;
+	CustomerAddress Address = 28;
 
 	CustomerAppointmentTransferMessage AppointmentTransfer = 29;
 }

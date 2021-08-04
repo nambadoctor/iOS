@@ -37,7 +37,7 @@ class CustomerAppointmentMapper {
             organisationId: appointment.organisationID.toString,
             organisationName: appointment.organisationName.toString,
             IsInPersonAppointment: appointment.isInPersonAppointment.toBool,
-            AddressId: appointment.addressID.toString,
+            Address: CustomerAddressMapper.grpcAddressToLocal(address: appointment.address),
             AppointmentTransfer: CustomerAppointmentTransferMapper.grpcToLocal(transfer: appointment.appointmentTransfer))
     }
 
@@ -82,7 +82,7 @@ class CustomerAppointmentMapper {
             $0.organisationID = appointment.organisationId.toProto
             $0.organisationName = appointment.organisationName.toProto
             $0.isInPersonAppointment = appointment.IsInPersonAppointment.toProto
-            $0.addressID = appointment.AddressId.toProto
+            $0.address = CustomerAddressMapper.localAddressToGrpc(address: appointment.Address)
             if appointment.AppointmentTransfer != nil {
                 $0.appointmentTransfer = CustomerAppointmentTransferMapper.localToGrpc(transfer: appointment.AppointmentTransfer!)
             }

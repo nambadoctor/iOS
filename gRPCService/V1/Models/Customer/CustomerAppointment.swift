@@ -35,6 +35,6 @@ struct CustomerAppointment {
     var organisationId:String
     var organisationName:String
     var IsInPersonAppointment:Bool
-    var AddressId:String
+    var Address:CustomerAddress
     var AppointmentTransfer:CustomerAppointmentTransfer?
 }

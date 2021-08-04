@@ -854,14 +854,14 @@ struct Nd_V1_CustomerAppointmentMessage {
   /// Clears the value of `isInPersonAppointment`. Subsequent reads from it will return its default value.
   mutating func clearIsInPersonAppointment() {_uniqueStorage()._isInPersonAppointment = nil}
 
-  var addressID: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _storage._addressID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_uniqueStorage()._addressID = newValue}
+  var address: Nd_V1_CustomerAddress {
+    get {return _storage._address ?? Nd_V1_CustomerAddress()}
+    set {_uniqueStorage()._address = newValue}
   }
-  /// Returns true if `addressID` has been explicitly set.
-  var hasAddressID: Bool {return _storage._addressID != nil}
-  /// Clears the value of `addressID`. Subsequent reads from it will return its default value.
-  mutating func clearAddressID() {_uniqueStorage()._addressID = nil}
+  /// Returns true if `address` has been explicitly set.
+  var hasAddress: Bool {return _storage._address != nil}
+  /// Clears the value of `address`. Subsequent reads from it will return its default value.
+  mutating func clearAddress() {_uniqueStorage()._address = nil}
 
   var appointmentTransfer: Nd_V1_CustomerAppointmentTransferMessage {
     get {return _storage._appointmentTransfer ?? Nd_V1_CustomerAppointmentTransferMessage()}
@@ -7446,7 +7446,7 @@ extension Nd_V1_CustomerAppointmentMessage: SwiftProtobuf.Message, SwiftProtobuf
     25: .same(proto: "OrganisationId"),
     26: .same(proto: "OrganisationName"),
     27: .same(proto: "IsInPersonAppointment"),
-    28: .same(proto: "AddressId"),
+    28: .same(proto: "Address"),
     29: .same(proto: "AppointmentTransfer"),
   ]
 
@@ -7478,7 +7478,7 @@ extension Nd_V1_CustomerAppointmentMessage: SwiftProtobuf.Message, SwiftProtobuf
     var _organisationID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
     var _organisationName: SwiftProtobuf.Google_Protobuf_StringValue? = nil
     var _isInPersonAppointment: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
-    var _addressID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _address: Nd_V1_CustomerAddress? = nil
     var _appointmentTransfer: Nd_V1_CustomerAppointmentTransferMessage? = nil
 
     static let defaultInstance = _StorageClass()
@@ -7513,7 +7513,7 @@ extension Nd_V1_CustomerAppointmentMessage: SwiftProtobuf.Message, SwiftProtobuf
       _organisationID = source._organisationID
       _organisationName = source._organisationName
       _isInPersonAppointment = source._isInPersonAppointment
-      _addressID = source._addressID
+      _address = source._address
       _appointmentTransfer = source._appointmentTransfer
     }
   }
@@ -7560,7 +7560,7 @@ extension Nd_V1_CustomerAppointmentMessage: SwiftProtobuf.Message, SwiftProtobuf
         case 25: try { try decoder.decodeSingularMessageField(value: &_storage._organisationID) }()
         case 26: try { try decoder.decodeSingularMessageField(value: &_storage._organisationName) }()
         case 27: try { try decoder.decodeSingularMessageField(value: &_storage._isInPersonAppointment) }()
-        case 28: try { try decoder.decodeSingularMessageField(value: &_storage._addressID) }()
+        case 28: try { try decoder.decodeSingularMessageField(value: &_storage._address) }()
         case 29: try { try decoder.decodeSingularMessageField(value: &_storage._appointmentTransfer) }()
         default: break
         }
@@ -7651,7 +7651,7 @@ extension Nd_V1_CustomerAppointmentMessage: SwiftProtobuf.Message, SwiftProtobuf
       if let v = _storage._isInPersonAppointment {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 27)
       }
-      if let v = _storage._addressID {
+      if let v = _storage._address {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 28)
       }
       if let v = _storage._appointmentTransfer {
@@ -7693,7 +7693,7 @@ extension Nd_V1_CustomerAppointmentMessage: SwiftProtobuf.Message, SwiftProtobuf
         if _storage._organisationID != rhs_storage._organisationID {return false}
         if _storage._organisationName != rhs_storage._organisationName {return false}
         if _storage._isInPersonAppointment != rhs_storage._isInPersonAppointment {return false}
-        if _storage._addressID != rhs_storage._addressID {return false}
+        if _storage._address != rhs_storage._address {return false}
         if _storage._appointmentTransfer != rhs_storage._appointmentTransfer {return false}
         return true
       }
