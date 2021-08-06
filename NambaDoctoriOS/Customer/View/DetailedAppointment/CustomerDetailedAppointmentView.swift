@@ -294,15 +294,25 @@ struct CustomerDetailedAppointmentView: View {
                         Button(action: {
                             self.customerDetailedAppointmentVM.showCancellationSheet()
                         }, label: {
-                            ZStack {
-                                Image("xmark")
-                                    .scaleEffect(1.2)
-                                    .padding()
-                                    .foregroundColor(.red)
+                            VStack (alignment: .center) {
+                                ZStack {
+                                    Circle()
+                                        .fill(Color.blue)
+                                        .frame(width: 60, height: 60)
+                                    Image("xmark")
+                                        .foregroundColor(.white)
+                                        .scaleEffect(1.2)
+                                        .padding()
+                                }
+                                .overlay(Image("xmark")
+                                            .foregroundColor(.white)
+                                            .scaleEffect(1.2)
+                                            .padding())
+                                
+                                Text("Cancel")
+                                    .foregroundColor(.blue)
+                                    .font(.system(size: 12))
                             }
-                            .overlay(Circle()
-                                        .fill(Color.red.opacity(0.2))
-                                        .frame(width: 60, height: 60))
                         })
                         Spacer()
                     }
@@ -311,20 +321,18 @@ struct CustomerDetailedAppointmentView: View {
                     Button(action: {
                         self.customerDetailedAppointmentVM.takeToChat = true
                     }, label: {
-                        ZStack (alignment: .center) {
-                            Image(systemName: "message")
-                                .scaleEffect(1.2)
-                                .padding()
-                            if self.customerDetailedAppointmentVM.newChats > 0 {
-                                Text("\(self.customerDetailedAppointmentVM.newChats)")
-                                    .font(.subheadline)
-                                    .foregroundColor(.blue)
-                                    .padding(.bottom, 2)
+                        VStack (alignment: .center) {
+                            ZStack (alignment: .center) {
+                                Circle()
+                                    .fill(Color.blue)
+                                    .frame(width: 60, height: 60)
                             }
+                            .overlay(newMessageIcon)
+                            
+                            Text("Chat")
+                            .foregroundColor(.blue)
+                            .font(.system(size: 12))
                         }
-                        .overlay(Circle()
-                                    .fill(Color.blue.opacity(0.2))
-                                    .frame(width: 60, height: 60))
                     })
                     
                     Spacer()
@@ -333,15 +341,42 @@ struct CustomerDetailedAppointmentView: View {
                         Button(action: {
                             customerDetailedAppointmentVM.startConsultation()
                         }, label: {
-                            ZStack {
-                                Image(systemName: "video")
-                                    .scaleEffect(1.2)
-                                    .padding()
+                            
+                            VStack (alignment: .center) {
+                                ZStack {
+                                    Circle()
+                                        .fill(Color.blue)
+                                        .frame(width: 60, height: 60)
+                                }
+                                .overlay(Image(systemName: "video")
+                                            .scaleEffect(1.2)
+                                            .foregroundColor(.white)
+                                            .padding())
+                                
+                                Text("Call")
+                                    .foregroundColor(.blue)
+                                    .font(.system(size: 12))
                             }
-                            .overlay(Circle()
-                                        .fill(Color.blue.opacity(0.2))
-                                        .frame(width: 60, height: 60))
                         })
+                        
+                    }
+                    
+                    if self.customerDetailedAppointmentVM.appointment.IsInPersonAppointment {
+                        VStack (alignment: .center) {
+                            ZStack {
+                                Circle()
+                                    .fill(Color.blue)
+                                    .frame(width: 60, height: 60)
+                            }
+                            .overlay(Image("location")
+                                        .scaleEffect(1.2)
+                                        .padding()
+                                        .foregroundColor(.white))
+                            
+                            Text("Directions")
+                                .foregroundColor(.blue)
+                                .font(.system(size: 12))
+                        }
                     }
                 }
                 .padding(.horizontal, 25)
@@ -349,13 +384,6 @@ struct CustomerDetailedAppointmentView: View {
                 Divider().background(Color.blue.opacity(0.4))
             }
             
-            if self.customerDetailedAppointmentVM.appointment.IsInPersonAppointment {
-                LargeButton(title: "Navigate to \(self.customerDetailedAppointmentVM.appointment.organisationName)",
-                            backgroundColor: .blue) {
-                    openURL(URL(string: self.customerDetailedAppointmentVM.appointment.Address.googleMapsAddress)!)
-                }
-            }
-
             if !customerDetailedAppointmentVM.isPaid {
                 LargeButton(title: customerDetailedAppointmentVM.appointmentFinished ? "Pay Now" : "Pay",
                             backgroundColor: customerDetailedAppointmentVM.appointmentFinished ? .green : .gray,
@@ -387,6 +415,21 @@ struct CustomerDetailedAppointmentView: View {
     private func killView () {
         CustomerDefaultModifiers.refreshAppointments()
         self.presentationMode.wrappedValue.dismiss()
+    }
+    
+    var newMessageIcon : some View {
+        ZStack (alignment: .center) {
+            Image(systemName: "message")
+                        .scaleEffect(1.2)
+                        .foregroundColor(.white)
+                        .padding()
+            if self.customerDetailedAppointmentVM.newChats > 0 {
+                Text("\(self.customerDetailedAppointmentVM.newChats)")
+                    .font(.subheadline)
+                    .foregroundColor(.white)
+                    .padding(.bottom, 2)
+            }
+        }
     }
 }
 
