@@ -66,6 +66,16 @@ struct AppointmentCard: View {
                     Text(AppointmentVM.getAppointmentTime())
                         .font(.system(size: 17))
                         .foregroundColor(Color.gray)
+                    
+                    if AppointmentVM.appointment.IsInPersonAppointment {
+                        Text("In-Person")
+                            .font(.system(size: 17))
+                            .foregroundColor(Color.gray)
+                    } else {
+                        Text("Online")
+                            .font(.system(size: 17))
+                            .foregroundColor(Color.gray)
+                    }
 
                     if AppointmentVM.consultationStarted {
                         Text("Consultation In Progress...")
