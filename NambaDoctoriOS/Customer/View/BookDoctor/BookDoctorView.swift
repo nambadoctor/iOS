@@ -30,16 +30,17 @@ struct BookDoctorView: View {
                             Image("figure.walk")
                                 .scaleEffect(3)
                                 .padding()
-                            if self.customerVM.searchForHospitals {
-                                Text("Coming Soon! There are currently no hospitals available for this specialty.")
-                                    .fixedSize(horizontal: false, vertical: true)
-                                    .multilineTextAlignment(.center)
-                            }
-//                            if self.customerVM.searchForDoctors {
-//                                Text("Coming Soon! There are currently no doctors available for this specialty.")
+//                            if self.customerVM.searchForHospitals {
+//                                Text("Coming Soon! There are currently no hospitals available for this specialty.")
 //                                    .fixedSize(horizontal: false, vertical: true)
 //                                    .multilineTextAlignment(.center)
 //                            }
+//
+                            if self.customerVM.searchForDoctors {
+                                Text("Coming Soon! There are currently no doctors available for this specialty.")
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .multilineTextAlignment(.center)
+                            }
                         }.padding()
                     } else {
                         if self.customerVM.searchForDoctors {

@@ -16,7 +16,6 @@ struct CustomerSupportView: View {
                 .bold()
             
             Button(action: {
-                
                 openWhatsapp(phoneNumber: "+917530043008", textToSend: "Hello I need help with NambaDoctor")
             }, label: {
                 HStack (spacing: 20) {

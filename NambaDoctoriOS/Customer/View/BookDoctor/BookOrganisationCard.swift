@@ -12,51 +12,42 @@ struct BookOrganisationCard: View {
     @ObservedObject var organisationVM:CustomerOrganisationViewModel
     
     var body: some View {
-        ZStack {
-            HStack {
+        HStack {
+            ImageView(imageLoader: self.organisationVM.imageLoader!)
+            
+            VStack (alignment: .leading, spacing: 5) {
+                HStack {
+                    Spacer()
+                }
+                Text(self.organisationVM.organisation.name)
+                    .font(.system(size: 17))
+                    .bold()
                 
-                ImageView(imageLoader: self.organisationVM.imageLoader!)
-                
-                VStack (alignment: .leading, spacing: 5) {
+                if !organisationVM.organisation.specialities.isEmpty {
+                    Text(organisationVM.specialties)
+                        .font(.system(size: 15))
+                        .foregroundColor(Color.gray)
+                }
+
+                HStack (alignment: .bottom) {
                     HStack {
                         Spacer()
-                    }
-                    Text(self.organisationVM.organisation.name)
-                        .font(.system(size: 17))
-                        .bold()
-                    
-                    if !organisationVM.organisation.specialities.isEmpty {
-                        Text(organisationVM.specialties)
-                            .font(.system(size: 15))
-                            .foregroundColor(Color.gray)
-                    }
-
-                    HStack (alignment: .bottom) {
-                        VStack (alignment: .leading) {
-                            Text(organisationVM.organisation.type)
-                                .font(.system(size: 15))
-                                .foregroundColor(Color.gray)
-                        }
-
-                        HStack {
-                            Spacer()
-                            Button {
-                                self.organisationVM.SelectOrganisation()
-                            } label: {
-                                Text("Select")
-                                    .padding(.horizontal)
-                                    .padding(.vertical, 7)
-                                    .background(Color.blue)
-                                    .foregroundColor(Color.white)
-                                    .cornerRadius(5)
-                            }
+                        Button {
+                            self.organisationVM.SelectOrganisation()
+                        } label: {
+                            Text("Select")
+                                .padding(.horizontal)
+                                .padding(.vertical, 7)
+                                .background(Color.blue)
+                                .foregroundColor(Color.white)
+                                .cornerRadius(5)
                         }
                     }
-                }.padding(.leading, 3)
-
-            }.padding()
+                }
+            }.padding(.leading, 3)
 
         }
+        .padding(.horizontal)
         .background(Color.white)
         .cornerRadius(10)
         .shadow(radius: 5)

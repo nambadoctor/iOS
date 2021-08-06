@@ -13,15 +13,38 @@ struct AvailabilitySelector : View {
     var body: some View {
         VStack (alignment: .leading) {
             
-            if !self.availabilitySelectorVM.selectedSlotOption {
+            if self.availabilitySelectorVM.noAvailabilities {
+                HStack {
+                    Spacer()
+                    VStack (alignment: .center) {
+                        Text("Sorry doctor is not available")
+                            .foregroundColor(.blue)
+                            .bold()
+                            .padding(.bottom)
+                        
+                        Button {
+                            openWhatsapp(phoneNumber: "+917530043008", textToSend: "Hello, I need to book for this doctor but there is no availability")
+                        } label: {
+                            Text("Contact Support")
+                                .foregroundColor(.white)
+                        }
+                        .padding(10)
+                        .background(Color.red)
+                        .cornerRadius(7)
+                    }
+                    Spacer()
+                }
+            } else if !self.availabilitySelectorVM.selectedSlotOption {
                 VStack {
                     Text("How would you like to see the doctor?")
                     
-                    LargeButton(title: "Online") {
+                    LargeButton(title: self.availabilitySelectorVM.noOnlineSlots ? "Online (Unavailable)" : "Online",
+                                backgroundColor: self.availabilitySelectorVM.noOnlineSlots ? .gray : .blue) {
                         self.availabilitySelectorVM.getOnlyOnlineSlots()
                     }
                     
-                    LargeButton(title: "In Person") {
+                    LargeButton(title: self.availabilitySelectorVM.noInPersonSlots ? "In-Person (Unavailable)" : "In-Person",
+                                backgroundColor: self.availabilitySelectorVM.noInPersonSlots ? .gray : .blue) {
                         if self.availabilitySelectorVM.organisationID.isEmpty {
                             self.availabilitySelectorVM.getOnlyInPersonSlots()
                         } else {
@@ -59,25 +82,23 @@ struct AvailabilitySelector : View {
             } else {
                 slotPickerView
             }
-            
-            
         }
-        .padding()
     }
     
     var slotPickerView : some View {
         VStack (alignment: .leading) {
-            
-            SideBySideCheckBox(isChecked: self.$availabilitySelectorVM.showOnlineOrOfflineSlots, title1: "Show Online Availability", title2: "Show In-Person Availability", delegate: self.availabilitySelectorVM)
-            
+
+//            SideBySideCheckBox(isChecked: self.$availabilitySelectorVM.showOnlineOrOfflineSlots, title1: "Show Online Availability", title2: "Show In-Person Availability", delegate: self.availabilitySelectorVM)
+
             if self.availabilitySelectorVM.selectedAddress != nil {
                 HStack {
+                    Text("Location:")
                     addressPicker
                     Spacer()
                     Button {
                         openURL(URL(string: self.availabilitySelectorVM.selectedAddress!.googleMapsAddress)!)
                     } label: {
-                        Text("Open in maps")
+                        Text("Directions")
                     }
                     .padding(5)
                     .background(Color.blue.opacity(0.2))
@@ -85,9 +106,7 @@ struct AvailabilitySelector : View {
                 }
             }
             
-            if self.availabilitySelectorVM.noOnlineSlots && self.availabilitySelectorVM.noInPersonSlots {
-                Text("Sorry doctor is not available")
-            } else if self.availabilitySelectorVM.noOnlineSlots {
+            if self.availabilitySelectorVM.noOnlineSlots {
                 Text("Sorry this doctor has no online slots available")
             } else if self.availabilitySelectorVM.noInPersonSlots {
                 Text("Sorry this doctor has no in person slots available")

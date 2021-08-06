@@ -15,11 +15,13 @@ struct DetailedBookDoctorView: View {
         ZStack {
             ScrollView {
                 VStack (alignment: .leading, spacing: 10) {
-                    Group {
-                        header
-                        
-                        Divider().background(Color.blue)
-                        
+                    
+                    header
+                        .modifier(DetailedAppointmentViewCardModifier())
+                        .padding(.top)
+                    
+                    VStack (alignment: .leading) {
+                        HStack {Spacer()}
                         HStack {
                             
                             Text("This appointment is for")
@@ -54,27 +56,26 @@ struct DetailedBookDoctorView: View {
                             }
                             .modifier(AddProfileViewMod(addChildVM: self.detailedBookingVM.addChildVM, customerProfile: self.detailedBookingVM.customerProfile, callback: self.detailedBookingVM.refreshCustomerProfile))
                         }
-
-                        Spacer().frame(height: 10)
+                        
+                        Spacer().frame(height: 15)
                         
                         Text("Reason For Appointment")
      
                         ExpandingTextEntryView(text: self.$detailedBookingVM.reasonVM.reason)
-                        
-                        Spacer().frame(height: 10)
                     }
+                    .modifier(DetailedAppointmentViewCardModifier())
                     
                     AvailabilitySelector(availabilitySelectorVM: self.detailedBookingVM.availabilityVM)
+                        .modifier(DetailedAppointmentViewCardModifier())
 
                     if self.detailedBookingVM.slotIsSelected {
                         LargeButton(title: self.detailedBookingVM.availabilityVM.isPrePaySlot ? "Pay and Book Appointment" : "Book Appointment",
                                     backgroundColor: Color.blue) {
                             self.detailedBookingVM.checkTrustScores()
-                        }
+                        }.padding(.horizontal)
                     }
                 }
             }
-            .padding()
 
             BookingReasonBottomsheetCaller(offset: self.$detailedBookingVM.preBookingOptionsOffSet, preBookingOptions: self.detailedBookingVM.preBookingOptions, preBookingOptionsCallback: self.detailedBookingVM.preBookingOptionsCallback)
             
@@ -83,12 +84,13 @@ struct DetailedBookDoctorView: View {
             }
             
         }
+        .background(Color.gray.opacity(0.08))
         .environmentObject(self.detailedBookingVM.reasonVM)
     }
 
     var header : some View {
         VStack (alignment: .leading) {
-            
+            HStack {Spacer()}
             HStack (alignment: .center) {
                 
                 if detailedBookingVM.docProfPicImageLoader != nil {
@@ -98,8 +100,17 @@ struct DetailedBookDoctorView: View {
                 VStack (alignment: .leading, spacing: 8) {
                     
                     HStack {
+                        Image("person.crop.circle.fill")
                         Text(detailedBookingVM.serviceProviderName)
                             .font(.system(size: 16))
+                    }
+                    
+                    if detailedBookingVM.organization != nil {
+                        HStack {
+                            Image("building.2")
+                            Text(detailedBookingVM.organization!.name)
+                                .font(.system(size: 16))
+                        }
                     }
                     
                     HStack {
@@ -115,9 +126,7 @@ struct DetailedBookDoctorView: View {
                     }
                     
                 }.padding(.leading, 5)
-                Spacer()
             }
-            .padding(.top, 10)
         }
     }
 }
