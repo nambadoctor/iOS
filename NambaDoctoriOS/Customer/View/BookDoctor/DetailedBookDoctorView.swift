@@ -66,7 +66,6 @@ struct DetailedBookDoctorView: View {
                     .modifier(DetailedAppointmentViewCardModifier())
                     
                     AvailabilitySelector(availabilitySelectorVM: self.detailedBookingVM.availabilityVM)
-                        .modifier(DetailedAppointmentViewCardModifier())
 
                     if self.detailedBookingVM.slotIsSelected {
                         LargeButton(title: self.detailedBookingVM.availabilityVM.isPrePaySlot ? "Pay and Book Appointment" : "Book Appointment",

@@ -52,6 +52,9 @@ class AvailabilitySelectorViewModel : ObservableObject {
         if self.organisationID.isEmpty {
             CustomerServiceProviderService().getServiceProviderAvailabilities(serviceProviderId: serviceProviderID) { (slots) in
                 self.slotInitCalls(slots: slots)
+                if slots != nil {
+                    self.noAvailabilities = !self.checkForFreelancingAvailabilities(slots: slots!)
+                }
             }
         } else {
             CustomerServiceProviderService().getServiceProviderAvailableSlotsForOrganisation(serviceProviderId: self.serviceProviderID, organizationId: self.organisationID) { slots in
@@ -67,6 +70,16 @@ class AvailabilitySelectorViewModel : ObservableObject {
                 self.organisation = organisation!
             }
         }
+    }
+    
+    func checkForFreelancingAvailabilities (slots:[CustomerGeneratedSlot]) -> Bool {
+        for slot in slots {
+            if slot.organisationId.isEmpty {
+                return true
+            }
+        }
+        
+        return false
     }
     
     func slotInitCalls (slots:[CustomerGeneratedSlot]?) {
@@ -148,6 +161,8 @@ class AvailabilitySelectorViewModel : ObservableObject {
                     dateDisplay.append(slot.startDateTime)
                 }
             }
+            
+            self.noAvailabilities = false
         }
         
         for slot in slots {

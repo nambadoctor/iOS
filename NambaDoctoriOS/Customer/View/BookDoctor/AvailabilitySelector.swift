@@ -34,6 +34,7 @@ struct AvailabilitySelector : View {
                     }
                     Spacer()
                 }
+                .modifier(DetailedAppointmentViewCardModifier())
             } else if !self.availabilitySelectorVM.selectedSlotOption {
                 VStack {
                     Text("How would you like to see the doctor?")
@@ -60,27 +61,31 @@ struct AvailabilitySelector : View {
                         }
                     }
                 }
+                .modifier(DetailedAppointmentViewCardModifier())
             } else if self.availabilitySelectorVM.showSelectAddressView {
-                Text("Please select where your preferred location")
-                ScrollView {
-                    ForEach(self.availabilitySelectorVM.addresses, id: \.addressID) { address in
-                        Button {
-                            self.availabilitySelectorVM.selectAddress(address: address)
-                        } label: {
-                            HStack {
-                                Text(address.streetAddress)
-                                    .foregroundColor(Color.blue)
-                                Spacer()
+                VStack (alignment: .leading) {
+                    Text("Please select where your preferred location")
+                    ScrollView {
+                        ForEach(self.availabilitySelectorVM.addresses, id: \.addressID) { address in
+                            Button {
+                                self.availabilitySelectorVM.selectAddress(address: address)
+                            } label: {
+                                HStack {
+                                    Text(address.streetAddress)
+                                        .foregroundColor(Color.blue)
+                                    Spacer()
+                                }
                             }
-                        }
-                        .padding(5)
-                        .background(Color.blue.opacity(0.2))
-                        .cornerRadius(10)
+                            .padding(5)
+                            .background(Color.blue.opacity(0.2))
+                            .cornerRadius(10)
 
+                        }
                     }
                 }
             } else {
                 slotPickerView
+                    .modifier(DetailedAppointmentViewCardModifier())
             }
         }
     }
@@ -89,11 +94,28 @@ struct AvailabilitySelector : View {
         VStack (alignment: .leading) {
 
 //            SideBySideCheckBox(isChecked: self.$availabilitySelectorVM.showOnlineOrOfflineSlots, title1: "Show Online Availability", title2: "Show In-Person Availability", delegate: self.availabilitySelectorVM)
+       
+            HStack {
+                if self.availabilitySelectorVM.showOnlineOrOfflineSlots == "Show Online Availability" {
+                    HStack {
+                        Text("Appointment Type:")
+                        Text("Online").bold()
+                    }
+                    
+                } else if self.availabilitySelectorVM.showOnlineOrOfflineSlots == "Show In-Person Availability" {
+                    HStack {
+                        Text("Appointment Type:")
+                        Text("In-Person").bold()
+                    }
+                }
 
+            }
+            
             if self.availabilitySelectorVM.selectedAddress != nil {
                 HStack {
-                    Text("Location:")
-                    addressPicker
+                    Text("Location: \(self.availabilitySelectorVM.selectedAddress!.streetAddress)")
+                    //addressPicker
+                    
                     Spacer()
                     Button {
                         openURL(URL(string: self.availabilitySelectorVM.selectedAddress!.googleMapsAddress)!)
@@ -178,6 +200,5 @@ struct AvailabilitySelector : View {
             Text(self.availabilitySelectorVM.selectedAddress!.streetAddress)
             Image("chevron.down.circle")
         }
-
     }
 }

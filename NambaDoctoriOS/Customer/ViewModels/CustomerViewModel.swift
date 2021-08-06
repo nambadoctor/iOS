@@ -307,6 +307,7 @@ class CustomerViewModel : ObservableObject {
             organisationsExistForCategory()
             self.setSearchForHospitals()
         } else {
+            self.selectedOrganisation = nil
             doctorsExistForCategory()
             self.setSearchForDoctors()
         }
