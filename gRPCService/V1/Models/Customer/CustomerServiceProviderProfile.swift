@@ -34,4 +34,5 @@ struct CustomerServiceProviderProfile {
     var lastModifiedDate:Int64
     var additionalInfo:CustomerServiceProviderAdditionalInfo
     var organisationIds:[String]
+    var configurableSettings:CustomerServiceProviderConfigurableSettings?
 }

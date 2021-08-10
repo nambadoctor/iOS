@@ -1416,6 +1416,37 @@ struct Nd_V1_CustomerChildProfileUploadMessage {
   fileprivate var _caretakerID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
 }
 
+struct Nd_V1_CustomerServiceProviderConfigurableSettingsMessage {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var skipFraudPrevention: SwiftProtobuf.Google_Protobuf_BoolValue {
+    get {return _skipFraudPrevention ?? SwiftProtobuf.Google_Protobuf_BoolValue()}
+    set {_skipFraudPrevention = newValue}
+  }
+  /// Returns true if `skipFraudPrevention` has been explicitly set.
+  var hasSkipFraudPrevention: Bool {return self._skipFraudPrevention != nil}
+  /// Clears the value of `skipFraudPrevention`. Subsequent reads from it will return its default value.
+  mutating func clearSkipFraudPrevention() {self._skipFraudPrevention = nil}
+
+  var dontShowFees: SwiftProtobuf.Google_Protobuf_BoolValue {
+    get {return _dontShowFees ?? SwiftProtobuf.Google_Protobuf_BoolValue()}
+    set {_dontShowFees = newValue}
+  }
+  /// Returns true if `dontShowFees` has been explicitly set.
+  var hasDontShowFees: Bool {return self._dontShowFees != nil}
+  /// Clears the value of `dontShowFees`. Subsequent reads from it will return its default value.
+  mutating func clearDontShowFees() {self._dontShowFees = nil}
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _skipFraudPrevention: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
+  fileprivate var _dontShowFees: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
+}
+
 struct Nd_V1_CustomersServiceProviderProfileMessage {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -1639,6 +1670,15 @@ struct Nd_V1_CustomersServiceProviderProfileMessage {
     get {return _storage._organisationIds}
     set {_uniqueStorage()._organisationIds = newValue}
   }
+
+  var configurableSettings: Nd_V1_CustomerServiceProviderConfigurableSettingsMessage {
+    get {return _storage._configurableSettings ?? Nd_V1_CustomerServiceProviderConfigurableSettingsMessage()}
+    set {_uniqueStorage()._configurableSettings = newValue}
+  }
+  /// Returns true if `configurableSettings` has been explicitly set.
+  var hasConfigurableSettings: Bool {return _storage._configurableSettings != nil}
+  /// Clears the value of `configurableSettings`. Subsequent reads from it will return its default value.
+  mutating func clearConfigurableSettings() {_uniqueStorage()._configurableSettings = nil}
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -6289,6 +6329,37 @@ struct Nd_V1_ServiceProviderInOrganisationRequestMessage {
   fileprivate var _organisationID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
 }
 
+struct Nd_V1_ServiceProviderConfigurableSettingsMessage {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var skipFraudPrevention: SwiftProtobuf.Google_Protobuf_BoolValue {
+    get {return _skipFraudPrevention ?? SwiftProtobuf.Google_Protobuf_BoolValue()}
+    set {_skipFraudPrevention = newValue}
+  }
+  /// Returns true if `skipFraudPrevention` has been explicitly set.
+  var hasSkipFraudPrevention: Bool {return self._skipFraudPrevention != nil}
+  /// Clears the value of `skipFraudPrevention`. Subsequent reads from it will return its default value.
+  mutating func clearSkipFraudPrevention() {self._skipFraudPrevention = nil}
+
+  var dontShowFees: SwiftProtobuf.Google_Protobuf_BoolValue {
+    get {return _dontShowFees ?? SwiftProtobuf.Google_Protobuf_BoolValue()}
+    set {_dontShowFees = newValue}
+  }
+  /// Returns true if `dontShowFees` has been explicitly set.
+  var hasDontShowFees: Bool {return self._dontShowFees != nil}
+  /// Clears the value of `dontShowFees`. Subsequent reads from it will return its default value.
+  mutating func clearDontShowFees() {self._dontShowFees = nil}
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _skipFraudPrevention: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
+  fileprivate var _dontShowFees: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
+}
+
 struct Nd_V1_ServiceProviderProfileMessage {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -6513,6 +6584,15 @@ struct Nd_V1_ServiceProviderProfileMessage {
     get {return _storage._alternateNotificationInfos}
     set {_uniqueStorage()._alternateNotificationInfos = newValue}
   }
+
+  var configurableSettings: Nd_V1_ServiceProviderConfigurableSettingsMessage {
+    get {return _storage._configurableSettings ?? Nd_V1_ServiceProviderConfigurableSettingsMessage()}
+    set {_uniqueStorage()._configurableSettings = newValue}
+  }
+  /// Returns true if `configurableSettings` has been explicitly set.
+  var hasConfigurableSettings: Bool {return _storage._configurableSettings != nil}
+  /// Clears the value of `configurableSettings`. Subsequent reads from it will return its default value.
+  mutating func clearConfigurableSettings() {_uniqueStorage()._configurableSettings = nil}
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -8280,6 +8360,44 @@ extension Nd_V1_CustomerChildProfileUploadMessage: SwiftProtobuf.Message, SwiftP
   }
 }
 
+extension Nd_V1_CustomerServiceProviderConfigurableSettingsMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".CustomerServiceProviderConfigurableSettingsMessage"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "SkipFraudPrevention"),
+    2: .same(proto: "DontShowFees"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularMessageField(value: &self._skipFraudPrevention) }()
+      case 2: try { try decoder.decodeSingularMessageField(value: &self._dontShowFees) }()
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if let v = self._skipFraudPrevention {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+    }
+    if let v = self._dontShowFees {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Nd_V1_CustomerServiceProviderConfigurableSettingsMessage, rhs: Nd_V1_CustomerServiceProviderConfigurableSettingsMessage) -> Bool {
+    if lhs._skipFraudPrevention != rhs._skipFraudPrevention {return false}
+    if lhs._dontShowFees != rhs._dontShowFees {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
 extension Nd_V1_CustomersServiceProviderProfileMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".CustomersServiceProviderProfileMessage"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
@@ -8310,6 +8428,7 @@ extension Nd_V1_CustomersServiceProviderProfileMessage: SwiftProtobuf.Message, S
     25: .same(proto: "LatestSlotEndTime"),
     26: .same(proto: "AdditionalInfo"),
     27: .same(proto: "OrganisationIds"),
+    28: .same(proto: "ConfigurableSettings"),
   ]
 
   fileprivate class _StorageClass {
@@ -8340,6 +8459,7 @@ extension Nd_V1_CustomersServiceProviderProfileMessage: SwiftProtobuf.Message, S
     var _latestSlotEndTime: SwiftProtobuf.Google_Protobuf_Int64Value? = nil
     var _additionalInfo: Nd_V1_CustomerServiceProviderAdditionalInfoMessage? = nil
     var _organisationIds: [SwiftProtobuf.Google_Protobuf_StringValue] = []
+    var _configurableSettings: Nd_V1_CustomerServiceProviderConfigurableSettingsMessage? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -8373,6 +8493,7 @@ extension Nd_V1_CustomersServiceProviderProfileMessage: SwiftProtobuf.Message, S
       _latestSlotEndTime = source._latestSlotEndTime
       _additionalInfo = source._additionalInfo
       _organisationIds = source._organisationIds
+      _configurableSettings = source._configurableSettings
     }
   }
 
@@ -8418,6 +8539,7 @@ extension Nd_V1_CustomersServiceProviderProfileMessage: SwiftProtobuf.Message, S
         case 25: try { try decoder.decodeSingularMessageField(value: &_storage._latestSlotEndTime) }()
         case 26: try { try decoder.decodeSingularMessageField(value: &_storage._additionalInfo) }()
         case 27: try { try decoder.decodeRepeatedMessageField(value: &_storage._organisationIds) }()
+        case 28: try { try decoder.decodeSingularMessageField(value: &_storage._configurableSettings) }()
         default: break
         }
       }
@@ -8507,6 +8629,9 @@ extension Nd_V1_CustomersServiceProviderProfileMessage: SwiftProtobuf.Message, S
       if !_storage._organisationIds.isEmpty {
         try visitor.visitRepeatedMessageField(value: _storage._organisationIds, fieldNumber: 27)
       }
+      if let v = _storage._configurableSettings {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 28)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -8543,6 +8668,7 @@ extension Nd_V1_CustomersServiceProviderProfileMessage: SwiftProtobuf.Message, S
         if _storage._latestSlotEndTime != rhs_storage._latestSlotEndTime {return false}
         if _storage._additionalInfo != rhs_storage._additionalInfo {return false}
         if _storage._organisationIds != rhs_storage._organisationIds {return false}
+        if _storage._configurableSettings != rhs_storage._configurableSettings {return false}
         return true
       }
       if !storagesAreEqual {return false}
@@ -13588,6 +13714,44 @@ extension Nd_V1_ServiceProviderInOrganisationRequestMessage: SwiftProtobuf.Messa
   }
 }
 
+extension Nd_V1_ServiceProviderConfigurableSettingsMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".ServiceProviderConfigurableSettingsMessage"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "SkipFraudPrevention"),
+    2: .same(proto: "DontShowFees"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularMessageField(value: &self._skipFraudPrevention) }()
+      case 2: try { try decoder.decodeSingularMessageField(value: &self._dontShowFees) }()
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if let v = self._skipFraudPrevention {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+    }
+    if let v = self._dontShowFees {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Nd_V1_ServiceProviderConfigurableSettingsMessage, rhs: Nd_V1_ServiceProviderConfigurableSettingsMessage) -> Bool {
+    if lhs._skipFraudPrevention != rhs._skipFraudPrevention {return false}
+    if lhs._dontShowFees != rhs._dontShowFees {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
 extension Nd_V1_ServiceProviderProfileMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
   static let protoMessageName: String = _protobuf_package + ".ServiceProviderProfileMessage"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
@@ -13619,6 +13783,7 @@ extension Nd_V1_ServiceProviderProfileMessage: SwiftProtobuf.Message, SwiftProto
     26: .same(proto: "AdditionalInfo"),
     27: .same(proto: "OrganisationIds"),
     28: .same(proto: "AlternateNotificationInfos"),
+    29: .same(proto: "ConfigurableSettings"),
   ]
 
   fileprivate class _StorageClass {
@@ -13650,6 +13815,7 @@ extension Nd_V1_ServiceProviderProfileMessage: SwiftProtobuf.Message, SwiftProto
     var _additionalInfo: Nd_V1_ServiceProviderAdditionalInfoMessage? = nil
     var _organisationIds: [SwiftProtobuf.Google_Protobuf_StringValue] = []
     var _alternateNotificationInfos: [Nd_V1_ServiceProviderAlternateNotificationInfoMessage] = []
+    var _configurableSettings: Nd_V1_ServiceProviderConfigurableSettingsMessage? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -13684,6 +13850,7 @@ extension Nd_V1_ServiceProviderProfileMessage: SwiftProtobuf.Message, SwiftProto
       _additionalInfo = source._additionalInfo
       _organisationIds = source._organisationIds
       _alternateNotificationInfos = source._alternateNotificationInfos
+      _configurableSettings = source._configurableSettings
     }
   }
 
@@ -13730,6 +13897,7 @@ extension Nd_V1_ServiceProviderProfileMessage: SwiftProtobuf.Message, SwiftProto
         case 26: try { try decoder.decodeSingularMessageField(value: &_storage._additionalInfo) }()
         case 27: try { try decoder.decodeRepeatedMessageField(value: &_storage._organisationIds) }()
         case 28: try { try decoder.decodeRepeatedMessageField(value: &_storage._alternateNotificationInfos) }()
+        case 29: try { try decoder.decodeSingularMessageField(value: &_storage._configurableSettings) }()
         default: break
         }
       }
@@ -13822,6 +13990,9 @@ extension Nd_V1_ServiceProviderProfileMessage: SwiftProtobuf.Message, SwiftProto
       if !_storage._alternateNotificationInfos.isEmpty {
         try visitor.visitRepeatedMessageField(value: _storage._alternateNotificationInfos, fieldNumber: 28)
       }
+      if let v = _storage._configurableSettings {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 29)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -13859,6 +14030,7 @@ extension Nd_V1_ServiceProviderProfileMessage: SwiftProtobuf.Message, SwiftProto
         if _storage._additionalInfo != rhs_storage._additionalInfo {return false}
         if _storage._organisationIds != rhs_storage._organisationIds {return false}
         if _storage._alternateNotificationInfos != rhs_storage._alternateNotificationInfos {return false}
+        if _storage._configurableSettings != rhs_storage._configurableSettings {return false}
         return true
       }
       if !storagesAreEqual {return false}

@@ -385,7 +385,11 @@
 		17C2AEB026B625130001C1AD /* CustomerOrganisationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C2AEAF26B625130001C1AD /* CustomerOrganisationViewModel.swift */; };
 		17C2AEB526B626FB0001C1AD /* BookDoctorInOrganisationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C2AEB426B626FB0001C1AD /* BookDoctorInOrganisationView.swift */; };
 		17C2AEB726B789F90001C1AD /* BookDoctorInOrganisationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C2AEB626B789F90001C1AD /* BookDoctorInOrganisationViewModel.swift */; };
-		17C2AEBB26BB33520001C1AD /* ServiceProviderAndCustomer.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C2AEBA26BB33520001C1AD /* ServiceProviderAndCustomer.pb.swift */; };
+		17C5489E26C31A9400163B8C /* ServiceProviderAndCustomer.pb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C5489D26C31A9400163B8C /* ServiceProviderAndCustomer.pb.swift */; };
+		17C548A026C31E8D00163B8C /* ServiceProviderConfigurableSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C5489F26C31E8D00163B8C /* ServiceProviderConfigurableSettings.swift */; };
+		17C548A226C31EB500163B8C /* ServiceProviderConfigurableSettingsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C548A126C31EB500163B8C /* ServiceProviderConfigurableSettingsMapper.swift */; };
+		17C548A426C31F8900163B8C /* CustomerServiceProviderConfigurableSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C548A326C31F8900163B8C /* CustomerServiceProviderConfigurableSettings.swift */; };
+		17C548A626C31FA500163B8C /* CustomerServiceProviderConfigurableSettingsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C548A526C31FA500163B8C /* CustomerServiceProviderConfigurableSettingsMapper.swift */; };
 		17CE14A8268D8748000FDE94 /* NewInstallDoctorsPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE14A7268D8748000FDE94 /* NewInstallDoctorsPreviewView.swift */; };
 		17CE14AA268D96BB000FDE94 /* NewInstallDoctorPreviewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE14A9268D96BB000FDE94 /* NewInstallDoctorPreviewCard.swift */; };
 		17CE14AC268D96DA000FDE94 /* NonActionableCustomerServiceProviderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17CE14AB268D96DA000FDE94 /* NonActionableCustomerServiceProviderViewModel.swift */; };
@@ -846,7 +850,11 @@
 		17C2AEAF26B625130001C1AD /* CustomerOrganisationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerOrganisationViewModel.swift; sourceTree = "<group>"; };
 		17C2AEB426B626FB0001C1AD /* BookDoctorInOrganisationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDoctorInOrganisationView.swift; sourceTree = "<group>"; };
 		17C2AEB626B789F90001C1AD /* BookDoctorInOrganisationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDoctorInOrganisationViewModel.swift; sourceTree = "<group>"; };
-		17C2AEBA26BB33520001C1AD /* ServiceProviderAndCustomer.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderAndCustomer.pb.swift; sourceTree = "<group>"; };
+		17C5489D26C31A9400163B8C /* ServiceProviderAndCustomer.pb.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceProviderAndCustomer.pb.swift; sourceTree = "<group>"; };
+		17C5489F26C31E8D00163B8C /* ServiceProviderConfigurableSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderConfigurableSettings.swift; sourceTree = "<group>"; };
+		17C548A126C31EB500163B8C /* ServiceProviderConfigurableSettingsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceProviderConfigurableSettingsMapper.swift; sourceTree = "<group>"; };
+		17C548A326C31F8900163B8C /* CustomerServiceProviderConfigurableSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerServiceProviderConfigurableSettings.swift; sourceTree = "<group>"; };
+		17C548A526C31FA500163B8C /* CustomerServiceProviderConfigurableSettingsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerServiceProviderConfigurableSettingsMapper.swift; sourceTree = "<group>"; };
 		17CE14A7268D8748000FDE94 /* NewInstallDoctorsPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewInstallDoctorsPreviewView.swift; sourceTree = "<group>"; };
 		17CE14A9268D96BB000FDE94 /* NewInstallDoctorPreviewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewInstallDoctorPreviewCard.swift; sourceTree = "<group>"; };
 		17CE14AB268D96DA000FDE94 /* NonActionableCustomerServiceProviderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NonActionableCustomerServiceProviderViewModel.swift; sourceTree = "<group>"; };
@@ -1011,6 +1019,7 @@
 				1771BA0926A794F10085389E /* ServiceProviderOrganisationTiming.swift */,
 				1771BA0F26A79D480085389E /* ServiceProviderCustomerVitals.swift */,
 				1771BA4726AE43C80085389E /* ServiceProviderAppointmentTransfer.swift */,
+				17C5489F26C31E8D00163B8C /* ServiceProviderConfigurableSettings.swift */,
 			);
 			path = ServiceProvider;
 			sourceTree = "<group>";
@@ -1052,6 +1061,7 @@
 				1771BA0D26A798980085389E /* ServiceProviderOrganisationMapper.swift */,
 				1771BA1126A79E940085389E /* ServiceProviderCustomerVitalsMapper.swift */,
 				1771BA4926AE446A0085389E /* ServiceProviderAppointmentTransferMapper.swift */,
+				17C548A126C31EB500163B8C /* ServiceProviderConfigurableSettingsMapper.swift */,
 			);
 			path = ServiceProvider;
 			sourceTree = "<group>";
@@ -1413,7 +1423,7 @@
 		173A22BC25CAF8C60086342A /* ModelImplementations */ = {
 			isa = PBXGroup;
 			children = (
-				17C2AEBA26BB33520001C1AD /* ServiceProviderAndCustomer.pb.swift */,
+				17C5489D26C31A9400163B8C /* ServiceProviderAndCustomer.pb.swift */,
 			);
 			path = ModelImplementations;
 			sourceTree = "<group>";
@@ -1670,6 +1680,7 @@
 				1771BA1B26A7C4DF0085389E /* CustomerOrganizationTiming.swift */,
 				1771BA1D26A7C51A0085389E /* CustomerVitals.swift */,
 				1771BA4B26AE465D0085389E /* CustomerAppointmentTransfer.swift */,
+				17C548A326C31F8900163B8C /* CustomerServiceProviderConfigurableSettings.swift */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
@@ -1708,6 +1719,7 @@
 				1771BA2126A7C6490085389E /* CustomerOrganizationMapper.swift */,
 				1771BA2326A7C7050085389E /* CustomerVitalsMapper.swift */,
 				1771BA4D26AE46C20085389E /* CustomerAppointmentTransferMapper.swift */,
+				17C548A526C31FA500163B8C /* CustomerServiceProviderConfigurableSettingsMapper.swift */,
 			);
 			path = Customer;
 			sourceTree = "<group>";
@@ -2592,6 +2604,7 @@
 				176EFAA7264DF10300A6310B /* FireLocalNotification.swift in Sources */,
 				1771BA1A26A7C4B30085389E /* CustomerOrganization.swift in Sources */,
 				172B850F25AEE46700C6B035 /* PhoneNumberEntryView.swift in Sources */,
+				17C548A226C31EB500163B8C /* ServiceProviderConfigurableSettingsMapper.swift in Sources */,
 				176AA16C2637BEEA00F02346 /* CustomerAddressMapper.swift in Sources */,
 				1771BA4E26AE46C20085389E /* CustomerAppointmentTransferMapper.swift in Sources */,
 				17E3709C25BF17600004C965 /* TwilioStateK.swift in Sources */,
@@ -2697,7 +2710,7 @@
 				17B9918D2660DC9500AB5A35 /* CreateDynamicLink.swift in Sources */,
 				1771BA1026A79D480085389E /* ServiceProviderCustomerVitals.swift in Sources */,
 				175E8DA9262FDA500000D00E /* DocAutoNavigateHelper.swift in Sources */,
-				17C2AEBB26BB33520001C1AD /* ServiceProviderAndCustomer.pb.swift in Sources */,
+				17C5489E26C31A9400163B8C /* ServiceProviderAndCustomer.pb.swift in Sources */,
 				17D1EDD52670C4DD00D6060E /* ServiceProviderMyPatientProfileMapper.swift in Sources */,
 				179BD3A325DE4D120076F391 /* DateHelper.swift in Sources */,
 				1771BA2426A7C7050085389E /* CustomerVitalsMapper.swift in Sources */,
@@ -2723,6 +2736,7 @@
 				17424F2625BA138F00523B94 /* DoctorAlertHelperProtocol.swift in Sources */,
 				177233BE25B745C2002B814A /* EncoderDecoder.swift in Sources */,
 				1789091B26453003004A9D75 /* CustomerNotificationHelper.swift in Sources */,
+				17C548A026C31E8D00163B8C /* ServiceProviderConfigurableSettings.swift in Sources */,
 				17CE14AC268D96DA000FDE94 /* NonActionableCustomerServiceProviderViewModel.swift in Sources */,
 				172EF1FD2655D656000F2B4E /* CancellationBottomsheetCaller.swift in Sources */,
 				179C44C42627F1B80073F4E0 /* ChatRoomView.swift in Sources */,
@@ -2843,6 +2857,7 @@
 				1785A5012616E193009667D1 /* ModifyFeeViewModel.swift in Sources */,
 				1771BA1E26A7C51A0085389E /* CustomerVitals.swift in Sources */,
 				1771BA3926AD14DD0085389E /* OrganisationPatientCardViewForDoctor.swift in Sources */,
+				17C548A426C31F8900163B8C /* CustomerServiceProviderConfigurableSettings.swift in Sources */,
 				171647DF26044DC800BB5B5A /* ServiceProviderReportService.swift in Sources */,
 				176AA1AB2637C91300F02346 /* CustomerGeneratedSlotMapper.swift in Sources */,
 				1776B4BE267F209500D823C1 /* CustomerServiceProviderSearchableIndexes.swift in Sources */,
@@ -2880,6 +2895,7 @@
 				172B84E725AEE39E00C6B035 /* DoctorViewModel.swift in Sources */,
 				17E3707D25BF12AF0004C965 /* DoctorTwilioViewModel.swift in Sources */,
 				171647F026046C0200BB5B5A /* RetrieveAuthId.swift in Sources */,
+				17C548A626C31FA500163B8C /* CustomerServiceProviderConfigurableSettingsMapper.swift in Sources */,
 				17EC75F7260CEFAB0002BA75 /* InvestigationsEntryView.swift in Sources */,
 				171648682609C0CE00BB5B5A /* RoundedCornerHelper.swift in Sources */,
 				17C2AE8F26B1E17C0001C1AD /* SecretaryHomeView.swift in Sources */,

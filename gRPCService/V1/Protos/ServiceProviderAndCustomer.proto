@@ -302,6 +302,11 @@ message CustomerChildProfileUploadMessage {
 	google.protobuf.StringValue CaretakerId = 2;
 }
 
+message CustomerServiceProviderConfigurableSettingsMessage {
+	google.protobuf.BoolValue SkipFraudPrevention = 1;
+	google.protobuf.BoolValue DontShowFees = 2;
+}
+
 message CustomersServiceProviderProfileMessage{
 
 	google.protobuf.StringValue ServiceProviderId = 1;
@@ -357,6 +362,8 @@ message CustomersServiceProviderProfileMessage{
 	CustomerServiceProviderAdditionalInfoMessage AdditionalInfo = 26;
 
 	repeated google.protobuf.StringValue OrganisationIds = 27;
+
+	CustomerServiceProviderConfigurableSettingsMessage ConfigurableSettings = 28;
 
 }
 
@@ -1603,6 +1610,11 @@ message ServiceProviderInOrganisationRequestMessage{
 	google.protobuf.StringValue OrganisationId = 2;
 }
 
+message ServiceProviderConfigurableSettingsMessage {
+	google.protobuf.BoolValue SkipFraudPrevention = 1;
+	google.protobuf.BoolValue DontShowFees = 2;
+}
+
 message ServiceProviderProfileMessage{
 
 	google.protobuf.StringValue ServiceProviderId = 1;
@@ -1660,6 +1672,8 @@ message ServiceProviderProfileMessage{
 	repeated google.protobuf.StringValue OrganisationIds = 27;
 
 	repeated ServiceProviderAlternateNotificationInfoMessage AlternateNotificationInfos = 28;
+
+	ServiceProviderConfigurableSettingsMessage ConfigurableSettings = 29;
 
 }
 

@@ -37,7 +37,8 @@ class ServiceProviderProfileMapper {
             serviceProviderDeviceInfo: DeviceInformationMapper.GrpcToLocal(deviceInfo: profile.serviceProviderDeviceInfo),
             additionalInfo: ServiceProviderAdditionalInfoMapper.grpcToLocal(additionalInfo: profile.additionalInfo),
             organisationIds: profile.organisationIds.convert(),
-            alternateNotificationInfos: ServiceProviderAlternateNotificationInfoMapper.GrpcToLocal(alternateNotif: profile.alternateNotificationInfos))
+            alternateNotificationInfos: ServiceProviderAlternateNotificationInfoMapper.GrpcToLocal(alternateNotif: profile.alternateNotificationInfos),
+            configurableSetting: ServiceProviderConfigurableSettingsMapper.grpcToLocal(setting: profile.configurableSettings))
     }
     
     func grpcProfileToLocal (profile:[Nd_V1_ServiceProviderProfileMessage]) -> [ServiceProviderProfile] {
@@ -80,7 +81,9 @@ class ServiceProviderProfileMapper {
             if profile.additionalInfo != nil {$0.additionalInfo = ServiceProviderAdditionalInfoMapper.localToGrpc(additionalInfo: profile.additionalInfo!)}
             if profile.organisationIds != nil { $0.organisationIds = profile.organisationIds!.convert() }
             if profile.alternateNotificationInfos != nil {$0.alternateNotificationInfos = ServiceProviderAlternateNotificationInfoMapper.LocalToGrpc(alternateNotif: profile.alternateNotificationInfos!)}
-            
+            if profile.configurableSetting != nil {
+                $0.configurableSettings = ServiceProviderConfigurableSettingsMapper.localToGrpc(setting: profile.configurableSetting!)
+            }
         }
     }
 }

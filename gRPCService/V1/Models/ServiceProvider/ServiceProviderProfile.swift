@@ -36,4 +36,5 @@ struct ServiceProviderProfile {
     var additionalInfo:ServiceProviderAdditionalInfo?
     var organisationIds:[String]?
     var alternateNotificationInfos:[ServiceProviderAlternateNotificationInfo]?
+    var configurableSetting:ServiceProviderConfigurableSettings?
 }
