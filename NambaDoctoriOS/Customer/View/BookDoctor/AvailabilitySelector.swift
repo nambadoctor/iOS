@@ -46,17 +46,13 @@ struct AvailabilitySelector : View {
                     
                     LargeButton(title: self.availabilitySelectorVM.noInPersonSlots ? "In-Person (Unavailable)" : "In-Person",
                                 backgroundColor: self.availabilitySelectorVM.noInPersonSlots ? .gray : .blue) {
-                        if self.availabilitySelectorVM.organisationID.isEmpty {
-                            self.availabilitySelectorVM.getOnlyInPersonSlots()
-                        } else {
-                            self.availabilitySelectorVM.getAllAddresses { success, error in
-                                if success {
-                                    self.availabilitySelectorVM.getOnlyInPersonSlots()
-                                }
+                        self.availabilitySelectorVM.getAllAddresses { success, error in
+                            if success {
+                                self.availabilitySelectorVM.getOnlyInPersonSlots()
+                            }
 
-                                if error {
-                                    
-                                }
+                            if error {
+                                
                             }
                         }
                     }

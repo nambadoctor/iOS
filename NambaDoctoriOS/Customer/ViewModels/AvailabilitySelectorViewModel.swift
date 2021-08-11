@@ -38,6 +38,7 @@ class AvailabilitySelectorViewModel : ObservableObject {
     var serviceProviderID:String
     var organisationID:String
     var organisation:CustomerOrganization? = nil
+    var organisations:[CustomerOrganization] = [CustomerOrganization]()
     
     init(serviceProviderID:String,
          slotSelected:(()->())?,
@@ -52,39 +53,56 @@ class AvailabilitySelectorViewModel : ObservableObject {
         if self.organisationID.isEmpty {
             CustomerServiceProviderService().getServiceProviderAvailabilities(serviceProviderId: serviceProviderID) { (slots) in
                 self.slotInitCalls(slots: slots)
-                if slots != nil {
-                    self.noAvailabilities = !self.checkForFreelancingAvailabilities(slots: slots!)
-                }
+//                if slots != nil {
+//                    self.noAvailabilities = !self.checkForFreelancingAvailabilities(slots: slots!)
+//                }
             }
         } else {
             CustomerServiceProviderService().getServiceProviderAvailableSlotsForOrganisation(serviceProviderId: self.serviceProviderID, organizationId: self.organisationID) { slots in
                 self.slotInitCalls(slots: slots)
             }
-            retrieveOrganisation()
         }
     }
     
     func retrieveOrganisation () {
-        CustomerOrganizationService().getcustomerOrganization(organizationId: self.organisationID) { organisation in
-            if organisation != nil {
-                self.organisation = organisation!
+        if self.organisationID.isEmpty {
+            var orgIds:[String] = [String]()
+            
+            for slot in self.slots! {
+                if !orgIds.contains(slot.organisationId) {
+                    orgIds.append(slot.organisationId)
+                }
+            }
+
+            CustomerOrganizationService().getCustomerSpecificOrganizations(orgIds: orgIds) { organisations in
+                if organisations != nil {
+                    self.organisations.append(contentsOf: organisations!)
+                }
+            }
+        } else {
+            CustomerOrganizationService().getcustomerOrganization(organizationId: self.organisationID) { organisation in
+                if organisation != nil {
+                    self.organisation = organisation!
+                    self.organisations.append(organisation!)
+                }
             }
         }
     }
-    
-    func checkForFreelancingAvailabilities (slots:[CustomerGeneratedSlot]) -> Bool {
-        for slot in slots {
-            if slot.organisationId.isEmpty {
-                return true
-            }
-        }
-        
-        return false
-    }
-    
+
+//    func checkForFreelancingAvailabilities (slots:[CustomerGeneratedSlot]) -> Bool {
+//        for slot in slots {
+//            if slot.organisationId.isEmpty {
+//                return true
+//            }
+//        }
+//
+//        return false
+//    }
+
     func slotInitCalls (slots:[CustomerGeneratedSlot]?) {
         if slots != nil && !slots!.isEmpty {
             self.slots = slots!
+            self.retrieveOrganisation()
             self.filteredSlots = slots!
             self.seeIfHasSlotOptions()
             self.selectedDate = self.slots![0].startDateTime
@@ -125,6 +143,8 @@ class AvailabilitySelectorViewModel : ObservableObject {
                 if self.selectedAddress != nil && self.selectedAddress!.addressID == slot.addressId {
                     self.filteredSlots.append(slot)
                 }
+            } else {
+                self.filteredSlots.append(slot)
             }
         }
 
@@ -170,7 +190,6 @@ class AvailabilitySelectorViewModel : ObservableObject {
                 if slot.addressId == selectedAddress!.addressID {
                     makeDateDisplaySLots(slot: slot)
                 }
-                
             } else {
                 makeDateDisplaySLots(slot: slot)
             }
@@ -274,27 +293,25 @@ extension AvailabilitySelectorViewModel:SideBySideCheckBoxDelegate {
 extension AvailabilitySelectorViewModel {
     func getAllAddresses (_ completion: @escaping (_ success:Bool, _ error:Bool)->()) {
         var allAddressIds:[String] = [String]()
-        
-        if !organisationID.isEmpty {
-            for slot in slots! {
-                if !allAddressIds.contains(slot.addressId) {
-                    allAddressIds.append(slot.addressId)
-                }
+
+        for slot in slots! {
+            if !allAddressIds.contains(slot.addressId) {
+                allAddressIds.append(slot.addressId)
             }
-        } else {
-            completion(true, false)
         }
         
-        if organisation != nil {
-            for address in self.organisation!.addresses {
-                if allAddressIds.contains(address.addressID) {
-                    self.addresses.append(address)
+        if !organisations.isEmpty {
+            for organisation in organisations {
+                for address in organisation.addresses {
+                    if allAddressIds.contains(address.addressID) {
+                        self.addresses.append(address)
+                    }
                 }
             }
         } else {
             completion(false, true)
         }
-        
+
         if addresses.count == 1 {
             self.selectedAddress = self.addresses[0]
             completion(true, false)
@@ -304,7 +321,7 @@ extension AvailabilitySelectorViewModel {
             completion(false, false)
         }
     }
-    
+
     func selectAddress (address:CustomerAddress) {
         self.showSelectAddressView = false
         self.selectedAddress = address

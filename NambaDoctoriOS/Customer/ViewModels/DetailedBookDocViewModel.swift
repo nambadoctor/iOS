@@ -67,6 +67,8 @@ class DetailedBookDocViewModel : ObservableObject {
         self.availabilityVM = AvailabilitySelectorViewModel(serviceProviderID: serviceProvider.serviceProviderID, slotSelected: nil, organisationId: self.organization?.organisationId ?? "")
         self.availabilityVM.slotSelected = self.selectSlot
         self.availabilityVM.retrieveAvailabilities()
+        
+        print("SERVICE PROVIDRER BEFKWJEWKBF: \(serviceProvider)")
     }
     
     func refreshCustomerProfile () {
@@ -98,27 +100,36 @@ class DetailedBookDocViewModel : ObservableObject {
         }
         
         self.availabilityVM.setSlot()
-        
+
         guard self.availabilityVM.selectedSlot?.paymentType != PaymentTypeEnum.PrePay.rawValue else {
             bookHelper()
             return
         }
         
-        if CustomerTrustScore == 0 {
-            self.showPreBookingOptionsSheet()
-        } else if CustomerTrustScore < 0 {
-            self.availabilityVM.selectedSlot?.paymentType = PaymentTypeEnum.PrePay.rawValue
+        if checkIfSkipFraudPrevention() {
             bookHelper()
-        } else if 0 < CustomerTrustScore && CustomerTrustScore < 100 {
-            self.availabilityVM.selectedSlot?.paymentType = PaymentTypeEnum.PostPay.rawValue
-            bookHelper()
-        } else if CustomerTrustScore == 100 {
-            self.availabilityVM.selectedSlot?.paymentType = PaymentTypeEnum.PostPay.rawValue
-            bookHelper()
+        } else {
+            
+            if CustomerTrustScore == 0 {
+                self.showPreBookingOptionsSheet()
+            } else if CustomerTrustScore < 0 {
+                self.availabilityVM.selectedSlot?.paymentType = PaymentTypeEnum.PrePay.rawValue
+                bookHelper()
+            } else if 0 < CustomerTrustScore && CustomerTrustScore < 100 {
+                self.availabilityVM.selectedSlot?.paymentType = PaymentTypeEnum.PostPay.rawValue
+                bookHelper()
+            } else if CustomerTrustScore == 100 {
+                self.availabilityVM.selectedSlot?.paymentType = PaymentTypeEnum.PostPay.rawValue
+                bookHelper()
+            }
+            else {
+                CustomerAlertHelpers().IssueDuringBooking(doctorName: self.serviceProviderName)
+            }
         }
-        else {
-            CustomerAlertHelpers().IssueDuringBooking(doctorName: self.serviceProviderName)
-        }
+    }
+    
+    func checkIfSkipFraudPrevention () -> Bool {
+        return self.serviceProvider.configurableSettings != nil && self.serviceProvider.configurableSettings!.SkipFraudPrevention
     }
     
     func bookHelper () {
@@ -215,14 +226,16 @@ class DetailedBookDocViewModel : ObservableObject {
                                                       Address: addresObj,
                                                       AppointmentTransfer: nil)
         
-        if !selectedPrebookingOption.isEmpty {
-            if !preBookingOptions.contains(selectedPrebookingOption) || preBookingOptions[0] == selectedPrebookingOption {
-                customerAppointment.paymentType = PaymentTypeEnum.PrePay.rawValue
-            } else {
-                customerAppointment.appointmentVerification = CustomerAppointmentVerification(AppointmentVerificationId: "", VerificationStatus: "PendingVerification", VerifiedBy: "", VerifiedTime: nil, CustomerResponseForReason: self.selectedPrebookingOption)
+        if !checkIfSkipFraudPrevention() {
+            if !selectedPrebookingOption.isEmpty {
+                if !preBookingOptions.contains(selectedPrebookingOption) || preBookingOptions[0] == selectedPrebookingOption {
+                    customerAppointment.paymentType = PaymentTypeEnum.PrePay.rawValue
+                } else {
+                    customerAppointment.appointmentVerification = CustomerAppointmentVerification(AppointmentVerificationId: "", VerificationStatus: "PendingVerification", VerifiedBy: "", VerifiedTime: nil, CustomerResponseForReason: self.selectedPrebookingOption)
+                }
+            } else if 0 < CustomerTrustScore && CustomerTrustScore < 100 {
+                customerAppointment.appointmentVerification = CustomerAppointmentVerification(AppointmentVerificationId: "", VerificationStatus: "PendingVerification", VerifiedBy: "", VerifiedTime: nil, CustomerResponseForReason: "Override By Admin - Existing User But Doubtful score")
             }
-        } else if 0 < CustomerTrustScore && CustomerTrustScore < 100 {
-            customerAppointment.appointmentVerification = CustomerAppointmentVerification(AppointmentVerificationId: "", VerificationStatus: "PendingVerification", VerifiedBy: "", VerifiedTime: nil, CustomerResponseForReason: "Override By Admin - Existing User But Doubtful score")
         }
         
         if self.bookingForProfile != nil {
