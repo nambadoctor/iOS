@@ -2345,6 +2345,11 @@ internal protocol Nd_V1_ServiceProviderWorkerV1ClientProtocol: GRPCClient {
     _ request: Nd_V1_VoidMessage,
     callOptions: CallOptions?
   ) -> UnaryCall<Nd_V1_VoidMessage, Nd_V1_CategoryListMessage>
+
+  func getConfigurableEntryFields(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderConfigurableEntryFieldsMessage>
 }
 
 extension Nd_V1_ServiceProviderWorkerV1ClientProtocol {
@@ -2567,6 +2572,24 @@ extension Nd_V1_ServiceProviderWorkerV1ClientProtocol {
       interceptors: self.interceptors?.makeGetAllSpecialtiesInterceptors() ?? []
     )
   }
+
+  /// Unary call to GetConfigurableEntryFields
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetConfigurableEntryFields.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getConfigurableEntryFields(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderConfigurableEntryFieldsMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderWorkerV1/GetConfigurableEntryFields",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetConfigurableEntryFieldsInterceptors() ?? []
+    )
+  }
 }
 
 internal protocol Nd_V1_ServiceProviderWorkerV1ClientInterceptorFactoryProtocol {
@@ -2606,6 +2629,9 @@ internal protocol Nd_V1_ServiceProviderWorkerV1ClientInterceptorFactoryProtocol 
 
   /// - Returns: Interceptors to use when invoking 'getAllSpecialties'.
   func makeGetAllSpecialtiesInterceptors() -> [ClientInterceptor<Nd_V1_VoidMessage, Nd_V1_CategoryListMessage>]
+
+  /// - Returns: Interceptors to use when invoking 'getConfigurableEntryFields'.
+  func makeGetConfigurableEntryFieldsInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderConfigurableEntryFieldsMessage>]
 }
 
 internal final class Nd_V1_ServiceProviderWorkerV1Client: Nd_V1_ServiceProviderWorkerV1ClientProtocol {
@@ -4074,6 +4100,8 @@ internal protocol Nd_V1_ServiceProviderWorkerV1Provider: CallHandlerProvider {
   func getServiceProvidersOfOrganisation(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderProfileListMessage>
 
   func getAllSpecialties(request: Nd_V1_VoidMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_CategoryListMessage>
+
+  func getConfigurableEntryFields(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderConfigurableEntryFieldsMessage>
 }
 
 extension Nd_V1_ServiceProviderWorkerV1Provider {
@@ -4194,6 +4222,15 @@ extension Nd_V1_ServiceProviderWorkerV1Provider {
         userFunction: self.getAllSpecialties(request:context:)
       )
 
+    case "GetConfigurableEntryFields":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderConfigurableEntryFieldsMessage>(),
+        interceptors: self.interceptors?.makeGetConfigurableEntryFieldsInterceptors() ?? [],
+        userFunction: self.getConfigurableEntryFields(request:context:)
+      )
+
     default:
       return nil
     }
@@ -4249,6 +4286,10 @@ internal protocol Nd_V1_ServiceProviderWorkerV1ServerInterceptorFactoryProtocol 
   /// - Returns: Interceptors to use when handling 'getAllSpecialties'.
   ///   Defaults to calling `self.makeInterceptors()`.
   func makeGetAllSpecialtiesInterceptors() -> [ServerInterceptor<Nd_V1_VoidMessage, Nd_V1_CategoryListMessage>]
+
+  /// - Returns: Interceptors to use when handling 'getConfigurableEntryFields'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetConfigurableEntryFieldsInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderConfigurableEntryFieldsMessage>]
 }
 /// To build a server, implement a class that conforms to this protocol.
 internal protocol Nd_V1_ServiceProviderServiceRequestWorkerV1Provider: CallHandlerProvider {

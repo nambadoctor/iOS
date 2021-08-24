@@ -34,31 +34,3 @@ struct CustomStepperBox: View {
         }
     }
 }
-
-//HStack {
-//    HStack {
-//        Button(action: {
-//            if number != 0 {
-//                number -= 0.5
-//            }
-//        }, label: {
-//            Image("minus")
-//                .padding(7)
-//        })
-//
-//        Text("\(number.clean)")
-//            .foregroundColor(.blue)
-//            .bold()
-//        Button(action: {
-//            number += 0.5
-//        }, label: {
-//            Image("plus")
-//                .padding(7)
-//        })
-//    }
-//    .padding(.horizontal)
-//    .padding(.vertical, 5)
-//    .background(Color.blue.opacity(0.3))
-//    .cornerRadius(10)
-//    Spacer()
-//}

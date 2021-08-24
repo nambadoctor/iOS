@@ -274,4 +274,37 @@ class ServiceProviderProfileService : ServiceProviderProfileServiceProtocol {
             }
         }
     }
+    
+    func getServiceProviderConfigurableEntryFields (serviceProviderId:String, _ completion : @escaping (_ entryFields:ServiceProviderConfigurableEntryFields?)->()) {
+        CorrelationId = UUID().uuidString
+        
+        let channel = ChannelManager.sharedChannelManager.getChannel()
+        let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
+        
+        let doctorClient = Nd_V1_ServiceProviderWorkerV1Client(channel: channel)
+        
+        let request = Nd_V1_IdMessage.with {
+            $0.id = serviceProviderId.toProto
+        }
+
+        let getServiceProvider = doctorClient.getConfigurableEntryFields(request, callOptions: callOptions)
+
+        DispatchQueue.global().async {
+            do {
+                LoggerService().log(eventName: "REQUESTING SERVICE PROVIDERS CONFIGURABLE ENTRY FIELDS")
+                let response = try getServiceProvider.response.wait()
+                LoggerService().log(eventName: "RECEIVED SERVICE PROVIDERs of Organization")
+                let serviceProvidersEntryFields = ServiceProviderConfigurableEntryFieldsMapper.grpcToLocal(entryFields: response)
+                print("Get SERVICE PROVIDERS CONFIGURABLE ENTRY FIELDS Success \(serviceProvidersEntryFields)")
+                DispatchQueue.main.async {
+                    completion(serviceProvidersEntryFields)
+                }
+            } catch {
+                print("Get SERVICE PROVIDERS CONFIGURABLE ENTRY FIELDS Failed \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            }
+        }
+    }
 }

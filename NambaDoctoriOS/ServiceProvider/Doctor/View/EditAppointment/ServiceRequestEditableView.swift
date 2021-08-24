@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ServiceRequestEditableView: View {
     @EnvironmentObject var serviceRequestVM:ServiceRequestViewModel
-
+    @EnvironmentObject var configurableEntryVM:DoctorConfigurableEntryFieldsViewModel
+    
     var body: some View {
         VStack (alignment: .leading) {
             
@@ -76,34 +77,39 @@ struct ServiceRequestEditableView: View {
             
             VStack (alignment: .leading) {
                 
-                HStack (spacing: 3) {
-                    Image("eyeglasses")
-                        .modifier(DetailedAppointmentViewIconModifier())
+                if configurableEntryVM.entryFields.Examination {
+                    HStack (spacing: 3) {
+                        Image("eyeglasses")
+                            .modifier(DetailedAppointmentViewIconModifier())
+                        
+                        Text("EXAMINATION")
+                            .font(.footnote)
+                            .foregroundColor(Color.black.opacity(0.4))
+                            .bold()
+                    }
                     
-                    Text("EXAMINATION")
-                        .font(.footnote)
-                        .foregroundColor(Color.black.opacity(0.4))
-                        .bold()
-                }
-                
 
-                ExpandingTextEntryView(text: self.$serviceRequestVM.serviceRequest.examination)
-                
-                
-                HStack (spacing: 3) {
-                    Image("cross.case")
-                        .modifier(DetailedAppointmentViewIconModifier())
-                    
-                    Text("DIAGNOSIS")
-                        .font(.footnote)
-                        .foregroundColor(Color.black.opacity(0.4))
-                        .bold()
+                    ExpandingTextEntryView(text: self.$serviceRequestVM.serviceRequest.examination)
                 }
-                
-                ExpandingTextEntryView(text: $serviceRequestVM.serviceRequest.diagnosis.name)
 
-                SideBySideCheckBox(isChecked: $serviceRequestVM.serviceRequest.diagnosis.type, title1: "Provisional", title2: "Definitive", delegate: nil)
-                    .padding(.bottom)
+                
+                if configurableEntryVM.entryFields.Diagnosis {
+                    HStack (spacing: 3) {
+                        Image("cross.case")
+                            .modifier(DetailedAppointmentViewIconModifier())
+                        
+                        Text("DIAGNOSIS")
+                            .font(.footnote)
+                            .foregroundColor(Color.black.opacity(0.4))
+                            .bold()
+                    }
+
+                    ExpandingTextEntryView(text: $serviceRequestVM.serviceRequest.diagnosis.name)
+
+                    SideBySideCheckBox(isChecked: $serviceRequestVM.serviceRequest.diagnosis.type, title1: "Provisional", title2: "Definitive", delegate: nil)
+                        .padding(.bottom)
+                }
+
             }
             .padding()
             .background(Color.white)

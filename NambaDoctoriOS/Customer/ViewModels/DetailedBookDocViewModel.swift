@@ -266,8 +266,9 @@ class DetailedBookDocViewModel : ObservableObject {
                                                     medicalHistory: emptyMedicalHistory,
                                                     childId: "",
                                                     customerVitals: customerVitals,
-                                                    organisationId: organization?.organisationId ?? "")
-        
+                                                    organisationId: organization?.organisationId ?? "",
+                                                    additionalEntryFields: makeEmptyCustomerAdditionalEntryFields())
+
         if self.bookingForProfile != nil {
             serviceRequest.childId = bookingForProfile!.ChildProfileId
         }

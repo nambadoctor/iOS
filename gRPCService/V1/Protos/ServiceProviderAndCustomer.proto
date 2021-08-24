@@ -364,7 +364,6 @@ message CustomersServiceProviderProfileMessage{
 	repeated google.protobuf.StringValue OrganisationIds = 27;
 
 	CustomerServiceProviderConfigurableSettingsMessage ConfigurableSettings = 28;
-
 }
 
 
@@ -747,6 +746,27 @@ message CustomerServiceProviderInOrganisationRequestMessage{
 	google.protobuf.StringValue OrganisationId = 2;
 }
 
+
+message CustomerServiceRequestAdditionalEntryFields {
+	google.protobuf.StringValue Menarche = 1;
+	google.protobuf.StringValue Periods = 2;
+    google.protobuf.StringValue AgeAtFirstChildBirth = 3;
+    google.protobuf.StringValue LMP = 4;
+    google.protobuf.StringValue NoOfChildren = 5;
+    google.protobuf.StringValue BreastFeeding = 6;
+    google.protobuf.StringValue FamilyHistoryOfCancer = 7;
+    google.protobuf.StringValue OtherCancers = 8;
+    google.protobuf.StringValue Diabetes = 9;
+    google.protobuf.StringValue Hypertension = 10;
+    google.protobuf.StringValue Asthma = 11;
+    google.protobuf.StringValue Thyroid = 12;
+    google.protobuf.StringValue Medication = 13;
+    google.protobuf.StringValue DietAndAppetite = 14;
+    google.protobuf.StringValue Habits = 15;
+    google.protobuf.StringValue BreastExamination = 16;
+}
+
+
 message CustomerServiceRequestMessage{
 
 	google.protobuf.StringValue ServiceRequestId = 1;
@@ -780,6 +800,8 @@ message CustomerServiceRequestMessage{
     CustomerVitalsMessage CustomerVitals = 15;
 
     google.protobuf.StringValue OrganisationId = 16;
+
+    CustomerServiceRequestAdditionalEntryFields AdditionalEntryFields = 17;
 }
 
 message CustomerServiceRequestRequestMessage{
@@ -1675,6 +1697,9 @@ message ServiceProviderProfileMessage{
 
 	ServiceProviderConfigurableSettingsMessage ConfigurableSettings = 29;
 
+	ServiceProviderConfigurableEntryFieldsMessage ConfigurableEntryFields = 30;
+
+
 }
 
 
@@ -1729,6 +1754,27 @@ message ServiceProviderServiceRequestMessage{
 
     google.protobuf.StringValue OrganisationId = 16;
 
+    ServiceProviderServiceRequestAdditionalEntryFields AdditionalEntryFields = 17;
+
+}
+
+message ServiceProviderServiceRequestAdditionalEntryFields {
+	google.protobuf.StringValue Menarche = 1;
+	google.protobuf.StringValue Periods = 2;
+    google.protobuf.StringValue AgeAtFirstChildBirth = 3;
+    google.protobuf.StringValue LMP = 4;
+    google.protobuf.StringValue NoOfChildren = 5;
+    google.protobuf.StringValue BreastFeeding = 6;
+    google.protobuf.StringValue FamilyHistoryOfCancer = 7;
+    google.protobuf.StringValue OtherCancers = 8;
+    google.protobuf.StringValue Diabetes = 9;
+    google.protobuf.StringValue Hypertension = 10;
+    google.protobuf.StringValue Asthma = 11;
+    google.protobuf.StringValue Thyroid = 12;
+    google.protobuf.StringValue Medication = 13;
+    google.protobuf.StringValue DietAndAppetite = 14;
+    google.protobuf.StringValue Habits = 15;
+    google.protobuf.StringValue BreastExamination = 16;
 }
 
 message ServiceProviderServiceRequestRequestMessage{
@@ -1857,9 +1903,40 @@ service ServiceProviderWorkerV1 {
 	rpc GetServiceProvidersOfOrganisation (IdMessage) returns (ServiceProviderProfileListMessage);
 
 	rpc GetAllSpecialties(VoidMessage) returns (CategoryListMessage);
+
+	rpc GetConfigurableEntryFields (IdMessage) returns (ServiceProviderConfigurableEntryFieldsMessage);
 }
 
-
+message ServiceProviderConfigurableEntryFieldsMessage {
+	google.protobuf.BoolValue Examination = 1;
+	google.protobuf.BoolValue Diagnosis = 2;
+	google.protobuf.BoolValue Investigations = 3;
+	google.protobuf.BoolValue Weight = 4;
+	google.protobuf.BoolValue Prescriptions = 5;
+	google.protobuf.BoolValue Advice = 6;
+	google.protobuf.BoolValue BloodPressure = 7;
+	google.protobuf.BoolValue BloodSugar = 8;
+	google.protobuf.BoolValue Height = 9;
+	google.protobuf.BoolValue MenstrualHistory = 10;
+	google.protobuf.BoolValue ObstetricHistory = 11;
+	google.protobuf.BoolValue IsSmokerOrAlcoholic = 12;
+	google.protobuf.BoolValue Menarche = 13;
+	google.protobuf.BoolValue Periods = 14;
+	google.protobuf.BoolValue AgeAtFirstChildBirth = 15;
+	google.protobuf.BoolValue LMP = 16;
+	google.protobuf.BoolValue NoOfChildren = 17;
+	google.protobuf.BoolValue BreastFeeding = 18;
+	google.protobuf.BoolValue FamilyHistoryOfCancer = 19;
+	google.protobuf.BoolValue OtherCancers = 20;
+	google.protobuf.BoolValue Diabetes = 21;
+	google.protobuf.BoolValue Hypertension = 22;
+	google.protobuf.BoolValue Asthma = 23;
+	google.protobuf.BoolValue Thyroid = 24;
+	google.protobuf.BoolValue Medication = 25;
+	google.protobuf.BoolValue DietAndAppetite = 26;
+	google.protobuf.BoolValue Habits = 27;
+	google.protobuf.BoolValue BreastExamination = 28;
+}
 
 
 

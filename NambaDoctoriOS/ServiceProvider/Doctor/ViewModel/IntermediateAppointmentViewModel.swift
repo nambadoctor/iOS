@@ -21,11 +21,12 @@ class IntermediateAppointmentViewModel : ObservableObject {
     @Published var modifyFeeViewModel:ModifyFeeViewModel
     @Published var doctorTwilioManagerViewModel:DoctorTwilioViewModel
     @Published var chatVM:DoctorChatViewModel
-    
+    @Published var configurableEntryVM:DoctorConfigurableEntryFieldsViewModel
+
     @Published var childProfile:ServiceProviderCustomerChildProfile? = nil
-    
+        
     @Published var cancellationSheetOffset:CGFloat = UIScreen.main.bounds.height
-    
+
     @Published var showTransferAppointmentSheet:Bool = false
     
     @Published var takeToDetailedAppointment:Bool = false
@@ -43,7 +44,6 @@ class IntermediateAppointmentViewModel : ObservableObject {
     @Published var showTwilioRoom:Bool = false
     @Published var collapseExtraDetailEntry:Bool = true
     @Published var collapseCustomerVitals:Bool = true
-    
     
     var DoctorCancellationReason:[String] = ["This is not my specialty", "I am not available at this time", "Patient did not pick up", "Technical Issues", "Other"]
     
@@ -70,6 +70,7 @@ class IntermediateAppointmentViewModel : ObservableObject {
         self.modifyFeeViewModel = ModifyFeeViewModel(fee: appointment.serviceFee.clean)
         self.doctorTwilioManagerViewModel = DoctorTwilioViewModel(appointment: appointment)
         self.chatVM = DoctorChatViewModel(appointment: appointment)
+        self.configurableEntryVM = DoctorConfigurableEntryFieldsViewModel()
         
         doctorTwilioManagerViewModel.twilioDelegate = self
         serviceRequestVM.gotServiceRequestDelegate = self

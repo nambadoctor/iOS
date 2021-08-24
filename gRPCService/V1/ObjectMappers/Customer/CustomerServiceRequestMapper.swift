@@ -25,7 +25,8 @@ class CustomerServiceRequestMapper {
             medicalHistory: CustomerMedicalHistoryMapper.grpcMedicalHistoryToLocal(medicalHistoryMessage: serviceRequest.medicalHistory),
             childId: serviceRequest.childID.toString,
             customerVitals: CustomerVitalsMapper.GrpcToLocal(vital: serviceRequest.customerVitals),
-            organisationId: serviceRequest.organisationID.toString)
+            organisationId: serviceRequest.organisationID.toString,
+            additionalEntryFields: CustomerServiceRequestAdditionalEntryFieldsMapper.grpcToLocal(additionalInfo: serviceRequest.additionalEntryFields))
     }
 
     func localServiceRequestToGrpc(serviceRequest:CustomerServiceRequest) -> Nd_V1_CustomerServiceRequestMessage {
@@ -46,6 +47,7 @@ class CustomerServiceRequestMapper {
             $0.childID = serviceRequest.childId.toProto
             $0.customerVitals = CustomerVitalsMapper.LocalToGrpc(vital: serviceRequest.customerVitals)
             $0.organisationID = serviceRequest.organisationId.toProto
+            $0.additionalEntryFields = CustomerServiceRequestAdditionalEntryFieldsMapper.localToGrpc(additionalInfo: serviceRequest.additionalEntryFields)
         }
     }
 

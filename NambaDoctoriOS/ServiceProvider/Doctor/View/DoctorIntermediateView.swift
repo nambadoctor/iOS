@@ -39,6 +39,7 @@ struct DoctorIntermediateView: View {
         .environmentObject(intermediateVM.serviceRequestVM)
         .environmentObject(intermediateVM.serviceRequestVM.investigationsViewModel)
         .environmentObject(intermediateVM.patientInfoViewModel)
+        .environmentObject(intermediateVM.configurableEntryVM)
         .navigationBarBackButtonHidden(true)
         .navigationBarItems(leading: backButton, trailing: trailingNavBarButtons)
         .onAppear() {

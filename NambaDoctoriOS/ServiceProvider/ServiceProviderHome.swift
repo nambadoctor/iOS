@@ -12,12 +12,14 @@ class ServiceProviderHomeViewModel : ObservableObject {
     @Published var secretaryLoggedIn:Bool = false
     @Published var doctorLoggedIn:Bool = false
     
+    var userId:String
     init() {
+        userId = UserIdHelper().retrieveUserId()
         fetchServiceProvider()
     }
     
     func fetchServiceProvider () {
-        let userId = UserIdHelper().retrieveUserId()
+        
         ServiceProviderProfileService().getServiceProvider(serviceProviderId: userId) { (serviceProviderObj) in
             if serviceProviderObj != nil {
                 self.serviceProvider = serviceProviderObj!

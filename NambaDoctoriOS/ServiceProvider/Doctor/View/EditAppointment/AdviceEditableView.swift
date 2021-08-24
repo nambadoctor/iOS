@@ -9,21 +9,23 @@ import SwiftUI
 
 struct AdviceEditableView: View {
     @EnvironmentObject var serviceRequestVM:ServiceRequestViewModel
-
+    @EnvironmentObject var configurableEntryVM:DoctorConfigurableEntryFieldsViewModel
+    
     var body: some View {
-        VStack (alignment: .leading) {
-            
-            HStack (spacing: 3) {
-                Image("cross.circle")
-                    .modifier(DetailedAppointmentViewIconModifier())
+        if configurableEntryVM.entryFields.Advice {
+            VStack (alignment: .leading) {
+                HStack (spacing: 3) {
+                    Image("cross.circle")
+                        .modifier(DetailedAppointmentViewIconModifier())
+                    
+                    Text("ADVICE")
+                        .font(.footnote)
+                        .foregroundColor(Color.black.opacity(0.4))
+                        .bold()
+                }
                 
-                Text("ADVICE")
-                    .font(.footnote)
-                    .foregroundColor(Color.black.opacity(0.4))
-                    .bold()
+                ExpandingTextEntryView(text: $serviceRequestVM.serviceRequest.advice)
             }
-            
-            ExpandingTextEntryView(text: $serviceRequestVM.serviceRequest.advice)
         }
     }
 }

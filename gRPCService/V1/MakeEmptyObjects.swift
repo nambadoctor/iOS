@@ -20,8 +20,17 @@ func MakeEmptyDuration() -> ServiceProviderDuration {
 }
 
 func MakeEmptyServiceRequest(appointment:ServiceProviderAppointment) -> ServiceProviderServiceRequest {
-    return ServiceProviderServiceRequest(serviceRequestID: appointment.serviceRequestID, reason: "", serviceProviderID: appointment.serviceProviderID, appointmentID: appointment.appointmentID, examination: "", diagnosis: MakeEmptyDiagnosis(), investigations: [String](), advice: "", createdDateTime: Date().millisecondsSince1970, lastModifiedDate: Date().millisecondsSince1970, customerID: appointment.customerID, allergy: MakeEmptyAllergy(), medicalHistory: MakeEmptyMedicalHistory(), childId: "", customerVitals: ServiceProviderCustomerVitals(BloodPressure: "", BloodSugar: "", Height: "", Weight: "", MenstrualHistory: "", ObstetricHistory: "", IsSmoker: false, IsAlcoholConsumer: false), organisationId: "")
+    return ServiceProviderServiceRequest(serviceRequestID: appointment.serviceRequestID, reason: "", serviceProviderID: appointment.serviceProviderID, appointmentID: appointment.appointmentID, examination: "", diagnosis: MakeEmptyDiagnosis(), investigations: [String](), advice: "", createdDateTime: Date().millisecondsSince1970, lastModifiedDate: Date().millisecondsSince1970, customerID: appointment.customerID, allergy: MakeEmptyAllergy(), medicalHistory: MakeEmptyMedicalHistory(), childId: "", customerVitals: ServiceProviderCustomerVitals(BloodPressure: "", BloodSugar: "", Height: "", Weight: "", MenstrualHistory: "", ObstetricHistory: "", IsSmoker: false, IsAlcoholConsumer: false), organisationId: "", additionalEntryFields: makeEmptyAdditionalEntryFields())
 }
+
+func makeEmptyAdditionalEntryFields () -> ServiceProviderServiceRequestAdditionalEntryFields {
+    return ServiceProviderServiceRequestAdditionalEntryFields(Menarche: "", Periods: "", AgeAtFirstChildBirth: "", LMP: "", NoOfChildren: "", BreastFeeding: "", FamilyHistoryOfCancer: "", OtherCancers: "", Diabetes: "", Hypertension: "", Asthma: "", Thyroid: "", Medication: "", DietAndAppetite: "", Habits: "", BreastExamination: "")
+}
+
+func makeEmptyCustomerAdditionalEntryFields () -> CustomerServiceRequestAdditionalEntryFields {
+    return CustomerServiceRequestAdditionalEntryFields(Menarche: "", Periods: "", AgeAtFirstChildBirth: "", LMP: "", NoOfChildren: "", BreastFeeding: "", FamilyHistoryOfCancer: "", OtherCancers: "", Diabetes: "", Hypertension: "", Asthma: "", Thyroid: "", Medication: "", DietAndAppetite: "", Habits: "", BreastExamination: "")
+}
+
 
 func MakeEmptyAllergy() -> ServiceProviderCustomerAllergy {
     return ServiceProviderCustomerAllergy(AllergyId: "", AllergyName: "", AppointmentId: "", ServiceRequestId: "")

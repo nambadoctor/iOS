@@ -16,6 +16,8 @@ class DoctorViewModel: ObservableObject {
 
     @Published var organisations:[ServiceProviderOrganisation] = [ServiceProviderOrganisation]()
     @Published var organisationsPatients:[ServiceProviderMyPatientProfile] = [ServiceProviderMyPatientProfile]()
+    
+    @Published var doctorEntryFieldSettings:ServiceProviderConfigurableEntryFields? = nil
 
     @Published var selectedOrganization:ServiceProviderOrganisation? = nil
     

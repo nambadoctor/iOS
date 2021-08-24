@@ -136,7 +136,7 @@ class ScheduleAppointmentForPatientViewModel : ObservableObject {
                                                     medicalHistory: emptyMedicalHistory,
                                                     childId: "",
                                                     customerVitals: customerVitalsViewModel.customerVitals,
-                                                    organisationId: organisation?.organisationId ?? "")
+                                                    organisationId: organisation?.organisationId ?? "", additionalEntryFields: makeEmptyAdditionalEntryFields())
     }
     
     func selectSlotOption() {

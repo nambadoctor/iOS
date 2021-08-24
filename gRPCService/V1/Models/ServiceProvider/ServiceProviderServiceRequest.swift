@@ -24,4 +24,5 @@ struct ServiceProviderServiceRequest : Codable {
     var childId:String
     var customerVitals:ServiceProviderCustomerVitals
     var organisationId:String
+    var additionalEntryFields:ServiceProviderServiceRequestAdditionalEntryFields
 }

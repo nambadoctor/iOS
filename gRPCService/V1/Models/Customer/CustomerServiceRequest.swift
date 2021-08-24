@@ -24,4 +24,5 @@ struct CustomerServiceRequest {
     var childId:String
     var customerVitals:CustomerVitals
     var organisationId:String
+    var additionalEntryFields:CustomerServiceRequestAdditionalEntryFields
 }
