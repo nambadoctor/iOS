@@ -9,6 +9,7 @@ import SwiftUI
 
 struct EditConfigurableEntryFieldsView: View {
     @ObservedObject var configurableEntryVM:DoctorConfigurableEntryFieldsViewModel
+    @Binding var showSheet:Bool
     
     var body: some View {
         NavigationView {
@@ -56,7 +57,11 @@ struct EditConfigurableEntryFieldsView: View {
             }
             .navigationBarTitle(Text("Entry Field Settings"), displayMode: .inline)
             .navigationBarItems(trailing: Button(action: {
-                self.configurableEntryVM.confirmSettings()
+                self.configurableEntryVM.confirmSettings { success in
+                    if success {
+                        self.showSheet = false
+                    }
+                }
             }, label: {
                 Text("Done")
             }))

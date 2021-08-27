@@ -18,9 +18,9 @@ class DoctorConfigurableEntryFieldsViewModel : ObservableObject {
         }
     }
     
-    func confirmSettings () {
+    func confirmSettings (completion: @escaping (_ success:Bool)->()) {
         ServiceProviderProfileService().setServiceProviderConfigurableEntryFields(entryFields: entryFields) { success in
-            
+            completion(success)
         }
     }
 }

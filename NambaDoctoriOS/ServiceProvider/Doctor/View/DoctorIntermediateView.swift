@@ -75,7 +75,7 @@ struct DoctorIntermediateView: View {
                 Image("gear")
             }
             .sheet(isPresented: self.$intermediateVM.changeEntryFieldSettings) {
-                EditConfigurableEntryFieldsView(configurableEntryVM: self.intermediateVM.configurableEntryVM)
+                EditConfigurableEntryFieldsView(configurableEntryVM: self.intermediateVM.configurableEntryVM, showSheet: self.$intermediateVM.changeEntryFieldSettings)
             }
         }
     }
