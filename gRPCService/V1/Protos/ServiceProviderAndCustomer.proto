@@ -1905,6 +1905,14 @@ service ServiceProviderWorkerV1 {
 	rpc GetAllSpecialties(VoidMessage) returns (CategoryListMessage);
 
 	rpc GetConfigurableEntryFields (IdMessage) returns (ServiceProviderConfigurableEntryFieldsMessage);
+
+rpc SetConfigurableEntryFields (ServiceProviderConfigurableEntryFieldsUploadMessage) returns (BoolMessage);
+}
+
+message ServiceProviderConfigurableEntryFieldsUploadMessage{
+	ServiceProviderConfigurableEntryFieldsMessage additionalEntryFields = 1;
+	google.protobuf.StringValue ServiceProviderId = 2;
+
 }
 
 message ServiceProviderConfigurableEntryFieldsMessage {

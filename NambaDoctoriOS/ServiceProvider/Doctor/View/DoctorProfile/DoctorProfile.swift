@@ -32,7 +32,7 @@ struct DoctorProfile: View {
                     appointmentInfo
                     Divider()
                 }
-                
+
                 
                 DoctorAvailabilityView(availabilityVM: doctorViewModel.availabilityVM)
 

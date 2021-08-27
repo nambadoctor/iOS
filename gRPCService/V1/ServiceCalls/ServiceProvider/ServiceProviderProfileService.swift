@@ -292,8 +292,9 @@ class ServiceProviderProfileService : ServiceProviderProfileServiceProtocol {
         DispatchQueue.global().async {
             do {
                 LoggerService().log(eventName: "REQUESTING SERVICE PROVIDERS CONFIGURABLE ENTRY FIELDS")
+                LoggerService().log(eventName: "REQUESTED SERVICE PROVIDERS CONFIGURABLE ENTRY FIELDS")
                 let response = try getServiceProvider.response.wait()
-                LoggerService().log(eventName: "RECEIVED SERVICE PROVIDERs of Organization")
+                LoggerService().log(eventName: "RECIEVED SERVICE PROVIDERS CONFIGURABLE ENTRY FIELDS")
                 let serviceProvidersEntryFields = ServiceProviderConfigurableEntryFieldsMapper.grpcToLocal(entryFields: response)
                 print("Get SERVICE PROVIDERS CONFIGURABLE ENTRY FIELDS Success \(serviceProvidersEntryFields)")
                 DispatchQueue.main.async {
@@ -303,6 +304,38 @@ class ServiceProviderProfileService : ServiceProviderProfileServiceProtocol {
                 print("Get SERVICE PROVIDERS CONFIGURABLE ENTRY FIELDS Failed \(error.localizedDescription)")
                 DispatchQueue.main.async {
                     completion(nil)
+                }
+            }
+        }
+    }
+    
+    func setServiceProviderConfigurableEntryFields (entryFields:ServiceProviderConfigurableEntryFields, _ completion : @escaping (_ success:Bool)->()) {
+        CorrelationId = UUID().uuidString
+        
+        let channel = ChannelManager.sharedChannelManager.getChannel()
+        let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
+        
+        let doctorClient = Nd_V1_ServiceProviderWorkerV1Client(channel: channel)
+        
+        let request = Nd_V1_ServiceProviderConfigurableEntryFieldsUploadMessage.with {
+            $0.additionalEntryFields = ServiceProviderConfigurableEntryFieldsMapper.localToGrpc(entryFields: entryFields)
+            $0.serviceProviderID = UserIdHelper().retrieveUserId().toProto
+        }
+
+        let getServiceProvider = doctorClient.setConfigurableEntryFields(request, callOptions: callOptions)
+
+        DispatchQueue.global().async {
+            do {
+                LoggerService().log(eventName: "REQUESTING SERVICE PROVIDERS CONFIGURABLE ENTRY FIELDS")
+                let response = try getServiceProvider.response.wait()
+                print("Set SERVICE PROVIDERS CONFIGURABLE ENTRY FIELDS Success \(response.status)")
+                DispatchQueue.main.async {
+                    completion(true)
+                }
+            } catch {
+                print("Get SERVICE PROVIDERS CONFIGURABLE ENTRY FIELDS Failed \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    completion(false)
                 }
             }
         }

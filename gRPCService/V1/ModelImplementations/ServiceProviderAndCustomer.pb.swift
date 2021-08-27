@@ -7214,6 +7214,37 @@ struct Nd_V1_ServiceProviderServiceRequestRequestMessage {
   fileprivate var _serviceRequestID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
 }
 
+struct Nd_V1_ServiceProviderConfigurableEntryFieldsUploadMessage {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var additionalEntryFields: Nd_V1_ServiceProviderConfigurableEntryFieldsMessage {
+    get {return _additionalEntryFields ?? Nd_V1_ServiceProviderConfigurableEntryFieldsMessage()}
+    set {_additionalEntryFields = newValue}
+  }
+  /// Returns true if `additionalEntryFields` has been explicitly set.
+  var hasAdditionalEntryFields: Bool {return self._additionalEntryFields != nil}
+  /// Clears the value of `additionalEntryFields`. Subsequent reads from it will return its default value.
+  mutating func clearAdditionalEntryFields() {self._additionalEntryFields = nil}
+
+  var serviceProviderID: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _serviceProviderID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_serviceProviderID = newValue}
+  }
+  /// Returns true if `serviceProviderID` has been explicitly set.
+  var hasServiceProviderID: Bool {return self._serviceProviderID != nil}
+  /// Clears the value of `serviceProviderID`. Subsequent reads from it will return its default value.
+  mutating func clearServiceProviderID() {self._serviceProviderID = nil}
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _additionalEntryFields: Nd_V1_ServiceProviderConfigurableEntryFieldsMessage? = nil
+  fileprivate var _serviceProviderID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+}
+
 struct Nd_V1_ServiceProviderConfigurableEntryFieldsMessage {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
@@ -15282,6 +15313,44 @@ extension Nd_V1_ServiceProviderServiceRequestRequestMessage: SwiftProtobuf.Messa
     if lhs._customerID != rhs._customerID {return false}
     if lhs._appointmentID != rhs._appointmentID {return false}
     if lhs._serviceRequestID != rhs._serviceRequestID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Nd_V1_ServiceProviderConfigurableEntryFieldsUploadMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".ServiceProviderConfigurableEntryFieldsUploadMessage"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "additionalEntryFields"),
+    2: .same(proto: "ServiceProviderId"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularMessageField(value: &self._additionalEntryFields) }()
+      case 2: try { try decoder.decodeSingularMessageField(value: &self._serviceProviderID) }()
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if let v = self._additionalEntryFields {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+    }
+    if let v = self._serviceProviderID {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Nd_V1_ServiceProviderConfigurableEntryFieldsUploadMessage, rhs: Nd_V1_ServiceProviderConfigurableEntryFieldsUploadMessage) -> Bool {
+    if lhs._additionalEntryFields != rhs._additionalEntryFields {return false}
+    if lhs._serviceProviderID != rhs._serviceProviderID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

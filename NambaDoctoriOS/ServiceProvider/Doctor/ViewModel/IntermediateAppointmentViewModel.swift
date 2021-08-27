@@ -21,7 +21,9 @@ class IntermediateAppointmentViewModel : ObservableObject {
     @Published var modifyFeeViewModel:ModifyFeeViewModel
     @Published var doctorTwilioManagerViewModel:DoctorTwilioViewModel
     @Published var chatVM:DoctorChatViewModel
+    
     @Published var configurableEntryVM:DoctorConfigurableEntryFieldsViewModel
+    @Published var changeEntryFieldSettings:Bool = false
 
     @Published var childProfile:ServiceProviderCustomerChildProfile? = nil
         

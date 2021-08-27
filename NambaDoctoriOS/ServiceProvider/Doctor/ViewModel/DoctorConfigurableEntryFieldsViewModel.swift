@@ -17,4 +17,10 @@ class DoctorConfigurableEntryFieldsViewModel : ObservableObject {
             }
         }
     }
+    
+    func confirmSettings () {
+        ServiceProviderProfileService().setServiceProviderConfigurableEntryFields(entryFields: entryFields) { success in
+            
+        }
+    }
 }
