@@ -13,7 +13,6 @@ struct MedicineEditableView: View {
     
     var body: some View {
         VStack (alignment: .leading) {
-            
             HStack (spacing: 3) {
                 Image("pills")
                     .modifier(DetailedAppointmentViewIconModifier())
