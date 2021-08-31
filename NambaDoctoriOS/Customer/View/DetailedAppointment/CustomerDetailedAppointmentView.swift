@@ -362,21 +362,26 @@ struct CustomerDetailedAppointmentView: View {
                     }
                     
                     if self.customerDetailedAppointmentVM.appointment.IsInPersonAppointment {
-                        VStack (alignment: .center) {
-                            ZStack {
-                                Circle()
-                                    .fill(Color.blue)
-                                    .frame(width: 60, height: 60)
+                        Button {
+                            openURL(URL(string: self.customerDetailedAppointmentVM.appointment.Address.googleMapsAddress)!)
+                        } label: {
+                            VStack (alignment: .center) {
+                                ZStack {
+                                    Circle()
+                                        .fill(Color.blue)
+                                        .frame(width: 60, height: 60)
+                                }
+                                .overlay(Image("location")
+                                            .scaleEffect(1.2)
+                                            .padding()
+                                            .foregroundColor(.white))
+                                
+                                Text("Directions")
+                                    .foregroundColor(.blue)
+                                    .font(.system(size: 12))
                             }
-                            .overlay(Image("location")
-                                        .scaleEffect(1.2)
-                                        .padding()
-                                        .foregroundColor(.white))
-                            
-                            Text("Directions")
-                                .foregroundColor(.blue)
-                                .font(.system(size: 12))
                         }
+
                     }
                 }
                 .padding(.horizontal, 25)

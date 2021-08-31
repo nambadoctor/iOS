@@ -151,9 +151,9 @@ struct EditableAppointmentView: View {
             .cornerRadius(10)
             .padding(.horizontal)
             
-            BreastCancerAdditionalEntryFieldsEditableView()
-            
             if !intermediateVM.collapseExtraDetailEntry {
+                
+                BreastCancerAdditionalEntryFieldsEditableView()
                 
                 ServiceRequestEditableView()
                 
