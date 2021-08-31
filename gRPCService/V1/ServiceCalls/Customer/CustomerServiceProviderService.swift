@@ -77,7 +77,7 @@ class CustomerServiceProviderService : CustomerServiceProviderServiceProtocol {
                     completion(serviceProviders)
                 }
             } catch {
-                print("Get ServiceProvider Client Failed \(error.localizedDescription)")
+                print("Get ServiceProviders Client Failed \(error.localizedDescription)")
                 DispatchQueue.main.async {
                     completion(nil)
                 }
@@ -171,7 +171,7 @@ class CustomerServiceProviderService : CustomerServiceProviderServiceProtocol {
             $0.id = organizationId.toProto
         }
 
-        let getServiceProvider = doctorClient.getServiceProviders(request, callOptions: callOptions)
+        let getServiceProvider = doctorClient.getServiceProvidersOfOrganisation(request, callOptions: callOptions)
 
         DispatchQueue.global().async {
             do {
