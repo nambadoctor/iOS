@@ -18,7 +18,7 @@ class ChannelManager {
     //production ip:- 52.182.227.174
     //testing ip:- 52.233.76.64
     //traffic manager url: nambadocservice.trafficmanager.net
-    static let sharedChannelManager = ChannelManager(host: "52.233.76.64", port: 80)
+    static let sharedChannelManager = ChannelManager(host: "nambadocserviceppe.centralus.cloudapp.azure.com", port: 80)
     private var channel:ClientConnection?
     private var callOptions:CallOptions?
 
