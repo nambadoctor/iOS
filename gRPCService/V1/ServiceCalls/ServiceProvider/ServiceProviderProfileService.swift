@@ -275,7 +275,7 @@ class ServiceProviderProfileService : ServiceProviderProfileServiceProtocol {
         }
     }
     
-    func getServiceProviderConfigurableEntryFields (serviceProviderId:String, _ completion : @escaping (_ entryFields:[ServiceProviderConfigurableEntryFields]?)->()) {
+    func getServiceProviderConfigurableEntryFields (serviceProviderId:String, _ completion : @escaping (_ entryFields:[ServiceProviderConfigurableEntryFieldsObject]?)->()) {
         CorrelationId = UUID().uuidString
         
         let channel = ChannelManager.sharedChannelManager.getChannel()
@@ -295,7 +295,7 @@ class ServiceProviderProfileService : ServiceProviderProfileServiceProtocol {
                 LoggerService().log(eventName: "REQUESTED SERVICE PROVIDERS CONFIGURABLE ENTRY FIELDS")
                 let response = try getServiceProvider.response.wait()
                 LoggerService().log(eventName: "RECIEVED SERVICE PROVIDERS CONFIGURABLE ENTRY FIELDS")
-                let serviceProvidersEntryFields = ServiceProviderConfigurableEntryFieldsMapper.manyGrpcToLocal(entryFields: response.entryFieldList)
+                let serviceProvidersEntryFields = ServiceProviderConfigurableEntryFieldsObjectMapper.grpcToLocal(entryFieldsObjects: response)
                 print("Get SERVICE PROVIDERS CONFIGURABLE ENTRY FIELDS Success \(serviceProvidersEntryFields)")
                 DispatchQueue.main.async {
                     completion(serviceProvidersEntryFields)

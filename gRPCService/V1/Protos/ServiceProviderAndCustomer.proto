@@ -1902,7 +1902,7 @@ service ServiceProviderWorkerV1 {
 
 	rpc GetAllSpecialties(VoidMessage) returns (CategoryListMessage);
 
-	rpc GetConfigurableEntryFields (IdMessage) returns (ServiceProviderConfigurableEntryFieldsMessageList);
+	rpc GetConfigurableEntryFields (IdMessage) returns (ServiceProviderConfigurableEntryFieldsObjectMessageList);
 }
 
 message ServiceProviderConfigurableEntryFieldsUploadMessage{
@@ -1942,10 +1942,15 @@ message ServiceProviderConfigurableEntryFieldsMessage {
 	google.protobuf.BoolValue BreastExamination = 28;
 }
 
-message ServiceProviderConfigurableEntryFieldsMessageList {
-	repeated ServiceProviderConfigurableEntryFieldsMessage EntryFieldList = 1;
+message ServiceProviderConfigurableEntryFieldsObjectMessageList {
+	repeated ServiceProviderConfigurableEntryFieldsObjectMessage EntryFieldList = 1;
 }
 
+message ServiceProviderConfigurableEntryFieldsObjectMessage {
+	google.protobuf.StringValue OrganisationId = 1;
+	google.protobuf.StringValue ServiceProviderId = 2;
+	ServiceProviderConfigurableEntryFieldsMessage entryField = 3;
+}
 
 service ServiceProviderServiceRequestWorkerV1{
 

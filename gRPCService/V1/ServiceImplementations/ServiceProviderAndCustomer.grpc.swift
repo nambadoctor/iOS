@@ -2349,7 +2349,7 @@ internal protocol Nd_V1_ServiceProviderWorkerV1ClientProtocol: GRPCClient {
   func getConfigurableEntryFields(
     _ request: Nd_V1_IdMessage,
     callOptions: CallOptions?
-  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderConfigurableEntryFieldsMessageList>
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderConfigurableEntryFieldsObjectMessageList>
 }
 
 extension Nd_V1_ServiceProviderWorkerV1ClientProtocol {
@@ -2582,7 +2582,7 @@ extension Nd_V1_ServiceProviderWorkerV1ClientProtocol {
   internal func getConfigurableEntryFields(
     _ request: Nd_V1_IdMessage,
     callOptions: CallOptions? = nil
-  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderConfigurableEntryFieldsMessageList> {
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderConfigurableEntryFieldsObjectMessageList> {
     return self.makeUnaryCall(
       path: "/nd.v1.ServiceProviderWorkerV1/GetConfigurableEntryFields",
       request: request,
@@ -2631,7 +2631,7 @@ internal protocol Nd_V1_ServiceProviderWorkerV1ClientInterceptorFactoryProtocol 
   func makeGetAllSpecialtiesInterceptors() -> [ClientInterceptor<Nd_V1_VoidMessage, Nd_V1_CategoryListMessage>]
 
   /// - Returns: Interceptors to use when invoking 'getConfigurableEntryFields'.
-  func makeGetConfigurableEntryFieldsInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderConfigurableEntryFieldsMessageList>]
+  func makeGetConfigurableEntryFieldsInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderConfigurableEntryFieldsObjectMessageList>]
 }
 
 internal final class Nd_V1_ServiceProviderWorkerV1Client: Nd_V1_ServiceProviderWorkerV1ClientProtocol {
@@ -4101,7 +4101,7 @@ internal protocol Nd_V1_ServiceProviderWorkerV1Provider: CallHandlerProvider {
 
   func getAllSpecialties(request: Nd_V1_VoidMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_CategoryListMessage>
 
-  func getConfigurableEntryFields(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderConfigurableEntryFieldsMessageList>
+  func getConfigurableEntryFields(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderConfigurableEntryFieldsObjectMessageList>
 }
 
 extension Nd_V1_ServiceProviderWorkerV1Provider {
@@ -4226,7 +4226,7 @@ extension Nd_V1_ServiceProviderWorkerV1Provider {
       return UnaryServerHandler(
         context: context,
         requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
-        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderConfigurableEntryFieldsMessageList>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderConfigurableEntryFieldsObjectMessageList>(),
         interceptors: self.interceptors?.makeGetConfigurableEntryFieldsInterceptors() ?? [],
         userFunction: self.getConfigurableEntryFields(request:context:)
       )
@@ -4289,7 +4289,7 @@ internal protocol Nd_V1_ServiceProviderWorkerV1ServerInterceptorFactoryProtocol 
 
   /// - Returns: Interceptors to use when handling 'getConfigurableEntryFields'.
   ///   Defaults to calling `self.makeInterceptors()`.
-  func makeGetConfigurableEntryFieldsInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderConfigurableEntryFieldsMessageList>]
+  func makeGetConfigurableEntryFieldsInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderConfigurableEntryFieldsObjectMessageList>]
 }
 /// To build a server, implement a class that conforms to this protocol.
 internal protocol Nd_V1_ServiceProviderServiceRequestWorkerV1Provider: CallHandlerProvider {

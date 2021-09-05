@@ -7,6 +7,19 @@
 
 import Foundation
 
+class ServiceProviderConfigurableEntryFieldsObjectMapper {
+    static func grpcToLocal (entryFieldsObjects: Nd_V1_ServiceProviderConfigurableEntryFieldsObjectMessageList) -> [ServiceProviderConfigurableEntryFieldsObject] {
+        
+        var toReturn = [ServiceProviderConfigurableEntryFieldsObject]()
+        
+        for entryField in entryFieldsObjects.entryFieldList {
+            toReturn.append(ServiceProviderConfigurableEntryFieldsObject(organisationId: entryField.organisationID.toString, serviceProviderId: entryField.serviceProviderID.toString, entryFields: ServiceProviderConfigurableEntryFieldsMapper.grpcToLocal(entryFields: entryField.entryField)))
+        }
+        
+        return toReturn
+    }
+}
+
 class ServiceProviderConfigurableEntryFieldsMapper {
     static func localToGrpc (entryFields:ServiceProviderConfigurableEntryFields) -> Nd_V1_ServiceProviderConfigurableEntryFieldsMessage {
         return Nd_V1_ServiceProviderConfigurableEntryFieldsMessage.with {

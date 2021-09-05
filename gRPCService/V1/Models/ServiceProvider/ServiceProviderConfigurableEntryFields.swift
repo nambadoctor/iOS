@@ -7,6 +7,11 @@
 
 import Foundation
 
+struct ServiceProviderConfigurableEntryFieldsObject {
+    var organisationId:String
+    var serviceProviderId:String
+    var entryFields:ServiceProviderConfigurableEntryFields
+}
 
 struct ServiceProviderConfigurableEntryFields {
     var Examination:Bool

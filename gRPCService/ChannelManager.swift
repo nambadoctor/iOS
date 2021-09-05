@@ -15,7 +15,6 @@ import NIOHTTP2
 var channelCreatedTime:Date = Date()
     
 class ChannelManager {
-    //production ip:- 52.182.227.174
     //testing ip:- 52.233.76.64
     //traffic manager url: nambadocservice.trafficmanager.net
     //ppe: nambadocserviceppe.centralus.cloudapp.azure.com

@@ -72,7 +72,7 @@ class IntermediateAppointmentViewModel : ObservableObject {
         self.modifyFeeViewModel = ModifyFeeViewModel(fee: appointment.serviceFee.clean)
         self.doctorTwilioManagerViewModel = DoctorTwilioViewModel(appointment: appointment)
         self.chatVM = DoctorChatViewModel(appointment: appointment)
-        self.configurableEntryVM = DoctorConfigurableEntryFieldsViewModel()
+        self.configurableEntryVM = DoctorConfigurableEntryFieldsViewModel(orgId: appointment.organisationId, serviceProviderId: appointment.serviceProviderID)
         
         doctorTwilioManagerViewModel.twilioDelegate = self
         serviceRequestVM.gotServiceRequestDelegate = self

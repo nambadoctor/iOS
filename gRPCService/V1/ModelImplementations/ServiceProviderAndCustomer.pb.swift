@@ -7505,16 +7505,57 @@ struct Nd_V1_ServiceProviderConfigurableEntryFieldsMessage {
   fileprivate var _storage = _StorageClass.defaultInstance
 }
 
-struct Nd_V1_ServiceProviderConfigurableEntryFieldsMessageList {
+struct Nd_V1_ServiceProviderConfigurableEntryFieldsObjectMessageList {
   // SwiftProtobuf.Message conformance is added in an extension below. See the
   // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
   // methods supported on all messages.
 
-  var entryFieldList: [Nd_V1_ServiceProviderConfigurableEntryFieldsMessage] = []
+  var entryFieldList: [Nd_V1_ServiceProviderConfigurableEntryFieldsObjectMessage] = []
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
+}
+
+struct Nd_V1_ServiceProviderConfigurableEntryFieldsObjectMessage {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var organisationID: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _organisationID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_organisationID = newValue}
+  }
+  /// Returns true if `organisationID` has been explicitly set.
+  var hasOrganisationID: Bool {return self._organisationID != nil}
+  /// Clears the value of `organisationID`. Subsequent reads from it will return its default value.
+  mutating func clearOrganisationID() {self._organisationID = nil}
+
+  var serviceProviderID: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _serviceProviderID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_serviceProviderID = newValue}
+  }
+  /// Returns true if `serviceProviderID` has been explicitly set.
+  var hasServiceProviderID: Bool {return self._serviceProviderID != nil}
+  /// Clears the value of `serviceProviderID`. Subsequent reads from it will return its default value.
+  mutating func clearServiceProviderID() {self._serviceProviderID = nil}
+
+  var entryField: Nd_V1_ServiceProviderConfigurableEntryFieldsMessage {
+    get {return _entryField ?? Nd_V1_ServiceProviderConfigurableEntryFieldsMessage()}
+    set {_entryField = newValue}
+  }
+  /// Returns true if `entryField` has been explicitly set.
+  var hasEntryField: Bool {return self._entryField != nil}
+  /// Clears the value of `entryField`. Subsequent reads from it will return its default value.
+  mutating func clearEntryField() {self._entryField = nil}
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _organisationID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _serviceProviderID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _entryField: Nd_V1_ServiceProviderConfigurableEntryFieldsMessage? = nil
 }
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
@@ -15644,8 +15685,8 @@ extension Nd_V1_ServiceProviderConfigurableEntryFieldsMessage: SwiftProtobuf.Mes
   }
 }
 
-extension Nd_V1_ServiceProviderConfigurableEntryFieldsMessageList: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
-  static let protoMessageName: String = _protobuf_package + ".ServiceProviderConfigurableEntryFieldsMessageList"
+extension Nd_V1_ServiceProviderConfigurableEntryFieldsObjectMessageList: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".ServiceProviderConfigurableEntryFieldsObjectMessageList"
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "EntryFieldList"),
   ]
@@ -15669,8 +15710,52 @@ extension Nd_V1_ServiceProviderConfigurableEntryFieldsMessageList: SwiftProtobuf
     try unknownFields.traverse(visitor: &visitor)
   }
 
-  static func ==(lhs: Nd_V1_ServiceProviderConfigurableEntryFieldsMessageList, rhs: Nd_V1_ServiceProviderConfigurableEntryFieldsMessageList) -> Bool {
+  static func ==(lhs: Nd_V1_ServiceProviderConfigurableEntryFieldsObjectMessageList, rhs: Nd_V1_ServiceProviderConfigurableEntryFieldsObjectMessageList) -> Bool {
     if lhs.entryFieldList != rhs.entryFieldList {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Nd_V1_ServiceProviderConfigurableEntryFieldsObjectMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".ServiceProviderConfigurableEntryFieldsObjectMessage"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "OrganisationId"),
+    2: .same(proto: "ServiceProviderId"),
+    3: .same(proto: "entryField"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularMessageField(value: &self._organisationID) }()
+      case 2: try { try decoder.decodeSingularMessageField(value: &self._serviceProviderID) }()
+      case 3: try { try decoder.decodeSingularMessageField(value: &self._entryField) }()
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if let v = self._organisationID {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+    }
+    if let v = self._serviceProviderID {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+    }
+    if let v = self._entryField {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Nd_V1_ServiceProviderConfigurableEntryFieldsObjectMessage, rhs: Nd_V1_ServiceProviderConfigurableEntryFieldsObjectMessage) -> Bool {
+    if lhs._organisationID != rhs._organisationID {return false}
+    if lhs._serviceProviderID != rhs._serviceProviderID {return false}
+    if lhs._entryField != rhs._entryField {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
