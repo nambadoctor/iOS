@@ -27,12 +27,11 @@ class DoctorConfigurableEntryFieldsViewModel : ObservableObject {
         }
     }
 
-    func confirmSettings (completion: @escaping (_ success:Bool)->()) {
-//        ServiceProviderProfileService().setServiceProviderConfigurableEntryFields(entryFields: entryFields) { success in
-//            completion(success)
-//        }
+    func confirmSettings (configuration:ServiceProviderConfigurableEntryFieldsObject, completion: @escaping (_ success:Bool)->()) {
+        self.selectedEntryField = configuration.entryFields
+        
     }
-    
+
     func fieldsForVitalsExist () -> Bool {
         if selectedEntryField.Weight || selectedEntryField.BloodPressure || selectedEntryField.BloodSugar || selectedEntryField.Height || selectedEntryField.MenstrualHistory || selectedEntryField.ObstetricHistory || selectedEntryField.IsSmokerOrAlcoholic {
             return true

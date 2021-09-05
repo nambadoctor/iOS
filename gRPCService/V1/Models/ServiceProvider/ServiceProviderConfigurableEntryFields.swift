@@ -10,6 +10,7 @@ import Foundation
 struct ServiceProviderConfigurableEntryFieldsObject {
     var organisationId:String
     var serviceProviderId:String
+    var configurationName:String
     var entryFields:ServiceProviderConfigurableEntryFields
 }
 

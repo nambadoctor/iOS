@@ -7540,6 +7540,15 @@ struct Nd_V1_ServiceProviderConfigurableEntryFieldsObjectMessage {
   /// Clears the value of `serviceProviderID`. Subsequent reads from it will return its default value.
   mutating func clearServiceProviderID() {self._serviceProviderID = nil}
 
+  var configurationName: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _configurationName ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_configurationName = newValue}
+  }
+  /// Returns true if `configurationName` has been explicitly set.
+  var hasConfigurationName: Bool {return self._configurationName != nil}
+  /// Clears the value of `configurationName`. Subsequent reads from it will return its default value.
+  mutating func clearConfigurationName() {self._configurationName = nil}
+
   var entryField: Nd_V1_ServiceProviderConfigurableEntryFieldsMessage {
     get {return _entryField ?? Nd_V1_ServiceProviderConfigurableEntryFieldsMessage()}
     set {_entryField = newValue}
@@ -7555,6 +7564,7 @@ struct Nd_V1_ServiceProviderConfigurableEntryFieldsObjectMessage {
 
   fileprivate var _organisationID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _serviceProviderID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _configurationName: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _entryField: Nd_V1_ServiceProviderConfigurableEntryFieldsMessage? = nil
 }
 
@@ -15722,7 +15732,8 @@ extension Nd_V1_ServiceProviderConfigurableEntryFieldsObjectMessage: SwiftProtob
   static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
     1: .same(proto: "OrganisationId"),
     2: .same(proto: "ServiceProviderId"),
-    3: .same(proto: "entryField"),
+    3: .same(proto: "ConfigurationName"),
+    4: .same(proto: "entryField"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -15733,7 +15744,8 @@ extension Nd_V1_ServiceProviderConfigurableEntryFieldsObjectMessage: SwiftProtob
       switch fieldNumber {
       case 1: try { try decoder.decodeSingularMessageField(value: &self._organisationID) }()
       case 2: try { try decoder.decodeSingularMessageField(value: &self._serviceProviderID) }()
-      case 3: try { try decoder.decodeSingularMessageField(value: &self._entryField) }()
+      case 3: try { try decoder.decodeSingularMessageField(value: &self._configurationName) }()
+      case 4: try { try decoder.decodeSingularMessageField(value: &self._entryField) }()
       default: break
       }
     }
@@ -15746,8 +15758,11 @@ extension Nd_V1_ServiceProviderConfigurableEntryFieldsObjectMessage: SwiftProtob
     if let v = self._serviceProviderID {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
     }
-    if let v = self._entryField {
+    if let v = self._configurationName {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+    }
+    if let v = self._entryField {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -15755,6 +15770,7 @@ extension Nd_V1_ServiceProviderConfigurableEntryFieldsObjectMessage: SwiftProtob
   static func ==(lhs: Nd_V1_ServiceProviderConfigurableEntryFieldsObjectMessage, rhs: Nd_V1_ServiceProviderConfigurableEntryFieldsObjectMessage) -> Bool {
     if lhs._organisationID != rhs._organisationID {return false}
     if lhs._serviceProviderID != rhs._serviceProviderID {return false}
+    if lhs._configurationName != rhs._configurationName {return false}
     if lhs._entryField != rhs._entryField {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true

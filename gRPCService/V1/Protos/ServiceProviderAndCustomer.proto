@@ -1949,7 +1949,8 @@ message ServiceProviderConfigurableEntryFieldsObjectMessageList {
 message ServiceProviderConfigurableEntryFieldsObjectMessage {
 	google.protobuf.StringValue OrganisationId = 1;
 	google.protobuf.StringValue ServiceProviderId = 2;
-	ServiceProviderConfigurableEntryFieldsMessage entryField = 3;
+	google.protobuf.StringValue ConfigurationName = 3;
+	ServiceProviderConfigurableEntryFieldsMessage entryField = 4;
 }
 
 service ServiceProviderServiceRequestWorkerV1{

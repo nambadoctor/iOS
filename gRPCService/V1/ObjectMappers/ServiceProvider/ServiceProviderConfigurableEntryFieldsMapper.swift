@@ -13,7 +13,7 @@ class ServiceProviderConfigurableEntryFieldsObjectMapper {
         var toReturn = [ServiceProviderConfigurableEntryFieldsObject]()
         
         for entryField in entryFieldsObjects.entryFieldList {
-            toReturn.append(ServiceProviderConfigurableEntryFieldsObject(organisationId: entryField.organisationID.toString, serviceProviderId: entryField.serviceProviderID.toString, entryFields: ServiceProviderConfigurableEntryFieldsMapper.grpcToLocal(entryFields: entryField.entryField)))
+            toReturn.append(ServiceProviderConfigurableEntryFieldsObject(organisationId: entryField.organisationID.toString, serviceProviderId: entryField.serviceProviderID.toString, configurationName: entryField.configurationName.toString, entryFields: ServiceProviderConfigurableEntryFieldsMapper.grpcToLocal(entryFields: entryField.entryField)))
         }
         
         return toReturn
