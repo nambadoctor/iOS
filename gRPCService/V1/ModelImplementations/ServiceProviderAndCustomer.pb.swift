@@ -6774,14 +6774,10 @@ struct Nd_V1_ServiceProviderProfileMessage {
   /// Clears the value of `configurableSettings`. Subsequent reads from it will return its default value.
   mutating func clearConfigurableSettings() {_uniqueStorage()._configurableSettings = nil}
 
-  var configurableEntryFields: Nd_V1_ServiceProviderConfigurableEntryFieldsMessage {
-    get {return _storage._configurableEntryFields ?? Nd_V1_ServiceProviderConfigurableEntryFieldsMessage()}
+  var configurableEntryFields: [SwiftProtobuf.Google_Protobuf_StringValue] {
+    get {return _storage._configurableEntryFields}
     set {_uniqueStorage()._configurableEntryFields = newValue}
   }
-  /// Returns true if `configurableEntryFields` has been explicitly set.
-  var hasConfigurableEntryFields: Bool {return _storage._configurableEntryFields != nil}
-  /// Clears the value of `configurableEntryFields`. Subsequent reads from it will return its default value.
-  mutating func clearConfigurableEntryFields() {_uniqueStorage()._configurableEntryFields = nil}
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -7507,6 +7503,18 @@ struct Nd_V1_ServiceProviderConfigurableEntryFieldsMessage {
   init() {}
 
   fileprivate var _storage = _StorageClass.defaultInstance
+}
+
+struct Nd_V1_ServiceProviderConfigurableEntryFieldsMessageList {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var entryFieldList: [Nd_V1_ServiceProviderConfigurableEntryFieldsMessage] = []
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
 }
 
 // MARK: - Code below here is support for the SwiftProtobuf runtime.
@@ -14611,7 +14619,7 @@ extension Nd_V1_ServiceProviderProfileMessage: SwiftProtobuf.Message, SwiftProto
     var _organisationIds: [SwiftProtobuf.Google_Protobuf_StringValue] = []
     var _alternateNotificationInfos: [Nd_V1_ServiceProviderAlternateNotificationInfoMessage] = []
     var _configurableSettings: Nd_V1_ServiceProviderConfigurableSettingsMessage? = nil
-    var _configurableEntryFields: Nd_V1_ServiceProviderConfigurableEntryFieldsMessage? = nil
+    var _configurableEntryFields: [SwiftProtobuf.Google_Protobuf_StringValue] = []
 
     static let defaultInstance = _StorageClass()
 
@@ -14695,7 +14703,7 @@ extension Nd_V1_ServiceProviderProfileMessage: SwiftProtobuf.Message, SwiftProto
         case 27: try { try decoder.decodeRepeatedMessageField(value: &_storage._organisationIds) }()
         case 28: try { try decoder.decodeRepeatedMessageField(value: &_storage._alternateNotificationInfos) }()
         case 29: try { try decoder.decodeSingularMessageField(value: &_storage._configurableSettings) }()
-        case 30: try { try decoder.decodeSingularMessageField(value: &_storage._configurableEntryFields) }()
+        case 30: try { try decoder.decodeRepeatedMessageField(value: &_storage._configurableEntryFields) }()
         default: break
         }
       }
@@ -14791,8 +14799,8 @@ extension Nd_V1_ServiceProviderProfileMessage: SwiftProtobuf.Message, SwiftProto
       if let v = _storage._configurableSettings {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 29)
       }
-      if let v = _storage._configurableEntryFields {
-        try visitor.visitSingularMessageField(value: v, fieldNumber: 30)
+      if !_storage._configurableEntryFields.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._configurableEntryFields, fieldNumber: 30)
       }
     }
     try unknownFields.traverse(visitor: &visitor)
@@ -15631,6 +15639,38 @@ extension Nd_V1_ServiceProviderConfigurableEntryFieldsMessage: SwiftProtobuf.Mes
       }
       if !storagesAreEqual {return false}
     }
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Nd_V1_ServiceProviderConfigurableEntryFieldsMessageList: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".ServiceProviderConfigurableEntryFieldsMessageList"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "EntryFieldList"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeRepeatedMessageField(value: &self.entryFieldList) }()
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.entryFieldList.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.entryFieldList, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Nd_V1_ServiceProviderConfigurableEntryFieldsMessageList, rhs: Nd_V1_ServiceProviderConfigurableEntryFieldsMessageList) -> Bool {
+    if lhs.entryFieldList != rhs.entryFieldList {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

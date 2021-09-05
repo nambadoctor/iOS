@@ -14,7 +14,7 @@ struct BreastCancerAdditionalEntryFieldsEditableView: View {
     var body: some View {
         VStack (alignment: .leading) {
             Group {
-                if configurableEntryVM.entryFields.Menarche {
+                if configurableEntryVM.selectedEntryField.Menarche {
                     Group {
                         HStack (spacing: 3) {
                             Image("eyeglasses")
@@ -29,7 +29,7 @@ struct BreastCancerAdditionalEntryFieldsEditableView: View {
                     }
                 }
 
-                if configurableEntryVM.entryFields.Periods {
+                if configurableEntryVM.selectedEntryField.Periods {
                     Group {
                         HStack (spacing: 3) {
                             Image("eyeglasses")
@@ -44,7 +44,7 @@ struct BreastCancerAdditionalEntryFieldsEditableView: View {
                     }
                 }
                 
-                if configurableEntryVM.entryFields.AgeAtFirstChildBirth {
+                if configurableEntryVM.selectedEntryField.AgeAtFirstChildBirth {
                     Group {
                         HStack (spacing: 3) {
                             Image("eyeglasses")
@@ -60,7 +60,7 @@ struct BreastCancerAdditionalEntryFieldsEditableView: View {
                     }
                 }
                 
-                if configurableEntryVM.entryFields.LMP {
+                if configurableEntryVM.selectedEntryField.LMP {
                     Group {
                         HStack (spacing: 3) {
                             Image("eyeglasses")
@@ -76,7 +76,7 @@ struct BreastCancerAdditionalEntryFieldsEditableView: View {
                     }
                 }
                 
-                if configurableEntryVM.entryFields.NoOfChildren {
+                if configurableEntryVM.selectedEntryField.NoOfChildren {
                     Group {
                         HStack (spacing: 3) {
                             Image("eyeglasses")
@@ -91,7 +91,7 @@ struct BreastCancerAdditionalEntryFieldsEditableView: View {
                     }
                 }
                 
-                if configurableEntryVM.entryFields.BreastFeeding {
+                if configurableEntryVM.selectedEntryField.BreastFeeding {
                     Group {
                         HStack (spacing: 3) {
                             Image("eyeglasses")
@@ -106,7 +106,7 @@ struct BreastCancerAdditionalEntryFieldsEditableView: View {
                     }
                 }
                 
-                if configurableEntryVM.entryFields.FamilyHistoryOfCancer {
+                if configurableEntryVM.selectedEntryField.FamilyHistoryOfCancer {
                     Group {
                         HStack (spacing: 3) {
                             Image("eyeglasses")
@@ -121,7 +121,7 @@ struct BreastCancerAdditionalEntryFieldsEditableView: View {
                     }
                 }
                 
-                if configurableEntryVM.entryFields.OtherCancers {
+                if configurableEntryVM.selectedEntryField.OtherCancers {
                     Group {
                         HStack (spacing: 3) {
                             Image("eyeglasses")
@@ -136,7 +136,7 @@ struct BreastCancerAdditionalEntryFieldsEditableView: View {
                     }
                 }
                 
-                if configurableEntryVM.entryFields.Diabetes {
+                if configurableEntryVM.selectedEntryField.Diabetes {
                     Group {
                         HStack (spacing: 3) {
                             Image("eyeglasses")
@@ -151,7 +151,7 @@ struct BreastCancerAdditionalEntryFieldsEditableView: View {
                     }
                 }
 
-                if configurableEntryVM.entryFields.Hypertension {
+                if configurableEntryVM.selectedEntryField.Hypertension {
                     Group {
                         HStack (spacing: 3) {
                             Image("eyeglasses")
@@ -168,7 +168,7 @@ struct BreastCancerAdditionalEntryFieldsEditableView: View {
 
             }
             
-            if configurableEntryVM.entryFields.Asthma {
+            if configurableEntryVM.selectedEntryField.Asthma {
                 Group {
                     HStack (spacing: 3) {
                         Image("eyeglasses")
@@ -183,7 +183,7 @@ struct BreastCancerAdditionalEntryFieldsEditableView: View {
                 }
             }
 
-            if configurableEntryVM.entryFields.Thyroid {
+            if configurableEntryVM.selectedEntryField.Thyroid {
                 Group {
                     HStack (spacing: 3) {
                         Image("eyeglasses")
@@ -199,7 +199,7 @@ struct BreastCancerAdditionalEntryFieldsEditableView: View {
             }
 
             
-            if configurableEntryVM.entryFields.Medication {
+            if configurableEntryVM.selectedEntryField.Medication {
                 Group {
                     HStack (spacing: 3) {
                         Image("eyeglasses")
@@ -215,7 +215,7 @@ struct BreastCancerAdditionalEntryFieldsEditableView: View {
             }
 
             
-            if configurableEntryVM.entryFields.DietAndAppetite {
+            if configurableEntryVM.selectedEntryField.DietAndAppetite {
                 Group {
                     HStack (spacing: 3) {
                         Image("eyeglasses")
@@ -230,7 +230,7 @@ struct BreastCancerAdditionalEntryFieldsEditableView: View {
                 }
             }
             
-            if configurableEntryVM.entryFields.Habits {
+            if configurableEntryVM.selectedEntryField.Habits {
                 Group {
                     HStack (spacing: 3) {
                         Image("eyeglasses")
@@ -245,7 +245,7 @@ struct BreastCancerAdditionalEntryFieldsEditableView: View {
                 }
             }
             
-            if configurableEntryVM.entryFields.BreastExamination {
+            if configurableEntryVM.selectedEntryField.BreastExamination {
                 Group {
                     HStack (spacing: 3) {
                         Image("eyeglasses")

@@ -56,7 +56,7 @@ struct EditableAppointmentView: View {
                 }
             }
 
-            if intermediateVM.configurableEntryVM.entryFields.Prescriptions {
+            if intermediateVM.configurableEntryVM.selectedEntryField.Prescriptions {
                 MedicineEditableView()
                     .modifier(DetailedAppointmentViewCardModifier())
             }

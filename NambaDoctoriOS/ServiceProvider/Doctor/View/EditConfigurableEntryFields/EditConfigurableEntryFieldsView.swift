@@ -15,43 +15,43 @@ struct EditConfigurableEntryFieldsView: View {
         NavigationView {
             Form {
                 Section(header: Text("General")) {
-                    Toggle("Examination", isOn: self.$configurableEntryVM.entryFields.Examination)
-                    Toggle("Diagnosis", isOn: self.$configurableEntryVM.entryFields.Diagnosis)
-                    Toggle("Investigations", isOn: self.$configurableEntryVM.entryFields.Investigations)
-                    Toggle("Prescriptions", isOn: self.$configurableEntryVM.entryFields.Prescriptions)
-                    Toggle("Advice", isOn: self.$configurableEntryVM.entryFields.Advice)
+                    Toggle("Examination", isOn: self.$configurableEntryVM.selectedEntryField.Examination)
+                    Toggle("Diagnosis", isOn: self.$configurableEntryVM.selectedEntryField.Diagnosis)
+                    Toggle("Investigations", isOn: self.$configurableEntryVM.selectedEntryField.Investigations)
+                    Toggle("Prescriptions", isOn: self.$configurableEntryVM.selectedEntryField.Prescriptions)
+                    Toggle("Advice", isOn: self.$configurableEntryVM.selectedEntryField.Advice)
                 }
 
                 Section(header: Text("Patient Vitals")) {
-                    Toggle("Weight", isOn: self.$configurableEntryVM.entryFields.Weight)
-                    Toggle("BloodPressure", isOn: self.$configurableEntryVM.entryFields.BloodPressure)
-                    Toggle("BloodSugar", isOn: self.$configurableEntryVM.entryFields.BloodSugar)
-                    Toggle("Height", isOn: self.$configurableEntryVM.entryFields.Height)
-                    Toggle("IsSmokerOrAlcoholic", isOn: self.$configurableEntryVM.entryFields.IsSmokerOrAlcoholic)
+                    Toggle("Weight", isOn: self.$configurableEntryVM.selectedEntryField.Weight)
+                    Toggle("BloodPressure", isOn: self.$configurableEntryVM.selectedEntryField.BloodPressure)
+                    Toggle("BloodSugar", isOn: self.$configurableEntryVM.selectedEntryField.BloodSugar)
+                    Toggle("Height", isOn: self.$configurableEntryVM.selectedEntryField.Height)
+                    Toggle("IsSmokerOrAlcoholic", isOn: self.$configurableEntryVM.selectedEntryField.IsSmokerOrAlcoholic)
                 }
                 
                 Section(header: Text("Breast Cancer Related")) {
-                    Toggle("MenstrualHistory", isOn: self.$configurableEntryVM.entryFields.MenstrualHistory)
+                    Toggle("MenstrualHistory", isOn: self.$configurableEntryVM.selectedEntryField.MenstrualHistory)
                     Group {
-                        Toggle("ObstetricHistory", isOn: self.$configurableEntryVM.entryFields.ObstetricHistory)
-                        Toggle("Menarche", isOn: self.$configurableEntryVM.entryFields.Menarche)
-                        Toggle("Periods", isOn: self.$configurableEntryVM.entryFields.Periods)
-                        Toggle("AgeAtFirstChildBirth", isOn: self.$configurableEntryVM.entryFields.AgeAtFirstChildBirth)
-                        Toggle("LMP", isOn: self.$configurableEntryVM.entryFields.LMP)
-                        Toggle("NoOfChildren", isOn: self.$configurableEntryVM.entryFields.NoOfChildren)
-                        Toggle("BreastFeeding", isOn: self.$configurableEntryVM.entryFields.BreastFeeding)
-                        Toggle("FamilyHistoryOfCancer", isOn: self.$configurableEntryVM.entryFields.FamilyHistoryOfCancer)
-                        Toggle("OtherCancers", isOn: self.$configurableEntryVM.entryFields.OtherCancers)
+                        Toggle("ObstetricHistory", isOn: self.$configurableEntryVM.selectedEntryField.ObstetricHistory)
+                        Toggle("Menarche", isOn: self.$configurableEntryVM.selectedEntryField.Menarche)
+                        Toggle("Periods", isOn: self.$configurableEntryVM.selectedEntryField.Periods)
+                        Toggle("AgeAtFirstChildBirth", isOn: self.$configurableEntryVM.selectedEntryField.AgeAtFirstChildBirth)
+                        Toggle("LMP", isOn: self.$configurableEntryVM.selectedEntryField.LMP)
+                        Toggle("NoOfChildren", isOn: self.$configurableEntryVM.selectedEntryField.NoOfChildren)
+                        Toggle("BreastFeeding", isOn: self.$configurableEntryVM.selectedEntryField.BreastFeeding)
+                        Toggle("FamilyHistoryOfCancer", isOn: self.$configurableEntryVM.selectedEntryField.FamilyHistoryOfCancer)
+                        Toggle("OtherCancers", isOn: self.$configurableEntryVM.selectedEntryField.OtherCancers)
                     }
                     
                     Group {
-                        Toggle("Diabetes", isOn: self.$configurableEntryVM.entryFields.Diabetes)
-                        Toggle("Hypertension", isOn: self.$configurableEntryVM.entryFields.Hypertension)
-                        Toggle("Asthma", isOn: self.$configurableEntryVM.entryFields.Asthma)
-                        Toggle("Thyroid", isOn: self.$configurableEntryVM.entryFields.Thyroid)
-                        Toggle("Medication", isOn: self.$configurableEntryVM.entryFields.Medication)
-                        Toggle("DietAndAppetite", isOn: self.$configurableEntryVM.entryFields.DietAndAppetite)
-                        Toggle("BreastExamination", isOn: self.$configurableEntryVM.entryFields.BreastExamination)
+                        Toggle("Diabetes", isOn: self.$configurableEntryVM.selectedEntryField.Diabetes)
+                        Toggle("Hypertension", isOn: self.$configurableEntryVM.selectedEntryField.Hypertension)
+                        Toggle("Asthma", isOn: self.$configurableEntryVM.selectedEntryField.Asthma)
+                        Toggle("Thyroid", isOn: self.$configurableEntryVM.selectedEntryField.Thyroid)
+                        Toggle("Medication", isOn: self.$configurableEntryVM.selectedEntryField.Medication)
+                        Toggle("DietAndAppetite", isOn: self.$configurableEntryVM.selectedEntryField.DietAndAppetite)
+                        Toggle("BreastExamination", isOn: self.$configurableEntryVM.selectedEntryField.BreastExamination)
                     }
                 }
             }

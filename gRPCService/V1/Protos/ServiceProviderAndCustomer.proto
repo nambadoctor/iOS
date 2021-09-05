@@ -1697,9 +1697,7 @@ message ServiceProviderProfileMessage{
 
 	ServiceProviderConfigurableSettingsMessage ConfigurableSettings = 29;
 
-	ServiceProviderConfigurableEntryFieldsMessage ConfigurableEntryFields = 30;
-
-
+	repeated google.protobuf.StringValue ConfigurableEntryFields = 30;
 }
 
 
@@ -1904,9 +1902,7 @@ service ServiceProviderWorkerV1 {
 
 	rpc GetAllSpecialties(VoidMessage) returns (CategoryListMessage);
 
-	rpc GetConfigurableEntryFields (IdMessage) returns (ServiceProviderConfigurableEntryFieldsMessage);
-
-rpc SetConfigurableEntryFields (ServiceProviderConfigurableEntryFieldsUploadMessage) returns (BoolMessage);
+	rpc GetConfigurableEntryFields (IdMessage) returns (ServiceProviderConfigurableEntryFieldsMessageList);
 }
 
 message ServiceProviderConfigurableEntryFieldsUploadMessage{
@@ -1946,6 +1942,9 @@ message ServiceProviderConfigurableEntryFieldsMessage {
 	google.protobuf.BoolValue BreastExamination = 28;
 }
 
+message ServiceProviderConfigurableEntryFieldsMessageList {
+	repeated ServiceProviderConfigurableEntryFieldsMessage EntryFieldList = 1;
+}
 
 
 service ServiceProviderServiceRequestWorkerV1{

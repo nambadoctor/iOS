@@ -77,7 +77,7 @@ struct ServiceRequestEditableView: View {
             
             VStack (alignment: .leading) {
                 
-                if configurableEntryVM.entryFields.Examination {
+                if configurableEntryVM.selectedEntryField.Examination {
                     HStack (spacing: 3) {
                         Image("eyeglasses")
                             .modifier(DetailedAppointmentViewIconModifier())
@@ -93,7 +93,7 @@ struct ServiceRequestEditableView: View {
                 }
 
                 
-                if configurableEntryVM.entryFields.Diagnosis {
+                if configurableEntryVM.selectedEntryField.Diagnosis {
                     HStack (spacing: 3) {
                         Image("cross.case")
                             .modifier(DetailedAppointmentViewIconModifier())

@@ -71,4 +71,14 @@ class ServiceProviderConfigurableEntryFieldsMapper {
                                                       Habits: entryFields.habits.toBool,
                                                       BreastExamination: entryFields.breastExamination.toBool)
     }
+    
+    static func manyGrpcToLocal (entryFields:[Nd_V1_ServiceProviderConfigurableEntryFieldsMessage]) -> [ServiceProviderConfigurableEntryFields] {
+        var entryFieldsToReturn = [ServiceProviderConfigurableEntryFields]()
+        
+        for entryField in entryFields {
+            entryFieldsToReturn.append(grpcToLocal(entryFields: entryField))
+        }
+        
+        return entryFieldsToReturn
+    }
 }

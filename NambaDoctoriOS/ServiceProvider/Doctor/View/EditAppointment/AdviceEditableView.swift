@@ -12,7 +12,7 @@ struct AdviceEditableView: View {
     @EnvironmentObject var configurableEntryVM:DoctorConfigurableEntryFieldsViewModel
     
     var body: some View {
-        if configurableEntryVM.entryFields.Advice {
+        if configurableEntryVM.selectedEntryField.Advice {
             VStack (alignment: .leading) {
                 HStack (spacing: 3) {
                     Image("cross.circle")

@@ -39,7 +39,7 @@ class ServiceProviderProfileMapper {
             organisationIds: profile.organisationIds.convert(),
             alternateNotificationInfos: ServiceProviderAlternateNotificationInfoMapper.GrpcToLocal(alternateNotif: profile.alternateNotificationInfos),
             configurableSetting: ServiceProviderConfigurableSettingsMapper.grpcToLocal(setting: profile.configurableSettings),
-            configurableEntryFields: ServiceProviderConfigurableEntryFieldsMapper.grpcToLocal(entryFields: profile.configurableEntryFields))
+            configurableEntryFields: profile.configurableEntryFields.convert())
     }
     
     func grpcProfileToLocal (profile:[Nd_V1_ServiceProviderProfileMessage]) -> [ServiceProviderProfile] {
@@ -86,7 +86,7 @@ class ServiceProviderProfileMapper {
                 $0.configurableSettings = ServiceProviderConfigurableSettingsMapper.localToGrpc(setting: profile.configurableSetting!)
             }
             if profile.configurableEntryFields != nil {
-                $0.configurableEntryFields = ServiceProviderConfigurableEntryFieldsMapper.localToGrpc(entryFields: profile.configurableEntryFields!)
+                $0.configurableEntryFields = profile.configurableEntryFields!.convert()
             }
         }
     }

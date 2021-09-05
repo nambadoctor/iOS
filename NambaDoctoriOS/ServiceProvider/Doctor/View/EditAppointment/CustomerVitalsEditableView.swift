@@ -13,7 +13,7 @@ struct CustomerVitalsEditableView: View {
     
     var body: some View {
         VStack (alignment: .leading) {
-            if configurableEntryVM.entryFields.BloodPressure {
+            if configurableEntryVM.selectedEntryField.BloodPressure {
                 Group {
                     HStack (spacing: 3) {
                         Image("eyeglasses")
@@ -28,7 +28,7 @@ struct CustomerVitalsEditableView: View {
                 }
             }
 
-            if configurableEntryVM.entryFields.BloodSugar {
+            if configurableEntryVM.selectedEntryField.BloodSugar {
                 Group {
                     HStack (spacing: 3) {
                         Image("eyeglasses")
@@ -43,7 +43,7 @@ struct CustomerVitalsEditableView: View {
                 }
             }
             
-            if configurableEntryVM.entryFields.Height {
+            if configurableEntryVM.selectedEntryField.Height {
                 Group {
                     HStack (spacing: 3) {
                         Image("eyeglasses")
@@ -59,7 +59,7 @@ struct CustomerVitalsEditableView: View {
                 }
             }
             
-            if configurableEntryVM.entryFields.Weight {
+            if configurableEntryVM.selectedEntryField.Weight {
                 Group {
                     HStack (spacing: 3) {
                         Image("eyeglasses")
@@ -75,7 +75,7 @@ struct CustomerVitalsEditableView: View {
                 }
             }
             
-            if configurableEntryVM.entryFields.MenstrualHistory {
+            if configurableEntryVM.selectedEntryField.MenstrualHistory {
                 Group {
                     HStack (spacing: 3) {
                         Image("eyeglasses")
@@ -90,7 +90,7 @@ struct CustomerVitalsEditableView: View {
                 }
             }
             
-            if configurableEntryVM.entryFields.ObstetricHistory {
+            if configurableEntryVM.selectedEntryField.ObstetricHistory {
                 Group {
                     HStack (spacing: 3) {
                         Image("eyeglasses")
@@ -105,7 +105,7 @@ struct CustomerVitalsEditableView: View {
                 }
             }
             
-            if configurableEntryVM.entryFields.IsSmokerOrAlcoholic {
+            if configurableEntryVM.selectedEntryField.IsSmokerOrAlcoholic {
                 Group {
                     HStack (spacing: 3) {
                         Image("eyeglasses")

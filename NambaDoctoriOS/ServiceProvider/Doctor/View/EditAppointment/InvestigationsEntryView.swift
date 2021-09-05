@@ -12,7 +12,7 @@ struct InvestigationsEditableView: View {
     @EnvironmentObject var configurableEntryVM:DoctorConfigurableEntryFieldsViewModel
     
     var body : some View {
-        if configurableEntryVM.entryFields.Investigations {
+        if configurableEntryVM.selectedEntryField.Investigations {
             VStack (alignment: .leading) {
                 HStack (spacing: 3) {
                     Image("list.triangle")
