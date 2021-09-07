@@ -44,6 +44,17 @@ struct CustomerAppointmentsCardView: View {
                         Text(customerAppointmentVM.appointmentStatus)
                         
                         Text(Helpers.getSimpleTimeForAppointment(timeStamp1: customerAppointmentVM.appointment.scheduledAppointmentStartTime))
+                        
+                        if self.customerAppointmentVM.appointment.IsInPersonAppointment {
+                            Text("In-Person at \(self.customerAppointmentVM.appointment.organisationName)")
+                                .font(.system(size: 17))
+                                .foregroundColor(Color.gray)
+                        } else {
+                            Text("Online")
+                                .font(.system(size: 17))
+                                .foregroundColor(Color.gray)
+                        }
+
                     }
 
                 }.padding(.leading, 3)

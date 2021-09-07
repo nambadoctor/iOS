@@ -15,24 +15,24 @@ struct CustomerDetailedAppointmentView: View {
     
     var body: some View {
         ZStack {
-            if customerDetailedAppointmentVM.refreshViewTrigger {
-                VStack {
-                    header
-                    
+            ScrollView {
+                if customerDetailedAppointmentVM.refreshViewTrigger {
                     VStack {
-                        if customerDetailedAppointmentVM.imageLoader != nil {
-                            ImageView(imageLoader: customerDetailedAppointmentVM.imageLoader!)
-                                .padding(.top, 10)
+                        header
+                        
+                        VStack {
+                            if customerDetailedAppointmentVM.imageLoader != nil {
+                                ImageView(imageLoader: customerDetailedAppointmentVM.imageLoader!)
+                                    .padding(.top, 10)
+                            }
+                            
+                            if customerDetailedAppointmentVM.prescriptionPDF != nil {
+                                PDFKitView(data: customerDetailedAppointmentVM.prescriptionPDF!)
+                                    .padding(.top, 10)
+                            }
                         }
                         
-                        if customerDetailedAppointmentVM.prescriptionPDF != nil {
-                            PDFKitView(data: customerDetailedAppointmentVM.prescriptionPDF!)
-                                .padding(.top, 10)
-                        }
-                    }
-                    
-                    if customerDetailedAppointmentVM.appointmentStarted || customerDetailedAppointmentVM.appointmnentUpComing {
-                        ScrollView {
+                        if customerDetailedAppointmentVM.appointmentStarted || customerDetailedAppointmentVM.appointmnentUpComing {
                             allergyEntryView
                                 .sheet(isPresented: self.$customerDetailedAppointmentVM.reportsVM.showUploadReportSheet, content: {
                                     UploadReportSheet(reportsVM: self.customerDetailedAppointmentVM.reportsVM, appointment: self.customerDetailedAppointmentVM.appointment)
@@ -40,34 +40,33 @@ struct CustomerDetailedAppointmentView: View {
                             
                             CustomerReportsView(reportsVM: self.customerDetailedAppointmentVM.reportsVM)
                         }
+                        
+                        Spacer()
+                    }
+                    .padding(.horizontal)
+                    .overlay(appointmentViewBlockers)
+                    
+                    if customerDetailedAppointmentVM.showTwilioRoom {
+                        CustomerTwilioManager(customerTwilioViewModel: customerDetailedAppointmentVM.customerTwilioViewModel)
+                            .onAppear(){self.customerDetailedAppointmentVM.customerTwilioViewModel.viewController?.connect(sender: customerDetailedAppointmentVM)}
                     }
                     
-                    Spacer()
+                    if customerDetailedAppointmentVM.takeToChat {
+                        NavigationLink("",
+                                       destination: CustomerChatRoomView(chatVM: self.customerDetailedAppointmentVM.customerChatViewModel),
+                                       isActive: $customerDetailedAppointmentVM.takeToChat)
+                    }
+                    
+                    if customerDetailedAppointmentVM.showPayment {
+                        customerDetailedAppointmentVM.razorPayEndPoint()
+                    }
+                    
+                    if self.customerDetailedAppointmentVM.killViewTrigger {
+                        Text("").onAppear(){self.killView()}
+                    }
                 }
-                .padding(.horizontal)
-                .overlay(appointmentViewBlockers)
-                
-                if customerDetailedAppointmentVM.showTwilioRoom {
-                    CustomerTwilioManager(customerTwilioViewModel: customerDetailedAppointmentVM.customerTwilioViewModel)
-                        .onAppear(){self.customerDetailedAppointmentVM.customerTwilioViewModel.viewController?.connect(sender: customerDetailedAppointmentVM)}
-                }
-                
-                if customerDetailedAppointmentVM.takeToChat {
-                    NavigationLink("",
-                                   destination: CustomerChatRoomView(chatVM: self.customerDetailedAppointmentVM.customerChatViewModel),
-                                   isActive: $customerDetailedAppointmentVM.takeToChat)
-                }
-                
-                if customerDetailedAppointmentVM.showPayment {
-                    customerDetailedAppointmentVM.razorPayEndPoint()
-                }
-                
-                if self.customerDetailedAppointmentVM.killViewTrigger {
-                    Text("").onAppear(){self.killView()}
-                }
-                
-                CancellationBottomsheetCaller(offset: self.$customerDetailedAppointmentVM.cancellationSheetOffset, cancellationReasons: self.customerDetailedAppointmentVM.CustomerCancellationReasons, delegate: self.customerDetailedAppointmentVM, disclaimerText: self.customerDetailedAppointmentVM.cancellationDisclaimerText)
             }
+            CancellationBottomsheetCaller(offset: self.$customerDetailedAppointmentVM.cancellationSheetOffset, cancellationReasons: self.customerDetailedAppointmentVM.CustomerCancellationReasons, delegate: self.customerDetailedAppointmentVM, disclaimerText: self.customerDetailedAppointmentVM.cancellationDisclaimerText)
         }
         .onTapGesture {
             EndEditingHelper.endEditing()

@@ -85,7 +85,7 @@ class CustomerOrganizationService {
         let request = Nd_V1_StringArrayMessage.with {
             $0.messages = orgIds.convert()
         }
-
+        
         let getOrganisation = orgClient.getSpecificOrganisations(request, callOptions: callOptions)
 
         DispatchQueue.global().async {

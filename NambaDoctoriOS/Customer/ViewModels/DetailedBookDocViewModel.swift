@@ -109,7 +109,7 @@ class DetailedBookDocViewModel : ObservableObject {
         if checkIfSkipFraudPrevention() {
             bookHelper()
         } else {
-            
+            print("CUSTOMER TRUST SCOORORREE \(CustomerTrustScore)")
             if CustomerTrustScore == 0 {
                 self.showPreBookingOptionsSheet()
             } else if CustomerTrustScore < 0 {
@@ -234,7 +234,9 @@ class DetailedBookDocViewModel : ObservableObject {
                     customerAppointment.appointmentVerification = CustomerAppointmentVerification(AppointmentVerificationId: "", VerificationStatus: "PendingVerification", VerifiedBy: "", VerifiedTime: nil, CustomerResponseForReason: self.selectedPrebookingOption)
                 }
             } else if 0 < CustomerTrustScore && CustomerTrustScore < 100 {
-                customerAppointment.appointmentVerification = CustomerAppointmentVerification(AppointmentVerificationId: "", VerificationStatus: "PendingVerification", VerifiedBy: "", VerifiedTime: nil, CustomerResponseForReason: "Override By Admin - Existing User But Doubtful score")
+                if 0 < CustomerTrustScore && CustomerTrustScore < 50 {
+                    customerAppointment.appointmentVerification = CustomerAppointmentVerification(AppointmentVerificationId: "", VerificationStatus: "PendingVerification", VerifiedBy: "", VerifiedTime: nil, CustomerResponseForReason: "Override By Admin - Existing User But Doubtful score")
+                }
             }
         }
         

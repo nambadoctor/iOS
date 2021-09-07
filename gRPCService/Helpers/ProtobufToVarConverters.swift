@@ -63,6 +63,8 @@ extension Array where Element == String {
         for val in self {
             arr.append(val.toProto)
         }
+        
+        arr = arr.filter({$0 != ""})
         return arr
     }
 }
