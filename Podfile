@@ -20,6 +20,7 @@ pod "Device", '~> 3.2.1'
 pod 'Firebase/DynamicLinks'
 pod 'Introspect'
 pod 'SDWebImageSwiftUI'
+pod 'gRPC-Swift', '~> 1.0.0'
 
   target 'NambaDoctoriOSTests' do
     inherit! :search_paths

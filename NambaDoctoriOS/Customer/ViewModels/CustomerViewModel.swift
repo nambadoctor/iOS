@@ -51,6 +51,9 @@ class CustomerViewModel : ObservableObject {
     @Published var searchForHospitals:Bool = false
     @Published var searchForDoctors:Bool = true
     
+    @Published var showDoctorsListOnHome:Bool = false
+    @Published var showBookAppointmentHelper:Bool = false
+
     var customerProfileService:CustomerProfileServiceProtocol
     var customerAppointmentService:CustomerAppointmentServiceProtocol
     var customerServiceProviderService:CustomerServiceProviderServiceProtocol
@@ -130,6 +133,8 @@ class CustomerViewModel : ObservableObject {
         if upcomingAppointments.count > 0 {
             startFirebaseCallStateListener()
             tabSelection = 1
+        } else if upcomingAppointments.count == 0 {
+            self.showBookAppointmentHelper = true
         }
     }
 
@@ -360,6 +365,11 @@ class CustomerViewModel : ObservableObject {
         self.selectedDoctor = doctor
         self.detailedViewDoctorVM = DetailedBookDocViewModel(serviceProvider: self.selectedDoctor!, customerProfile: self.customerProfile!, organization: self.selectedOrganisation, notAbleToBookCallBack: cannotBookAppointmentHandler)
         self.takeToBookDoc = true
+    }
+    
+    func setCategoryToAllDoctors () {
+        self.selectedCategory = Category(CategoryId: "", CategoryName: "All Doctors", CategoryThumbnail: "")
+        self.categoryChangedCallback()
     }
 }
 

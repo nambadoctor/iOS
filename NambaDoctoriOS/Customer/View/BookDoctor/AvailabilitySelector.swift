@@ -60,22 +60,28 @@ struct AvailabilitySelector : View {
                 .modifier(DetailedAppointmentViewCardModifier())
             } else if self.availabilitySelectorVM.showSelectAddressView {
                 VStack (alignment: .leading) {
-                    Text("Please select where your preferred location")
+                    Text("Please select your preferred location")
                     ScrollView {
                         ForEach(self.availabilitySelectorVM.addresses, id: \.addressID) { address in
                             Button {
                                 self.availabilitySelectorVM.selectAddress(address: address)
                             } label: {
-                                HStack {
-                                    Text(address.streetAddress)
-                                        .foregroundColor(Color.blue)
-                                    Spacer()
+                                if self.availabilitySelectorVM.getOrganisationFromAddressId(addressId: address.addressID) != nil {
+                                    VStack {
+                                        HStack {
+                                            ImageView(imageLoader: ImageLoader(urlString: self.availabilitySelectorVM.getOrganisationFromAddressId(addressId: address.addressID)!.logo, { _ in }))
+                                            VStack {
+                                                Text(self.availabilitySelectorVM.getOrganisationFromAddressId(addressId: address.addressID)!.name)
+                                                Text(address.streetAddress)
+                                                    .font(.headline)
+                                            }
+                                            Spacer()
+                                        }
+                                        Divider()
+                                    }
                                 }
                             }
                             .padding(5)
-                            .background(Color.blue.opacity(0.2))
-                            .cornerRadius(10)
-
                         }
                     }
                 }
@@ -161,16 +167,23 @@ struct AvailabilitySelector : View {
                         ScrollView (.horizontal) {
                             HStack (spacing: 5) {
                                 ForEach (availabilitySelectorVM.timeDisplay, id: \.self) {time in
-                                    Text(Helpers.getSimpleTimeForAppointment(timeStamp1: time))
-                                        .padding(8)
-                                        .background(availabilitySelectorVM.selectedTime == time ? Color.blue.opacity(0.2) : Color.white)
-                                        .cornerRadius(5)
-                                        .shadow(radius: 2)
-                                        .padding(.vertical, 7)
-                                        .padding(.horizontal, 5)
-                                        .onTapGesture {
-                                            availabilitySelectorVM.selectTime(time: time)
+                                    VStack {
+                                        Text(Helpers.getSimpleTimeForAppointment(timeStamp1: time))
+                                        if availabilitySelectorVM.getFeeForTimeSlot(time: time) != nil {
+                                            Text("₹\(availabilitySelectorVM.getFeeForTimeSlot(time: time)!.clean)")
+                                                .foregroundColor(.green)
+                                                .font(.subheadline)
                                         }
+                                    }
+                                    .padding(8)
+                                    .background(availabilitySelectorVM.selectedTime == time ? Color.blue.opacity(0.2) : Color.white)
+                                    .cornerRadius(5)
+                                    .shadow(radius: 2)
+                                    .padding(.vertical, 7)
+                                    .padding(.horizontal, 5)
+                                    .onTapGesture {
+                                        availabilitySelectorVM.selectTime(time: time)
+                                    }
                                 }
                             }
                         }
@@ -189,7 +202,6 @@ struct AvailabilitySelector : View {
                 } label: {
                     Text(address.streetAddress)
                 }
-
             }
         } label: {
             Text(self.availabilitySelectorVM.selectedAddress!.streetAddress)

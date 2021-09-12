@@ -35,6 +35,7 @@ struct MyDoctorsView: View {
                 HStack {
                     Spacer()
                     Button(action: {
+                        self.customerVM.setCategoryToAllDoctors()
                         self.customerVM.tabSelection = 3
                     }, label: {
                         Text("See All Doctors")

@@ -23,17 +23,23 @@ struct CustomerHome: View {
                             Image("list.triangle")
                             Text("Appointments")
                         }.tag(1)
-                         
-                        MyDoctorsView().tabItem {
-                            Image("heart.fill")
-                            Text("My Doctors")
-                        }.tag(2)
-
-                        BookDoctorView().tabItem {
-                            Image("stethoscope")
-                            Text("Book Doctor")
-                        }.tag(3)
+                        .sheet(isPresented: self.$customerVM.showBookAppointmentHelper) {
+                            CustomerEasyEntryHelperView()
+                                .environmentObject(customerVM)
+                        }
                         
+                        if customerVM.showDoctorsListOnHome {
+                            MyDoctorsView().tabItem {
+                                Image("heart.fill")
+                                Text("My Doctors")
+                            }.tag(2)
+
+                            BookDoctorView().tabItem {
+                                Image("stethoscope")
+                                Text("Book Doctor")
+                            }.tag(3)
+                        }
+                         
                         CustomerProfileView().tabItem {
                             Image("person.crop.circle.fill")
                             Text("Profile")

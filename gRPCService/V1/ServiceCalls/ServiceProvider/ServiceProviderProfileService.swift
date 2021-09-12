@@ -291,8 +291,7 @@ class ServiceProviderProfileService : ServiceProviderProfileServiceProtocol {
 
         DispatchQueue.global().async {
             do {
-                LoggerService().log(eventName: "REQUESTING SERVICE PROVIDERS CONFIGURABLE ENTRY FIELDS")
-                LoggerService().log(eventName: "REQUESTED SERVICE PROVIDERS CONFIGURABLE ENTRY FIELDS")
+                LoggerService().log(eventName: "REQUESTED SERVICE PROVIDERS CONFIGURABLE ENTRY FIELDS \(serviceProviderId)")
                 let response = try getServiceProvider.response.wait()
                 LoggerService().log(eventName: "RECIEVED SERVICE PROVIDERS CONFIGURABLE ENTRY FIELDS")
                 let serviceProvidersEntryFields = ServiceProviderConfigurableEntryFieldsObjectMapper.grpcToLocal(entryFieldsObjects: response)

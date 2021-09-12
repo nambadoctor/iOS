@@ -20,51 +20,8 @@ struct DetailedBookDoctorView: View {
                         .modifier(DetailedAppointmentViewCardModifier())
                         .padding(.top)
                     
-                    VStack (alignment: .leading) {
-                        HStack {Spacer()}
-                        HStack {
-                            
-                            Text("This appointment is for")
-                            
-                            Menu {
-                                
-                                Button {
-                                    self.detailedBookingVM.bookForMe()
-                                } label: {
-                                    Text("Me")
-                                }
-                                
-                                if self.detailedBookingVM.customerProfile.children != nil {
-                                    ForEach(self.detailedBookingVM.customerProfile.children!, id: \.ChildProfileId) {child in
-                                        Button {
-                                            self.detailedBookingVM.bookForChild(child: child)
-                                        } label: {
-                                            Text(child.Name)
-                                        }
-                                    }
-                                }
+                    //childBookingView
 
-                                Button {
-                                    self.detailedBookingVM.addChildVM.showSheet = true
-                                } label: {
-                                    Text("Add Profile")
-                                }
-                                
-                            } label: {
-                                Text(self.detailedBookingVM.bookingAppointmentFor)
-                                Image("chevron.down.circle")
-                            }
-                            .modifier(AddProfileViewMod(addChildVM: self.detailedBookingVM.addChildVM, customerProfile: self.detailedBookingVM.customerProfile, callback: self.detailedBookingVM.refreshCustomerProfile))
-                        }
-                        
-                        Spacer().frame(height: 15)
-                        
-                        Text("Reason For Appointment")
-     
-                        ExpandingTextEntryView(text: self.$detailedBookingVM.reasonVM.reason)
-                    }
-                    .modifier(DetailedAppointmentViewCardModifier())
-                    
                     AvailabilitySelector(availabilitySelectorVM: self.detailedBookingVM.availabilityVM)
 
                     if self.detailedBookingVM.slotIsSelected {
@@ -85,6 +42,57 @@ struct DetailedBookDoctorView: View {
         }
         .background(Color.gray.opacity(0.08))
         .environmentObject(self.detailedBookingVM.reasonVM)
+        .onTapGesture {
+            EndEditingHelper.endEditing()
+        }
+    }
+    
+    var childBookingView : some View {
+        VStack (alignment: .leading) {
+            HStack {Spacer()}
+            HStack {
+                
+                Text("This appointment is for")
+                
+                Menu {
+                    
+                    Button {
+                        self.detailedBookingVM.bookForMe()
+                    } label: {
+                        Text("Me")
+                    }
+                    
+                    if self.detailedBookingVM.customerProfile.children != nil {
+                        ForEach(self.detailedBookingVM.customerProfile.children!, id: \.ChildProfileId) {child in
+                            Button {
+                                self.detailedBookingVM.bookForChild(child: child)
+                            } label: {
+                                Text(child.Name)
+                            }
+                        }
+                    }
+
+                    Button {
+                        self.detailedBookingVM.addChildVM.showSheet = true
+                    } label: {
+                        Text("Add Profile")
+                    }
+                    
+                } label: {
+                    Text(self.detailedBookingVM.bookingAppointmentFor)
+                    Image("chevron.down.circle")
+                }
+                .modifier(AddProfileViewMod(addChildVM: self.detailedBookingVM.addChildVM, customerProfile: self.detailedBookingVM.customerProfile, callback: self.detailedBookingVM.refreshCustomerProfile))
+            }
+            
+            Spacer().frame(height: 15)
+            
+            Text("Reason For Appointment")
+
+            ExpandingTextEntryView(text: self.$detailedBookingVM.reasonVM.reason)
+        }
+        .modifier(DetailedAppointmentViewCardModifier())
+        
     }
 
     var header : some View {

@@ -88,6 +88,19 @@ class AvailabilitySelectorViewModel : ObservableObject {
             }
         }
     }
+    
+    func getOrganisationFromAddressId (addressId:String) -> CustomerOrganization? {
+        for org in organisations {
+            for address in org.addresses {
+                if address.addressID == addressId {
+                    return org
+                }
+            }
+        }
+        
+        return nil
+    }
+    
 
 //    func checkForFreelancingAvailabilities (slots:[CustomerGeneratedSlot]) -> Bool {
 //        for slot in slots {
@@ -272,6 +285,14 @@ class AvailabilitySelectorViewModel : ObservableObject {
         }
     }
     
+    func getFeeForTimeSlot (time:Int64) -> Double? {
+        if getCorrespondingSlot(timestamp: time) != nil {
+            return getCorrespondingSlot(timestamp: time)!.serviceFees
+        }
+        
+        return nil
+    }
+    
     func setSlot () {
         self.selectedSlot = getCorrespondingSlot(timestamp: selectedTime)
     }
@@ -311,15 +332,20 @@ extension AvailabilitySelectorViewModel {
         } else {
             completion(false, true)
         }
-
-        if addresses.count == 1 {
+        
+        if !self.addresses.isEmpty {
             self.selectedAddress = self.addresses[0]
             completion(true, false)
-        } else {
-            self.selectedSlotOption = true
-            self.showSelectAddressView = true
-            completion(false, false)
         }
+
+//        if addresses.count == 1 {
+//            self.selectedAddress = self.addresses[0]
+//            completion(true, false)
+//        } else {
+//            self.selectedSlotOption = true
+//            self.showSelectAddressView = true
+//            completion(false, false)
+//        }
     }
 
     func selectAddress (address:CustomerAddress) {

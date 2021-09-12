@@ -53,11 +53,7 @@ struct BookDoctorCard: View {
                             Text(customerServiceProviderVM.experience)
                                 .font(.system(size: 15))
                                 .foregroundColor(Color.gray)
-                            
-                            Text(customerServiceProviderVM.fees)
-                                .font(.system(size: 15))
-                                .foregroundColor(Color.gray)
-                            
+
                             Text("Consult in \(customerServiceProviderVM.serviceProvider.languages.joined(separator: ","))")
                                 .font(.system(size: 15))
                                 .foregroundColor(Color.blue)

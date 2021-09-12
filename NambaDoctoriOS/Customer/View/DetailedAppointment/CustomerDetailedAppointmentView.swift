@@ -262,12 +262,6 @@ struct CustomerDetailedAppointmentView: View {
                     }
                     
                     HStack {
-                        Image("indianrupeesign.circle")
-                        Text(customerDetailedAppointmentVM.serviceProviderFee)
-                            .font(.system(size: 16))
-                    }
-                    
-                    HStack {
                         Image("calendar")
                         Text(customerDetailedAppointmentVM.appointmentScheduledStartTime)
                             .font(.system(size: 16))
