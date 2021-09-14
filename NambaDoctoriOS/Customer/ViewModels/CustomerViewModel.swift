@@ -130,11 +130,13 @@ class CustomerViewModel : ObservableObject {
             }
         }
 
+        if appointments.isEmpty {
+            self.showBookAppointmentHelper = true
+        }
+        
         if upcomingAppointments.count > 0 {
             startFirebaseCallStateListener()
             tabSelection = 1
-        } else if upcomingAppointments.count == 0 {
-            self.showBookAppointmentHelper = true
         }
     }
 
@@ -370,6 +372,31 @@ class CustomerViewModel : ObservableObject {
     func setCategoryToAllDoctors () {
         self.selectedCategory = Category(CategoryId: "", CategoryName: "All Doctors", CategoryThumbnail: "")
         self.categoryChangedCallback()
+    }
+    
+    func setCategoryToAllHospitals () {
+        self.selectedCategory = Category(CategoryId: "", CategoryName: "All Hospitals", CategoryThumbnail: "")
+        self.categoryChangedCallback()
+    }
+    
+    func helpFindDoctors () {
+        self.showBookAppointmentHelper = false
+        if self.myServiceProviders.count > 0 {
+            self.tabSelection = 2
+        } else {
+            self.tabSelection = 3
+        }
+        self.showDoctorsListOnHome = true
+    }
+    
+    func helpFindHospitals () {
+        self.showBookAppointmentHelper = false
+        self.setCategoryToAllHospitals()
+        self.tabSelection = 3
+    }
+    
+    func helpFindPreviousAppoitments () {
+        self.tabSelection = 0
     }
 }
 

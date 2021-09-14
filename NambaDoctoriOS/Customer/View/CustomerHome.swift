@@ -23,10 +23,6 @@ struct CustomerHome: View {
                             Image("list.triangle")
                             Text("Appointments")
                         }.tag(1)
-                        .sheet(isPresented: self.$customerVM.showBookAppointmentHelper) {
-                            CustomerEasyEntryHelperView()
-                                .environmentObject(customerVM)
-                        }
                         
                         if customerVM.showDoctorsListOnHome {
                             MyDoctorsView().tabItem {

@@ -20,31 +20,21 @@ struct CustomerEasyEntryHelperView: View {
             
             Text("How can we help you?")
             
-            VStack (alignment: .leading) {
-                
-                LargeButton(title: "Find a Doctor") {
-                    
-                }
-                
-                Spacer()
-                
-                LargeButton(title: "Find a Hospital") {
-                    
-                }
-                
-                Spacer()
-                
-                LargeButton(title: "Help me book an appointment") {
-                    
-                }
-                
-                Spacer()
-                
-                LargeButton(title: "View Previous Appointment") {
-                    
-                }
-                
+            LargeButton(title: "Find a Doctor") {
+                self.customerVM.helpFindDoctors()
             }
+            .padding()
+            
+            LargeButton(title: "Find a Hospital") {
+                self.customerVM.helpFindHospitals()
+            }
+            .padding()
+                            
+            LargeButton(title: "Help me book an appointment") {
+                openWhatsapp(phoneNumber: "+917530043008", textToSend: "Hello I need help booking an appointment")
+            }
+            .padding()
+            
         }.padding()
     }
 }
