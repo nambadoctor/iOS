@@ -45,7 +45,7 @@ struct BookDoctorView: View {
                     } else {
                         if self.customerVM.searchForDoctors {
                             ForEach(customerVM.serviceProvidersToDisplay, id: \.serviceProviderID) { serviceProvider in
-                                BookDoctorCard(customerServiceProviderVM: CustomerServiceProviderViewModel(serviceProvider: serviceProvider, customerProfile: self.customerVM.customerProfile!, callBack: self.customerVM.selectDoctorToBook(doctor:)))
+                                BookDoctorCard(customerServiceProviderVM: CustomerServiceProviderViewModel(serviceProvider: serviceProvider, customerProfile: self.customerVM.customerProfile!, callBack: self.customerVM.selectDoctorToBook(doctor:), appointments: self.customerVM.allAppointments))
                             }
                             .padding(.bottom)
                         } else if self.customerVM.searchForHospitals {

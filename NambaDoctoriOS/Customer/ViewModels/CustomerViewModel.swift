@@ -133,7 +133,7 @@ class CustomerViewModel : ObservableObject {
         if appointments.isEmpty {
             self.showBookAppointmentHelper = true
         }
-        
+
         if upcomingAppointments.count > 0 {
             startFirebaseCallStateListener()
             tabSelection = 1
@@ -363,6 +363,7 @@ class CustomerViewModel : ObservableObject {
     }
     
     func selectDoctorOfOrgToBook(doctor:CustomerServiceProviderProfile) {
+        self.tabSelection = 3
         self.takeToSelectDocOfOrg = false
         self.selectedDoctor = doctor
         self.detailedViewDoctorVM = DetailedBookDocViewModel(serviceProvider: self.selectedDoctor!, customerProfile: self.customerProfile!, organization: self.selectedOrganisation, notAbleToBookCallBack: cannotBookAppointmentHandler)

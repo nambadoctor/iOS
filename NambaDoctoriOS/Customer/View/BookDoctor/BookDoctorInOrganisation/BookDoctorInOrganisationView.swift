@@ -29,7 +29,7 @@ struct BookDoctorInOrganisationView : View {
                         .padding(.horizontal)
                     
                     ForEach (self.bookDocInOrganisationVM.serviceProviders, id: \.serviceProviderID) { serviceProvider in
-                        BookDoctorCard(customerServiceProviderVM: CustomerServiceProviderViewModel(serviceProvider: serviceProvider, customerProfile: self.bookDocInOrganisationVM.customerProfile, callBack: self.bookDocInOrganisationVM.selectServiceProvider))
+                        BookDoctorCard(customerServiceProviderVM: CustomerServiceProviderViewModel(serviceProvider: serviceProvider, customerProfile: self.bookDocInOrganisationVM.customerProfile, callBack: self.bookDocInOrganisationVM.selectServiceProvider, appointments: [CustomerAppointment]()))
                     }
                 }
             }

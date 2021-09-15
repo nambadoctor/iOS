@@ -71,7 +71,6 @@ struct CustomerAppointmentsCardView: View {
                     }
                 }
             }.padding()
-
         }
         .background(Color.white)
         .cornerRadius(10)

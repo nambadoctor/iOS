@@ -13,10 +13,15 @@ class CustomerServiceProviderViewModel : ObservableObject {
     @Published var showDetailedProfileSheet:Bool = false
     var customerProfile:CustomerProfile
     var callBack:(CustomerServiceProviderProfile)->()
+    var appointments:[CustomerAppointment]
+    
+    @Published var takeToDetailedAppointment:Bool = false
+    @Published var selectedAppointment:CustomerAppointment? = nil
     
     init(serviceProvider:CustomerServiceProviderProfile,
          customerProfile:CustomerProfile,
-         callBack:@escaping (CustomerServiceProviderProfile)->()) {
+         callBack:@escaping (CustomerServiceProviderProfile)->(),
+         appointments:[CustomerAppointment]) {
         self.serviceProvider = serviceProvider
         self.customerProfile = customerProfile
         self.callBack = callBack
@@ -26,6 +31,8 @@ class CustomerServiceProviderViewModel : ObservableObject {
         } else {
             self.imageLoader = ImageLoader(urlString: "https://wgsi.utoronto.ca/wp-content/uploads/2020/12/blank-profile-picture-png.png") {_ in}
         }
+        
+        self.appointments = appointments
     }
 
     var serviceProviderName:String {
@@ -52,6 +59,17 @@ class CustomerServiceProviderViewModel : ObservableObject {
         return experienceInYears
     }
     
+    func getAppointmentsWithServiceProvider () -> Int {
+        var count = 0
+        for appointment in appointments {
+            if appointment.serviceProviderID == self.serviceProvider.serviceProviderID {
+                count += 1
+            }
+        }
+
+        return count
+    }
+    
     func yearsBetweenDate(startDate: Date, endDate: Date) -> Int {
 
         let calendar = Calendar.current
@@ -68,7 +86,7 @@ class CustomerServiceProviderViewModel : ObservableObject {
     func getDetailedServiceProviderVM() -> CustomerDoctorProfileViewModel {
         CustomerDoctorProfileViewModel(serviceProviderProfile: self.serviceProvider, generateLinkCallBack: makeLink)
     }
-    
+
     func makeLink () {
         self.showDetailedProfileSheet = false
         CommonDefaultModifiers.showLoader(incomingLoadingText: "Generating Link")
@@ -76,5 +94,16 @@ class CustomerServiceProviderViewModel : ObservableObject {
             CommonDefaultModifiers.hideLoader()
             shareSheet(url: url)
         }
+    }
+}
+
+extension CustomerServiceProviderViewModel : CustomerSelectAppointmentDelegate {
+    func selected(appointment: CustomerAppointment) {
+        self.selectedAppointment = appointment
+        self.takeToDetailedAppointment = true
+    }
+    
+    func getDetailedAppointmentVM () -> CustomerDetailedAppointmentViewModel {
+        return CustomerDetailedAppointmentViewModel(appointment: self.selectedAppointment!)
     }
 }

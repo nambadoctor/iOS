@@ -10,7 +10,7 @@ import SwiftUI
 struct MyDoctorsView: View {
     
     @EnvironmentObject var customerVM:CustomerViewModel
-
+    
     var body: some View {
         ZStack {
             VStack (alignment: .leading) {
@@ -21,7 +21,7 @@ struct MyDoctorsView: View {
                         .padding()
                     ScrollView {
                         ForEach(customerVM.myServiceProviders, id: \.serviceProviderID) { serviceProvider in
-                            BookDoctorCard(customerServiceProviderVM: CustomerServiceProviderViewModel(serviceProvider: serviceProvider, customerProfile: self.customerVM.customerProfile!, callBack: self.customerVM.selectDoctorToBook(doctor:)))
+                            MyDoctorCard(customerServiceProviderVM: CustomerServiceProviderViewModel(serviceProvider: serviceProvider, customerProfile: self.customerVM.customerProfile!, callBack: self.customerVM.selectDoctorToBook(doctor:), appointments: self.customerVM.allAppointments))
                         }
                     }
                 } else {
