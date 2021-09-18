@@ -63,13 +63,19 @@ struct MyDoctorCard: View {
             
             Divider()
             
-            NavigationLink(destination: MyDoctorsAppointmentsView(customerServiceProviderVM: self.customerServiceProviderVM)) {
+            Button (action: {
+                self.customerServiceProviderVM.showAppointmentsForDoctor.toggle()
+            }, label: {
                 HStack {
                     Text("APPOINTMENTS: (\(self.customerServiceProviderVM.getAppointmentsWithServiceProvider()))")
                     Spacer()
-                    Image("chevron.right.circle")
+                    Image(self.customerServiceProviderVM.showAppointmentsForDoctor ? "chevron.right.circle" : "chevron.down.circle")
                 }
                 .padding()
+            })
+            
+            if self.customerServiceProviderVM.showAppointmentsForDoctor {
+                MyDoctorsAppointmentsView(customerServiceProviderVM: self.customerServiceProviderVM)
             }
             
             Divider()

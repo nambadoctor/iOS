@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1705A4FF2653AA2E0015EFA2 /* PrescriptionPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1705A4FE2653AA2E0015EFA2 /* PrescriptionPreviewView.swift */; };
+		170FA0C126F5B05800DE58A9 /* BookOrganisationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 170FA0C026F5B05800DE58A9 /* BookOrganisationView.swift */; };
 		1715EA2B266038D80004E01F /* DoctorViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1715EA2A266038D80004E01F /* DoctorViewModifiers.swift */; };
 		1715EA302660442B0004E01F /* CustomerDoctorProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1715EA2F2660442B0004E01F /* CustomerDoctorProfileView.swift */; };
 		1715EA3326608CD70004E01F /* CardModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1715EA3226608CD70004E01F /* CardModifier.swift */; };
@@ -487,6 +488,7 @@
 
 /* Begin PBXFileReference section */
 		1705A4FE2653AA2E0015EFA2 /* PrescriptionPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrescriptionPreviewView.swift; sourceTree = "<group>"; };
+		170FA0C026F5B05800DE58A9 /* BookOrganisationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookOrganisationView.swift; sourceTree = "<group>"; };
 		1715EA2A266038D80004E01F /* DoctorViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoctorViewModifiers.swift; sourceTree = "<group>"; };
 		1715EA2F2660442B0004E01F /* CustomerDoctorProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerDoctorProfileView.swift; sourceTree = "<group>"; };
 		1715EA3226608CD70004E01F /* CardModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModifier.swift; sourceTree = "<group>"; };
@@ -990,6 +992,16 @@
 			path = PrescriptionPreviewView;
 			sourceTree = "<group>";
 		};
+		170FA0BF26F5AF7300DE58A9 /* BookHospital */ = {
+			isa = PBXGroup;
+			children = (
+				17C2AEAD26B623B10001C1AD /* BookOrganisationCard.swift */,
+				17C2AEB426B626FB0001C1AD /* BookDoctorInOrganisationView.swift */,
+				170FA0C026F5B05800DE58A9 /* BookOrganisationView.swift */,
+			);
+			path = BookHospital;
+			sourceTree = "<group>";
+		};
 		1715EA2C266043E20004E01F /* DoctorProfileView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1367,6 +1379,8 @@
 		1739EAD82638082F00556044 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				178EB6BE26390CDA009286B1 /* BookDoctor */,
+				170FA0BF26F5AF7300DE58A9 /* BookHospital */,
 				17DBD66426EDBC1C002D07D3 /* EasyEntryHelperView */,
 				17E87EED2694FBC6002E62EA /* BookingReasonBottomSheet */,
 				1747F898266D88C700AEA532 /* CustomerRatingAndReview */,
@@ -1381,7 +1395,6 @@
 				17BD2E8F263C757700BB0BDD /* Twilio */,
 				17BD2E82263A366F00BB0BDD /* DetailedAppointment */,
 				178EB6BF26390CE8009286B1 /* Appointments */,
-				178EB6BE26390CDA009286B1 /* BookDoctor */,
 				1739EAD3263807BB00556044 /* CustomerHome.swift */,
 			);
 			path = View;
@@ -1875,12 +1888,10 @@
 		178EB6BE26390CDA009286B1 /* BookDoctor */ = {
 			isa = PBXGroup;
 			children = (
-				17C2AEB126B626D10001C1AD /* BookDoctorInOrganisation */,
 				1739EAF42638168600556044 /* DetailedBookDoctorView.swift */,
 				1739EAEF26380FD500556044 /* BookDoctorCard.swift */,
 				1739EAEA26380EFA00556044 /* BookDoctorView.swift */,
 				1771BA3F26AD385B0085389E /* AvailabilitySelector.swift */,
-				17C2AEAD26B623B10001C1AD /* BookOrganisationCard.swift */,
 			);
 			path = BookDoctor;
 			sourceTree = "<group>";
@@ -2199,14 +2210,6 @@
 				17C2AEA926B33FEF0001C1AD /* SelectServiceProviderCard.swift */,
 			);
 			path = SelectServiceProvidersView;
-			sourceTree = "<group>";
-		};
-		17C2AEB126B626D10001C1AD /* BookDoctorInOrganisation */ = {
-			isa = PBXGroup;
-			children = (
-				17C2AEB426B626FB0001C1AD /* BookDoctorInOrganisationView.swift */,
-			);
-			path = BookDoctorInOrganisation;
 			sourceTree = "<group>";
 		};
 		17CE14A4268D8722000FDE94 /* DoctorPreviewForCustomers */ = {
@@ -3022,6 +3025,7 @@
 				17E3706E25BF123F0004C965 /* Utils.swift in Sources */,
 				17C2AEAA26B33FEF0001C1AD /* SelectServiceProviderCard.swift in Sources */,
 				1771BA3726AD14B60085389E /* OrganisationsPatientsViewForDoctor.swift in Sources */,
+				170FA0C126F5B05800DE58A9 /* BookOrganisationView.swift in Sources */,
 				1742524325BD990800523B94 /* RetrievePatientInfoProtocol.swift in Sources */,
 				1716469C2602B59F00BB5B5A /* ServiceProviderDiagnosis.swift in Sources */,
 				1796322F25AEE9D6002E466C /* AlertItem.swift in Sources */,
@@ -3252,7 +3256,7 @@
 				CODE_SIGN_ENTITLEMENTS = NambaDoctoriOS/NambaDoctoriOS.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 52;
+				CURRENT_PROJECT_VERSION = 53;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"NambaDoctoriOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 4H9M6DGZQ3;
@@ -3263,7 +3267,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.52;
+				MARKETING_VERSION = 1.53;
 				PRODUCT_BUNDLE_IDENTIFIER = nambadoctor.iOS.NambaDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3281,7 +3285,7 @@
 				CODE_SIGN_ENTITLEMENTS = NambaDoctoriOS/NambaDoctoriOS.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 52;
+				CURRENT_PROJECT_VERSION = 53;
 				DEVELOPMENT_ASSET_PATHS = "\"NambaDoctoriOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 4H9M6DGZQ3;
 				ENABLE_PREVIEWS = YES;
@@ -3291,7 +3295,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.52;
+				MARKETING_VERSION = 1.53;
 				PRODUCT_BUNDLE_IDENTIFIER = nambadoctor.iOS.NambaDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

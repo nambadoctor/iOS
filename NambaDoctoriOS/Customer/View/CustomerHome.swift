@@ -20,27 +20,31 @@ struct CustomerHome: View {
                 ZStack {
                     TabView (selection: self.$customerVM.tabSelection) {
                         CustomerAppointmentsView().tabItem {
-                            Image("list.triangle")
+                            Image("timer")
                             Text("Appointments")
                         }.tag(1)
                         
-                        if customerVM.showDoctorsListOnHome {
+                        if self.customerVM.showMyDoctorsListOnHome {
                             MyDoctorsView().tabItem {
                                 Image("heart.fill")
                                 Text("My Doctors")
                             }.tag(2)
-
+                        }
+                        
+                        if self.customerVM.showDoctorsListOnHome {
                             BookDoctorView().tabItem {
                                 Image("stethoscope")
-                                Text("Book Doctor")
+                                Text("All Doctors")
                             }.tag(3)
                         }
-                         
-                        CustomerProfileView().tabItem {
-                            Image("person.crop.circle.fill")
-                            Text("Profile")
-                        }.tag(4)
                         
+                        if self.customerVM.showHospitalListOnHome {
+                            BookOrganisationView().tabItem {
+                                Image("building.2")
+                                Text("All Hospitals")
+                            }.tag(4)
+                        }
+
                         CustomerSupportView().tabItem {
                             Image("questionmark.circle.fill")
                             Text("Support")

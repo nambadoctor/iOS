@@ -15,6 +15,7 @@ class CustomerServiceProviderViewModel : ObservableObject {
     var callBack:(CustomerServiceProviderProfile)->()
     var appointments:[CustomerAppointment]
     
+    @Published var showAppointmentsForDoctor:Bool = false
     @Published var takeToDetailedAppointment:Bool = false
     @Published var selectedAppointment:CustomerAppointment? = nil
     

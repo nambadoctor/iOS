@@ -52,6 +52,8 @@ class CustomerViewModel : ObservableObject {
     @Published var searchForDoctors:Bool = true
     
     @Published var showDoctorsListOnHome:Bool = false
+    @Published var showHospitalListOnHome:Bool = false
+    @Published var showMyDoctorsListOnHome:Bool = false
     @Published var showBookAppointmentHelper:Bool = false
 
     var customerProfileService:CustomerProfileServiceProtocol
@@ -256,6 +258,8 @@ class CustomerViewModel : ObservableObject {
                     myServiceProviders.append(serviceProvider)
                 }
             }
+            
+            self.showMyDoctorsListOnHome = true
         }
     }
 
@@ -374,12 +378,7 @@ class CustomerViewModel : ObservableObject {
         self.selectedCategory = Category(CategoryId: "", CategoryName: "All Doctors", CategoryThumbnail: "")
         self.categoryChangedCallback()
     }
-    
-    func setCategoryToAllHospitals () {
-        self.selectedCategory = Category(CategoryId: "", CategoryName: "All Hospitals", CategoryThumbnail: "")
-        self.categoryChangedCallback()
-    }
-    
+
     func helpFindDoctors () {
         self.showBookAppointmentHelper = false
         if self.myServiceProviders.count > 0 {
@@ -392,8 +391,8 @@ class CustomerViewModel : ObservableObject {
     
     func helpFindHospitals () {
         self.showBookAppointmentHelper = false
-        self.setCategoryToAllHospitals()
-        self.tabSelection = 3
+        self.tabSelection = 4
+        self.showHospitalListOnHome = true
     }
     
     func helpFindPreviousAppoitments () {

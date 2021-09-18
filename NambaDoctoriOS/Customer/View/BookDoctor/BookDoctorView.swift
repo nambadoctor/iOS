@@ -30,12 +30,7 @@ struct BookDoctorView: View {
                             Image("figure.walk")
                                 .scaleEffect(3)
                                 .padding()
-//                            if self.customerVM.searchForHospitals {
-//                                Text("Coming Soon! There are currently no hospitals available for this specialty.")
-//                                    .fixedSize(horizontal: false, vertical: true)
-//                                    .multilineTextAlignment(.center)
-//                            }
-
+                            
                             if self.customerVM.searchForDoctors {
                                 Text("Coming Soon! There are currently no doctors available for this specialty.")
                                     .fixedSize(horizontal: false, vertical: true)
@@ -43,16 +38,10 @@ struct BookDoctorView: View {
                             }
                         }.padding()
                     } else {
-                        if self.customerVM.searchForDoctors {
-                            ForEach(customerVM.serviceProvidersToDisplay, id: \.serviceProviderID) { serviceProvider in
-                                BookDoctorCard(customerServiceProviderVM: CustomerServiceProviderViewModel(serviceProvider: serviceProvider, customerProfile: self.customerVM.customerProfile!, callBack: self.customerVM.selectDoctorToBook(doctor:), appointments: self.customerVM.allAppointments))
-                            }
-                            .padding(.bottom)
-                        } else if self.customerVM.searchForHospitals {
-                            ForEach(customerVM.organisations, id: \.organisationId) { org in
-                                BookOrganisationCard(organisationVM: CustomerOrganisationViewModel(organisation: org, customerProfile: self.customerVM.customerProfile!, callBack: self.customerVM.selectOrganisation(organisation:)))
-                            }
+                        ForEach(customerVM.serviceProvidersToDisplay, id: \.serviceProviderID) { serviceProvider in
+                            BookDoctorCard(customerServiceProviderVM: CustomerServiceProviderViewModel(serviceProvider: serviceProvider, customerProfile: self.customerVM.customerProfile!, callBack: self.customerVM.selectDoctorToBook(doctor:), appointments: self.customerVM.allAppointments))
                         }
+                        .padding(.bottom)
                     }
                 }
             } else {
@@ -64,12 +53,6 @@ struct BookDoctorView: View {
                 NavigationLink("",
                                destination: DetailedBookDoctorView(detailedBookingVM: customerVM.detailedViewDoctorVM!),
                                isActive: self.$customerVM.takeToBookDoc)
-            }
-            
-            if self.customerVM.takeToSelectDocOfOrg {
-                NavigationLink("",
-                               destination: BookDoctorInOrganisationView(bookDocInOrganisationVM: BookDoctorInOrganisationViewModel(organisation: self.customerVM.selectedOrganisation!, callBack: self.customerVM.selectDoctorOfOrgToBook(doctor:), customerProfile: self.customerVM.customerProfile!)),
-                               isActive: self.$customerVM.takeToSelectDocOfOrg)
             }
             
         }

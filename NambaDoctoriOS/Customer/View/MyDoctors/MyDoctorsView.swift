@@ -36,9 +36,11 @@ struct MyDoctorsView: View {
                     Spacer()
                     Button(action: {
                         self.customerVM.setCategoryToAllDoctors()
+                        self.customerVM.showHospitalListOnHome = true
+                        self.customerVM.showDoctorsListOnHome = true
                         self.customerVM.tabSelection = 3
                     }, label: {
-                        Text("See All Doctors")
+                        Text("See All Doctors and Hospitals")
                             .foregroundColor(.white)
                     })
                     .padding(10)
