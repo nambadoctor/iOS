@@ -8,7 +8,7 @@
 import Foundation 
 
 class CustomerViewModel : ObservableObject {
-    @Published var tabSelection:Int = 3
+    @Published var tabSelection:Int = 1
     @Published var customerProfile:CustomerProfile? = nil
 
     var allAppointments:[CustomerAppointment] = [CustomerAppointment]()
@@ -54,7 +54,7 @@ class CustomerViewModel : ObservableObject {
     @Published var showDoctorsListOnHome:Bool = false
     @Published var showHospitalListOnHome:Bool = false
     @Published var showMyDoctorsListOnHome:Bool = false
-    @Published var showBookAppointmentHelper:Bool = false
+    @Published var showBookAppointmentHelperSheet:Bool = false
 
     var customerProfileService:CustomerProfileServiceProtocol
     var customerAppointmentService:CustomerAppointmentServiceProtocol
@@ -103,7 +103,7 @@ class CustomerViewModel : ObservableObject {
                 //TODO: handle customer profile null
             }
         }
-        
+
         customerProfileService.getTrustScore(serviceProviderId: "") { trustScore in
             if trustScore != nil {
                 CustomerTrustScore = trustScore!
@@ -132,13 +132,8 @@ class CustomerViewModel : ObservableObject {
             }
         }
 
-        if appointments.isEmpty {
-            self.showBookAppointmentHelper = true
-        }
-
         if upcomingAppointments.count > 0 {
             startFirebaseCallStateListener()
-            tabSelection = 1
         }
     }
 
@@ -380,7 +375,7 @@ class CustomerViewModel : ObservableObject {
     }
 
     func helpFindDoctors () {
-        self.showBookAppointmentHelper = false
+        self.showBookAppointmentHelperSheet = false
         if self.myServiceProviders.count > 0 {
             self.tabSelection = 2
         } else {
@@ -390,7 +385,7 @@ class CustomerViewModel : ObservableObject {
     }
     
     func helpFindHospitals () {
-        self.showBookAppointmentHelper = false
+        self.showBookAppointmentHelperSheet = false
         self.tabSelection = 4
         self.showHospitalListOnHome = true
     }

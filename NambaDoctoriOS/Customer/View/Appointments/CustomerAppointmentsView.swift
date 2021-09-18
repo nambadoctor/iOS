@@ -16,7 +16,6 @@ struct CustomerAppointmentsView: View {
             VStack {
                 if !customerVM.upcomingAppointments.isEmpty || !customerVM.finishedAppointments.isEmpty {
                     ScrollView {
-                        
                         if !customerVM.upcomingAppointments.isEmpty {
                             HStack {
                                 VStack {
@@ -68,20 +67,8 @@ struct CustomerAppointmentsView: View {
                         }
                     }
                 } else {
-                    VStack {
-                        Spacer()
-                        Image("calendar")
-                            .scaleEffect(2.5)
-                            .padding()
-                        Text("There are currently no appointments. Click me to book your first appointment!")
-                            .multilineTextAlignment(.center)
-                            .font(.system(size: 20))
-                        Spacer()
-                    }
-                    .padding()
-                    .onTapGesture {
-                        self.customerVM.tabSelection = 2
-                    }
+                    CustomerEasyEntryHelperView()
+                        .environmentObject(customerVM)
                 }
                 
                 if self.customerVM.takeToDetailedAppointmentView {
@@ -90,31 +77,33 @@ struct CustomerAppointmentsView: View {
                                    isActive: self.$customerVM.takeToDetailedAppointmentView)
                 }
             }
-
-            VStack {
-                Spacer()
-                HStack {
+            
+            if !customerVM.upcomingAppointments.isEmpty || !customerVM.finishedAppointments.isEmpty {
+                VStack {
                     Spacer()
-                    Button(action: {
-                        self.customerVM.showBookAppointmentHelper = true
-                    }, label: {
-                        Text("Book Appointment")
-                            .foregroundColor(.white)
-                    })
-                    .padding(10)
-                    .padding(.horizontal, 5)
-                    .background(Color.blue)
-                    .cornerRadius(50)
-                    
-                    Spacer()
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            self.customerVM.showBookAppointmentHelperSheet = true
+                        }, label: {
+                            Text("Book New Appointment")
+                                .foregroundColor(.white)
+                        })
+                        .padding(10)
+                        .padding(.horizontal, 5)
+                        .background(Color.blue)
+                        .cornerRadius(50)
+                        
+                        Spacer()
+                    }
                 }
-            }
-            .padding(.bottom, 10)
-            .sheet(isPresented: self.$customerVM.showBookAppointmentHelper) {
-                CustomerEasyEntryHelperView()
-                    .environmentObject(customerVM)
-            }
+                .padding(.bottom, 10)
+                .sheet(isPresented: self.$customerVM.showBookAppointmentHelperSheet) {
+                    CustomerEasyEntryHelperView()
+                        .environmentObject(customerVM)
+                }
 
+            }
         }
     }
 }
