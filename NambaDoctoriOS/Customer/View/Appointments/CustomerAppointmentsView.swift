@@ -102,7 +102,6 @@ struct CustomerAppointmentsView: View {
                     CustomerEasyEntryHelperView()
                         .environmentObject(customerVM)
                 }
-
             }
         }
     }

@@ -30,14 +30,18 @@ struct MyDoctorsView: View {
                 Spacer()
             }
             
+            if self.customerVM.takeToBookDoc {
+                NavigationLink("",
+                               destination: DetailedBookDoctorView(detailedBookingVM: customerVM.detailedViewDoctorVM!),
+                               isActive: self.$customerVM.takeToBookDoc)
+            }
+            
             VStack {
                 Spacer()
                 HStack {
                     Spacer()
                     Button(action: {
                         self.customerVM.setCategoryToAllDoctors()
-                        self.customerVM.showHospitalListOnHome = true
-                        self.customerVM.showDoctorsListOnHome = true
                         self.customerVM.tabSelection = 3
                     }, label: {
                         Text("See All Doctors and Hospitals")

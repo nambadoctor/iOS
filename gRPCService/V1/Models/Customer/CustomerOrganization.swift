@@ -25,3 +25,4 @@ struct CustomerOrganization {
     var lastModifedDate:Int64
     var logo:String
 }
+ 

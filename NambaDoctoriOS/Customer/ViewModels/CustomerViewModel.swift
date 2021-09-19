@@ -51,8 +51,8 @@ class CustomerViewModel : ObservableObject {
     @Published var searchForHospitals:Bool = false
     @Published var searchForDoctors:Bool = true
     
-    @Published var showDoctorsListOnHome:Bool = false
-    @Published var showHospitalListOnHome:Bool = false
+    @Published var showDoctorsListOnHome:Bool = true
+    @Published var showHospitalListOnHome:Bool = true
     @Published var showMyDoctorsListOnHome:Bool = false
     @Published var showBookAppointmentHelperSheet:Bool = false
 
@@ -381,15 +381,13 @@ class CustomerViewModel : ObservableObject {
         } else {
             self.tabSelection = 3
         }
-        self.showDoctorsListOnHome = true
     }
     
     func helpFindHospitals () {
         self.showBookAppointmentHelperSheet = false
         self.tabSelection = 4
-        self.showHospitalListOnHome = true
     }
-    
+
     func helpFindPreviousAppoitments () {
         self.tabSelection = 0
     }

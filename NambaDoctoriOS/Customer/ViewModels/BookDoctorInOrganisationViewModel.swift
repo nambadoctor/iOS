@@ -12,6 +12,7 @@ class BookDoctorInOrganisationViewModel : ObservableObject {
     var organisation:CustomerOrganization
     var callBack:(CustomerServiceProviderProfile)->()
     var customerProfile:CustomerProfile
+    @Published var imageLoader:ImageLoader? = nil
     
     @Published var killView:Bool = false
     
@@ -21,6 +22,12 @@ class BookDoctorInOrganisationViewModel : ObservableObject {
         self.organisation = organisation
         self.callBack = callBack
         self.customerProfile = customerProfile
+        
+        if !organisation.logo.isEmpty {
+            self.imageLoader = ImageLoader(urlString: organisation.logo, { _ in })
+        } else {
+            self.imageLoader = ImageLoader(urlString: "https://wgsi.utoronto.ca/wp-content/uploads/2020/12/blank-profile-picture-png.png") {_ in}
+        }
         
         getServiceProvidersForOrg()
     }

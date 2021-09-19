@@ -69,7 +69,7 @@ struct MyDoctorCard: View {
                 HStack {
                     Text("APPOINTMENTS: (\(self.customerServiceProviderVM.getAppointmentsWithServiceProvider()))")
                     Spacer()
-                    Image(self.customerServiceProviderVM.showAppointmentsForDoctor ? "chevron.right.circle" : "chevron.down.circle")
+                    Image(self.customerServiceProviderVM.showAppointmentsForDoctor ? "chevron.down.circle" : "chevron.right.circle")
                 }
                 .padding()
             })
