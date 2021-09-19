@@ -66,9 +66,6 @@ struct CustomerAppointmentsView: View {
                             }
                         }
                     }
-                } else {
-                    CustomerEasyEntryHelperView()
-                        .environmentObject(customerVM)
                 }
                 
                 if self.customerVM.takeToDetailedAppointmentView {

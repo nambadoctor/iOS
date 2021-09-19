@@ -31,19 +31,24 @@ struct CustomerHome: View {
                             }.tag(2)
                         }
                         
-                        if self.customerVM.showDoctorsListOnHome {
-                            BookDoctorView().tabItem {
-                                Image("stethoscope")
-                                Text("All Doctors")
-                            }.tag(3)
-                        }
+                        CustomerEasyEntryHelperView().tabItem {
+                            Image("magnifyingglass")
+                            Text("Search")
+                        }.tag(3)
                         
-                        if self.customerVM.showHospitalListOnHome {
-                            BookOrganisationView().tabItem {
-                                Image("building.2")
-                                Text("All Hospitals")
-                            }.tag(4)
-                        }
+//                        if self.customerVM.showDoctorsListOnHome {
+//                            BookDoctorView().tabItem {
+//                                Image("stethoscope")
+//                                Text("All Doctors")
+//                            }.tag(3)
+//                        }
+//
+//                        if self.customerVM.showHospitalListOnHome {
+//                            BookOrganisationView().tabItem {
+//                                Image("building.2")
+//                                Text("All Hospitals")
+//                            }.tag(4)
+//                        }
 
                         CustomerSupportView().tabItem {
                             Image("questionmark.circle.fill")
