@@ -61,7 +61,7 @@ struct BookDoctorCard: View {
 
                         VStack {
                             Spacer()
-                            HStack {
+                            HStack (spacing: 20) {
                                 Spacer()
                                 Button {
                                     self.presentationMode.wrappedValue.dismiss()
@@ -73,6 +73,13 @@ struct BookDoctorCard: View {
                                         .background(Color.blue)
                                         .foregroundColor(Color.white)
                                         .cornerRadius(5)
+                                }
+                                
+                                Button {
+                                    self.customerServiceProviderVM.favoriteButtonClicked()
+                                } label: {
+                                    Image(self.customerServiceProviderVM.isfavoriteDoctor ? "heart.fill" : "heart")
+                                        .foregroundColor(self.customerServiceProviderVM.isfavoriteDoctor ? .red : .gray)
                                 }
                             }
                         }

@@ -15,10 +15,13 @@ class CustomerMyDoctorsLocalList {
     }
     
     func addDoctorId (id:String) {
-        let toAdd:[String] = [id]
-        userDefaults.set(toAdd, forKey: "customer_my_doctors_ids")
+        var existingList = getList()
+        if !existingList.contains(id) {
+            existingList.append(id)
+        }
+        userDefaults.set(existingList, forKey: "customer_my_doctors_ids")
     }
-    
+
     func clearId (id:String) {
         var ids = getList()
         
@@ -27,5 +30,7 @@ class CustomerMyDoctorsLocalList {
         if indexToRemove != nil {
             ids.remove(at: indexToRemove!)
         }
+        
+        userDefaults.set(ids, forKey: "customer_my_doctors_ids")
     }
 }

@@ -106,6 +106,8 @@ struct MedicineEditableView: View {
                         Spacer()
                         ImageView(imageLoader: medicineVM.imageLoader!)
                         Spacer()
+                        
+                        
                     }
                 } else if medicineVM.localImageSelected {
                     LocalPickedImageDisplayView(imagePickerVM: medicineVM.imagePickerVM)

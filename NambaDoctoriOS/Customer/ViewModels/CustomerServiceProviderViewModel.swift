@@ -19,6 +19,8 @@ class CustomerServiceProviderViewModel : ObservableObject {
     @Published var takeToDetailedAppointment:Bool = false
     @Published var selectedAppointment:CustomerAppointment? = nil
     
+    @Published var isfavoriteDoctor:Bool = false
+    
     init(serviceProvider:CustomerServiceProviderProfile,
          customerProfile:CustomerProfile,
          callBack:@escaping (CustomerServiceProviderProfile)->(),
@@ -34,6 +36,7 @@ class CustomerServiceProviderViewModel : ObservableObject {
         }
         
         self.appointments = appointments
+        self.checkFavoriteDoctors()
     }
 
     var serviceProviderName:String {
@@ -96,6 +99,28 @@ class CustomerServiceProviderViewModel : ObservableObject {
             shareSheet(url: url)
         }
     }
+
+    func favoriteButtonClicked () {
+        
+        let existingMyDoctors = CustomerMyDoctorsLocalList().getList()
+        
+        if existingMyDoctors.contains(self.serviceProvider.serviceProviderID) {
+            CustomerMyDoctorsLocalList().clearId(id: self.serviceProvider.serviceProviderID)
+            self.isfavoriteDoctor = false
+        } else {
+            CustomerMyDoctorsLocalList().addDoctorId(id: self.serviceProvider.serviceProviderID)
+            self.isfavoriteDoctor = true
+        }
+    }
+    
+    func checkFavoriteDoctors () {
+        let existingDoctors = CustomerMyDoctorsLocalList().getList()
+        
+        if existingDoctors.contains(self.serviceProvider.serviceProviderID) {
+            self.isfavoriteDoctor = true
+        }
+    }
+
 }
 
 extension CustomerServiceProviderViewModel : CustomerSelectAppointmentDelegate {

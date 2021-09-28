@@ -14,6 +14,18 @@ struct AddPatientView: View {
         ScrollView {
             VStack (alignment: .leading, spacing: 20) {
                 
+                if addPatientVM.patientAlreadyExists {
+                    HStack {
+                        Spacer()
+                        Text("\(self.addPatientVM.myPatientProfile.Name) Patient Already Exists")
+                            .bold()
+                            .foregroundColor(.blue)
+                        Spacer()
+                    }
+                    .padding(.vertical)
+                    .background(Color.blue.opacity(0.2))
+                }
+                
                 Group {
                     Text("PHONENUMBER")
                         .font(.footnote)
@@ -79,7 +91,7 @@ struct AddPatientView: View {
                         Text("If you would like to book appointment, you can do so after creating patient profile")
                     }
                     
-                    LargeButton(title: self.addPatientVM.patientAlreadyExists ? "Confirm and Schedule Appointment" : "Confirm") {
+                    LargeButton(title: self.addPatientVM.patientAlreadyExists ? "Save and Schedule Appointment" : "Confirm") {
                         self.addPatientVM.confirm { success in
                             if success {
                                 DoctorAlertHelpers().patientAddedAlert { dismiss, scheduleAppointment in

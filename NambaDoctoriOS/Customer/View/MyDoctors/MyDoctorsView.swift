@@ -41,5 +41,6 @@ struct MyDoctorsView: View {
                                isActive: self.$customerVM.takeToBookDoc)
             }
         }
+        .onAppear() {self.customerVM.getMyDoctors()}
     }
 }

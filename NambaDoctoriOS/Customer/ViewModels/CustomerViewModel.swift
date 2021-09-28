@@ -215,7 +215,7 @@ class CustomerViewModel : ObservableObject {
                 self.allAppointments = customerAppointments!
                 self.sortAppointments(appointments: customerAppointments!)
                 self.getNavigationSelectedAppointment()
-                self.setMyDoctors()
+                self.getMyDoctors()
             }
         }
     }
@@ -233,7 +233,7 @@ class CustomerViewModel : ObservableObject {
             if serviceProviders != nil && !serviceProviders!.isEmpty {
                 self.allServiceProviders = serviceProviders!
                 self.doctorsExistForCategory()
-                self.setMyDoctors()
+                self.getMyDoctors()
                 self.checkForDirectBookNavigation()
             } else {
                 //TODO: handle empty or no ServiceProviders
@@ -256,13 +256,14 @@ class CustomerViewModel : ObservableObject {
         }
     }
     
-    func setMyDoctors () {
+    func getMyDoctors () {
         if allServiceProviders.isEmpty || allAppointments.isEmpty {
             //cannot get mydoctors
         } else {
             var myServiceProviderIds:[String] = CustomerMyDoctorsLocalList().getList()
             for appointment in allAppointments {
                 myServiceProviderIds.append(appointment.serviceProviderID)
+                CustomerMyDoctorsLocalList().addDoctorId(id: appointment.serviceProviderID)
             }
             myServiceProviders.removeAll()
             for serviceProvider in self.allServiceProviders {

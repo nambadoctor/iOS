@@ -57,16 +57,16 @@ struct EditableAppointmentView: View {
             }
             
             if !self.intermediateVM.createdTemplates.isEmpty {
-                
                 Menu {
+                    
                     ForEach(self.intermediateVM.createdTemplates, id: \.templateId) { template in
                         Button {
                             self.intermediateVM.selectTemplate(template: template)
                         } label: {
                             Text(template.templateName)
                         }
-
                     }
+                    
                 } label: {
                     HStack {
                         if self.intermediateVM.selectedTemplate != nil {
@@ -81,6 +81,14 @@ struct EditableAppointmentView: View {
                 }
                 .modifier(DetailedAppointmentViewCardModifier())
             }
+            
+            
+            
+//            if self.intermediateVM.showTemplateReviewSheet {
+//                NavigationLink("",
+//                               destination: CreatedTemplatesView(intermediateVM: self.intermediateVM),
+//                               isActive: self.$intermediateVM.showTemplateReviewSheet)
+//            }
 
             if intermediateVM.configurableEntryVM.selectedEntryField.Prescriptions {
                 MedicineEditableView()
@@ -200,9 +208,8 @@ struct EditableAppointmentView: View {
             VStack {
                 HStack {
                     previewPrescription
-                    saveAsNewTemplate
+                    sendToPatient
                 }
-                sendToPatient
             }
             .modifier(DetailedAppointmentViewCardModifier())
         }
@@ -284,19 +291,7 @@ struct EditableAppointmentView: View {
                     .foregroundColor(Color.white)
                     .bold()
                 
-                HStack (spacing: 20) {
-                    
-                    PatientOverViewDetails(patientInfoVM: intermediateVM.patientInfoViewModel) //age,gender display
-                    
-                    VStack (alignment: .leading) {
-                        Text("Fee")
-                            .foregroundColor(Color.white.opacity(0.5))
-                        
-                        Text(intermediateVM.appointmentServiceFee)
-                            .foregroundColor(Color.white)
-                            .bold()
-                    }
-                }
+                PatientOverViewDetails(patientInfoVM: intermediateVM.patientInfoViewModel) //age,gender display
 
                 ServiceRequestOverViewDetails(serviceRequestVM: intermediateVM.serviceRequestVM)
                 
@@ -337,15 +332,6 @@ struct EditableAppointmentView: View {
                             .foregroundColor(Color.white.opacity(0.5))
                         
                         Text(intermediateVM.childProfile!.Gender)
-                            .foregroundColor(Color.white)
-                            .bold()
-                    }
-                    
-                    VStack (alignment: .leading) {
-                        Text("Fee")
-                            .foregroundColor(Color.white.opacity(0.5))
-                        
-                        Text(intermediateVM.appointmentServiceFee)
                             .foregroundColor(Color.white)
                             .bold()
                     }

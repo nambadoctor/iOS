@@ -62,24 +62,7 @@ struct MyDoctorCard: View {
             }.padding()
             
             Divider()
-            
-            Button (action: {
-                self.customerServiceProviderVM.showAppointmentsForDoctor.toggle()
-            }, label: {
-                HStack {
-                    Text("APPOINTMENTS: (\(self.customerServiceProviderVM.getAppointmentsWithServiceProvider()))")
-                    Spacer()
-                    Image(self.customerServiceProviderVM.showAppointmentsForDoctor ? "chevron.down.circle" : "chevron.right.circle")
-                }
-                .padding()
-            })
-            
-            if self.customerServiceProviderVM.showAppointmentsForDoctor {
-                MyDoctorsAppointmentsView(customerServiceProviderVM: self.customerServiceProviderVM)
-            }
-            
-            Divider()
-            
+
             HStack {
                 Button {
                     self.customerServiceProviderVM.takeToBookDocView()
@@ -104,6 +87,23 @@ struct MyDoctorCard: View {
                 }
             }
             .padding()
+            
+            Divider()
+            
+            Button (action: {
+                self.customerServiceProviderVM.showAppointmentsForDoctor.toggle()
+            }, label: {
+                HStack {
+                    Text("APPOINTMENTS: (\(self.customerServiceProviderVM.getAppointmentsWithServiceProvider()))")
+                    Spacer()
+                    Image(self.customerServiceProviderVM.showAppointmentsForDoctor ? "chevron.down.circle" : "chevron.right.circle")
+                }
+                .padding()
+            })
+            
+            if self.customerServiceProviderVM.showAppointmentsForDoctor {
+                MyDoctorsAppointmentsView(customerServiceProviderVM: self.customerServiceProviderVM)
+            }
         }
         .background(Color.white)
         .cornerRadius(10)
