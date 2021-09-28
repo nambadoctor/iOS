@@ -66,7 +66,7 @@ struct BreastCancerAdditionalEntryFieldsEditableView: View {
                             Image("eyeglasses")
                                 .modifier(DetailedAppointmentViewIconModifier())
                             
-                            Text("LMP")
+                            Text("Menstrual History")
                                 .font(.footnote)
                                 .foregroundColor(Color.black.opacity(0.4))
                                 .bold()

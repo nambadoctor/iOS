@@ -67,6 +67,14 @@ struct CustomerAppointmentsView: View {
                         }
                     }
                 }
+                else {
+                    Spacer()
+                    LargeButton(title: "Looks like you have no appointments yet. Click here to book your first appointment",
+                                backgroundColor: Color.blue) {
+                        self.customerVM.tabSelection = 3
+                    }.padding()
+                    Spacer()
+                }
                 
                 if self.customerVM.takeToDetailedAppointmentView {
                     NavigationLink("",

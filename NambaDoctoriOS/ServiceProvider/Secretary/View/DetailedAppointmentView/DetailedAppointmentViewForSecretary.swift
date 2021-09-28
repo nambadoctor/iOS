@@ -178,6 +178,7 @@ struct DetailedAppointmentViewForSecretary: View {
         VStack (alignment: .leading, spacing: 10) {
             
             CustomerVitalsEditableView()
+                .environmentObject(self.intermediateVM.configurableEntryVM)
             
             MedicineView()
                 .modifier(DetailedAppointmentViewCardModifier())
@@ -225,24 +226,24 @@ struct DetailedAppointmentViewForSecretary: View {
                 .clipShape(Circle())
             })
             
-            Button(action: {
-                LoggerService().log(eventName: "Tranfer Appointment Button Pressed")
-                self.intermediateVM.showTransferAppointmentSheet = true
-            }, label: {
-                ZStack {
-                    Image("arrow.left.arrow.right")
-                        .scaleEffect(1.0)
-                        .padding()
-                        .background(Color.white)
-                }
-                .frame(width: 45, height: 45)
-                .overlay(Circle().fill(Color.blue.opacity(0.3)))
-                .overlay(Circle().stroke(Color.white, lineWidth: 3))
-                .clipShape(Circle())
-            })
-            .sheet(isPresented: self.$intermediateVM.showTransferAppointmentSheet) {
-                TransferAppointmentSheet(currentAppointment: self.intermediateVM.appointment, killView: killView)
-            }
+//            Button(action: {
+//                LoggerService().log(eventName: "Tranfer Appointment Button Pressed")
+//                self.intermediateVM.showTransferAppointmentSheet = true
+//            }, label: {
+//                ZStack {
+//                    Image("arrow.left.arrow.right")
+//                        .scaleEffect(1.0)
+//                        .padding()
+//                        .background(Color.white)
+//                }
+//                .frame(width: 45, height: 45)
+//                .overlay(Circle().fill(Color.blue.opacity(0.3)))
+//                .overlay(Circle().stroke(Color.white, lineWidth: 3))
+//                .clipShape(Circle())
+//            })
+//            .sheet(isPresented: self.$intermediateVM.showTransferAppointmentSheet) {
+//                TransferAppointmentSheet(currentAppointment: self.intermediateVM.appointment, killView: killView)
+//            }
             
             Button(action: {
                 intermediateVM.patientInfoViewModel.callPatient()

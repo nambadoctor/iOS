@@ -20,6 +20,16 @@ struct PatientInfoEditableView: View {
                     .font(.footnote)
                     .foregroundColor(Color.black.opacity(0.4))
                     .bold()
+                
+                Spacer()
+                
+                Button {
+                    self.patientInfoViewModel.imagePickerVM.showActionSheet()
+                } label: {
+                    Image("plus.circle.fill")
+                }
+                .modifier(ImagePickerModifier(imagePickerVM: self.patientInfoViewModel.imagePickerVM))
+
             }
 
             if self.patientInfoViewModel.ReportList != nil {
@@ -30,6 +40,8 @@ struct PatientInfoEditableView: View {
                         }
                     }
                 }
+            } else if self.patientInfoViewModel.ReportList?.isEmpty ?? true {
+                Indicator()
             } else {
                 HStack {
                     Text("There are no reports")

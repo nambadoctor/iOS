@@ -64,11 +64,9 @@ class DetailedBookDocViewModel : ObservableObject {
             self.docProfPicImageLoader = ImageLoader(urlString: "https://wgsi.utoronto.ca/wp-content/uploads/2020/12/blank-profile-picture-png.png") { _ in }
         }
         
-        self.availabilityVM = AvailabilitySelectorViewModel(serviceProviderID: serviceProvider.serviceProviderID, slotSelected: nil, organisationId: self.organization?.organisationId ?? "")
+        self.availabilityVM = AvailabilitySelectorViewModel(serviceProviderID: serviceProvider.serviceProviderID, slotSelected: nil, organisationId: self.organization?.organisationId ?? "", overrideAvailability: false, doctorBookingForSelf: false)
         self.availabilityVM.slotSelected = self.selectSlot
         self.availabilityVM.retrieveAvailabilities()
-        
-        print("SERVICE PROVIDRER BEFKWJEWKBF: \(serviceProvider)")
     }
     
     func refreshCustomerProfile () {

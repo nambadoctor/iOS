@@ -68,15 +68,15 @@ struct DoctorIntermediateView: View {
             if intermediateVM.takeToViewAppointment {
                 editButton
             }
-            
-            Button {
-                self.intermediateVM.changeEntryFieldSettings = true
-            } label: {
-                Image("gear")
-            }
-            .sheet(isPresented: self.$intermediateVM.changeEntryFieldSettings) {
-                EditConfigurableEntryFieldsView(configurableEntryVM: self.intermediateVM.configurableEntryVM, showSheet: self.$intermediateVM.changeEntryFieldSettings)
-            }
+
+//            Button {
+//                self.intermediateVM.changeEntryFieldSettings = true
+//            } label: {
+//                Image("gear")
+//            }
+//            .sheet(isPresented: self.$intermediateVM.changeEntryFieldSettings) {
+//                EditConfigurableEntryFieldsView(configurableEntryVM: self.intermediateVM.configurableEntryVM, showSheet: self.$intermediateVM.changeEntryFieldSettings)
+//            }
         }
     }
 

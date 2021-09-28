@@ -155,7 +155,7 @@ class ServiceProviderCustomerService: ServiceProviderCustomerServiceProtocol {
         }
     }
     
-    func getAppointmentSummary (parentCustomerId:String, serviceProviderId:String, childId:String, _ completion: @escaping ([ServiceProviderAppointmentSummary]?) -> ()) {
+    func getAppointmentSummary (parentCustomerId:String, serviceProviderId:String, childId:String, organisationId:String, _ completion: @escaping ([ServiceProviderAppointmentSummary]?) -> ()) {
         let channel = ChannelManager.sharedChannelManager.getChannel()
         let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
 
@@ -166,6 +166,7 @@ class ServiceProviderCustomerService: ServiceProviderCustomerServiceProtocol {
             $0.parentCustomerID = parentCustomerId.toProto
             $0.serviceProviderID = serviceProviderId.toProto
             $0.childID = childId.toProto
+            $0.organisationID = organisationId.toProto
         }
 
         let getAppointmentSummary = patientClient.getCustomerAppointmentSummary(request, callOptions: callOptions)
@@ -174,7 +175,7 @@ class ServiceProviderCustomerService: ServiceProviderCustomerServiceProtocol {
             do {
                 let response = try getAppointmentSummary.response.wait()
                 let appointmentSummary = ServiceProviderAppointmentSummaryMapper.GrpcToLocal(appointmentSummary: response.serviceProviderAppointmentSummaryList)
-                print("Appointment Summary received: success")
+                print("Appointment Summary received: success \(appointmentSummary.count)")
                 DispatchQueue.main.async {
                     completion(appointmentSummary)
                 }

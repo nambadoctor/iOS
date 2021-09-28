@@ -185,15 +185,19 @@ class MedicineViewModel: ObservableObject {
             self.prescription.fileInfo.MediaImage = ""
         }
     }
+    
+    func clearMedicineIds () {
+        for index in 0..<prescription.medicineList.count {
+            prescription.medicineList[index].medicineID = ""
+        }
+    }
 
     func sendToPatient (completion: @escaping (_ success:Bool)->()) {
         prescription.prescriptionID = "" //service will make new prescription ID to update not overwrite
 
         storeImageValues()
 
-        for index in 0..<prescription.medicineList.count {
-            prescription.medicineList[index].medicineID = ""
-        }
+        clearMedicineIds()
         
         self.prescription.createdDateTime = Date().millisecondsSince1970
         prescriptionServiceCalls.setPrescription(prescription: self.prescription) { (response) in

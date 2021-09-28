@@ -25,7 +25,7 @@ struct AddPatientView: View {
                         Button {
                             self.addPatientVM.confirmPhoneNumber()
                         } label: {
-                            Text("Confirm")
+                            Text("Add")
                         }
 
                     }

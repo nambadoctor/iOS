@@ -32,12 +32,12 @@ struct DoctorHome: View {
                         Text("My Patients")
                     }.tag(3)
                     
-                    if self.serviceProviderVM.selectedOrganization != nil {
-                       OrganisationsPatientsViewForDoctor().tabItem {
-                            Image("folder.fill.badge.person.crop")
-                        Text("\(self.serviceProviderVM.selectedOrganization!.name) Patients")
-                        }.tag(4)
-                    }
+//                    if self.serviceProviderVM.selectedOrganization != nil {
+//                       OrganisationsPatientsViewForDoctor().tabItem {
+//                            Image("folder.fill.badge.person.crop")
+//                        Text("\(self.serviceProviderVM.selectedOrganization!.name) Patients")
+//                        }.tag(4)
+//                    }
 
 //                        DocNotificationDisplayView().tabItem {
 //                            Image("bell")

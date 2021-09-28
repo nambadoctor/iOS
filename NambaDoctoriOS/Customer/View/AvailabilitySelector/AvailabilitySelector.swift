@@ -37,7 +37,12 @@ struct AvailabilitySelector : View {
                 .modifier(DetailedAppointmentViewCardModifier())
             } else if !self.availabilitySelectorVM.selectedSlotOption {
                 VStack {
-                    Text("How would you like to see the doctor?")
+                    
+                    if !self.availabilitySelectorVM.doctorBookingForSelf {
+                        Text("Please Select Appointment Type")
+                    } else {
+                        Text("How would you like to see the doctor?")
+                    }
                     
                     LargeButton(title: self.availabilitySelectorVM.noOnlineSlots ? "Online (Unavailable)" : "Online",
                                 backgroundColor: self.availabilitySelectorVM.noOnlineSlots ? .gray : .blue) {
@@ -187,6 +192,13 @@ struct AvailabilitySelector : View {
                                 }
                             }
                         }
+                    }
+                    
+                    if self.availabilitySelectorVM.overrideAvailability {
+                        DatePicker("Custom Appointment Time", selection: self.$availabilitySelectorVM.customDateSelection)
+                            .onChange (of: self.availabilitySelectorVM.customDateSelection) { _ in
+                                self.availabilitySelectorVM.dateChanged = true
+                            }
                     }
                 }
             }

@@ -27,4 +27,6 @@ protocol DoctorAlertHelpersProtocol {
     func errorRetrievingChild (completion: @escaping (Bool) -> ())
     
     func patientAddedAlert (completion: @escaping (_ dismiss:Bool, _ scheduleAppointment:Bool) -> ())
+    
+    func templateSavedSuccessfullyAlert (completion: @escaping (Bool) -> ())
 }

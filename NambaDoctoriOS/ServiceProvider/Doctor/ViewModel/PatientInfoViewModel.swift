@@ -12,6 +12,8 @@ class PatientInfoViewModel: ObservableObject {
     
     @Published var patientObj:ServiceProviderCustomerProfile!
     
+    @Published var imagePickerVM:ImagePickerViewModel = ImagePickerViewModel()
+    
     @Published var AppointmentList:[ServiceProviderAppointment]? = nil
     @Published var ReportList:[ServiceProviderReport]? = nil
     
@@ -31,6 +33,8 @@ class PatientInfoViewModel: ObservableObject {
         self.customerServiceCall = customerServiceCall
         self.reportServiceCall = reportServiceCall
         self.appointmentServiceCall = appointmentServiceCall
+        
+        self.imagePickerVM.imagePickerDelegate = self
         
         DispatchQueue.global().async {
             self.retrievePatientObj()
@@ -61,6 +65,7 @@ class PatientInfoViewModel: ObservableObject {
     }
     
     func retrieveUploadedDocumentList (serviceRequestId:String) {
+        self.ReportList?.removeAll()
         reportServiceCall.getUploadedReportList(customerId: appointment.customerID, serviceRequestId: serviceRequestId, appointmentId: appointment.appointmentID) { (uploadedDocumentList) in
             if uploadedDocumentList != nil {
                 self.ReportList = uploadedDocumentList
@@ -78,5 +83,26 @@ class PatientInfoViewModel: ObservableObject {
         }
         
         return nil
+    }
+}
+
+extension PatientInfoViewModel : ImagePickedDelegate {
+    func imageSelected() {
+        CommonDefaultModifiers.showLoader(incomingLoadingText: "Uploading Report")
+        LoggerService().log(eventName: "Image Selected To Upload")
+        let image:UIImage = imagePickerVM.image!
+        
+        let encodedImage = image.jpegData(compressionQuality: 0.5)! //.base64EncodedString()
+        
+        let customerReport = ServiceProviderReportUploadObj(reportID: "", serviceRequestedID: appointment.serviceRequestID, customerID: appointment.customerID, fileName: "", name: "report", fileType: ".jpg", mediaFile: encodedImage.base64EncodedString())
+
+        ServiceProviderReportService().setReport(report: customerReport, customerId: appointment.customerID, serviceRequestId: appointment.serviceRequestID) { success in
+            CommonDefaultModifiers.hideLoader()
+            if success {
+                self.retrieveUploadedDocumentList(serviceRequestId: self.appointment.serviceRequestID)
+            } else {
+                DoctorAlertHelpers().errorInUploadingReport { _ in }
+            }
+        }
     }
 }

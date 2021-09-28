@@ -19,8 +19,8 @@ class DoctorConfigurableEntryFieldsViewModel : ObservableObject {
         self.orgId = orgId
         self.serviceProviderId = serviceProviderId
         
-        ServiceProviderProfileService().getServiceProviderConfigurableEntryFields(serviceProviderId: UserIdHelper().retrieveUserId()) { fields in
-            if fields != nil && !fields!.isEmpty{
+        ServiceProviderProfileService().getServiceProviderConfigurableEntryFields(serviceProviderId: serviceProviderId) { fields in
+            if fields != nil && !fields!.isEmpty {
                 self.entryFieldsList = fields!
                 self.selectedEntryField = self.entryFieldsList[0].entryFields
             }

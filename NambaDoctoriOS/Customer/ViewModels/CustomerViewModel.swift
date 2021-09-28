@@ -77,6 +77,7 @@ class CustomerViewModel : ObservableObject {
             self.retrieveServiceProviders()
             self.retrieveOrganisations()
             self.updateFCMToken()
+            self.getPrimaryServiceProvider()
 
             if self.customerProfile!.profilePicURL != nil && self.customerProfile!.profilePicURL!.isEmpty {
                 self.imageLoader = ImageLoader(urlString: self.customerProfile!.profilePicURL!, { _ in })
@@ -89,6 +90,16 @@ class CustomerViewModel : ObservableObject {
             if categories != nil {
                 self.specialtyCategories = categories!
                 self.selectedCategory = categories![0]
+            }
+        }
+    }
+    
+    func getPrimaryServiceProvider () {
+        if self.customerProfile!.primaryServiceProviderID != nil {
+            customerServiceProviderService.getServiceProvider(serviceProviderId: self.customerProfile!.primaryServiceProviderID!) { serviceProvider in
+                if serviceProvider != nil {
+                    self.myServiceProviders.append(serviceProvider!)
+                }
             }
         }
     }
@@ -134,6 +145,14 @@ class CustomerViewModel : ObservableObject {
 
         if upcomingAppointments.count > 0 {
             startFirebaseCallStateListener()
+        }
+        
+        if appointments.count == 0 {
+            if self.customerProfile!.primaryServiceProviderID != nil && !self.customerProfile!.primaryServiceProviderID!.isEmpty {
+                self.tabSelection = 2
+            } else {
+                self.tabSelection = 3
+            }
         }
     }
 
@@ -197,8 +216,6 @@ class CustomerViewModel : ObservableObject {
                 self.sortAppointments(appointments: customerAppointments!)
                 self.getNavigationSelectedAppointment()
                 self.setMyDoctors()
-            } else {
-                //TODO: handle empty or no appointments
             }
         }
     }

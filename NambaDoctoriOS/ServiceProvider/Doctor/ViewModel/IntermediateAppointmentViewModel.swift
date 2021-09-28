@@ -36,7 +36,7 @@ class IntermediateAppointmentViewModel : ObservableObject {
     
     @Published var takeToChat:Bool = false
     @Published var newChats:Int = 0
-    
+     
     @Published var appointmentStarted:Bool = false
     @Published var appointmentFinished:Bool = false
     
@@ -46,6 +46,11 @@ class IntermediateAppointmentViewModel : ObservableObject {
     @Published var showTwilioRoom:Bool = false
     @Published var collapseExtraDetailEntry:Bool = true
     @Published var collapseCustomerVitals:Bool = true
+
+    @Published var templateName:String = ""
+    @Published var createdTemplates:[ServiceProviderCustomCreatedTemplate] = [ServiceProviderCustomCreatedTemplate]()
+    @Published var showTemplateReviewSheet:Bool = false
+    @Published var selectedTemplate:ServiceProviderCustomCreatedTemplate? = nil
     
     var DoctorCancellationReason:[String] = ["This is not my specialty", "I am not available at this time", "Patient did not pick up", "Technical Issues", "Other"]
     
@@ -73,12 +78,12 @@ class IntermediateAppointmentViewModel : ObservableObject {
         self.doctorTwilioManagerViewModel = DoctorTwilioViewModel(appointment: appointment)
         self.chatVM = DoctorChatViewModel(appointment: appointment)
         self.configurableEntryVM = DoctorConfigurableEntryFieldsViewModel(orgId: appointment.organisationId, serviceProviderId: appointment.serviceProviderID)
-        
         doctorTwilioManagerViewModel.twilioDelegate = self
         serviceRequestVM.gotServiceRequestDelegate = self
         
         docAutoNav.enterIntermediateView(appointmentId: self.appointment.appointmentID)
         refreshAppointment()
+        self.getTemplates()
     }
     
     func refreshAppointment () {
@@ -272,6 +277,53 @@ extension IntermediateAppointmentViewModel {
             CommonDefaultModifiers.hideLoader()
             self.showPDFPreview = true
         }
+    }
+    
+    func makeTemplate () -> ServiceProviderCustomCreatedTemplate {
+        return ServiceProviderCustomCreatedTemplate(templateId: "",
+                                                    templateName: "",
+                                                    serviceProviderID: UserIdHelper().retrieveUserId(),
+                                                    diagnosis: ServiceProviderDiagnosis(name: self.serviceRequestVM.diagnosisName, type: self.serviceRequestVM.diagnosisType),
+                                                    investigations: self.serviceRequestVM.investigationsViewModel.investigations,
+                                                    advice: self.serviceRequestVM.advice,
+                                                    createdDateTime: Date().millisecondsSince1970,
+                                                    lastModifiedDate: Date().millisecondsSince1970,
+                                                    medicines: self.medicineVM.prescription.medicineList)
+    }
+    
+    func saveAsNewTemplate (){
+        self.medicineVM.clearMedicineIds()
+        
+        var template = self.makeTemplate()
+        
+        template.templateName = self.templateName
+        
+        ServiceProviderProfileService().setCustomTemplateList(serviceProviderId: UserIdHelper().retrieveUserId(), template: template) { success in
+            if success {
+                self.doctorAlertHelper.templateSavedSuccessfullyAlert { _ in }
+                self.showTemplateReviewSheet = false
+                
+                self.getTemplates()
+            }
+        }
+    }
+    
+    func getTemplates () {
+        ServiceProviderProfileService().getCustomTemplatesList(serviceProviderId: UserIdHelper().retrieveUserId()) { templates in
+            if templates != nil {
+                self.createdTemplates = templates!
+            }
+        }
+    }
+    
+    func selectTemplate (template: ServiceProviderCustomCreatedTemplate) {
+        self.selectedTemplate = template
+        
+        self.serviceRequestVM.serviceRequest.advice = template.advice
+        self.medicineVM.prescription.medicineList = template.medicines
+        self.serviceRequestVM.investigationsViewModel.investigations = template.investigations
+        self.serviceRequestVM.serviceRequest.diagnosis.name = template.diagnosis.name
+        self.serviceRequestVM.serviceRequest.diagnosis.type = template.diagnosis.type
     }
 }
 

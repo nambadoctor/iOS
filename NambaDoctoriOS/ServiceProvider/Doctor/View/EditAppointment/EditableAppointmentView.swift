@@ -55,6 +55,32 @@ struct EditableAppointmentView: View {
                     }
                 }
             }
+            
+            if !self.intermediateVM.createdTemplates.isEmpty {
+                
+                Menu {
+                    ForEach(self.intermediateVM.createdTemplates, id: \.templateId) { template in
+                        Button {
+                            self.intermediateVM.selectTemplate(template: template)
+                        } label: {
+                            Text(template.templateName)
+                        }
+
+                    }
+                } label: {
+                    HStack {
+                        if self.intermediateVM.selectedTemplate != nil {
+                            Text(self.intermediateVM.selectedTemplate!.templateName)
+                        } else {
+                            Text("Please Select a Template")
+                        }
+                        
+                        Image("chevron.down.circle")
+                        Spacer()
+                    }
+                }
+                .modifier(DetailedAppointmentViewCardModifier())
+            }
 
             if intermediateVM.configurableEntryVM.selectedEntryField.Prescriptions {
                 MedicineEditableView()
@@ -171,11 +197,28 @@ struct EditableAppointmentView: View {
                     .modifier(DetailedAppointmentViewCardModifier())
             }
             
-            HStack {
-                previewPrescription
+            VStack {
+                HStack {
+                    previewPrescription
+                    saveAsNewTemplate
+                }
                 sendToPatient
             }
             .modifier(DetailedAppointmentViewCardModifier())
+        }
+    }
+    
+    var saveAsNewTemplate : some View {
+        VStack {
+            LargeButton(title: "Save as New Template",
+                        backgroundColor: Color.white,
+                        foregroundColor: Color.blue) {
+                LoggerService().log(eventName: "SAVING AS NEW TEMPLATE")
+                self.intermediateVM.showTemplateReviewSheet = true
+            }
+        }
+        .sheet(isPresented: self.$intermediateVM.showTemplateReviewSheet) {
+            CreatedTemplatesView(intermediateVM: self.intermediateVM)
         }
     }
     
@@ -388,26 +431,26 @@ struct EditableAppointmentView: View {
                 })
             }
             
-            if !intermediateVM.appointmentFinished {
-                Button(action: {
-                    LoggerService().log(eventName: "Tranfer Appointment Button Pressed")
-                    self.intermediateVM.showTransferAppointmentSheet = true
-                }, label: {
-                    ZStack {
-                        Image("arrow.left.arrow.right")
-                            .scaleEffect(1.0)
-                            .padding()
-                            .background(Color.white)
-                    }
-                    .frame(width: 45, height: 45)
-                    .overlay(Circle().fill(Color.blue.opacity(0.3)))
-                    .overlay(Circle().stroke(Color.white, lineWidth: 3))
-                    .clipShape(Circle())
-                })
-                .sheet(isPresented: self.$intermediateVM.showTransferAppointmentSheet) {
-                    TransferAppointmentSheet(currentAppointment: self.intermediateVM.appointment, killView: killView)
-                }
-            }
+//            if !intermediateVM.appointmentFinished {
+//                Button(action: {
+//                    LoggerService().log(eventName: "Tranfer Appointment Button Pressed")
+//                    self.intermediateVM.showTransferAppointmentSheet = true
+//                }, label: {
+//                    ZStack {
+//                        Image("arrow.left.arrow.right")
+//                            .scaleEffect(1.0)
+//                            .padding()
+//                            .background(Color.white)
+//                    }
+//                    .frame(width: 45, height: 45)
+//                    .overlay(Circle().fill(Color.blue.opacity(0.3)))
+//                    .overlay(Circle().stroke(Color.white, lineWidth: 3))
+//                    .clipShape(Circle())
+//                })
+//                .sheet(isPresented: self.$intermediateVM.showTransferAppointmentSheet) {
+//                    TransferAppointmentSheet(currentAppointment: self.intermediateVM.appointment, killView: killView)
+//                }
+//            }
 
             if !intermediateVM.appointmentFinished || !intermediateVM.appointment.IsInPersonAppointment {
                 Button(action: {
@@ -478,3 +521,4 @@ struct ServiceRequestOverViewDetails : View {
         }
     }
 }
+

@@ -48,13 +48,6 @@ struct BookDoctorView: View {
                 Indicator()
             }
             Spacer()
-            
-            if self.customerVM.takeToBookDoc {
-                NavigationLink("",
-                               destination: DetailedBookDoctorView(detailedBookingVM: customerVM.detailedViewDoctorVM!),
-                               isActive: self.$customerVM.takeToBookDoc)
-            }
-            
         }
         .onAppear() {
             self.customerVM.fetchCustomerProfile { _ in }

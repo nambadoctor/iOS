@@ -32,7 +32,7 @@ class ScheduleAppointmentForPatientViewModel : ObservableObject {
         self.customer = customer
         self.fee = serviceProvider.serviceFee ?? 0
         self.finishedCallback = finishedCallback
-        self.availabilityVM = AvailabilitySelectorViewModel(serviceProviderID: serviceProvider.serviceProviderID, slotSelected: nil, organisationId: self.organisation?.organisationId ?? "")
+        self.availabilityVM = AvailabilitySelectorViewModel(serviceProviderID: serviceProvider.serviceProviderID, slotSelected: nil, organisationId: self.organisation?.organisationId ?? "", overrideAvailability: true, doctorBookingForSelf: true)
     }
     
     func bookAppointment (completion: @escaping (_ success:Bool?)->()) {
@@ -137,9 +137,5 @@ class ScheduleAppointmentForPatientViewModel : ObservableObject {
                                                     childId: "",
                                                     customerVitals: customerVitalsViewModel.customerVitals,
                                                     organisationId: organisation?.organisationId ?? "", additionalEntryFields: makeEmptyAdditionalEntryFields())
-    }
-    
-    func selectSlotOption() {
-        
     }
 }

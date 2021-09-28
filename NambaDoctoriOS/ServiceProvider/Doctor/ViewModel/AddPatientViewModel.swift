@@ -71,7 +71,7 @@ class AddPatientViewModel: ObservableObject {
         
         let deviceInfoObj = DeviceHelper.getDeviceInfo()
 
-        let customerProfile = CustomerProfile(customerID: "",
+        let customerProfile = CustomerProfile(customerID: myPatientProfile.CustomerId,
                                               firstName: self.firstName,
                                               lastName: self.lastName,
                                               gender: self.gender,
@@ -136,6 +136,7 @@ class AddPatientViewModel: ObservableObject {
     }
     
     func mapProfileValues (patientProfile:ServiceProviderMyPatientProfile) {
+        self.myPatientProfile.CustomerId = patientProfile.CustomerId
         self.firstName = patientProfile.Name
         self.age = patientProfile.Age
         self.gender = patientProfile.Gender

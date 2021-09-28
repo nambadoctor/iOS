@@ -1127,6 +1127,8 @@ message ServiceProviderAppointmentSummaryRequestMessage{
 	google.protobuf.StringValue ServiceProviderId = 2;
 
 	google.protobuf.StringValue ChildId = 3;
+
+	google.protobuf.StringValue OrganisationId = 4;
 }
 
 message ServiceProviderAppointmentVerificationMessage{
@@ -1903,7 +1905,42 @@ service ServiceProviderWorkerV1 {
 	rpc GetAllSpecialties(VoidMessage) returns (CategoryListMessage);
 
 	rpc GetConfigurableEntryFields (IdMessage) returns (ServiceProviderConfigurableEntryFieldsObjectMessageList);
+
+	rpc SetCreatedTemplate (SetServiceProviderCustomTemplateRequestMessage) returns (BoolMessage);
+
+	rpc GetCreatedTemplates (IdMessage) returns (ServiceProviderCustomCreatedTemplateListMessage);
 }
+
+message ServiceProviderCustomCreatedTemplateMessage {
+
+    google.protobuf.StringValue TemplateId = 1;
+
+    google.protobuf.StringValue ServiceProviderId = 2;
+
+    ServiceProviderDiagnosisMessage Diagnosis = 3;
+
+    repeated google.protobuf.StringValue Investigations = 4;
+
+    google.protobuf.StringValue Advice = 5;
+
+    google.protobuf.Int64Value CreatedDateTime = 6;
+
+    google.protobuf.Int64Value LastModifedDate = 7;
+    
+    repeated ServiceProviderMedicineMessage Medicines = 8;
+
+    google.protobuf.StringValue TemplateName = 9;
+}
+
+message ServiceProviderCustomCreatedTemplateListMessage {
+    repeated ServiceProviderCustomCreatedTemplateMessage TemplateList = 1;
+}
+
+message SetServiceProviderCustomTemplateRequestMessage {
+    google.protobuf.StringValue ServiceProviderId = 1;
+    ServiceProviderCustomCreatedTemplateMessage template = 2;
+}
+
 
 message ServiceProviderConfigurableEntryFieldsUploadMessage{
 	ServiceProviderConfigurableEntryFieldsMessage additionalEntryFields = 1;

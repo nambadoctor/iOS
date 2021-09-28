@@ -19,9 +19,17 @@ class TransferAppointmentViewModel : ObservableObject {
     }
     
     func getServiceProviders () {
-        CustomerServiceProviderService().getAllServiceProvider(customerId: "") { serviceProviders in
-            if serviceProviders != nil {
-                self.allServiceProviders = serviceProviders!
+        if appointment.organisationId.isEmpty {
+            CustomerServiceProviderService().getAllServiceProvider(customerId: "") { serviceProviders in
+                if serviceProviders != nil {
+                    self.allServiceProviders = serviceProviders!
+                }
+            }
+        } else {
+            CustomerServiceProviderService().getServiceProvidersOfOrganization(organizationId: appointment.organisationId) { serviceProviders in
+                if serviceProviders != nil {
+                    self.allServiceProviders = serviceProviders!
+                }
             }
         }
     }

@@ -23,6 +23,10 @@ protocol ServiceProviderProfileServiceProtocol {
     func getServiceProviders (serviceProviderId:String, _ completion : @escaping (_ serviceProviders:[ServiceProviderProfile]?)->())
     
     func getServiceProvidersOfOrganization (organizationId:String, _ completion : @escaping (_ serviceProviders:[ServiceProviderProfile]?)->())
+    
+    func getCustomTemplatesList (serviceProviderId:String, _ completion : @escaping (_ templates:[ServiceProviderCustomCreatedTemplate]?)->())
+    
+    func setCustomTemplateList (serviceProviderId:String, template:ServiceProviderCustomCreatedTemplate, _ completion: @escaping (Bool) -> ())
 }
 
 class ServiceProviderProfileService : ServiceProviderProfileServiceProtocol {
@@ -310,12 +314,12 @@ class ServiceProviderProfileService : ServiceProviderProfileServiceProtocol {
     
 //    func setServiceProviderConfigurableEntryFields (entryFields:ServiceProviderConfigurableEntryFields, _ completion : @escaping (_ success:Bool)->()) {
 //        CorrelationId = UUID().uuidString
-//        
+//
 //        let channel = ChannelManager.sharedChannelManager.getChannel()
 //        let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
-//        
+//
 //        let doctorClient = Nd_V1_ServiceProviderWorkerV1Client(channel: channel)
-//        
+//
 //        let request = Nd_V1_ServiceProviderConfigurableEntryFieldsUploadMessage.with {
 //            $0.additionalEntryFields = ServiceProviderConfigurableEntryFieldsMapper.localToGrpc(entryFields: entryFields)
 //            $0.serviceProviderID = UserIdHelper().retrieveUserId().toProto
@@ -339,4 +343,70 @@ class ServiceProviderProfileService : ServiceProviderProfileServiceProtocol {
 //            }
 //        }
 //    }
+    
+    func getCustomTemplatesList (serviceProviderId:String, _ completion : @escaping (_ templates:[ServiceProviderCustomCreatedTemplate]?)->()) {
+        CorrelationId = UUID().uuidString
+        
+        let channel = ChannelManager.sharedChannelManager.getChannel()
+        let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
+        
+        let doctorClient = Nd_V1_ServiceProviderWorkerV1Client(channel: channel)
+        
+        let request = Nd_V1_IdMessage.with {
+            $0.id = serviceProviderId.toProto
+        }
+
+        let getServiceProvider = doctorClient.getCreatedTemplates(request, callOptions: callOptions)
+
+        DispatchQueue.global().async {
+            do {
+                LoggerService().log(eventName: "REQUESTED SERVICE PROVIDERS CREATED TEMPLATES \(serviceProviderId)")
+                let response = try getServiceProvider.response.wait()
+                LoggerService().log(eventName: "RECIEVED SERVICE PROVIDERS CREATED TEMPLATES")
+                let serviceProvidersTemplates = ServiceProviderCustomCreatedTemplateMapper.grpcToLocal(grpcTemplates: response)
+                print("Get SERVICE PROVIDERS CREATED TEMPLATES Success \(serviceProvidersTemplates)")
+                DispatchQueue.main.async {
+                    completion(serviceProvidersTemplates)
+                }
+            } catch {
+                print("Get SERVICE PROVIDERS CREATED TEMPLATES Failed \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            }
+        }
+    }
+    
+    func setCustomTemplateList (serviceProviderId:String, template:ServiceProviderCustomCreatedTemplate, _ completion: @escaping (Bool) -> ()) {
+        CorrelationId = UUID().uuidString
+        
+        let channel = ChannelManager.sharedChannelManager.getChannel()
+        let callOptions = ChannelManager.sharedChannelManager.getCallOptions()
+        
+        let doctorClient = Nd_V1_ServiceProviderWorkerV1Client(channel: channel)
+        
+        let request = Nd_V1_SetServiceProviderCustomTemplateRequestMessage.with {
+            $0.template = ServiceProviderCustomCreatedTemplateMapper.localToGrpc(localTemplate: template)
+            $0.serviceProviderID = UserIdHelper().retrieveUserId().toProto
+        }
+
+        let getServiceProvider = doctorClient.setCreatedTemplate(request, callOptions: callOptions)
+
+        DispatchQueue.global().async {
+            do {
+                LoggerService().log(eventName: "REQUESTING SERVICE PROVIDERS TEMPLATES")
+                let response = try getServiceProvider.response.wait()
+                print("Set SERVICE PROVIDERS TEMPLATES Success \(response.status)")
+                DispatchQueue.main.async {
+                    completion(true)
+                }
+            } catch {
+                print("Set SERVICE PROVIDERS TEMPLATES Failed \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    completion(false)
+                }
+            }
+        }
+    }
+
 }

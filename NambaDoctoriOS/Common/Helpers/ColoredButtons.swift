@@ -61,6 +61,7 @@ struct LargeButton: View {
             Button(action:self.action) {
                 Text(self.title)
                     .frame(maxWidth:.infinity)
+                    .fixedSize(horizontal: false, vertical: true)
             }
             .buttonStyle(LargeButtonStyle(backgroundColor: backgroundColor,
                                           foregroundColor: foregroundColor,

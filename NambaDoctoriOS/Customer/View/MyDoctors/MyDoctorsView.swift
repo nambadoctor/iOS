@@ -25,7 +25,12 @@ struct MyDoctorsView: View {
                         }
                     }
                 } else {
-                    Indicator()
+                    Spacer()
+                    LargeButton(title: "Looks like you dont have any doctors yet. Click here to book your first appointment!",
+                                backgroundColor: Color.blue) {
+                        self.customerVM.tabSelection = 3
+                    }.padding()
+                    Spacer()
                 }
                 Spacer()
             }
@@ -35,27 +40,6 @@ struct MyDoctorsView: View {
                                destination: DetailedBookDoctorView(detailedBookingVM: customerVM.detailedViewDoctorVM!),
                                isActive: self.$customerVM.takeToBookDoc)
             }
-            
-            VStack {
-                Spacer()
-                HStack {
-                    Spacer()
-                    Button(action: {
-                        self.customerVM.setCategoryToAllDoctors()
-                        self.customerVM.tabSelection = 3
-                    }, label: {
-                        Text("See All Doctors and Hospitals")
-                            .foregroundColor(.white)
-                    })
-                    .padding(10)
-                    .padding(.horizontal, 5)
-                    .background(Color.blue)
-                    .cornerRadius(50)
-                    
-                    Spacer()
-                }
-            }
-            .padding(.bottom, 10)
         }
     }
 }

@@ -46,6 +46,7 @@ struct DetailedDoctorMyPatientView: View {
         }
         .sheet(isPresented: self.$MyPatientVM.showSelectDoctorView, content: {
             SelectServiceProvidersView(organisationServiceProvidersVM: self.MyPatientVM.makeOrganisationsServiceProvidersViewModel())
+                .onDisappear() {self.MyPatientVM.getAppointmentSummaries()}
         })
         .onAppear() {
             self.MyPatientVM.getAppointmentSummaries()
@@ -79,8 +80,9 @@ class MyPatientViewModel : ObservableObject {
     
     func getAppointmentSummaries () {
         ServiceProviderCustomerService().getAppointmentSummary(parentCustomerId: patientProfile.IsChild ? patientProfile.CareTakerId : patientProfile.CustomerId,
-                                                               serviceProviderId: UserIdHelper().retrieveUserId(),
-                                                               childId: patientProfile.IsChild ? patientProfile.CustomerId : "") { summaries in
+                                                               serviceProviderId: self.serviceProvider.serviceProviderType == "Secretary" ? "" : self.serviceProvider.serviceProviderID,
+                                                               childId: patientProfile.IsChild ? patientProfile.CustomerId : "",
+                                                               organisationId: self.organisation?.organisationId ?? "") { summaries in
             if summaries != nil && !summaries!.isEmpty {
                 self.appointmentSummaries = summaries!.sorted(by: { $0.AppointmentTime > $1.AppointmentTime })
             } else {

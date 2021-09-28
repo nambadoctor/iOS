@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BookDoctorCard: View {
-    
+    @Environment(\.presentationMode) var presentationMode
     @ObservedObject var customerServiceProviderVM:CustomerServiceProviderViewModel
     
     var body: some View {
@@ -64,6 +64,7 @@ struct BookDoctorCard: View {
                             HStack {
                                 Spacer()
                                 Button {
+                                    self.presentationMode.wrappedValue.dismiss()
                                     self.customerServiceProviderVM.takeToBookDocView()
                                 } label: {
                                     Text("Book")

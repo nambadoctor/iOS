@@ -24,12 +24,10 @@ struct CustomerHome: View {
                             Text("Appointments")
                         }.tag(1)
                         
-                        if self.customerVM.showMyDoctorsListOnHome {
-                            MyDoctorsView().tabItem {
-                                Image("heart.fill")
-                                Text("My Doctors")
-                            }.tag(2)
-                        }
+                        MyDoctorsView().tabItem {
+                            Image("heart.fill")
+                            Text("My Doctors")
+                        }.tag(2)
                         
                         CustomerEasyEntryHelperView().tabItem {
                             Image("magnifyingglass")

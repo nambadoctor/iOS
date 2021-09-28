@@ -144,4 +144,18 @@ class DoctorAlertHelpers: DoctorAlertHelpersProtocol {
 
         CommonDefaultModifiers.showAlert()
     }
+    
+    func templateSavedSuccessfullyAlert (completion: @escaping (Bool) -> ()) {
+        alertTempItem = AlertItem(title: Text("Template Saved Successfully"), dismissButton: .default(Text("Ok"), action: {
+            completion(true)
+        }))
+        CommonDefaultModifiers.showAlert()
+    }
+    
+    func errorInUploadingReport (completion: @escaping (Bool) -> ()) {
+        alertTempItem = AlertItem(title: Text("Oops! Try uploading the report again"), dismissButton: .default(Text("Ok"), action: {
+            completion(true)
+        }))
+        CommonDefaultModifiers.showAlert()
+    }
 }

@@ -4349,6 +4349,15 @@ struct Nd_V1_ServiceProviderAppointmentSummaryRequestMessage {
   /// Clears the value of `childID`. Subsequent reads from it will return its default value.
   mutating func clearChildID() {self._childID = nil}
 
+  var organisationID: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _organisationID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_organisationID = newValue}
+  }
+  /// Returns true if `organisationID` has been explicitly set.
+  var hasOrganisationID: Bool {return self._organisationID != nil}
+  /// Clears the value of `organisationID`. Subsequent reads from it will return its default value.
+  mutating func clearOrganisationID() {self._organisationID = nil}
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -4356,6 +4365,7 @@ struct Nd_V1_ServiceProviderAppointmentSummaryRequestMessage {
   fileprivate var _parentCustomerID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _serviceProviderID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _childID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _organisationID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
 }
 
 struct Nd_V1_ServiceProviderAppointmentVerificationMessage {
@@ -7208,6 +7218,134 @@ struct Nd_V1_ServiceProviderServiceRequestRequestMessage {
   fileprivate var _customerID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _appointmentID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _serviceRequestID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+}
+
+struct Nd_V1_ServiceProviderCustomCreatedTemplateMessage {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var templateID: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _templateID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_templateID = newValue}
+  }
+  /// Returns true if `templateID` has been explicitly set.
+  var hasTemplateID: Bool {return self._templateID != nil}
+  /// Clears the value of `templateID`. Subsequent reads from it will return its default value.
+  mutating func clearTemplateID() {self._templateID = nil}
+
+  var serviceProviderID: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _serviceProviderID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_serviceProviderID = newValue}
+  }
+  /// Returns true if `serviceProviderID` has been explicitly set.
+  var hasServiceProviderID: Bool {return self._serviceProviderID != nil}
+  /// Clears the value of `serviceProviderID`. Subsequent reads from it will return its default value.
+  mutating func clearServiceProviderID() {self._serviceProviderID = nil}
+
+  var diagnosis: Nd_V1_ServiceProviderDiagnosisMessage {
+    get {return _diagnosis ?? Nd_V1_ServiceProviderDiagnosisMessage()}
+    set {_diagnosis = newValue}
+  }
+  /// Returns true if `diagnosis` has been explicitly set.
+  var hasDiagnosis: Bool {return self._diagnosis != nil}
+  /// Clears the value of `diagnosis`. Subsequent reads from it will return its default value.
+  mutating func clearDiagnosis() {self._diagnosis = nil}
+
+  var investigations: [SwiftProtobuf.Google_Protobuf_StringValue] = []
+
+  var advice: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _advice ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_advice = newValue}
+  }
+  /// Returns true if `advice` has been explicitly set.
+  var hasAdvice: Bool {return self._advice != nil}
+  /// Clears the value of `advice`. Subsequent reads from it will return its default value.
+  mutating func clearAdvice() {self._advice = nil}
+
+  var createdDateTime: SwiftProtobuf.Google_Protobuf_Int64Value {
+    get {return _createdDateTime ?? SwiftProtobuf.Google_Protobuf_Int64Value()}
+    set {_createdDateTime = newValue}
+  }
+  /// Returns true if `createdDateTime` has been explicitly set.
+  var hasCreatedDateTime: Bool {return self._createdDateTime != nil}
+  /// Clears the value of `createdDateTime`. Subsequent reads from it will return its default value.
+  mutating func clearCreatedDateTime() {self._createdDateTime = nil}
+
+  var lastModifedDate: SwiftProtobuf.Google_Protobuf_Int64Value {
+    get {return _lastModifedDate ?? SwiftProtobuf.Google_Protobuf_Int64Value()}
+    set {_lastModifedDate = newValue}
+  }
+  /// Returns true if `lastModifedDate` has been explicitly set.
+  var hasLastModifedDate: Bool {return self._lastModifedDate != nil}
+  /// Clears the value of `lastModifedDate`. Subsequent reads from it will return its default value.
+  mutating func clearLastModifedDate() {self._lastModifedDate = nil}
+
+  var medicines: [Nd_V1_ServiceProviderMedicineMessage] = []
+
+  var templateName: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _templateName ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_templateName = newValue}
+  }
+  /// Returns true if `templateName` has been explicitly set.
+  var hasTemplateName: Bool {return self._templateName != nil}
+  /// Clears the value of `templateName`. Subsequent reads from it will return its default value.
+  mutating func clearTemplateName() {self._templateName = nil}
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _templateID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _serviceProviderID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _diagnosis: Nd_V1_ServiceProviderDiagnosisMessage? = nil
+  fileprivate var _advice: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _createdDateTime: SwiftProtobuf.Google_Protobuf_Int64Value? = nil
+  fileprivate var _lastModifedDate: SwiftProtobuf.Google_Protobuf_Int64Value? = nil
+  fileprivate var _templateName: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+}
+
+struct Nd_V1_ServiceProviderCustomCreatedTemplateListMessage {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var templateList: [Nd_V1_ServiceProviderCustomCreatedTemplateMessage] = []
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+}
+
+struct Nd_V1_SetServiceProviderCustomTemplateRequestMessage {
+  // SwiftProtobuf.Message conformance is added in an extension below. See the
+  // `Message` and `Message+*Additions` files in the SwiftProtobuf library for
+  // methods supported on all messages.
+
+  var serviceProviderID: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _serviceProviderID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_serviceProviderID = newValue}
+  }
+  /// Returns true if `serviceProviderID` has been explicitly set.
+  var hasServiceProviderID: Bool {return self._serviceProviderID != nil}
+  /// Clears the value of `serviceProviderID`. Subsequent reads from it will return its default value.
+  mutating func clearServiceProviderID() {self._serviceProviderID = nil}
+
+  var template: Nd_V1_ServiceProviderCustomCreatedTemplateMessage {
+    get {return _template ?? Nd_V1_ServiceProviderCustomCreatedTemplateMessage()}
+    set {_template = newValue}
+  }
+  /// Returns true if `template` has been explicitly set.
+  var hasTemplate: Bool {return self._template != nil}
+  /// Clears the value of `template`. Subsequent reads from it will return its default value.
+  mutating func clearTemplate() {self._template = nil}
+
+  var unknownFields = SwiftProtobuf.UnknownStorage()
+
+  init() {}
+
+  fileprivate var _serviceProviderID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _template: Nd_V1_ServiceProviderCustomCreatedTemplateMessage? = nil
 }
 
 struct Nd_V1_ServiceProviderConfigurableEntryFieldsUploadMessage {
@@ -12243,6 +12381,7 @@ extension Nd_V1_ServiceProviderAppointmentSummaryRequestMessage: SwiftProtobuf.M
     1: .same(proto: "ParentCustomerId"),
     2: .same(proto: "ServiceProviderId"),
     3: .same(proto: "ChildId"),
+    4: .same(proto: "OrganisationId"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -12254,6 +12393,7 @@ extension Nd_V1_ServiceProviderAppointmentSummaryRequestMessage: SwiftProtobuf.M
       case 1: try { try decoder.decodeSingularMessageField(value: &self._parentCustomerID) }()
       case 2: try { try decoder.decodeSingularMessageField(value: &self._serviceProviderID) }()
       case 3: try { try decoder.decodeSingularMessageField(value: &self._childID) }()
+      case 4: try { try decoder.decodeSingularMessageField(value: &self._organisationID) }()
       default: break
       }
     }
@@ -12269,6 +12409,9 @@ extension Nd_V1_ServiceProviderAppointmentSummaryRequestMessage: SwiftProtobuf.M
     if let v = self._childID {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
     }
+    if let v = self._organisationID {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -12276,6 +12419,7 @@ extension Nd_V1_ServiceProviderAppointmentSummaryRequestMessage: SwiftProtobuf.M
     if lhs._parentCustomerID != rhs._parentCustomerID {return false}
     if lhs._serviceProviderID != rhs._serviceProviderID {return false}
     if lhs._childID != rhs._childID {return false}
+    if lhs._organisationID != rhs._organisationID {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -15372,6 +15516,156 @@ extension Nd_V1_ServiceProviderServiceRequestRequestMessage: SwiftProtobuf.Messa
     if lhs._customerID != rhs._customerID {return false}
     if lhs._appointmentID != rhs._appointmentID {return false}
     if lhs._serviceRequestID != rhs._serviceRequestID {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Nd_V1_ServiceProviderCustomCreatedTemplateMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".ServiceProviderCustomCreatedTemplateMessage"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "TemplateId"),
+    2: .same(proto: "ServiceProviderId"),
+    3: .same(proto: "Diagnosis"),
+    4: .same(proto: "Investigations"),
+    5: .same(proto: "Advice"),
+    6: .same(proto: "CreatedDateTime"),
+    7: .same(proto: "LastModifedDate"),
+    8: .same(proto: "Medicines"),
+    9: .same(proto: "TemplateName"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularMessageField(value: &self._templateID) }()
+      case 2: try { try decoder.decodeSingularMessageField(value: &self._serviceProviderID) }()
+      case 3: try { try decoder.decodeSingularMessageField(value: &self._diagnosis) }()
+      case 4: try { try decoder.decodeRepeatedMessageField(value: &self.investigations) }()
+      case 5: try { try decoder.decodeSingularMessageField(value: &self._advice) }()
+      case 6: try { try decoder.decodeSingularMessageField(value: &self._createdDateTime) }()
+      case 7: try { try decoder.decodeSingularMessageField(value: &self._lastModifedDate) }()
+      case 8: try { try decoder.decodeRepeatedMessageField(value: &self.medicines) }()
+      case 9: try { try decoder.decodeSingularMessageField(value: &self._templateName) }()
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if let v = self._templateID {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+    }
+    if let v = self._serviceProviderID {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+    }
+    if let v = self._diagnosis {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+    }
+    if !self.investigations.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.investigations, fieldNumber: 4)
+    }
+    if let v = self._advice {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+    }
+    if let v = self._createdDateTime {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+    }
+    if let v = self._lastModifedDate {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+    }
+    if !self.medicines.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.medicines, fieldNumber: 8)
+    }
+    if let v = self._templateName {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Nd_V1_ServiceProviderCustomCreatedTemplateMessage, rhs: Nd_V1_ServiceProviderCustomCreatedTemplateMessage) -> Bool {
+    if lhs._templateID != rhs._templateID {return false}
+    if lhs._serviceProviderID != rhs._serviceProviderID {return false}
+    if lhs._diagnosis != rhs._diagnosis {return false}
+    if lhs.investigations != rhs.investigations {return false}
+    if lhs._advice != rhs._advice {return false}
+    if lhs._createdDateTime != rhs._createdDateTime {return false}
+    if lhs._lastModifedDate != rhs._lastModifedDate {return false}
+    if lhs.medicines != rhs.medicines {return false}
+    if lhs._templateName != rhs._templateName {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Nd_V1_ServiceProviderCustomCreatedTemplateListMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".ServiceProviderCustomCreatedTemplateListMessage"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "TemplateList"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeRepeatedMessageField(value: &self.templateList) }()
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if !self.templateList.isEmpty {
+      try visitor.visitRepeatedMessageField(value: self.templateList, fieldNumber: 1)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Nd_V1_ServiceProviderCustomCreatedTemplateListMessage, rhs: Nd_V1_ServiceProviderCustomCreatedTemplateListMessage) -> Bool {
+    if lhs.templateList != rhs.templateList {return false}
+    if lhs.unknownFields != rhs.unknownFields {return false}
+    return true
+  }
+}
+
+extension Nd_V1_SetServiceProviderCustomTemplateRequestMessage: SwiftProtobuf.Message, SwiftProtobuf._MessageImplementationBase, SwiftProtobuf._ProtoNameProviding {
+  static let protoMessageName: String = _protobuf_package + ".SetServiceProviderCustomTemplateRequestMessage"
+  static let _protobuf_nameMap: SwiftProtobuf._NameMap = [
+    1: .same(proto: "ServiceProviderId"),
+    2: .same(proto: "template"),
+  ]
+
+  mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
+    while let fieldNumber = try decoder.nextFieldNumber() {
+      // The use of inline closures is to circumvent an issue where the compiler
+      // allocates stack space for every case branch when no optimizations are
+      // enabled. https://github.com/apple/swift-protobuf/issues/1034
+      switch fieldNumber {
+      case 1: try { try decoder.decodeSingularMessageField(value: &self._serviceProviderID) }()
+      case 2: try { try decoder.decodeSingularMessageField(value: &self._template) }()
+      default: break
+      }
+    }
+  }
+
+  func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
+    if let v = self._serviceProviderID {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+    }
+    if let v = self._template {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+    }
+    try unknownFields.traverse(visitor: &visitor)
+  }
+
+  static func ==(lhs: Nd_V1_SetServiceProviderCustomTemplateRequestMessage, rhs: Nd_V1_SetServiceProviderCustomTemplateRequestMessage) -> Bool {
+    if lhs._serviceProviderID != rhs._serviceProviderID {return false}
+    if lhs._template != rhs._template {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

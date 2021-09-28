@@ -12,6 +12,9 @@ class AvailabilitySelectorViewModel : ObservableObject {
     var slots:[CustomerGeneratedSlot]? = nil
     var filteredSlots:[CustomerGeneratedSlot] = [CustomerGeneratedSlot]()
     
+    var overrideAvailability:Bool
+    var doctorBookingForSelf:Bool
+    
     @Published var dateDisplay:[Int64] = [Int64]()
     @Published var timeDisplay:[Int64] = [Int64]()
     
@@ -33,6 +36,9 @@ class AvailabilitySelectorViewModel : ObservableObject {
     @Published var selectedAddress:CustomerAddress? = nil
     @Published var showSelectAddressView:Bool = false
     
+    @Published var customDateSelection = Date()
+    var dateChanged:Bool = false
+    
     var slotSelected:(()->())?
 
     var serviceProviderID:String
@@ -42,10 +48,14 @@ class AvailabilitySelectorViewModel : ObservableObject {
     
     init(serviceProviderID:String,
          slotSelected:(()->())?,
-         organisationId:String) {
+         organisationId:String,
+         overrideAvailability:Bool,
+         doctorBookingForSelf:Bool) {
         self.serviceProviderID = serviceProviderID
         self.slotSelected = slotSelected
         self.organisationID = organisationId
+        self.overrideAvailability = overrideAvailability
+        self.doctorBookingForSelf = doctorBookingForSelf
     }
 
     func retrieveAvailabilities () {
@@ -241,6 +251,24 @@ class AvailabilitySelectorViewModel : ObservableObject {
     }
 
     func getCorrespondingSlot (timestamp:Int64) -> CustomerGeneratedSlot? {
+        
+        if dateChanged {
+            var slotToReturn = CustomerGeneratedSlot(startDateTime: customDateSelection.millisecondsSince1970,
+                                                     endDateTime: customDateSelection.millisecondsSince1970 + 1000,
+                                                    duration: 15,
+                                                    paymentType: "PostPay",
+                                                    organisationId: self.organisation?.organisationId ?? "",
+                                                    addressId: self.selectedAddress?.addressID ?? "",
+                                                    serviceFees: 0,
+                                                    isOrganisationSlot: self.organisation == nil ? false : true)
+            
+            if slots != nil {
+                slotToReturn.serviceFees = self.slots![0].serviceFees
+            }
+            
+            return slotToReturn
+        }
+        
         for slot in slots! {
             if slot.startDateTime == timestamp {
                 return slot
@@ -276,6 +304,7 @@ class AvailabilitySelectorViewModel : ObservableObject {
     }
     
     func selectTime (time:Int64) {
+        self.dateChanged = false
         self.selectedTime = time
         
         if getCorrespondingSlot(timestamp: time)!.paymentType == PaymentTypeEnum.PrePay.rawValue {

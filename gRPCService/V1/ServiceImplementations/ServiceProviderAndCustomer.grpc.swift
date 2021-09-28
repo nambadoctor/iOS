@@ -2350,6 +2350,16 @@ internal protocol Nd_V1_ServiceProviderWorkerV1ClientProtocol: GRPCClient {
     _ request: Nd_V1_IdMessage,
     callOptions: CallOptions?
   ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderConfigurableEntryFieldsObjectMessageList>
+
+  func setCreatedTemplate(
+    _ request: Nd_V1_SetServiceProviderCustomTemplateRequestMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_SetServiceProviderCustomTemplateRequestMessage, Nd_V1_BoolMessage>
+
+  func getCreatedTemplates(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions?
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderCustomCreatedTemplateListMessage>
 }
 
 extension Nd_V1_ServiceProviderWorkerV1ClientProtocol {
@@ -2590,6 +2600,42 @@ extension Nd_V1_ServiceProviderWorkerV1ClientProtocol {
       interceptors: self.interceptors?.makeGetConfigurableEntryFieldsInterceptors() ?? []
     )
   }
+
+  /// Unary call to SetCreatedTemplate
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to SetCreatedTemplate.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func setCreatedTemplate(
+    _ request: Nd_V1_SetServiceProviderCustomTemplateRequestMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_SetServiceProviderCustomTemplateRequestMessage, Nd_V1_BoolMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderWorkerV1/SetCreatedTemplate",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeSetCreatedTemplateInterceptors() ?? []
+    )
+  }
+
+  /// Unary call to GetCreatedTemplates
+  ///
+  /// - Parameters:
+  ///   - request: Request to send to GetCreatedTemplates.
+  ///   - callOptions: Call options.
+  /// - Returns: A `UnaryCall` with futures for the metadata, status and response.
+  internal func getCreatedTemplates(
+    _ request: Nd_V1_IdMessage,
+    callOptions: CallOptions? = nil
+  ) -> UnaryCall<Nd_V1_IdMessage, Nd_V1_ServiceProviderCustomCreatedTemplateListMessage> {
+    return self.makeUnaryCall(
+      path: "/nd.v1.ServiceProviderWorkerV1/GetCreatedTemplates",
+      request: request,
+      callOptions: callOptions ?? self.defaultCallOptions,
+      interceptors: self.interceptors?.makeGetCreatedTemplatesInterceptors() ?? []
+    )
+  }
 }
 
 internal protocol Nd_V1_ServiceProviderWorkerV1ClientInterceptorFactoryProtocol {
@@ -2632,6 +2678,12 @@ internal protocol Nd_V1_ServiceProviderWorkerV1ClientInterceptorFactoryProtocol 
 
   /// - Returns: Interceptors to use when invoking 'getConfigurableEntryFields'.
   func makeGetConfigurableEntryFieldsInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderConfigurableEntryFieldsObjectMessageList>]
+
+  /// - Returns: Interceptors to use when invoking 'setCreatedTemplate'.
+  func makeSetCreatedTemplateInterceptors() -> [ClientInterceptor<Nd_V1_SetServiceProviderCustomTemplateRequestMessage, Nd_V1_BoolMessage>]
+
+  /// - Returns: Interceptors to use when invoking 'getCreatedTemplates'.
+  func makeGetCreatedTemplatesInterceptors() -> [ClientInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderCustomCreatedTemplateListMessage>]
 }
 
 internal final class Nd_V1_ServiceProviderWorkerV1Client: Nd_V1_ServiceProviderWorkerV1ClientProtocol {
@@ -4102,6 +4154,10 @@ internal protocol Nd_V1_ServiceProviderWorkerV1Provider: CallHandlerProvider {
   func getAllSpecialties(request: Nd_V1_VoidMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_CategoryListMessage>
 
   func getConfigurableEntryFields(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderConfigurableEntryFieldsObjectMessageList>
+
+  func setCreatedTemplate(request: Nd_V1_SetServiceProviderCustomTemplateRequestMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_BoolMessage>
+
+  func getCreatedTemplates(request: Nd_V1_IdMessage, context: StatusOnlyCallContext) -> EventLoopFuture<Nd_V1_ServiceProviderCustomCreatedTemplateListMessage>
 }
 
 extension Nd_V1_ServiceProviderWorkerV1Provider {
@@ -4231,6 +4287,24 @@ extension Nd_V1_ServiceProviderWorkerV1Provider {
         userFunction: self.getConfigurableEntryFields(request:context:)
       )
 
+    case "SetCreatedTemplate":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_SetServiceProviderCustomTemplateRequestMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_BoolMessage>(),
+        interceptors: self.interceptors?.makeSetCreatedTemplateInterceptors() ?? [],
+        userFunction: self.setCreatedTemplate(request:context:)
+      )
+
+    case "GetCreatedTemplates":
+      return UnaryServerHandler(
+        context: context,
+        requestDeserializer: ProtobufDeserializer<Nd_V1_IdMessage>(),
+        responseSerializer: ProtobufSerializer<Nd_V1_ServiceProviderCustomCreatedTemplateListMessage>(),
+        interceptors: self.interceptors?.makeGetCreatedTemplatesInterceptors() ?? [],
+        userFunction: self.getCreatedTemplates(request:context:)
+      )
+
     default:
       return nil
     }
@@ -4290,6 +4364,14 @@ internal protocol Nd_V1_ServiceProviderWorkerV1ServerInterceptorFactoryProtocol 
   /// - Returns: Interceptors to use when handling 'getConfigurableEntryFields'.
   ///   Defaults to calling `self.makeInterceptors()`.
   func makeGetConfigurableEntryFieldsInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderConfigurableEntryFieldsObjectMessageList>]
+
+  /// - Returns: Interceptors to use when handling 'setCreatedTemplate'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeSetCreatedTemplateInterceptors() -> [ServerInterceptor<Nd_V1_SetServiceProviderCustomTemplateRequestMessage, Nd_V1_BoolMessage>]
+
+  /// - Returns: Interceptors to use when handling 'getCreatedTemplates'.
+  ///   Defaults to calling `self.makeInterceptors()`.
+  func makeGetCreatedTemplatesInterceptors() -> [ServerInterceptor<Nd_V1_IdMessage, Nd_V1_ServiceProviderCustomCreatedTemplateListMessage>]
 }
 /// To build a server, implement a class that conforms to this protocol.
 internal protocol Nd_V1_ServiceProviderServiceRequestWorkerV1Provider: CallHandlerProvider {
