@@ -22,7 +22,7 @@ struct MedicineEditableView: View {
                     .foregroundColor(Color.black.opacity(0.4))
                     .bold()
             }
-
+            
             ForEach (medicineVM.prescription.medicineList, id: \.medicineID) { medicine in
                 HStack {
                     VStack (alignment: .leading, spacing: 5) {
@@ -99,21 +99,17 @@ struct MedicineEditableView: View {
                 .background(Color.blue.opacity(0.08))
                 .cornerRadius(7)
             }
-
-            ZStack {
-                if medicineVM.imageLoader != nil && !medicineVM.localImageSelected {
-                    HStack {
-                        Spacer()
+            
+            ScrollView (.horizontal) {
+                HStack {
+                    if medicineVM.imageLoader != nil && !medicineVM.localImageSelected {
                         ImageView(imageLoader: medicineVM.imageLoader!)
-                        Spacer()
-                        
-                        
                     }
-                } else if medicineVM.localImageSelected {
-                    LocalPickedImageDisplayView(imagePickerVM: medicineVM.imagePickerVM)
+                    
+                    MultipleLocalPickedImageDisplayView(imagePickerVM: medicineVM.imagePickerVM)
                 }
             }
-
+            
             HStack {
                 LargeButton(title: "Add Medicine",
                             backgroundColor: Color.white,
@@ -121,30 +117,21 @@ struct MedicineEditableView: View {
                     LoggerService().log(eventName: "Add new medicine")
                     medicineVM.uploadManually()
                 }
-                .sheet(isPresented: $medicineVM.showMedicineEntrySheet) {
-                    MedicineEntryView(medicineVM: medicineVM)
-                }
+                            .sheet(isPresented: $medicineVM.showMedicineEntrySheet) {
+                                MedicineEntryView(medicineVM: medicineVM)
+                            }
                 
-                if medicineVM.showRemoveButton {
-                    LargeButton(title: "Remove Image",
-                                backgroundColor: Color.red) {
-                        LoggerService().log(eventName: "Remove image")
-                        self.medicineVM.removeSelectImage()
-                        self.medicineVM.removeLoadedImage()
+                LargeButton(title: "Upload Images",
+                            backgroundColor: Color.blue) {
+                    LoggerService().log(eventName: "Upload image")
+                    
+                    if self.medicineVM.imagePickerVM.images != nil {
+                        LoggerService().log(eventName: "Trying to upload image with existing image (maybe trying for multiple image upload)")
                     }
-                    .modifier(ImagePickerModifier(imagePickerVM: self.medicineVM.imagePickerVM))
-                } else {
-                    LargeButton(title: "Upload Image",
-                                backgroundColor: Color.blue) {
-                        LoggerService().log(eventName: "Upload image")
-
-                        if self.medicineVM.imagePickerVM.image != nil {
-                            LoggerService().log(eventName: "Trying to upload image with existing image (maybe trying for multiple image upload)")
-                        }
-                        medicineVM.imagePickerVM.showActionSheet()
-                    }
-                    .modifier(ImagePickerModifier(imagePickerVM: self.medicineVM.imagePickerVM))
+                    medicineVM.imagePickerVM.showActionSheet()
                 }
+                            .modifier(MultipleImagePickerModifier(imagePickerVM: self.medicineVM.imagePickerVM))
+                
             }
         }
     }

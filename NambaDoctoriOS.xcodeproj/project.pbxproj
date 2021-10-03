@@ -326,6 +326,7 @@
 		178EB6B22638BCF1009286B1 /* CustomerViewStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178EB6B12638BCF1009286B1 /* CustomerViewStates.swift */; };
 		178EB6BA26390CD4009286B1 /* CustomerAppointmentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178EB6B926390CD4009286B1 /* CustomerAppointmentsView.swift */; };
 		178EB6C126390CF4009286B1 /* CustomerAppointmentsCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178EB6C026390CF4009286B1 /* CustomerAppointmentsCardView.swift */; };
+		17925DD927097CD200813BA7 /* ImagePickerView in Frameworks */ = {isa = PBXBuildFile; productRef = 17925DD827097CD200813BA7 /* ImagePickerView */; };
 		1796320525AEE7B5002E466C /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796320425AEE7B5002E466C /* Helpers.swift */; };
 		1796320E25AEE865002E466C /* UIResponder+Current.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796320A25AEE865002E466C /* UIResponder+Current.swift */; };
 		1796320F25AEE865002E466C /* KeyboardHeightPublisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1796320B25AEE865002E466C /* KeyboardHeightPublisher.swift */; };
@@ -960,6 +961,7 @@
 				17365E02264771D600386909 /* Pods_NambaDoctoriOS.framework in Frameworks */,
 				173A230D25CAFB0F0086342A /* NIO in Frameworks */,
 				173A230725CAFA850086342A /* GRPC in Frameworks */,
+				17925DD927097CD200813BA7 /* ImagePickerView in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2431,6 +2433,7 @@
 			packageProductDependencies = (
 				173A230625CAFA850086342A /* GRPC */,
 				173A230C25CAFB0F0086342A /* NIO */,
+				17925DD827097CD200813BA7 /* ImagePickerView */,
 			);
 			productName = NambaDoctoriOS;
 			productReference = 17E5185025AED16A001F1A80 /* NambaDoctoriOS.app */;
@@ -2509,6 +2512,7 @@
 			packageReferences = (
 				173A230525CAFA850086342A /* XCRemoteSwiftPackageReference "grpc-swift" */,
 				173A230B25CAFB0F0086342A /* XCRemoteSwiftPackageReference "swift-nio" */,
+				17925DD727097CD100813BA7 /* XCRemoteSwiftPackageReference "ImagePickerView" */,
 			);
 			productRefGroup = 17E5185125AED16A001F1A80 /* Products */;
 			projectDirPath = "";
@@ -3284,7 +3288,7 @@
 				CODE_SIGN_ENTITLEMENTS = NambaDoctoriOS/NambaDoctoriOS.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 56;
+				CURRENT_PROJECT_VERSION = 57;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"NambaDoctoriOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 4H9M6DGZQ3;
@@ -3295,7 +3299,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.56;
+				MARKETING_VERSION = 1.57;
 				PRODUCT_BUNDLE_IDENTIFIER = nambadoctor.iOS.NambaDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3313,7 +3317,7 @@
 				CODE_SIGN_ENTITLEMENTS = NambaDoctoriOS/NambaDoctoriOS.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 56;
+				CURRENT_PROJECT_VERSION = 57;
 				DEVELOPMENT_ASSET_PATHS = "\"NambaDoctoriOS/Preview Content\"";
 				DEVELOPMENT_TEAM = 4H9M6DGZQ3;
 				ENABLE_PREVIEWS = YES;
@@ -3323,7 +3327,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.56;
+				MARKETING_VERSION = 1.57;
 				PRODUCT_BUNDLE_IDENTIFIER = nambadoctor.iOS.NambaDoctor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3478,6 +3482,14 @@
 				kind = branch;
 			};
 		};
+		17925DD727097CD100813BA7 /* XCRemoteSwiftPackageReference "ImagePickerView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rebeloper/ImagePickerView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.2.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -3490,6 +3502,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 173A230B25CAFB0F0086342A /* XCRemoteSwiftPackageReference "swift-nio" */;
 			productName = NIO;
+		};
+		17925DD827097CD200813BA7 /* ImagePickerView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 17925DD727097CD100813BA7 /* XCRemoteSwiftPackageReference "ImagePickerView" */;
+			productName = ImagePickerView;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -17,7 +17,7 @@ class MedicineViewModel: ObservableObject {
     @Published var showMedicineEntrySheet:Bool = false
     @Published var medicineEntryVM:MedicineEntryViewModel!
     
-    @Published var imagePickerVM:ImagePickerViewModel = ImagePickerViewModel()
+    @Published var imagePickerVM:MultipleImagePickerViewModel = MultipleImagePickerViewModel()
     @Published var localImageSelected:Bool = false
     @Published var showRemoveButton:Bool = false
     @Published var imageLoader:ImageLoader? = nil
@@ -43,8 +43,6 @@ class MedicineViewModel: ObservableObject {
         self.retrievePrescriptionHelper = retrievePrescriptionHelper
         self.prescriptionServiceCalls = prescriptionServiceCalls
         self.prescription = MakeEmptyPrescription(appointment: appointment)
-
-        self.imagePickerVM.imagePickerDelegate = self
         
         self.medicineEntryVM = MedicineEntryViewModel(medicine: MakeEmptyMedicine(), isNew: true, medicineEditedDelegate: self, autoFillVM: self.autoFillVM)
         self.medicineEntryVM.medicineEditedDelegate = self
@@ -168,21 +166,22 @@ class MedicineViewModel: ObservableObject {
     }
 
     func storeImageValues () {
-        if imagePickerVM.image != nil {
-            self.prescription.fileInfo.FileName = ""
-            self.prescription.fileInfo.FileType = "png"
-            self.prescription.fileInfo.MediaImage = imagePickerVM.image!.jpegData(compressionQuality: 0.3)!.base64EncodedString()
+        
+        if imagePickerVM.images != nil {
+            for eachImage in imagePickerVM.images! {
+                let fileInfo = ServiceProviderFileInfo(FileName: "", FileType: "png", MediaImage: eachImage.jpegData(compressionQuality: 0.3)!.base64EncodedString(), FileInfoId: "")
+                
+                self.prescription.uploadedPrescriptionDocuments.append(fileInfo)
+            }
         }
-
+        
         if imageLoader?.image != nil {
             self.prescription.fileInfo.MediaImage = imageLoader?.image?.jpegData(compressionQuality: 0.3)!.base64EncodedString() ?? ""
             self.prescription.fileInfo.FileType = "png"
         }
         
-        if imageLoader?.image == nil && imagePickerVM.image == nil {
-            self.prescription.fileInfo.FileName = ""
-            self.prescription.fileInfo.FileType = ""
-            self.prescription.fileInfo.MediaImage = ""
+        if imageLoader?.image == nil && imagePickerVM.images == nil {
+            self.prescription.uploadedPrescriptionDocuments = [ServiceProviderFileInfo]()
         }
     }
     
@@ -231,24 +230,5 @@ class MedicineViewModel: ObservableObject {
 extension MedicineViewModel : MedicineEntryDelegate {
     func addMedicine() {
         self.makeMedicineObjAndAdd()
-    }
-}
-
-extension MedicineViewModel : ImagePickedDelegate {
-    func imageSelected() {
-        self.imageLoader = nil
-        self.localImageSelected = true
-        self.showRemoveButton = true
-    }
-
-    func removeSelectImage () {
-        self.imagePickerVM.image = nil
-        self.localImageSelected = false
-        self.showRemoveButton = false
-    }
-
-    func removeLoadedImage () {
-        self.imageLoader = nil
-        self.showRemoveButton = false
     }
 }
