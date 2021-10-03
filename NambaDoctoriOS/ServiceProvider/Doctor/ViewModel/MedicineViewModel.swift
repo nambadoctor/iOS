@@ -21,6 +21,7 @@ class MedicineViewModel: ObservableObject {
     @Published var localImageSelected:Bool = false
     @Published var showRemoveButton:Bool = false
     @Published var imageLoader:ImageLoader? = nil
+    @Published var imageLoaders:[ImageLoader]? = nil
 
     @Published var hasNoMedicineOrImage:Bool = false
     
@@ -137,19 +138,24 @@ class MedicineViewModel: ObservableObject {
                         if !success {
                             self.imageLoader = nil
                             ifmedListAlsoEmptyCheck()
-                            self.showRemoveButton = false
-                        } else {
-                            self.showRemoveButton = true
                         }
                     }
                 } else {
                     ifmedListAlsoEmptyCheck()
                 }
             }
+        } else if !self.prescription.uploadedPrescriptionDocuments.isEmpty {
+            self.imageLoaders = [ImageLoader]()
+            for uploadedDoc in self.prescription.uploadedPrescriptionDocuments {
+                retrievePrescriptionHelper.downloadPrescription(prescriptionID: uploadedDoc.FileInfoId) { (imageDataURL) in
+                    if imageDataURL != nil {
+                        self.imageLoaders?.append(ImageLoader(urlString: imageDataURL!) { _ in})
+                    }
+                }
+            }
         } else {
             self.imageLoader = nil
             ifmedListAlsoEmptyCheck()
-            self.showRemoveButton = false
         }
     }
     
@@ -174,6 +180,8 @@ class MedicineViewModel: ObservableObject {
                 self.prescription.uploadedPrescriptionDocuments.append(fileInfo)
             }
         }
+        
+        print("WEKJNWEKJNF \(self.prescription.uploadedPrescriptionDocuments.count)")
         
         if imageLoader?.image != nil {
             self.prescription.fileInfo.MediaImage = imageLoader?.image?.jpegData(compressionQuality: 0.3)!.base64EncodedString() ?? ""

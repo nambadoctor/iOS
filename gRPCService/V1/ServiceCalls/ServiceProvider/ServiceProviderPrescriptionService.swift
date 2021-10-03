@@ -53,9 +53,7 @@ class ServiceProviderPrescriptionService : ServiceProviderPrescriptionServicePro
         let prescriptionClient = Nd_V1_ServiceProviderPrescriptionWorkerV1Client(channel: channel)
 
         let request = prescriptionObjectMapper.localPrescriptionToGrpc(prescription: prescription)
-        
-        print("EWKFJNWKFJN \(request)")
-        
+                
         let makePrescription = prescriptionClient.setPrescription(request, callOptions: callOptions)
 
         DispatchQueue.global().async {
