@@ -10,7 +10,7 @@ import Combine
 import SwiftUI
 
 class ImageLoader: ObservableObject {
-    
+    public var id = UUID().uuidString
     var image:UIImage? = nil
     var url:URL? = nil
     

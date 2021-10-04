@@ -102,8 +102,28 @@ struct MedicineEditableView: View {
             
             ScrollView (.horizontal) {
                 HStack {
-                    if medicineVM.imageLoader != nil && !medicineVM.localImageSelected {
+                    if medicineVM.imageLoader != nil {
                         ImageView(imageLoader: medicineVM.imageLoader!)
+                    }
+                    
+                    if medicineVM.imageLoaders != nil {
+                        ForEach (self.medicineVM.imageLoaders!, id: \.id) { loader in
+                            ZStack {
+                                ImageView(imageLoader: loader)
+                                VStack {
+                                    HStack {
+                                        Spacer()
+                                        Image("xmark.circle")
+                                            .resizable()
+                                            .frame(width: 20, height: 20)
+                                            .foregroundColor(.red)
+                                    }
+                                    Spacer()
+                                }.onTapGesture {
+                                    self.medicineVM.removeImage(imageToRemove: loader)
+                                }
+                            }
+                        }
                     }
                     
                     MultipleLocalPickedImageDisplayView(imagePickerVM: medicineVM.imagePickerVM)

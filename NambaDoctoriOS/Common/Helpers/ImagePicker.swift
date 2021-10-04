@@ -133,17 +133,58 @@ class MultipleImagePickerViewModel:ObservableObject {
 
 struct MultipleLocalPickedImageDisplayView : View {
     @ObservedObject var imagePickerVM:MultipleImagePickerViewModel
+    @State var showEnlarged:Bool = false
     var body : some View {
         ZStack {
             if imagePickerVM.images != nil && !imagePickerVM.images!.isEmpty {
                 HStack {
                     ForEach (self.imagePickerVM.images!, id: \.self) { image in
-                        Image(uiImage: image)
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 150, height: 200)
-                            .cornerRadius(10)
-                            .shadow(radius: 10)
+                        ZStack {
+                            Image(uiImage: image)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 120, height: 160)
+                                .cornerRadius(10)
+                                .shadow(radius: 10)
+                                .onTapGesture {
+                                    showEnlarged = true
+                                }
+                                .sheet(isPresented: self.$showEnlarged, content: {
+                                    VStack (alignment: .center) {
+                                        HStack {
+                                            Spacer()
+                                            Button {
+                                                self.showEnlarged = false
+                                            } label: {
+                                                Image("xmark.circle")
+                                                    .resizable()
+                                                    .frame(width: 35, height: 35)
+                                                    .foregroundColor(.blue)
+                                            }.padding()
+                                        }
+
+                                        Image(uiImage: image)
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .draggable()
+                                            .pinchToZoom()
+                                            .onDisappear() {showEnlarged = false}
+                                    }
+                                })
+                            
+                            VStack {
+                                HStack {
+                                    Spacer()
+                                    Image("xmark.circle")
+                                        .resizable()
+                                        .frame(width: 20, height: 20)
+                                        .foregroundColor(.red)
+                                }
+                                Spacer()
+                            }.onTapGesture {
+                                self.imagePickerVM.removeImage(image: image)
+                            }
+                        }
                     }
                 }
             }

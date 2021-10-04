@@ -25,7 +25,7 @@ struct ImageView: View {
                 .frame(width: self.width, height: self.height, alignment: .center)
                 .onTapGesture {
                     showEnlarged = true
-                }
+                } 
                 .sheet(isPresented: self.$showEnlarged, content: {
                     VStack (alignment: .center) {
                         HStack {

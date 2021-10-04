@@ -180,12 +180,12 @@ class MedicineViewModel: ObservableObject {
                 self.prescription.uploadedPrescriptionDocuments.append(fileInfo)
             }
         }
-        
-        print("WEKJNWEKJNF \(self.prescription.uploadedPrescriptionDocuments.count)")
-        
-        if imageLoader?.image != nil {
-            self.prescription.fileInfo.MediaImage = imageLoader?.image?.jpegData(compressionQuality: 0.3)!.base64EncodedString() ?? ""
-            self.prescription.fileInfo.FileType = "png"
+
+        if imageLoaders != nil {
+            for loader in self.imageLoaders! {
+                let fileInfo = ServiceProviderFileInfo(FileName: "", FileType: "png", MediaImage: loader.image?.jpegData(compressionQuality: 0.3)!.base64EncodedString() ?? "", FileInfoId: "")
+                self.prescription.uploadedPrescriptionDocuments.append(fileInfo)
+            }
         }
         
         if imageLoader?.image == nil && imagePickerVM.images == nil {
@@ -216,6 +216,17 @@ class MedicineViewModel: ObservableObject {
 
     func saveCurrentChanges () {
         storeImageValues()
+    }
+    
+    func removeImage (imageToRemove:ImageLoader) {
+        var index = 0
+        for loader in imageLoaders! {
+            if loader.id == imageToRemove.id {
+                self.imageLoaders!.remove(at: index)
+                break
+            }
+            index += 1
+        }
     }
     
 //
