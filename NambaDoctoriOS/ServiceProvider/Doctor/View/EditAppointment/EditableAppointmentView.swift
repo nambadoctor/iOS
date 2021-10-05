@@ -56,47 +56,53 @@ struct EditableAppointmentView: View {
                 }
             }
             
-            if !self.intermediateVM.createdTemplates.isEmpty {
+            if !self.intermediateVM.createdTemplateVM.createdTemplates.isEmpty {
                 Menu {
-                    
-                    ForEach(self.intermediateVM.createdTemplates, id: \.templateId) { template in
+
+                    ForEach(self.intermediateVM.createdTemplateVM.createdTemplates, id: \.templateId) { template in
                         Button {
                             self.intermediateVM.selectTemplate(template: template)
                         } label: {
                             Text(template.templateName)
                         }
                     }
-                    
+
+                    Button {
+                        self.intermediateVM.showTemplateReviewSheet = true
+                    } label: {
+                        Text("New Template")
+                    }
+
                 } label: {
                     HStack {
-                        if self.intermediateVM.selectedTemplate != nil {
-                            Text(self.intermediateVM.selectedTemplate!.templateName)
+                        if self.intermediateVM.createdTemplateVM.selectedTemplate != nil {
+                            Text(self.intermediateVM.createdTemplateVM.selectedTemplate!.templateName)
                         } else {
-                            Text("Please Select a Template")
+                            Text("Select a template")
                         }
-                        
+
                         Image("chevron.down.circle")
                         Spacer()
                     }
                 }
                 .modifier(DetailedAppointmentViewCardModifier())
             }
-            
-            
-            
-//            if self.intermediateVM.showTemplateReviewSheet {
-//                NavigationLink("",
-//                               destination: CreatedTemplatesView(intermediateVM: self.intermediateVM),
-//                               isActive: self.$intermediateVM.showTemplateReviewSheet)
-//            }
 
-            if intermediateVM.configurableEntryVM.selectedEntryField.Prescriptions {
-                MedicineEditableView()
+            Group {
+                if self.intermediateVM.showTemplateReviewSheet {
+                    NavigationLink("",
+                                   destination: CreatedTemplatesView(createdTemplateVM: self.intermediateVM.createdTemplateVM),
+                                   isActive: self.$intermediateVM.showTemplateReviewSheet)
+                }
+
+                if intermediateVM.configurableEntryVM.selectedEntryField.Prescriptions {
+                    MedicineEditableView()
+                        .modifier(DetailedAppointmentViewCardModifier())
+                }
+                
+                PatientInfoEditableView()
                     .modifier(DetailedAppointmentViewCardModifier())
             }
-            
-            PatientInfoEditableView()
-                .modifier(DetailedAppointmentViewCardModifier())
             
             HStack {
                 Button {
@@ -212,20 +218,6 @@ struct EditableAppointmentView: View {
                 }
             }
             .modifier(DetailedAppointmentViewCardModifier())
-        }
-    }
-    
-    var saveAsNewTemplate : some View {
-        VStack {
-            LargeButton(title: "Save as New Template",
-                        backgroundColor: Color.white,
-                        foregroundColor: Color.blue) {
-                LoggerService().log(eventName: "SAVING AS NEW TEMPLATE")
-                self.intermediateVM.showTemplateReviewSheet = true
-            }
-        }
-        .sheet(isPresented: self.$intermediateVM.showTemplateReviewSheet) {
-            CreatedTemplatesView(intermediateVM: self.intermediateVM)
         }
     }
     

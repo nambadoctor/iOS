@@ -156,3 +156,101 @@ struct MedicineEditableView: View {
         }
     }
 }
+
+struct MedicineDisplay : View {
+    @ObservedObject var medicineVM:MedicineViewModel
+    var isEditable:Bool = false
+    
+    var body: some View {
+        ForEach (medicineVM.prescription.medicineList, id: \.medicineID) { medicine in
+            HStack {
+                VStack (alignment: .leading, spacing: 5) {
+                    Text("\(medicine.medicineName)")
+                        .font(.callout)
+                        .bold()
+                        .foregroundColor(Color.blue)
+                    
+                    Text("\(medicine.intakeDosage.Name) \(medicine.intakeDosage.Unit)")
+                        .font(.callout)
+                        .foregroundColor(Color.blue)
+                    
+                    if !medicine.specialInstructions.isEmpty {
+                        Text("\(medicine.specialInstructions)")
+                            .font(.callout)
+                            .foregroundColor(Color.blue)
+                    }
+                    
+                    if !medicine.routeOfAdministration.isEmpty {
+                        Text("\(medicine.routeOfAdministration)")
+                            .font(.callout)
+                            .foregroundColor(Color.blue)
+                    }
+                    
+                    if !medicine.intake.isEmpty {
+                        Text("\(medicine.intake)")
+                            .font(.callout)
+                            .foregroundColor(Color.blue)
+                    }
+                    
+                    if !medicine.timings.isEmpty {
+                        Text("\(medicine.timings)")
+                            .font(.callout)
+                            .foregroundColor(Color.blue)
+                    }
+                    
+                    if !medicine._duration.Days.isEmpty {
+                        Text("\(medicine._duration.Days) \(medicine._duration.Unit)")
+                            .font(.callout)
+                            .foregroundColor(Color.blue)
+                    } else {
+                        Text("No duration specified")
+                            .font(.callout)
+                            .foregroundColor(Color.blue)
+                    }
+                    
+                    if !medicine.notes.isEmpty {
+                        Text("\(medicine.notes)")
+                            .font(.callout)
+                            .foregroundColor(Color.blue)
+                    }
+                }
+                
+                if self.isEditable {
+                    Spacer()
+                    
+                    VStack (spacing: 15) {
+                        Button {
+                            LoggerService().log(eventName: "Edit already entered medicine")
+                            medicineVM.editPrescription(medicine: medicine)
+                        } label: {
+                            Image("pencil")
+                                .foregroundColor(Color.blue)
+                        }
+                        
+                        Button {
+                            LoggerService().log(eventName: "Remove already entered medicine")
+                            medicineVM.removePrescription(medicine: medicine)
+                        } label: {
+                            Image("xmark.circle")
+                                .foregroundColor(Color.red)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+struct AddMedicineButton : View {
+    @ObservedObject var medicineVM:MedicineViewModel
+    
+    var body: some View {
+        Button {
+            medicineVM.uploadManually()
+        } label: {
+            Text("Add Medicine")
+        }.sheet(isPresented: $medicineVM.showMedicineEntrySheet) {
+            MedicineEntryView(medicineVM: medicineVM)
+        }
+    }
+}
