@@ -285,6 +285,10 @@ extension IntermediateAppointmentViewModel {
         self.serviceRequestVM.serviceRequest.diagnosis.name = template.diagnosis.name
         self.serviceRequestVM.serviceRequest.diagnosis.type = template.diagnosis.type
     }
+    
+    func showTemplateCreateView () {
+        self.showTemplateReviewSheet = true
+    }
 }
 
 //MARK:- TWILIO RELATED CALLS

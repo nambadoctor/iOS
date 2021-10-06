@@ -17,6 +17,8 @@ class CreatedTemplateViewModel : ObservableObject {
     @Published var selectedTemplate:ServiceProviderCustomCreatedTemplate? = nil
     @Published var tempInvestigation:String = ""
     
+    @Published var killView:Bool = false
+    
     init(){
         self.medicineVM = MedicineViewModel(appointment: ServiceProviderAppointment(appointmentID: "", serviceRequestID: "", parentAppointmentID: "", customerID: "", serviceProviderID: "", requestedBy: "", serviceProviderName: "", customerName: "", isBlockedByServiceProvider: false, status: "", serviceFee: 0, followUpDays: 0, isPaid: false, scheduledAppointmentStartTime: 0, scheduledAppointmentEndTime: 0, actualAppointmentStartTime: 0, actualAppointmentEndTime: 0, createdDateTime: 0, lastModifiedDate: 0, noOfReports: 0, cancellation: nil, childId: "", paymentType: "", appointmentVerification: nil, organisationId: "", organisationName: "", IsInPersonAppointment: false, AddressId: "", AppointmentTransfer: nil))
         getTemplates()
@@ -38,6 +40,9 @@ class CreatedTemplateViewModel : ObservableObject {
                 
                 self.getTemplates()
                 self.template = ServiceProviderCustomCreatedTemplate(templateId: "", templateName: "", serviceProviderID: "", diagnosis: ServiceProviderDiagnosis(name: "", type: ""), investigations: [String](), advice: "", createdDateTime: Date().millisecondsSince1970, lastModifiedDate: Date().millisecondsSince1970, medicines: [ServiceProviderMedicine]())
+                self.medicineVM.prescription.medicineList.removeAll()
+                
+                self.killView = true
                 
             }
             CommonDefaultModifiers.hideLoader()
@@ -51,10 +56,16 @@ class CreatedTemplateViewModel : ObservableObject {
             }
         }
     }
+    
+    func selectTemplateToEdit () {
+        self.template = selectedTemplate!
+        self.medicineVM.prescription.medicineList = self.template.medicines
+    }
 }
 
 struct CreatedTemplatesView: View {
     @ObservedObject var createdTemplateVM:CreatedTemplateViewModel
+    @Binding var showView:Bool
 
     var body: some View {
         Form {
@@ -89,6 +100,63 @@ struct CreatedTemplatesView: View {
             } label: {
                 Text("Confirm")
             }
+            
+            if self.createdTemplateVM.killView {
+                Text("").onAppear { self.showView = false }
+            }
+        }
+    }
+}
+
+struct CreatedTemplateMenuView : View {
+    @ObservedObject var createdTemplateVM:CreatedTemplateViewModel
+    var selectTemplateCallBack : (_ template: ServiceProviderCustomCreatedTemplate) -> ()
+    var showTemplateCreateView : () -> ()
+    
+    var body : some View {
+        if !self.createdTemplateVM.createdTemplates.isEmpty {
+            VStack {
+                HStack {
+                    Menu {
+
+                        ForEach(self.createdTemplateVM.createdTemplates, id: \.templateId) { template in
+                            Button {
+                                self.createdTemplateVM.selectedTemplate = template
+                                selectTemplateCallBack(template)
+                            } label: {
+                                Text(template.templateName)
+                            }
+                        }
+
+                        Button {
+                            showTemplateCreateView()
+                        } label: {
+                            Text("New Template")
+                        }
+
+                    } label: {
+                        HStack {
+                            if self.createdTemplateVM.selectedTemplate != nil {
+                                Text(self.createdTemplateVM.selectedTemplate!.templateName)
+                            } else {
+                                Text("Select a template")
+                            }
+
+                            Image("chevron.down.circle")
+                            Spacer()
+                        }
+                    }
+                    if self.createdTemplateVM.selectedTemplate != nil {
+                        Button {
+                            self.createdTemplateVM.selectTemplateToEdit()
+                            self.showTemplateCreateView()
+                        } label: {
+                            Image("pencil.circle")
+                        }
+                    }
+                }
+            }
+            .modifier(DetailedAppointmentViewCardModifier())
         }
     }
 }

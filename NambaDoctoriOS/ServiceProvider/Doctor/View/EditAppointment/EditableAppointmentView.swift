@@ -56,42 +56,12 @@ struct EditableAppointmentView: View {
                 }
             }
             
-            if !self.intermediateVM.createdTemplateVM.createdTemplates.isEmpty {
-                Menu {
-
-                    ForEach(self.intermediateVM.createdTemplateVM.createdTemplates, id: \.templateId) { template in
-                        Button {
-                            self.intermediateVM.selectTemplate(template: template)
-                        } label: {
-                            Text(template.templateName)
-                        }
-                    }
-
-                    Button {
-                        self.intermediateVM.showTemplateReviewSheet = true
-                    } label: {
-                        Text("New Template")
-                    }
-
-                } label: {
-                    HStack {
-                        if self.intermediateVM.createdTemplateVM.selectedTemplate != nil {
-                            Text(self.intermediateVM.createdTemplateVM.selectedTemplate!.templateName)
-                        } else {
-                            Text("Select a template")
-                        }
-
-                        Image("chevron.down.circle")
-                        Spacer()
-                    }
-                }
-                .modifier(DetailedAppointmentViewCardModifier())
-            }
+            CreatedTemplateMenuView(createdTemplateVM: self.intermediateVM.createdTemplateVM, selectTemplateCallBack: self.intermediateVM.selectTemplate(template:), showTemplateCreateView: self.intermediateVM.showTemplateCreateView)
 
             Group {
                 if self.intermediateVM.showTemplateReviewSheet {
                     NavigationLink("",
-                                   destination: CreatedTemplatesView(createdTemplateVM: self.intermediateVM.createdTemplateVM),
+                                   destination: CreatedTemplatesView(createdTemplateVM: self.intermediateVM.createdTemplateVM, showView: self.$intermediateVM.showTemplateReviewSheet),
                                    isActive: self.$intermediateVM.showTemplateReviewSheet)
                 }
 
