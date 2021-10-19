@@ -1996,6 +1996,42 @@ struct Nd_V1_CustomerVitalsMessage {
   /// Clears the value of `isAlcoholConsumer`. Subsequent reads from it will return its default value.
   mutating func clearIsAlcoholConsumer() {self._isAlcoholConsumer = nil}
 
+  var pulse: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _pulse ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_pulse = newValue}
+  }
+  /// Returns true if `pulse` has been explicitly set.
+  var hasPulse: Bool {return self._pulse != nil}
+  /// Clears the value of `pulse`. Subsequent reads from it will return its default value.
+  mutating func clearPulse() {self._pulse = nil}
+
+  var respiratoryRate: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _respiratoryRate ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_respiratoryRate = newValue}
+  }
+  /// Returns true if `respiratoryRate` has been explicitly set.
+  var hasRespiratoryRate: Bool {return self._respiratoryRate != nil}
+  /// Clears the value of `respiratoryRate`. Subsequent reads from it will return its default value.
+  mutating func clearRespiratoryRate() {self._respiratoryRate = nil}
+
+  var temperature: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _temperature ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_temperature = newValue}
+  }
+  /// Returns true if `temperature` has been explicitly set.
+  var hasTemperature: Bool {return self._temperature != nil}
+  /// Clears the value of `temperature`. Subsequent reads from it will return its default value.
+  mutating func clearTemperature() {self._temperature = nil}
+
+  var saturation: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _saturation ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_saturation = newValue}
+  }
+  /// Returns true if `saturation` has been explicitly set.
+  var hasSaturation: Bool {return self._saturation != nil}
+  /// Clears the value of `saturation`. Subsequent reads from it will return its default value.
+  mutating func clearSaturation() {self._saturation = nil}
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -2008,6 +2044,10 @@ struct Nd_V1_CustomerVitalsMessage {
   fileprivate var _obstetricHistory: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _isSmoker: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
   fileprivate var _isAlcoholConsumer: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
+  fileprivate var _pulse: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _respiratoryRate: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _temperature: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _saturation: SwiftProtobuf.Google_Protobuf_StringValue? = nil
 }
 
 struct Nd_V1_CustomerDiagnosisMessage {
@@ -3276,169 +3316,163 @@ struct Nd_V1_CustomerServiceRequestAdditionalEntryFields {
   // methods supported on all messages.
 
   var menarche: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _menarche ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_menarche = newValue}
+    get {return _storage._menarche ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._menarche = newValue}
   }
   /// Returns true if `menarche` has been explicitly set.
-  var hasMenarche: Bool {return self._menarche != nil}
+  var hasMenarche: Bool {return _storage._menarche != nil}
   /// Clears the value of `menarche`. Subsequent reads from it will return its default value.
-  mutating func clearMenarche() {self._menarche = nil}
+  mutating func clearMenarche() {_uniqueStorage()._menarche = nil}
 
   var periods: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _periods ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_periods = newValue}
+    get {return _storage._periods ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._periods = newValue}
   }
   /// Returns true if `periods` has been explicitly set.
-  var hasPeriods: Bool {return self._periods != nil}
+  var hasPeriods: Bool {return _storage._periods != nil}
   /// Clears the value of `periods`. Subsequent reads from it will return its default value.
-  mutating func clearPeriods() {self._periods = nil}
+  mutating func clearPeriods() {_uniqueStorage()._periods = nil}
 
   var ageAtFirstChildBirth: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _ageAtFirstChildBirth ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_ageAtFirstChildBirth = newValue}
+    get {return _storage._ageAtFirstChildBirth ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._ageAtFirstChildBirth = newValue}
   }
   /// Returns true if `ageAtFirstChildBirth` has been explicitly set.
-  var hasAgeAtFirstChildBirth: Bool {return self._ageAtFirstChildBirth != nil}
+  var hasAgeAtFirstChildBirth: Bool {return _storage._ageAtFirstChildBirth != nil}
   /// Clears the value of `ageAtFirstChildBirth`. Subsequent reads from it will return its default value.
-  mutating func clearAgeAtFirstChildBirth() {self._ageAtFirstChildBirth = nil}
+  mutating func clearAgeAtFirstChildBirth() {_uniqueStorage()._ageAtFirstChildBirth = nil}
 
   var lmp: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _lmp ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_lmp = newValue}
+    get {return _storage._lmp ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._lmp = newValue}
   }
   /// Returns true if `lmp` has been explicitly set.
-  var hasLmp: Bool {return self._lmp != nil}
+  var hasLmp: Bool {return _storage._lmp != nil}
   /// Clears the value of `lmp`. Subsequent reads from it will return its default value.
-  mutating func clearLmp() {self._lmp = nil}
+  mutating func clearLmp() {_uniqueStorage()._lmp = nil}
 
   var noOfChildren: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _noOfChildren ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_noOfChildren = newValue}
+    get {return _storage._noOfChildren ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._noOfChildren = newValue}
   }
   /// Returns true if `noOfChildren` has been explicitly set.
-  var hasNoOfChildren: Bool {return self._noOfChildren != nil}
+  var hasNoOfChildren: Bool {return _storage._noOfChildren != nil}
   /// Clears the value of `noOfChildren`. Subsequent reads from it will return its default value.
-  mutating func clearNoOfChildren() {self._noOfChildren = nil}
+  mutating func clearNoOfChildren() {_uniqueStorage()._noOfChildren = nil}
 
   var breastFeeding: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _breastFeeding ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_breastFeeding = newValue}
+    get {return _storage._breastFeeding ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._breastFeeding = newValue}
   }
   /// Returns true if `breastFeeding` has been explicitly set.
-  var hasBreastFeeding: Bool {return self._breastFeeding != nil}
+  var hasBreastFeeding: Bool {return _storage._breastFeeding != nil}
   /// Clears the value of `breastFeeding`. Subsequent reads from it will return its default value.
-  mutating func clearBreastFeeding() {self._breastFeeding = nil}
+  mutating func clearBreastFeeding() {_uniqueStorage()._breastFeeding = nil}
 
   var familyHistoryOfCancer: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _familyHistoryOfCancer ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_familyHistoryOfCancer = newValue}
+    get {return _storage._familyHistoryOfCancer ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._familyHistoryOfCancer = newValue}
   }
   /// Returns true if `familyHistoryOfCancer` has been explicitly set.
-  var hasFamilyHistoryOfCancer: Bool {return self._familyHistoryOfCancer != nil}
+  var hasFamilyHistoryOfCancer: Bool {return _storage._familyHistoryOfCancer != nil}
   /// Clears the value of `familyHistoryOfCancer`. Subsequent reads from it will return its default value.
-  mutating func clearFamilyHistoryOfCancer() {self._familyHistoryOfCancer = nil}
+  mutating func clearFamilyHistoryOfCancer() {_uniqueStorage()._familyHistoryOfCancer = nil}
 
   var otherCancers: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _otherCancers ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_otherCancers = newValue}
+    get {return _storage._otherCancers ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._otherCancers = newValue}
   }
   /// Returns true if `otherCancers` has been explicitly set.
-  var hasOtherCancers: Bool {return self._otherCancers != nil}
+  var hasOtherCancers: Bool {return _storage._otherCancers != nil}
   /// Clears the value of `otherCancers`. Subsequent reads from it will return its default value.
-  mutating func clearOtherCancers() {self._otherCancers = nil}
+  mutating func clearOtherCancers() {_uniqueStorage()._otherCancers = nil}
 
   var diabetes: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _diabetes ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_diabetes = newValue}
+    get {return _storage._diabetes ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._diabetes = newValue}
   }
   /// Returns true if `diabetes` has been explicitly set.
-  var hasDiabetes: Bool {return self._diabetes != nil}
+  var hasDiabetes: Bool {return _storage._diabetes != nil}
   /// Clears the value of `diabetes`. Subsequent reads from it will return its default value.
-  mutating func clearDiabetes() {self._diabetes = nil}
+  mutating func clearDiabetes() {_uniqueStorage()._diabetes = nil}
 
   var hypertension: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _hypertension ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_hypertension = newValue}
+    get {return _storage._hypertension ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._hypertension = newValue}
   }
   /// Returns true if `hypertension` has been explicitly set.
-  var hasHypertension: Bool {return self._hypertension != nil}
+  var hasHypertension: Bool {return _storage._hypertension != nil}
   /// Clears the value of `hypertension`. Subsequent reads from it will return its default value.
-  mutating func clearHypertension() {self._hypertension = nil}
+  mutating func clearHypertension() {_uniqueStorage()._hypertension = nil}
 
   var asthma: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _asthma ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_asthma = newValue}
+    get {return _storage._asthma ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._asthma = newValue}
   }
   /// Returns true if `asthma` has been explicitly set.
-  var hasAsthma: Bool {return self._asthma != nil}
+  var hasAsthma: Bool {return _storage._asthma != nil}
   /// Clears the value of `asthma`. Subsequent reads from it will return its default value.
-  mutating func clearAsthma() {self._asthma = nil}
+  mutating func clearAsthma() {_uniqueStorage()._asthma = nil}
 
   var thyroid: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _thyroid ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_thyroid = newValue}
+    get {return _storage._thyroid ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._thyroid = newValue}
   }
   /// Returns true if `thyroid` has been explicitly set.
-  var hasThyroid: Bool {return self._thyroid != nil}
+  var hasThyroid: Bool {return _storage._thyroid != nil}
   /// Clears the value of `thyroid`. Subsequent reads from it will return its default value.
-  mutating func clearThyroid() {self._thyroid = nil}
+  mutating func clearThyroid() {_uniqueStorage()._thyroid = nil}
 
   var medication: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _medication ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_medication = newValue}
+    get {return _storage._medication ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._medication = newValue}
   }
   /// Returns true if `medication` has been explicitly set.
-  var hasMedication: Bool {return self._medication != nil}
+  var hasMedication: Bool {return _storage._medication != nil}
   /// Clears the value of `medication`. Subsequent reads from it will return its default value.
-  mutating func clearMedication() {self._medication = nil}
+  mutating func clearMedication() {_uniqueStorage()._medication = nil}
 
   var dietAndAppetite: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _dietAndAppetite ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_dietAndAppetite = newValue}
+    get {return _storage._dietAndAppetite ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._dietAndAppetite = newValue}
   }
   /// Returns true if `dietAndAppetite` has been explicitly set.
-  var hasDietAndAppetite: Bool {return self._dietAndAppetite != nil}
+  var hasDietAndAppetite: Bool {return _storage._dietAndAppetite != nil}
   /// Clears the value of `dietAndAppetite`. Subsequent reads from it will return its default value.
-  mutating func clearDietAndAppetite() {self._dietAndAppetite = nil}
+  mutating func clearDietAndAppetite() {_uniqueStorage()._dietAndAppetite = nil}
 
   var habits: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _habits ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_habits = newValue}
+    get {return _storage._habits ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._habits = newValue}
   }
   /// Returns true if `habits` has been explicitly set.
-  var hasHabits: Bool {return self._habits != nil}
+  var hasHabits: Bool {return _storage._habits != nil}
   /// Clears the value of `habits`. Subsequent reads from it will return its default value.
-  mutating func clearHabits() {self._habits = nil}
+  mutating func clearHabits() {_uniqueStorage()._habits = nil}
 
   var breastExamination: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _breastExamination ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_breastExamination = newValue}
+    get {return _storage._breastExamination ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._breastExamination = newValue}
   }
   /// Returns true if `breastExamination` has been explicitly set.
-  var hasBreastExamination: Bool {return self._breastExamination != nil}
+  var hasBreastExamination: Bool {return _storage._breastExamination != nil}
   /// Clears the value of `breastExamination`. Subsequent reads from it will return its default value.
-  mutating func clearBreastExamination() {self._breastExamination = nil}
+  mutating func clearBreastExamination() {_uniqueStorage()._breastExamination = nil}
+
+  var familyHistoryOfOtherDiseases: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _storage._familyHistoryOfOtherDiseases ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._familyHistoryOfOtherDiseases = newValue}
+  }
+  /// Returns true if `familyHistoryOfOtherDiseases` has been explicitly set.
+  var hasFamilyHistoryOfOtherDiseases: Bool {return _storage._familyHistoryOfOtherDiseases != nil}
+  /// Clears the value of `familyHistoryOfOtherDiseases`. Subsequent reads from it will return its default value.
+  mutating func clearFamilyHistoryOfOtherDiseases() {_uniqueStorage()._familyHistoryOfOtherDiseases = nil}
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
 
-  fileprivate var _menarche: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _periods: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _ageAtFirstChildBirth: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _lmp: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _noOfChildren: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _breastFeeding: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _familyHistoryOfCancer: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _otherCancers: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _diabetes: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _hypertension: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _asthma: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _thyroid: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _medication: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _dietAndAppetite: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _habits: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _breastExamination: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 struct Nd_V1_CustomerServiceRequestMessage {
@@ -5109,6 +5143,42 @@ struct Nd_V1_ServiceProviderCustomerVitalsMessage {
   /// Clears the value of `isAlcoholConsumer`. Subsequent reads from it will return its default value.
   mutating func clearIsAlcoholConsumer() {self._isAlcoholConsumer = nil}
 
+  var pulse: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _pulse ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_pulse = newValue}
+  }
+  /// Returns true if `pulse` has been explicitly set.
+  var hasPulse: Bool {return self._pulse != nil}
+  /// Clears the value of `pulse`. Subsequent reads from it will return its default value.
+  mutating func clearPulse() {self._pulse = nil}
+
+  var respiratoryRate: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _respiratoryRate ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_respiratoryRate = newValue}
+  }
+  /// Returns true if `respiratoryRate` has been explicitly set.
+  var hasRespiratoryRate: Bool {return self._respiratoryRate != nil}
+  /// Clears the value of `respiratoryRate`. Subsequent reads from it will return its default value.
+  mutating func clearRespiratoryRate() {self._respiratoryRate = nil}
+
+  var temperature: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _temperature ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_temperature = newValue}
+  }
+  /// Returns true if `temperature` has been explicitly set.
+  var hasTemperature: Bool {return self._temperature != nil}
+  /// Clears the value of `temperature`. Subsequent reads from it will return its default value.
+  mutating func clearTemperature() {self._temperature = nil}
+
+  var saturation: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _saturation ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_saturation = newValue}
+  }
+  /// Returns true if `saturation` has been explicitly set.
+  var hasSaturation: Bool {return self._saturation != nil}
+  /// Clears the value of `saturation`. Subsequent reads from it will return its default value.
+  mutating func clearSaturation() {self._saturation = nil}
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -5121,6 +5191,10 @@ struct Nd_V1_ServiceProviderCustomerVitalsMessage {
   fileprivate var _obstetricHistory: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _isSmoker: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
   fileprivate var _isAlcoholConsumer: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
+  fileprivate var _pulse: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _respiratoryRate: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _temperature: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _saturation: SwiftProtobuf.Google_Protobuf_StringValue? = nil
 }
 
 struct Nd_V1_ServiceProviderDiagnosisMessage {
@@ -5889,6 +5963,15 @@ struct Nd_V1_ServiceProviderMyPatientsProfileMessage {
   /// Clears the value of `lastName`. Subsequent reads from it will return its default value.
   mutating func clearLastName() {self._lastName = nil}
 
+  var createdDateTime: SwiftProtobuf.Google_Protobuf_Int64Value {
+    get {return _createdDateTime ?? SwiftProtobuf.Google_Protobuf_Int64Value()}
+    set {_createdDateTime = newValue}
+  }
+  /// Returns true if `createdDateTime` has been explicitly set.
+  var hasCreatedDateTime: Bool {return self._createdDateTime != nil}
+  /// Clears the value of `createdDateTime`. Subsequent reads from it will return its default value.
+  mutating func clearCreatedDateTime() {self._createdDateTime = nil}
+
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
@@ -5900,6 +5983,7 @@ struct Nd_V1_ServiceProviderMyPatientsProfileMessage {
   fileprivate var _isChild: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
   fileprivate var _careTakerID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
   fileprivate var _lastName: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _createdDateTime: SwiftProtobuf.Google_Protobuf_Int64Value? = nil
 }
 
 struct Nd_V1_ServiceProviderMyPatientsProfileMessageList {
@@ -7014,169 +7098,163 @@ struct Nd_V1_ServiceProviderServiceRequestAdditionalEntryFields {
   // methods supported on all messages.
 
   var menarche: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _menarche ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_menarche = newValue}
+    get {return _storage._menarche ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._menarche = newValue}
   }
   /// Returns true if `menarche` has been explicitly set.
-  var hasMenarche: Bool {return self._menarche != nil}
+  var hasMenarche: Bool {return _storage._menarche != nil}
   /// Clears the value of `menarche`. Subsequent reads from it will return its default value.
-  mutating func clearMenarche() {self._menarche = nil}
+  mutating func clearMenarche() {_uniqueStorage()._menarche = nil}
 
   var periods: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _periods ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_periods = newValue}
+    get {return _storage._periods ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._periods = newValue}
   }
   /// Returns true if `periods` has been explicitly set.
-  var hasPeriods: Bool {return self._periods != nil}
+  var hasPeriods: Bool {return _storage._periods != nil}
   /// Clears the value of `periods`. Subsequent reads from it will return its default value.
-  mutating func clearPeriods() {self._periods = nil}
+  mutating func clearPeriods() {_uniqueStorage()._periods = nil}
 
   var ageAtFirstChildBirth: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _ageAtFirstChildBirth ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_ageAtFirstChildBirth = newValue}
+    get {return _storage._ageAtFirstChildBirth ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._ageAtFirstChildBirth = newValue}
   }
   /// Returns true if `ageAtFirstChildBirth` has been explicitly set.
-  var hasAgeAtFirstChildBirth: Bool {return self._ageAtFirstChildBirth != nil}
+  var hasAgeAtFirstChildBirth: Bool {return _storage._ageAtFirstChildBirth != nil}
   /// Clears the value of `ageAtFirstChildBirth`. Subsequent reads from it will return its default value.
-  mutating func clearAgeAtFirstChildBirth() {self._ageAtFirstChildBirth = nil}
+  mutating func clearAgeAtFirstChildBirth() {_uniqueStorage()._ageAtFirstChildBirth = nil}
 
   var lmp: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _lmp ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_lmp = newValue}
+    get {return _storage._lmp ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._lmp = newValue}
   }
   /// Returns true if `lmp` has been explicitly set.
-  var hasLmp: Bool {return self._lmp != nil}
+  var hasLmp: Bool {return _storage._lmp != nil}
   /// Clears the value of `lmp`. Subsequent reads from it will return its default value.
-  mutating func clearLmp() {self._lmp = nil}
+  mutating func clearLmp() {_uniqueStorage()._lmp = nil}
 
   var noOfChildren: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _noOfChildren ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_noOfChildren = newValue}
+    get {return _storage._noOfChildren ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._noOfChildren = newValue}
   }
   /// Returns true if `noOfChildren` has been explicitly set.
-  var hasNoOfChildren: Bool {return self._noOfChildren != nil}
+  var hasNoOfChildren: Bool {return _storage._noOfChildren != nil}
   /// Clears the value of `noOfChildren`. Subsequent reads from it will return its default value.
-  mutating func clearNoOfChildren() {self._noOfChildren = nil}
+  mutating func clearNoOfChildren() {_uniqueStorage()._noOfChildren = nil}
 
   var breastFeeding: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _breastFeeding ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_breastFeeding = newValue}
+    get {return _storage._breastFeeding ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._breastFeeding = newValue}
   }
   /// Returns true if `breastFeeding` has been explicitly set.
-  var hasBreastFeeding: Bool {return self._breastFeeding != nil}
+  var hasBreastFeeding: Bool {return _storage._breastFeeding != nil}
   /// Clears the value of `breastFeeding`. Subsequent reads from it will return its default value.
-  mutating func clearBreastFeeding() {self._breastFeeding = nil}
+  mutating func clearBreastFeeding() {_uniqueStorage()._breastFeeding = nil}
 
   var familyHistoryOfCancer: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _familyHistoryOfCancer ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_familyHistoryOfCancer = newValue}
+    get {return _storage._familyHistoryOfCancer ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._familyHistoryOfCancer = newValue}
   }
   /// Returns true if `familyHistoryOfCancer` has been explicitly set.
-  var hasFamilyHistoryOfCancer: Bool {return self._familyHistoryOfCancer != nil}
+  var hasFamilyHistoryOfCancer: Bool {return _storage._familyHistoryOfCancer != nil}
   /// Clears the value of `familyHistoryOfCancer`. Subsequent reads from it will return its default value.
-  mutating func clearFamilyHistoryOfCancer() {self._familyHistoryOfCancer = nil}
+  mutating func clearFamilyHistoryOfCancer() {_uniqueStorage()._familyHistoryOfCancer = nil}
 
   var otherCancers: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _otherCancers ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_otherCancers = newValue}
+    get {return _storage._otherCancers ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._otherCancers = newValue}
   }
   /// Returns true if `otherCancers` has been explicitly set.
-  var hasOtherCancers: Bool {return self._otherCancers != nil}
+  var hasOtherCancers: Bool {return _storage._otherCancers != nil}
   /// Clears the value of `otherCancers`. Subsequent reads from it will return its default value.
-  mutating func clearOtherCancers() {self._otherCancers = nil}
+  mutating func clearOtherCancers() {_uniqueStorage()._otherCancers = nil}
 
   var diabetes: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _diabetes ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_diabetes = newValue}
+    get {return _storage._diabetes ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._diabetes = newValue}
   }
   /// Returns true if `diabetes` has been explicitly set.
-  var hasDiabetes: Bool {return self._diabetes != nil}
+  var hasDiabetes: Bool {return _storage._diabetes != nil}
   /// Clears the value of `diabetes`. Subsequent reads from it will return its default value.
-  mutating func clearDiabetes() {self._diabetes = nil}
+  mutating func clearDiabetes() {_uniqueStorage()._diabetes = nil}
 
   var hypertension: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _hypertension ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_hypertension = newValue}
+    get {return _storage._hypertension ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._hypertension = newValue}
   }
   /// Returns true if `hypertension` has been explicitly set.
-  var hasHypertension: Bool {return self._hypertension != nil}
+  var hasHypertension: Bool {return _storage._hypertension != nil}
   /// Clears the value of `hypertension`. Subsequent reads from it will return its default value.
-  mutating func clearHypertension() {self._hypertension = nil}
+  mutating func clearHypertension() {_uniqueStorage()._hypertension = nil}
 
   var asthma: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _asthma ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_asthma = newValue}
+    get {return _storage._asthma ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._asthma = newValue}
   }
   /// Returns true if `asthma` has been explicitly set.
-  var hasAsthma: Bool {return self._asthma != nil}
+  var hasAsthma: Bool {return _storage._asthma != nil}
   /// Clears the value of `asthma`. Subsequent reads from it will return its default value.
-  mutating func clearAsthma() {self._asthma = nil}
+  mutating func clearAsthma() {_uniqueStorage()._asthma = nil}
 
   var thyroid: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _thyroid ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_thyroid = newValue}
+    get {return _storage._thyroid ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._thyroid = newValue}
   }
   /// Returns true if `thyroid` has been explicitly set.
-  var hasThyroid: Bool {return self._thyroid != nil}
+  var hasThyroid: Bool {return _storage._thyroid != nil}
   /// Clears the value of `thyroid`. Subsequent reads from it will return its default value.
-  mutating func clearThyroid() {self._thyroid = nil}
+  mutating func clearThyroid() {_uniqueStorage()._thyroid = nil}
 
   var medication: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _medication ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_medication = newValue}
+    get {return _storage._medication ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._medication = newValue}
   }
   /// Returns true if `medication` has been explicitly set.
-  var hasMedication: Bool {return self._medication != nil}
+  var hasMedication: Bool {return _storage._medication != nil}
   /// Clears the value of `medication`. Subsequent reads from it will return its default value.
-  mutating func clearMedication() {self._medication = nil}
+  mutating func clearMedication() {_uniqueStorage()._medication = nil}
 
   var dietAndAppetite: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _dietAndAppetite ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_dietAndAppetite = newValue}
+    get {return _storage._dietAndAppetite ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._dietAndAppetite = newValue}
   }
   /// Returns true if `dietAndAppetite` has been explicitly set.
-  var hasDietAndAppetite: Bool {return self._dietAndAppetite != nil}
+  var hasDietAndAppetite: Bool {return _storage._dietAndAppetite != nil}
   /// Clears the value of `dietAndAppetite`. Subsequent reads from it will return its default value.
-  mutating func clearDietAndAppetite() {self._dietAndAppetite = nil}
+  mutating func clearDietAndAppetite() {_uniqueStorage()._dietAndAppetite = nil}
 
   var habits: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _habits ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_habits = newValue}
+    get {return _storage._habits ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._habits = newValue}
   }
   /// Returns true if `habits` has been explicitly set.
-  var hasHabits: Bool {return self._habits != nil}
+  var hasHabits: Bool {return _storage._habits != nil}
   /// Clears the value of `habits`. Subsequent reads from it will return its default value.
-  mutating func clearHabits() {self._habits = nil}
+  mutating func clearHabits() {_uniqueStorage()._habits = nil}
 
   var breastExamination: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _breastExamination ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_breastExamination = newValue}
+    get {return _storage._breastExamination ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._breastExamination = newValue}
   }
   /// Returns true if `breastExamination` has been explicitly set.
-  var hasBreastExamination: Bool {return self._breastExamination != nil}
+  var hasBreastExamination: Bool {return _storage._breastExamination != nil}
   /// Clears the value of `breastExamination`. Subsequent reads from it will return its default value.
-  mutating func clearBreastExamination() {self._breastExamination = nil}
+  mutating func clearBreastExamination() {_uniqueStorage()._breastExamination = nil}
+
+  var familyHistoryOfOtherDiseases: SwiftProtobuf.Google_Protobuf_StringValue {
+    get {return _storage._familyHistoryOfOtherDiseases ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._familyHistoryOfOtherDiseases = newValue}
+  }
+  /// Returns true if `familyHistoryOfOtherDiseases` has been explicitly set.
+  var hasFamilyHistoryOfOtherDiseases: Bool {return _storage._familyHistoryOfOtherDiseases != nil}
+  /// Clears the value of `familyHistoryOfOtherDiseases`. Subsequent reads from it will return its default value.
+  mutating func clearFamilyHistoryOfOtherDiseases() {_uniqueStorage()._familyHistoryOfOtherDiseases = nil}
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
 
-  fileprivate var _menarche: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _periods: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _ageAtFirstChildBirth: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _lmp: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _noOfChildren: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _breastFeeding: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _familyHistoryOfCancer: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _otherCancers: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _diabetes: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _hypertension: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _asthma: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _thyroid: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _medication: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _dietAndAppetite: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _habits: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _breastExamination: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 struct Nd_V1_ServiceProviderServiceRequestRequestMessage {
@@ -7635,6 +7713,51 @@ struct Nd_V1_ServiceProviderConfigurableEntryFieldsMessage {
   var hasBreastExamination: Bool {return _storage._breastExamination != nil}
   /// Clears the value of `breastExamination`. Subsequent reads from it will return its default value.
   mutating func clearBreastExamination() {_uniqueStorage()._breastExamination = nil}
+
+  var pulse: SwiftProtobuf.Google_Protobuf_BoolValue {
+    get {return _storage._pulse ?? SwiftProtobuf.Google_Protobuf_BoolValue()}
+    set {_uniqueStorage()._pulse = newValue}
+  }
+  /// Returns true if `pulse` has been explicitly set.
+  var hasPulse: Bool {return _storage._pulse != nil}
+  /// Clears the value of `pulse`. Subsequent reads from it will return its default value.
+  mutating func clearPulse() {_uniqueStorage()._pulse = nil}
+
+  var respiratoryRate: SwiftProtobuf.Google_Protobuf_BoolValue {
+    get {return _storage._respiratoryRate ?? SwiftProtobuf.Google_Protobuf_BoolValue()}
+    set {_uniqueStorage()._respiratoryRate = newValue}
+  }
+  /// Returns true if `respiratoryRate` has been explicitly set.
+  var hasRespiratoryRate: Bool {return _storage._respiratoryRate != nil}
+  /// Clears the value of `respiratoryRate`. Subsequent reads from it will return its default value.
+  mutating func clearRespiratoryRate() {_uniqueStorage()._respiratoryRate = nil}
+
+  var temperature: SwiftProtobuf.Google_Protobuf_BoolValue {
+    get {return _storage._temperature ?? SwiftProtobuf.Google_Protobuf_BoolValue()}
+    set {_uniqueStorage()._temperature = newValue}
+  }
+  /// Returns true if `temperature` has been explicitly set.
+  var hasTemperature: Bool {return _storage._temperature != nil}
+  /// Clears the value of `temperature`. Subsequent reads from it will return its default value.
+  mutating func clearTemperature() {_uniqueStorage()._temperature = nil}
+
+  var saturation: SwiftProtobuf.Google_Protobuf_BoolValue {
+    get {return _storage._saturation ?? SwiftProtobuf.Google_Protobuf_BoolValue()}
+    set {_uniqueStorage()._saturation = newValue}
+  }
+  /// Returns true if `saturation` has been explicitly set.
+  var hasSaturation: Bool {return _storage._saturation != nil}
+  /// Clears the value of `saturation`. Subsequent reads from it will return its default value.
+  mutating func clearSaturation() {_uniqueStorage()._saturation = nil}
+
+  var familyHistoryOfOtherDiseases: SwiftProtobuf.Google_Protobuf_BoolValue {
+    get {return _storage._familyHistoryOfOtherDiseases ?? SwiftProtobuf.Google_Protobuf_BoolValue()}
+    set {_uniqueStorage()._familyHistoryOfOtherDiseases = newValue}
+  }
+  /// Returns true if `familyHistoryOfOtherDiseases` has been explicitly set.
+  var hasFamilyHistoryOfOtherDiseases: Bool {return _storage._familyHistoryOfOtherDiseases != nil}
+  /// Clears the value of `familyHistoryOfOtherDiseases`. Subsequent reads from it will return its default value.
+  mutating func clearFamilyHistoryOfOtherDiseases() {_uniqueStorage()._familyHistoryOfOtherDiseases = nil}
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
@@ -9924,6 +10047,10 @@ extension Nd_V1_CustomerVitalsMessage: SwiftProtobuf.Message, SwiftProtobuf._Mes
     6: .same(proto: "ObstetricHistory"),
     7: .same(proto: "IsSmoker"),
     8: .same(proto: "IsAlcoholConsumer"),
+    9: .same(proto: "Pulse"),
+    10: .same(proto: "RespiratoryRate"),
+    11: .same(proto: "Temperature"),
+    12: .same(proto: "Saturation"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -9940,6 +10067,10 @@ extension Nd_V1_CustomerVitalsMessage: SwiftProtobuf.Message, SwiftProtobuf._Mes
       case 6: try { try decoder.decodeSingularMessageField(value: &self._obstetricHistory) }()
       case 7: try { try decoder.decodeSingularMessageField(value: &self._isSmoker) }()
       case 8: try { try decoder.decodeSingularMessageField(value: &self._isAlcoholConsumer) }()
+      case 9: try { try decoder.decodeSingularMessageField(value: &self._pulse) }()
+      case 10: try { try decoder.decodeSingularMessageField(value: &self._respiratoryRate) }()
+      case 11: try { try decoder.decodeSingularMessageField(value: &self._temperature) }()
+      case 12: try { try decoder.decodeSingularMessageField(value: &self._saturation) }()
       default: break
       }
     }
@@ -9970,6 +10101,18 @@ extension Nd_V1_CustomerVitalsMessage: SwiftProtobuf.Message, SwiftProtobuf._Mes
     if let v = self._isAlcoholConsumer {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
     }
+    if let v = self._pulse {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
+    }
+    if let v = self._respiratoryRate {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
+    }
+    if let v = self._temperature {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
+    }
+    if let v = self._saturation {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 12)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -9982,6 +10125,10 @@ extension Nd_V1_CustomerVitalsMessage: SwiftProtobuf.Message, SwiftProtobuf._Mes
     if lhs._obstetricHistory != rhs._obstetricHistory {return false}
     if lhs._isSmoker != rhs._isSmoker {return false}
     if lhs._isAlcoholConsumer != rhs._isAlcoholConsumer {return false}
+    if lhs._pulse != rhs._pulse {return false}
+    if lhs._respiratoryRate != rhs._respiratoryRate {return false}
+    if lhs._temperature != rhs._temperature {return false}
+    if lhs._saturation != rhs._saturation {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -11322,104 +11469,174 @@ extension Nd_V1_CustomerServiceRequestAdditionalEntryFields: SwiftProtobuf.Messa
     14: .same(proto: "DietAndAppetite"),
     15: .same(proto: "Habits"),
     16: .same(proto: "BreastExamination"),
+    17: .same(proto: "FamilyHistoryOfOtherDiseases"),
   ]
 
+  fileprivate class _StorageClass {
+    var _menarche: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _periods: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _ageAtFirstChildBirth: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _lmp: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _noOfChildren: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _breastFeeding: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _familyHistoryOfCancer: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _otherCancers: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _diabetes: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _hypertension: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _asthma: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _thyroid: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _medication: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _dietAndAppetite: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _habits: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _breastExamination: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _familyHistoryOfOtherDiseases: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _menarche = source._menarche
+      _periods = source._periods
+      _ageAtFirstChildBirth = source._ageAtFirstChildBirth
+      _lmp = source._lmp
+      _noOfChildren = source._noOfChildren
+      _breastFeeding = source._breastFeeding
+      _familyHistoryOfCancer = source._familyHistoryOfCancer
+      _otherCancers = source._otherCancers
+      _diabetes = source._diabetes
+      _hypertension = source._hypertension
+      _asthma = source._asthma
+      _thyroid = source._thyroid
+      _medication = source._medication
+      _dietAndAppetite = source._dietAndAppetite
+      _habits = source._habits
+      _breastExamination = source._breastExamination
+      _familyHistoryOfOtherDiseases = source._familyHistoryOfOtherDiseases
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      // The use of inline closures is to circumvent an issue where the compiler
-      // allocates stack space for every case branch when no optimizations are
-      // enabled. https://github.com/apple/swift-protobuf/issues/1034
-      switch fieldNumber {
-      case 1: try { try decoder.decodeSingularMessageField(value: &self._menarche) }()
-      case 2: try { try decoder.decodeSingularMessageField(value: &self._periods) }()
-      case 3: try { try decoder.decodeSingularMessageField(value: &self._ageAtFirstChildBirth) }()
-      case 4: try { try decoder.decodeSingularMessageField(value: &self._lmp) }()
-      case 5: try { try decoder.decodeSingularMessageField(value: &self._noOfChildren) }()
-      case 6: try { try decoder.decodeSingularMessageField(value: &self._breastFeeding) }()
-      case 7: try { try decoder.decodeSingularMessageField(value: &self._familyHistoryOfCancer) }()
-      case 8: try { try decoder.decodeSingularMessageField(value: &self._otherCancers) }()
-      case 9: try { try decoder.decodeSingularMessageField(value: &self._diabetes) }()
-      case 10: try { try decoder.decodeSingularMessageField(value: &self._hypertension) }()
-      case 11: try { try decoder.decodeSingularMessageField(value: &self._asthma) }()
-      case 12: try { try decoder.decodeSingularMessageField(value: &self._thyroid) }()
-      case 13: try { try decoder.decodeSingularMessageField(value: &self._medication) }()
-      case 14: try { try decoder.decodeSingularMessageField(value: &self._dietAndAppetite) }()
-      case 15: try { try decoder.decodeSingularMessageField(value: &self._habits) }()
-      case 16: try { try decoder.decodeSingularMessageField(value: &self._breastExamination) }()
-      default: break
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        // The use of inline closures is to circumvent an issue where the compiler
+        // allocates stack space for every case branch when no optimizations are
+        // enabled. https://github.com/apple/swift-protobuf/issues/1034
+        switch fieldNumber {
+        case 1: try { try decoder.decodeSingularMessageField(value: &_storage._menarche) }()
+        case 2: try { try decoder.decodeSingularMessageField(value: &_storage._periods) }()
+        case 3: try { try decoder.decodeSingularMessageField(value: &_storage._ageAtFirstChildBirth) }()
+        case 4: try { try decoder.decodeSingularMessageField(value: &_storage._lmp) }()
+        case 5: try { try decoder.decodeSingularMessageField(value: &_storage._noOfChildren) }()
+        case 6: try { try decoder.decodeSingularMessageField(value: &_storage._breastFeeding) }()
+        case 7: try { try decoder.decodeSingularMessageField(value: &_storage._familyHistoryOfCancer) }()
+        case 8: try { try decoder.decodeSingularMessageField(value: &_storage._otherCancers) }()
+        case 9: try { try decoder.decodeSingularMessageField(value: &_storage._diabetes) }()
+        case 10: try { try decoder.decodeSingularMessageField(value: &_storage._hypertension) }()
+        case 11: try { try decoder.decodeSingularMessageField(value: &_storage._asthma) }()
+        case 12: try { try decoder.decodeSingularMessageField(value: &_storage._thyroid) }()
+        case 13: try { try decoder.decodeSingularMessageField(value: &_storage._medication) }()
+        case 14: try { try decoder.decodeSingularMessageField(value: &_storage._dietAndAppetite) }()
+        case 15: try { try decoder.decodeSingularMessageField(value: &_storage._habits) }()
+        case 16: try { try decoder.decodeSingularMessageField(value: &_storage._breastExamination) }()
+        case 17: try { try decoder.decodeSingularMessageField(value: &_storage._familyHistoryOfOtherDiseases) }()
+        default: break
+        }
       }
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if let v = self._menarche {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-    }
-    if let v = self._periods {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-    }
-    if let v = self._ageAtFirstChildBirth {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-    }
-    if let v = self._lmp {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-    }
-    if let v = self._noOfChildren {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
-    }
-    if let v = self._breastFeeding {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
-    }
-    if let v = self._familyHistoryOfCancer {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
-    }
-    if let v = self._otherCancers {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
-    }
-    if let v = self._diabetes {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
-    }
-    if let v = self._hypertension {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
-    }
-    if let v = self._asthma {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
-    }
-    if let v = self._thyroid {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 12)
-    }
-    if let v = self._medication {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 13)
-    }
-    if let v = self._dietAndAppetite {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 14)
-    }
-    if let v = self._habits {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 15)
-    }
-    if let v = self._breastExamination {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 16)
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._menarche {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._periods {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if let v = _storage._ageAtFirstChildBirth {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+      if let v = _storage._lmp {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+      if let v = _storage._noOfChildren {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+      }
+      if let v = _storage._breastFeeding {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+      }
+      if let v = _storage._familyHistoryOfCancer {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+      }
+      if let v = _storage._otherCancers {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
+      }
+      if let v = _storage._diabetes {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
+      }
+      if let v = _storage._hypertension {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
+      }
+      if let v = _storage._asthma {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
+      }
+      if let v = _storage._thyroid {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 12)
+      }
+      if let v = _storage._medication {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 13)
+      }
+      if let v = _storage._dietAndAppetite {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 14)
+      }
+      if let v = _storage._habits {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 15)
+      }
+      if let v = _storage._breastExamination {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 16)
+      }
+      if let v = _storage._familyHistoryOfOtherDiseases {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 17)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   static func ==(lhs: Nd_V1_CustomerServiceRequestAdditionalEntryFields, rhs: Nd_V1_CustomerServiceRequestAdditionalEntryFields) -> Bool {
-    if lhs._menarche != rhs._menarche {return false}
-    if lhs._periods != rhs._periods {return false}
-    if lhs._ageAtFirstChildBirth != rhs._ageAtFirstChildBirth {return false}
-    if lhs._lmp != rhs._lmp {return false}
-    if lhs._noOfChildren != rhs._noOfChildren {return false}
-    if lhs._breastFeeding != rhs._breastFeeding {return false}
-    if lhs._familyHistoryOfCancer != rhs._familyHistoryOfCancer {return false}
-    if lhs._otherCancers != rhs._otherCancers {return false}
-    if lhs._diabetes != rhs._diabetes {return false}
-    if lhs._hypertension != rhs._hypertension {return false}
-    if lhs._asthma != rhs._asthma {return false}
-    if lhs._thyroid != rhs._thyroid {return false}
-    if lhs._medication != rhs._medication {return false}
-    if lhs._dietAndAppetite != rhs._dietAndAppetite {return false}
-    if lhs._habits != rhs._habits {return false}
-    if lhs._breastExamination != rhs._breastExamination {return false}
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._menarche != rhs_storage._menarche {return false}
+        if _storage._periods != rhs_storage._periods {return false}
+        if _storage._ageAtFirstChildBirth != rhs_storage._ageAtFirstChildBirth {return false}
+        if _storage._lmp != rhs_storage._lmp {return false}
+        if _storage._noOfChildren != rhs_storage._noOfChildren {return false}
+        if _storage._breastFeeding != rhs_storage._breastFeeding {return false}
+        if _storage._familyHistoryOfCancer != rhs_storage._familyHistoryOfCancer {return false}
+        if _storage._otherCancers != rhs_storage._otherCancers {return false}
+        if _storage._diabetes != rhs_storage._diabetes {return false}
+        if _storage._hypertension != rhs_storage._hypertension {return false}
+        if _storage._asthma != rhs_storage._asthma {return false}
+        if _storage._thyroid != rhs_storage._thyroid {return false}
+        if _storage._medication != rhs_storage._medication {return false}
+        if _storage._dietAndAppetite != rhs_storage._dietAndAppetite {return false}
+        if _storage._habits != rhs_storage._habits {return false}
+        if _storage._breastExamination != rhs_storage._breastExamination {return false}
+        if _storage._familyHistoryOfOtherDiseases != rhs_storage._familyHistoryOfOtherDiseases {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -13162,6 +13379,10 @@ extension Nd_V1_ServiceProviderCustomerVitalsMessage: SwiftProtobuf.Message, Swi
     6: .same(proto: "ObstetricHistory"),
     7: .same(proto: "IsSmoker"),
     8: .same(proto: "IsAlcoholConsumer"),
+    9: .same(proto: "Pulse"),
+    10: .same(proto: "RespiratoryRate"),
+    11: .same(proto: "Temperature"),
+    12: .same(proto: "Saturation"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -13178,6 +13399,10 @@ extension Nd_V1_ServiceProviderCustomerVitalsMessage: SwiftProtobuf.Message, Swi
       case 6: try { try decoder.decodeSingularMessageField(value: &self._obstetricHistory) }()
       case 7: try { try decoder.decodeSingularMessageField(value: &self._isSmoker) }()
       case 8: try { try decoder.decodeSingularMessageField(value: &self._isAlcoholConsumer) }()
+      case 9: try { try decoder.decodeSingularMessageField(value: &self._pulse) }()
+      case 10: try { try decoder.decodeSingularMessageField(value: &self._respiratoryRate) }()
+      case 11: try { try decoder.decodeSingularMessageField(value: &self._temperature) }()
+      case 12: try { try decoder.decodeSingularMessageField(value: &self._saturation) }()
       default: break
       }
     }
@@ -13208,6 +13433,18 @@ extension Nd_V1_ServiceProviderCustomerVitalsMessage: SwiftProtobuf.Message, Swi
     if let v = self._isAlcoholConsumer {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
     }
+    if let v = self._pulse {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
+    }
+    if let v = self._respiratoryRate {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
+    }
+    if let v = self._temperature {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
+    }
+    if let v = self._saturation {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 12)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -13220,6 +13457,10 @@ extension Nd_V1_ServiceProviderCustomerVitalsMessage: SwiftProtobuf.Message, Swi
     if lhs._obstetricHistory != rhs._obstetricHistory {return false}
     if lhs._isSmoker != rhs._isSmoker {return false}
     if lhs._isAlcoholConsumer != rhs._isAlcoholConsumer {return false}
+    if lhs._pulse != rhs._pulse {return false}
+    if lhs._respiratoryRate != rhs._respiratoryRate {return false}
+    if lhs._temperature != rhs._temperature {return false}
+    if lhs._saturation != rhs._saturation {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -13961,6 +14202,7 @@ extension Nd_V1_ServiceProviderMyPatientsProfileMessage: SwiftProtobuf.Message, 
     5: .same(proto: "IsChild"),
     6: .same(proto: "CareTakerId"),
     7: .same(proto: "LastName"),
+    8: .same(proto: "CreatedDateTime"),
   ]
 
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
@@ -13976,6 +14218,7 @@ extension Nd_V1_ServiceProviderMyPatientsProfileMessage: SwiftProtobuf.Message, 
       case 5: try { try decoder.decodeSingularMessageField(value: &self._isChild) }()
       case 6: try { try decoder.decodeSingularMessageField(value: &self._careTakerID) }()
       case 7: try { try decoder.decodeSingularMessageField(value: &self._lastName) }()
+      case 8: try { try decoder.decodeSingularMessageField(value: &self._createdDateTime) }()
       default: break
       }
     }
@@ -14003,6 +14246,9 @@ extension Nd_V1_ServiceProviderMyPatientsProfileMessage: SwiftProtobuf.Message, 
     if let v = self._lastName {
       try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
     }
+    if let v = self._createdDateTime {
+      try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
+    }
     try unknownFields.traverse(visitor: &visitor)
   }
 
@@ -14014,6 +14260,7 @@ extension Nd_V1_ServiceProviderMyPatientsProfileMessage: SwiftProtobuf.Message, 
     if lhs._isChild != rhs._isChild {return false}
     if lhs._careTakerID != rhs._careTakerID {return false}
     if lhs._lastName != rhs._lastName {return false}
+    if lhs._createdDateTime != rhs._createdDateTime {return false}
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -15374,104 +15621,174 @@ extension Nd_V1_ServiceProviderServiceRequestAdditionalEntryFields: SwiftProtobu
     14: .same(proto: "DietAndAppetite"),
     15: .same(proto: "Habits"),
     16: .same(proto: "BreastExamination"),
+    17: .same(proto: "FamilyHistoryOfOtherDiseases"),
   ]
 
+  fileprivate class _StorageClass {
+    var _menarche: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _periods: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _ageAtFirstChildBirth: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _lmp: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _noOfChildren: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _breastFeeding: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _familyHistoryOfCancer: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _otherCancers: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _diabetes: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _hypertension: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _asthma: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _thyroid: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _medication: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _dietAndAppetite: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _habits: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _breastExamination: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _familyHistoryOfOtherDiseases: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _menarche = source._menarche
+      _periods = source._periods
+      _ageAtFirstChildBirth = source._ageAtFirstChildBirth
+      _lmp = source._lmp
+      _noOfChildren = source._noOfChildren
+      _breastFeeding = source._breastFeeding
+      _familyHistoryOfCancer = source._familyHistoryOfCancer
+      _otherCancers = source._otherCancers
+      _diabetes = source._diabetes
+      _hypertension = source._hypertension
+      _asthma = source._asthma
+      _thyroid = source._thyroid
+      _medication = source._medication
+      _dietAndAppetite = source._dietAndAppetite
+      _habits = source._habits
+      _breastExamination = source._breastExamination
+      _familyHistoryOfOtherDiseases = source._familyHistoryOfOtherDiseases
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      // The use of inline closures is to circumvent an issue where the compiler
-      // allocates stack space for every case branch when no optimizations are
-      // enabled. https://github.com/apple/swift-protobuf/issues/1034
-      switch fieldNumber {
-      case 1: try { try decoder.decodeSingularMessageField(value: &self._menarche) }()
-      case 2: try { try decoder.decodeSingularMessageField(value: &self._periods) }()
-      case 3: try { try decoder.decodeSingularMessageField(value: &self._ageAtFirstChildBirth) }()
-      case 4: try { try decoder.decodeSingularMessageField(value: &self._lmp) }()
-      case 5: try { try decoder.decodeSingularMessageField(value: &self._noOfChildren) }()
-      case 6: try { try decoder.decodeSingularMessageField(value: &self._breastFeeding) }()
-      case 7: try { try decoder.decodeSingularMessageField(value: &self._familyHistoryOfCancer) }()
-      case 8: try { try decoder.decodeSingularMessageField(value: &self._otherCancers) }()
-      case 9: try { try decoder.decodeSingularMessageField(value: &self._diabetes) }()
-      case 10: try { try decoder.decodeSingularMessageField(value: &self._hypertension) }()
-      case 11: try { try decoder.decodeSingularMessageField(value: &self._asthma) }()
-      case 12: try { try decoder.decodeSingularMessageField(value: &self._thyroid) }()
-      case 13: try { try decoder.decodeSingularMessageField(value: &self._medication) }()
-      case 14: try { try decoder.decodeSingularMessageField(value: &self._dietAndAppetite) }()
-      case 15: try { try decoder.decodeSingularMessageField(value: &self._habits) }()
-      case 16: try { try decoder.decodeSingularMessageField(value: &self._breastExamination) }()
-      default: break
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        // The use of inline closures is to circumvent an issue where the compiler
+        // allocates stack space for every case branch when no optimizations are
+        // enabled. https://github.com/apple/swift-protobuf/issues/1034
+        switch fieldNumber {
+        case 1: try { try decoder.decodeSingularMessageField(value: &_storage._menarche) }()
+        case 2: try { try decoder.decodeSingularMessageField(value: &_storage._periods) }()
+        case 3: try { try decoder.decodeSingularMessageField(value: &_storage._ageAtFirstChildBirth) }()
+        case 4: try { try decoder.decodeSingularMessageField(value: &_storage._lmp) }()
+        case 5: try { try decoder.decodeSingularMessageField(value: &_storage._noOfChildren) }()
+        case 6: try { try decoder.decodeSingularMessageField(value: &_storage._breastFeeding) }()
+        case 7: try { try decoder.decodeSingularMessageField(value: &_storage._familyHistoryOfCancer) }()
+        case 8: try { try decoder.decodeSingularMessageField(value: &_storage._otherCancers) }()
+        case 9: try { try decoder.decodeSingularMessageField(value: &_storage._diabetes) }()
+        case 10: try { try decoder.decodeSingularMessageField(value: &_storage._hypertension) }()
+        case 11: try { try decoder.decodeSingularMessageField(value: &_storage._asthma) }()
+        case 12: try { try decoder.decodeSingularMessageField(value: &_storage._thyroid) }()
+        case 13: try { try decoder.decodeSingularMessageField(value: &_storage._medication) }()
+        case 14: try { try decoder.decodeSingularMessageField(value: &_storage._dietAndAppetite) }()
+        case 15: try { try decoder.decodeSingularMessageField(value: &_storage._habits) }()
+        case 16: try { try decoder.decodeSingularMessageField(value: &_storage._breastExamination) }()
+        case 17: try { try decoder.decodeSingularMessageField(value: &_storage._familyHistoryOfOtherDiseases) }()
+        default: break
+        }
       }
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if let v = self._menarche {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-    }
-    if let v = self._periods {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-    }
-    if let v = self._ageAtFirstChildBirth {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-    }
-    if let v = self._lmp {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-    }
-    if let v = self._noOfChildren {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
-    }
-    if let v = self._breastFeeding {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
-    }
-    if let v = self._familyHistoryOfCancer {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
-    }
-    if let v = self._otherCancers {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
-    }
-    if let v = self._diabetes {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
-    }
-    if let v = self._hypertension {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
-    }
-    if let v = self._asthma {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
-    }
-    if let v = self._thyroid {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 12)
-    }
-    if let v = self._medication {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 13)
-    }
-    if let v = self._dietAndAppetite {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 14)
-    }
-    if let v = self._habits {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 15)
-    }
-    if let v = self._breastExamination {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 16)
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._menarche {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._periods {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if let v = _storage._ageAtFirstChildBirth {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+      if let v = _storage._lmp {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+      if let v = _storage._noOfChildren {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+      }
+      if let v = _storage._breastFeeding {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+      }
+      if let v = _storage._familyHistoryOfCancer {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 7)
+      }
+      if let v = _storage._otherCancers {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
+      }
+      if let v = _storage._diabetes {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
+      }
+      if let v = _storage._hypertension {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 10)
+      }
+      if let v = _storage._asthma {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 11)
+      }
+      if let v = _storage._thyroid {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 12)
+      }
+      if let v = _storage._medication {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 13)
+      }
+      if let v = _storage._dietAndAppetite {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 14)
+      }
+      if let v = _storage._habits {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 15)
+      }
+      if let v = _storage._breastExamination {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 16)
+      }
+      if let v = _storage._familyHistoryOfOtherDiseases {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 17)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   static func ==(lhs: Nd_V1_ServiceProviderServiceRequestAdditionalEntryFields, rhs: Nd_V1_ServiceProviderServiceRequestAdditionalEntryFields) -> Bool {
-    if lhs._menarche != rhs._menarche {return false}
-    if lhs._periods != rhs._periods {return false}
-    if lhs._ageAtFirstChildBirth != rhs._ageAtFirstChildBirth {return false}
-    if lhs._lmp != rhs._lmp {return false}
-    if lhs._noOfChildren != rhs._noOfChildren {return false}
-    if lhs._breastFeeding != rhs._breastFeeding {return false}
-    if lhs._familyHistoryOfCancer != rhs._familyHistoryOfCancer {return false}
-    if lhs._otherCancers != rhs._otherCancers {return false}
-    if lhs._diabetes != rhs._diabetes {return false}
-    if lhs._hypertension != rhs._hypertension {return false}
-    if lhs._asthma != rhs._asthma {return false}
-    if lhs._thyroid != rhs._thyroid {return false}
-    if lhs._medication != rhs._medication {return false}
-    if lhs._dietAndAppetite != rhs._dietAndAppetite {return false}
-    if lhs._habits != rhs._habits {return false}
-    if lhs._breastExamination != rhs._breastExamination {return false}
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._menarche != rhs_storage._menarche {return false}
+        if _storage._periods != rhs_storage._periods {return false}
+        if _storage._ageAtFirstChildBirth != rhs_storage._ageAtFirstChildBirth {return false}
+        if _storage._lmp != rhs_storage._lmp {return false}
+        if _storage._noOfChildren != rhs_storage._noOfChildren {return false}
+        if _storage._breastFeeding != rhs_storage._breastFeeding {return false}
+        if _storage._familyHistoryOfCancer != rhs_storage._familyHistoryOfCancer {return false}
+        if _storage._otherCancers != rhs_storage._otherCancers {return false}
+        if _storage._diabetes != rhs_storage._diabetes {return false}
+        if _storage._hypertension != rhs_storage._hypertension {return false}
+        if _storage._asthma != rhs_storage._asthma {return false}
+        if _storage._thyroid != rhs_storage._thyroid {return false}
+        if _storage._medication != rhs_storage._medication {return false}
+        if _storage._dietAndAppetite != rhs_storage._dietAndAppetite {return false}
+        if _storage._habits != rhs_storage._habits {return false}
+        if _storage._breastExamination != rhs_storage._breastExamination {return false}
+        if _storage._familyHistoryOfOtherDiseases != rhs_storage._familyHistoryOfOtherDiseases {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }
@@ -15740,6 +16057,11 @@ extension Nd_V1_ServiceProviderConfigurableEntryFieldsMessage: SwiftProtobuf.Mes
     26: .same(proto: "DietAndAppetite"),
     27: .same(proto: "Habits"),
     28: .same(proto: "BreastExamination"),
+    29: .same(proto: "Pulse"),
+    30: .same(proto: "RespiratoryRate"),
+    31: .same(proto: "Temperature"),
+    32: .same(proto: "Saturation"),
+    33: .same(proto: "FamilyHistoryOfOtherDiseases"),
   ]
 
   fileprivate class _StorageClass {
@@ -15771,6 +16093,11 @@ extension Nd_V1_ServiceProviderConfigurableEntryFieldsMessage: SwiftProtobuf.Mes
     var _dietAndAppetite: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
     var _habits: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
     var _breastExamination: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
+    var _pulse: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
+    var _respiratoryRate: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
+    var _temperature: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
+    var _saturation: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
+    var _familyHistoryOfOtherDiseases: SwiftProtobuf.Google_Protobuf_BoolValue? = nil
 
     static let defaultInstance = _StorageClass()
 
@@ -15805,6 +16132,11 @@ extension Nd_V1_ServiceProviderConfigurableEntryFieldsMessage: SwiftProtobuf.Mes
       _dietAndAppetite = source._dietAndAppetite
       _habits = source._habits
       _breastExamination = source._breastExamination
+      _pulse = source._pulse
+      _respiratoryRate = source._respiratoryRate
+      _temperature = source._temperature
+      _saturation = source._saturation
+      _familyHistoryOfOtherDiseases = source._familyHistoryOfOtherDiseases
     }
   }
 
@@ -15851,6 +16183,11 @@ extension Nd_V1_ServiceProviderConfigurableEntryFieldsMessage: SwiftProtobuf.Mes
         case 26: try { try decoder.decodeSingularMessageField(value: &_storage._dietAndAppetite) }()
         case 27: try { try decoder.decodeSingularMessageField(value: &_storage._habits) }()
         case 28: try { try decoder.decodeSingularMessageField(value: &_storage._breastExamination) }()
+        case 29: try { try decoder.decodeSingularMessageField(value: &_storage._pulse) }()
+        case 30: try { try decoder.decodeSingularMessageField(value: &_storage._respiratoryRate) }()
+        case 31: try { try decoder.decodeSingularMessageField(value: &_storage._temperature) }()
+        case 32: try { try decoder.decodeSingularMessageField(value: &_storage._saturation) }()
+        case 33: try { try decoder.decodeSingularMessageField(value: &_storage._familyHistoryOfOtherDiseases) }()
         default: break
         }
       }
@@ -15943,6 +16280,21 @@ extension Nd_V1_ServiceProviderConfigurableEntryFieldsMessage: SwiftProtobuf.Mes
       if let v = _storage._breastExamination {
         try visitor.visitSingularMessageField(value: v, fieldNumber: 28)
       }
+      if let v = _storage._pulse {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 29)
+      }
+      if let v = _storage._respiratoryRate {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 30)
+      }
+      if let v = _storage._temperature {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 31)
+      }
+      if let v = _storage._saturation {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 32)
+      }
+      if let v = _storage._familyHistoryOfOtherDiseases {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 33)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
@@ -15980,6 +16332,11 @@ extension Nd_V1_ServiceProviderConfigurableEntryFieldsMessage: SwiftProtobuf.Mes
         if _storage._dietAndAppetite != rhs_storage._dietAndAppetite {return false}
         if _storage._habits != rhs_storage._habits {return false}
         if _storage._breastExamination != rhs_storage._breastExamination {return false}
+        if _storage._pulse != rhs_storage._pulse {return false}
+        if _storage._respiratoryRate != rhs_storage._respiratoryRate {return false}
+        if _storage._temperature != rhs_storage._temperature {return false}
+        if _storage._saturation != rhs_storage._saturation {return false}
+        if _storage._familyHistoryOfOtherDiseases != rhs_storage._familyHistoryOfOtherDiseases {return false}
         return true
       }
       if !storagesAreEqual {return false}

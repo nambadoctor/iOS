@@ -38,7 +38,6 @@ struct EditableAppointmentView: View {
 
     var detailedUpcomingAppointment : some View {
         ScrollView (.vertical) {
-            
             ZStack {
                 header
                     .background(Color(CustomColors.SkyBlue))
@@ -163,7 +162,9 @@ struct EditableAppointmentView: View {
             
             if !intermediateVM.collapseExtraDetailEntry {
                 
-                BreastCancerAdditionalEntryFieldsEditableView()
+                if self.intermediateVM.configurableEntryVM.showAdditionalFields {
+                    BreastCancerAdditionalEntryFieldsEditableView()
+                }
                 
                 ServiceRequestEditableView()
                 

@@ -173,6 +173,8 @@ class MedicineViewModel: ObservableObject {
 
     func storeImageValues () {
         
+        self.prescription.uploadedPrescriptionDocuments.removeAll()
+        
         if imagePickerVM.images != nil {
             for eachImage in imagePickerVM.images! {
                 let fileInfo = ServiceProviderFileInfo(FileName: "", FileType: "png", MediaImage: eachImage.jpegData(compressionQuality: 0.3)!.base64EncodedString(), FileInfoId: "")
@@ -188,7 +190,7 @@ class MedicineViewModel: ObservableObject {
             }
         }
         
-        if imageLoader?.image == nil && imagePickerVM.images == nil {
+        if imageLoaders == nil && imagePickerVM.images == nil {
             self.prescription.uploadedPrescriptionDocuments = [ServiceProviderFileInfo]()
         }
     }

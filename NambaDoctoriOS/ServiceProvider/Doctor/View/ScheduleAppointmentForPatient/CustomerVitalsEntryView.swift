@@ -8,7 +8,7 @@
 import SwiftUI
 
 class CustomerVitalsEntryViewModel : ObservableObject {
-    @Published var customerVitals:ServiceProviderCustomerVitals = ServiceProviderCustomerVitals(BloodPressure: "", BloodSugar: "", Height: "", Weight: "", MenstrualHistory: "", ObstetricHistory: "", IsSmoker: false, IsAlcoholConsumer: false)
+    @Published var customerVitals:ServiceProviderCustomerVitals = ServiceProviderCustomerVitals(BloodPressure: "", BloodSugar: "", Height: "", Weight: "", MenstrualHistory: "", ObstetricHistory: "", IsSmoker: false, IsAlcoholConsumer: false, Pulse: "", RespiratoryRate: "", Temperature: "", Saturation: "")
 
     @Published var isSmoker:String = "No"
     @Published var isAlcoholConsumer:String = "No"
@@ -37,137 +37,181 @@ struct CustomerVitalsEntryView: View {
     
     var body: some View {
         Group {
-            HStack (spacing: 3) {
-                Image("eyeglasses")
-                    .modifier(DetailedAppointmentViewIconModifier())
-                
-                Text("BLOOD PRESSURE")
-                    .font(.footnote)
-                    .foregroundColor(Color.black.opacity(0.4))
-                    .bold()
-            }
-            ExpandingTextEntryView(text: self.$customerVitalsVM.customerVitals.BloodPressure)
-        }
-        
-        Group {
-            HStack (spacing: 3) {
-                Image("eyeglasses")
-                    .modifier(DetailedAppointmentViewIconModifier())
-                
-                Text("BLOOD SUGAR")
-                    .font(.footnote)
-                    .foregroundColor(Color.black.opacity(0.4))
-                    .bold()
-            }
-            ExpandingTextEntryView(text: self.$customerVitalsVM.customerVitals.BloodSugar)
-        }
-        
-        Group {
-            HStack (spacing: 3) {
-                Image("eyeglasses")
-                    .modifier(DetailedAppointmentViewIconModifier())
-                
-                Text("HEIGHT")
-                    .font(.footnote)
-                    .foregroundColor(Color.black.opacity(0.4))
-                    .bold()
+            Group {
+                HStack (spacing: 3) {
+                    Image("eyeglasses")
+                        .modifier(DetailedAppointmentViewIconModifier())
+                    
+                    Text("BLOOD PRESSURE")
+                        .font(.footnote)
+                        .foregroundColor(Color.black.opacity(0.4))
+                        .bold()
+                }
+                ExpandingTextEntryView(text: self.$customerVitalsVM.customerVitals.BloodPressure)
             }
             
-            ExpandingTextEntryView(text: self.$customerVitalsVM.customerVitals.Height, keyboardType: .numberPad)
-        }
-        
-        Group {
-            HStack (spacing: 3) {
-                Image("eyeglasses")
-                    .modifier(DetailedAppointmentViewIconModifier())
-                
-                Text("WEIGHT")
-                    .font(.footnote)
-                    .foregroundColor(Color.black.opacity(0.4))
-                    .bold()
+            Group {
+                HStack (spacing: 3) {
+                    Image("eyeglasses")
+                        .modifier(DetailedAppointmentViewIconModifier())
+                    
+                    Text("BLOOD SUGAR")
+                        .font(.footnote)
+                        .foregroundColor(Color.black.opacity(0.4))
+                        .bold()
+                }
+                ExpandingTextEntryView(text: self.$customerVitalsVM.customerVitals.BloodSugar)
             }
             
-            ExpandingTextEntryView(text: self.$customerVitalsVM.customerVitals.Weight, keyboardType: .numberPad)
+            Group {
+                HStack (spacing: 3) {
+                    Image("eyeglasses")
+                        .modifier(DetailedAppointmentViewIconModifier())
+                    
+                    Text("HEIGHT")
+                        .font(.footnote)
+                        .foregroundColor(Color.black.opacity(0.4))
+                        .bold()
+                }
+                
+                ExpandingTextEntryView(text: self.$customerVitalsVM.customerVitals.Height, keyboardType: .numberPad)
+            }
+            
+            Group {
+                HStack (spacing: 3) {
+                    Image("eyeglasses")
+                        .modifier(DetailedAppointmentViewIconModifier())
+                    
+                    Text("WEIGHT")
+                        .font(.footnote)
+                        .foregroundColor(Color.black.opacity(0.4))
+                        .bold()
+                }
+                
+                ExpandingTextEntryView(text: self.$customerVitalsVM.customerVitals.Weight, keyboardType: .numberPad)
+            }
+            
+            Group {
+                HStack (spacing: 3) {
+                    Image("eyeglasses")
+                        .modifier(DetailedAppointmentViewIconModifier())
+                    
+                    Text("MENSTRUAL HISTORY")
+                        .font(.footnote)
+                        .foregroundColor(Color.black.opacity(0.4))
+                        .bold()
+                }
+                ExpandingTextEntryView(text: self.$customerVitalsVM.customerVitals.MenstrualHistory)
+            }
+            
+            Group {
+                HStack (spacing: 3) {
+                    Image("eyeglasses")
+                        .modifier(DetailedAppointmentViewIconModifier())
+                    
+                    Text("ALLERGIES")
+                        .font(.footnote)
+                        .foregroundColor(Color.black.opacity(0.4))
+                        .bold()
+                }
+                ExpandingTextEntryView(text: self.$customerVitalsVM.allergies)
+            }
+            
+            Group {
+                HStack (spacing: 3) {
+                    Image("eyeglasses")
+                        .modifier(DetailedAppointmentViewIconModifier())
+                    
+                    Text("MEDICAL HISTORY")
+                        .font(.footnote)
+                        .foregroundColor(Color.black.opacity(0.4))
+                        .bold()
+                }
+                ExpandingTextEntryView(text: self.$customerVitalsVM.medicalHistory)
+            }
+            
+            Group {
+                HStack (spacing: 3) {
+                    Image("eyeglasses")
+                        .modifier(DetailedAppointmentViewIconModifier())
+                    
+                    Text("IS SMOKER?")
+                        .font(.footnote)
+                        .foregroundColor(Color.black.opacity(0.4))
+                        .bold()
+                }
+                SideBySideCheckBox(isChecked: $customerVitalsVM.isSmoker, title1: "Yes", title2: "No", delegate: nil)
+                    .padding(.bottom)
+            }
+            
+            Group {
+                HStack (spacing: 3) {
+                    Image("eyeglasses")
+                        .modifier(DetailedAppointmentViewIconModifier())
+                    
+                    Text("IS ALCOHOL CONSUMER?")
+                        .font(.footnote)
+                        .foregroundColor(Color.black.opacity(0.4))
+                        .bold()
+                }
+                SideBySideCheckBox(isChecked: $customerVitalsVM.isAlcoholConsumer, title1: "Yes", title2: "No", delegate: nil)
+                    .padding(.bottom)
+            }
+
         }
         
         Group {
-            HStack (spacing: 3) {
-                Image("eyeglasses")
-                    .modifier(DetailedAppointmentViewIconModifier())
-                
-                Text("MENSTRUAL HISTORY")
-                    .font(.footnote)
-                    .foregroundColor(Color.black.opacity(0.4))
-                    .bold()
+            Group {
+                HStack (spacing: 3) {
+                    Image("eyeglasses")
+                        .modifier(DetailedAppointmentViewIconModifier())
+                    
+                    Text("PULSE")
+                        .font(.footnote)
+                        .foregroundColor(Color.black.opacity(0.4))
+                        .bold()
+                }
+                ExpandingTextEntryView(text: self.$customerVitalsVM.customerVitals.Pulse)
             }
-            ExpandingTextEntryView(text: self.$customerVitalsVM.customerVitals.MenstrualHistory)
-        }
-        
-        Group {
-            HStack (spacing: 3) {
-                Image("eyeglasses")
-                    .modifier(DetailedAppointmentViewIconModifier())
-                
-                Text("OBSTETRIC HISTORY")
-                    .font(.footnote)
-                    .foregroundColor(Color.black.opacity(0.4))
-                    .bold()
+            
+            Group {
+                HStack (spacing: 3) {
+                    Image("eyeglasses")
+                        .modifier(DetailedAppointmentViewIconModifier())
+                    
+                    Text("RESPIRATORY RATE")
+                        .font(.footnote)
+                        .foregroundColor(Color.black.opacity(0.4))
+                        .bold()
+                }
+                ExpandingTextEntryView(text: self.$customerVitalsVM.customerVitals.RespiratoryRate)
             }
-            ExpandingTextEntryView(text: self.$customerVitalsVM.customerVitals.ObstetricHistory)
-        }
-        
-        Group {
-            HStack (spacing: 3) {
-                Image("eyeglasses")
-                    .modifier(DetailedAppointmentViewIconModifier())
-                
-                Text("ALLERGIES")
-                    .font(.footnote)
-                    .foregroundColor(Color.black.opacity(0.4))
-                    .bold()
+            
+            Group {
+                HStack (spacing: 3) {
+                    Image("eyeglasses")
+                        .modifier(DetailedAppointmentViewIconModifier())
+                    
+                    Text("SATURATION")
+                        .font(.footnote)
+                        .foregroundColor(Color.black.opacity(0.4))
+                        .bold()
+                }
+                ExpandingTextEntryView(text: self.$customerVitalsVM.customerVitals.Saturation)
             }
-            ExpandingTextEntryView(text: self.$customerVitalsVM.allergies)
-        }
-        
-        Group {
-            HStack (spacing: 3) {
-                Image("eyeglasses")
-                    .modifier(DetailedAppointmentViewIconModifier())
-                
-                Text("MEDICAL HISTORY")
-                    .font(.footnote)
-                    .foregroundColor(Color.black.opacity(0.4))
-                    .bold()
+            
+            Group {
+                HStack (spacing: 3) {
+                    Image("eyeglasses")
+                        .modifier(DetailedAppointmentViewIconModifier())
+                    
+                    Text("TEMPERATURE")
+                        .font(.footnote)
+                        .foregroundColor(Color.black.opacity(0.4))
+                        .bold()
+                }
+                ExpandingTextEntryView(text: self.$customerVitalsVM.customerVitals.Temperature)
             }
-            ExpandingTextEntryView(text: self.$customerVitalsVM.medicalHistory)
-        }
-        
-        Group {
-            HStack (spacing: 3) {
-                Image("eyeglasses")
-                    .modifier(DetailedAppointmentViewIconModifier())
-                
-                Text("IS SMOKER?")
-                    .font(.footnote)
-                    .foregroundColor(Color.black.opacity(0.4))
-                    .bold()
-            }
-            SideBySideCheckBox(isChecked: $customerVitalsVM.isSmoker, title1: "Yes", title2: "No", delegate: nil)
-                .padding(.bottom)
-        }
-        
-        Group {
-            HStack (spacing: 3) {
-                Image("eyeglasses")
-                    .modifier(DetailedAppointmentViewIconModifier())
-                
-                Text("IS ALCOHOL CONSUMER?")
-                    .font(.footnote)
-                    .foregroundColor(Color.black.opacity(0.4))
-                    .bold()
-            }
-            SideBySideCheckBox(isChecked: $customerVitalsVM.isAlcoholConsumer, title1: "Yes", title2: "No", delegate: nil)
-                .padding(.bottom)
         }
     }
 }

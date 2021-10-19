@@ -16,4 +16,8 @@ struct ServiceProviderCustomerVitals : Codable {
     var ObstetricHistory:String
     var IsSmoker:Bool
     var IsAlcoholConsumer:Bool
+    var Pulse:String
+    var RespiratoryRate:String
+    var Temperature:String
+    var Saturation:String
 }

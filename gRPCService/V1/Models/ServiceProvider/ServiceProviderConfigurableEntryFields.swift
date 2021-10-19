@@ -43,4 +43,8 @@ struct ServiceProviderConfigurableEntryFields {
     var DietAndAppetite:Bool
     var Habits:Bool
     var BreastExamination:Bool
+    var Pulse:Bool
+    var RespiratoryRate:Bool
+    var Saturation:Bool
+    var Temperature:Bool
 }

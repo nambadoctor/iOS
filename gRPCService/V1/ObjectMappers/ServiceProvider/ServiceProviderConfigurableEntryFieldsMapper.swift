@@ -51,6 +51,10 @@ class ServiceProviderConfigurableEntryFieldsMapper {
             $0.dietAndAppetite = entryFields.DietAndAppetite.toProto
             $0.habits = entryFields.Habits.toProto
             $0.breastExamination = entryFields.Examination.toProto
+            $0.pulse = entryFields.Pulse.toProto
+            $0.respiratoryRate = entryFields.RespiratoryRate.toProto
+            $0.saturation = entryFields.Saturation.toProto
+            $0.temperature = entryFields.Temperature.toProto
         }
     }
     
@@ -82,7 +86,11 @@ class ServiceProviderConfigurableEntryFieldsMapper {
                                                       Medication: entryFields.medication.toBool,
                                                       DietAndAppetite: entryFields.dietAndAppetite.toBool,
                                                       Habits: entryFields.habits.toBool,
-                                                      BreastExamination: entryFields.breastExamination.toBool)
+                                                      BreastExamination: entryFields.breastExamination.toBool,
+                                                      Pulse: entryFields.pulse.toBool,
+                                                      RespiratoryRate: entryFields.respiratoryRate.toBool,
+                                                      Saturation: entryFields.saturation.toBool,
+                                                      Temperature: entryFields.temperature.toBool)
     }
     
     static func manyGrpcToLocal (entryFields:[Nd_V1_ServiceProviderConfigurableEntryFieldsMessage]) -> [ServiceProviderConfigurableEntryFields] {

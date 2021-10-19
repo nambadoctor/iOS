@@ -134,6 +134,68 @@ struct CustomerVitalsEditableView: View {
                         .padding(.bottom)
                 }
             }
+            
+            Group {
+                if configurableEntryVM.selectedEntryField.Pulse {
+                    Group {
+                        HStack (spacing: 3) {
+                            Image("eyeglasses")
+                                .modifier(DetailedAppointmentViewIconModifier())
+                            
+                            Text("PULSE")
+                                .font(.footnote)
+                                .foregroundColor(Color.black.opacity(0.4))
+                                .bold()
+                        }
+                        ExpandingTextEntryView(text: self.$serviceRequestVM.serviceRequest.customerVitals.Pulse)
+                    }
+                }
+                
+                if configurableEntryVM.selectedEntryField.RespiratoryRate {
+                    Group {
+                        HStack (spacing: 3) {
+                            Image("eyeglasses")
+                                .modifier(DetailedAppointmentViewIconModifier())
+                            
+                            Text("RESPIRATORY RATE")
+                                .font(.footnote)
+                                .foregroundColor(Color.black.opacity(0.4))
+                                .bold()
+                        }
+                        ExpandingTextEntryView(text: self.$serviceRequestVM.serviceRequest.customerVitals.RespiratoryRate)
+                    }
+                }
+                
+                if configurableEntryVM.selectedEntryField.Saturation {
+                    Group {
+                        HStack (spacing: 3) {
+                            Image("eyeglasses")
+                                .modifier(DetailedAppointmentViewIconModifier())
+                            
+                            Text("SATURATION")
+                                .font(.footnote)
+                                .foregroundColor(Color.black.opacity(0.4))
+                                .bold()
+                        }
+                        ExpandingTextEntryView(text: self.$serviceRequestVM.serviceRequest.customerVitals.Saturation)
+                    }
+                }
+                
+                if configurableEntryVM.selectedEntryField.Temperature {
+                    Group {
+                        HStack (spacing: 3) {
+                            Image("eyeglasses")
+                                .modifier(DetailedAppointmentViewIconModifier())
+                            
+                            Text("TEMPERATURE")
+                                .font(.footnote)
+                                .foregroundColor(Color.black.opacity(0.4))
+                                .bold()
+                        }
+                        ExpandingTextEntryView(text: self.$serviceRequestVM.serviceRequest.customerVitals.Temperature)
+                    }
+                }
+            }
         }
         .padding()
         .background(Color.white)

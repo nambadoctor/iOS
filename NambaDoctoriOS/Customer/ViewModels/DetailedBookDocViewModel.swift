@@ -16,7 +16,7 @@ class DetailedBookDocViewModel : ObservableObject {
     
     @Published var customerProfile:CustomerProfile
     
-    @Published var customerVitals:CustomerVitals = CustomerVitals(BloodPressure: "", BloodSugar: "", Height: "", Weight: "", MenstrualHistory: "", ObstetricHistory: "", IsSmoker: false, IsAlcoholConsumer: false)
+    @Published var customerVitals:CustomerVitals = CustomerVitals(BloodPressure: "", BloodSugar: "", Height: "", Weight: "", MenstrualHistory: "", ObstetricHistory: "", IsSmoker: false, IsAlcoholConsumer: false, Pulse: "", RespiratoryRate: "", Temperature: "", Saturation: "")
     
     @Published var availabilityVM:AvailabilitySelectorViewModel
     

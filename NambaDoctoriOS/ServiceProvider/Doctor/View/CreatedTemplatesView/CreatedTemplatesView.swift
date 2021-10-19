@@ -87,14 +87,13 @@ struct CreatedTemplatesView: View {
                         Text("Add")
                     }
                 }
-
             }
             
             Section(header: Text("Medicines")) {
                 MedicineDisplay(medicineVM: self.createdTemplateVM.medicineVM, isEditable: true)
                 AddMedicineButton(medicineVM: self.createdTemplateVM.medicineVM)
             }
-                        
+
             Button {
                 self.createdTemplateVM.saveAsNewTemplate()
             } label: {

@@ -436,7 +436,7 @@ message CustomerServiceProviderAdditionalInfoMessage {
 
 message CustomerVitalsMessage{
 
-	google.protobuf.StringValue BloodPressure = 1;
+    google.protobuf.StringValue BloodPressure = 1;
 
     google.protobuf.StringValue BloodSugar = 2;
 
@@ -451,6 +451,14 @@ message CustomerVitalsMessage{
     google.protobuf.BoolValue IsSmoker = 7;
 
     google.protobuf.BoolValue IsAlcoholConsumer = 8;
+
+    google.protobuf.StringValue Pulse = 9;
+
+    google.protobuf.StringValue RespiratoryRate = 10;
+
+    google.protobuf.StringValue Temperature = 11;
+
+    google.protobuf.StringValue Saturation = 12;
 }
 
 message CustomerDiagnosisMessage{
@@ -764,6 +772,8 @@ message CustomerServiceRequestAdditionalEntryFields {
     google.protobuf.StringValue DietAndAppetite = 14;
     google.protobuf.StringValue Habits = 15;
     google.protobuf.StringValue BreastExamination = 16;
+    google.protobuf.StringValue FamilyHistoryOfOtherDiseases = 17;
+
 }
 
 
@@ -1292,7 +1302,7 @@ message ServiceProviderCustomerProfileListMessage{
 
 message ServiceProviderCustomerVitalsMessage{
 
-	google.protobuf.StringValue BloodPressure = 1;
+    google.protobuf.StringValue BloodPressure = 1;
 
     google.protobuf.StringValue BloodSugar = 2;
 
@@ -1307,6 +1317,14 @@ message ServiceProviderCustomerVitalsMessage{
     google.protobuf.BoolValue IsSmoker = 7;
 
     google.protobuf.BoolValue IsAlcoholConsumer = 8;
+
+    google.protobuf.StringValue Pulse = 9;
+
+    google.protobuf.StringValue RespiratoryRate = 10;
+
+    google.protobuf.StringValue Temperature = 11;
+
+    google.protobuf.StringValue Saturation = 12;
 }
 
 message ServiceProviderDiagnosisMessage{
@@ -1472,6 +1490,8 @@ message ServiceProviderMyPatientsProfileMessage{
     google.protobuf.StringValue CareTakerId = 6;
 
     google.protobuf.StringValue LastName = 7;
+
+    google.protobuf.Int64Value CreatedDateTime = 8;
 }
 
 
@@ -1775,6 +1795,7 @@ message ServiceProviderServiceRequestAdditionalEntryFields {
     google.protobuf.StringValue DietAndAppetite = 14;
     google.protobuf.StringValue Habits = 15;
     google.protobuf.StringValue BreastExamination = 16;
+    google.protobuf.StringValue FamilyHistoryOfOtherDiseases = 17;
 }
 
 message ServiceProviderServiceRequestRequestMessage{
@@ -1977,6 +1998,11 @@ message ServiceProviderConfigurableEntryFieldsMessage {
 	google.protobuf.BoolValue DietAndAppetite = 26;
 	google.protobuf.BoolValue Habits = 27;
 	google.protobuf.BoolValue BreastExamination = 28;
+	google.protobuf.BoolValue Pulse = 29;
+	google.protobuf.BoolValue RespiratoryRate = 30;
+	google.protobuf.BoolValue Temperature = 31;
+	google.protobuf.BoolValue Saturation = 32;
+	google.protobuf.BoolValue FamilyHistoryOfOtherDiseases = 33;
 }
 
 message ServiceProviderConfigurableEntryFieldsObjectMessageList {

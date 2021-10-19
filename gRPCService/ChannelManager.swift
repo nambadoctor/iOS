@@ -18,7 +18,7 @@ class ChannelManager {
     //testing ip:- 52.233.76.64
     //traffic manager url: nambadocservice.trafficmanager.net
     //ppe: apippe.pictoinfo.com
-    static let sharedChannelManager = ChannelManager(host: "52.233.76.64", port: 80)
+    static let sharedChannelManager = ChannelManager(host: "apippe.pictoinfo.com", port: 80)
     private var channel:ClientConnection?
     private var callOptions:CallOptions?
 

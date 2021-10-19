@@ -17,6 +17,8 @@ class PatientInfoViewModel: ObservableObject {
     @Published var AppointmentList:[ServiceProviderAppointment]? = nil
     @Published var ReportList:[ServiceProviderReport]? = nil
     
+    @Published var noReports:Bool = false
+    
     var patientPhoneNumber:String = ""
     
     var appointment:ServiceProviderAppointment
@@ -68,7 +70,12 @@ class PatientInfoViewModel: ObservableObject {
         self.ReportList?.removeAll()
         reportServiceCall.getUploadedReportList(customerId: appointment.customerID, serviceRequestId: serviceRequestId, appointmentId: appointment.appointmentID) { (uploadedDocumentList) in
             if uploadedDocumentList != nil {
+                if uploadedDocumentList!.isEmpty {
+                    self.noReports = true
+                }
                 self.ReportList = uploadedDocumentList
+            } else {
+                self.noReports = true
             }
         }
     }

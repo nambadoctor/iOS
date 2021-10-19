@@ -25,4 +25,5 @@ struct CustomerServiceRequestAdditionalEntryFields : Codable {
     var DietAndAppetite:String
     var Habits:String
     var BreastExamination:String
+    var FamilyHistoryOfOtherDiseases:String
 }

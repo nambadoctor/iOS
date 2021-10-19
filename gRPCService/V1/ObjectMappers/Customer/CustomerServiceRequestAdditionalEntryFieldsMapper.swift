@@ -26,6 +26,7 @@ class CustomerServiceRequestAdditionalEntryFieldsMapper {
             $0.dietAndAppetite = additionalInfo.DietAndAppetite.toProto
             $0.habits = additionalInfo.Habits.toProto
             $0.breastExamination = additionalInfo.BreastExamination.toProto
+            $0.familyHistoryOfOtherDiseases = additionalInfo.FamilyHistoryOfOtherDiseases.toProto
         }
     }
     
@@ -45,6 +46,7 @@ class CustomerServiceRequestAdditionalEntryFieldsMapper {
                                                                   Medication: additionalInfo.medication.toString,
                                                                   DietAndAppetite: additionalInfo.dietAndAppetite.toString,
                                                                   Habits: additionalInfo.habits.toString,
-                                                                  BreastExamination: additionalInfo.breastExamination.toString)
+                                                                  BreastExamination: additionalInfo.breastExamination.toString,
+                                                                  FamilyHistoryOfOtherDiseases: additionalInfo.familyHistoryOfOtherDiseases.toString)
     }
 }

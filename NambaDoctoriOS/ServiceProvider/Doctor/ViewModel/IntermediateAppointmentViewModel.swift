@@ -50,6 +50,8 @@ class IntermediateAppointmentViewModel : ObservableObject {
     @Published var showTemplateReviewSheet:Bool = false
     @Published var createdTemplateVM:CreatedTemplateViewModel
     
+    //@Published var cameraVM:CameraViewModel = CameraViewModel()
+    
     var DoctorCancellationReason:[String] = ["This is not my specialty", "I am not available at this time", "Patient did not pick up", "Technical Issues", "Other"]
     
     private var updateAppointmentStatus:ServiceProviderUpdateAppointmentStatusProtocol

@@ -40,13 +40,13 @@ struct PatientInfoEditableView: View {
                         }
                     }
                 }
-            } else if self.patientInfoViewModel.ReportList?.isEmpty ?? true {
-                Indicator()
-            } else {
+            } else if self.patientInfoViewModel.noReports {
                 HStack {
                     Text("There are no reports")
                     Spacer()
                 }.padding(.top, 5)
+            } else {
+                Indicator()
             }
         }
         .onAppear() {
