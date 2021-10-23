@@ -21,9 +21,19 @@ struct CustomerDetailedAppointmentView: View {
                         header
                         
                         VStack {
-                            if customerDetailedAppointmentVM.imageLoader != nil {
-                                ImageView(imageLoader: customerDetailedAppointmentVM.imageLoader!)
-                                    .padding(.top, 10)
+                            ScrollView (.horizontal) {
+                                HStack {
+                                    if customerDetailedAppointmentVM.imageLoader != nil {
+                                        ImageView(imageLoader: customerDetailedAppointmentVM.imageLoader!)
+                                            .padding(.top, 10)
+                                    }
+                                    
+                                    if customerDetailedAppointmentVM.imageLoaders != nil {
+                                        ForEach (self.customerDetailedAppointmentVM.imageLoaders!, id: \.id) { loader in
+                                            ImageView(imageLoader: loader)
+                                        }
+                                    }
+                                }
                             }
                             
                             if customerDetailedAppointmentVM.prescriptionPDF != nil {

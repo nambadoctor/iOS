@@ -35,7 +35,7 @@ class ServiceProviderPrescriptionService : ServiceProviderPrescriptionServicePro
             do {
                 let response = try getPrescriptionObj.response.wait()
                 let prescription = self.prescriptionObjectMapper.grpcPrescriptionToLocal(prescription: response)
-                print("PrescriptionClient received: \(response)")
+                print("PrescriptionClient received: \(prescription.uploadedPrescriptionDocuments)")
                 DispatchQueue.main.async {
                     completion(prescription)
                 }
@@ -55,6 +55,8 @@ class ServiceProviderPrescriptionService : ServiceProviderPrescriptionServicePro
         let request = prescriptionObjectMapper.localPrescriptionToGrpc(prescription: prescription)
                 
         let makePrescription = prescriptionClient.setPrescription(request, callOptions: callOptions)
+        
+        print("WEKJFNWEF: \(prescription.uploadedPrescriptionDocuments.count)")
 
         DispatchQueue.global().async {
             do {

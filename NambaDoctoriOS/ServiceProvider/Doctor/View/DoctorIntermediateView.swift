@@ -53,7 +53,9 @@ struct DoctorIntermediateView: View {
     
     var backButton : some View {
         Button(action : {
-            self.intermediateVM.saveForLater { _ in }
+            if self.intermediateVM.takeToDetailedAppointment {
+                self.intermediateVM.saveForLater { _ in }
+            }
             docAutoNav.leaveIntermediateView()
             DoctorDefaultModifiers.refreshAppointments()
             self.mode.wrappedValue.dismiss()

@@ -34,6 +34,7 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
     @Published var prescriptionPDF:Data? = nil
 
     @Published var imageLoader:ImageLoader? = nil
+    @Published var imageLoaders:[ImageLoader]? = nil
     @Published var docProfPicImageLoader:ImageLoader? = nil
 
     @Published var showTwilioRoom:Bool = false
@@ -227,6 +228,17 @@ class CustomerDetailedAppointmentViewModel: ObservableObject {
                 
                 if self.prescription?.fileInfo.FileType.toPlain == "png" {
                     self.getPrescriptionImage()
+                }
+                
+                if !prescription!.uploadedPrescriptionDocuments.isEmpty {
+                    self.imageLoaders = [ImageLoader]()
+                    for uploadedDoc in prescription!.uploadedPrescriptionDocuments {
+                        CustomerPrescriptionService().downloadPrescription(prescriptionID: uploadedDoc.FileInfoId) { (imageDataURL) in
+                            if imageDataURL != nil {
+                                self.imageLoaders?.append(ImageLoader(urlString: imageDataURL!) { _ in})
+                            }
+                        }
+                    }
                 }
             }
         }

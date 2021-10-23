@@ -22,7 +22,7 @@ class MedicineViewModel: ObservableObject {
     @Published var showRemoveButton:Bool = false
     @Published var imageLoader:ImageLoader? = nil
     @Published var imageLoaders:[ImageLoader]? = nil
-
+ 
     @Published var hasNoMedicineOrImage:Bool = false
     
     @Published var autoFillVM:AutoFillMedicineVM = AutoFillMedicineVM()
@@ -189,7 +189,7 @@ class MedicineViewModel: ObservableObject {
                 self.prescription.uploadedPrescriptionDocuments.append(fileInfo)
             }
         }
-        
+                
         if imageLoaders == nil && imagePickerVM.images == nil {
             self.prescription.uploadedPrescriptionDocuments = [ServiceProviderFileInfo]()
         }
@@ -211,9 +211,13 @@ class MedicineViewModel: ObservableObject {
         self.prescription.createdDateTime = Date().millisecondsSince1970
         prescriptionServiceCalls.setPrescription(prescription: self.prescription) { (response) in
             self.imageLoader = nil
+            self.imageLoaders?.removeAll()
+            self.imagePickerVM.images?.removeAll()
             self.retrievePrescriptions() //to make sure each medicine has ID if being edited again...
             completion(response)
         }
+        
+        
     }
 
     func saveCurrentChanges () {
