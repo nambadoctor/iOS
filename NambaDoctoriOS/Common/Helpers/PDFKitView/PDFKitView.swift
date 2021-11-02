@@ -14,7 +14,7 @@ struct PDFKitView: View {
     var data:Data
     var body: some View {
         VStack {
-            LargeButton(title: "Click to share prescription", backgroundColor: Color.blue, foregroundColor: Color.white) {
+            LargeButton(title: "Click to view & share prescription", backgroundColor: Color.blue, foregroundColor: Color.white) {
                 self.sharePDF()
             }
             PDFKitRepresentedView(data)
