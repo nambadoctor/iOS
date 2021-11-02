@@ -4274,69 +4274,87 @@ struct Nd_V1_ServiceProviderAppointmentSummaryMessage {
   // methods supported on all messages.
 
   var appointmentID: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _appointmentID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_appointmentID = newValue}
+    get {return _storage._appointmentID ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._appointmentID = newValue}
   }
   /// Returns true if `appointmentID` has been explicitly set.
-  var hasAppointmentID: Bool {return self._appointmentID != nil}
+  var hasAppointmentID: Bool {return _storage._appointmentID != nil}
   /// Clears the value of `appointmentID`. Subsequent reads from it will return its default value.
-  mutating func clearAppointmentID() {self._appointmentID = nil}
+  mutating func clearAppointmentID() {_uniqueStorage()._appointmentID = nil}
 
   var pdfbytes: Nd_V1_ResponsePdf {
-    get {return _pdfbytes ?? Nd_V1_ResponsePdf()}
-    set {_pdfbytes = newValue}
+    get {return _storage._pdfbytes ?? Nd_V1_ResponsePdf()}
+    set {_uniqueStorage()._pdfbytes = newValue}
   }
   /// Returns true if `pdfbytes` has been explicitly set.
-  var hasPdfbytes: Bool {return self._pdfbytes != nil}
+  var hasPdfbytes: Bool {return _storage._pdfbytes != nil}
   /// Clears the value of `pdfbytes`. Subsequent reads from it will return its default value.
-  mutating func clearPdfbytes() {self._pdfbytes = nil}
+  mutating func clearPdfbytes() {_uniqueStorage()._pdfbytes = nil}
 
   var prescriptionImageByteString: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _prescriptionImageByteString ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_prescriptionImageByteString = newValue}
+    get {return _storage._prescriptionImageByteString ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._prescriptionImageByteString = newValue}
   }
   /// Returns true if `prescriptionImageByteString` has been explicitly set.
-  var hasPrescriptionImageByteString: Bool {return self._prescriptionImageByteString != nil}
+  var hasPrescriptionImageByteString: Bool {return _storage._prescriptionImageByteString != nil}
   /// Clears the value of `prescriptionImageByteString`. Subsequent reads from it will return its default value.
-  mutating func clearPrescriptionImageByteString() {self._prescriptionImageByteString = nil}
+  mutating func clearPrescriptionImageByteString() {_uniqueStorage()._prescriptionImageByteString = nil}
 
   var reportsList: Nd_V1_ServiceProviderReportListMessage {
-    get {return _reportsList ?? Nd_V1_ServiceProviderReportListMessage()}
-    set {_reportsList = newValue}
+    get {return _storage._reportsList ?? Nd_V1_ServiceProviderReportListMessage()}
+    set {_uniqueStorage()._reportsList = newValue}
   }
   /// Returns true if `reportsList` has been explicitly set.
-  var hasReportsList: Bool {return self._reportsList != nil}
+  var hasReportsList: Bool {return _storage._reportsList != nil}
   /// Clears the value of `reportsList`. Subsequent reads from it will return its default value.
-  mutating func clearReportsList() {self._reportsList = nil}
+  mutating func clearReportsList() {_uniqueStorage()._reportsList = nil}
 
   var appointmentTime: SwiftProtobuf.Google_Protobuf_Int64Value {
-    get {return _appointmentTime ?? SwiftProtobuf.Google_Protobuf_Int64Value()}
-    set {_appointmentTime = newValue}
+    get {return _storage._appointmentTime ?? SwiftProtobuf.Google_Protobuf_Int64Value()}
+    set {_uniqueStorage()._appointmentTime = newValue}
   }
   /// Returns true if `appointmentTime` has been explicitly set.
-  var hasAppointmentTime: Bool {return self._appointmentTime != nil}
+  var hasAppointmentTime: Bool {return _storage._appointmentTime != nil}
   /// Clears the value of `appointmentTime`. Subsequent reads from it will return its default value.
-  mutating func clearAppointmentTime() {self._appointmentTime = nil}
+  mutating func clearAppointmentTime() {_uniqueStorage()._appointmentTime = nil}
 
   var appointmentStatus: SwiftProtobuf.Google_Protobuf_StringValue {
-    get {return _appointmentStatus ?? SwiftProtobuf.Google_Protobuf_StringValue()}
-    set {_appointmentStatus = newValue}
+    get {return _storage._appointmentStatus ?? SwiftProtobuf.Google_Protobuf_StringValue()}
+    set {_uniqueStorage()._appointmentStatus = newValue}
   }
   /// Returns true if `appointmentStatus` has been explicitly set.
-  var hasAppointmentStatus: Bool {return self._appointmentStatus != nil}
+  var hasAppointmentStatus: Bool {return _storage._appointmentStatus != nil}
   /// Clears the value of `appointmentStatus`. Subsequent reads from it will return its default value.
-  mutating func clearAppointmentStatus() {self._appointmentStatus = nil}
+  mutating func clearAppointmentStatus() {_uniqueStorage()._appointmentStatus = nil}
+
+  var prescriptionImagesURL: [SwiftProtobuf.Google_Protobuf_StringValue] {
+    get {return _storage._prescriptionImagesURL}
+    set {_uniqueStorage()._prescriptionImagesURL = newValue}
+  }
+
+  var serviceRequest: Nd_V1_ServiceProviderServiceRequestMessage {
+    get {return _storage._serviceRequest ?? Nd_V1_ServiceProviderServiceRequestMessage()}
+    set {_uniqueStorage()._serviceRequest = newValue}
+  }
+  /// Returns true if `serviceRequest` has been explicitly set.
+  var hasServiceRequest: Bool {return _storage._serviceRequest != nil}
+  /// Clears the value of `serviceRequest`. Subsequent reads from it will return its default value.
+  mutating func clearServiceRequest() {_uniqueStorage()._serviceRequest = nil}
+
+  var prescription: Nd_V1_ServiceProviderPrescriptionMessage {
+    get {return _storage._prescription ?? Nd_V1_ServiceProviderPrescriptionMessage()}
+    set {_uniqueStorage()._prescription = newValue}
+  }
+  /// Returns true if `prescription` has been explicitly set.
+  var hasPrescription: Bool {return _storage._prescription != nil}
+  /// Clears the value of `prescription`. Subsequent reads from it will return its default value.
+  mutating func clearPrescription() {_uniqueStorage()._prescription = nil}
 
   var unknownFields = SwiftProtobuf.UnknownStorage()
 
   init() {}
 
-  fileprivate var _appointmentID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _pdfbytes: Nd_V1_ResponsePdf? = nil
-  fileprivate var _prescriptionImageByteString: SwiftProtobuf.Google_Protobuf_StringValue? = nil
-  fileprivate var _reportsList: Nd_V1_ServiceProviderReportListMessage? = nil
-  fileprivate var _appointmentTime: SwiftProtobuf.Google_Protobuf_Int64Value? = nil
-  fileprivate var _appointmentStatus: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+  fileprivate var _storage = _StorageClass.defaultInstance
 }
 
 struct Nd_V1_ServiceProviderAppointmentSummaryListMessage {
@@ -12507,54 +12525,120 @@ extension Nd_V1_ServiceProviderAppointmentSummaryMessage: SwiftProtobuf.Message,
     4: .same(proto: "ReportsList"),
     5: .same(proto: "AppointmentTime"),
     6: .same(proto: "AppointmentStatus"),
+    7: .same(proto: "PrescriptionImagesUrl"),
+    8: .same(proto: "ServiceRequest"),
+    9: .same(proto: "Prescription"),
   ]
 
+  fileprivate class _StorageClass {
+    var _appointmentID: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _pdfbytes: Nd_V1_ResponsePdf? = nil
+    var _prescriptionImageByteString: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _reportsList: Nd_V1_ServiceProviderReportListMessage? = nil
+    var _appointmentTime: SwiftProtobuf.Google_Protobuf_Int64Value? = nil
+    var _appointmentStatus: SwiftProtobuf.Google_Protobuf_StringValue? = nil
+    var _prescriptionImagesURL: [SwiftProtobuf.Google_Protobuf_StringValue] = []
+    var _serviceRequest: Nd_V1_ServiceProviderServiceRequestMessage? = nil
+    var _prescription: Nd_V1_ServiceProviderPrescriptionMessage? = nil
+
+    static let defaultInstance = _StorageClass()
+
+    private init() {}
+
+    init(copying source: _StorageClass) {
+      _appointmentID = source._appointmentID
+      _pdfbytes = source._pdfbytes
+      _prescriptionImageByteString = source._prescriptionImageByteString
+      _reportsList = source._reportsList
+      _appointmentTime = source._appointmentTime
+      _appointmentStatus = source._appointmentStatus
+      _prescriptionImagesURL = source._prescriptionImagesURL
+      _serviceRequest = source._serviceRequest
+      _prescription = source._prescription
+    }
+  }
+
+  fileprivate mutating func _uniqueStorage() -> _StorageClass {
+    if !isKnownUniquelyReferenced(&_storage) {
+      _storage = _StorageClass(copying: _storage)
+    }
+    return _storage
+  }
+
   mutating func decodeMessage<D: SwiftProtobuf.Decoder>(decoder: inout D) throws {
-    while let fieldNumber = try decoder.nextFieldNumber() {
-      // The use of inline closures is to circumvent an issue where the compiler
-      // allocates stack space for every case branch when no optimizations are
-      // enabled. https://github.com/apple/swift-protobuf/issues/1034
-      switch fieldNumber {
-      case 1: try { try decoder.decodeSingularMessageField(value: &self._appointmentID) }()
-      case 2: try { try decoder.decodeSingularMessageField(value: &self._pdfbytes) }()
-      case 3: try { try decoder.decodeSingularMessageField(value: &self._prescriptionImageByteString) }()
-      case 4: try { try decoder.decodeSingularMessageField(value: &self._reportsList) }()
-      case 5: try { try decoder.decodeSingularMessageField(value: &self._appointmentTime) }()
-      case 6: try { try decoder.decodeSingularMessageField(value: &self._appointmentStatus) }()
-      default: break
+    _ = _uniqueStorage()
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      while let fieldNumber = try decoder.nextFieldNumber() {
+        // The use of inline closures is to circumvent an issue where the compiler
+        // allocates stack space for every case branch when no optimizations are
+        // enabled. https://github.com/apple/swift-protobuf/issues/1034
+        switch fieldNumber {
+        case 1: try { try decoder.decodeSingularMessageField(value: &_storage._appointmentID) }()
+        case 2: try { try decoder.decodeSingularMessageField(value: &_storage._pdfbytes) }()
+        case 3: try { try decoder.decodeSingularMessageField(value: &_storage._prescriptionImageByteString) }()
+        case 4: try { try decoder.decodeSingularMessageField(value: &_storage._reportsList) }()
+        case 5: try { try decoder.decodeSingularMessageField(value: &_storage._appointmentTime) }()
+        case 6: try { try decoder.decodeSingularMessageField(value: &_storage._appointmentStatus) }()
+        case 7: try { try decoder.decodeRepeatedMessageField(value: &_storage._prescriptionImagesURL) }()
+        case 8: try { try decoder.decodeSingularMessageField(value: &_storage._serviceRequest) }()
+        case 9: try { try decoder.decodeSingularMessageField(value: &_storage._prescription) }()
+        default: break
+        }
       }
     }
   }
 
   func traverse<V: SwiftProtobuf.Visitor>(visitor: inout V) throws {
-    if let v = self._appointmentID {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
-    }
-    if let v = self._pdfbytes {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
-    }
-    if let v = self._prescriptionImageByteString {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
-    }
-    if let v = self._reportsList {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
-    }
-    if let v = self._appointmentTime {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
-    }
-    if let v = self._appointmentStatus {
-      try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+    try withExtendedLifetime(_storage) { (_storage: _StorageClass) in
+      if let v = _storage._appointmentID {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 1)
+      }
+      if let v = _storage._pdfbytes {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 2)
+      }
+      if let v = _storage._prescriptionImageByteString {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 3)
+      }
+      if let v = _storage._reportsList {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 4)
+      }
+      if let v = _storage._appointmentTime {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 5)
+      }
+      if let v = _storage._appointmentStatus {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 6)
+      }
+      if !_storage._prescriptionImagesURL.isEmpty {
+        try visitor.visitRepeatedMessageField(value: _storage._prescriptionImagesURL, fieldNumber: 7)
+      }
+      if let v = _storage._serviceRequest {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 8)
+      }
+      if let v = _storage._prescription {
+        try visitor.visitSingularMessageField(value: v, fieldNumber: 9)
+      }
     }
     try unknownFields.traverse(visitor: &visitor)
   }
 
   static func ==(lhs: Nd_V1_ServiceProviderAppointmentSummaryMessage, rhs: Nd_V1_ServiceProviderAppointmentSummaryMessage) -> Bool {
-    if lhs._appointmentID != rhs._appointmentID {return false}
-    if lhs._pdfbytes != rhs._pdfbytes {return false}
-    if lhs._prescriptionImageByteString != rhs._prescriptionImageByteString {return false}
-    if lhs._reportsList != rhs._reportsList {return false}
-    if lhs._appointmentTime != rhs._appointmentTime {return false}
-    if lhs._appointmentStatus != rhs._appointmentStatus {return false}
+    if lhs._storage !== rhs._storage {
+      let storagesAreEqual: Bool = withExtendedLifetime((lhs._storage, rhs._storage)) { (_args: (_StorageClass, _StorageClass)) in
+        let _storage = _args.0
+        let rhs_storage = _args.1
+        if _storage._appointmentID != rhs_storage._appointmentID {return false}
+        if _storage._pdfbytes != rhs_storage._pdfbytes {return false}
+        if _storage._prescriptionImageByteString != rhs_storage._prescriptionImageByteString {return false}
+        if _storage._reportsList != rhs_storage._reportsList {return false}
+        if _storage._appointmentTime != rhs_storage._appointmentTime {return false}
+        if _storage._appointmentStatus != rhs_storage._appointmentStatus {return false}
+        if _storage._prescriptionImagesURL != rhs_storage._prescriptionImagesURL {return false}
+        if _storage._serviceRequest != rhs_storage._serviceRequest {return false}
+        if _storage._prescription != rhs_storage._prescription {return false}
+        return true
+      }
+      if !storagesAreEqual {return false}
+    }
     if lhs.unknownFields != rhs.unknownFields {return false}
     return true
   }

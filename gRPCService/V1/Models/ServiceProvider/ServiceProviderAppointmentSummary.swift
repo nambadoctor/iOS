@@ -14,4 +14,7 @@ struct ServiceProviderAppointmentSummary {
     var ReportsList:[ServiceProviderReport]
     var AppointmentTime:Int64
     var AppointmentStatus:String
+    var PrescriptionImagesUrl:[String]
+    var ServiceRequest:ServiceProviderServiceRequest
+    var Prescription:ServiceProviderPrescription
 }

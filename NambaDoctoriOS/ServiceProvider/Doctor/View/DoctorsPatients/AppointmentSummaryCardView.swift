@@ -41,6 +41,16 @@ struct AppointmentSummaryCardView: View {
                 if !appointmentSummary.PrescriptionImageByteString.isEmpty {
                     ImageView(imageLoader: ImageLoader(urlString: appointmentSummary.PrescriptionImageByteString) { _ in })
                 }
+                
+                if !appointmentSummary.PrescriptionImagesUrl.isEmpty {
+                    ScrollView (.horizontal) {
+                        HStack {
+                            ForEach (self.appointmentSummary.PrescriptionImagesUrl, id: \.self) { url in
+                                ImageView(imageLoader: ImageLoader(urlString: url) { _ in })
+                            }
+                        }
+                    }
+                }
 
                 if !self.appointmentSummary.ReportsList.isEmpty {
                     HStack (spacing: 3) {

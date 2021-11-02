@@ -17,8 +17,9 @@ var channelCreatedTime:Date = Date()
 class ChannelManager { 
     //testing ip:- 52.233.76.64
     //traffic manager url: nambadocservice.trafficmanager.net
+    //secure prod endpoint: apiprod.nambadoctor.com
     //ppe: apippe.pictoinfo.com
-    static let sharedChannelManager = ChannelManager(host: "apippe.pictoinfo.com", port: 80)
+    static let sharedChannelManager = ChannelManager(host: "apiprod.nambadoctor.com", port: 443)
     private var channel:ClientConnection?
     private var callOptions:CallOptions?
 
@@ -41,7 +42,7 @@ class ChannelManager {
         print("creating channel")
         // Configure the channel, we're not using TLS so the connection is `insecure`.
         channel = ClientConnection
-            .insecure(group: group)
+            .secure(group: group)
             .connect(host: self.host, port: self.port)
 
         print("created channel")
@@ -68,7 +69,7 @@ class ChannelManager {
 
         return CallOptions(customMetadata: headers)
     }
-
+    
     public func getTestAuthHeader(userId:String, phoneNumber:String) -> CallOptions {
         print("No bearer NDTest_Ios \(userId) \(phoneNumber)")
         let headers: HPACKHeaders = ["authorization": "Bearer NDTest_Ios \(userId) \(phoneNumber)"]

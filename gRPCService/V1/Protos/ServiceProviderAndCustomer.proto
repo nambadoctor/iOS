@@ -1123,6 +1123,12 @@ message ServiceProviderAppointmentSummaryMessage{
 	google.protobuf.Int64Value AppointmentTime = 5;
 
 	google.protobuf.StringValue AppointmentStatus = 6;
+
+	repeated google.protobuf.StringValue PrescriptionImagesUrl = 7;
+
+	ServiceProviderServiceRequestMessage ServiceRequest = 8;
+
+	ServiceProviderPrescriptionMessage Prescription = 9;
 }
 
 

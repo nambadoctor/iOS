@@ -14,7 +14,10 @@ class ServiceProviderAppointmentSummaryMapper {
                                                  PdfBytes: appointmentSummary.pdfbytes.mediaFile.value,
                                                  ReportsList: ServiceProviderReportMapper().grpcReportToLocal(report: appointmentSummary.reportsList.reports),
                                                  AppointmentTime: appointmentSummary.appointmentTime.toInt64,
-                                                 AppointmentStatus: appointmentSummary.appointmentStatus.toString)
+                                                 AppointmentStatus: appointmentSummary.appointmentStatus.toString,
+                                                 PrescriptionImagesUrl: appointmentSummary.prescriptionImagesURL.convert(),
+                                                 ServiceRequest: ServiceProviderServiceRequestMapper().grpcServiceRequestToLocal(serviceRequest: appointmentSummary.serviceRequest),
+                                                 Prescription: ServiceProviderPrescriptionMapper().grpcPrescriptionToLocal(prescription: appointmentSummary.prescription))
     }
     
     static func GrpcToLocal (appointmentSummary:[Nd_V1_ServiceProviderAppointmentSummaryMessage]) -> [ServiceProviderAppointmentSummary] {

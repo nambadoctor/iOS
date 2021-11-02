@@ -15,7 +15,7 @@ struct MultipleImagePickerModifier: ViewModifier {
         content
             .sheet(isPresented: $imagePickerVM.shouldPresentImagePicker) {
                 if self.imagePickerVM.shouldPresentCamera {
-                    
+                    SUImagePickerView(sourceType: self.imagePickerVM.shouldPresentCamera ? .camera : .photoLibrary, image: self.$imagePickerVM.tempImage, isPresented: self.$imagePickerVM.shouldPresentImagePicker, imagePickedDelegate: self.imagePickerVM)
                 } else {
                     ImagePickerView(filter: .any(of: [.images]), selectionLimit: 0, delegate: ImagePickerView.Delegate(isPresented: $imagePickerVM.shouldPresentImagePicker, didCancel: { (phPickerViewController) in
                         print("Did Cancel: \(phPickerViewController)")
@@ -24,7 +24,11 @@ struct MultipleImagePickerModifier: ViewModifier {
                         let images = result.images
                         print("Did Select images: \(images) from \(phPickerViewController)")
                         DispatchQueue.main.async {
-                            self.imagePickerVM.images = images
+                            if self.imagePickerVM.images != nil {
+                                self.imagePickerVM.images!.append(contentsOf: images)
+                            } else {
+                                self.imagePickerVM.images = images
+                            }
                         }
                     }, didFail: { (imagePickerError) in
                         let phPickerViewController = imagePickerError.picker
@@ -42,7 +46,8 @@ struct MultipleImagePickerModifier: ViewModifier {
     }
 }
 
-class MultipleImagePickerViewModel:ObservableObject {
+class MultipleImagePickerViewModel:ObservableObject, ImagePickedDelegate{
+    @Published var tempImage:UIImage? = nil
     @Published var images: [UIImage]? = nil
     @Published var shouldPresentImagePicker = false
     @Published var shouldPresentActionScheet = false
@@ -67,6 +72,17 @@ class MultipleImagePickerViewModel:ObservableObject {
     func showPhotoLibrary () {
         self.shouldPresentImagePicker = true
         self.shouldPresentCamera = false
+    }
+    
+    func imageSelected() {
+        if self.images != nil {
+            self.images!.append(self.tempImage!)
+        } else {
+            self.images = [UIImage]()
+            self.images!.append(self.tempImage!)
+        }
+        
+        self.tempImage = nil
     }
 }
 

@@ -205,7 +205,7 @@ class DetailedBookDocViewModel : ObservableObject {
                                                       customerName: "",
                                                       isBlockedByServiceProvider: false,
                                                       status: "Confirmed",
-                                                      serviceFee: self.availabilityVM.selectedSlot?.serviceFees ?? 0,
+                                                      serviceFee: getFeeOfSelectedSlot(),
                                                       followUpDays: 0,
                                                       isPaid: false,
                                                       scheduledAppointmentStartTime: self.availabilityVM.selectedSlot?.startDateTime ?? 0,
@@ -243,6 +243,14 @@ class DetailedBookDocViewModel : ObservableObject {
         }
         
         return customerAppointment
+    }
+    
+    func getFeeOfSelectedSlot () -> Double {
+        if self.availabilityVM.selectedSlot?.startDateTime == -1 || self.availabilityVM.selectedSlot == nil{
+            return 0
+        } else {
+            return Double(self.availabilityVM.selectedSlot!.startDateTime)
+        }
     }
     
     func makeServiceRequest (appointmentId:String) -> CustomerServiceRequest {

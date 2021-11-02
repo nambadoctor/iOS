@@ -15,7 +15,7 @@ struct CustomerDetailedAppointmentView: View {
     
     var body: some View {
         ZStack {
-            ScrollView {
+            ScrollView (.vertical) {
                 if customerDetailedAppointmentVM.refreshViewTrigger {
                     VStack {
                         header
@@ -35,11 +35,6 @@ struct CustomerDetailedAppointmentView: View {
                                     }
                                 }
                             }
-                            
-                            if customerDetailedAppointmentVM.prescriptionPDF != nil {
-                                PDFKitView(data: customerDetailedAppointmentVM.prescriptionPDF!)
-                                    .padding(.top, 10)
-                            }
                         }
                         
                         if customerDetailedAppointmentVM.appointmentStarted || customerDetailedAppointmentVM.appointmnentUpComing {
@@ -52,14 +47,14 @@ struct CustomerDetailedAppointmentView: View {
                         }
                         
                         Spacer()
+                        
+                        if customerDetailedAppointmentVM.prescriptionPDF != nil {
+                            PDFKitView(data: customerDetailedAppointmentVM.prescriptionPDF!)
+                                .padding(.top, 10)
+                        }
                     }
                     .padding(.horizontal)
                     .overlay(appointmentViewBlockers)
-                    
-                    if customerDetailedAppointmentVM.showTwilioRoom {
-                        CustomerTwilioManager(customerTwilioViewModel: customerDetailedAppointmentVM.customerTwilioViewModel)
-                            .onAppear(){self.customerDetailedAppointmentVM.customerTwilioViewModel.viewController?.connect(sender: customerDetailedAppointmentVM)}
-                    }
                     
                     if customerDetailedAppointmentVM.takeToChat {
                         NavigationLink("",
@@ -76,6 +71,12 @@ struct CustomerDetailedAppointmentView: View {
                     }
                 }
             }
+            
+            if customerDetailedAppointmentVM.showTwilioRoom {
+                CustomerTwilioManager(customerTwilioViewModel: customerDetailedAppointmentVM.customerTwilioViewModel)
+                    .onAppear(){self.customerDetailedAppointmentVM.customerTwilioViewModel.viewController?.connect(sender: customerDetailedAppointmentVM)}
+            }
+            
             CancellationBottomsheetCaller(offset: self.$customerDetailedAppointmentVM.cancellationSheetOffset, cancellationReasons: self.customerDetailedAppointmentVM.CustomerCancellationReasons, delegate: self.customerDetailedAppointmentVM, disclaimerText: self.customerDetailedAppointmentVM.cancellationDisclaimerText)
         }
         .onTapGesture {
